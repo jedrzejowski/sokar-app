@@ -1,0 +1,7 @@
+
+#Pliki binarne
+/cmake-build-debug
+
+#Pliki źródłowe GDCM
+/gdcm
+/gdcm*
