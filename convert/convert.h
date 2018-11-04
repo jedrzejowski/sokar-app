@@ -13,10 +13,7 @@ namespace Sokar {
 
 class Sokar::ImgConvert {
 public:
-	static QImageUPtr gdcm2Qt(gdcm::Image const &gimage);
-
-private:
-
-	static QImageUPtr rgb2Qt(gdcm::Image const &gimage, char *buffer);
-	static QImageUPtr gray22Qt(gdcm::Image const &gimage, char *buffer);
+	static QImage* gdcm2Qt(gdcm::Image const &gimage);
+	static QImage* rgb2Qt(gdcm::Image const &gimage, char *buffer);
+	static QImage* gray22Qt(gdcm::Image const &gimage, char *buffer);
 };

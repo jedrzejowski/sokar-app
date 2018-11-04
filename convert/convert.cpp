@@ -3,7 +3,7 @@
 
 using namespace Sokar;
 
-QImageUPtr ImgConvert::gdcm2Qt(gdcm::Image const &gimage) {
+QImage *ImgConvert::gdcm2Qt(gdcm::Image const &gimage) {
 
 	std::vector<char> vbuffer;
 	vbuffer.resize(gimage.GetBufferLength());
@@ -21,7 +21,7 @@ QImageUPtr ImgConvert::gdcm2Qt(gdcm::Image const &gimage) {
 	}
 }
 
-QImageUPtr ImgConvert::rgb2Qt(gdcm::Image const &gimage, char *buffer) {
+QImage *ImgConvert::rgb2Qt(gdcm::Image const &gimage, char *buffer) {
 	const unsigned int *dimension = gimage.GetDimensions();
 
 	uint dimX = dimension[0];
@@ -32,10 +32,10 @@ QImageUPtr ImgConvert::rgb2Qt(gdcm::Image const &gimage, char *buffer) {
 
 	uchar *ubuffer = (uchar *) buffer;
 	// QImage::Format_RGB888	13	The image is stored using a 24-bit RGB format (8-8-8).
-	return QImageUPtr(new QImage(ubuffer, dimX, dimY, 3 * dimX, QImage::Format_RGB888));
+	return new QImage(ubuffer, dimX, dimY, 3 * dimX, QImage::Format_RGB888);
 }
 
-QImageUPtr ImgConvert::gray22Qt(gdcm::Image const &gimage, char *buffer) {
+QImage *ImgConvert::gray22Qt(gdcm::Image const &gimage, char *buffer) {
 	const unsigned int *dimension = gimage.GetDimensions();
 
 	unsigned int dimX = dimension[0];
@@ -51,12 +51,14 @@ QImageUPtr ImgConvert::gray22Qt(gdcm::Image const &gimage, char *buffer) {
 			ubuffer = new unsigned char[dimX * dimY * 3];
 			pubuffer = ubuffer;
 			for (unsigned int i = 0; i < dimX * dimY; i++) {
-				*pubuffer++ = *buffer;
-				*pubuffer++ = *buffer;
-				*pubuffer++ = *buffer++;
+				*pubuffer++ = (uchar) *buffer;
+				*pubuffer++ = (uchar) *buffer;
+				*pubuffer++ = (uchar) *buffer;
+
+				buffer++;
 			}
 
-			return QImageUPtr(new QImage(ubuffer, dimX, dimY, QImage::Format_RGB888));
+			return new QImage(ubuffer, dimX, dimY, QImage::Format_RGB888);
 
 		case gdcm::PixelFormat::UINT16:
 			// We need to copy each individual 16bits into R / G and B (truncate value)
@@ -64,18 +66,14 @@ QImageUPtr ImgConvert::gray22Qt(gdcm::Image const &gimage, char *buffer) {
 			ubuffer = new unsigned char[dimX * dimY * 3];
 			pubuffer = ubuffer;
 			for (uint i = 0; i < dimX * dimY; i++) {
-				// Scalar Range of gdcmData/012345.002.050.dcm is [0,192], we could simply do:
-				// *pubuffer++ = *buffer16;
-				// *pubuffer++ = *buffer16;
-				// *pubuffer++ = *buffer16;
-				// instead do it right:
-				*pubuffer++ = (unsigned char) std::min(255, (32768 + *buffer16) / 255);
-				*pubuffer++ = (unsigned char) std::min(255, (32768 + *buffer16) / 255);
-				*pubuffer++ = (unsigned char) std::min(255, (32768 + *buffer16) / 255);
+
+				*pubuffer++ = (uchar) std::min(255, (*buffer16) / 255);
+				*pubuffer++ = (uchar) std::min(255, (*buffer16) / 255);
+				*pubuffer++ = (uchar) std::min(255, (*buffer16) / 255);
 				buffer16++;
 			}
 
-			return QImageUPtr(new QImage(ubuffer, dimX, dimY, QImage::Format_RGB888));
+			return new QImage(ubuffer, dimX, dimY, QImage::Format_RGB888);
 
 		default:
 			throw Sokar::ImageTypeNotSupportedException();

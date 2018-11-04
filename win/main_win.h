@@ -1,6 +1,8 @@
 #pragma once
 
 #include <QMainWindow>
+#include <gdcmImage.h>
+#include <qwidgets/dicomscene.h>
 
 namespace Ui {
 	class MainWindow;
@@ -15,6 +17,15 @@ public:
 	~MainWindow();
 
 private:
-	Ui::MainWindow *ui;
+	Ui::MainWindow *ui = nullptr;
+	gdcm::Image *image = nullptr;
+	Sokar::DicomScene *dicomScene = nullptr;
+
+private slots:
+	void selectFile();
+
+private:
+	void loadImage(const QString &path);
+
 };
 
