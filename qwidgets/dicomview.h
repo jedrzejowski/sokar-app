@@ -14,8 +14,13 @@ public:
 
 	DicomScene *dicomScene();
 
+	void setDicomScene(DicomScene *scene);
+
+
 protected:
 	void resizeEvent(QResizeEvent *event) override;
+
+
 };
 
 

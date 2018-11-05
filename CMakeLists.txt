@@ -24,16 +24,18 @@ include_directories(${PROJECT_SOURCE_DIR})
 include_directories(qwidgets)
 
 set(src_proto sokar/exception.h)
-set(src_convert convert/convert.h convert/convert.cpp)
+set(src_convert convert/convert.h convert/convert.cpp convert/imgwindow.cpp convert/imgwindow.h)
 set(src_mainWin win/main_win.ui win/main_win.cpp win/main_win.h)
 set(src_qwidgets qwidgets/dicomscene.cpp qwidgets/dicomscene.h qwidgets/dicomview.cpp qwidgets/dicomview.h)
+set(src_dicomscenes
+		qwidgets/scenes/header.h qwidgets/scenes/monochrome2.cpp)
 
 
 add_executable(${APP_TARGET} main.cpp
 		${src_proto}
 		${src_convert}
 		${src_mainWin}
-		${src_qwidgets} )
+		${src_qwidgets} ${src_dicomscenes})
 
 
 target_link_libraries(

@@ -50,8 +50,8 @@ void MainWindow::loadImage(const QString &path) {
 	}
 
 	image = &ir.GetImage();
-	dicomScene = new Sokar::DicomScene(image);
+//	dicomScene = new Sokar::DicomScene(image);
 
-	ui->graphicsView->setScene(dicomScene);
+//	ui->graphicsView->setDicomScene(dicomScene);
 
 }

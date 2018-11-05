@@ -21,3 +21,8 @@ void DicomView::resizeEvent(QResizeEvent *event) {
 DicomScene *DicomView::dicomScene() {
 	return (DicomScene *) scene();
 }
+
+void DicomView::setDicomScene(DicomScene *scene) {
+	setScene(scene);
+	dicomScene()->resize(this->width(), this->height());
+}

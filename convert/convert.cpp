@@ -8,6 +8,7 @@ QImage *ImgConvert::gdcm2Qt(gdcm::Image const &gimage) {
 	std::vector<char> vbuffer;
 	vbuffer.resize(gimage.GetBufferLength());
 	char *buffer = &vbuffer[0];
+	gimage.GetBuffer(buffer);
 
 	switch (gimage.GetPhotometricInterpretation()) {
 		case gdcm::PhotometricInterpretation::RGB:
@@ -67,9 +68,9 @@ QImage *ImgConvert::gray22Qt(gdcm::Image const &gimage, char *buffer) {
 			pubuffer = ubuffer;
 			for (uint i = 0; i < dimX * dimY; i++) {
 
-				*pubuffer++ = (uchar) std::min(255, (*buffer16) / 255);
-				*pubuffer++ = (uchar) std::min(255, (*buffer16) / 255);
-				*pubuffer++ = (uchar) std::min(255, (*buffer16) / 255);
+				*pubuffer++ = (uchar) std::min(255, (31768 + *buffer16) / 255);
+				*pubuffer++ = (uchar) std::min(255, (31768 + *buffer16) / 255);
+				*pubuffer++ = (uchar) std::min(255, (31768 + *buffer16) / 255);
 				buffer16++;
 			}
 
