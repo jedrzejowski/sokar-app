@@ -14,8 +14,9 @@ namespace Sokar {
 class Sokar::DicomScene : public QGraphicsScene {
 Q_OBJECT
 
-private:
+protected:
 	gdcm::Image *gdcmImage = nullptr;
+	QGraphicsPixmapItem *curentPixmapItem = nullptr;
 
 	QGraphicsTextItem *text11, *text12, *text13, *text21, *text23, *text31, *text32, *text33;
 
@@ -30,20 +31,17 @@ public:
 	static DicomScene *createForImg(gdcm::Image *gdcmImage);
 
 protected:
-	void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 
-	void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
+	explicit DicomScene(gdcm::Image *gdcmImage);
 
-	void wheelEvent(QGraphicsSceneWheelEvent *event) override;
+	void reloadPixmap();
 
-	void refreshPixMap();
-
-	virtual QPixmap* genQPixmap() = 0;
+	virtual const QPixmap genQPixmap() = 0;
 
 private:
-	explicit DicomScene(gdcm::Image *gdcmImage);
 
 	void initTexts();
 
-	void positTexts();
+	void reposItems();
+
 };

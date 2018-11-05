@@ -28,7 +28,7 @@ set(src_convert convert/convert.h convert/convert.cpp convert/imgwindow.cpp conv
 set(src_mainWin win/main_win.ui win/main_win.cpp win/main_win.h)
 set(src_qwidgets qwidgets/dicomscene.cpp qwidgets/dicomscene.h qwidgets/dicomview.cpp qwidgets/dicomview.h)
 set(src_dicomscenes
-		qwidgets/scenes/header.h qwidgets/scenes/monochrome2.cpp)
+		qwidgets/scenes/monochrome2.h qwidgets/scenes/monochrome2.cpp)
 
 
 add_executable(${APP_TARGET} main.cpp

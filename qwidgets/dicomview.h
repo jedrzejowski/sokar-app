@@ -18,8 +18,10 @@ public:
 
 
 protected:
-	void resizeEvent(QResizeEvent *event) override;
+	// Aby wyłączyć scrolowanie
+	void scrollContentsBy(int dx, int dy) override;
 
+	void resizeEvent(QResizeEvent *event) override;
 
 };
 

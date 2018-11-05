@@ -26,3 +26,5 @@ void DicomView::setDicomScene(DicomScene *scene) {
 	setScene(scene);
 	dicomScene()->resize(this->width(), this->height());
 }
+
+void DicomView::scrollContentsBy(int dx, int dy) {}
