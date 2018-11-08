@@ -23,9 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow() {
 	delete ui;
-
-	if (image != nullptr)
-		delete image;
 }
 
 void MainWindow::selectFile() {
@@ -49,9 +46,6 @@ void MainWindow::loadImage(const QString &path) {
 		return;
 	}
 
-	image = &ir.GetImage();
-
-	dicomScene = Sokar::DicomScene::createForImg(image);
+	dicomScene = Sokar::DicomScene::createForImg(ir);
 	ui->graphicsView->setDicomScene(dicomScene);
-
 }

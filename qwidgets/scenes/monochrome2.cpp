@@ -3,29 +3,32 @@
 using namespace Sokar;
 
 
-Monochrome2DicomScene::Monochrome2DicomScene(gdcm::Image *gdcmImage) : DicomScene(gdcmImage) {
+Monochrome2DicomScene::Monochrome2DicomScene(gdcm::File &gdcmFile,
+											 gdcm::Image &gdcmImage)
+		: DicomScene(gdcmFile, gdcmImage) {
 
-	const unsigned int *dimension = gdcmImage->GetDimensions();
+	const unsigned int *dimension = gdcmImage.GetDimensions();
 
 	dimX = dimension[0];
 	dimY = dimension[1];
 
-	originVectorBuffer.resize(gdcmImage->GetBufferLength());
-	originBuffer = &originVectorBuffer[0];
-	gdcmImage->GetBuffer(originBuffer);
+	originVectorBuffer.resize(gdcmImage.GetBufferLength());
+	gdcmImage.GetBuffer(&originVectorBuffer[0]);
 	targetBuffer = new unsigned char[dimX * dimY * 3];
 
 	reloadPixmap();
+	
 }
 
-const QPixmap Monochrome2DicomScene::genQPixmap() {
+bool Monochrome2DicomScene::genQPixmap() {
 
 	uchar *buffer = targetBuffer;
 
 	auto *origin8 = (uchar *) &originVectorBuffer[0];
 	auto *origin16 = (ushort *) &originVectorBuffer[0];
 
-	switch (gdcmImage->GetPixelFormat()) {
+
+	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::UINT8:
 
 			for (uint i = 0; i < dimX * dimY; i++) {
@@ -52,18 +55,15 @@ const QPixmap Monochrome2DicomScene::genQPixmap() {
 			throw Sokar::ImageTypeNotSupportedException();
 	}
 
-	return QPixmap::fromImage(QImage(targetBuffer, dimX, dimY, QImage::Format_RGB888));
+	delete pixmap;
+
+	pixmap = new QPixmap();
+	auto qimage = QImage(targetBuffer, dimX, dimY, QImage::Format_RGB888);
+	pixmap->convertFromImage(qimage);
+	
+	return true;
 }
 
-
-void Monochrome2DicomScene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-	QGraphicsScene::mousePressEvent(event);
-}
-
-void Monochrome2DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
-	QGraphicsScene::mouseMoveEvent(event);
-}
-
-void Monochrome2DicomScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-	QGraphicsScene::mouseReleaseEvent(event);
+Monochrome2DicomScene::~Monochrome2DicomScene() {
+	delete targetBuffer;
 }

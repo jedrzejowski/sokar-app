@@ -18,7 +18,6 @@ public:
 
 private:
 	Ui::MainWindow *ui = nullptr;
-	gdcm::Image *image = nullptr;
 	Sokar::DicomScene *dicomScene = nullptr;
 
 private slots:

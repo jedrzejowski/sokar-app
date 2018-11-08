@@ -12,7 +12,9 @@ Q_OBJECT
 public:
 	explicit DicomView(QWidget *parent = nullptr);
 
-	DicomScene *dicomScene();
+	inline DicomScene *dicomScene() {
+		return (DicomScene *) scene();
+	};
 
 	void setDicomScene(DicomScene *scene);
 

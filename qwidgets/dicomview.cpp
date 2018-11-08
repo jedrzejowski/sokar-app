@@ -14,17 +14,19 @@ DicomView::DicomView(QWidget *parent) : QGraphicsView(parent) {
 void DicomView::resizeEvent(QResizeEvent *event) {
 	QGraphicsView::resizeEvent(event);
 
-	if (dicomScene() != nullptr)
-		dicomScene()->resize(this->width(), this->height());
-}
-
-DicomScene *DicomView::dicomScene() {
-	return (DicomScene *) scene();
+	
+	if (dicomScene() != nullptr) {
+		dicomScene()->setSceneRect(0, 0, this->width(), this->height());
+		dicomScene()->reposItems();
+	}
 }
 
 void DicomView::setDicomScene(DicomScene *scene) {
+	
+	scene->setSceneRect(0, 0, this->width(), this->height());
+	scene->reposItems();
 	setScene(scene);
-	dicomScene()->resize(this->width(), this->height());
+	
 }
 
 void DicomView::scrollContentsBy(int dx, int dy) {}

@@ -12,24 +12,17 @@ Q_OBJECT
 
 protected:
 	std::vector<char> originVectorBuffer;
-	char *originBuffer;
 	uchar *targetBuffer;
 	uint dimX, dimY;
 
-	int winCenter, winLength;
-
 public:
-	explicit Monochrome2DicomScene(gdcm::Image *gdcmImage);
+	explicit Monochrome2DicomScene(gdcm::File &gdcmFile, gdcm::Image &gdcmImage);
+
+	~Monochrome2DicomScene() override;
 
 protected:
-	void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-
-	void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-
-	void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
-
-protected:
-	const QPixmap genQPixmap() override;
+	
+	bool genQPixmap() override;
 
 };
 

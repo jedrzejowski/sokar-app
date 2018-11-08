@@ -1,27 +1,48 @@
 
+#include <gdcmDict.h>
+#include <gdcmDicts.h>
+#include <gdcmGlobal.h>
+#include <gdcmAttribute.h>
+
 #include "dicomscene.h"
 #include "qwidgets/scenes/monochrome2.h"
 
 using namespace Sokar;
 
-DicomScene::DicomScene(gdcm::Image *gdcmImage) {
+DicomScene::DicomScene(gdcm::File &gdcmFile, gdcm::Image &gdcmImage) :
+		gdcmFile(gdcmFile), gdcmImage(gdcmImage) {
 	setBackgroundBrush(Qt::black);
 
-	this->gdcmImage = gdcmImage;
-
 	initTexts();
+
+//	auto ds = gdcmFile.GetDataSet();
+
+//	const gdcm::Global &g = gdcm::Global::GetInstance();
+//	const gdcm::Dicts &dicts = g.GetDicts();
+//	const gdcm::Dict &pubdict = dicts.GetPublicDict();
+//
+//	for (auto it = ds.Begin(); it != ds.End(); ++it) {
+//		const gdcm::DataElement &elem = *it;
+//
+//		const gdcm::Tag &tag = elem.GetTag();
+//		std::cout << pubdict.GetDictEntry(tag).GetKeyword() << std::endl;
+////			elem.GetValue()
+////		std::cout << elem.GetValue() << std::endl;
+//
+//	}
+
+//	std::cout << "----------" << std::endl;
+//	gdcm::Tag highBitTag;
+//	pubdict.GetDictEntryByKeyword("HighBit", highBitTag);
+//
+//	if (ds.FindDataElement(highBitTag)) {
+//		auto elem = ds.GetDataElement(highBitTag);
+//		elem.GetValue().Print(std::cout);
+//	}
 }
 
 DicomScene::~DicomScene() {
-}
 
-void DicomScene::resize(int w, int h) {
-	maxWidth = w;
-	maxHeight = h;
-
-	setSceneRect(0, 0, w, h);
-
-	reposItems();
 }
 
 void DicomScene::initTexts() {
@@ -64,27 +85,34 @@ void DicomScene::initTexts() {
 void DicomScene::reposItems() {
 
 	text11->setPos(0, 0);
-	text12->setPos((maxWidth - text12->document()->size().width()) / 2, 0);
-	text13->setPos(maxWidth - text13->document()->size().width(), 0);
+	text12->setPos((this->width() - text12->document()->size().width()) / 2, 0);
+	text13->setPos(this->width() - text13->document()->size().width(), 0);
 
-	text21->setPos(0, (maxHeight - text21->document()->size().height()) / 2);
-	text23->setPos(maxWidth - text23->document()->size().width(),
-				   (maxHeight - text23->document()->size().height()) / 2);
+	text21->setPos(0,
+				   (this->height() - text21->document()->size().height()) / 2);
+	text23->setPos(this->width() - text23->document()->size().width(),
+				   (this->height() - text23->document()->size().height()) / 2);
 
-	text31->setPos(0, maxHeight - text31->document()->size().height());
-	text32->setPos((maxWidth - text32->document()->size().width()) / 2,
-				   maxHeight - text32->document()->size().height());
-	text33->setPos(maxWidth - text33->document()->size().width(),
-				   maxHeight - text33->document()->size().height());
+	text31->setPos(0, this->height() - text31->document()->size().height());
+	text32->setPos((this->width() - text32->document()->size().width()) / 2,
+				   this->height() - text32->document()->size().height());
+	text33->setPos(this->width() - text33->document()->size().width(),
+				   this->height() - text33->document()->size().height());
 
-
+	if (pixmapItem != nullptr)
+		pixmapItem->setPos(
+				(this->width() - pixmapItem->pixmap().width()) / 2,
+				(this->height() - pixmapItem->pixmap().height()) / 2);
 }
 
-DicomScene *DicomScene::createForImg(gdcm::Image *gdcmImage) {
+DicomScene *DicomScene::createForImg(const gdcm::ImageReader &imageReader) {
 
-	switch (gdcmImage->GetPhotometricInterpretation()) {
+	auto file = imageReader.GetFile();
+	auto image = imageReader.GetImage();
+
+	switch (image.GetPhotometricInterpretation()) {
 		case gdcm::PhotometricInterpretation::MONOCHROME2:
-			return new Sokar::Monochrome2DicomScene(gdcmImage);
+			return new Sokar::Monochrome2DicomScene(file, image);
 
 		default:
 			throw Sokar::ImageTypeNotSupportedException();
@@ -92,12 +120,13 @@ DicomScene *DicomScene::createForImg(gdcm::Image *gdcmImage) {
 }
 
 void DicomScene::reloadPixmap() {
-	auto pixmap = genQPixmap();
+	if (!genQPixmap()) return;
 
-	if (curentPixmapItem != nullptr) {
-		removeItem(curentPixmapItem);
+	if (pixmapItem == nullptr) {
+		pixmapItem = addPixmap(*pixmap);
+		pixmapItem->setZValue(0);
+	} else {
+		pixmapItem->setPixmap(*pixmap);
 	}
 
-	curentPixmapItem = addPixmap(pixmap);
-	curentPixmapItem->setZValue(0);
 }
