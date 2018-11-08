@@ -3,6 +3,7 @@
 #include <QtCore>
 #include <QtWidgets>
 #include <gdcmImage.h>
+#include <gdcmImageReader.h>
 
 #include "convert/convert.h"
 #include "sokar/exception.h"
@@ -15,33 +16,32 @@ class Sokar::DicomScene : public QGraphicsScene {
 Q_OBJECT
 
 protected:
-	gdcm::Image *gdcmImage = nullptr;
-	QGraphicsPixmapItem *curentPixmapItem = nullptr;
+	gdcm::Image gdcmImage;
+	gdcm::File gdcmFile;
+	QPixmap *pixmap = nullptr;
+	QGraphicsPixmapItem *pixmapItem = nullptr;
 
 	QGraphicsTextItem *text11, *text12, *text13, *text21, *text23, *text31, *text32, *text33;
-
-	int maxWidth, maxHeight;
 
 public:
 
 	~DicomScene() override;
 
-	void resize(int, int);
-
-	static DicomScene *createForImg(gdcm::Image *gdcmImage);
+	static DicomScene *createForImg(const gdcm::ImageReader &imageReader);
 
 protected:
 
-	explicit DicomScene(gdcm::Image *gdcmImage);
+	explicit DicomScene(gdcm::File &gdcmFile, gdcm::Image &gdcmImage);
 
 	void reloadPixmap();
 
-	virtual const QPixmap genQPixmap() = 0;
+	virtual bool genQPixmap() = 0;
 
 private:
-
+	
 	void initTexts();
 
-	void reposItems();
+public slots:
 
+	void reposItems();
 };
