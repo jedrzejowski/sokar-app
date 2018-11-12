@@ -2,6 +2,7 @@
 #include <gdcmDict.h>
 #include <gdcmDicts.h>
 #include <gdcmGlobal.h>
+#include <gdcmTag.h>
 #include <gdcmAttribute.h>
 #include <gdcmStringFilter.h>
 
@@ -32,8 +33,8 @@ void QDicomDataSet::setGdcmFile(const gdcm::File &file) {
 
 	auto &dataset = file.GetDataSet();
 
-	for (auto it = dataset.Begin(); it != dataset.End(); ++it) {
-		auto &elem = *it;
+
+	for (auto elem : dataset.GetDES()) {
 		auto &tag = elem.GetTag();
 
 		QList<QStandardItem *> list;

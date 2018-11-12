@@ -2,6 +2,10 @@
 #include <gdcmDicts.h>
 #include <gdcmGlobal.h>
 #include <gdcmAttribute.h>
+#include <gdcmDataElement.h>
+#include <gdcmValue.h>
+#include <gdcmImageApplyLookupTable.h>
+
 
 #include "monochrome2.h"
 
@@ -43,11 +47,17 @@ void Monochrome2DicomScene::readAttributes() {
 	bitsStored = (ushort) *(gdcmDataSet.GetDataElement(bitsStoredTag)
 			.GetByteValue()->GetPointer());
 
-	imgWindow.setWidth((ushort) *(gdcmDataSet.GetDataElement(windowWidthTag)
-			.GetByteValue()->GetPointer()));
+	imgWindow.setMax((1 << bitsStored) - 1);
 
-	imgWindow.setCenter((ushort) *(gdcmDataSet.GetDataElement(windowCenterTag)
-			.GetByteValue()->GetPointer()));
+	std::stringstream strm;
+
+	gdcmDataSet.GetDataElement(windowWidthTag).GetValue().Print(strm);
+	imgWindow.setWidth(std::stoi(strm.str()));
+
+	strm.str("");
+
+	gdcmDataSet.GetDataElement(windowCenterTag).GetValue().Print(strm);
+	imgWindow.setCenter(std::stoi(strm.str()));
 
 }
 
@@ -58,13 +68,17 @@ bool Monochrome2DicomScene::genQPixmap() {
 	auto *origin8 = (uchar *) &originVectorBuffer[0];
 	auto *origin16 = (ushort *) &originVectorBuffer[0];
 
+	uchar* lut;
+	ushort lutLength;
+	imgWindow.genLUT(lut, lutLength);
+
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::UINT8:
 
 			for (uint i = 0; i < dimX * dimY; i++) {
-				*buffer++ = (uchar) *origin8;
-				*buffer++ = (uchar) *origin8;
-				*buffer++ = (uchar) *origin8;
+				*buffer++ = lut[*origin8];
+				*buffer++ = lut[*origin8];
+				*buffer++ = lut[*origin8];
 
 				origin8++;
 			}
@@ -74,9 +88,9 @@ bool Monochrome2DicomScene::genQPixmap() {
 
 			for (uint i = 0; i < dimX * dimY; i++) {
 
-				*buffer++ = (uchar) std::min(255, (31768 + *origin16) / 255);
-				*buffer++ = (uchar) std::min(255, (31768 + *origin16) / 255);
-				*buffer++ = (uchar) std::min(255, (31768 + *origin16) / 255);
+				*buffer++ = lut[*origin16];
+				*buffer++ = lut[*origin16];
+				*buffer++ = lut[*origin16];
 				origin16++;
 			}
 			break;
@@ -85,8 +99,7 @@ bool Monochrome2DicomScene::genQPixmap() {
 			throw Sokar::ImageTypeNotSupportedException();
 	}
 
-	pixmap.convertFromImage(
-			QImage(targetBuffer, dimX, dimY, QImage::Format_RGB888));
+	pixmap.convertFromImage(QImage(targetBuffer, dimX, dimY, QImage::Format_RGB888));
 
 	return true;
 }

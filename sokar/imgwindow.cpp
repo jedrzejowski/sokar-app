@@ -1,3 +1,4 @@
+#include <iostream>
 #include "imgwindow.h"
 
 using namespace Sokar;
@@ -15,11 +16,11 @@ void ImgWindow::decCenter() {
 }
 
 void ImgWindow::incSize() {
-	size -= bumpsize;
+	width -= bumpsize;
 }
 
 void ImgWindow::decSize() {
-	size -= bumpsize;
+	width -= bumpsize;
 }
 
 ushort ImgWindow::getCenter() const {
@@ -38,27 +39,50 @@ void ImgWindow::setWidth(ushort width) {
 	this->width = width;
 }
 
-ushort ImgWindow::getLeftEdge() {
-	return 0;
+
+ushort ImgWindow::getMax() const {
+	return max;
 }
 
-ushort ImgWindow::getRightEdge() {
-	return 0;
+void ImgWindow::setMax(ushort max) {
+	this->max = max;
 }
 
-ushort ImgWindow::getMaxLeft() const {
-	return maxLeft;
+void ImgWindow::genLUT(uchar *&array, ushort &length) {
+	int x0 = getLeftEdge(), x1 = getRightEdge();
+	uchar y0 = 0, y1 = 255;
+
+	length = getMax();
+	array = new uchar[getMax()];
+
+	float a = (float) (y1 - y0) / (x1 - x0);
+	float b = y1 - a * x1;
+
+	if (x0 > 0)
+		for (auto i = 0; i < x0; i++)
+			array[i] = y0;
+
+	if (x1 < getMax())
+		for (auto i = x1; i < getMax(); i++)
+			array[i] = y1;
+
+	for (int x = x0, y = y0; x < x1; x++) {
+
+		if (0 < x && x < length)
+			array[x] = y;
+
+		y += m;
+	}
+
+	for (int i = 0; i < getMax(); i++)
+		std::cout << i << ":" << (int) array[i] << std::endl;
 }
 
-void ImgWindow::setMaxLeft(ushort maxLeft) {
-	this->maxLeft = maxLeft;
+int ImgWindow::getRightEdge() {
+	return center + width / 2;
 }
 
-ushort ImgWindow::getMaxRight() const {
-	return maxRight;
-}
-
-void ImgWindow::setMaxRight(ushort maxRight) {
-	this->maxRight = maxRight;
+int ImgWindow::getLeftEdge() {
+	return center - width / 2;
 }
 

@@ -10,7 +10,7 @@ class Sokar::ImgWindow {
 protected:
 
 	ushort bumpsize = 1;
-	ushort center, width, maxLeft, maxRight;
+	ushort center, width, max;
 
 public:
 	ImgWindow();
@@ -23,17 +23,13 @@ public:
 
 	void setWidth(ushort width);
 
-	ushort getMaxLeft() const;
+	void setMax(ushort max);
 
-	void setMaxLeft(ushort maxLeft);
+	ushort getMax() const;
 
-	ushort getMaxRight() const;
+	int getRightEdge();
 
-	void setMaxRight(ushort maxRight);
-
-	ushort getRightEdge();
-
-	ushort getLeftEdge();
+	int getLeftEdge();
 
 	void incCenter();
 
@@ -42,5 +38,7 @@ public:
 	void incSize();
 
 	void decSize();
+
+	void genLUT(uchar* &array, ushort &length);
 };
 
