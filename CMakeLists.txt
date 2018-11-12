@@ -21,12 +21,19 @@ find_package(Qt5Widgets CONFIG REQUIRED)
 include_directories(${PROJECT_SOURCE_DIR})
 
 
-include_directories(qwidgets)
+#include_directories(qwidgets)
+
+qt5_wrap_ui(UIS_HDRS win/main_win.ui )
 
 set(src_proto sokar/exception.h)
-set(src_convert convert/convert.h convert/convert.cpp convert/imgwindow.cpp convert/imgwindow.h)
-set(src_mainWin win/main_win.ui win/main_win.cpp win/main_win.h)
-set(src_qwidgets qwidgets/dicomscene.cpp qwidgets/dicomscene.h qwidgets/dicomview.cpp qwidgets/dicomview.h)
+set(src_convert sokar/imgwindow.h sokar/imgwindow.cpp)
+set(src_mainWin win/main_win.cpp win/main_win.h)
+
+set(src_qwidgets
+		qwidgets/qdicomview.h qwidgets/qdicomview.cpp qwidgets/qdicomview.ui
+		qwidgets/dicomscene.h qwidgets/dicomscene.cpp
+		qwidgets/qdicomdataset.h qwidgets/qdicomdataset.cpp )
+
 set(src_dicomscenes
 		qwidgets/scenes/monochrome2.h qwidgets/scenes/monochrome2.cpp)
 
@@ -35,7 +42,9 @@ add_executable(${APP_TARGET} main.cpp
 		${src_proto}
 		${src_convert}
 		${src_mainWin}
-		${src_qwidgets} ${src_dicomscenes})
+		${src_qwidgets}
+		${src_dicomscenes}
+		${UIS_HDRS})
 
 
 target_link_libraries(

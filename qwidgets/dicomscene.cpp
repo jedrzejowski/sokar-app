@@ -9,36 +9,13 @@
 
 using namespace Sokar;
 
-DicomScene::DicomScene(gdcm::File &gdcmFile, gdcm::Image &gdcmImage) :
-		gdcmFile(gdcmFile), gdcmImage(gdcmImage) {
+DicomScene::DicomScene(const gdcm::File &gdcmFile,
+					   const gdcm::Image &gdcmImage) :
+		gdcmFile(gdcmFile), gdcmImage(gdcmImage),
+		gdcmDataSet(gdcmFile.GetDataSet()) {
 	setBackgroundBrush(Qt::black);
 
 	initTexts();
-
-//	auto ds = gdcmFile.GetDataSet();
-
-//	const gdcm::Global &g = gdcm::Global::GetInstance();
-//	const gdcm::Dicts &dicts = g.GetDicts();
-//	const gdcm::Dict &pubdict = dicts.GetPublicDict();
-//
-//	for (auto it = ds.Begin(); it != ds.End(); ++it) {
-//		const gdcm::DataElement &elem = *it;
-//
-//		const gdcm::Tag &tag = elem.GetTag();
-//		std::cout << pubdict.GetDictEntry(tag).GetKeyword() << std::endl;
-////			elem.GetValue()
-////		std::cout << elem.GetValue() << std::endl;
-//
-//	}
-
-//	std::cout << "----------" << std::endl;
-//	gdcm::Tag highBitTag;
-//	pubdict.GetDictEntryByKeyword("HighBit", highBitTag);
-//
-//	if (ds.FindDataElement(highBitTag)) {
-//		auto elem = ds.GetDataElement(highBitTag);
-//		elem.GetValue().Print(std::cout);
-//	}
 }
 
 DicomScene::~DicomScene() {
@@ -107,8 +84,8 @@ void DicomScene::reposItems() {
 
 DicomScene *DicomScene::createForImg(const gdcm::ImageReader &imageReader) {
 
-	auto file = imageReader.GetFile();
-	auto image = imageReader.GetImage();
+	auto &file = imageReader.GetFile();
+	auto &image = imageReader.GetImage();
 
 	switch (image.GetPhotometricInterpretation()) {
 		case gdcm::PhotometricInterpretation::MONOCHROME2:
@@ -123,10 +100,10 @@ void DicomScene::reloadPixmap() {
 	if (!genQPixmap()) return;
 
 	if (pixmapItem == nullptr) {
-		pixmapItem = addPixmap(*pixmap);
+		pixmapItem = addPixmap(pixmap);
 		pixmapItem->setZValue(0);
 	} else {
-		pixmapItem->setPixmap(*pixmap);
+		pixmapItem->setPixmap(pixmap);
 	}
 
 }

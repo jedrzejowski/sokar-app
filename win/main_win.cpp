@@ -1,8 +1,6 @@
 #include "main_win.h"
 #include "ui_main_win.h"
 
-#include "convert/convert.h"
-
 #include <QtGlobal>
 #include <QCoreApplication>
 #include <QtWidgets/QFileDialog>
@@ -18,7 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	this->setMouseTracking(true);
 	ui->centralWidget->setMouseTracking(true);
 
-	QObject::connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(selectFile()));
+	QObject::connect(ui->pushButton, SIGNAL(clicked()), this,
+					 SLOT(selectFile()));
 }
 
 MainWindow::~MainWindow() {
@@ -45,7 +44,6 @@ void MainWindow::loadImage(const QString &path) {
 		QMessageBox::critical(this, "Error", "An error has occured !");
 		return;
 	}
-
-	dicomScene = Sokar::DicomScene::createForImg(ir);
-	ui->graphicsView->setDicomScene(dicomScene);
+	
+	ui->dicomView->addDicomImage(ir);
 }

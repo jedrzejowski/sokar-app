@@ -5,7 +5,6 @@
 #include <gdcmImage.h>
 #include <gdcmImageReader.h>
 
-#include "convert/convert.h"
 #include "sokar/exception.h"
 
 namespace Sokar {
@@ -16,11 +15,12 @@ class Sokar::DicomScene : public QGraphicsScene {
 Q_OBJECT
 
 protected:
-	gdcm::Image gdcmImage;
-	gdcm::File gdcmFile;
-	QPixmap *pixmap = nullptr;
-	QGraphicsPixmapItem *pixmapItem = nullptr;
+	const gdcm::Image &gdcmImage;
+	const gdcm::File &gdcmFile;
+	const gdcm::DataSet &gdcmDataSet;
 
+	QPixmap pixmap;
+	QGraphicsPixmapItem *pixmapItem = nullptr;
 	QGraphicsTextItem *text11, *text12, *text13, *text21, *text23, *text31, *text32, *text33;
 
 public:
@@ -29,16 +29,18 @@ public:
 
 	static DicomScene *createForImg(const gdcm::ImageReader &imageReader);
 
+	const gdcm::File& getGdcmFile() { return gdcmFile; }
+
 protected:
 
-	explicit DicomScene(gdcm::File &gdcmFile, gdcm::Image &gdcmImage);
+	explicit DicomScene(const gdcm::File &gdcmFile, const gdcm::Image &gdcmImage);
 
 	void reloadPixmap();
 
 	virtual bool genQPixmap() = 0;
 
 private:
-	
+
 	void initTexts();
 
 public slots:
