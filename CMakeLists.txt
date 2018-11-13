@@ -35,7 +35,7 @@ set(src_qwidgets
 		qwidgets/qdicomdataset.h qwidgets/qdicomdataset.cpp )
 
 set(src_dicomscenes
-		qwidgets/scenes/monochrome2.h qwidgets/scenes/monochrome2.cpp)
+		qwidgets/scenes/monochrome2.h qwidgets/scenes/monochrome2.cpp sokar/sceneparams.cpp sokar/sceneparams.h qwidgets/qdicomgraphics.cpp qwidgets/qdicomgraphics.h)
 
 
 add_executable(${APP_TARGET} main.cpp

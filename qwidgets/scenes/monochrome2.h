@@ -12,7 +12,6 @@ class Sokar::Monochrome2DicomScene : public Sokar::DicomScene {
 Q_OBJECT
 
 protected:
-	ImgWindow imgWindow;
 	std::vector<char> originVectorBuffer;
 	uchar *targetBuffer;
 	uint dimX, dimY;
@@ -20,7 +19,7 @@ protected:
 	ushort bitsStored;
 
 public:
-	explicit Monochrome2DicomScene(const gdcm::File &gdcmFile, const gdcm::Image &gdcmImage);
+	explicit Monochrome2DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
 
 	~Monochrome2DicomScene() override;
 

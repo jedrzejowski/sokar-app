@@ -11,13 +11,16 @@ QDicomView::QDicomView(QWidget *parent) :
 		ui(new Ui::QDicomView) {
 	ui->setupUi(this);
 
+	sceneParams = new SceneParams();
+
+	ui->graphicsView->sceneParams = sceneParams;
+
 //	setMouseTracking(true);
-	ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 QDicomView::~QDicomView() {
 	delete ui;
+	delete sceneParams;
 }
 
 void QDicomView::resizeEvent(QResizeEvent *event) {
@@ -32,10 +35,13 @@ void QDicomView::resizeEvent(QResizeEvent *event) {
 }
 
 void QDicomView::addDicomImage(const gdcm::ImageReader &reader) {
-	auto dicomScene = Sokar::DicomScene::createForImg(reader);
+
+	auto dicomScene = Sokar::DicomScene::createForImg(reader, sceneParams);
 	scenes.push_back(dicomScene);
 
 	activateScene(dicomScene);
+
+
 }
 
 DicomScene *QDicomView::currentDicomScene() {
@@ -53,5 +59,3 @@ void QDicomView::activateScene(DicomScene *scene) {
 	auto &file = scene->getGdcmFile();
 	ui->datasetView->setGdcmFile(file);
 }
-
-//void QDicomView::scrollContentsBy(int dx, int dy) {}

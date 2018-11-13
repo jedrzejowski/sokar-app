@@ -16,6 +16,7 @@ Q_OBJECT
 private:
 	Ui::QDicomView *ui = nullptr;
 	std::vector<DicomScene *> scenes;
+	SceneParams *sceneParams;
 
 public:
 	explicit QDicomView(QWidget *parent = nullptr);

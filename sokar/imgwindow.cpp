@@ -7,20 +7,8 @@ ImgWindow::ImgWindow() {
 
 }
 
-void ImgWindow::incCenter() {
-	center += bumpsize;
-}
-
-void ImgWindow::decCenter() {
-	center -= bumpsize;
-}
-
-void ImgWindow::incSize() {
-	width -= bumpsize;
-}
-
-void ImgWindow::decSize() {
-	width -= bumpsize;
+ImgWindow::~ImgWindow() {
+	delete array;
 }
 
 ushort ImgWindow::getCenter() const {
@@ -29,6 +17,8 @@ ushort ImgWindow::getCenter() const {
 
 void ImgWindow::setCenter(ushort center) {
 	this->center = center;
+
+//	emit centerChanged(center);
 }
 
 ushort ImgWindow::getWidth() const {
@@ -37,8 +27,9 @@ ushort ImgWindow::getWidth() const {
 
 void ImgWindow::setWidth(ushort width) {
 	this->width = width;
-}
 
+//	emit widthChanged(center);
+}
 
 ushort ImgWindow::getMax() const {
 	return max;
@@ -46,17 +37,22 @@ ushort ImgWindow::getMax() const {
 
 void ImgWindow::setMax(ushort max) {
 	this->max = max;
+
+//	delete(array);
+	array = new uchar[getMax()];
 }
 
-void ImgWindow::genLUT(uchar *&array, ushort &length) {
+void ImgWindow::getLUT(uchar *&array, ushort &length) {
+	length = getMax();
+	array = this->array;
+}
+
+void ImgWindow::genLUT() {
 	int x0 = getLeftEdge(), x1 = getRightEdge();
 	uchar y0 = 0, y1 = 255;
 
-	length = getMax();
-	array = new uchar[getMax()];
-
-	float a = (float) (y1 - y0) / (x1 - x0);
-	float b = y1 - a * x1;
+	auto a = (float) (y1 - y0) / (x1 - x0);
+//	float b = y1 - a * x1;
 
 	if (x0 > 0)
 		for (auto i = 0; i < x0; i++)
@@ -66,16 +62,14 @@ void ImgWindow::genLUT(uchar *&array, ushort &length) {
 		for (auto i = x1; i < getMax(); i++)
 			array[i] = y1;
 
-	for (int x = x0, y = y0; x < x1; x++) {
+	float y = y0;
+	for (int x = x0; x < x1; x++) {
 
-		if (0 < x && x < length)
-			array[x] = y;
+		if (0 < x && x < getMax())
+			array[x] = (uchar) y;
 
-		y += m;
+		y += a;
 	}
-
-	for (int i = 0; i < getMax(); i++)
-		std::cout << i << ":" << (int) array[i] << std::endl;
 }
 
 int ImgWindow::getRightEdge() {
@@ -85,4 +79,13 @@ int ImgWindow::getRightEdge() {
 int ImgWindow::getLeftEdge() {
 	return center - width / 2;
 }
+
+void ImgWindow::mvWidth(short d) {
+	setWidth(width + d);
+}
+
+void ImgWindow::mvCenter(short d) {
+	setCenter(center + d);
+}
+
 

@@ -9,10 +9,12 @@
 
 using namespace Sokar;
 
-DicomScene::DicomScene(const gdcm::File &gdcmFile,
-					   const gdcm::Image &gdcmImage) :
-		gdcmFile(gdcmFile), gdcmImage(gdcmImage),
-		gdcmDataSet(gdcmFile.GetDataSet()) {
+DicomScene::DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams) :
+		gdcmFile(imageReader.GetFile()),
+		gdcmImage(imageReader.GetImage()),
+		gdcmDataSet(gdcmFile.GetDataSet()),
+		sceneParams(sceneParams) {
+
 	setBackgroundBrush(Qt::black);
 
 	initTexts();
@@ -57,6 +59,10 @@ void DicomScene::initTexts() {
 	text33 = addText("text33");
 	text33->setDefaultTextColor(txtColor);
 	text33->setZValue(++z);
+
+	refreshText33();
+	QObject::connect(&(sceneParams->imgWindow), SIGNAL(centerChanged(ushort, ushort)), this, SLOT(refreshText33()));
+	QObject::connect(&(sceneParams->imgWindow), SIGNAL(widthChanged(ushort, ushort)), this, SLOT(refreshText33()));
 }
 
 void DicomScene::reposItems() {
@@ -82,14 +88,17 @@ void DicomScene::reposItems() {
 				(this->height() - pixmapItem->pixmap().height()) / 2);
 }
 
-DicomScene *DicomScene::createForImg(const gdcm::ImageReader &imageReader) {
+void DicomScene::refreshText33() {
 
-	auto &file = imageReader.GetFile();
+}
+
+DicomScene *DicomScene::createForImg(const gdcm::ImageReader &imageReader, SceneParams *sceneParams) {
+
 	auto &image = imageReader.GetImage();
 
 	switch (image.GetPhotometricInterpretation()) {
 		case gdcm::PhotometricInterpretation::MONOCHROME2:
-			return new Sokar::Monochrome2DicomScene(file, image);
+			return new Sokar::Monochrome2DicomScene(imageReader, sceneParams);
 
 		default:
 			throw Sokar::ImageTypeNotSupportedException();

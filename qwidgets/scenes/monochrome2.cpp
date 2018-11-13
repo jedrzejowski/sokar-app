@@ -12,9 +12,8 @@
 using namespace Sokar;
 
 
-Monochrome2DicomScene::Monochrome2DicomScene(const gdcm::File &gdcmFile,
-											 const gdcm::Image &gdcmImage)
-		: DicomScene(gdcmFile, gdcmImage) {
+Monochrome2DicomScene::Monochrome2DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams)
+		: DicomScene(imageReader, sceneParams) {
 
 	const unsigned int *dimension = gdcmImage.GetDimensions();
 
@@ -47,17 +46,17 @@ void Monochrome2DicomScene::readAttributes() {
 	bitsStored = (ushort) *(gdcmDataSet.GetDataElement(bitsStoredTag)
 			.GetByteValue()->GetPointer());
 
-	imgWindow.setMax((1 << bitsStored) - 1);
+	sceneParams->imgWindow.setMax((1 << bitsStored) - 1);
 
 	std::stringstream strm;
 
 	gdcmDataSet.GetDataElement(windowWidthTag).GetValue().Print(strm);
-	imgWindow.setWidth(std::stoi(strm.str()));
+	sceneParams->imgWindow.setWidth(std::stoi(strm.str()));
 
 	strm.str("");
 
 	gdcmDataSet.GetDataElement(windowCenterTag).GetValue().Print(strm);
-	imgWindow.setCenter(std::stoi(strm.str()));
+	sceneParams->imgWindow.setCenter(std::stoi(strm.str()));
 
 }
 
@@ -68,9 +67,10 @@ bool Monochrome2DicomScene::genQPixmap() {
 	auto *origin8 = (uchar *) &originVectorBuffer[0];
 	auto *origin16 = (ushort *) &originVectorBuffer[0];
 
-	uchar* lut;
+	uchar *lut;
 	ushort lutLength;
-	imgWindow.genLUT(lut, lutLength);
+	sceneParams->imgWindow.genLUT();
+	sceneParams->imgWindow.getLUT(lut, lutLength);
 
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::UINT8:

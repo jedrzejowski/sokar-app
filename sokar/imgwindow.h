@@ -1,19 +1,22 @@
 #pragma once
 
-#include <QtCore>
+#include <QObject>
 
 namespace Sokar {
 	class ImgWindow;
 }
 
-class Sokar::ImgWindow {
+class Sokar::ImgWindow : public QObject {
+Q_OBJECT
 protected:
 
-	ushort bumpsize = 1;
 	ushort center, width, max;
+	uchar *array = nullptr;
 
 public:
 	ImgWindow();
+
+	~ImgWindow() override;
 
 	ushort getCenter() const;
 
@@ -31,14 +34,18 @@ public:
 
 	int getLeftEdge();
 
-	void incCenter();
+	void mvCenter(short d);
 
-	void decCenter();
+	void mvWidth(short d);
 
-	void incSize();
+	void getLUT(uchar *&array, ushort &length);
 
-	void decSize();
+	void genLUT();
 
-	void genLUT(uchar* &array, ushort &length);
+signals:
+
+	void centerChanged(ushort c1, ushort c2);
+
+	void widthChanged(ushort w1, ushort w2);
 };
 

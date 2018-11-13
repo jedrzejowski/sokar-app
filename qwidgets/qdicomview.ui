@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-	<class>QDicomView</class>
-	<widget class="QWidget" name="QDicomView">
-		<property name="geometry">
-			<rect>
-				<x>0</x>
-				<y>0</y>
-				<width>400</width>
-				<height>300</height>
-			</rect>
-		</property>
-		<layout class="QGridLayout" name="gridLayout">
-			<item row="0" column="0">
-				<widget class="QGraphicsView" name="graphicsView"/>
-			</item>
-			<item row="0" column="1">
-				<widget class="Sokar::QDicomDataSet" name="datasetView"/>
-			</item>
-		</layout>
-	</widget>
-	
-	<customwidgets>
-		<customwidget>
-			<class>Sokar::QDicomDataSet</class>
-			<extends>QWidget</extends>
-			<header>qwidgets/qdicomdataset.h</header>
-		</customwidget>
-	</customwidgets>
-	
-	<resources/>
-	<connections/>
+    <class>QDicomView</class>
+    <widget class="QWidget" name="QDicomView">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>400</width>
+                <height>300</height>
+            </rect>
+        </property>
+        <layout class="QGridLayout" name="gridLayout">
+            <item row="0" column="0">
+                <widget class="Sokar::QDicomGraphics" name="graphicsView"/>
+            </item>
+            <item row="0" column="1">
+                <widget class="Sokar::QDicomDataSet" name="datasetView"/>
+            </item>
+        </layout>
+    </widget>
+
+    <customwidgets>
+
+        <customwidget>
+            <class>Sokar::QDicomDataSet</class>
+            <extends>QWidget</extends>
+            <header>qwidgets/qdicomdataset.h</header>
+        </customwidget>
+
+        <customwidget>
+            <class>Sokar::QDicomGraphics</class>
+            <extends>QGraphicsView</extends>
+            <header>qwidgets/qdicomgraphics.h</header>
+        </customwidget>
+
+    </customwidgets>
+
+    <resources/>
+    <connections/>
 </ui>
