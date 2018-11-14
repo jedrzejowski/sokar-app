@@ -2,7 +2,7 @@
 
 #include <QtCore>
 #include <qwidgets/dicomscene.h>
-#include "sokar/imgwindow.h"
+#include "sokar/windowing/imgwindow.h"
 
 namespace Sokar {
 	class Monochrome2DicomScene;
@@ -15,8 +15,7 @@ protected:
 	std::vector<char> originVectorBuffer;
 	uchar *targetBuffer;
 	uint dimX, dimY;
-	
-	ushort bitsStored;
+
 
 public:
 	explicit Monochrome2DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);

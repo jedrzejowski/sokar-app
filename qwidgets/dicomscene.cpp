@@ -61,8 +61,8 @@ void DicomScene::initTexts() {
 	text33->setZValue(++z);
 
 	refreshText33();
-	QObject::connect(&(sceneParams->imgWindow), SIGNAL(centerChanged(ushort, ushort)), this, SLOT(refreshText33()));
-	QObject::connect(&(sceneParams->imgWindow), SIGNAL(widthChanged(ushort, ushort)), this, SLOT(refreshText33()));
+	QObject::connect(&(sceneParams->imgWindow), SIGNAL(centerChanged()), this, SLOT(refreshText33()));
+	QObject::connect(&(sceneParams->imgWindow), SIGNAL(widthChanged()), this, SLOT(refreshText33()));
 }
 
 void DicomScene::reposItems() {
@@ -90,6 +90,15 @@ void DicomScene::reposItems() {
 
 void DicomScene::refreshText33() {
 
+	QString str;
+	str.append("<b>W</b> ").append(QString::number(sceneParams->imgWindow.getWidth()));
+	str.append("<br>");
+	str.append("<b>C</b> ").append(QString::number(sceneParams->imgWindow.getCenter()));
+
+	text33->setHtml(str);
+
+	text33->setPos(this->width() - text33->document()->size().width(),
+				   this->height() - text33->document()->size().height());
 }
 
 DicomScene *DicomScene::createForImg(const gdcm::ImageReader &imageReader, SceneParams *sceneParams) {

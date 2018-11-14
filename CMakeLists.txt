@@ -23,33 +23,39 @@ include_directories(${PROJECT_SOURCE_DIR})
 
 #include_directories(qwidgets)
 
-qt5_wrap_ui(UIS_HDRS win/main_win.ui )
+qt5_wrap_ui(UIS_HDRS win/main_win.ui)
 
-set(src_proto sokar/exception.h)
-set(src_convert sokar/imgwindow.h sokar/imgwindow.cpp)
+set(src_proto sokar/exception.h
+        sokar/sceneparams.h
+        sokar/sceneparams.cpp
+        sokar/dicomtags.h)
+
+set(src_convert sokar/windowing/imgwindow.h sokar/windowing/imgwindow.cpp sokar/windowing/imgwindowINT.cpp sokar/windowing/imgwindowINT.h)
+
 set(src_mainWin win/main_win.cpp win/main_win.h)
 
 set(src_qwidgets
-		qwidgets/qdicomview.h qwidgets/qdicomview.cpp qwidgets/qdicomview.ui
-		qwidgets/dicomscene.h qwidgets/dicomscene.cpp
-		qwidgets/qdicomdataset.h qwidgets/qdicomdataset.cpp )
+        qwidgets/qdicomview.h qwidgets/qdicomview.cpp qwidgets/qdicomview.ui
+        qwidgets/dicomscene.h qwidgets/dicomscene.cpp
+        qwidgets/qdicomdataset.h qwidgets/qdicomdataset.cpp
+        qwidgets/qdicomgraphics.h qwidgets/qdicomgraphics.cpp)
 
 set(src_dicomscenes
-		qwidgets/scenes/monochrome2.h qwidgets/scenes/monochrome2.cpp sokar/sceneparams.cpp sokar/sceneparams.h qwidgets/qdicomgraphics.cpp qwidgets/qdicomgraphics.h)
+        qwidgets/scenes/monochrome2.h qwidgets/scenes/monochrome2.cpp sokar/windowing/imgwindowUINT.cpp sokar/windowing/imgwindowUINT.h)
 
 
 add_executable(${APP_TARGET} main.cpp
-		${src_proto}
-		${src_convert}
-		${src_mainWin}
-		${src_qwidgets}
-		${src_dicomscenes}
-		${UIS_HDRS})
+        ${src_proto}
+        ${src_convert}
+        ${src_mainWin}
+        ${src_qwidgets}
+        ${src_dicomscenes}
+        ${UIS_HDRS})
 
 
 target_link_libraries(
-		${APP_TARGET}
-		gdcmMSFF
-		Qt5::Widgets
-		${EXTRA_LIBS}
+        ${APP_TARGET}
+        gdcmMSFF
+        Qt5::Widgets
+        ${EXTRA_LIBS}
 )

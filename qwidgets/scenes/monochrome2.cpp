@@ -4,7 +4,9 @@
 #include <gdcmAttribute.h>
 #include <gdcmDataElement.h>
 #include <gdcmValue.h>
+#include <gdcmTag.h>
 #include <gdcmImageApplyLookupTable.h>
+#include <sokar/dicomtags.h>
 
 
 #include "monochrome2.h"
@@ -32,31 +34,34 @@ Monochrome2DicomScene::Monochrome2DicomScene(const gdcm::ImageReader &imageReade
 
 void Monochrome2DicomScene::readAttributes() {
 
-	static bool tagsFound = false;
-	static auto &dicts = gdcm::Global::GetInstance().GetDicts();
-	static auto &pubdict = dicts.GetPublicDict();
-	static gdcm::Tag bitsStoredTag, windowWidthTag, windowCenterTag;
-
-	if (!tagsFound) {
-		pubdict.GetDictEntryByKeyword("BitsStored", bitsStoredTag);
-		pubdict.GetDictEntryByKeyword("WindowWidth", windowWidthTag);
-		pubdict.GetDictEntryByKeyword("WindowCenter", windowCenterTag);
-	}
-
-	bitsStored = (ushort) *(gdcmDataSet.GetDataElement(bitsStoredTag)
-			.GetByteValue()->GetPointer());
-
-	sceneParams->imgWindow.setMax((1 << bitsStored) - 1);
-
 	std::stringstream strm;
+	ushort us;
 
-	gdcmDataSet.GetDataElement(windowWidthTag).GetValue().Print(strm);
+
+	if (!gdcmDataSet.FindDataElement(gdcm::TagBitsStored))
+		throw DicomTagMissing(gdcm::TagBitsStored);
+
+	us = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagBitsStored).GetByteValue()->GetPointer());
+	sceneParams->imgWindow.setMax((1 << us) - 1);
+
+	//
+
+	if (!gdcmDataSet.FindDataElement(gdcm::TagWindowWidth))
+		throw DicomTagMissing(gdcm::TagWindowWidth);
+
+	gdcmDataSet.GetDataElement(gdcm::TagWindowWidth).GetValue().Print(strm);
 	sceneParams->imgWindow.setWidth(std::stoi(strm.str()));
 
 	strm.str("");
 
-	gdcmDataSet.GetDataElement(windowCenterTag).GetValue().Print(strm);
+	//
+
+	if (!gdcmDataSet.FindDataElement(gdcm::TagWindowCenter))
+		throw DicomTagMissing(gdcm::TagWindowCenter);
+
+	gdcmDataSet.GetDataElement(gdcm::TagWindowCenter).GetValue().Print(strm);
 	sceneParams->imgWindow.setCenter(std::stoi(strm.str()));
+
 
 }
 

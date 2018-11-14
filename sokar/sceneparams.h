@@ -1,6 +1,6 @@
 #pragma once
 
-#include "imgwindow.h"
+#include "sokar/windowing/imgwindow.h"
 
 namespace Sokar {
 	class SceneParams;
