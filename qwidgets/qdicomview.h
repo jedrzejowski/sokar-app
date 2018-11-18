@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dicomscene.h"
+#include "qwidgets/scenes/scene.h"
 
 namespace Ui {
 	class QDicomView;

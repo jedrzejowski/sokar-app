@@ -13,8 +13,6 @@ QDicomView::QDicomView(QWidget *parent) :
 
 	sceneParams = new SceneParams();
 
-	ui->graphicsView->sceneParams = sceneParams;
-
 //	setMouseTracking(true);
 }
 

@@ -2,8 +2,8 @@
 
 #include <QtCore>
 #include <QtWidgets>
-#include <sokar/sceneparams.h>
-#include "dicomscene.h"
+#include <qwidgets/scenes/params.h>
+#include "qwidgets/scenes/scene.h"
 
 namespace Sokar {
 	class QDicomGraphics;
@@ -14,17 +14,7 @@ Q_OBJECT
 public:
 	explicit QDicomGraphics(QWidget *parent);
 
-	SceneParams *sceneParams;
-
-	bool isDragging = false;
-	int lastX, lastY;
-
 protected:
-	void mousePressEvent(QMouseEvent *event) override;
-
-	void mouseReleaseEvent(QMouseEvent *event) override;
-
-	void mouseMoveEvent(QMouseEvent *event) override;
 
 	void scrollContentsBy(int dx, int dy) override;
 

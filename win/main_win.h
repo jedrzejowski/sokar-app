@@ -2,7 +2,7 @@
 
 #include <QMainWindow>
 #include <gdcmImage.h>
-#include <qwidgets/dicomscene.h>
+#include <qwidgets/scenes/scene.h>
 
 namespace Ui {
 	class MainWindow;

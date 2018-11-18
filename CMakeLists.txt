@@ -26,27 +26,26 @@ include_directories(${PROJECT_SOURCE_DIR})
 qt5_wrap_ui(UIS_HDRS win/main_win.ui)
 
 set(src_proto sokar/exception.h
-        sokar/sceneparams.h
-        sokar/sceneparams.cpp
-        sokar/dicomtags.h)
-
-set(src_convert sokar/windowing/imgwindow.h sokar/windowing/imgwindow.cpp sokar/pixel.h)
+        qwidgets/scenes/params.h
+        qwidgets/scenes/params.cpp
+        sokar/dicomtags.h
+        sokar/pixel.h)
 
 set(src_mainWin win/main_win.cpp win/main_win.h)
 
 set(src_qwidgets
         qwidgets/qdicomview.h qwidgets/qdicomview.cpp qwidgets/qdicomview.ui
-        qwidgets/dicomscene.h qwidgets/dicomscene.cpp
+        qwidgets/scenes/scene.h qwidgets/scenes/scene.cpp
         qwidgets/qdicomdataset.h qwidgets/qdicomdataset.cpp
         qwidgets/qdicomgraphics.h qwidgets/qdicomgraphics.cpp)
 
-set(src_dicomscenes
-        qwidgets/scenes/monochrome2.h qwidgets/scenes/monochrome2.cpp sokar/windowing/imgwindowint.cpp sokar/windowing/imgwindowint.h)
+set(src_scenes
+        qwidgets/scenes/scene.h qwidgets/scenes/scene.cpp)
 
+include(qwidgets/scenes/monochrome2/CMakeLists.txt)
 
 add_executable(${APP_TARGET} main.cpp
         ${src_proto}
-        ${src_convert}
         ${src_mainWin}
         ${src_qwidgets}
         ${src_dicomscenes}

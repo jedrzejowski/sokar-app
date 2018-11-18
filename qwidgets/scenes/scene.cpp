@@ -3,9 +3,11 @@
 #include <gdcmDicts.h>
 #include <gdcmGlobal.h>
 #include <gdcmAttribute.h>
+#include <sokar/dicomtags.h>
 
-#include "dicomscene.h"
-#include "qwidgets/scenes/monochrome2.h"
+#include "scene.h"
+
+#include "monochrome2/monochrome2.h"
 
 using namespace Sokar;
 
@@ -15,9 +17,12 @@ DicomScene::DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneP
 		gdcmDataSet(gdcmFile.GetDataSet()),
 		sceneParams(sceneParams) {
 
+	gdcmStringFilter.SetFile(gdcmFile);
+
 	setBackgroundBrush(Qt::black);
 
 	initTexts();
+	initPixelSpacingIndicator();
 }
 
 DicomScene::~DicomScene() {
@@ -59,10 +64,6 @@ void DicomScene::initTexts() {
 	text33 = addText("text33");
 	text33->setDefaultTextColor(txtColor);
 	text33->setZValue(++z);
-
-	refreshText33();
-	QObject::connect(&(sceneParams->imgWindow), SIGNAL(centerChanged()), this, SLOT(refreshText33()));
-	QObject::connect(&(sceneParams->imgWindow), SIGNAL(widthChanged()), this, SLOT(refreshText33()));
 }
 
 void DicomScene::reposItems() {
@@ -88,18 +89,6 @@ void DicomScene::reposItems() {
 				(this->height() - pixmapItem->pixmap().height()) / 2);
 }
 
-void DicomScene::refreshText33() {
-
-	QString str;
-	str.append("<b>W</b> ").append(QString::number(sceneParams->imgWindow.getWidth()));
-	str.append("<br>");
-	str.append("<b>C</b> ").append(QString::number(sceneParams->imgWindow.getCenter()));
-
-	text33->setHtml(str);
-
-	text33->setPos(this->width() - text33->document()->size().width(),
-				   this->height() - text33->document()->size().height());
-}
 
 DicomScene *DicomScene::createForImg(const gdcm::ImageReader &imageReader, SceneParams *sceneParams) {
 
@@ -107,7 +96,7 @@ DicomScene *DicomScene::createForImg(const gdcm::ImageReader &imageReader, Scene
 
 	switch (image.GetPhotometricInterpretation()) {
 		case gdcm::PhotometricInterpretation::MONOCHROME2:
-			return new Sokar::Monochrome2DicomScene(imageReader, sceneParams);
+			return new Sokar::Monochrome2::Scene(imageReader, sceneParams);
 
 		default:
 			throw Sokar::ImageTypeNotSupportedException();
@@ -124,4 +113,27 @@ void DicomScene::reloadPixmap() {
 		pixmapItem->setPixmap(pixmap);
 	}
 
+}
+
+void DicomScene::refreshText33() {
+
+	text33->setHtml(genText33());
+
+	text33->setPos(this->width() - text33->document()->size().width(),
+				   this->height() - text33->document()->size().height());
+}
+
+QString DicomScene::genText33() {
+	return QString();
+}
+
+void DicomScene::initPixelSpacingIndicator() {
+	if (!gdcmDataSet.FindDataElement(gdcm::TagPixelSpacing)) return;
+
+	auto pixelSpacing = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelSpacing)).toDouble();
+
+	if (pixelSpacing == 0)
+		return;
+
+	qDebug() << "pixelSpacing:" << pixelSpacing;
 }

@@ -4,9 +4,10 @@
 #include <QtWidgets>
 #include <gdcmImage.h>
 #include <gdcmImageReader.h>
+#include <gdcmStringFilter.h>
 
 #include "sokar/exception.h"
-#include "sokar/sceneparams.h"
+#include "params.h"
 
 namespace Sokar {
 	class DicomScene;
@@ -20,12 +21,13 @@ protected:
 	const gdcm::File &gdcmFile;
 	const gdcm::DataSet &gdcmDataSet;
 
+	gdcm::StringFilter gdcmStringFilter;
+
 	SceneParams* sceneParams;
 
 	QPixmap pixmap;
 	QGraphicsPixmapItem *pixmapItem = nullptr;
 	QGraphicsTextItem *text11, *text12, *text13, *text21, *text23, *text31, *text32, *text33;
-
 
 public:
 
@@ -40,14 +42,24 @@ public:
 
 protected:
 
+
 	virtual bool genQPixmap() = 0;
 
 private:
 
 	void initTexts();
 
+	//region PixelSpacingIndicator
+	void initPixelSpacingIndicator();
+	//endregion
+
 public slots:
 
 	void refreshText33();
 	void reposItems();
+
+protected:
+	//region TextGen
+	virtual QString genText33();
+	//endregion
 };
