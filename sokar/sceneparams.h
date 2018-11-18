@@ -8,5 +8,5 @@ namespace Sokar {
 
 class Sokar::SceneParams {
 public:
-	ImgWindow imgWindow;
+	ImgWindow* imgWindow;
 };

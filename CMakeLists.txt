@@ -30,7 +30,7 @@ set(src_proto sokar/exception.h
         sokar/sceneparams.cpp
         sokar/dicomtags.h)
 
-set(src_convert sokar/windowing/imgwindow.h sokar/windowing/imgwindow.cpp sokar/windowing/imgwindowINT.cpp sokar/windowing/imgwindowINT.h)
+set(src_convert sokar/windowing/imgwindow.h sokar/windowing/imgwindow.cpp sokar/pixel.h)
 
 set(src_mainWin win/main_win.cpp win/main_win.h)
 
@@ -41,7 +41,7 @@ set(src_qwidgets
         qwidgets/qdicomgraphics.h qwidgets/qdicomgraphics.cpp)
 
 set(src_dicomscenes
-        qwidgets/scenes/monochrome2.h qwidgets/scenes/monochrome2.cpp sokar/windowing/imgwindowUINT.cpp sokar/windowing/imgwindowUINT.h)
+        qwidgets/scenes/monochrome2.h qwidgets/scenes/monochrome2.cpp sokar/windowing/imgwindowint.cpp sokar/windowing/imgwindowint.h)
 
 
 add_executable(${APP_TARGET} main.cpp

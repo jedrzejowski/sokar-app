@@ -6,8 +6,8 @@
 #include <gdcmValue.h>
 #include <gdcmTag.h>
 #include <gdcmImageApplyLookupTable.h>
-#include <sokar/dicomtags.h>
 
+#include "sokar/dicomtags.h"
 
 #include "monochrome2.h"
 
@@ -24,7 +24,7 @@ Monochrome2DicomScene::Monochrome2DicomScene(const gdcm::ImageReader &imageReade
 
 	originVectorBuffer.resize(gdcmImage.GetBufferLength());
 	gdcmImage.GetBuffer(&originVectorBuffer[0]);
-	targetBuffer = new unsigned char[dimX * dimY * 3];
+	targetBuffer = new Pixel[dimX * dimY];
 
 	readAttributes();
 
@@ -34,6 +34,30 @@ Monochrome2DicomScene::Monochrome2DicomScene(const gdcm::ImageReader &imageReade
 
 void Monochrome2DicomScene::readAttributes() {
 
+	// Tworzenie odpowiedzniego okienka
+	switch (gdcmImage.GetPixelFormat()) {
+		case gdcm::PixelFormat::UINT8:
+		case gdcm::PixelFormat::INT8:
+		case gdcm::PixelFormat::UINT12:
+		case gdcm::PixelFormat::INT12:
+		case gdcm::PixelFormat::UINT16:
+		case gdcm::PixelFormat::INT16:
+		case gdcm::PixelFormat::UINT32:
+		case gdcm::PixelFormat::INT32:
+		case gdcm::PixelFormat::UINT64:
+		case gdcm::PixelFormat::INT64:
+			imgWindowInt = new ImgWindowINT();
+			break;
+
+		case gdcm::PixelFormat::FLOAT16:
+		case gdcm::PixelFormat::FLOAT32:
+		case gdcm::PixelFormat::FLOAT64:
+		case gdcm::PixelFormat::SINGLEBIT:
+		case gdcm::PixelFormat::UNKNOWN:
+		default:
+			throw Sokar::ImageTypeNotSupportedException();
+	}
+
 	std::stringstream strm;
 	ushort us;
 
@@ -42,15 +66,13 @@ void Monochrome2DicomScene::readAttributes() {
 		throw DicomTagMissing(gdcm::TagBitsStored);
 
 	us = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagBitsStored).GetByteValue()->GetPointer());
-	sceneParams->imgWindow.setMax((1 << us) - 1);
-
-	//
+	sceneParams->imgWindow->setMax((1 << us) - 1);
 
 	if (!gdcmDataSet.FindDataElement(gdcm::TagWindowWidth))
 		throw DicomTagMissing(gdcm::TagWindowWidth);
 
 	gdcmDataSet.GetDataElement(gdcm::TagWindowWidth).GetValue().Print(strm);
-	sceneParams->imgWindow.setWidth(std::stoi(strm.str()));
+	sceneParams->imgWindow->setWidth(std::stoi(strm.str()));
 
 	strm.str("");
 
@@ -60,19 +82,19 @@ void Monochrome2DicomScene::readAttributes() {
 		throw DicomTagMissing(gdcm::TagWindowCenter);
 
 	gdcmDataSet.GetDataElement(gdcm::TagWindowCenter).GetValue().Print(strm);
-	sceneParams->imgWindow.setCenter(std::stoi(strm.str()));
+	sceneParams->imgWindow->setCenter(std::stoi(strm.str()));
 
 
 }
 
 bool Monochrome2DicomScene::genQPixmap() {
 
-	uchar *buffer = targetBuffer;
+	Pixel *buffer = targetBuffer;
 
 	auto *origin8 = (uchar *) &originVectorBuffer[0];
 	auto *origin16 = (ushort *) &originVectorBuffer[0];
 
-	uchar *lut;
+	Pixel *lut;
 	ushort lutLength;
 	sceneParams->imgWindow.genLUT();
 	sceneParams->imgWindow.getLUT(lut, lutLength);
@@ -81,8 +103,6 @@ bool Monochrome2DicomScene::genQPixmap() {
 		case gdcm::PixelFormat::UINT8:
 
 			for (uint i = 0; i < dimX * dimY; i++) {
-				*buffer++ = lut[*origin8];
-				*buffer++ = lut[*origin8];
 				*buffer++ = lut[*origin8];
 
 				origin8++;
@@ -94,8 +114,6 @@ bool Monochrome2DicomScene::genQPixmap() {
 			for (uint i = 0; i < dimX * dimY; i++) {
 
 				*buffer++ = lut[*origin16];
-				*buffer++ = lut[*origin16];
-				*buffer++ = lut[*origin16];
 				origin16++;
 			}
 			break;
@@ -104,7 +122,7 @@ bool Monochrome2DicomScene::genQPixmap() {
 			throw Sokar::ImageTypeNotSupportedException();
 	}
 
-	pixmap.convertFromImage(QImage(targetBuffer, dimX, dimY, QImage::Format_RGB888));
+	pixmap.convertFromImage(QImage((uchar *) targetBuffer, dimX, dimY, QImage::Format_RGB888));
 
 	return true;
 }
