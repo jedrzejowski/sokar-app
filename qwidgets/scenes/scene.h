@@ -26,6 +26,7 @@ protected:
 	QPixmap pixmap;
 	QGraphicsPixmapItem *pixmapItem = nullptr;
 	QGraphicsTextItem *text11, *text12, *text13, *text21, *text23, *text31, *text32, *text33;
+	QColor textColor;
 
 public:
 
@@ -59,7 +60,7 @@ public slots:
 
 	void refreshText33();
 
-	void reposItems();
+	virtual void reposItems();
 
 protected:
 	//region TextGen

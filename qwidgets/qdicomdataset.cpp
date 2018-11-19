@@ -84,12 +84,12 @@ void QDicomDataSet::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *
 						auto nestedDS = sq->GetItem(i).GetNestedDataSet();
 
 						forEachDataSet(nestedDS, item);
+
 					}
 				}
 					break;
 
 				default:
-					std::cout << elem << std::endl;
 					item->setText(QString::fromStdString(stringFilter.ToString(elem)));
 			}
 		} catch (std::exception) {
@@ -98,8 +98,6 @@ void QDicomDataSet::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *
 
 		list << item;
 
-
-//		std::cout << elem << std::endl;
 
 		parent->appendRow(list);
 	}

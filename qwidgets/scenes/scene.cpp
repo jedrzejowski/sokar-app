@@ -3,11 +3,13 @@
 #include <gdcmDicts.h>
 #include <gdcmGlobal.h>
 #include <gdcmAttribute.h>
-#include <sokar/dicomtags.h>
+
+#include "sokar/dicomtags.h"
 
 #include "scene.h"
 
 #include "monochrome2/monochrome2.h"
+#include "unsupported/unsupported.h"
 
 using namespace Sokar;
 
@@ -15,7 +17,8 @@ DicomScene::DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneP
 		gdcmFile(imageReader.GetFile()),
 		gdcmImage(imageReader.GetImage()),
 		gdcmDataSet(gdcmFile.GetDataSet()),
-		sceneParams(sceneParams) {
+		sceneParams(sceneParams),
+		textColor("white"){
 
 	gdcmStringFilter.SetFile(gdcmFile);
 
@@ -30,39 +33,39 @@ DicomScene::~DicomScene() {
 }
 
 void DicomScene::initTexts() {
-	auto txtColor = QColor("white");
+
 	int z = 1;
 
 	text11 = addText("text11");
-	text11->setDefaultTextColor(txtColor);
+	text11->setDefaultTextColor(textColor);
 	text11->setZValue(++z);
 
 	text12 = addText("text12");
-	text12->setDefaultTextColor(txtColor);
+	text12->setDefaultTextColor(textColor);
 	text12->setZValue(++z);
 
 	text13 = addText("text13");
-	text13->setDefaultTextColor(txtColor);
+	text13->setDefaultTextColor(textColor);
 	text13->setZValue(++z);
 
 	text21 = addText("text21");
-	text21->setDefaultTextColor(txtColor);
+	text21->setDefaultTextColor(textColor);
 	text21->setZValue(++z);
 
 	text23 = addText("text23");
-	text23->setDefaultTextColor(txtColor);
+	text23->setDefaultTextColor(textColor);
 	text23->setZValue(++z);
 
 	text31 = addText("text31");
-	text31->setDefaultTextColor(txtColor);
+	text31->setDefaultTextColor(textColor);
 	text31->setZValue(++z);
 
 	text32 = addText("text32");
-	text32->setDefaultTextColor(txtColor);
+	text32->setDefaultTextColor(textColor);
 	text32->setZValue(++z);
 
 	text33 = addText("text33");
-	text33->setDefaultTextColor(txtColor);
+	text33->setDefaultTextColor(textColor);
 	text33->setZValue(++z);
 }
 
@@ -92,14 +95,20 @@ void DicomScene::reposItems() {
 
 DicomScene *DicomScene::createForImg(const gdcm::ImageReader &imageReader, SceneParams *sceneParams) {
 
-	auto &image = imageReader.GetImage();
 
-	switch (image.GetPhotometricInterpretation()) {
-		case gdcm::PhotometricInterpretation::MONOCHROME2:
-			return new Sokar::Monochrome2::Scene(imageReader, sceneParams);
+	try {
+		auto &image = imageReader.GetImage();
 
-		default:
-			throw Sokar::ImageTypeNotSupportedException();
+		switch (image.GetPhotometricInterpretation()) {
+			case gdcm::PhotometricInterpretation::MONOCHROME2:
+				return new Sokar::Monochrome2::Scene(imageReader, sceneParams);
+
+			default:
+				throw Sokar::ImageTypeNotSupportedException();
+		}
+
+	} catch (Sokar::ImageTypeNotSupportedException&) {
+		return new Sokar::Unsupported::Scene(imageReader, sceneParams);
 	}
 }
 

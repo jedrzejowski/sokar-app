@@ -5,5 +5,4 @@
 
 class Sokar::SceneParams {
 public:
-	QTransform transform;
 };

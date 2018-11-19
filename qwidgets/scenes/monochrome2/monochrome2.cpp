@@ -20,6 +20,7 @@ using namespace Sokar;
 Monochrome2::Scene::Scene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams)
 		: DicomScene(imageReader, sceneParams) {
 
+	qDebug() << gdcmImage.GetNumberOfDimensions();
 	const unsigned int *dimension = gdcmImage.GetDimensions();
 
 	dimX = dimension[0];
@@ -28,6 +29,8 @@ Monochrome2::Scene::Scene(const gdcm::ImageReader &imageReader, SceneParams *sce
 	originVectorBuffer.resize(gdcmImage.GetBufferLength());
 	gdcmImage.GetBuffer(&originVectorBuffer[0]);
 	targetBuffer = new Pixel[dimX * dimY];
+
+	qDebug() << gdcmImage.GetBufferLength();
 
 	readAttributes();
 
@@ -78,39 +81,40 @@ void Monochrome2::Scene::readAttributes() {
 	imgWindowInt->setLength((1 << us) - 1);
 
 	//
+	{
+		if (gdcmDataSet.FindDataElement(gdcm::TagWindowCenter)) {
+			gdcm::assertTagPresence(gdcmDataSet, gdcm::TagWindowWidth);
 
-	if (gdcmDataSet.FindDataElement(gdcm::TagWindowCenter)) {
-		gdcm::assertTagPresence(gdcmDataSet, gdcm::TagWindowWidth);
+			auto centers = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenter)).split('\\');
+			auto widths = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowWidth)).split('\\');
 
-		auto centers = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenter)).split('\\');
-		auto widths = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowWidth)).split('\\');
+			if (centers.size() != widths.size())
+				throw DicomTagParseError(gdcm::TagWindowWidth, "Number of WindowCenter's and WindowWidth's not match");
 
-		if (centers.size() != widths.size())
-			throw DicomTagParseError(gdcm::TagWindowWidth, "Number of WindowCenter's and WindowWidth's not match");
+			if (centers.size() > 1) //TODO zaimplementować to
+				qWarning() << "monochrome2.cpp: znaleziono kilka okienek, pomijanie";
 
-		if (centers.size() > 1) //TODO zaimplementować to
-			qWarning() << "monochrome2.cpp: znaleziono kilka okienek, pomijanie";
+			auto ds = centers[0].toDouble(&ok);
 
-		auto ds = centers[0].toDouble(&ok);
+			if (!ok) throw DicomTagParseError(gdcm::TagWindowCenter);
 
-		if (!ok) throw DicomTagParseError(gdcm::TagWindowCenter);
+			imgWindowInt->setCenter(ds);
 
-		imgWindowInt->setCenter(ds);
+			ds = widths[0].toDouble(&ok);
 
-		ds = widths[0].toDouble(&ok);
+			if (!ok) throw DicomTagParseError(gdcm::TagWindowWidth);
 
-		if (!ok) throw DicomTagParseError(gdcm::TagWindowWidth);
+			imgWindowInt->setWidth(ds);
 
-		imgWindowInt->setWidth(ds);
+			QObject::connect(imgWindowInt, SIGNAL(centerChanged()), this, SLOT(refreshText33()));
+			QObject::connect(imgWindowInt, SIGNAL(widthChanged()), this, SLOT(refreshText33()));
 
-		QObject::connect(imgWindowInt, SIGNAL(centerChanged()), this, SLOT(refreshText33()));
-		QObject::connect(imgWindowInt, SIGNAL(widthChanged()), this, SLOT(refreshText33()));
+			refreshText33();
 
-		refreshText33();
-
-	} else {
-		//TODO VOILUT
-		throw ImageTypeNotSupportedException();
+		} else {
+			//TODO VOILUT
+			throw ImageTypeNotSupportedException();
+		}
 	}
 
 	//
