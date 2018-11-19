@@ -10,6 +10,8 @@
 
 #include "sokar/dicomtags.h"
 
+#include "../../qdicomgraphics.h"
+
 #include "monochrome2.h"
 
 using namespace Sokar;
@@ -130,30 +132,35 @@ void Monochrome2::Scene::readAttributes() {
 
 bool Monochrome2::Scene::genQPixmap() {
 
-	Pixel *buffer = targetBuffer;
-
-	auto *origin8 = (uchar *) &originVectorBuffer[0];
-	auto *origin16 = (ushort *) &originVectorBuffer[0];
-
 	imgWindowInt->genLUT();
 
 	switch (gdcmImage.GetPixelFormat()) {
+		case gdcm::PixelFormat::INT8:
+			genQPixmapOfType<int8_t>();
+			break;
 		case gdcm::PixelFormat::UINT8:
-
-			for (uint i = 0; i < dimX * dimY; i++) {
-				*buffer++ = imgWindowInt->getLUT(*origin8);
-
-				origin8++;
-			}
+			genQPixmapOfType<uint8_t>();
 			break;
 
+		case gdcm::PixelFormat::INT16:
+			genQPixmapOfType<int16_t>();
+			break;
 		case gdcm::PixelFormat::UINT16:
+			genQPixmapOfType<uint16_t>();
+			break;
 
-			for (uint i = 0; i < dimX * dimY; i++) {
+		case gdcm::PixelFormat::INT32:
+			genQPixmapOfType<int32_t>();
+			break;
+		case gdcm::PixelFormat::UINT32:
+			genQPixmapOfType<uint32_t>();
+			break;
 
-				*buffer++ = imgWindowInt->getLUT(*origin16);
-				origin16++;
-			}
+		case gdcm::PixelFormat::INT64:
+			genQPixmapOfType<int64_t>();
+			break;
+		case gdcm::PixelFormat::UINT64:
+			genQPixmapOfType<uint64_t>();
 			break;
 
 		default:
@@ -163,6 +170,20 @@ bool Monochrome2::Scene::genQPixmap() {
 	pixmap.convertFromImage(QImage((uchar *) targetBuffer, dimX, dimY, QImage::Format_RGB888));
 
 	return true;
+}
+
+template<typename T>
+void Monochrome2::Scene::genQPixmapOfType() {
+
+	Pixel *buffer = targetBuffer;
+
+	auto *origin = (T *) &originVectorBuffer[0];
+
+	for (uint i = 0; i < dimX * dimY; i++) {
+		*buffer++ = imgWindowInt->getLUT(*origin);
+
+		origin++;
+	}
 }
 
 Monochrome2::Scene::~Scene() {
@@ -183,9 +204,9 @@ QString Monochrome2::Scene::genText33() {
 }
 
 void Monochrome2::Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-	event->accept();
 
-	isMouseDragging = true;
+	event->accept();
+	isWindowEditing = true;
 
 	DicomScene::mousePressEvent(event);
 }
@@ -193,14 +214,14 @@ void Monochrome2::Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
 void Monochrome2::Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
 	event->accept();
 
-	isMouseDragging = false;
+	isWindowEditing = false;
 
 	DicomScene::mouseReleaseEvent(event);
 }
 
 void Monochrome2::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
-	if (isMouseDragging) {
+	if (isWindowEditing) {
 
 
 		int dx = event->lastScreenPos().x() - event->screenPos().x(),
@@ -214,4 +235,28 @@ void Monochrome2::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 	}
 
 	DicomScene::mouseMoveEvent(event);
+}
+
+void Monochrome2::Scene::selectWindowingIndicator() {
+
+
+	QStringList items;
+	items << tr("Spring") << tr("Summer") << tr("Fall") << tr("Winter");
+
+	bool ok;
+
+	QString item = QInputDialog::getItem(this->parentGraphics()->window(),
+										 tr("Wybierz okienko"),
+										 tr("Okienka domyślne:"), items, 0, false, &ok);
+}
+
+void Monochrome2::Scene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
+	auto item = this->itemAt(event->scenePos().x(), event->scenePos().y(), QTransform());
+
+	if (item == text33) {
+		event->accept();
+		selectWindowingIndicator();
+	} else {
+		DicomScene::mouseDoubleClickEvent(event);
+	}
 }

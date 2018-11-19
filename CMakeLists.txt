@@ -39,16 +39,13 @@ set(src_qwidgets
         qwidgets/qdicomdataset.h qwidgets/qdicomdataset.cpp
         qwidgets/qdicomgraphics.h qwidgets/qdicomgraphics.cpp)
 
-set(src_scenes
-        qwidgets/scenes/scene.h qwidgets/scenes/scene.cpp)
-
-include(qwidgets/scenes/monochrome2/CMakeLists.txt)
+include(qwidgets/scenes/CMakeLists.txt)
 
 add_executable(${APP_TARGET} main.cpp
         ${src_proto}
         ${src_mainWin}
         ${src_qwidgets}
-        ${src_dicomscenes}
+        ${src_scenes}
         ${UIS_HDRS})
 
 

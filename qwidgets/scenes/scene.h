@@ -5,13 +5,11 @@
 #include <gdcmImage.h>
 #include <gdcmImageReader.h>
 #include <gdcmStringFilter.h>
+#include <qwidgets/qdicomgraphics.h>
 
+#include "_classdef.h"
 #include "sokar/exception.h"
 #include "params.h"
-
-namespace Sokar {
-	class DicomScene;
-}
 
 class Sokar::DicomScene : public QGraphicsScene {
 Q_OBJECT
@@ -23,7 +21,7 @@ protected:
 
 	gdcm::StringFilter gdcmStringFilter;
 
-	SceneParams* sceneParams;
+	SceneParams *sceneParams;
 
 	QPixmap pixmap;
 	QGraphicsPixmapItem *pixmapItem = nullptr;
@@ -32,9 +30,10 @@ protected:
 public:
 
 	explicit DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
+
 	~DicomScene() override;
 
-	static DicomScene *createForImg(const gdcm::ImageReader &imageReader, SceneParams* sceneParams);
+	static DicomScene *createForImg(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
 
 	const gdcm::File &getGdcmFile() { return gdcmFile; }
 
@@ -42,8 +41,11 @@ public:
 
 protected:
 
-
 	virtual bool genQPixmap() = 0;
+
+	QDicomGraphics *parentGraphics() const {
+		return (QDicomGraphics *) this->parent();
+	}
 
 private:
 
@@ -56,10 +58,12 @@ private:
 public slots:
 
 	void refreshText33();
+
 	void reposItems();
 
 protected:
 	//region TextGen
 	virtual QString genText33();
 	//endregion
+
 };

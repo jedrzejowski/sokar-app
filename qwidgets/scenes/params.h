@@ -1,8 +1,9 @@
 #pragma once
 
-namespace Sokar {
-	class SceneParams;
-};
+#include <QTransform>
+#include "_classdef.h"
 
 class Sokar::SceneParams {
+public:
+	QTransform transform;
 };

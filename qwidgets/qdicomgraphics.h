@@ -2,8 +2,7 @@
 
 #include <QtCore>
 #include <QtWidgets>
-#include <qwidgets/scenes/params.h>
-#include "qwidgets/scenes/scene.h"
+#include "qwidgets/scenes/_classdef.h"
 
 namespace Sokar {
 	class QDicomGraphics;

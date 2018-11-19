@@ -39,7 +39,6 @@ void QDicomView::addDicomImage(const gdcm::ImageReader &reader) {
 
 	activateScene(dicomScene);
 
-
 }
 
 DicomScene *QDicomView::currentDicomScene() {

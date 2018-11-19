@@ -36,6 +36,7 @@ QString tagIdToString(const gdcm::Tag &tag) {
 
 void QDicomDataSet::setGdcmFile(const gdcm::File &file) {
 
+
 	stringFilter.SetFile(file);
 
 	auto rootItem = standardModel.invisibleRootItem();
@@ -63,31 +64,38 @@ void QDicomDataSet::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *
 		item->setFlags(item->flags() & ~Qt::ItemIsEditable);
 		list << item;
 
-		item = new QStandardItem(QString::fromStdString(pubdict.GetKeywordFromTag(elem.GetTag())));
+		auto keyword = pubdict.GetKeywordFromTag(tag);
+		item = new QStandardItem(keyword == nullptr ? "" : QString::fromStdString(keyword));
 		item->setFlags(item->flags() & ~Qt::ItemIsEditable);
 		list << item;
 
 		item = new QStandardItem();
 		item->setFlags(item->flags() & ~Qt::ItemIsEditable);
 
-		switch (elem.GetVR()) {
+		try {
 
-			case gdcm::VR::SQ: {
-				auto sq = elem.GetValueAsSQ();
+			switch (elem.GetVR()) {
 
-				for (int i = 1; i <= sq->GetNumberOfItems(); i++) {
+				case gdcm::VR::SQ: {
+					auto sq = elem.GetValueAsSQ();
 
-					auto nestedDS = sq->GetItem(i).GetNestedDataSet();
+					for (int i = 1; i <= sq->GetNumberOfItems(); i++) {
 
-					forEachDataSet(nestedDS, item);
+						auto nestedDS = sq->GetItem(i).GetNestedDataSet();
+
+						forEachDataSet(nestedDS, item);
+					}
 				}
-			}
-				break;
+					break;
 
-			default:
-				std::cout << elem << std::endl;
-				item->setText(QString::fromStdString(stringFilter.ToString(elem)));
+				default:
+					std::cout << elem << std::endl;
+					item->setText(QString::fromStdString(stringFilter.ToString(elem)));
+			}
+		} catch (std::exception) {
+			item->setText("Error");
 		}
+
 		list << item;
 
 

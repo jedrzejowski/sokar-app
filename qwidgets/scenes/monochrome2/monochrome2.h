@@ -17,13 +17,17 @@ namespace Sokar::Monochrome2 {
 		Pixel *targetBuffer;
 		uint dimX, dimY;
 
-		bool isMouseDragging = false;
+		bool isWindowEditing = false;
 		WindowINT *imgWindowInt;
 
 	public:
 		explicit Scene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
 
 		~Scene() override;
+
+	private:
+
+		void selectWindowingIndicator();
 
 	protected:
 
@@ -33,12 +37,16 @@ namespace Sokar::Monochrome2 {
 
 		void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
+		void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
+
 		bool genQPixmap() override;
+
+		template<typename T>
+		void genQPixmapOfType();
 
 		void readAttributes();
 
 		QString genText33() override;
-
 
 	};
 
