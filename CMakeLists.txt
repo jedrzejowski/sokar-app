@@ -35,7 +35,7 @@ set(src_mainWin win/main_win.cpp win/main_win.h)
 
 set(src_qwidgets
         qwidgets/qdicomview.h qwidgets/qdicomview.cpp qwidgets/qdicomview.ui
-        qwidgets/scenes/scene.h qwidgets/scenes/scene.cpp
+        qwidgets/scenes/dicomscene.h qwidgets/scenes/dicomscene.cpp
         qwidgets/qdicomdataset.h qwidgets/qdicomdataset.cpp
         qwidgets/qdicomgraphics.h qwidgets/qdicomgraphics.cpp)
 

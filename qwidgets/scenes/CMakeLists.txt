@@ -4,6 +4,10 @@ set(src_scenes
         ${CMAKE_CURRENT_LIST_DIR}/_classdef.h
         ${CMAKE_CURRENT_LIST_DIR}/scene.h
         ${CMAKE_CURRENT_LIST_DIR}/scene.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/indicator.h
+        ${CMAKE_CURRENT_LIST_DIR}/indicator.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/dicomscene.h
+        ${CMAKE_CURRENT_LIST_DIR}/dicomscene.cpp
         ${CMAKE_CURRENT_LIST_DIR}/params.h
         ${CMAKE_CURRENT_LIST_DIR}/params.cpp)
 

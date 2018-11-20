@@ -54,6 +54,8 @@ namespace Sokar::Monochrome2 {
 
 		virtual void genLUT();
 
+		void selectWindowingIndicator(QWidget *parent, QPoint position);
+
 	signals:
 
 		void centerChanged();

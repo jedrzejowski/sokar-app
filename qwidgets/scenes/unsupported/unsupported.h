@@ -2,7 +2,7 @@
 
 #include <QtCore>
 #include <gdcmImageReader.h>
-#include "../scene.h"
+#include "qwidgets/scenes/dicomscene.h"
 
 namespace Sokar::Unsupported {
 	class Scene : public Sokar::DicomScene {

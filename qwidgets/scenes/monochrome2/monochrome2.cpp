@@ -8,6 +8,8 @@
 #include <gdcmImageApplyLookupTable.h>
 #include <gdcmStringFilter.h>
 
+#include <QMenu>
+
 #include "sokar/dicomtags.h"
 
 #include "../../qdicomgraphics.h"
@@ -20,7 +22,7 @@ using namespace Sokar;
 Monochrome2::Scene::Scene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams)
 		: DicomScene(imageReader, sceneParams) {
 
-	qDebug() << gdcmImage.GetNumberOfDimensions();
+//	qDebug() << gdcmImage.GetNumberOfDimensions();
 	const unsigned int *dimension = gdcmImage.GetDimensions();
 
 	dimX = dimension[0];
@@ -30,7 +32,7 @@ Monochrome2::Scene::Scene(const gdcm::ImageReader &imageReader, SceneParams *sce
 	gdcmImage.GetBuffer(&originVectorBuffer[0]);
 	targetBuffer = new Pixel[dimX * dimY];
 
-	qDebug() << gdcmImage.GetBufferLength();
+//	qDebug() << gdcmImage.GetBufferLength();
 
 	readAttributes();
 
@@ -90,9 +92,6 @@ void Monochrome2::Scene::readAttributes() {
 
 			if (centers.size() != widths.size())
 				throw DicomTagParseError(gdcm::TagWindowWidth, "Number of WindowCenter's and WindowWidth's not match");
-
-			if (centers.size() > 1) //TODO zaimplementować to
-				qWarning() << "monochrome2.cpp: znaleziono kilka okienek, pomijanie";
 
 			auto ds = centers[0].toDouble(&ok);
 
@@ -241,25 +240,15 @@ void Monochrome2::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 	DicomScene::mouseMoveEvent(event);
 }
 
-void Monochrome2::Scene::selectWindowingIndicator() {
-
-
-	QStringList items;
-	items << tr("Spring") << tr("Summer") << tr("Fall") << tr("Winter");
-
-	bool ok;
-
-	QString item = QInputDialog::getItem(this->parentGraphics()->window(),
-										 tr("Wybierz okienko"),
-										 tr("Okienka domyślne:"), items, 0, false, &ok);
-}
 
 void Monochrome2::Scene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
 	auto item = this->itemAt(event->scenePos().x(), event->scenePos().y(), QTransform());
 
 	if (item == text33) {
 		event->accept();
-		selectWindowingIndicator();
+
+		imgWindowInt->selectWindowingIndicator(this->parentGraphics(), event->screenPos());
+		reloadPixmap();
 	} else {
 		DicomScene::mouseDoubleClickEvent(event);
 	}

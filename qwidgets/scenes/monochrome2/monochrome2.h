@@ -3,7 +3,7 @@
 #include <QtCore>
 #include <qgraphicssceneevent.h>
 
-#include "qwidgets/scenes/scene.h"
+#include "qwidgets/scenes/dicomscene.h"
 
 #include "windowing/windowint.h"
 
@@ -24,10 +24,6 @@ namespace Sokar::Monochrome2 {
 		explicit Scene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
 
 		~Scene() override;
-
-	private:
-
-		void selectWindowingIndicator();
 
 	protected:
 

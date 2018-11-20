@@ -1,5 +1,8 @@
 #include <iostream>
 #include <algorithm>
+
+#include <QMenu>
+
 #include "windowint.h"
 
 using namespace Sokar::Monochrome2;
@@ -113,4 +116,32 @@ void WindowINT::setSigned(bool isSigned) {
 	delete[] array;
 
 	setLength(isSigned ? getLength() * 2 : getLength());
+}
+
+void WindowINT::selectWindowingIndicator(QWidget *parent,QPoint position) {
+
+	QStringList items;
+	items << tr("Spring") << tr("Summer") << tr("Fall") << tr("Winter");
+
+	bool ok;
+
+	auto  menu = QMenu(parent);
+
+//	auto centers = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenter)).split('\\');
+//	auto widths = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowWidth)).split('\\');
+
+	menu.addAction(new QAction("Action 1", this));
+	menu.addAction(new QAction("Action 2", this));
+	menu.addAction(new QAction("Action 3", this));
+
+	menu.exec(position);
+
+//	QString item = QInputDialog::getItem(
+//			this->parent(),
+//			tr("Wybierz okienko"),
+//			tr("Okienka domyślne:"),
+//			items,
+//			0,
+//			false,
+//			&ok);
 }
