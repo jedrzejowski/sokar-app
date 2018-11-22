@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h" line="14" />
+  </component>
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
       <config projectName="Sokar" targetName="DiBrowser_autogen" />
@@ -13,24 +16,22 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Dodanie Unsuported">
-      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/indicator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/indicator.h" afterDir="false" />
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Prace rozpoczęte">
+      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/_window.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qwidgets/qdicomview.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/qdicomview.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/_classdef.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/_classdef.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/indicator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/indicator.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwindowing.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/scene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/scene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/win/main_win.h" beforeDir="false" afterPath="$PROJECT_DIR$/win/main_win.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sokar/exception.h" beforeDir="false" afterPath="$PROJECT_DIR$/sokar/exception.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -53,93 +54,86 @@
     <session id="-1558106634">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
-          <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.3" value="2" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.3" value="3" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="4382" />
-          <entry key="h" value="1364" />
+          <entry key="cpp" value="9176" />
+          <entry key="h" value="3251" />
           <entry key="pro" value="9" />
-          <entry key="txt" value="129" />
+          <entry key="txt" value="282" />
           <entry key="ui" value="116" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CMakeLists.txt" value="113" />
-          <entry key="ObjectiveC" value="5746" />
+          <entry key="CMakeLists.txt" value="266" />
+          <entry key="ObjectiveC" value="12427" />
           <entry key="PLAIN_TEXT" value="25" />
           <entry key="Qt UI file" value="116" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="Sokar (disassembly)" value="3" />
-          <entry key="cpp" value="37" />
+          <entry key="Sokar (disassembly)" value="7" />
+          <entry key="cpp" value="103" />
           <entry key="gitignore" value="1" />
-          <entry key="h" value="85" />
+          <entry key="h" value="243" />
           <entry key="md" value="1" />
           <entry key="pro" value="2" />
-          <entry key="txt" value="6" />
-          <entry key="ui" value="12" />
+          <entry key="txt" value="16" />
+          <entry key="ui" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CMakeLists.txt" value="6" />
-          <entry key="Disassembly" value="3" />
+          <entry key="CMakeLists.txt" value="16" />
+          <entry key="Disassembly" value="7" />
           <entry key="Markdown" value="1" />
-          <entry key="ObjectiveC" value="122" />
+          <entry key="ObjectiveC" value="346" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Qt UI file" value="12" />
+          <entry key="Qt UI file" value="17" />
         </counts>
       </usages-collector>
     </session>
     <session id="1017096187">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="7" />
-          <entry key="project.open.time.7" value="2" />
-          <entry key="project.open.time.8" value="6" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.8" value="3" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="5041" />
-          <entry key="h" value="2336" />
-          <entry key="txt" value="209" />
-          <entry key="ui" value="35" />
+          <entry key="cpp" value="1368" />
+          <entry key="h" value="150" />
+          <entry key="txt" value="54" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CMakeLists.txt" value="169" />
-          <entry key="ObjectiveC" value="7377" />
-          <entry key="PLAIN_TEXT" value="40" />
-          <entry key="Qt UI file" value="35" />
+          <entry key="CMakeLists.txt" value="54" />
+          <entry key="ObjectiveC" value="1518" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="Sokar (disassembly)" value="15" />
-          <entry key="cpp" value="119" />
-          <entry key="h" value="223" />
-          <entry key="tcc" value="2" />
-          <entry key="txt" value="11" />
-          <entry key="ui" value="5" />
+          <entry key="Sokar (disassembly)" value="2" />
+          <entry key="cpp" value="21" />
+          <entry key="h" value="46" />
+          <entry key="txt" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CMakeLists.txt" value="11" />
-          <entry key="Disassembly" value="15" />
-          <entry key="ObjectiveC" value="344" />
-          <entry key="Qt UI file" value="5" />
+          <entry key="CMakeLists.txt" value="2" />
+          <entry key="Disassembly" value="2" />
+          <entry key="ObjectiveC" value="67" />
         </counts>
       </usages-collector>
     </session>
@@ -147,10 +141,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.h">
+        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
+            <state relative-caret-position="455">
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
+              <folding>
+                <element signature="e#14#31#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/_window.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="55" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="55" />
               <folding>
                 <element signature="e#14#32#0" expanded="true" />
               </folding>
@@ -158,20 +164,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1054">
-              <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="70" selection-end-column="42" />
+            <state relative-caret-position="187">
+              <caret line="176" column="16" lean-forward="true" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -180,46 +177,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sokar/dicomtags.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="254">
-              <caret line="194" column="34" lean-forward="true" selection-start-line="194" selection-start-column="34" selection-end-line="194" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sokar/exception.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/qdicomdataset.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/qdicomdataset.h">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="136">
-              <caret line="11" column="26" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="26" />
+              <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+              <folding>
+                <element signature="e#14#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="12" selection-start-column="12" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="404">
+              <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -227,8 +209,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+            <state relative-caret-position="119">
+              <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -256,27 +238,16 @@
       <find>r</find>
       <find>bit</find>
       <find>resize</find>
-      <find>std::co</find>
-      <find>getLeftEdge</find>
-      <find>128</find>
-      <find>Unit</find>
-      <find>ImgWindow</find>
-      <find>max</find>
-      <find>defaultw</find>
-      <find>std</find>
-      <find>initPixelSpacingIndicator</find>
+      <find>__int128_t</find>
+      <find>Entry</find>
+      <find>read</find>
+      <find>exte</find>
+      <find>gro</find>
       <find>reposItems</find>
-      <find>++z</find>
-      <find>pixmap</find>
-      <find>pixmapI</find>
-      <find>qDe</find>
-      <find>conne</find>
     </findStrings>
     <replaceStrings>
       <replace>++z</replace>
       <replace>__int128</replace>
-      <replace>ImgWindowINT</replace>
-      <replace>Z_INDICATOR</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -285,57 +256,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/qwidgets/main_win.ui" />
+        <option value="$PROJECT_DIR$/qwidgets/main_win.cpp" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/Sokar_autogen/include/ui_main_win.h" />
+        <option value="$PROJECT_DIR$/cmake-build-debug/Sokar_autogen/PS64B3INA6/moc_dicomview.cpp" />
+        <option value="$PROJECT_DIR$/convert/convert.h" />
         <option value="$PROJECT_DIR$/convert/convert.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/header.h" />
         <option value="$PROJECT_DIR$/test.cpp" />
+        <option value="$PROJECT_DIR$/win/main_win.h" />
+        <option value="$PROJECT_DIR$/win/main_win.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/dicomview.h" />
         <option value="$PROJECT_DIR$/qwidgets/dicomview.cpp" />
-        <option value="$PROJECT_DIR$/sokar/SceneParams.h" />
-        <option value="$PROJECT_DIR$/qwidgets/qdicomgrafics.h" />
-        <option value="$PROJECT_DIR$/qwidgets/qdicomview.ui" />
-        <option value="$PROJECT_DIR$/win/main_win.h" />
-        <option value="$PROJECT_DIR$/sokar/imgwindow.h" />
-        <option value="$PROJECT_DIR$/sokar/imgwindow.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/dicomscene.cpp" />
-        <option value="$PROJECT_DIR$/sokar/pixel.h" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindowINT.h" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindowUINT.h" />
-        <option value="$PROJECT_DIR$/qwidgets/qdicomview.h" />
-        <option value="$PROJECT_DIR$/sokar/sceneparams.h" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindowint.cpp" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindow.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/dicomscene.h" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindow.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2.h" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindowint.h" />
-        <option value="$PROJECT_DIR$/sokar/dicomtags.h" />
-        <option value="$PROJECT_DIR$/qwidgets/qdicomview.cpp" />
-        <option value="$PROJECT_DIR$/win/main_win.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/qdicomgraphics.cpp" />
+        <option value="$PROJECT_DIR$/sokar/imgwindow.cpp" />
+        <option value="$PROJECT_DIR$/sokar/imgwindow.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2.cpp" />
+        <option value="$PROJECT_DIR$/sokar/windowing/imgwindowUINT.h" />
+        <option value="$PROJECT_DIR$/sokar/windowing/imgwindow.cpp" />
+        <option value="$PROJECT_DIR$/sokar/windowing/imgwindow.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/imgwindow.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/sokar/sceneparams.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/sceneparams.h" />
+        <option value="$PROJECT_DIR$/qwidgets/qdicomgraphics.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/qdicomgraphics.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwinlist.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/unsuported/unsuported.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/unsuported/unsupported.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/params.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/qdicomdataset.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/qdicomview.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h" />
+        <option value="$PROJECT_DIR$/sokar/gdcmextenison.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" />
+        <option value="$PROJECT_DIR$/win/main_win.ui" />
+        <option value="$PROJECT_DIR$/sokar/dicomtags.h" />
+        <option value="$PROJECT_DIR$/qwidgets/qdicomdataset.h" />
+        <option value="$PROJECT_DIR$/qwidgets/qdicomdataset.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/_classdef.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" />
-        <option value="$PROJECT_DIR$/cmake-build-debug/Sokar_autogen/WAKD6AFQQH/moc_indicator.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/indicator.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/scene.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/scene.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/indicator.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/scene.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/window.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/_window.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp" />
+        <option value="$PROJECT_DIR$/sokar/exception.h" />
       </list>
     </option>
   </component>
@@ -357,39 +328,61 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
+              <item name="scenes" type="462c0819:PsiDirectoryNode" />
+              <item name="indicators" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
+              <item name="scenes" type="462c0819:PsiDirectoryNode" />
+              <item name="monochrome2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
+              <item name="scenes" type="462c0819:PsiDirectoryNode" />
+              <item name="monochrome2" type="462c0819:PsiDirectoryNode" />
+              <item name="windowing" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="sokar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="win" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -399,9 +392,145 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/win" />
-      <recent name="$PROJECT_DIR$/qwidgets" />
+      <recent name="$PROJECT_DIR$/qwidgets/scenes/indicators" />
+      <recent name="$PROJECT_DIR$/qwidgets/scenes" />
+      <recent name="$PROJECT_DIR$/qwidgets/scenes/monochrome2" />
+      <recent name="$PROJECT_DIR$/qwidgets/scenes/monochrome" />
+      <recent name="$PROJECT_DIR$/sokar/windowing" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/qdicomdataset.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/qdicomgraphics.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/qdicomview.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/qdicomview.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/params.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/scene.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/scene.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/win/main_win.h</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/_classdef.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/dicomscene.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicator.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicator.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwindowing.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/CMakeLists.txt</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -416,6 +545,11 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Sokar">
+    <configuration name="Sokar" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="Sokar">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar_autogen" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -447,11 +581,8 @@
       <workItem from="1541515189790" duration="4041000" />
       <workItem from="1541591260615" duration="4565000" />
       <workItem from="1542050499546" duration="13662000" />
-      <workItem from="1542113967194" duration="1428000" />
-      <workItem from="1542118867345" duration="9942000" />
-      <workItem from="1542647542498" duration="36000" />
-      <workItem from="1542647646298" duration="7745000" />
-      <workItem from="1542709087183" duration="8787000" />
+      <workItem from="1542144589126" duration="10000" />
+      <workItem from="1542144610431" duration="9153000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>
@@ -460,54 +591,31 @@
       <option name="project" value="LOCAL" />
       <updated>1541289636914</updated>
     </task>
-    <task id="LOCAL-00002" summary="Prace nad monochromem">
-      <created>1542645803758</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1542645803758</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Dodanie Unsuported">
-      <created>1542664928100</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1542664928100</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122333000" />
-  </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+    <option name="totallyTimeSpent" value="115465000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-1" width="1366" height="769" extended-state="6" />
+    <frame x="0" y="-28" width="1920" height="1108" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.28257576" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23582888" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32919255" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4363354" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39751554" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.24382716" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39814815" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32919255" />
-      <window_info anchor="bottom" id="CMake" order="7" weight="0.32919255" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.3281893" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32919255" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005348" side_tool="true" weight="0.45679012" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32919255" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946523" weight="0.3757764" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946523" weight="0.37654322" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -515,21 +623,21 @@
       <window_info anchor="right" id="Database" order="3" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28257576" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22803031" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32919255" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4363354" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39751554" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32921812" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.29347825" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39906833" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32919255" />
+      <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.32919255" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32919255" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005348" side_tool="true" weight="0.45679012" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32919255" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946523" weight="0.3757764" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946523" weight="0.45652175" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -544,308 +652,386 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
     <MESSAGE value="Prace rozpoczęte" />
-    <MESSAGE value="Prace nad monochromem" />
-    <MESSAGE value="Dodanie Unsuported" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodanie Unsuported" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prace rozpoczęte" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/sokar/sceneparams.cpp" />
-    <entry file="file:///usr/include/qt/QtCore/qobjectdefs.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="91" column="26" lean-forward="true" selection-start-line="91" selection-start-column="26" selection-end-line="91" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sokar/windowing/imgwindow.cpp" />
-    <entry file="file://$PROJECT_DIR$/sokar/sceneparams.h" />
-    <entry file="file:///usr/local/include/gdcm-2.8/gdcmPhotometricInterpretation.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="39" column="13" lean-forward="true" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/dicomscene.h" />
-    <entry file="file://$PROJECT_DIR$/qwidgets/dicomscene.cpp" />
-    <entry file="file:///usr/local/include/gdcm-2.8/gdcmPixelFormat.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
-          <caret line="51" column="4" lean-forward="true" selection-start-line="51" selection-start-column="4" selection-end-line="60" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2.h" />
-    <entry file="file://$PROJECT_DIR$/sokar/windowing/imgwindow.h" />
-    <entry file="file://$PROJECT_DIR$/sokar/windowing/imgwindowint.cpp" />
-    <entry file="file://$PROJECT_DIR$/sokar/windowing/imgwindowint.h" />
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2.cpp" />
-    <entry file="file:///usr/local/include/gdcm-2.8/gdcmDict.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="102" column="14" selection-start-line="102" selection-start-column="14" selection-end-line="102" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8.2.1/bits/basic_string.tcc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="211" selection-start-line="211" selection-end-line="211" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8.2.1/bits/basic_string.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="515" selection-start-line="515" selection-end-line="515" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomview.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/win/main_win.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomview.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qwidgets/qdicomgraphics.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/CMakeLists.txt" />
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomgraphics.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="37" lean-forward="true" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwinlist.h" />
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/params.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwindowing.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file:///usr/include/qt/QtCore/qstring.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="661" column="19" selection-start-line="661" selection-start-column="19" selection-end-line="661" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qgraphicsitem.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="293" column="9" selection-start-line="293" selection-start-column="9" selection-end-line="293" selection-end-column="9" />
+        <state relative-caret-position="204">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
         </state>
       </provider>
     </entry>
     <entry file="file:///usr/include/qt/QtWidgets/qgraphicssceneevent.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="93" column="10" selection-start-line="93" selection-start-column="4" selection-end-line="93" selection-end-column="10" />
+        <state relative-caret-position="294">
+          <caret line="81" column="23" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="23" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h">
+    <entry file="file:///usr/include/c++/8.2.1/bits/basic_string.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-494">
-          <caret line="6" column="30" lean-forward="true" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="30" />
+        <state relative-caret-position="314">
+          <caret line="6400" column="2" selection-start-line="6400" selection-start-column="2" selection-end-line="6400" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmVL.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="28" column="18" selection-start-line="28" selection-start-column="18" selection-end-line="28" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/8.2.1/bits/exception.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="619">
+          <caret line="68" column="16" selection-start-line="68" selection-start-column="11" selection-end-line="68" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmReader.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///opt/dev-files/bucherol/browser/qwidgets/scenes/scene.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sokar/gdcmextenison.h" />
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="39" column="61" selection-start-line="39" selection-start-column="61" selection-end-line="39" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="131" selection-start-line="131" selection-end-line="131" />
+        <state relative-caret-position="591">
+          <caret line="103" column="26" selection-start-line="103" selection-start-column="26" selection-end-line="103" selection-end-column="26" />
           <folding>
             <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomgraphics.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="41" lean-forward="true" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/_classdef.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qgraphicsscene.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="123" column="18" lean-forward="true" selection-start-line="123" selection-start-column="18" selection-end-line="123" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="34" column="21" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="21" />
+        <state relative-caret-position="119">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
           <folding>
             <element signature="e#14#31#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Sokar_autogen/WAKD6AFQQH/moc_indicator.cpp">
+    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomview.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
+        <state relative-caret-position="170">
+          <caret line="13" column="36" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicator.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
-          <folding>
-            <element signature="e#14#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="29" column="8" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-          <folding>
-            <element signature="e#14#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomview.h">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+        <state relative-caret-position="187">
+          <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtCore/qstring.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="599" lean-forward="true" selection-start-line="599" selection-end-line="599" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/CMakeLists.txt" />
+    <entry file="file://$PROJECT_DIR$/win/main_win.ui">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="25" column="29" lean-forward="true" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmTag.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="54" column="17" selection-start-line="54" selection-start-column="14" selection-end-line="54" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sokar/dicomtags.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="42" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="42" />
+          <folding>
+            <element signature="e#14#38#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qwidgets/qdicomview.ui">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/win/main_win.h">
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmVR.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
+        <state relative-caret-position="-85">
+          <caret line="53" column="18" selection-start-line="53" selection-start-column="18" selection-end-line="53" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp">
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmDataElement.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1054">
-          <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="70" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="294">
+          <caret line="141" column="2" lean-forward="true" selection-start-line="141" selection-start-column="2" selection-end-line="141" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sokar/dicomtags.h">
+    <entry file="file://$PROJECT_DIR$/../gdcm/Source/Common/gdcmException.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
+        <state relative-caret-position="235">
+          <caret line="73" column="46" selection-start-line="73" selection-start-column="38" selection-end-line="73" selection-end-column="46" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sokar/exception.h">
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmDataSet.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
+        <state relative-caret-position="437">
+          <caret line="67" column="24" selection-start-line="67" selection-start-column="24" selection-end-line="67" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomdataset.h">
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmFile.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="26" />
+        <state relative-caret-position="432">
+          <caret line="56" column="17" selection-start-line="56" selection-start-column="2" selection-end-line="56" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtGui/qstandarditemmodel.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="374" column="4" selection-start-line="374" selection-start-column="4" selection-end-line="374" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmSequenceOfItems.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="94" column="8" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmItem.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="83" column="11" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtCore/qlist.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="384" column="29" selection-start-line="384" selection-start-column="29" selection-end-line="384" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qwidgets/qdicomdataset.cpp">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="55" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
+          <folding>
+            <element signature="e#1#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomdataset.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="9" selection-start-line="26" selection-start-column="9" selection-end-line="26" selection-end-column="9" />
+          <folding>
+            <element signature="e#14#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/8.2.1/bits/stl_iterator.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="775" column="62" lean-forward="true" selection-start-line="775" selection-start-column="6" selection-end-line="775" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/_classdef.h">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtWidgets/qgraphicsscene.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="191" column="30" selection-start-line="191" selection-start-column="17" selection-end-line="191" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/8.2.1/bits/stl_vector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="1316" column="6" selection-start-line="1316" selection-start-column="6" selection-end-line="1316" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtGui/qcolor.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="68" lean-forward="true" selection-start-line="68" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicators/_base.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="e#14#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicators/_base.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="19" lean-forward="true" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding>
+            <element signature="e#14#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtWidgets/qgraphicsitem.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="1006" column="9" selection-start-line="1006" selection-start-column="9" selection-end-line="1006" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="91" column="1" lean-forward="true" selection-start-line="91" selection-start-column="1" selection-end-line="91" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="34" selection-start-line="7" selection-start-column="34" selection-end-line="7" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="194" column="34" lean-forward="true" selection-start-line="194" selection-start-column="34" selection-end-line="194" selection-end-column="34" />
+        <state relative-caret-position="404">
+          <caret line="88" column="20" selection-start-line="88" selection-start-column="20" selection-end-line="88" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="70" lean-forward="true" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/_window.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="55" selection-start-line="11" selection-start-column="55" selection-end-line="11" selection-end-column="55" />
+          <folding>
+            <element signature="e#14#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmPixelFormat.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="439">
+          <caret line="65" column="60" selection-start-line="65" selection-start-column="41" selection-end-line="65" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sokar/exception.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+          <folding>
+            <element signature="e#14#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="176" column="16" lean-forward="true" selection-start-line="176" selection-start-column="16" selection-end-line="176" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

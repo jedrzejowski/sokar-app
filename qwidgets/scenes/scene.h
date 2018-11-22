@@ -5,6 +5,7 @@
 #include <QGraphicsObject>
 
 #include "_classdef.h"
+#include "indicators/_base.h"
 
 class Sokar::Scene : public QGraphicsScene {
 Q_OBJECT
@@ -17,16 +18,14 @@ public:
 
 	~Scene() override;
 
-	const std::vector<SceneIndicator *> &allIndicators() const{
+	const std::vector<SceneIndicator *> &allIndicators() const {
 		return indicators;
 	}
 
-	size_t indicatorsCount(){
-		return indicators.size();
-	}
+	void addIndicator(SceneIndicator *indicator);
 
-	void addIndicator(SceneIndicator *item);
+	void removeIndicator(SceneIndicator *indicator);
 
-	bool removeIndicator(SceneIndicator *item);
+	virtual void reposItems();
 
 };

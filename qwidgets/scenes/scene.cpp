@@ -5,21 +5,31 @@ using namespace Sokar;
 
 Scene::Scene(QWidget *parent) : QGraphicsScene(parent) {
 
+	setBackgroundBrush(Qt::black);
 }
 
 Scene::~Scene() {
-
 }
 
-void Scene::addIndicator(SceneIndicator *item) {
-	indicators.push_back(item);
+void Scene::addIndicator(SceneIndicator *indicator) {
+	indicators.push_back(indicator);
+	addItem(indicator);
 }
 
-bool Scene::removeIndicator(SceneIndicator *item) {
+void Scene::removeIndicator(SceneIndicator *indicator) {
 	for (auto it = indicators.begin(); it != indicators.end(); ++it) {
-		indicators.erase(it);
-		return true;
-	}
+		if (indicator != *it) continue;
 
-	return false;
+		removeItem(indicator);
+		indicators.erase(it);
+
+		return;
+	}
 }
+
+void Scene::reposItems() {
+	for (auto &indicator: indicators) {
+		indicator->reposition();
+	}
+}
+

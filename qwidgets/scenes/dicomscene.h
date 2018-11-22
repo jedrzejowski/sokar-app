@@ -7,16 +7,17 @@
 #include <gdcmStringFilter.h>
 #include <qwidgets/qdicomgraphics.h>
 
+
+#include "sokar/exception.h"
 #include "_classdef.h"
 #include "scene.h"
-#include "sokar/exception.h"
 #include "params.h"
+#include "indicators/pixel.h"
 
 class Sokar::DicomScene : public Sokar::Scene {
 Q_OBJECT
 private:
-	QGraphicsLineItem *pixelSpacingLineX, *pixelSpacingLineY;
-	QGraphicsTextItem *pixelSpacingTextX, *pixelSpacingTextY;
+	PixelSpacingIndicator *pixelSpacingIndicator;
 
 protected:
 	const gdcm::Image &gdcmImage;
@@ -32,8 +33,10 @@ protected:
 
 	QPixmap pixmap;
 	QGraphicsPixmapItem *pixmapItem = nullptr;
-	QGraphicsTextItem *text11, *text12, *text13, *text21, *text31, *text33;
-	QColor textColor;
+
+private:
+
+	void initPixelSpacingIndicator();
 
 public:
 
@@ -55,22 +58,11 @@ protected:
 		return (QDicomGraphics *) this->parent();
 	}
 
-private:
-
-	void initTexts();
-
-	void reposPixelSpacingIndicator();
-	void initPixelSpacingIndicator();
 
 public slots:
 
 	void refreshText33();
 
-	virtual void reposItems();
-
-protected:
-	//region TextGen
-	virtual QString genText33();
-	//endregion
+	void reposItems() override;
 
 };

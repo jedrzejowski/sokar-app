@@ -1,12 +1,11 @@
 #pragma once
 
-#include <QObject>
-#include <sokar/pixel.h>
+#include "_window.h"
 
 
 namespace Sokar::Monochrome2 {
 
-	class WindowINT : public QObject {
+	class WindowINT : public Window {
 	Q_OBJECT
 	protected:
 

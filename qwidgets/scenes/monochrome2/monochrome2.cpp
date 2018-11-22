@@ -68,8 +68,10 @@ void Monochrome2::Scene::readAttributes() {
 		case gdcm::PixelFormat::FLOAT16:
 		case gdcm::PixelFormat::FLOAT32:
 		case gdcm::PixelFormat::FLOAT64:
-		case gdcm::PixelFormat::SINGLEBIT:
+			throw Sokar::ImageTypeNotSupportedException("gdcm::PixelFormat::FLOATXX");
+
 		case gdcm::PixelFormat::UNKNOWN:
+		case gdcm::PixelFormat::SINGLEBIT:
 		default:
 			throw Sokar::ImageTypeNotSupportedException();
 	}

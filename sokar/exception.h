@@ -5,7 +5,10 @@
 
 namespace Sokar {
 	class ImageTypeNotSupportedException : public std::exception {
+	public:
+		ImageTypeNotSupportedException() {}
 
+		ImageTypeNotSupportedException(std::string what) {}
 	};
 
 	class DicomTagMissing : public std::exception {
