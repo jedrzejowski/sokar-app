@@ -28,4 +28,8 @@ public:
 
 	virtual void reposItems();
 
+protected:
+
+	SceneIndicator *findIndicatorByChild(QGraphicsItem *item);
+
 };

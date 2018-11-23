@@ -6,7 +6,7 @@ Unsupported::Scene::Scene(const gdcm::ImageReader &imageReader, Sokar::ScenePara
 		: DicomScene(imageReader, sceneParams) {
 
 	text22 = addText("Unsupported");
-	text22->setDefaultTextColor(textColor);
+	text22->setDefaultTextColor(QColor("white"));
 }
 
 Unsupported::Scene::~Scene() {

@@ -18,8 +18,7 @@ DicomScene::DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneP
 		gdcmFile(imageReader.GetFile()),
 		gdcmImage(imageReader.GetImage()),
 		gdcmDataSet(gdcmFile.GetDataSet()),
-		sceneParams(sceneParams),
-		textColor("white") {
+		sceneParams(sceneParams) {
 
 	gdcmStringFilter.SetFile(gdcmFile);
 
@@ -70,14 +69,6 @@ void DicomScene::reloadPixmap() {
 		pixmapItem->setPixmap(pixmap);
 	}
 
-}
-
-void DicomScene::refreshText33() {
-
-	text33->setHtml(genText33());
-
-	text33->setPos(this->width() - text33->document()->size().width(),
-				   this->height() - text33->document()->size().height());
 }
 
 void DicomScene::initPixelSpacingIndicator() {

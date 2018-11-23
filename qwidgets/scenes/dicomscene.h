@@ -61,8 +61,6 @@ protected:
 
 public slots:
 
-	void refreshText33();
-
 	void reposItems() override;
 
 };

@@ -1,3 +1,6 @@
+#include <iostream>
+
+#include <QGraphicsSceneMouseEvent>
 
 #include "scene.h"
 
@@ -31,5 +34,22 @@ void Scene::reposItems() {
 	for (auto &indicator: indicators) {
 		indicator->reposition();
 	}
+}
+
+SceneIndicator *Scene::findIndicatorByChild(QGraphicsItem *item) {
+	if (item == nullptr) return nullptr;
+
+	for (auto &indi : indicators) {
+
+		for (auto &child : indi->childItems()) {
+
+			if (child == item) {
+
+				return indi;
+			}
+		}
+	}
+
+	return nullptr;
 }
 

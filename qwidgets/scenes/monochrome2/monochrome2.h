@@ -18,7 +18,8 @@ namespace Sokar::Monochrome2 {
 		uint dimX, dimY;
 
 		bool isWindowEditing = false;
-		WindowINT *imgWindowInt;
+
+		Window *imgWindow;
 
 	public:
 		explicit Scene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
@@ -41,8 +42,6 @@ namespace Sokar::Monochrome2 {
 		void genQPixmapOfType();
 
 		void readAttributes();
-
-		QString genText33() override;
 
 	};
 

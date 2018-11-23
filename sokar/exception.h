@@ -4,6 +4,12 @@
 #include <gdcmTag.h>
 
 namespace Sokar {
+	class WrongScopeException : public std::exception {
+	public:
+
+		WrongScopeException(std::string file, int line) {}
+	};
+
 	class ImageTypeNotSupportedException : public std::exception {
 	public:
 		ImageTypeNotSupportedException() {}

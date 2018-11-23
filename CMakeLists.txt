@@ -31,7 +31,7 @@ set(src_proto sokar/exception.h
         sokar/dicomtags.h
         sokar/pixel.h)
 
-set(src_mainWin win/main_win.cpp win/main_win.h)
+set(src_mainWin win/main_win.cpp win/main_win.h types.h)
 
 set(src_qwidgets
         qwidgets/qdicomview.h qwidgets/qdicomview.cpp qwidgets/qdicomview.ui

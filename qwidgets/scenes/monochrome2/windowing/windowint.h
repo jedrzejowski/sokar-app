@@ -5,60 +5,91 @@
 
 namespace Sokar::Monochrome2 {
 
-	class WindowINT : public Window {
+	class WindowInt : public Window {
 	Q_OBJECT
+
 	protected:
+		QMenu qmenu;
+		QGraphicsTextItem *text;
 
 		__int128 center, width;
 		__int128 rescaleIntercept = 0, rescaleSlope = 1;
 
-		__int128 signedMove = 0;
+		quint64 signedMove = 0;
+		quint64 maxValue = 0;
 
-		int length = 0;
-		Pixel *array = nullptr;
+		__int128 x1, x0;
+		quint8 y0 = 0, y1 = 255;
+		float a, b;
+
+	private:
+		void regenText();
 
 	public:
 
-		WindowINT();
+		WindowInt();
 
-		~WindowINT() override;
+		//region Getters & Setters
 
-		__int128 getCenter() const;
+		inline __int128 getCenter() const {
+			return center;
+		}
 
 		void setCenter(__int128 center);
 
-		__int128 getWidth() const;
+		inline __int128 getWidth() const {
+			return width;
+		}
 
 		void setWidth(__int128 width);
 
-		__int128 getRescaleIntercept() const;
+		inline __int128 getRescaleIntercept() const {
+			return rescaleIntercept;
+		}
 
 		void setRescaleIntercept(__int128 rescaleIntercept);
 
-		__int128 getRescaleSlope() const;
+		inline __int128 getRescaleSlope() const {
+			return rescaleSlope;
+		}
 
 		void setRescaleSlope(__int128 rescaleSlope);
 
-		int getLength() const;
+		inline quint64 getMaxValue() const {
+			return maxValue;
+		}
 
-		void setLength(int length);
+		void setMaxValue(quint64 length);
 
-		bool isSigned() const;
+		inline bool isSigned() const {
+			return signedMove > 0;
+		}
 
 		void setSigned(bool isSigned);
 
-		inline virtual const Pixel &getLUT(__int128 value) {
-			return array[value];
+		//endregion
+
+		inline void mvHorizontal(int v) override {
+			setWidth(getWidth() + v);
 		}
 
-		virtual void genLUT();
+		inline void mvVertical(int v) override {
+			setCenter(getCenter() + v);
+		}
+
+		void genLUT() override;
 
 		void selectWindowingIndicator(QWidget *parent, QPoint position);
+
+		void reposition() override;
 
 	signals:
 
 		void centerChanged();
 
 		void widthChanged();
+
+	protected:
+		void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
 	};
 }

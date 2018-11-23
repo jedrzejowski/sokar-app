@@ -2,30 +2,34 @@
 #include <algorithm>
 
 #include <QMenu>
+#include <QTextDocument>
 
 #include "windowint.h"
 
 using namespace Sokar::Monochrome2;
 
-WindowINT::WindowINT() {
+WindowInt::WindowInt() {
+
+	text = new QGraphicsTextItem();
+	text->setDefaultTextColor(defaultColor);
+	text->setPos(0, 0);
+	addToGroup(text);
 
 }
 
-WindowINT::~WindowINT() {
-	delete[]  array;
-}
-
-void WindowINT::setCenter(__int128 newCenter) {
+void WindowInt::setCenter(__int128 newCenter) {
 	if (newCenter == center)
 		return;
 
 	center = newCenter;
 
+	regenText();
+
 	emit centerChanged();
 }
 
 
-void WindowINT::setWidth(__int128 newWidth) {
+void WindowInt::setWidth(__int128 newWidth) {
 	if (newWidth == width)
 		return;
 
@@ -34,14 +38,18 @@ void WindowINT::setWidth(__int128 newWidth) {
 
 	width = newWidth;
 
+	regenText();
+
 	emit widthChanged();
 }
 
 
-void WindowINT::genLUT() {
+void WindowInt::genLUT() {
 
-	__int128 x0 = center - width / 2,
-			x1 = center + width / 2;
+	signedMove = signedMove ? maxValue : 0;
+
+	x0 = center - width / 2;
+	x1 = center + width / 2;
 
 	x0 -= rescaleIntercept;
 	x1 -= rescaleIntercept;
@@ -49,90 +57,41 @@ void WindowINT::genLUT() {
 	x0 /= rescaleSlope;
 	x1 /= rescaleSlope;
 
-	uchar y0 = 0, y1 = 255;
-
-	int x = 0;
-
-	auto a = (float) (y1 - y0) / (x1 - x0);
-	auto b = y1 - a * x1;
-	auto y = b;
-
-	while (x < length) {
-
-		if (y > y1) break;
-
-		array[x] = (uchar) (y > y0 ? y : y0);
-
-		x++;
-		y += a;
-	}
-
-	while (x < length) {
-		array[x] = y1;
-		x++;
-	}
+	a = (float) (y1 - y0) / (x1 - x0);
+	b = y1 - a * x1;
 }
 
-__int128 WindowINT::getCenter() const {
-	return center;
+void WindowInt::setRescaleIntercept(__int128 rescaleIntercept) {
+	WindowInt::rescaleIntercept = rescaleIntercept;
 }
 
-__int128 WindowINT::getWidth() const {
-	return width;
+void WindowInt::setRescaleSlope(__int128 rescaleSlope) {
+	WindowInt::rescaleSlope = rescaleSlope;
 }
 
-__int128 WindowINT::getRescaleIntercept() const {
-	return rescaleIntercept;
+void WindowInt::setMaxValue(quint64 length) {
+	WindowInt::maxValue = length;
 }
 
-void WindowINT::setRescaleIntercept(__int128 rescaleIntercept) {
-	WindowINT::rescaleIntercept = rescaleIntercept;
+void WindowInt::setSigned(bool isSigned) {
+	signedMove = isSigned ? maxValue : 0;
 }
 
-__int128 WindowINT::getRescaleSlope() const {
-	return rescaleSlope;
-}
-
-void WindowINT::setRescaleSlope(__int128 rescaleSlope) {
-	WindowINT::rescaleSlope = rescaleSlope;
-}
-
-int WindowINT::getLength() const {
-	return length;
-}
-
-void WindowINT::setLength(int length) {
-	if (isSigned()) length *= 2;
-
-	array = new Pixel[length];
-	WindowINT::length = length;
-}
-
-bool WindowINT::isSigned() const {
-	return signedMove > 0;
-}
-
-void WindowINT::setSigned(bool isSigned) {
-	delete[] array;
-
-	setLength(isSigned ? getLength() * 2 : getLength());
-}
-
-void WindowINT::selectWindowingIndicator(QWidget *parent,QPoint position) {
+void WindowInt::selectWindowingIndicator(QWidget *parent, QPoint position) {
 
 	QStringList items;
 	items << tr("Spring") << tr("Summer") << tr("Fall") << tr("Winter");
 
 	bool ok;
 
-	auto  menu = QMenu(parent);
+	auto menu = QMenu(parent);
 
 //	auto centers = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenter)).split('\\');
 //	auto widths = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowWidth)).split('\\');
-
-	menu.addAction(new QAction("Action 1", this));
-	menu.addAction(new QAction("Action 2", this));
-	menu.addAction(new QAction("Action 3", this));
+//
+//	menu.addAction(new QAction("Action 1", this));
+//	menu.addAction(new QAction("Action 2", this));
+//	menu.addAction(new QAction("Action 3", this));
 
 	menu.exec(position);
 
@@ -144,4 +103,30 @@ void WindowINT::selectWindowingIndicator(QWidget *parent,QPoint position) {
 //			0,
 //			false,
 //			&ok);
+
 }
+
+
+void WindowInt::reposition() {
+
+	setPos(scene()->width() - text->document()->size().width(),
+		   scene()->height() - text->document()->size().height());
+}
+
+void WindowInt::regenText() {
+	QString str;
+
+	str += "<b>C</b> " + QString::number((qlonglong) center);
+	str += "<br>";
+	str += "<b>W</b> " + QString::number((qlonglong) width);
+
+	text->setHtml(str);
+
+	reposition();
+}
+
+void WindowInt::mousePressEvent(QGraphicsSceneMouseEvent *event) {
+	selectWindowingIndicator();
+	SceneIndicator::mousePressEvent(event);
+}
+

@@ -15,6 +15,8 @@
 #include "../../qdicomgraphics.h"
 
 #include "monochrome2.h"
+#include "windowing/windowintdynamic.h"
+#include "windowing/windowintstatic.h"
 
 using namespace Sokar;
 
@@ -44,45 +46,60 @@ void Monochrome2::Scene::readAttributes() {
 
 	bool ok;
 	ushort us;
-
-	// Tworzenie odpowiedzniego okienka
-	switch (gdcmImage.GetPixelFormat()) {
-		case gdcm::PixelFormat::UINT8:
-		case gdcm::PixelFormat::UINT12:
-		case gdcm::PixelFormat::UINT16:
-		case gdcm::PixelFormat::UINT32:
-		case gdcm::PixelFormat::UINT64:
-			imgWindowInt = new WindowINT();
-			break;
-
-
-		case gdcm::PixelFormat::INT8:
-		case gdcm::PixelFormat::INT12:
-		case gdcm::PixelFormat::INT16:
-		case gdcm::PixelFormat::INT32:
-		case gdcm::PixelFormat::INT64:
-			imgWindowInt = new WindowINT();
-			imgWindowInt->setSigned(true);
-			break;
-
-		case gdcm::PixelFormat::FLOAT16:
-		case gdcm::PixelFormat::FLOAT32:
-		case gdcm::PixelFormat::FLOAT64:
-			throw Sokar::ImageTypeNotSupportedException("gdcm::PixelFormat::FLOATXX");
-
-		case gdcm::PixelFormat::UNKNOWN:
-		case gdcm::PixelFormat::SINGLEBIT:
-		default:
-			throw Sokar::ImageTypeNotSupportedException();
-	}
-
-	//
+	WindowInt *imgWindowInt;
 
 	if (!gdcmDataSet.FindDataElement(gdcm::TagBitsStored))
 		throw DicomTagMissing(gdcm::TagBitsStored);
 
-	us = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagBitsStored).GetByteValue()->GetPointer());
-	imgWindowInt->setLength((1 << us) - 1);
+	auto bitsStored = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagBitsStored).GetByteValue()->GetPointer());
+
+	{ // Tworzenie obiekty okienka
+
+		bool isDynamic = dimX * dimY < ((1 << bitsStored) - 1), isSigned;
+
+		// Tworzenie odpowiedzniego okienka
+		switch (gdcmImage.GetPixelFormat()) {
+			case gdcm::PixelFormat::UINT8:
+			case gdcm::PixelFormat::UINT12:
+			case gdcm::PixelFormat::UINT16:
+			case gdcm::PixelFormat::UINT32:
+			case gdcm::PixelFormat::UINT64:
+
+				isSigned = false;
+				break;
+
+
+			case gdcm::PixelFormat::INT8:
+			case gdcm::PixelFormat::INT12:
+			case gdcm::PixelFormat::INT16:
+			case gdcm::PixelFormat::INT32:
+			case gdcm::PixelFormat::INT64:
+
+				isSigned = true;
+				break;
+
+			case gdcm::PixelFormat::FLOAT16:
+			case gdcm::PixelFormat::FLOAT32:
+			case gdcm::PixelFormat::FLOAT64:
+				throw Sokar::ImageTypeNotSupportedException("gdcm::PixelFormat::FLOATXX");
+
+			case gdcm::PixelFormat::UNKNOWN:
+			case gdcm::PixelFormat::SINGLEBIT:
+			default:
+				throw Sokar::ImageTypeNotSupportedException();
+		}
+
+
+		if (isDynamic) imgWindow = new WindowIntDynamic();
+		else imgWindow = new WindowIntStatic();
+
+		addIndicator(imgWindow);
+
+
+		imgWindowInt = (WindowInt *) imgWindow;
+		imgWindowInt->setSigned(isSigned);
+		imgWindowInt->setMaxValue((uint) ((1 << bitsStored) - 1));
+	}
 
 	//
 	{
@@ -106,11 +123,6 @@ void Monochrome2::Scene::readAttributes() {
 			if (!ok) throw DicomTagParseError(gdcm::TagWindowWidth);
 
 			imgWindowInt->setWidth(ds);
-
-			QObject::connect(imgWindowInt, SIGNAL(centerChanged()), this, SLOT(refreshText33()));
-			QObject::connect(imgWindowInt, SIGNAL(widthChanged()), this, SLOT(refreshText33()));
-
-			refreshText33();
 
 		} else {
 			//TODO VOILUT
@@ -137,35 +149,35 @@ void Monochrome2::Scene::readAttributes() {
 
 bool Monochrome2::Scene::genQPixmap() {
 
-	imgWindowInt->genLUT();
+	imgWindow->genLUT();
 
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::INT8:
-			genQPixmapOfType<int8_t>();
+			genQPixmapOfType<qint8>();
 			break;
 		case gdcm::PixelFormat::UINT8:
-			genQPixmapOfType<uint8_t>();
+			genQPixmapOfType<quint8>();
 			break;
 
 		case gdcm::PixelFormat::INT16:
-			genQPixmapOfType<int16_t>();
+			genQPixmapOfType<qint16>();
 			break;
 		case gdcm::PixelFormat::UINT16:
-			genQPixmapOfType<uint16_t>();
+			genQPixmapOfType<quint16>();
 			break;
 
 		case gdcm::PixelFormat::INT32:
-			genQPixmapOfType<int32_t>();
+			genQPixmapOfType<qint32>();
 			break;
 		case gdcm::PixelFormat::UINT32:
-			genQPixmapOfType<uint32_t>();
+			genQPixmapOfType<qint32>();
 			break;
 
 		case gdcm::PixelFormat::INT64:
-			genQPixmapOfType<int64_t>();
+			genQPixmapOfType<qint64>();
 			break;
 		case gdcm::PixelFormat::UINT64:
-			genQPixmapOfType<uint64_t>();
+			genQPixmapOfType<qint64>();
 			break;
 
 		default:
@@ -177,6 +189,7 @@ bool Monochrome2::Scene::genQPixmap() {
 	return true;
 }
 
+
 template<typename T>
 void Monochrome2::Scene::genQPixmapOfType() {
 
@@ -184,28 +197,35 @@ void Monochrome2::Scene::genQPixmapOfType() {
 
 	auto *origin = (T *) &originVectorBuffer[0];
 
-	for (uint i = 0; i < dimX * dimY; i++) {
-		*buffer++ = imgWindowInt->getLUT(*origin);
+	switch (imgWindow->type()) {
+		case Window::IntDynamic: {
 
-		origin++;
+			auto windowPtr = (WindowIntDynamic *) imgWindow;
+
+			for (uint64_t i = 0; i < dimX * dimY; i++, origin++)
+				*buffer++ = windowPtr->getLUT(*origin);
+		}
+			break;
+
+		case Window::IntStatic: {
+
+			auto windowPtr = (WindowIntStatic *) imgWindow;
+
+			for (uint64_t i = 0; i < dimX * dimY; i++, origin++)
+				*buffer++ = windowPtr->getLUT(*origin);
+		}
+			break;
+
+		default:
+			throw WrongScopeException(__FILE__, __LINE__);
 	}
 }
+
 
 Monochrome2::Scene::~Scene() {
 
 	delete targetBuffer;
-}
-
-QString Monochrome2::Scene::genText33() {
-	QString str = DicomScene::genText33();
-
-	//TODO zamienić __int128 na tekst
-
-	str.append("<b>W</b> ").append(QString::number((qlonglong) imgWindowInt->getWidth()));
-	str.append("<br>");
-	str.append("<b>C</b> ").append(QString::number((qlonglong) imgWindowInt->getCenter()));
-
-	return str;
+	delete imgWindow;
 }
 
 void Monochrome2::Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
@@ -232,8 +252,8 @@ void Monochrome2::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 		int dx = event->lastScreenPos().x() - event->screenPos().x(),
 				dy = event->lastScreenPos().y() - event->screenPos().y();
 
-		imgWindowInt->setWidth(imgWindowInt->getWidth() + dx);
-		imgWindowInt->setCenter(imgWindowInt->getCenter() + dy);
+		imgWindow->mvHorizontal(dx);
+		imgWindow->mvVertical(dy);
 
 
 		reloadPixmap();
@@ -246,12 +266,12 @@ void Monochrome2::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 void Monochrome2::Scene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
 	auto item = this->itemAt(event->scenePos().x(), event->scenePos().y(), QTransform());
 
-	if (item == text33) {
-		event->accept();
-
-		imgWindowInt->selectWindowingIndicator(this->parentGraphics(), event->screenPos());
-		reloadPixmap();
-	} else {
-		DicomScene::mouseDoubleClickEvent(event);
-	}
+//	if (item == text33) {
+//		event->accept();
+//
+//		imgWindowInt->selectWindowingIndicator(this->parentGraphics(), event->screenPos());
+//		reloadPixmap();
+//	} else {
+//		DicomScene::mouseDoubleClickEvent(event);
+//	}
 }
