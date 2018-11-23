@@ -22,7 +22,7 @@ DicomScene::DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneP
 
 	gdcmStringFilter.SetFile(gdcmFile);
 
-	initPixelSpacingIndicator();
+	initIndicators();
 }
 
 DicomScene::~DicomScene() {
@@ -71,11 +71,19 @@ void DicomScene::reloadPixmap() {
 
 }
 
+
+//region Indicators
+
+void DicomScene::initIndicators() {
+	initPixelSpacingIndicator();
+	initImageOrientationIndicator();
+}
+
 void DicomScene::initPixelSpacingIndicator() {
 	if (!gdcmDataSet.FindDataElement(gdcm::TagPixelSpacing)) return;
 
 	auto pixelSpacings = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelSpacing))
-			.split('\\');
+			.split(gdcm::StringSplitter);
 
 	bool ok = false;
 
@@ -100,5 +108,21 @@ void DicomScene::initPixelSpacingIndicator() {
 			pixelSpacingIndicator->setYDim(gdcmImage.GetDimension(0));
 		}
 	}
-
 }
+
+void DicomScene::initImageOrientationIndicator() {
+	if (!gdcmDataSet.FindDataElement(gdcm::TagImageOrientationPatient)) return;
+
+	auto imgTypes = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagImageType))
+			.split(gdcm::StringSplitter);
+
+	if (!imgTypes.contains("AXIAL", Qt::CaseSensitivity::CaseInsensitive)) return;
+
+	auto orientations = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelSpacing));
+
+	imageOrientationIndicator = new ImageOrientationIndicator();
+	imageOrientationIndicator->setOrientation(orientations);
+	addIndicator(imageOrientationIndicator);
+}
+
+//endregion

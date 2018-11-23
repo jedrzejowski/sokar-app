@@ -1,8 +1,8 @@
 #include <iostream>
 #include <algorithm>
 
-#include <QMenu>
 #include <QTextDocument>
+#include <QGraphicsSceneMouseEvent>
 
 #include "windowint.h"
 
@@ -77,36 +77,6 @@ void WindowInt::setSigned(bool isSigned) {
 	signedMove = isSigned ? maxValue : 0;
 }
 
-void WindowInt::selectWindowingIndicator(QWidget *parent, QPoint position) {
-
-	QStringList items;
-	items << tr("Spring") << tr("Summer") << tr("Fall") << tr("Winter");
-
-	bool ok;
-
-	auto menu = QMenu(parent);
-
-//	auto centers = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenter)).split('\\');
-//	auto widths = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowWidth)).split('\\');
-//
-//	menu.addAction(new QAction("Action 1", this));
-//	menu.addAction(new QAction("Action 2", this));
-//	menu.addAction(new QAction("Action 3", this));
-
-	menu.exec(position);
-
-//	QString item = QInputDialog::getItem(
-//			this->parent(),
-//			tr("Wybierz okienko"),
-//			tr("Okienka domyślne:"),
-//			items,
-//			0,
-//			false,
-//			&ok);
-
-}
-
-
 void WindowInt::reposition() {
 
 	setPos(scene()->width() - text->document()->size().width(),
@@ -126,7 +96,39 @@ void WindowInt::regenText() {
 }
 
 void WindowInt::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-	selectWindowingIndicator();
+//	selectWindowingIndicator();
+
+	if (event->button() == Qt::MouseButton::RightButton)
+		selectWindowingIndicator(event);
+
 	SceneIndicator::mousePressEvent(event);
 }
 
+void WindowInt::selectWindowingIndicator(QGraphicsSceneMouseEvent *event) {
+	qDebug("pressed");
+	QStringList items;
+	items << tr("Spring") << tr("Summer") << tr("Fall") << tr("Winter");
+
+	bool ok;
+
+	auto menu = QMenu(scene().gr);
+
+//	auto centers = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenter)).split('\\');
+//	auto widths = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowWidth)).split('\\');
+//
+//	menu.addAction(new QAction("Action 1", this));
+//	menu.addAction(new QAction("Action 2", this));
+//	menu.addAction(new QAction("Action 3", this));
+
+//	menu.exec(position);
+
+//	QString item = QInputDialog::getItem(
+//			this->parent(),
+//			tr("Wybierz okienko"),
+//			tr("Okienka domyślne:"),
+//			items,
+//			0,
+//			false,
+//			&ok);
+
+}

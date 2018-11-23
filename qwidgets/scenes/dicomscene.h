@@ -13,11 +13,10 @@
 #include "scene.h"
 #include "params.h"
 #include "indicators/pixel.h"
+#include "indicators/imgorientation.h"
 
 class Sokar::DicomScene : public Sokar::Scene {
 Q_OBJECT
-private:
-	PixelSpacingIndicator *pixelSpacingIndicator;
 
 protected:
 	const gdcm::Image &gdcmImage;
@@ -34,9 +33,16 @@ protected:
 	QPixmap pixmap;
 	QGraphicsPixmapItem *pixmapItem = nullptr;
 
+//region Indicators
 private:
+	void initIndicators();
+
+	PixelSpacingIndicator *pixelSpacingIndicator;
+	ImageOrientationIndicator *imageOrientationIndicator;
 
 	void initPixelSpacingIndicator();
+	void initImageOrientationIndicator();
+//endregion
 
 public:
 

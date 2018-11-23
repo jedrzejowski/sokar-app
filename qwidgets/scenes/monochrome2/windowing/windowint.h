@@ -1,5 +1,7 @@
 #pragma once
 
+#include <QMenu>
+
 #include "_window.h"
 
 
@@ -79,7 +81,7 @@ namespace Sokar::Monochrome2 {
 
 		void genLUT() override;
 
-		void selectWindowingIndicator(QWidget *parent, QPoint position);
+		void selectWindowingIndicator(QGraphicsSceneMouseEvent* event);
 
 		void reposition() override;
 

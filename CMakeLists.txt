@@ -33,19 +33,12 @@ set(src_proto sokar/exception.h
 
 set(src_mainWin win/main_win.cpp win/main_win.h types.h)
 
-set(src_qwidgets
-        qwidgets/qdicomview.h qwidgets/qdicomview.cpp qwidgets/qdicomview.ui
-        qwidgets/scenes/dicomscene.h qwidgets/scenes/dicomscene.cpp
-        qwidgets/qdicomdataset.h qwidgets/qdicomdataset.cpp
-        qwidgets/qdicomgraphics.h qwidgets/qdicomgraphics.cpp)
-
-include(qwidgets/scenes/CMakeLists.txt)
+include(qwidgets/CMakeLists.txt)
 
 add_executable(${APP_TARGET} main.cpp
         ${src_proto}
         ${src_mainWin}
-        ${src_qwidgets}
-        ${src_scenes}
+        ${src}
         ${UIS_HDRS})
 
 
