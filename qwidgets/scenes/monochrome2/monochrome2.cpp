@@ -12,9 +12,9 @@
 #include <sokar/speedtest.h>
 #include <gdcmImageHelper.h>
 
-#include "sokar/dicomtags.h"
+#include "sokar/gdcmSokar.h"
 
-#include "../../qdicomgraphics.h"
+#include "qwidgets/dicomgraphics.h"
 
 #include "monochrome2.h"
 #include "windowing/windowintdynamic.h"
@@ -86,6 +86,9 @@ void Monochrome2::Scene::readAttributes() {
 		imgWindowInt = (WindowInt *) imgWindow;
 		imgWindowInt->setSigned(isSigned);
 		imgWindowInt->setMaxValue((uint) (1 << bitsStored));
+
+		imgWindowInt->setWidth(imgWindowInt->getMaxValue());
+		imgWindowInt->setCenter(imgWindowInt->getMaxValue() / 2);
 	}
 
 	//

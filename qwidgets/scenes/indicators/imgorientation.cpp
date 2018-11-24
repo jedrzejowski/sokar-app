@@ -1,5 +1,5 @@
 #include <QTextDocument>
-#include <sokar/dicomtags.h>
+#include "sokar/gdcmSokar.h"
 
 #include "imgorientation.h"
 

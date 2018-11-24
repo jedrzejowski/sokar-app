@@ -17,16 +17,13 @@ link_libraries(${GDCM_LIBRARY_DIRS})
 
 #Bibliotek QT
 find_package(Qt5Widgets CONFIG REQUIRED)
-
 include_directories(${PROJECT_SOURCE_DIR})
 
-
-#include_directories(qwidgets)
 
 qt5_wrap_ui(UIS_HDRS win/main_win.ui)
 
 set(src_proto sokar/exception.h
-        sokar/dicomtags.h
+        sokar/gdcmSokar.h
         sokar/speedtest.h
         sokar/pixel.h)
 

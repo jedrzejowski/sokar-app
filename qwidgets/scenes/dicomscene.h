@@ -2,17 +2,18 @@
 
 #include <QtCore>
 #include <QtWidgets>
+
 #include <gdcmImage.h>
 #include <gdcmImageReader.h>
 #include <gdcmStringFilter.h>
-#include <qwidgets/qdicomgraphics.h>
-
+#include <qwidgets/dicomgraphics.h>
 
 #include "sokar/pixel.h"
 #include "sokar/exception.h"
 #include "_classdef.h"
 #include "scene.h"
 #include "params.h"
+#include "sceneavatar.h"
 #include "indicators/pixel.h"
 #include "indicators/imgorientation.h"
 
@@ -24,9 +25,6 @@ protected:
 	const gdcm::File &gdcmFile;
 	const gdcm::DataSet &gdcmDataSet;
 	gdcm::StringFilter gdcmStringFilter;
-
-	static const int Z_IMAGE = 0;
-	static const int Z_INDICATOR = 10;
 
 	std::vector<char> originBuffer;
 	std::vector<Pixel> targetBuffer;
@@ -57,12 +55,14 @@ public:
 
 	void reloadPixmap();
 
+	SceneAvatar* genFrameIcon();
+
 protected:
 
 	virtual bool genQPixmap() = 0;
 
-	QDicomGraphics *parentGraphics() const {
-		return (QDicomGraphics *) this->parent();
+	DicomGraphics *parentGraphics() const {
+		return (DicomGraphics *) this->parent();
 	}
 
 

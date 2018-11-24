@@ -52,4 +52,3 @@ SceneIndicator *Scene::findIndicatorByChild(QGraphicsItem *item) {
 
 	return nullptr;
 }
-

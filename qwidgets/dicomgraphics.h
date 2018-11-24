@@ -5,13 +5,13 @@
 #include "qwidgets/scenes/_classdef.h"
 
 namespace Sokar {
-	class QDicomGraphics;
+	class DicomGraphics;
 }
 
-class Sokar::QDicomGraphics : public QGraphicsView {
+class Sokar::DicomGraphics : public QGraphicsView {
 Q_OBJECT
 public:
-	explicit QDicomGraphics(QWidget *parent);
+	explicit DicomGraphics(QWidget *parent);
 
 protected:
 
@@ -20,4 +20,6 @@ protected:
 	DicomScene *getDicomScene() const {
 		return (DicomScene *) scene();
 	}
+
+	void resizeEvent(QResizeEvent *event) override;
 };

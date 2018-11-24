@@ -1,3 +1,5 @@
+#include "sokar/gdcmSokar.h"
+
 #include "dicomsceneset.h"
 
 #include "monochrome2/monochrome2.h"
@@ -7,7 +9,9 @@
 using namespace Sokar;
 
 
-DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader) : imageReader(reader) {
+DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent) :
+		QObject(parent),
+		imageReader(reader) {
 
 	initScenes();
 }
@@ -16,8 +20,9 @@ void DicomSceneSet::initScenes() {
 	auto &image = imageReader->GetImage();
 
 	auto buffLength = image.GetBufferLength();
-	auto area = image.GetDimension(0) * image.GetDimension(1);
-	resize((int) buffLength / area);
+	auto imgSize = image.GetDimension(0) * image.GetDimension(1) * gdcm::getPixelByteSize(imageReader->GetFile());
+
+	vector.resize((int) buffLength / imgSize);
 
 	imageBuffer.resize(buffLength);
 	image.GetBuffer(&imageBuffer[0]);
@@ -26,7 +31,7 @@ void DicomSceneSet::initScenes() {
 	sceneParams.imageReader = imageReader;
 	sceneParams.imageBuffer = &imageBuffer;
 
-	for (auto &scene : *this) {
+	for (auto &scene : vector) {
 
 		try {
 

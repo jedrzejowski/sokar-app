@@ -4,7 +4,8 @@
 #include <gdcmGlobal.h>
 #include <gdcmAttribute.h>
 
-#include "sokar/dicomtags.h"
+#include "sokar/gdcmSokar.h"
+#include "sokar/gdcmSokar.h"
 
 #include "dicomscene.h"
 
@@ -23,41 +24,10 @@ DicomScene::DicomScene(SceneParams &sceneParams) :
 	area = dimX * dimY;
 
 	{
-		ushort byteSize = 0;
-		switch (gdcmImage.GetPixelFormat()) {
-
-			case gdcm::PixelFormat::INT8:
-			case gdcm::PixelFormat::UINT8:
-				byteSize = 1;
-				break;
-
-			case gdcm::PixelFormat::INT12:
-			case gdcm::PixelFormat::INT16:
-			case gdcm::PixelFormat::UINT12:
-			case gdcm::PixelFormat::UINT16:
-			case gdcm::PixelFormat::FLOAT16:
-				byteSize = 2;
-				break;
-
-			case gdcm::PixelFormat::INT32:
-			case gdcm::PixelFormat::UINT32:
-			case gdcm::PixelFormat::FLOAT32:
-				byteSize = 4;
-				break;
-
-			case gdcm::PixelFormat::INT64:
-			case gdcm::PixelFormat::UINT64:
-			case gdcm::PixelFormat::FLOAT64:
-				byteSize = 8;
-				break;
-
-			case gdcm::PixelFormat::SINGLEBIT:
-			case gdcm::PixelFormat::UNKNOWN:
-			default:
-				byteSize = 0;
-		}
+		ushort byteSize = gdcm::getPixelByteSize(gdcmFile);
 
 		if (byteSize != 0) {
+
 			auto imgSize = area * byteSize;
 			auto offset = sceneParams.frame * imgSize;
 			originBuffer = std::vector<char>(sceneParams.imageBuffer->begin() + offset,
@@ -90,12 +60,18 @@ void DicomScene::reloadPixmap() {
 
 	if (pixmapItem == nullptr) {
 		pixmapItem = addPixmap(pixmap);
-		pixmapItem->setZValue(Z_IMAGE);
+		pixmapItem->setZValue(-1);
 	} else {
 		pixmapItem->setPixmap(pixmap);
 	}
 
 }
+
+SceneAvatar *DicomScene::genFrameIcon() {
+	return new QPushButton("Scena");
+}
+
+
 
 
 //region Indicators

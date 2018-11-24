@@ -1,8 +1,7 @@
 #pragma once
 
-#include <QWidget>
-#include <QGraphicsScene>
-#include <QGraphicsObject>
+#include <QtCore>
+#include <QtWidgets>
 
 #include "_classdef.h"
 #include "indicators/_base.h"

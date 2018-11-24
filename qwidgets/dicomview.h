@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QtCore>
+#include <QtWidgets>
 #include "ui_dicomview.h"
 
 #include "scenes/dicomsceneset.h"
@@ -10,34 +11,32 @@ namespace Ui {
 }
 
 namespace Sokar {
-	class DicomView;
+	class DicomView : public QWidget {
+	Q_OBJECT
+
+	private:
+		Ui::DicomView *ui = nullptr;
+
+		QVector<DicomSceneSet *> sceneSets;
+
+	public:
+		explicit DicomView(QWidget *parent = nullptr);
+
+		~DicomView();
+
+		DicomScene *currentDicomScene() {
+			return (DicomScene *) ui->graphicsView->scene();
+		}
+
+		void addDicomImage(const gdcm::ImageReader *reader);
+
+
+	protected:
+
+		void activateScene(DicomScene *scene);
+
+	};
 }
 
-class Sokar::DicomView : public QWidget {
-Q_OBJECT
-
-private:
-	Ui::DicomView *ui = nullptr;
-	std::vector<DicomSceneSet *> files;
-
-public:
-	explicit DicomView(QWidget *parent = nullptr);
-
-	~DicomView();
-
-	DicomScene *currentDicomScene() {
-		return (DicomScene *) ui->graphicsView->scene();
-	}
-
-	void addDicomImage(const gdcm::ImageReader *reader);
-
-
-protected:
-
-	void resizeEvent(QResizeEvent *event) override;
-
-	void activateScene(DicomScene *scene);
-
-};
 
 
