@@ -15,14 +15,14 @@ namespace Sokar::Monochrome2 {
 		QGraphicsTextItem *text;
 
 		__int128 center, width;
-		__int128 rescaleIntercept = 0, rescaleSlope = 1;
+		double rescaleIntercept = 0, rescaleSlope = 1;
 
 		quint64 signedMove = 0;
 		quint64 maxValue = 0;
 
 		__int128 x1, x0;
 		quint8 y0 = 0, y1 = 255;
-		float a, b;
+		double a, b;
 
 	private:
 		void regenText();
@@ -45,17 +45,17 @@ namespace Sokar::Monochrome2 {
 
 		void setWidth(__int128 width);
 
-		inline __int128 getRescaleIntercept() const {
+		inline double getRescaleIntercept() const {
 			return rescaleIntercept;
 		}
 
-		void setRescaleIntercept(__int128 rescaleIntercept);
+		void setRescaleIntercept(double rescaleIntercept);
 
-		inline __int128 getRescaleSlope() const {
+		inline double getRescaleSlope() const {
 			return rescaleSlope;
 		}
 
-		void setRescaleSlope(__int128 rescaleSlope);
+		void setRescaleSlope(double rescaleSlope);
 
 		inline quint64 getMaxValue() const {
 			return maxValue;

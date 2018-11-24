@@ -37,14 +37,15 @@ void MainWindow::selectFile() {
 
 void MainWindow::loadImage(const QString &path) {
 
+	auto *ir = new gdcm::ImageReader;
 
-	ir.SetFileName(path.toStdString().c_str());
+	ir->SetFileName(path.toStdString().c_str());
 
-	if (!ir.Read()) {
+	if (!ir->Read()) {
 		QMessageBox::critical(this, "Error", "An error has occured !");
+		delete ir;
 		return;
 	}
 
 	ui->dicomView->addDicomImage(ir);
-
 }

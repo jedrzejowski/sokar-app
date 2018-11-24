@@ -9,6 +9,8 @@
 #include <gdcmStringFilter.h>
 
 #include <QMenu>
+#include <sokar/speedtest.h>
+#include <gdcmImageHelper.h>
 
 #include "sokar/dicomtags.h"
 
@@ -21,20 +23,7 @@
 using namespace Sokar;
 
 
-Monochrome2::Scene::Scene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams)
-		: DicomScene(imageReader, sceneParams) {
-
-//	qDebug() << gdcmImage.GetNumberOfDimensions();
-	const unsigned int *dimension = gdcmImage.GetDimensions();
-
-	dimX = dimension[0];
-	dimY = dimension[1];
-
-	originVectorBuffer.resize(gdcmImage.GetBufferLength());
-	gdcmImage.GetBuffer(&originVectorBuffer[0]);
-	targetBuffer = new Pixel[dimX * dimY];
-
-//	qDebug() << gdcmImage.GetBufferLength();
+Monochrome2::Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
 
 	readAttributes();
 
@@ -89,16 +78,14 @@ void Monochrome2::Scene::readAttributes() {
 				throw Sokar::ImageTypeNotSupportedException();
 		}
 
-
 		if (isDynamic) imgWindow = new WindowIntDynamic();
 		else imgWindow = new WindowIntStatic();
 
 		addIndicator(imgWindow);
 
-
 		imgWindowInt = (WindowInt *) imgWindow;
 		imgWindowInt->setSigned(isSigned);
-		imgWindowInt->setMaxValue((uint) ((1 << bitsStored) - 1));
+		imgWindowInt->setMaxValue((uint) (1 << bitsStored));
 	}
 
 	//
@@ -112,21 +99,25 @@ void Monochrome2::Scene::readAttributes() {
 			if (centers.size() != widths.size())
 				throw DicomTagParseError(gdcm::TagWindowWidth, "Number of WindowCenter's and WindowWidth's not match");
 
-			auto ds = centers[0].toDouble(&ok);
-
+			auto center = centers[0].toDouble(&ok);
 			if (!ok) throw DicomTagParseError(gdcm::TagWindowCenter);
 
-			imgWindowInt->setCenter(ds);
-
-			ds = widths[0].toDouble(&ok);
-
+			auto width = widths[0].toDouble(&ok);
 			if (!ok) throw DicomTagParseError(gdcm::TagWindowWidth);
 
-			imgWindowInt->setWidth(ds);
 
-		} else {
-			//TODO VOILUT
-			throw ImageTypeNotSupportedException();
+			switch (imgWindow->type()) {
+				case Window::IntDynamic:
+				case Window::IntStatic:
+
+					imgWindowInt->setCenter(static_cast<__int128_t>(center));
+					imgWindowInt->setWidth(static_cast<__int128_t>(width));
+
+					break;
+
+				default:
+					throw WrongScopeException(__FILE__, __LINE__);
+			}
 		}
 	}
 
@@ -145,6 +136,11 @@ void Monochrome2::Scene::readAttributes() {
 		imgWindowInt->setRescaleIntercept(b);
 		imgWindowInt->setRescaleSlope(m);
 	}
+
+	{
+		if (gdcmImage.GetNumberOfOverlays() > 0)
+			qDebug() << "Obraz z Overlayem (sprawdzić o co kaman)";
+	}
 }
 
 bool Monochrome2::Scene::genQPixmap() {
@@ -155,6 +151,7 @@ bool Monochrome2::Scene::genQPixmap() {
 		case gdcm::PixelFormat::INT8:
 			genQPixmapOfType<qint8>();
 			break;
+
 		case gdcm::PixelFormat::UINT8:
 			genQPixmapOfType<quint8>();
 			break;
@@ -184,7 +181,7 @@ bool Monochrome2::Scene::genQPixmap() {
 			throw Sokar::ImageTypeNotSupportedException();
 	}
 
-	pixmap.convertFromImage(QImage((uchar *) targetBuffer, dimX, dimY, QImage::Format_RGB888));
+	pixmap.convertFromImage(QImage((uchar *) &targetBuffer[0], dimX, dimY, QImage::Format_RGB888));
 
 	return true;
 }
@@ -193,17 +190,17 @@ bool Monochrome2::Scene::genQPixmap() {
 template<typename T>
 void Monochrome2::Scene::genQPixmapOfType() {
 
-	Pixel *buffer = targetBuffer;
-
-	auto *origin = (T *) &originVectorBuffer[0];
+	auto *buffer = &targetBuffer[0];
+	auto *origin = (T *) &originBuffer[0];
 
 	switch (imgWindow->type()) {
 		case Window::IntDynamic: {
 
 			auto windowPtr = (WindowIntDynamic *) imgWindow;
 
-			for (uint64_t i = 0; i < dimX * dimY; i++, origin++)
+			for (uint64_t i = 0; i < dimX * dimY; i++, origin++) {
 				*buffer++ = windowPtr->getLUT(*origin);
+			}
 		}
 			break;
 
@@ -211,8 +208,9 @@ void Monochrome2::Scene::genQPixmapOfType() {
 
 			auto windowPtr = (WindowIntStatic *) imgWindow;
 
-			for (uint64_t i = 0; i < dimX * dimY; i++, origin++)
+			for (uint64_t i = 0; i < dimX * dimY; i++, origin++) {
 				*buffer++ = windowPtr->getLUT(*origin);
+			}
 		}
 			break;
 
@@ -224,7 +222,6 @@ void Monochrome2::Scene::genQPixmapOfType() {
 
 Monochrome2::Scene::~Scene() {
 
-	delete targetBuffer;
 	delete imgWindow;
 }
 

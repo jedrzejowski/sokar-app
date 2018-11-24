@@ -16,7 +16,7 @@
 		<widget class="QWidget" name="centralWidget">
 			<layout class="QGridLayout" name="gridLayout">
 				<item row="0" column="0">
-					<widget class="Sokar::QDicomView" name="dicomView" native="true"/>
+					<widget class="Sokar::DicomView" name="dicomView" native="true"/>
 				</item>
 				<item row="1" column="0">
 					<widget class="QPushButton" name="pushButton">
@@ -30,9 +30,9 @@
 	</widget>
 	<customwidgets>
 		<customwidget>
-			<class>Sokar::QDicomView</class>
+			<class>Sokar::DicomView</class>
 			<extends>QWidget</extends>
-			<header>qwidgets/qdicomview.h</header>
+			<header>qwidgets/dicomview.h</header>
 		</customwidget>
 	</customwidgets>
 	<resources/>

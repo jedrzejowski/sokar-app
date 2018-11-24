@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>QDicomView</class>
-    <widget class="QWidget" name="QDicomView">
+    <class>DicomView</class>
+    <widget class="QWidget" name="DicomView">
         <property name="geometry">
             <rect>
                 <x>0</x>
@@ -10,7 +10,7 @@
                 <height>300</height>
             </rect>
         </property>
-        <layout class="QGridLayout" name="gridLayout" columnstretch="1,2">
+        <layout class="QGridLayout" name="gridLayout" columnstretch="2,2">
             <item row="0" column="0">
                 <widget class="Sokar::QDicomGraphics" name="graphicsView"/>
             </item>

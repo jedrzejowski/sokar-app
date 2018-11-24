@@ -12,7 +12,7 @@ namespace Sokar::Unsupported {
 		QGraphicsTextItem* text22;
 
 	public:
-		explicit Scene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
+		explicit Scene(SceneParams &sceneParams);
 
 		~Scene() override;
 

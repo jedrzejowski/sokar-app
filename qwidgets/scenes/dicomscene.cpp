@@ -8,19 +8,65 @@
 
 #include "dicomscene.h"
 
-#include "monochrome2/monochrome2.h"
-#include "unsupported/unsupported.h"
-
 using namespace Sokar;
 
-DicomScene::DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams) :
+DicomScene::DicomScene(SceneParams &sceneParams) :
 		Scene(),
-		gdcmFile(imageReader.GetFile()),
-		gdcmImage(imageReader.GetImage()),
-		gdcmDataSet(gdcmFile.GetDataSet()),
-		sceneParams(sceneParams) {
+		gdcmFile(sceneParams.imageReader->GetFile()),
+		gdcmImage(sceneParams.imageReader->GetImage()),
+		gdcmDataSet(gdcmFile.GetDataSet()) {
 
 	gdcmStringFilter.SetFile(gdcmFile);
+
+	dimX = gdcmImage.GetDimension(0);
+	dimY = gdcmImage.GetDimension(1);
+	area = dimX * dimY;
+
+	{
+		ushort byteSize = 0;
+		switch (gdcmImage.GetPixelFormat()) {
+
+			case gdcm::PixelFormat::INT8:
+			case gdcm::PixelFormat::UINT8:
+				byteSize = 1;
+				break;
+
+			case gdcm::PixelFormat::INT12:
+			case gdcm::PixelFormat::INT16:
+			case gdcm::PixelFormat::UINT12:
+			case gdcm::PixelFormat::UINT16:
+			case gdcm::PixelFormat::FLOAT16:
+				byteSize = 2;
+				break;
+
+			case gdcm::PixelFormat::INT32:
+			case gdcm::PixelFormat::UINT32:
+			case gdcm::PixelFormat::FLOAT32:
+				byteSize = 4;
+				break;
+
+			case gdcm::PixelFormat::INT64:
+			case gdcm::PixelFormat::UINT64:
+			case gdcm::PixelFormat::FLOAT64:
+				byteSize = 8;
+				break;
+
+			case gdcm::PixelFormat::SINGLEBIT:
+			case gdcm::PixelFormat::UNKNOWN:
+			default:
+				byteSize = 0;
+		}
+
+		if (byteSize != 0) {
+			auto imgSize = area * byteSize;
+			auto offset = sceneParams.frame * imgSize;
+			originBuffer = std::vector<char>(sceneParams.imageBuffer->begin() + offset,
+											 sceneParams.imageBuffer->begin() + offset + imgSize);
+		}
+	}
+
+	targetBuffer.resize(area);
+
 
 	initIndicators();
 }
@@ -37,26 +83,6 @@ void DicomScene::reposItems() {
 				(this->width() - pixmapItem->pixmap().width()) / 2,
 				(this->height() - pixmapItem->pixmap().height()) / 2);
 
-}
-
-
-DicomScene *DicomScene::createForImg(const gdcm::ImageReader &imageReader, SceneParams *sceneParams) {
-
-
-	try {
-		auto &image = imageReader.GetImage();
-
-		switch (image.GetPhotometricInterpretation()) {
-			case gdcm::PhotometricInterpretation::MONOCHROME2:
-				return new Sokar::Monochrome2::Scene(imageReader, sceneParams);
-
-			default:
-				throw Sokar::ImageTypeNotSupportedException();
-		}
-
-	} catch (Sokar::ImageTypeNotSupportedException &) {
-		return new Sokar::Unsupported::Scene(imageReader, sceneParams);
-	}
 }
 
 void DicomScene::reloadPixmap() {

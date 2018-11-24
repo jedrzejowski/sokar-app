@@ -13,16 +13,13 @@ namespace Sokar::Monochrome2 {
 	Q_OBJECT
 
 	protected:
-		std::vector<char> originVectorBuffer;
-		Pixel *targetBuffer;
-		uint dimX, dimY;
 
 		bool isWindowEditing = false;
 
 		Window *imgWindow;
 
 	public:
-		explicit Scene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
+		explicit Scene(SceneParams &sceneParams);
 
 		~Scene() override;
 

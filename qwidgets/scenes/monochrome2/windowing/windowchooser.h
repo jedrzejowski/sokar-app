@@ -3,7 +3,7 @@
 #include <QMenu>
 
 namespace Sokar::Monochrome2 {
-	class WindowChooser, public QMenu {
+	class WindowChooser : public QMenu {
 
 	};
 }

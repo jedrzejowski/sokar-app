@@ -7,7 +7,9 @@ set(src_scenes ${src_scenes}
         ${CMAKE_CURRENT_LIST_DIR}/dicomscene.h
         ${CMAKE_CURRENT_LIST_DIR}/dicomscene.cpp
         ${CMAKE_CURRENT_LIST_DIR}/params.h
-        ${CMAKE_CURRENT_LIST_DIR}/params.cpp)
+        ${CMAKE_CURRENT_LIST_DIR}/scenecreator.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/dicomsceneset.h
+        ${CMAKE_CURRENT_LIST_DIR}/dicomsceneset.cpp)
 
 set(src_scenes ${src_scenes}
         ${CMAKE_CURRENT_LIST_DIR}/indicators/_base.h

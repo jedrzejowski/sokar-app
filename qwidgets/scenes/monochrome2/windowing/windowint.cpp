@@ -48,24 +48,29 @@ void WindowInt::genLUT() {
 
 	signedMove = signedMove ? maxValue : 0;
 
-	x0 = center - width / 2;
-	x1 = center + width / 2;
+	double _x0, _x1;
 
-	x0 -= rescaleIntercept;
-	x1 -= rescaleIntercept;
+	_x0 = center - width / 2;
+	_x1 = center + width / 2;
 
-	x0 /= rescaleSlope;
-	x1 /= rescaleSlope;
+	_x0 -= rescaleIntercept;
+	_x1 -= rescaleIntercept;
 
-	a = (float) (y1 - y0) / (x1 - x0);
-	b = y1 - a * x1;
+	_x0 /= rescaleSlope;
+	_x1 /= rescaleSlope;
+
+	a = (y1 - y0) / (_x1 - _x0);
+	b = y1 - a * _x1;
+
+	x0 = static_cast<__int128_t>(_x0);
+	x1 = static_cast<__int128_t>(_x1);
 }
 
-void WindowInt::setRescaleIntercept(__int128 rescaleIntercept) {
+void WindowInt::setRescaleIntercept(double rescaleIntercept) {
 	WindowInt::rescaleIntercept = rescaleIntercept;
 }
 
-void WindowInt::setRescaleSlope(__int128 rescaleSlope) {
+void WindowInt::setRescaleSlope(double rescaleSlope) {
 	WindowInt::rescaleSlope = rescaleSlope;
 }
 
@@ -111,7 +116,7 @@ void WindowInt::selectWindowingIndicator(QGraphicsSceneMouseEvent *event) {
 
 	bool ok;
 
-	auto menu = QMenu(scene().gr);
+//	auto menu = QMenu(scene().gr);
 
 //	auto centers = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenter)).split('\\');
 //	auto widths = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowWidth)).split('\\');

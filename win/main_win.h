@@ -11,9 +11,6 @@ namespace Ui {
 class MainWindow : public QMainWindow {
 Q_OBJECT
 
-protected:
-	gdcm::ImageReader ir;
-
 public:
 	explicit MainWindow(QWidget *parent = nullptr);
 

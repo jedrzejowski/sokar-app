@@ -14,25 +14,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Coś">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/framechooser.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/framechooser.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/indicators/imgorientation.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/indicators/imgorientation.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/dicomsceneset.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/dicomsceneset.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/qwidgets/scenes/scenecreator.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sokar/speedtest.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qwidgets/qdicomview.ui" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/qdicomview.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/qdicomview.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/dicomview.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/qdicomview.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/dicomview.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/qdicomview.ui" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/dicomview.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/params.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/params.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/params.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h" beforeDir="false" afterPath="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sokar/dicomtags.h" beforeDir="false" afterPath="$PROJECT_DIR$/sokar/dicomtags.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sokar/pixel.h" beforeDir="false" afterPath="$PROJECT_DIR$/sokar/pixel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/win/main_win.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/win/main_win.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/win/main_win.h" beforeDir="false" afterPath="$PROJECT_DIR$/win/main_win.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/win/main_win.ui" beforeDir="false" afterPath="$PROJECT_DIR$/win/main_win.ui" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -63,41 +71,41 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="4382" />
-          <entry key="h" value="1364" />
+          <entry key="cpp" value="6069" />
+          <entry key="h" value="2191" />
           <entry key="pro" value="9" />
-          <entry key="txt" value="129" />
-          <entry key="ui" value="116" />
+          <entry key="txt" value="158" />
+          <entry key="ui" value="118" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CMakeLists.txt" value="113" />
-          <entry key="ObjectiveC" value="5746" />
+          <entry key="CMakeLists.txt" value="142" />
+          <entry key="ObjectiveC" value="8260" />
           <entry key="PLAIN_TEXT" value="25" />
-          <entry key="Qt UI file" value="116" />
+          <entry key="Qt UI file" value="118" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="Sokar (disassembly)" value="3" />
-          <entry key="cpp" value="37" />
+          <entry key="Sokar (disassembly)" value="7" />
+          <entry key="cpp" value="74" />
           <entry key="gitignore" value="1" />
-          <entry key="h" value="85" />
+          <entry key="h" value="137" />
           <entry key="md" value="1" />
           <entry key="pro" value="2" />
-          <entry key="txt" value="6" />
-          <entry key="ui" value="12" />
+          <entry key="txt" value="14" />
+          <entry key="ui" value="17" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CMakeLists.txt" value="6" />
-          <entry key="Disassembly" value="3" />
+          <entry key="CMakeLists.txt" value="14" />
+          <entry key="Disassembly" value="7" />
           <entry key="Markdown" value="1" />
-          <entry key="ObjectiveC" value="122" />
+          <entry key="ObjectiveC" value="211" />
           <entry key="PLAIN_TEXT" value="3" />
-          <entry key="Qt UI file" value="12" />
+          <entry key="Qt UI file" value="17" />
         </counts>
       </usages-collector>
     </session>
@@ -148,89 +156,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="29" selection-start-line="29" selection-end-line="29" />
-              <folding>
-                <element signature="e#14#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/params.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="124" column="39" selection-start-line="124" selection-start-column="39" selection-end-line="124" selection-end-column="39" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicators/imgorientation.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="50" column="32" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.cpp">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.h">
+        <entry file="file://$PROJECT_DIR$/qwidgets/dicomview.ui">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" selection-start-line="6" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="30" column="69" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="81" column="28" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
-              <folding>
-                <element signature="e#14#30#0" expanded="true" />
-                <element signature="e#437#463#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/qwidgets/qdicomview.ui">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
+            <state relative-caret-position="510">
+              <caret line="30" column="54" lean-forward="true" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -246,10 +176,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>MainW</find>
-      <find>buffer</find>
-      <find>getSaveFileName</find>
-      <find>z++</find>
       <find>Lut</find>
       <find>App</find>
       <find>0028,0100</find>
@@ -274,6 +200,12 @@
       <find>qDe</find>
       <find>conne</find>
       <find>Sokar::</find>
+      <find>qDebu</find>
+      <find>~</find>
+      <find>*this</find>
+      <find>params.cpp</find>
+      <find>qdicomview</find>
+      <find>DicomView</find>
     </findStrings>
     <replaceStrings>
       <replace>++z</replace>
@@ -288,57 +220,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/win/main_win.h" />
-        <option value="$PROJECT_DIR$/sokar/imgwindow.h" />
-        <option value="$PROJECT_DIR$/sokar/imgwindow.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/dicomscene.cpp" />
-        <option value="$PROJECT_DIR$/sokar/pixel.h" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindowINT.h" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindowUINT.h" />
-        <option value="$PROJECT_DIR$/qwidgets/qdicomview.h" />
-        <option value="$PROJECT_DIR$/sokar/sceneparams.h" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindowint.cpp" />
-        <option value="$PROJECT_DIR$/sokar/windowing/imgwindow.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/dicomscene.h" />
         <option value="$PROJECT_DIR$/sokar/windowing/imgwindow.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2.h" />
         <option value="$PROJECT_DIR$/sokar/windowing/imgwindowint.h" />
         <option value="$PROJECT_DIR$/qwidgets/qdicomview.cpp" />
-        <option value="$PROJECT_DIR$/win/main_win.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/qdicomgraphics.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/qwidgets/qdicomgraphics.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwinlist.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/unsuported/unsuported.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/unsuported/unsupported.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/params.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/qdicomdataset.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/_classdef.h" />
         <option value="$PROJECT_DIR$/cmake-build-debug/Sokar_autogen/WAKD6AFQQH/moc_indicator.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/indicator.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/scene.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/scene.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/indicator.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/indicators/_base.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" />
-        <option value="$PROJECT_DIR$/sokar/dicomtags.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/indicators/imgorientation.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/indicators/imgorientation.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/qwidgets/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/qwidgets/framechooser.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/qdicomview.ui" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.h" />
+        <option value="$PROJECT_DIR$/sokar/dicomtags.h" />
+        <option value="$PROJECT_DIR$/sokar/pixel.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowintstatic.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp" />
+        <option value="$PROJECT_DIR$/sokar/SpeedTest.h" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/sokar/speedtest.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/scenecreator.cpp" />
+        <option value="$PROJECT_DIR$/win/main_win.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomsceneset.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/params.cpp" />
         <option value="$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.h" />
+        <option value="$PROJECT_DIR$/qwidgets/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/params.h" />
+        <option value="$PROJECT_DIR$/win/main_win.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/dicomview.h" />
+        <option value="$PROJECT_DIR$/qwidgets/dicomview.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomsceneset.cpp" />
+        <option value="$PROJECT_DIR$/qwidgets/dicomview.ui" />
       </list>
     </option>
   </component>
@@ -354,48 +286,60 @@
     <option name="width" value="1920" />
     <option name="height" value="1108" />
   </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State />
+          <State>
+            <id>C/C++</id>
+          </State>
+          <State>
+            <id>GeneralC/C++</id>
+          </State>
+        </expanded-state>
+        <selected-state>
+          <State>
+            <id>ClangTidyInspection</id>
+          </State>
+        </selected-state>
+      </profile-state>
+    </entry>
+  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
-              <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
-              <item name="indicators" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
               <item name="monochrome2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
               <item name="monochrome2" type="462c0819:PsiDirectoryNode" />
@@ -403,18 +347,26 @@
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="qwidgets" type="462c0819:PsiDirectoryNode" />
+              <item name="scenes" type="462c0819:PsiDirectoryNode" />
+              <item name="unsupported" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="sokar" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="win" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -442,20 +394,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/CMakeLists.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/dicomscene.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/scene.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/scene.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/sokar/exception.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/sokar/pixel.h</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -463,17 +401,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/_base.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/_base.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/image.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/image.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/_window.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowintdynamic.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowintstatic.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/test.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/types.h</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -481,9 +408,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="true" />
           <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicator.cpp</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicator.h</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwindowing.h</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Restored" />
@@ -562,6 +486,860 @@
         <option name="mySupportsDeletion" value="false" />
         <option name="myCanBeAbsent" value="false" />
         <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/dicomscene.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/scene.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/scene.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/sokar/exception.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/sokar/pixel.h</PATH>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/_base.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/_base.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/image.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/image.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/_window.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowintdynamic.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowintstatic.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/test.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/types.h</PATH>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicator.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/indicator.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwindowing.h</PATH>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+          <FILE-GROUP>
+            <option name="myUpdateName" />
+            <option name="myStatusName" />
+            <option name="mySupportsDeletion" value="false" />
+            <option name="myCanBeAbsent" value="false" />
+            <option name="myId" />
+          </FILE-GROUP>
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" />
+          <option name="myStatusName" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" />
+        </FILE-GROUP>
       </FILE-GROUP>
     </UpdatedFiles>
   </component>
@@ -647,7 +1425,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="129746000" />
+    <option name="totallyTimeSpent" value="141733000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -659,23 +1437,24 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-1" width="1366" height="769" extended-state="6" />
+    <frame x="0" y="-28" width="1920" height="1108" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2871212" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24117647" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32919255" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4363354" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39751554" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3281893" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.436214" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39711934" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32919255" />
-      <window_info anchor="bottom" id="CMake" order="7" weight="0.32919255" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3281893" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.3281893" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32919255" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005348" side_tool="true" weight="0.45652175" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32919255" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946523" weight="0.3757764" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946523" weight="0.61213994" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -683,21 +1462,21 @@
       <window_info anchor="right" id="Database" order="3" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28257576" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24117647" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32919255" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4363354" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39751554" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3281893" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.436214" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39711934" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32919255" />
-      <window_info anchor="bottom" id="CMake" order="7" weight="0.32919255" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3281893" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.3281893" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.32919255" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005348" side_tool="true" weight="0.45679012" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5005348" side_tool="true" weight="0.45652175" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32919255" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946523" weight="0.3757764" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946523" weight="0.61213994" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -723,126 +1502,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Coś" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///usr/local/include/gdcm-2.8/gdcmDict.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="102" column="14" selection-start-line="102" selection-start-column="14" selection-end-line="102" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8.2.1/bits/basic_string.tcc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="211" selection-start-line="211" selection-end-line="211" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/c++/8.2.1/bits/basic_string.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="515" selection-start-line="515" selection-end-line="515" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomview.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="18" column="4" selection-start-line="18" selection-start-column="4" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/win/main_win.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomview.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomgraphics.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="57" selection-start-line="8" selection-start-column="57" selection-end-line="8" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/CMakeLists.txt" />
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomgraphics.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="37" lean-forward="true" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwinlist.h" />
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="19" lean-forward="true" selection-start-line="22" selection-start-column="19" selection-end-line="22" selection-end-column="19" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/defaultwindowing.h" />
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/_classdef.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="22" lean-forward="true" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Sokar_autogen/WAKD6AFQQH/moc_indicator.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="92" selection-start-line="92" selection-end-line="92" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicator.cpp" />
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicator.h" />
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/win/main_win.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sokar/exception.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="19" column="36" lean-forward="true" selection-start-line="19" selection-start-column="36" selection-end-line="19" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomdataset.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/qt/QtWidgets/qmenu.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -850,20 +1509,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/_window.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicators/_base.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -881,24 +1530,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sokar/dicomtags.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/qt/QtCore/qstringlist.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="119" column="64" selection-start-line="119" selection-start-column="49" selection-end-line="119" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtCore/qstring.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="692" column="30" selection-start-line="692" selection-start-column="30" selection-end-line="692" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -916,34 +1551,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="295">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/CMakeLists.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="109" column="5" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/qwidgets/framechooser.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -954,13 +1561,6 @@
     <entry file="file://$PROJECT_DIR$/qwidgets/framechooser.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomview.ui">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="72" selection-start-line="12" selection-start-column="72" selection-end-line="12" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/qt/QtWidgets/qgraphicsscene.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="325">
@@ -968,68 +1568,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="81" column="28" selection-start-line="81" selection-start-column="28" selection-end-line="81" selection-end-column="28" />
-          <folding>
-            <element signature="e#14#30#0" expanded="true" />
-            <element signature="e#437#463#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#14#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="43" column="32" selection-start-line="43" selection-start-column="32" selection-end-line="43" selection-end-column="32" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/qt/QtWidgets/qgraphicssceneevent.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="257">
           <caret line="117" column="19" selection-start-line="117" selection-start-column="8" selection-end-line="117" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/params.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="6" column="7" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="124" column="39" selection-start-line="124" selection-start-column="39" selection-end-line="124" selection-end-column="39" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1043,17 +1585,291 @@
     <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.cpp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt">
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="30" column="69" selection-start-line="30" selection-start-column="69" selection-end-line="30" selection-end-column="69" />
+        <state relative-caret-position="85">
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowchooser.h">
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/indicators/pixel.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/lib/qt/mkspecs/linux-g++/qplatformdefs.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///usr/include/qt/QtCore/qstring.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="969" column="24" selection-start-line="969" selection-start-column="24" selection-end-line="969" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sokar/dicomtags.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="16" column="38" selection-start-line="16" selection-start-column="38" selection-end-line="16" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/_window.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sokar/pixel.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="41" selection-start-line="19" selection-start-column="41" selection-end-line="19" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowintstatic.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowintdynamic.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="1" lean-forward="true" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmBitmap.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="132" column="7" selection-start-line="132" selection-start-column="7" selection-end-line="132" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sokar/speedtest.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="20" lean-forward="true" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/qdicomgraphics.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="22" column="2" lean-forward="true" selection-start-line="22" selection-start-column="2" selection-end-line="22" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/win/main_win.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scenecreator.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/c++/8.2.1/bits/stl_vector.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="564" column="7" selection-start-line="564" selection-start-column="6" selection-end-line="564" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/params.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="42" selection-start-line="8" selection-start-column="42" selection-end-line="8" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/win/main_win.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/params.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <caret line="8" column="40" lean-forward="true" selection-start-line="8" selection-start-column="40" selection-end-line="8" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/win/main_win.ui">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="34" column="30" lean-forward="true" selection-start-line="34" selection-start-column="30" selection-end-line="34" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmPixelFormat.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="53" column="4" selection-start-line="53" selection-start-column="4" selection-end-line="53" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/unsupported/unsupported.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="33" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomsceneset.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="12" selection-start-line="9" selection-start-column="12" selection-end-line="9" selection-end-column="12" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/dicomview.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="25" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/dicomview.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
+          <folding>
+            <element signature="e#1#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="53" column="27" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="34" column="12" lean-forward="true" selection-start-line="34" selection-start-column="12" selection-end-line="34" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/scene.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="5" lean-forward="true" selection-start-line="22" selection-start-column="5" selection-end-line="22" selection-end-column="5" />
+          <folding>
+            <element signature="e#14#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmPhotometricInterpretation.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomsceneset.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="30" column="13" lean-forward="true" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#1#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/qwidgets/dicomview.ui">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="54" lean-forward="true" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
         </state>
       </provider>
     </entry>

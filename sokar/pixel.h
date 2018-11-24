@@ -1,17 +1,25 @@
 #pragma once
 
-#include <qplatformdefs.h>
+#include <QtCore>
+
 
 namespace Sokar {
-	struct Pixel;
+	struct Pixel {
+		quint8 red = 0, green = 0, blue = 0;
+
+		Pixel() {}
+
+		Pixel(quint8 gray) : red(gray), green(gray), blue(gray) {}
+
+		Pixel(quint8 red, quint8 green, quint8 blue) : red(red), green(green), blue(blue) {}
+
+		operator QString() const {
+			return QString("Pixel(%1,%2,%3)").arg(
+					QString::number(red),
+					QString::number(green),
+					QString::number(blue));
+		}
+	};
+
 }
 
-struct Sokar::Pixel {
-	uint8_t red = 0, green = 0, blue = 0;
-
-	Pixel() {}
-
-	Pixel(uint8_t gray) : red(gray), green(gray), blue(gray) {}
-
-	Pixel(uint8_t red, uint8_t green, uint8_t blue) : red(red), green(green), blue(blue) {}
-};

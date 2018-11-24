@@ -26,9 +26,8 @@ include_directories(${PROJECT_SOURCE_DIR})
 qt5_wrap_ui(UIS_HDRS win/main_win.ui)
 
 set(src_proto sokar/exception.h
-        qwidgets/scenes/params.h
-        qwidgets/scenes/params.cpp
         sokar/dicomtags.h
+        sokar/speedtest.h
         sokar/pixel.h)
 
 set(src_mainWin win/main_win.cpp win/main_win.h types.h)

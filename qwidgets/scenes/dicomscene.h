@@ -8,6 +8,7 @@
 #include <qwidgets/qdicomgraphics.h>
 
 
+#include "sokar/pixel.h"
 #include "sokar/exception.h"
 #include "_classdef.h"
 #include "scene.h"
@@ -22,13 +23,15 @@ protected:
 	const gdcm::Image &gdcmImage;
 	const gdcm::File &gdcmFile;
 	const gdcm::DataSet &gdcmDataSet;
+	gdcm::StringFilter gdcmStringFilter;
 
 	static const int Z_IMAGE = 0;
 	static const int Z_INDICATOR = 10;
 
-	gdcm::StringFilter gdcmStringFilter;
-
-	SceneParams *sceneParams;
+	std::vector<char> originBuffer;
+	std::vector<Pixel> targetBuffer;
+	uint dimX, dimY;
+	quint64 area;
 
 	QPixmap pixmap;
 	QGraphicsPixmapItem *pixmapItem = nullptr;
@@ -46,11 +49,9 @@ private:
 
 public:
 
-	explicit DicomScene(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
+	explicit DicomScene(SceneParams &sceneParams);
 
 	~DicomScene() override;
-
-	static DicomScene *createForImg(const gdcm::ImageReader &imageReader, SceneParams *sceneParams);
 
 	const gdcm::File &getGdcmFile() { return gdcmFile; }
 
