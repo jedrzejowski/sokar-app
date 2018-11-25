@@ -6,8 +6,8 @@ FrameChooser::FrameChooser(QWidget *parent) : QScrollArea(parent) {
 
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-	layout = new QVBoxLayout;
-	layout->setAlignment(Qt::AlignTop);
+	layout = new QBoxLayout(QBoxLayout::Direction::TopToBottom);
+	layout->setSpacing(0);
 	layout->setMargin(0);
 
 	content = new QWidget;
@@ -20,11 +20,14 @@ void FrameChooser::addSceneSet(DicomSceneSet *sceneSet) {
 
 	for (auto &scene : sceneSet->getVector())
 		addScene(scene);
+
+	this->dumpObjectTree();
 }
 
 
 void FrameChooser::addScene(DicomScene *scene) {
-	auto widget = scene->genFrameIcon();
+	qDebug("FrameChooser::addScene");
+	auto widget = scene->getAvatar();
 	layout->addWidget(widget);
 
 }

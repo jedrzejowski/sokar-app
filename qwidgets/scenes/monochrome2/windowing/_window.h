@@ -9,6 +9,8 @@ namespace Sokar::Monochrome2 {
 
 	class Window : public QObject, public SceneIndicator {
 	Q_OBJECT
+	protected:
+		bool shouldRegen = true;
 	public:
 
 		typedef enum {
@@ -24,6 +26,6 @@ namespace Sokar::Monochrome2 {
 
 		virtual const Pixel &getLUT(quint64 value) = 0;
 
-		virtual void genLUT() = 0;
+		virtual bool genLUT() = 0;
 	};
 }

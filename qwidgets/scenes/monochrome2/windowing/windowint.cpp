@@ -22,6 +22,7 @@ void WindowInt::setCenter(__int128 newCenter) {
 		return;
 
 	center = newCenter;
+	shouldRegen = true;
 
 	regenText();
 
@@ -37,6 +38,7 @@ void WindowInt::setWidth(__int128 newWidth) {
 		newWidth = 0;
 
 	width = newWidth;
+	shouldRegen = true;
 
 	regenText();
 
@@ -44,7 +46,8 @@ void WindowInt::setWidth(__int128 newWidth) {
 }
 
 
-void WindowInt::genLUT() {
+bool WindowInt::genLUT() {
+	if (!shouldRegen) return false;
 
 	signedMove = signedMove ? maxValue : 0;
 
@@ -64,22 +67,42 @@ void WindowInt::genLUT() {
 
 	x0 = static_cast<__int128_t>(_x0);
 	x1 = static_cast<__int128_t>(_x1);
+
+	shouldRegen = false;
+
+	return true;
 }
 
 void WindowInt::setRescaleIntercept(double rescaleIntercept) {
+	if (WindowInt::rescaleIntercept == rescaleIntercept)
+		return;
+
 	WindowInt::rescaleIntercept = rescaleIntercept;
+	shouldRegen = true;
 }
 
 void WindowInt::setRescaleSlope(double rescaleSlope) {
+	if (WindowInt::rescaleSlope == rescaleSlope)
+		return;
+
 	WindowInt::rescaleSlope = rescaleSlope;
+	shouldRegen = true;
 }
 
 void WindowInt::setMaxValue(quint64 length) {
+	if (WindowInt::maxValue == length)
+		return;
+
 	WindowInt::maxValue = length;
+	shouldRegen = true;
 }
 
 void WindowInt::setSigned(bool isSigned) {
+	if (signedMove == isSigned ? maxValue : 0)
+		return;
+
 	signedMove = isSigned ? maxValue : 0;
+	shouldRegen = true;
 }
 
 void WindowInt::reposition() {

@@ -4,7 +4,10 @@ namespace Sokar {
 
 	class Scene;
 	class DicomScene;
-	class SceneParams;
+	class DicomSceneSet;
 	class SceneIndicator;
+	class SceneAvatar;
+	
+	struct SceneParams;
 
 };

@@ -8,7 +8,7 @@ set(src_scenes ${src_scenes}
         ${CMAKE_CURRENT_LIST_DIR}/dicomscene.h
         ${CMAKE_CURRENT_LIST_DIR}/dicomscene.cpp
         ${CMAKE_CURRENT_LIST_DIR}/dicomscene.cpp
-        ${CMAKE_CURRENT_LIST_DIR}/sceneavatar.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/sceneavatar.h
         ${CMAKE_CURRENT_LIST_DIR}/sceneavatar.cpp
         ${CMAKE_CURRENT_LIST_DIR}/dicomsceneset.h
         ${CMAKE_CURRENT_LIST_DIR}/dicomsceneset.cpp)

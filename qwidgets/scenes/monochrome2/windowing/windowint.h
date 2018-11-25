@@ -79,7 +79,7 @@ namespace Sokar::Monochrome2 {
 			setCenter(getCenter() + v);
 		}
 
-		void genLUT() override;
+		bool genLUT() override;
 
 		void selectWindowingIndicator(QGraphicsSceneMouseEvent* event);
 

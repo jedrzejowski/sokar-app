@@ -56,7 +56,7 @@ void DicomScene::reposItems() {
 }
 
 void DicomScene::reloadPixmap() {
-	if (!genQPixmap()) return;
+	if (!generatePixmap()) return;
 
 	if (pixmapItem == nullptr) {
 		pixmapItem = addPixmap(pixmap);
@@ -67,10 +67,20 @@ void DicomScene::reloadPixmap() {
 
 }
 
-SceneAvatar *DicomScene::genFrameIcon() {
-	return new QPushButton("Scena");
+SceneAvatar *DicomScene::getAvatar() {
+	return new SceneAvatar(this);
 }
 
+
+const QPixmap& DicomScene::getIcon() {
+	if (iconPixmap.isNull()) {
+		generatePixmap();
+
+		iconPixmap = pixmap.scaledToWidth(128, Qt::SmoothTransformation);
+	}
+
+	return iconPixmap;
+}
 
 
 

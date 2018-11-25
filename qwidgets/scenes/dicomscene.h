@@ -17,57 +17,64 @@
 #include "indicators/pixel.h"
 #include "indicators/imgorientation.h"
 
-class Sokar::DicomScene : public Sokar::Scene {
-Q_OBJECT
+namespace Sokar {
+	class DicomScene : public Sokar::Scene {
+	Q_OBJECT
 
-protected:
-	const gdcm::Image &gdcmImage;
-	const gdcm::File &gdcmFile;
-	const gdcm::DataSet &gdcmDataSet;
-	gdcm::StringFilter gdcmStringFilter;
+	protected:
+		const gdcm::Image &gdcmImage;
+		const gdcm::File &gdcmFile;
+		const gdcm::DataSet &gdcmDataSet;
+		gdcm::StringFilter gdcmStringFilter;
 
-	std::vector<char> originBuffer;
-	std::vector<Pixel> targetBuffer;
-	uint dimX, dimY;
-	quint64 area;
+		std::vector<char> originBuffer;
+		std::vector<Pixel> targetBuffer;
+		uint dimX, dimY;
+		quint64 area;
 
-	QPixmap pixmap;
-	QGraphicsPixmapItem *pixmapItem = nullptr;
+		QPixmap pixmap, iconPixmap;
+		QGraphicsPixmapItem *pixmapItem = nullptr;
 
 //region Indicators
-private:
-	void initIndicators();
+	private:
+		void initIndicators();
 
-	PixelSpacingIndicator *pixelSpacingIndicator;
-	ImageOrientationIndicator *imageOrientationIndicator;
+		PixelSpacingIndicator *pixelSpacingIndicator;
+		ImageOrientationIndicator *imageOrientationIndicator;
 
-	void initPixelSpacingIndicator();
-	void initImageOrientationIndicator();
+		void initPixelSpacingIndicator();
+		void initImageOrientationIndicator();
 //endregion
 
-public:
+	public:
 
-	explicit DicomScene(SceneParams &sceneParams);
+		explicit DicomScene(SceneParams &sceneParams);
 
-	~DicomScene() override;
+		~DicomScene() override;
 
-	const gdcm::File &getGdcmFile() { return gdcmFile; }
+		const gdcm::File &getGdcmFile() { return gdcmFile; }
 
-	void reloadPixmap();
+		void reloadPixmap();
 
-	SceneAvatar* genFrameIcon();
+		const QPixmap *getPixmap() const {
+			return &pixmap;
+		}
 
-protected:
+		SceneAvatar *getAvatar();
 
-	virtual bool genQPixmap() = 0;
+		const QPixmap& getIcon();
 
-	DicomGraphics *parentGraphics() const {
-		return (DicomGraphics *) this->parent();
-	}
+	protected:
+		virtual bool generatePixmap() = 0;
+
+		DicomGraphics *parentGraphics() const {
+			return (DicomGraphics *) this->parent();
+		}
 
 
-public slots:
+	public slots:
 
-	void reposItems() override;
+		void reposItems() override;
 
-};
+	};
+}

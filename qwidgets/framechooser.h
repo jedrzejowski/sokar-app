@@ -12,7 +12,7 @@ namespace Sokar {
 	Q_OBJECT
 	private:
 		QWidget *content;
-		QVBoxLayout *layout;
+		QBoxLayout *layout;
 	public:
 		explicit FrameChooser(QWidget *parent = nullptr);
 

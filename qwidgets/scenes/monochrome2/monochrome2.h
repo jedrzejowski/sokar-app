@@ -33,7 +33,7 @@ namespace Sokar::Monochrome2 {
 
 		void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
 
-		bool genQPixmap() override;
+		bool generatePixmap() override;
 
 		template<typename T>
 		void genQPixmapOfType();

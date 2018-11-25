@@ -12,27 +12,32 @@ namespace Sokar::Monochrome2 {
 			return IntStatic;
 		}
 
-		void genLUT() override {
-			WindowInt::genLUT();
+		bool genLUT() override {
+			auto changed = WindowInt::genLUT();
 
-			if (array.size() != signedMove + maxValue)
-				array.resize(signedMove + maxValue);
+			if (changed) {
 
-			__int128 x = -signedMove;
+				if (array.size() != signedMove + maxValue)
+					array.resize(signedMove + maxValue);
 
-			for (auto &pixel : array) {
+				__int128 x = -signedMove;
 
-				if (x > x1) {
-					pixel = Pixel(y1);
+				for (auto &pixel : array) {
 
-				} else if (x < x0) {
-					pixel = Pixel(y0);
-				} else {
-					pixel = Pixel((quint8) (a * x + b));
+					if (x > x1) {
+						pixel = Pixel(y1);
+
+					} else if (x < x0) {
+						pixel = Pixel(y0);
+					} else {
+						pixel = Pixel((quint8) (a * x + b));
+					}
+
+					x++;
 				}
-
-				x++;
 			}
+
+			return changed;
 		}
 
 		inline const Pixel &getLUT(quint64 value) override {

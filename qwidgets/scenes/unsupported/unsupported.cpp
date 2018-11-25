@@ -12,7 +12,7 @@ Unsupported::Scene::~Scene() {
 
 }
 
-bool Sokar::Unsupported::Scene::genQPixmap() {
+bool Sokar::Unsupported::Scene::generatePixmap() {
 	pixmap = QPixmap(0, 0);
 	return true;
 }

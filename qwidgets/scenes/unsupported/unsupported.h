@@ -17,7 +17,7 @@ namespace Sokar::Unsupported {
 		~Scene() override;
 
 	protected:
-		bool genQPixmap() override;
+		bool generatePixmap() override;
 
 	public:
 		void reposItems() override;

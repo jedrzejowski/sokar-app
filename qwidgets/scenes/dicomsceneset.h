@@ -2,6 +2,7 @@
 
 #include <QtCore>
 
+#include "_classdef.h"
 #include "dicomscene.h"
 
 namespace Sokar {
@@ -14,7 +15,7 @@ namespace Sokar {
 
 	public:
 		explicit DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent = nullptr);
-		~DicomSceneSet();
+		~DicomSceneSet() override;
 
 		inline const QVector<DicomScene *> &getVector() const {
 			return vector;

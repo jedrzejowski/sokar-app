@@ -146,9 +146,11 @@ void Monochrome2::Scene::readAttributes() {
 	}
 }
 
-bool Monochrome2::Scene::genQPixmap() {
+bool Monochrome2::Scene::generatePixmap() {
 
-	imgWindow->genLUT();
+	if (!imgWindow->genLUT()) return false;
+
+	qDebug("Monochrome2::Scene::generatePixmap");
 
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::INT8:
@@ -162,6 +164,7 @@ bool Monochrome2::Scene::genQPixmap() {
 		case gdcm::PixelFormat::INT16:
 			genQPixmapOfType<qint16>();
 			break;
+
 		case gdcm::PixelFormat::UINT16:
 			genQPixmapOfType<quint16>();
 			break;
