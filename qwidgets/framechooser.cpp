@@ -4,16 +4,21 @@ using namespace Sokar;
 
 FrameChooser::FrameChooser(QWidget *parent) : QScrollArea(parent) {
 
+	setWidgetResizable(true);
 	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
-	layout = new QBoxLayout(QBoxLayout::Direction::TopToBottom);
+
+	layout = new QVBoxLayout;
 	layout->setSpacing(0);
 	layout->setMargin(0);
+	layout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
 	content = new QWidget;
 	content->setLayout(layout);
 
 	setWidget(content);
+
 }
 
 void FrameChooser::addSceneSet(DicomSceneSet *sceneSet) {
@@ -21,14 +26,33 @@ void FrameChooser::addSceneSet(DicomSceneSet *sceneSet) {
 	for (auto &scene : sceneSet->getVector())
 		addScene(scene);
 
-	this->dumpObjectTree();
 }
 
 
 void FrameChooser::addScene(DicomScene *scene) {
-	qDebug("FrameChooser::addScene");
-	auto widget = scene->getAvatar();
-	layout->addWidget(widget);
 
+	auto avatar = scene->getAvatar();
+	layout->addWidget(avatar);
+
+	avatars << avatar;
+
+	connect(this, &FrameChooser::resizeAvatars, avatar, &SceneAvatar::updateSize);
+
+	if (avatars.size() == 1)
+		onSceneSelected(avatar);
+}
+
+void FrameChooser::resizeEvent(QResizeEvent *event) {
+
+	QScrollArea::resizeEvent(event);
+
+	auto dim = this->contentsRect().width() - this->verticalScrollBar()->width();
+	emit resizeAvatars(dim);
+
+	layout->update();
+}
+
+void FrameChooser::onSceneSelected(SceneAvatar *avatar) {
+	emit selectScene(avatar->getScene());
 }
 

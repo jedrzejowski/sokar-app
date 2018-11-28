@@ -14,12 +14,23 @@ namespace Sokar {
 	class SceneAvatar : public QWidget {
 	Q_OBJECT
 	private:
-		DicomScene& scene;
+		DicomScene *scene;
 		QPalette qPalette;
 	public:
-		SceneAvatar(DicomScene *scene);
+		explicit SceneAvatar(DicomScene *scene);
 
 	protected:
-		void resizeEvent(QResizeEvent *event) override;
+		void mouseReleaseEvent(QMouseEvent *event) override;
+		void contextMenuEvent(QContextMenuEvent *event) override;
+
+	public:
+		inline DicomScene *getScene() const {
+			return scene;
+		};
+
+	public slots:
+		void updateSize(int width);
+	signals:
+		void selectScene(SceneAvatar *avatar);
 	};
 }

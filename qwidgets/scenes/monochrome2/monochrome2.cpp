@@ -150,7 +150,7 @@ bool Monochrome2::Scene::generatePixmap() {
 
 	if (!imgWindow->genLUT()) return false;
 
-	qDebug("Monochrome2::Scene::generatePixmap");
+//	qDebug("Monochrome2::Scene::generatePixmap");
 
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::INT8:

@@ -5,18 +5,36 @@ using namespace Sokar;
 
 SceneAvatar::SceneAvatar(DicomScene *scene) :
 		QWidget(),
-		scene(*scene){
+		scene(scene) {
 
 	setAutoFillBackground(true);
 
-	qPalette = palette();
+	qPalette = QWidget::palette();
 	qPalette.setBrush(QPalette::Background, scene->getIcon());
-	setPalette(qPalette);
+	QWidget::setPalette(qPalette);
 
-	resize(50,50);
 }
 
-void SceneAvatar::resizeEvent(QResizeEvent *event) {
+void SceneAvatar::updateSize(int width) {
 
-	resize(50,50);
+	auto icon = scene->getIcon().scaledToWidth(width);
+
+	qPalette.setBrush(QPalette::Background, icon);
+	QWidget::setPalette(qPalette);
+
+	setFixedSize(icon.width(), icon.height());
+}
+
+void SceneAvatar::mouseReleaseEvent(QMouseEvent *event) {
+
+	if (event->button() == Qt::LeftButton) {
+		event->accept();
+		emit selectScene(this);
+	}
+
+	QWidget::mouseReleaseEvent(event);
+}
+
+void SceneAvatar::contextMenuEvent(QContextMenuEvent *event) {
+	QWidget::contextMenuEvent(event);
 }

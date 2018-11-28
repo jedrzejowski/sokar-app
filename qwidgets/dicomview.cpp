@@ -25,10 +25,9 @@ void DicomView::addDicomImage(const gdcm::ImageReader *reader) {
 	sceneSets << dicomSceneSet;
 
 	ui->frameChooser->addSceneSet(dicomSceneSet);
+
 	if (sceneSets.size() > 1 || dicomSceneSet->getVector().size() > 1)
 		ui->frameChooser->show();
-
-	activateScene(dicomSceneSet->getVector()[0]);
 }
 
 void DicomView::activateScene(DicomScene *scene) {

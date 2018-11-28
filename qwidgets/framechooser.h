@@ -12,15 +12,24 @@ namespace Sokar {
 	Q_OBJECT
 	private:
 		QWidget *content;
-		QBoxLayout *layout;
+		QVBoxLayout *layout;
+		QVector<SceneAvatar*> avatars;
+
 	public:
 		explicit FrameChooser(QWidget *parent = nullptr);
 
 		void addSceneSet(DicomSceneSet *sceneSet);
 		void addScene(DicomScene *scene);
 
+	protected:
+		void resizeEvent(QResizeEvent *event) override;
+
+	private slots:
+		void onSceneSelected(SceneAvatar* avatar);
+
 	signals:
-		void sceneSelected(DicomScene *scene);
+		void resizeAvatars(int width);
+		void selectScene(DicomScene *scene);
 	};
 }
 
