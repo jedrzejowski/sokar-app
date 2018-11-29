@@ -1,5 +1,7 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource>
+        <file>img/icons/tags.png</file>
+        <file>img/icons/window.png</file>
     </qresource>
 </RCC>
