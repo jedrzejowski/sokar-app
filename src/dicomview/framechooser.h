@@ -3,6 +3,8 @@
 #include <QtCore>
 #include <QtWidgets>
 
+#include "_classdef.h"
+
 #include "scenes/dicomscene.h"
 #include "scenes/dicomsceneset.h"
 

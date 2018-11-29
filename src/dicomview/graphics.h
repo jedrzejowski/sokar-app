@@ -3,6 +3,7 @@
 #include <QtCore>
 #include <QtWidgets>
 
+#include "_classdef.h"
 #include "scenes/_classdef.h"
 
 namespace Sokar {

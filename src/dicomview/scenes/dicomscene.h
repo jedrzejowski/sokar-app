@@ -7,6 +7,7 @@
 #include <gdcmImageReader.h>
 #include <gdcmStringFilter.h>
 
+#include "dicomview/_classdef.h"
 #include "dicomview/graphics.h"
 #include "dicomview/toolbar.h"
 

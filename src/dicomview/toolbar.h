@@ -3,6 +3,8 @@
 #include <QtCore>
 #include <QtWidgets>
 
+#include "_classdef.h"
+
 #include "dicomview.h"
 
 namespace Sokar {
