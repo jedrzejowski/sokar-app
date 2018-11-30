@@ -5,6 +5,7 @@
 #include "_classdef.h"
 
 #include "scenes/dicomsceneset.h"
+#include "toolbar.h"
 
 namespace Ui {
 	class DicomView;
@@ -25,14 +26,21 @@ namespace Sokar {
 
 		~DicomView();
 
-		DicomScene* currentDicomScene();
+		DicomScene *currentDicomScene();
 
 		void addDicomImage(const gdcm::ImageReader *reader);
+
+		//region Getters
+
+		const DicomToolBar &getToolBar() const;
+
+		//endregion
 
 
 	private slots:
 		void activateScene(DicomScene *scene);
-
+		void toolbarActionTrigger(DicomToolBar::Action action);
+		void toolbarStateToggle(DicomToolBar::State state);
 	};
 }
 

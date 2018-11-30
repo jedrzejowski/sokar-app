@@ -13,7 +13,7 @@
 
 #include "sokar/pixel.h"
 #include "sokar/exception.h"
-#include "_classdef.h"
+#include "../_classdef.h"
 #include "scene.h"
 #include "params.h"
 #include "sceneavatar.h"
@@ -25,7 +25,7 @@ namespace Sokar {
 	Q_OBJECT
 
 	protected:
-		const DicomSceneSet &dicomSceneSet;
+		DicomSceneSet &dicomSceneSet;
 
 		const gdcm::Image &gdcmImage;
 		const gdcm::File &gdcmFile;
@@ -67,7 +67,11 @@ namespace Sokar {
 
 		const QPixmap &getIcon();
 
-		inline const DicomSceneSet &getDicomSceneSet() const { return dicomSceneSet; }
+		inline DicomSceneSet &getDicomSceneSet() { return dicomSceneSet; }
+
+		inline DicomView *getDicomView() {
+			return (DicomView *) this->parent()->parent();
+		}
 
 		//endregion
 
@@ -77,11 +81,6 @@ namespace Sokar {
 
 	protected:
 		virtual bool generatePixmap() = 0;
-
-		DicomGraphics *parentGraphics() const {
-			return (DicomGraphics *) this->parent();
-		}
-
 
 	public slots:
 

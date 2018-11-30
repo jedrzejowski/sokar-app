@@ -16,6 +16,15 @@ DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent) :
 	initScenes();
 }
 
+
+DicomSceneSet::~DicomSceneSet() {
+	for (auto &datasetViewer : dataSetViewers)
+		delete datasetViewer;
+
+	delete imageReader;
+}
+
+
 void DicomSceneSet::initScenes() {
 	auto &image = imageReader->GetImage();
 
@@ -51,8 +60,4 @@ void DicomSceneSet::initScenes() {
 
 		sceneParams.frame++;
 	}
-}
-
-DicomSceneSet::~DicomSceneSet() {
-	delete imageReader;
 }

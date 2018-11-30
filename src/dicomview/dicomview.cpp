@@ -15,14 +15,15 @@ DicomView::DicomView(QWidget *parent) :
 	ui->frameChooser->hide();
 
 	connect(ui->frameChooser, &FrameChooser::selectSceneSignal, this, &DicomView::activateScene);
-
+	connect(ui->toolbar, &DicomToolBar::stateToggleSignal, this, &DicomView::toolbarStateToggle);
+	connect(ui->toolbar, &DicomToolBar::actionTriggerSignal, this, &DicomView::toolbarActionTrigger);
 }
 
 DicomView::~DicomView() {
 	delete ui;
 }
 
-DicomScene* DicomView::currentDicomScene() {
+DicomScene *DicomView::currentDicomScene() {
 	return (DicomScene *) ui->graphicsView->scene();
 }
 
@@ -47,5 +48,24 @@ void DicomView::activateScene(DicomScene *scene) {
 	ui->graphicsView->setScene(scene);
 
 	scene->reposItems();
-	scene->reposItems();
+}
+
+const DicomToolBar &DicomView::getToolBar() const {
+	return *(ui->toolbar);
+}
+
+
+void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
+	switch (action) {
+		case DicomToolBar::OpenDataSet:
+
+			if (currentDicomScene() == nullptr) return;
+			DataSetViewer::openAsWindow(currentDicomScene()->getDicomSceneSet());
+
+			return;
+	}
+}
+
+void DicomView::toolbarStateToggle(DicomToolBar::State state) {
+
 }

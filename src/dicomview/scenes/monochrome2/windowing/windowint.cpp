@@ -136,7 +136,6 @@ void WindowInt::selectWindowingIndicator(QGraphicsSceneMouseEvent *event) {
 
 	QStringList items;
 
-	//: wałek.
 	items << tr("Spring");
 //		  << tr("Summer") << tr("Fall") << tr("Winter");
 

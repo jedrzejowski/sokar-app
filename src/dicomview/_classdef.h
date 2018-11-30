@@ -5,4 +5,14 @@ namespace Sokar {
 	class FrameChooser;
 	class DicomToolBar;
 	class DicomGraphics;
+	class DataSetViewer;
+
+	class Scene;
+	class DicomScene;
+	class DicomSceneSet;
+	class SceneIndicator;
+	class SceneAvatar;
+
+	struct SceneParams;
+
 }

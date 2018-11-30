@@ -1,7 +1,9 @@
 #pragma once
 
-#include <QGraphicsItemGroup>
-#include "../_classdef.h"
+#include <QtCore>
+#include <QtWidgets>
+
+#include "../../_classdef.h"
 #include "../scene.h"
 
 class Sokar::SceneIndicator : public QGraphicsItemGroup {

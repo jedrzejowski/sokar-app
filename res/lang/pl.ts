@@ -27,12 +27,49 @@
 <context>
     <name>Sokar::DicomToolBar</name>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="16"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="19"/>
         <source>Windowing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="32"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="37"/>
+        <source>Pan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="49"/>
+        <source>Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="64"/>
+        <source>Fit To Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="75"/>
+        <source>Rotate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="91"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="99"/>
+        <source>Rotate Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="94"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="103"/>
+        <source>Rotate Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="108"/>
+        <source>Clear Transformation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="116"/>
         <source>DICOM Tags</source>
         <translation type="unfinished"></translation>
     </message>

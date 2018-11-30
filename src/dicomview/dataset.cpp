@@ -12,16 +12,23 @@
 using namespace Sokar;
 
 
-QDicomDataSet::QDicomDataSet(QWidget *parent) : QTreeView(parent) {
+DataSetViewer::DataSetViewer(DicomSceneSet &sceneSet, QWidget *parent)
+		: QTreeView(parent),
+		  sceneSet(sceneSet) {
+
+	sceneSet.getDataSetViewers() << this;
 
 	setModel(&standardModel);
 
-	headerLabels << "Tag" << "Keyword" << "Value";
+	headerLabels << "Tag" << "VL" << "Keyword" << "VR" << "Value";
 	standardModel.setHorizontalHeaderLabels(headerLabels);
+
+	initTree();
 }
 
-QDicomDataSet::~QDicomDataSet() {
+DataSetViewer::~DataSetViewer() {
 
+	sceneSet.getDataSetViewers().removeOne(this);
 }
 
 QString tagIdToString(const gdcm::Tag &tag) {
@@ -34,20 +41,19 @@ QString tagIdToString(const gdcm::Tag &tag) {
 	return grp + "," + elem;
 }
 
-void QDicomDataSet::setGdcmFile(const gdcm::File &file) {
+void DataSetViewer::initTree() {
 
-
-	stringFilter.SetFile(file);
+	stringFilter.SetFile(sceneSet.getGdcmFile());
 
 	auto rootItem = standardModel.invisibleRootItem();
 
-	auto &dataset = file.GetDataSet();
+	auto &dataset = sceneSet.getGdcmFile().GetDataSet();
 
 	forEachDataSet(dataset, rootItem);
-
 }
 
-void QDicomDataSet::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *parent) {
+
+void DataSetViewer::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *parent) {
 
 
 	static auto &dicts = gdcm::Global::GetInstance().GetDicts();
@@ -92,7 +98,7 @@ void QDicomDataSet::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *
 				default:
 					item->setText(QString::fromStdString(stringFilter.ToString(elem)));
 			}
-		} catch (std::exception) {
+		} catch (std::exception &) {
 			item->setText("Error");
 		}
 
@@ -102,4 +108,14 @@ void QDicomDataSet::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *
 		parent->appendRow(list);
 	}
 }
+
+DataSetViewer *DataSetViewer::openAsWindow(DicomSceneSet &sceneSet) {
+	auto widget = new DataSetViewer(sceneSet);
+
+	widget->setAttribute(Qt::WA_DeleteOnClose);
+	widget->show();
+
+	return widget;
+}
+
 
