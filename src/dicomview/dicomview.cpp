@@ -2,6 +2,8 @@
 #include <QtCore>
 
 #include "dicomview.h"
+#include "ui_dicomview.h"
+
 
 using namespace Sokar;
 
@@ -18,6 +20,10 @@ DicomView::DicomView(QWidget *parent) :
 
 DicomView::~DicomView() {
 	delete ui;
+}
+
+DicomScene* DicomView::currentDicomScene() {
+	return (DicomScene *) ui->graphicsView->scene();
 }
 
 void DicomView::addDicomImage(const gdcm::ImageReader *reader) {

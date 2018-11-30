@@ -2,7 +2,7 @@
 
 #include <QtCore>
 #include <QtWidgets>
-#include "ui_dicomview.h"
+#include "_classdef.h"
 
 #include "scenes/dicomsceneset.h"
 
@@ -25,9 +25,7 @@ namespace Sokar {
 
 		~DicomView();
 
-		DicomScene *currentDicomScene() {
-			return (DicomScene *) ui->graphicsView->scene();
-		}
+		DicomScene* currentDicomScene();
 
 		void addDicomImage(const gdcm::ImageReader *reader);
 

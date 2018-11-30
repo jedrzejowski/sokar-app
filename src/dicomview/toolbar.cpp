@@ -4,7 +4,7 @@
 using namespace Sokar;
 
 DicomToolBar::DicomToolBar(QWidget *parent) : QToolBar(parent) {
-	dicomView = (DicomView *) parent;
+//	dicomView = (DicomView *) parent;
 	initActions();
 }
 
