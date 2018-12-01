@@ -3,9 +3,9 @@
 using namespace Sokar;
 
 
-QList<Palette *> &Palette::getAll() {
+QVector<Palette *> &Palette::getAll() {
 	static QMutex mutex;
-	static QList<Palette *> all;
+	static QVector<Palette *> all;
 
 	if (!all.isEmpty())
 		return all;
@@ -14,6 +14,8 @@ QList<Palette *> &Palette::getAll() {
 
 	if (!all.isEmpty())
 		return all;
+
+	all << getDefault();
 
 	QDir directory("res/values/colorpalettes");
 
@@ -45,35 +47,48 @@ Palette *Palette::fromFile(QFile &file) {
 
 	auto palette = new Palette;
 
-	if (reader.readNextStartElement()) {
-		if (reader.name() == "palette") {
+	while (true) {
+		auto token = reader.readNext();
 
-			{
+		if (token == QXmlStreamReader::EndDocument)
+			break;
+
+		if (token == QXmlStreamReader::StartElement) {
+			if (reader.name() == "palette") {
 				auto attrs = reader.attributes();
 				palette->name = attrs.value("name").toString();
 				palette->display = attrs.value("display").toString();
 			}
 
-			while (reader.readNextStartElement()) {
-				if (reader.name() == "entry") {
+			if (reader.name() == "entry") {
 
-					auto attrs = reader.attributes();
+				auto attrs = reader.attributes();
 
-					palette->pixels << Pixel(
-							(quint8) attrs.value("red").toUShort(),
-							(quint8) attrs.value("green").toUShort(),
-							(quint8) attrs.value("blue").toUShort()
-					);
-
-				} else reader.skipCurrentElement();
+				palette->pixels << Pixel(
+						(quint8) attrs.value("red").toUShort(),
+						(quint8) attrs.value("green").toUShort(),
+						(quint8) attrs.value("blue").toUShort()
+				);
 			}
-
-		} else {
-			delete palette;
-			return nullptr;
 		}
 	}
 
+
 	return palette;
 
+}
+
+Palette *Palette::getDefault() {
+	static Palette *palette;
+
+	if (palette != nullptr) return palette;
+
+	palette = new Palette();
+	palette->name = "";
+	palette->display = "Gray Scale";
+
+	for (int i = 0; i <= 255; i++)
+		palette->pixels << Pixel(quint8(i));
+
+	return palette;
 }

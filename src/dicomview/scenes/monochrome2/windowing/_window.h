@@ -3,6 +3,7 @@
 #include <QObject>
 
 #include "sokar/pixel.h"
+#include "sokar/palette.h"
 #include "../../indicators/_base.h"
 
 namespace Sokar::Monochrome2 {
@@ -12,6 +13,8 @@ namespace Sokar::Monochrome2 {
 	protected:
 		bool shouldRegen = true;
 		bool inversed = false;
+
+		Palette *palette = Palette::getDefault();
 
 		QMenu toolbarMenu;
 
@@ -32,20 +35,15 @@ namespace Sokar::Monochrome2 {
 
 		virtual bool genLUT() = 0;
 
-		inline bool isInversed() const {
-			return inversed;
-		}
+		inline bool isInversed() const { return inversed; }
 
-		QMenu *getMenu() {
-			if (toolbarMenu.isEmpty()) genMenu();
-			return &toolbarMenu;
-		}
+		QMenu *getMenu();
 
-		void setInversed(bool inversed) {
-			if (Window::inversed == inversed) return;
-			Window::inversed = inversed;
-			shouldRegen = true;
-		}
+		void setInversed(bool inversed);
+
+		Palette *getPalette() const { return palette; }
+
+		void setPalette(Palette *palette);
 
 	protected:
 		virtual void genMenu() = 0;

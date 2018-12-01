@@ -30,7 +30,6 @@ namespace Sokar::Monochrome2 {
 		quint64 maxValue = 0;
 
 		__int128 x1, x0;
-		quint8 y0, y1;
 		double a, b;
 
 	public:

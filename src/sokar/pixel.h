@@ -13,7 +13,7 @@ namespace Sokar {
 
 		Pixel(quint8 red, quint8 green, quint8 blue) : red(red), green(green), blue(blue) {}
 
-		operator QString() const {
+		explicit operator QString() const {
 			return QString("Pixel(%1,%2,%3)").arg(
 					QString::number(red),
 					QString::number(green),

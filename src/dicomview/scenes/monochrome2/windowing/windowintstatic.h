@@ -25,14 +25,17 @@ namespace Sokar::Monochrome2 {
 				__int128 x = signedMove;
 				x = ~x + 1;
 
+				auto background = isInversed() ? palette->getForeground() : palette->getBackground();
+				auto foreground = isInversed() ? palette->getBackground() : palette->getForeground();
+
 				for (auto &pixel : array) {
 
-					if (x < x0 || (hasBackground && x < backgroundLvl)) {
-						pixel = Pixel(y0);
+					if (x < x0) {
+						pixel = background;
 					} else if (x > x1) {
-						pixel = Pixel(y1);
+						pixel = foreground;
 					} else {
-						pixel = Pixel((quint8) (a * x + b));
+						pixel = palette->getPixel(a * x + b);
 					}
 
 					x++;

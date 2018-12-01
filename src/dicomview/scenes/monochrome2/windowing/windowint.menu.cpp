@@ -11,82 +11,103 @@ void WindowInt::genMenu() {
 	{
 		auto submenu = toolbarMenu.addMenu(tr("Color Palettes"));
 
+		auto actionGroup = new QActionGroup(this);
+
 		for (auto palette : Palette::getAll()) {
-			auto action = new QAction(palette->getDisplay(), submenu);
+			auto action = submenu->addAction(palette->getDisplay());
 
-			connect(action, &QAction::triggered, [this, palette](bool) {
+			action->setActionGroup(actionGroup);
+			action->setCheckable(true);
 
+			if (palette == Window::palette)
+				action->setChecked(true);
 
+			connect(action, &QAction::toggled, [this, palette](bool checked) {
+				if (!checked) return;
+				setPalette(palette);
 				emit forceRefreshSignal();
 			});
-
-			submenu->addAction(action);
 		}
 	}
 
-	toolbarMenu.addSection(tr("Windowing"));
-
-	for (auto &win : defaultWindows) {
-		auto action = new QAction();
-
-		action->setText(
-				(win.name.isEmpty() ? "" : (win.name + ", ")) +
-				"C" + QString::number((int) win.center) + " " +
-				"W" + QString::number((int) win.width)
-		);
-
-		connect(action, &QAction::triggered, [this, win](bool) {
-			activateDefWin(win);
-		});
-
-		toolbarMenu.addAction(action);
-	}
 
 	{
-		auto submenu = toolbarMenu.addMenu(tr("Predefined"));
+		toolbarMenu.addSection(tr("Windowing"));
 
-		static QVector<DefaultWindow> prefeined;
+		if (defaultWindows.isEmpty()) {
 
-		if (prefeined.isEmpty())
-			prefeined
-					<< DefaultWindow{0, 0, tr("Head And Neck")}
-					<< DefaultWindow{40, 80, tr("Brain")}
-					<< DefaultWindow{50, 130, tr("Subdural 1")}
-					<< DefaultWindow{100, 300, tr("Subdural 2")}
-					<< DefaultWindow{32, 8, tr("Stroke 1")}
-					<< DefaultWindow{40, 40, tr("Stroke 2")}
-					<< DefaultWindow{600, 2800, tr("Temporal Bones")}
-					<< DefaultWindow{20, 350, tr("Soft Tissues 1")}
-					<< DefaultWindow{60, 400, tr("Soft Tissues 2")}
-					//
-					<< DefaultWindow{0, 0, tr("Chest")}
-					<< DefaultWindow{-600, 1500, tr("Lungs")}
-					<< DefaultWindow{50, 350, tr("Mediastinum")}
-					//
-					<< DefaultWindow{0, 0, tr("Abdomen")}
-					<< DefaultWindow{50, 400, tr("Soft Tissues")}
-					<< DefaultWindow{30, 150, tr("Liver")}
-					//
-					<< DefaultWindow{0, 0, tr("Spine")}
-					<< DefaultWindow{50, 250, tr("Soft Tissues")}
-					<< DefaultWindow{400, 1800, tr("Bone")};
+			auto action = toolbarMenu.addAction(tr("No Windows In File"));
+			action->setDisabled(true);
 
-		for (auto &win : prefeined) {
-			if (win.center == 0 and win.width == 0) {
-				submenu->addSection(win.name);
-			} else {
-				auto action = new QAction(
-						win.name + ", " +
+		} else {
+
+			for (auto &win : defaultWindows) {
+				auto action = new QAction();
+
+				action->setText(
+						(win.name.isEmpty() ? "" : (win.name + ", ")) +
 						"C" + QString::number((int) win.center) + " " +
-						"W" + QString::number((int) win.width),
-						submenu);
+						"W" + QString::number((int) win.width)
+				);
 
 				connect(action, &QAction::triggered, [this, win](bool) {
 					activateDefWin(win);
 				});
 
-				submenu->addAction(action);
+				toolbarMenu.addAction(action);
+			}
+		}
+
+		{
+			auto submenu = toolbarMenu.addMenu(tr("Predefined"));
+
+			static QVector<DefaultWindow> prefeined;
+
+			if (prefeined.isEmpty())
+				prefeined
+						<< DefaultWindow{0, 0, tr("Head And Neck")}
+						<< DefaultWindow{40, 80, tr("Brain")}
+						<< DefaultWindow{50, 130, tr("Subdural 1")}
+						<< DefaultWindow{100, 300, tr("Subdural 2")}
+						<< DefaultWindow{32, 8, tr("Stroke 1")}
+						<< DefaultWindow{40, 40, tr("Stroke 2")}
+						<< DefaultWindow{600, 2800, tr("Temporal Bones")}
+						<< DefaultWindow{20, 350, tr("Soft Tissues 1")}
+						<< DefaultWindow{60, 400, tr("Soft Tissues 2")}
+						//
+						<< DefaultWindow{0, 0, tr("Chest")}
+						<< DefaultWindow{-600, 1500, tr("Lungs")}
+						<< DefaultWindow{50, 350, tr("Mediastinum")}
+						//
+						<< DefaultWindow{0, 0, tr("Abdomen")}
+						<< DefaultWindow{50, 400, tr("Soft Tissues")}
+						<< DefaultWindow{30, 150, tr("Liver")}
+						//
+						<< DefaultWindow{0, 0, tr("Spine")}
+						<< DefaultWindow{50, 250, tr("Soft Tissues")}
+						<< DefaultWindow{400, 1800, tr("Bone")};
+
+			for (auto &win : prefeined) {
+				if (win.center == 0 and win.width == 0) {
+					submenu->addSection(win.name);
+				} else {
+					auto action = new QAction(
+							win.name + ", " +
+							"C" + QString::number((int) win.center) + " " +
+							"W" + QString::number((int) win.width),
+							submenu);
+
+					connect(action, &QAction::triggered, [this, win](bool) {
+						activateDefWin(win);
+					});
+
+					submenu->addAction(action);
+				}
 			}
 		}
 	}
+
+	toolbarMenu.addSeparator();
+
+	toolbarMenu.addAction(tr("Inverse"));
 }
