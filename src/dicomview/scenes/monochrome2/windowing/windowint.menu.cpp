@@ -42,9 +42,7 @@ void WindowInt::genMenu() {
 		} else {
 
 			for (auto &win : defaultWindows) {
-				auto action = new QAction();
-
-				action->setText(
+				auto action = toolbarMenu.addAction(
 						(win.name.isEmpty() ? "" : (win.name + ", ")) +
 						"C" + QString::number((int) win.center) + " " +
 						"W" + QString::number((int) win.width)
@@ -53,8 +51,6 @@ void WindowInt::genMenu() {
 				connect(action, &QAction::triggered, [this, win](bool) {
 					activateDefWin(win);
 				});
-
-				toolbarMenu.addAction(action);
 			}
 		}
 
@@ -91,17 +87,15 @@ void WindowInt::genMenu() {
 				if (win.center == 0 and win.width == 0) {
 					submenu->addSection(win.name);
 				} else {
-					auto action = new QAction(
+					auto action = submenu->addAction(
 							win.name + ", " +
 							"C" + QString::number((int) win.center) + " " +
-							"W" + QString::number((int) win.width),
-							submenu);
+							"W" + QString::number((int) win.width)
+					);
 
 					connect(action, &QAction::triggered, [this, win](bool) {
 						activateDefWin(win);
 					});
-
-					submenu->addAction(action);
 				}
 			}
 		}
@@ -109,5 +103,11 @@ void WindowInt::genMenu() {
 
 	toolbarMenu.addSeparator();
 
-	toolbarMenu.addAction(tr("Inverse"));
+	{
+		auto action = toolbarMenu.addAction(tr("Inverse"));
+		connect(action, &QAction::triggered, [this](bool) {
+			setInversed(!isInversed());
+			emit forceRefreshSignal();
+		});
+	}
 }
