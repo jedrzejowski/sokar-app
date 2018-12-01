@@ -12,11 +12,9 @@
 using namespace Sokar;
 
 
-DataSetViewer::DataSetViewer(DicomSceneSet &sceneSet, QWidget *parent)
+DataSetViewer::DataSetViewer(DicomSceneSet *dicomSceneSet, QWidget *parent)
 		: QTreeView(parent),
-		  sceneSet(sceneSet) {
-
-	sceneSet.getDataSetViewers() << this;
+		  dicomSceneSet(dicomSceneSet) {
 
 	setModel(&standardModel);
 
@@ -24,11 +22,6 @@ DataSetViewer::DataSetViewer(DicomSceneSet &sceneSet, QWidget *parent)
 	standardModel.setHorizontalHeaderLabels(headerLabels);
 
 	initTree();
-}
-
-DataSetViewer::~DataSetViewer() {
-
-	sceneSet.getDataSetViewers().removeOne(this);
 }
 
 QString tagIdToString(const gdcm::Tag &tag) {
@@ -43,11 +36,11 @@ QString tagIdToString(const gdcm::Tag &tag) {
 
 void DataSetViewer::initTree() {
 
-	stringFilter.SetFile(sceneSet.getGdcmFile());
+	stringFilter.SetFile(dicomSceneSet->getGdcmFile());
 
 	auto rootItem = standardModel.invisibleRootItem();
 
-	auto &dataset = sceneSet.getGdcmFile().GetDataSet();
+	auto &dataset = dicomSceneSet->getGdcmFile().GetDataSet();
 
 	forEachDataSet(dataset, rootItem);
 }
@@ -109,8 +102,9 @@ void DataSetViewer::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *
 	}
 }
 
-DataSetViewer *DataSetViewer::openAsWindow(DicomSceneSet &sceneSet) {
+DataSetViewer *DataSetViewer::openAsWindow(DicomSceneSet *sceneSet) {
 	auto widget = new DataSetViewer(sceneSet);
+	sceneSet->getDataSetViewers() << widget;
 
 	widget->setAttribute(Qt::WA_DeleteOnClose);
 	widget->show();

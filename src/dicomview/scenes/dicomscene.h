@@ -21,11 +21,10 @@
 #include "indicators/imgorientation.h"
 
 namespace Sokar {
-	class DicomScene : public Sokar::Scene {
+	class DicomScene : public Scene {
 	Q_OBJECT
 
 	protected:
-		DicomSceneSet &dicomSceneSet;
 
 		const gdcm::Image &gdcmImage;
 		const gdcm::File &gdcmFile;
@@ -39,6 +38,8 @@ namespace Sokar {
 
 		QPixmap pixmap, iconPixmap;
 		QGraphicsPixmapItem *pixmapItem = nullptr;
+
+		QTransform panTransform, scaleTransform, centerTransformat, rotateTransform;
 
 		//region Indicators
 	private:
@@ -67,7 +68,7 @@ namespace Sokar {
 
 		const QPixmap &getIcon();
 
-		inline DicomSceneSet &getDicomSceneSet() { return dicomSceneSet; }
+		inline DicomSceneSet *getDicomSceneSet() { return (DicomSceneSet *) this->parent(); }
 
 		inline DicomView *getDicomView() {
 			return (DicomView *) this->parent()->parent();
@@ -82,9 +83,16 @@ namespace Sokar {
 	protected:
 		virtual bool generatePixmap() = 0;
 
-	public slots:
+		void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
+		virtual QTransform pixmapTransformation();
+
+		void wheelEvent(QGraphicsSceneWheelEvent *event) override;
+
+	public slots:
+		void toolBarActionSlot(DicomToolBar::Action action);
 		void reposItems() override;
+		void updatePixmapTransformation();
 
 	};
 }

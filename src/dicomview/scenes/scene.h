@@ -14,7 +14,7 @@ namespace Sokar {
 
 	public:
 
-		explicit Scene(QWidget *parent = nullptr);
+		explicit Scene(QObject *parent = nullptr);
 
 		~Scene() override;
 

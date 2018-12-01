@@ -11,6 +11,7 @@ namespace Sokar {
 
 	public:
 		enum State {
+			None,
 			Windowing,
 			Pan,
 			Zoom,
@@ -19,11 +20,19 @@ namespace Sokar {
 		};
 
 		enum Action {
+			ClearPan,
+			Fit2Screen,
+			OriginalResolution,
+			RotateRight90,
+			RotateLeft90,
+			FlipHorizontal,
+			FlipVertical,
+			ClearRotate,
 			OpenDataSet
 		};
 
 	private:
-		enum State state;
+		enum State state = None;
 
 		QActionGroup* toggleActionGrp;
 

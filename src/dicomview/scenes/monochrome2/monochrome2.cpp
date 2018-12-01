@@ -7,14 +7,13 @@
 #include <gdcmTag.h>
 #include <gdcmImageApplyLookupTable.h>
 #include <gdcmStringFilter.h>
-
-#include <QMenu>
-#include <sokar/speedtest.h>
 #include <gdcmImageHelper.h>
 
+#include "sokar/speedtest.h"
 #include "sokar/gdcmSokar.h"
 
-#include "src/dicomview/graphics.h"
+#include "../../dicomview.h"
+#include "../../graphics.h"
 
 #include "monochrome2.h"
 #include "windowing/windowintdynamic.h"
@@ -231,35 +230,26 @@ Monochrome2::Scene::~Scene() {
 	delete imgWindow;
 }
 
-void Monochrome2::Scene::mousePressEvent(QGraphicsSceneMouseEvent *event) {
-
-	event->accept();
-	isWindowEditing = true;
-
-	DicomScene::mousePressEvent(event);
-}
-
-void Monochrome2::Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event) {
-	event->accept();
-
-	isWindowEditing = false;
-
-	DicomScene::mouseReleaseEvent(event);
-}
-
 void Monochrome2::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
-	if (isWindowEditing) {
+	if (event->buttons() & Qt::LeftButton) {
+
+		switch (getDicomView()->getToolBar().getState()) {
+
+			case DicomToolBar::Windowing: {
+				event->accept();
+
+				int dx = event->lastScreenPos().x() - event->screenPos().x(),
+						dy = event->lastScreenPos().y() - event->screenPos().y();
+
+				imgWindow->mvHorizontal(dx);
+				imgWindow->mvVertical(dy);
 
 
-		int dx = event->lastScreenPos().x() - event->screenPos().x(),
-				dy = event->lastScreenPos().y() - event->screenPos().y();
-
-		imgWindow->mvHorizontal(dx);
-		imgWindow->mvVertical(dy);
-
-
-		reloadPixmap();
+				reloadPixmap();
+			}
+				break;
+		}
 	}
 
 	DicomScene::mouseMoveEvent(event);

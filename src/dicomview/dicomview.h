@@ -32,7 +32,8 @@ namespace Sokar {
 
 		//region Getters
 
-		const DicomToolBar &getToolBar() const;
+		DicomToolBar &getToolBar();
+		FrameChooser &getFrameChooser();
 
 		//endregion
 

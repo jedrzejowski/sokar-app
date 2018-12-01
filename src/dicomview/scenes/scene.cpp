@@ -6,7 +6,7 @@
 
 using namespace Sokar;
 
-Scene::Scene(QWidget *parent) : QGraphicsScene(parent) {
+Scene::Scene(QObject *parent) : QGraphicsScene(parent) {
 
 	setBackgroundBrush(Qt::black);
 }

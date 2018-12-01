@@ -2,7 +2,7 @@
 
 using namespace Sokar;
 
-Unsupported::Scene::Scene(SceneParams &sceneParams): DicomScene(sceneParams) {
+Unsupported::Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
 
 	text22 = addText("Unsupported");
 	text22->setDefaultTextColor(QColor("white"));
@@ -13,7 +13,12 @@ Unsupported::Scene::~Scene() {
 }
 
 bool Sokar::Unsupported::Scene::generatePixmap() {
-	pixmap = QPixmap(0, 0);
+	if (!pixmap.isNull())
+		return false;
+
+	auto img = QImage(1, 1, QImage::Format_RGB888);
+	img.fill(Qt::black);
+	pixmap = QPixmap::fromImage(img);
 	return true;
 }
 

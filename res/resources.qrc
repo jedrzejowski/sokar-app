@@ -1,6 +1,7 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource>
+        <file>img/icons/clean.png</file>
         <file>img/icons/fit2screen.png</file>
         <file>img/icons/flipHorizontal.png</file>
         <file>img/icons/flipVertical.png</file>

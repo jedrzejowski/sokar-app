@@ -10,7 +10,7 @@ FrameChooser::FrameChooser(QWidget *parent) : QScrollArea(parent) {
 
 
 	layout = new QVBoxLayout;
-	layout->setSpacing(0);
+	layout->setSpacing(5);
 	layout->setMargin(0);
 	layout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
@@ -25,6 +25,8 @@ void FrameChooser::addSceneSet(DicomSceneSet *sceneSet) {
 
 	for (auto &scene : sceneSet->getVector())
 		addScene(scene);
+
+	updateAvatars();
 }
 
 
@@ -44,15 +46,31 @@ void FrameChooser::addScene(DicomScene *scene) {
 
 void FrameChooser::resizeEvent(QResizeEvent *event) {
 
+	updateAvatars();
 	QScrollArea::resizeEvent(event);
+}
 
+void FrameChooser::onAvatarClicked(SceneAvatar *avatar) {
+	curentAvatar = avatar;
+	emit selectSceneSignal(avatar->getScene());
+}
+
+void FrameChooser::updateAvatars() {
 	auto dim = this->contentsRect().width() - this->verticalScrollBar()->width();
 	emit resizeAvatars(dim);
 
 	layout->update();
 }
 
-void FrameChooser::onAvatarClicked(SceneAvatar *avatar) {
-	emit selectSceneSignal(avatar->getScene());
+void FrameChooser::moveNext() {
+	int i = avatars.indexOf(curentAvatar) + 1;
+	if (i >= avatars.size()) i = 0;
+	onAvatarClicked(avatars[i]);
+}
+
+void FrameChooser::movePrev() {
+	int i = avatars.indexOf(curentAvatar) - 1;
+	if (i < 0) i = avatars.size() - 1;
+	onAvatarClicked(avatars[i]);
 }
 

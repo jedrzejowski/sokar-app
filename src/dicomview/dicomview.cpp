@@ -50,19 +50,34 @@ void DicomView::activateScene(DicomScene *scene) {
 	scene->reposItems();
 }
 
-const DicomToolBar &DicomView::getToolBar() const {
+DicomToolBar &DicomView::getToolBar(){
 	return *(ui->toolbar);
 }
 
+FrameChooser &DicomView::getFrameChooser(){
+	return *(ui->frameChooser);
+}
 
 void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
 	switch (action) {
 		case DicomToolBar::OpenDataSet:
 
-			if (currentDicomScene() == nullptr) return;
+			if (currentDicomScene() == nullptr) break;
 			DataSetViewer::openAsWindow(currentDicomScene()->getDicomSceneSet());
 
 			return;
+
+		case DicomToolBar::ClearPan:
+		case DicomToolBar::Fit2Screen:
+		case DicomToolBar::OriginalResolution:
+		case DicomToolBar::RotateRight90:
+		case DicomToolBar::RotateLeft90:
+		case DicomToolBar::FlipHorizontal:
+		case DicomToolBar::FlipVertical:
+		case DicomToolBar::ClearRotate:
+			if (currentDicomScene() == nullptr) break;
+			currentDicomScene()->toolBarActionSlot(action);
+			break;
 	}
 }
 

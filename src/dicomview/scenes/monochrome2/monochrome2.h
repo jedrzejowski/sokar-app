@@ -13,9 +13,6 @@ namespace Sokar::Monochrome2 {
 	Q_OBJECT
 
 	protected:
-
-		bool isWindowEditing = false;
-
 		Window *imgWindow;
 
 	public:
@@ -24,10 +21,6 @@ namespace Sokar::Monochrome2 {
 		~Scene() override;
 
 	protected:
-
-		void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-
-		void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
 		void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 

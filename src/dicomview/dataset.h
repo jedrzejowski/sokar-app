@@ -15,10 +15,10 @@ namespace Sokar {
 	Q_OBJECT
 
 	private:
+		DicomSceneSet *dicomSceneSet;
+
 		QStandardItemModel standardModel;
 		QStringList headerLabels;
-
-		DicomSceneSet &sceneSet;
 		gdcm::StringFilter stringFilter;
 
 	protected:
@@ -27,10 +27,13 @@ namespace Sokar {
 		void initTree();
 
 	public:
-		explicit DataSetViewer(DicomSceneSet &sceneSet, QWidget *parent = nullptr);
-		~DataSetViewer() override;
+		explicit DataSetViewer(DicomSceneSet *dicomSceneSet, QWidget *parent = nullptr);
 
-		static DataSetViewer* openAsWindow(DicomSceneSet &sceneSet);
+		static DataSetViewer *openAsWindow(DicomSceneSet *sceneSet);
+
+		inline DicomSceneSet *getDicomSceneSet() {
+			return dicomSceneSet;
+		}
 
 		inline bool operator==(const DataSetViewer &b) const {
 			return this == &b;
