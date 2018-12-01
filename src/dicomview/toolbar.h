@@ -34,16 +34,25 @@ namespace Sokar {
 	private:
 		enum State state = None;
 
-		QActionGroup* toggleActionGrp;
+		QActionGroup *toggleActionGrp;
+		QAction *actionWindowing, *actionPan, *actionZoom, *actionRotate, *actionTags;
 
 	public:
 		explicit DicomToolBar(QWidget *parent);
 
 		//region Getters
 
-		inline const State &getState() const {
-			return state;
-		}
+		inline const State &getState() const { return state; }
+
+		inline QAction *getActionWindowing() const { return actionWindowing; }
+
+		inline QAction *getActionPan() const { return actionPan; }
+
+		inline QAction *getActionZoom() const { return actionZoom; }
+
+		inline QAction *getActionRotate() const { return actionRotate; }
+
+		inline QAction *getActionTags() const { return actionTags; }
 
 		//endregion
 

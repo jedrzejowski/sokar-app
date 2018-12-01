@@ -22,6 +22,7 @@ namespace gdcm {
 			PixelIntensityRelationship(0x0028, 0x1040),
 			TagWindowCenter(0x0028, 0x1050),
 			TagWindowWidth(0x0028, 0x1051),
+			TagWindowCenterWidthExplanation(0x0028, 0x1055),
 			TagRescaleIntercept(0x0028, 0x1052),
 			TagRescaleSlope(0x0028, 0x1053),
 			TagRescaleType(0x0028, 0x1054);

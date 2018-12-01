@@ -201,8 +201,11 @@ void DicomScene::initImageOrientationIndicator() {
 
 //endregion
 
-void DicomScene::customizeToolBar(DicomToolBar *toolBar) {
-
+void DicomScene::toolBarAdjust(DicomToolBar *toolBar) {
+	toolBar->getActionPan()->setEnabled(true);
+	toolBar->getActionZoom()->setEnabled(true);
+	toolBar->getActionRotate()->setEnabled(true);
+	toolBar->getActionTags()->setEnabled(true);
 }
 
 void DicomScene::toolBarActionSlot(DicomToolBar::Action action) {
@@ -274,9 +277,6 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action) {
 			rotateTransform = QTransform();
 			updateTransform = true;
 			break;
-
-		case DicomToolBar::OpenDataSet:
-			break;
 	}
 
 	if (updateTransform) {
@@ -288,13 +288,9 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action) {
 void DicomScene::wheelEvent(QGraphicsSceneWheelEvent *event) {
 	QGraphicsScene::wheelEvent(event);
 
-	if (event->delta() > 0)
+	if (event->delta() < 0)
 		getDicomView()->getFrameChooser().moveNext();
 
-	if (event->delta() < 0)
+	if (event->delta() > 0)
 		getDicomView()->getFrameChooser().movePrev();
 }
-
-
-
-

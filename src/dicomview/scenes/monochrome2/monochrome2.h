@@ -24,14 +24,15 @@ namespace Sokar::Monochrome2 {
 
 		void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
-		void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) override;
-
 		bool generatePixmap() override;
 
 		template<typename T>
 		void genQPixmapOfType();
 
 		void readAttributes();
+
+	public:
+		void toolBarAdjust(DicomToolBar *toolbar) override;
 
 	};
 

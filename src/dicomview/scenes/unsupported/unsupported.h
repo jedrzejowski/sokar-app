@@ -21,6 +21,9 @@ namespace Sokar::Unsupported {
 		bool generatePixmap() override;
 
 	public:
+		void toolBarAdjust(DicomToolBar *toolbar) override;
+
+	public:
 		void reposItems() override;
 	};
 }

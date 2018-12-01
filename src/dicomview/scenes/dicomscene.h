@@ -76,9 +76,7 @@ namespace Sokar {
 
 		//endregion
 
-		void reloadPixmap();
-
-		virtual void customizeToolBar(DicomToolBar *toolBar);
+		virtual void toolBarAdjust(DicomToolBar *toolbar);
 
 	protected:
 		virtual bool generatePixmap() = 0;
@@ -89,8 +87,10 @@ namespace Sokar {
 
 		void wheelEvent(QGraphicsSceneWheelEvent *event) override;
 
+
 	public slots:
-		void toolBarActionSlot(DicomToolBar::Action action);
+		void reloadPixmap();
+		virtual void toolBarActionSlot(DicomToolBar::Action action);
 		void reposItems() override;
 		void updatePixmapTransformation();
 

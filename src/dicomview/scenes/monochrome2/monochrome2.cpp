@@ -39,10 +39,10 @@ void Monochrome2::Scene::readAttributes() {
 	if (!gdcmDataSet.FindDataElement(gdcm::TagBitsStored))
 		throw DicomTagMissing(gdcm::TagBitsStored);
 
-	auto bitsStored = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagHighBit).GetByteValue()->GetPointer());
 
 	{ // Tworzenie obiekty okienka
 
+		auto bitsStored = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagBitsStored).GetByteValue()->GetPointer());
 		bool isDynamic = dimX * dimY < ((1 << bitsStored) - 1), isSigned = false;
 
 		// Tworzenie odpowiedzniego okienka
@@ -81,11 +81,15 @@ void Monochrome2::Scene::readAttributes() {
 
 		imgWindowInt = (WindowInt *) imgWindow;
 		imgWindowInt->setSigned(isSigned);
-		imgWindowInt->setMaxValue((uint) (1 << bitsStored));
+
+		auto maxValue = quint64(1) << bitsStored;
+		if (isSigned) maxValue /= 2;
+		imgWindowInt->setMaxValue(maxValue);
 
 		imgWindowInt->setWidth(imgWindowInt->getMaxValue());
 		imgWindowInt->setCenter(imgWindowInt->getMaxValue() / 2);
 
+		connect(imgWindow, &Window::forceRefreshSignal, this, &DicomScene::reloadPixmap);
 	}
 
 	//
@@ -95,37 +99,41 @@ void Monochrome2::Scene::readAttributes() {
 
 			auto centers = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenter)).split('\\');
 			auto widths = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowWidth)).split('\\');
+			QStringList names;
+
+			if (gdcmDataSet.FindDataElement(gdcm::TagWindowCenterWidthExplanation))
+				names = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenterWidthExplanation))
+						.split('\\');
 
 			if (centers.size() != widths.size())
 				throw DicomTagParseError(gdcm::TagWindowWidth, "Number of WindowCenter's and WindowWidth's not match");
 
-			auto center = centers[0].toDouble(&ok);
-			if (!ok) throw DicomTagParseError(gdcm::TagWindowCenter);
+			for (int i = 0; i < centers.size(); i++) {
 
-			auto width = widths[0].toDouble(&ok);
-
-
-			switch (imgWindow->type()) {
-				case Window::IntDynamic:
-				case Window::IntStatic:
-
-					imgWindowInt->setCenter(static_cast<__int128_t>(center));
-					imgWindowInt->setWidth(static_cast<__int128_t>(width));
-
-					break;
-
-				default:
-					throw WrongScopeException(__FILE__, __LINE__);
+				imgWindowInt->pushDefaultValues(
+						static_cast<__int128_t>(centers[i].toDouble()),
+						static_cast<__int128_t>(widths[i].toDouble()),
+						names.isEmpty() ? "" : names[i]
+				);
 			}
+
+			imgWindowInt->setCenter(static_cast<__int128_t>(centers[0].toDouble()));
+			imgWindowInt->setWidth(static_cast<__int128_t>(widths[0].toDouble()));
+		} else {
+
 		}
 
-		if (gdcmDataSet.FindDataElement(gdcm::TagPixelPaddingValue)) {
-			auto background = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelPaddingValue)).toInt(&ok);
 
-			if (!ok) throw DicomTagParseError(gdcm::TagPixelPaddingValue);
+	}
 
-			imgWindowInt->setBackgroundLvl(background);
-		}
+	//
+
+	if (gdcmDataSet.FindDataElement(gdcm::TagPixelPaddingValue)) {
+		auto background = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelPaddingValue)).toInt(&ok);
+
+		if (!ok) throw DicomTagParseError(gdcm::TagPixelPaddingValue);
+
+		imgWindowInt->setBackgroundLvl(background);
 	}
 
 	//
@@ -257,16 +265,10 @@ void Monochrome2::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 	DicomScene::mouseMoveEvent(event);
 }
 
+void Monochrome2::Scene::toolBarAdjust(DicomToolBar *toolbar) {
+	DicomScene::toolBarAdjust(toolbar);
 
-void Monochrome2::Scene::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
-	auto item = this->itemAt(event->scenePos().x(), event->scenePos().y(), QTransform());
-
-//	if (item == text33) {
-//		event->accept();
-//
-//		imgWindowInt->selectWindowingIndicator(this->parentGraphics(), event->screenPos());
-//		reloadPixmap();
-//	} else {
-//		DicomScene::mouseDoubleClickEvent(event);
-//	}
+	auto winAction = toolbar->getActionWindowing();
+	winAction->setMenu(imgWindow->getMenu());
+	winAction->setEnabled(true);
 }

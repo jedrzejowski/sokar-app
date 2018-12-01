@@ -10,9 +10,16 @@ namespace Sokar::Monochrome2 {
 	class WindowInt : public Window {
 	Q_OBJECT
 
+	private:
+		struct DefaultWindow {
+			__int128 center;
+			__int128 width;
+			QString name = "";
+		};
+
 	protected:
 		QGraphicsTextItem *text;
-
+		QList<DefaultWindow> defaultWindows;
 
 		bool hasBackground = false;
 
@@ -25,9 +32,6 @@ namespace Sokar::Monochrome2 {
 		__int128 x1, x0;
 		quint8 y0, y1;
 		double a, b;
-
-	private:
-		void regenText();
 
 	public:
 
@@ -79,6 +83,9 @@ namespace Sokar::Monochrome2 {
 
 		//endregion
 
+		void pushDefaultValues(__int128 center, __int128 width, QString name = "");
+
+
 		inline void mvHorizontal(int v) override {
 			setWidth(getWidth() + v);
 		}
@@ -89,10 +96,12 @@ namespace Sokar::Monochrome2 {
 
 		bool genLUT() override;
 
-		void selectWindowingIndicator(QGraphicsSceneMouseEvent *event);
-
 		void reposition() override;
 
+	private:
+		void regenText();
+
+		void activateDefWin(const DefaultWindow &win);
 	signals:
 
 		void centerChanged();
@@ -100,6 +109,7 @@ namespace Sokar::Monochrome2 {
 		void widthChanged();
 
 	protected:
-		void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
+
+		void genMenu() override;
 	};
 }

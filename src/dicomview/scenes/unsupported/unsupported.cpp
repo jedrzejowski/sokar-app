@@ -28,3 +28,12 @@ void Unsupported::Scene::reposItems() {
 	text22->setPos((this->width() - text22->document()->size().width()) / 2,
 				   (this->height() - text22->document()->size().height()) / 2);
 }
+
+void Unsupported::Scene::toolBarAdjust(DicomToolBar *toolbar) {
+	DicomScene::toolBarAdjust(toolbar);
+
+	toolbar->getActionWindowing()->setEnabled(false);
+	toolbar->getActionPan()->setEnabled(false);
+	toolbar->getActionZoom()->setEnabled(false);
+	toolbar->getActionRotate()->setEnabled(false);
+}

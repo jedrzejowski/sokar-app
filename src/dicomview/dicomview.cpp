@@ -49,6 +49,7 @@ void DicomView::activateScene(DicomScene *scene) {
 	ui->graphicsView->setScene(scene);
 
 	scene->reposItems();
+	scene->toolBarAdjust(ui->toolbar);
 }
 
 DicomToolBar &DicomView::getToolBar() {

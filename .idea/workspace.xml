@@ -2,9 +2,9 @@
 <project version="4">
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
-      <config projectName="src/Sokar" targetName="DiBrowser_autogen" />
-      <config projectName="src/Sokar" targetName="Sokar_autogen" />
-      <config projectName="src/Sokar" targetName="Sokar" />
+      <config projectName="Sokar" targetName="DiBrowser_autogen" />
+      <config projectName="Sokar" targetName="Sokar_autogen" />
+      <config projectName="Sokar" targetName="Sokar" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -13,15 +13,36 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Dodanie obrazka">
-      <change afterPath="$PROJECT_DIR$/src/sokar/gdcmLUT.h" afterDir="false" />
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Naprwienie błędu z INTami">
+      <change afterPath="$PROJECT_DIR$/res/values/colorpalettes/hotiron.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/values/colorpalettes/hotmetalblue.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/values/colorpalettes/pet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/values/colorpalettes/pet20stepcolor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/values/colorpalettes/readAll.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sokar/palette.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/sokar/palette.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Sokar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/runConfigurations/Sokar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/dicomview.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/dicomview.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/_window.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/_window.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/defaultwinlist.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowchooser.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowchooser.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowintstatic.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowintstatic.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/toolbar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/toolbar.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/toolbar.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/toolbar.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokar/gdcmSokar.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/gdcmSokar.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -44,62 +65,68 @@
     <session id="-1558106634">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="9" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.2" value="2" />
-          <entry key="project.open.time.3" value="9" />
-          <entry key="project.opened" value="11" />
+          <entry key="project.open.time.3" value="10" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="cpp" value="11285" />
-          <entry key="h" value="5198" />
+          <entry key="cpp" value="14115" />
+          <entry key="h" value="6266" />
+          <entry key="js" value="11" />
           <entry key="pro" value="9" />
           <entry key="qrc" value="46" />
           <entry key="ts" value="4" />
-          <entry key="txt" value="700" />
+          <entry key="txt" value="818" />
           <entry key="ui" value="510" />
+          <entry key="xml" value="98" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CMakeLists.txt" value="554" />
-          <entry key="ObjectiveC" value="16483" />
-          <entry key="PLAIN_TEXT" value="155" />
+          <entry key="CMakeLists.txt" value="639" />
+          <entry key="JavaScript" value="11" />
+          <entry key="ObjectiveC" value="20381" />
+          <entry key="PLAIN_TEXT" value="188" />
           <entry key="Qt UI file" value="510" />
           <entry key="TypeScript" value="4" />
-          <entry key="XML" value="46" />
+          <entry key="XML" value="144" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="QtWidgets" value="1" />
           <entry key="Sokar (disassembly)" value="9" />
-          <entry key="cpp" value="224" />
+          <entry key="cpp" value="247" />
           <entry key="gitignore" value="1" />
-          <entry key="h" value="402" />
+          <entry key="h" value="446" />
+          <entry key="js" value="1" />
           <entry key="md" value="2" />
           <entry key="png" value="2" />
           <entry key="pro" value="2" />
           <entry key="qm" value="1" />
           <entry key="qqq" value="2" />
-          <entry key="qrc" value="5" />
+          <entry key="qrc" value="6" />
           <entry key="ts" value="20" />
-          <entry key="txt" value="29" />
+          <entry key="txt" value="30" />
           <entry key="ui" value="37" />
+          <entry key="xml" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CMakeLists.txt" value="29" />
+          <entry key="CMakeLists.txt" value="30" />
           <entry key="Disassembly" value="9" />
           <entry key="Image" value="2" />
+          <entry key="JavaScript" value="1" />
           <entry key="Markdown" value="1" />
-          <entry key="ObjectiveC" value="627" />
+          <entry key="ObjectiveC" value="694" />
           <entry key="PLAIN_TEXT" value="7" />
           <entry key="Qt UI file" value="37" />
           <entry key="TypeScript" value="20" />
-          <entry key="XML" value="5" />
+          <entry key="XML" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -174,7 +201,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>qdicomgraphics</find>
       <find>begin</find>
       <find>addDicomImage</find>
       <find>getPixelByteSize</find>
@@ -199,11 +225,12 @@
       <find>QDicomDataSet</find>
       <find>dicomView</find>
       <find>setpare</find>
-      <find>qDe</find>
       <find>qde</find>
       <find>criti</find>
       <find>qDebu</find>
       <find>cen</find>
+      <find>qDe</find>
+      <find>opera</find>
     </findStrings>
     <replaceStrings>
       <replace>++z</replace>
@@ -224,22 +251,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/monochrome2.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomscene.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/dicomsceneset.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/params.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/sceneavatar.h" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/sceneavatar.cpp" />
-        <option value="$PROJECT_DIR$/qwidgets/dicomtoolbar.cpp" />
-        <option value="$PROJECT_DIR$/res/lang/pl.ts" />
-        <option value="$PROJECT_DIR$/qwidgets/scenes/monochrome2/windowing/windowint.cpp" />
-        <option value="$PROJECT_DIR$/src/qwidgets/scenes/dicomscene.h" />
         <option value="$PROJECT_DIR$/src/main.cpp" />
         <option value="$PROJECT_DIR$/src/qwidgets/scenes/monochrome2/windowing/windowint.cpp" />
         <option value="$PROJECT_DIR$/cmake-build-debug/ui_dicomview.h" />
         <option value="$PROJECT_DIR$/src/dicomview/dicomview.ui" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h" />
         <option value="$PROJECT_DIR$/src/win/main_win.h" />
         <option value="$PROJECT_DIR$/src/win/main_win.ui" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/_classdef.h" />
@@ -250,31 +265,43 @@
         <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/params.h" />
         <option value="$PROJECT_DIR$/res/resources.qrc" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/scene.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/scene.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/dataset.h" />
         <option value="$PROJECT_DIR$/src/dicomview/dataset.cpp" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.cpp" />
-        <option value="$PROJECT_DIR$/src/dicomview/toolbar.h" />
-        <option value="$PROJECT_DIR$/src/dicomview/toolbar.cpp" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" />
         <option value="$PROJECT_DIR$/src/dicomview/framechooser.h" />
         <option value="$PROJECT_DIR$/src/dicomview/framechooser.cpp" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome1/monochrome1.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/_window.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome1/monochrome1.cpp" />
         <option value="$PROJECT_DIR$/src/win/main_win.cpp" />
-        <option value="$PROJECT_DIR$/src/dicomview/dicomview.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/dicomview.h" />
         <option value="$PROJECT_DIR$/src/sokar/gdcmSokar.h" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.h" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/dicomview/dicomview.cpp" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.h" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowintstatic.h" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.h" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.cpp" />
+        <option value="$PROJECT_DIR$/src/dicomview/toolbar.cpp" />
+        <option value="$PROJECT_DIR$/src/dicomview/toolbar.h" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.cpp" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.paletts.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/src/sokar/pallet.h" />
+        <option value="$PROJECT_DIR$/src/sokar/pallet.cpp" />
+        <option value="$PROJECT_DIR$/res/values/colorpallets/readAll.js" />
+        <option value="$PROJECT_DIR$/res/values/colorpallets/pet.xml" />
+        <option value="$PROJECT_DIR$/res/values/colorpallets/stepcolor.xml" />
+        <option value="$PROJECT_DIR$/res/values/colorpallets/hotmetalblue.xml" />
+        <option value="$PROJECT_DIR$/res/values/colorpallets/hotiron.xml" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/_window.h" />
+        <option value="$PROJECT_DIR$/src/sokar/palette.h" />
+        <option value="$PROJECT_DIR$/src/sokar/palette.cpp" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" />
       </list>
     </option>
   </component>
@@ -321,53 +348,47 @@
         <subPane>
           <expand>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="res" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
-              <item name="icons" type="462c0819:PsiDirectoryNode" />
+              <item name="values" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
-              <item name="lang" type="462c0819:PsiDirectoryNode" />
+              <item name="values" type="462c0819:PsiDirectoryNode" />
+              <item name="colorpalettes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dicomview" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dicomview" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dicomview" type="462c0819:PsiDirectoryNode" />
@@ -375,7 +396,7 @@
               <item name="monochrome2" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dicomview" type="462c0819:PsiDirectoryNode" />
@@ -384,16 +405,10 @@
               <item name="windowing" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sokar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="src/Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="win" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -405,11 +420,15 @@
     <property name="SearchEverywhereHistoryKey" value="mono&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/qwidgets/scenes/monochrome2/monochrome2.cpp&#10;ui&#9;FILE&#9;file:///home/adam/Programowanie/bucherol/browser/win/main_win.ui&#10;main&#9;FILE&#9;file:///home/adam/Programowanie/bucherol/browser/win/main_win.ui" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="typescript-compiler-editor-notification" value="false" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/res/values/colorpallets" />
+      <recent name="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/qwidgets" />
@@ -429,7 +448,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Application.Sokar">
-    <configuration name="Sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="src/Sokar" TARGET_NAME="Sokar_autogen" CONFIG_NAME="Debug">
+    <configuration name="Sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar_autogen" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -475,6 +494,7 @@
       <workItem from="1543527056537" duration="2846000" />
       <workItem from="1543623912294" duration="1588000" />
       <workItem from="1543663739210" duration="5684000" />
+      <workItem from="1543686689311" duration="14773000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>
@@ -539,11 +559,18 @@
       <option name="project" value="LOCAL" />
       <updated>1543624604893</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Naprwienie błędu z INTami">
+      <created>1543685823602</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1543685823602</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="248910000" />
+    <option name="totallyTimeSpent" value="263707000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -557,7 +584,7 @@
   <component name="ToolWindowManager">
     <frame x="0" y="-28" width="1920" height="1108" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989712" visible="true" weight="0.21497326" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4989712" visible="true" weight="0.18181819" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50102884" side_tool="true" weight="0.20962566" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -623,223 +650,10 @@
     <MESSAGE value="CMAKE: przerobienie wszystkiego" />
     <MESSAGE value="Przeglądarka zaczeła wyglądać jako tako" />
     <MESSAGE value="Dodanie obrazka" />
-    <option name="LAST_COMMIT_MESSAGE" value="Dodanie obrazka" />
+    <MESSAGE value="Naprwienie błędu z INTami" />
+    <option name="LAST_COMMIT_MESSAGE" value="Naprwienie błędu z INTami" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/scene.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="30" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/_classdef.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="10" selection-start-line="11" selection-start-column="10" selection-end-line="11" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/params.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/dataset.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="29" column="88" selection-start-line="29" selection-start-column="88" selection-end-line="29" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtCore/qobject.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="203" column="9" selection-start-line="203" selection-start-column="9" selection-end-line="203" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qtreeview.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
-          <caret line="54" column="49" lean-forward="true" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qabstractitemview.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="60" column="59" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qabstractscrollarea.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="54" column="55" selection-start-line="54" selection-start-column="55" selection-end-line="54" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qframe.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qwidget.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="533" column="16" selection-start-line="533" selection-start-column="9" selection-end-line="533" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/scene.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="8" column="7" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/dataset.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="96" lean-forward="true" selection-start-line="96" selection-end-line="96" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qscrollarea.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="58" column="13" selection-start-line="58" selection-start-column="13" selection-end-line="58" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="29" lean-forward="true" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/toolbar.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="56" column="38" lean-forward="true" selection-start-line="56" selection-start-column="38" selection-end-line="56" selection-end-column="38" />
-          <folding>
-            <element signature="e#1#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/toolbar.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="22" column="20" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file:///usr/include/qt/QtCore/qvector.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="154" column="8" selection-start-line="154" selection-start-column="8" selection-end-line="154" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/qqq">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="710">
-          <caret line="70" column="24" lean-forward="true" selection-start-line="70" selection-start-column="24" selection-end-line="70" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/gdcm-2.8/gdcmPhotometricInterpretation.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="34" column="17" selection-start-line="34" selection-start-column="4" selection-end-line="34" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="7" selection-end-column="32" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-259">
-          <caret line="4" column="36" selection-start-line="4" selection-start-column="36" selection-end-line="4" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome1/monochrome1.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="50" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="59" column="29" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="29" />
-          <folding>
-            <element signature="e#1#22#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome1/monochrome1.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/include/gdcm-2.8/gdcmReader.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="59">
@@ -875,16 +689,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="78" column="21" selection-start-line="78" selection-start-column="21" selection-end-line="78" selection-end-column="21" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/include/gdcm-2.8/gdcmDataSet.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -909,26 +713,6 @@
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowintdynamic.h">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="840">
-          <caret line="125" lean-forward="true" selection-start-line="125" selection-end-line="125" />
-          <folding>
-            <element signature="e#2#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/defaultwinlist.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/_window.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" lean-forward="true" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/include/gdcm-2.8/gdcmPixelFormat.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="127">
@@ -943,51 +727,296 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.cpp">
+    <entry file="file://$PROJECT_DIR$/src/sokar/gdcmLUT.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/defaultwinlist.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowchooser.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowchooser.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///usr/include/qt/QtCore/qstring.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="266" column="91" lean-forward="true" selection-start-line="266" selection-start-column="91" selection-end-line="266" selection-end-column="91" />
+        <state relative-caret-position="314">
+          <caret line="516" column="33" selection-start-line="516" selection-start-column="22" selection-end-line="516" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/include/gdcm-2.8/gdcmTag.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="41" column="2" selection-start-line="41" selection-start-column="2" selection-end-line="41" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sokar/gdcmSokar.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="24" column="43" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="51" column="19" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#2#24#0" expanded="true" />
+            <element signature="e#1319#1966#0" />
+            <element signature="e#2035#2553#0" />
+            <element signature="e#2555#2645#0" />
+            <element signature="e#2647#2735#0" />
+            <element signature="e#2737#2813#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sokar/gdcmLUT.h">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sokar/gdcmSokar.h">
+    <entry file="file:///usr/include/qt/QtWidgets/qtoolbar.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="18" column="22" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="22" />
+        <state relative-caret-position="189">
+          <caret line="145" column="20" selection-start-line="145" selection-start-column="20" selection-end-line="145" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.h">
+    <entry file="file:///usr/include/qt/QtWidgets/qaction.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-341">
-          <caret line="24" column="17" selection-start-line="24" selection-start-column="17" selection-end-line="24" selection-end-column="17" />
+        <state relative-caret-position="294">
+          <caret line="96" column="13" selection-start-line="96" selection-start-column="13" selection-end-line="96" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.cpp">
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="51" column="14" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="14" />
+        <state relative-caret-position="323">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="16" lean-forward="true" selection-start-line="21" selection-start-column="16" selection-end-line="21" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowintstatic.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        <state relative-caret-position="217">
+          <caret line="15" column="32" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+          <folding>
+            <element signature="e#14#36#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/include/qt/QtWidgets/qwidget.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="561" column="20" selection-start-line="561" selection-start-column="20" selection-end-line="561" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="207" column="28" selection-start-line="207" selection-start-column="28" selection-end-line="207" selection-end-column="28" />
+          <folding>
+            <element signature="e#1#22#0" expanded="true" />
+            <element signature="e#4867#6401#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="91" column="25" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="25" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="20" selection-start-line="24" selection-start-column="20" selection-end-line="24" selection-end-column="20" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/toolbar.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="160" column="5" selection-start-line="160" selection-start-column="5" selection-end-line="160" selection-end-column="5" />
+          <folding>
+            <element signature="e#1#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/toolbar.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="608">
+          <caret line="54" column="37" selection-start-line="54" selection-start-column="24" selection-end-line="54" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sokar/pixel.h">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        <state relative-caret-position="313">
+          <caret line="24" column="39" lean-forward="true" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.paletts.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtCore/qdir.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtCore/qglobal.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="1028" column="12" selection-start-line="1028" selection-start-column="12" selection-end-line="1028" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtCore/qmutex.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1046">
+          <caret line="125" column="20" selection-start-line="125" selection-start-column="20" selection-end-line="125" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/resources.qrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/colorpalettes/pet.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1666">
+          <caret line="1" column="39" lean-forward="true" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/colorpalettes/readAll.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="20" selection-end-line="8" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/colorpalettes/hotmetalblue.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="4" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/colorpalettes/pet20stepcolor.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="41" lean-forward="true" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1316">
+          <caret line="103" column="53" selection-start-line="103" selection-start-column="53" selection-end-line="103" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sokar/palette.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/_window.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="455">
+          <caret line="34" column="37" selection-start-line="34" selection-start-column="37" selection-end-line="34" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/values/colorpalettes/hotiron.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtCore/qfile.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="124" column="70" lean-forward="true" selection-start-line="124" selection-start-column="70" selection-end-line="124" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtCore/qlist.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="112" selection-start-line="112" selection-end-line="112" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sokar/palette.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="52" column="63" lean-forward="true" selection-start-line="52" selection-start-column="63" selection-end-line="52" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#1#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing/windowint.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="625">
+          <caret line="138" column="1" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome2/monochrome2.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-446">
+          <caret line="92" column="5" selection-start-line="92" selection-start-column="5" selection-end-line="92" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

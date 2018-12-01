@@ -12,6 +12,9 @@ namespace Sokar::Monochrome2 {
 	protected:
 		bool shouldRegen = true;
 		bool inversed = false;
+
+		QMenu toolbarMenu;
+
 	public:
 
 		typedef enum {
@@ -33,10 +36,21 @@ namespace Sokar::Monochrome2 {
 			return inversed;
 		}
 
+		QMenu *getMenu() {
+			if (toolbarMenu.isEmpty()) genMenu();
+			return &toolbarMenu;
+		}
+
 		void setInversed(bool inversed) {
 			if (Window::inversed == inversed) return;
 			Window::inversed = inversed;
 			shouldRegen = true;
 		}
+
+	protected:
+		virtual void genMenu() = 0;
+
+	signals:
+		void forceRefreshSignal();
 	};
 }
