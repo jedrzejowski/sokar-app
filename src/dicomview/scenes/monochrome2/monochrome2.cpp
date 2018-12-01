@@ -39,11 +39,11 @@ void Monochrome2::Scene::readAttributes() {
 	if (!gdcmDataSet.FindDataElement(gdcm::TagBitsStored))
 		throw DicomTagMissing(gdcm::TagBitsStored);
 
-	auto bitsStored = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagBitsStored).GetByteValue()->GetPointer());
+	auto bitsStored = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagHighBit).GetByteValue()->GetPointer());
 
 	{ // Tworzenie obiekty okienka
 
-		bool isDynamic = dimX * dimY < ((1 << bitsStored) - 1), isSigned;
+		bool isDynamic = dimX * dimY < ((1 << bitsStored) - 1), isSigned = false;
 
 		// Tworzenie odpowiedzniego okienka
 		switch (gdcmImage.GetPixelFormat()) {
@@ -52,17 +52,14 @@ void Monochrome2::Scene::readAttributes() {
 			case gdcm::PixelFormat::UINT16:
 			case gdcm::PixelFormat::UINT32:
 			case gdcm::PixelFormat::UINT64:
-
 				isSigned = false;
 				break;
-
 
 			case gdcm::PixelFormat::INT8:
 			case gdcm::PixelFormat::INT12:
 			case gdcm::PixelFormat::INT16:
 			case gdcm::PixelFormat::INT32:
 			case gdcm::PixelFormat::INT64:
-
 				isSigned = true;
 				break;
 
@@ -120,57 +117,33 @@ void Monochrome2::Scene::readAttributes() {
 				default:
 					throw WrongScopeException(__FILE__, __LINE__);
 			}
-		} else if (gdcmDataSet.FindDataElement(gdcm::TagPixelPaddingValue)) {
-			__int128_t max = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelPaddingValue)).toInt(&ok);
+		}
+
+		if (gdcmDataSet.FindDataElement(gdcm::TagPixelPaddingValue)) {
+			auto background = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelPaddingValue)).toInt(&ok);
 
 			if (!ok) throw DicomTagParseError(gdcm::TagPixelPaddingValue);
 
-			switch (imgWindow->type()) {
-				case Window::IntDynamic:
-				case Window::IntStatic:
-
-					imgWindowInt->setCenter(static_cast<__int128_t>(max / 2));
-					imgWindowInt->setWidth(static_cast<__int128_t>(max));
-
-					break;
-
-				default:
-					throw WrongScopeException(__FILE__, __LINE__);
-			}
+			imgWindowInt->setBackgroundLvl(background);
 		}
 	}
 
-//
+	//
 
-	if (gdcmDataSet.
-			FindDataElement(gdcm::TagRescaleIntercept)
-			) {
-		gdcm::assertTagPresence(gdcmDataSet, gdcm::TagRescaleSlope
-		);
+	if (gdcmDataSet.FindDataElement(gdcm::TagRescaleIntercept)) {
+		gdcm::assertTagPresence(gdcmDataSet, gdcm::TagRescaleSlope);
 
-		auto b = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagRescaleIntercept)).toDouble(&ok);
-		if (!ok)
-			throw
-					DicomTagParseError(gdcm::TagRescaleIntercept);
+		auto rescale = gdcm::ImageHelper::GetRescaleInterceptSlopeValue(gdcmFile);
 
-		auto m = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagRescaleSlope)).toDouble(&ok);
-		if (!ok)
-			throw
-					DicomTagParseError(gdcm::TagRescaleSlope);
-
-
-		imgWindowInt->
-				setRescaleIntercept(b);
-		imgWindowInt->
-				setRescaleSlope(m);
+		if (rescale.size() == 2) {
+			imgWindowInt->setRescaleIntercept(rescale[0]);
+			imgWindowInt->setRescaleSlope(rescale[1]);
+		}
 	}
 
 	{
-		if (gdcmImage.
-				GetNumberOfOverlays()
-			> 0)
-			qDebug()
-					<< "Obraz z Overlayem (sprawdzić o co kaman)";
+		if (gdcmImage.GetNumberOfOverlays() > 0)
+			qDebug() << "Obraz z Overlayem (sprawdzić o co kaman)";
 	}
 }
 

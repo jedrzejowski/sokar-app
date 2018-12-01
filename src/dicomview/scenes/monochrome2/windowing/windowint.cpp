@@ -54,7 +54,6 @@ bool WindowInt::genLUT() {
 	double _x0, _x1;
 	quint8 _y0 = 0, _y1 = 255;
 
-
 	if (isInversed())
 		std::swap(_y0, _y1);
 
@@ -105,10 +104,19 @@ void WindowInt::setMaxValue(quint64 length) {
 }
 
 void WindowInt::setSigned(bool isSigned) {
-	if (signedMove == isSigned ? maxValue : 0)
+	if (signedMove > 0 == isSigned)
 		return;
 
-	signedMove = isSigned ? maxValue : 0;
+	signedMove = isSigned ? 1 : 0;
+	shouldRegen = true;
+}
+
+void WindowInt::setBackgroundLvl(__int128_t backgroundLvl) {
+	if (WindowInt::backgroundLvl == backgroundLvl)
+		return;
+
+	hasBackground = true;
+	WindowInt::backgroundLvl = backgroundLvl;
 	shouldRegen = true;
 }
 

@@ -95,7 +95,7 @@
 <context>
     <name>WindowInt</name>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.cpp" line="139"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.cpp" line="154"/>
         <source>Spring</source>
         <translation type="unfinished"></translation>
     </message>

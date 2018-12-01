@@ -11,10 +11,12 @@ namespace Sokar::Monochrome2 {
 	Q_OBJECT
 
 	protected:
-		QMenu qmenu;
 		QGraphicsTextItem *text;
 
-		__int128 center, width;
+
+		bool hasBackground = false;
+
+		__int128 center, width, backgroundLvl;
 		double rescaleIntercept = 0, rescaleSlope = 1;
 
 		quint64 signedMove = 0;
@@ -69,6 +71,12 @@ namespace Sokar::Monochrome2 {
 
 		void setSigned(bool isSigned);
 
+		inline __int128_t getBackgroundLvl() const {
+			return backgroundLvl;
+		}
+
+		void setBackgroundLvl(__int128_t backgroundLvl);
+
 		//endregion
 
 		inline void mvHorizontal(int v) override {
@@ -81,7 +89,7 @@ namespace Sokar::Monochrome2 {
 
 		bool genLUT() override;
 
-		void selectWindowingIndicator(QGraphicsSceneMouseEvent* event);
+		void selectWindowingIndicator(QGraphicsSceneMouseEvent *event);
 
 		void reposition() override;
 

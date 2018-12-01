@@ -1,6 +1,7 @@
 #pragma once
 
 #include "windowint.h"
+#include <iostream>
 
 namespace Sokar::Monochrome2 {
 	class WindowIntStatic : public WindowInt {
@@ -19,15 +20,17 @@ namespace Sokar::Monochrome2 {
 				if (array.size() != signedMove + maxValue)
 					array.resize(signedMove + maxValue);
 
-				__int128 x = -signedMove;
+				//http://gcc.gnu.org/onlinedocs/gcc/_005f_005fint128.html
+				//xD po całości, 8h na to zmarnowałem
+				__int128 x = signedMove;
+				x = ~x + 1;
 
 				for (auto &pixel : array) {
 
-					if (x > x1) {
-						pixel = Pixel(y1);
-
-					} else if (x < x0) {
+					if (x < x0 || (hasBackground && x < backgroundLvl)) {
 						pixel = Pixel(y0);
+					} else if (x > x1) {
+						pixel = Pixel(y1);
 					} else {
 						pixel = Pixel((quint8) (a * x + b));
 					}
@@ -41,8 +44,7 @@ namespace Sokar::Monochrome2 {
 		}
 
 		inline const Pixel &getLUT(quint64 value) override {
-			if (value < signedMove || value > maxValue)
-				qDebug() << value;
+
 			return array[signedMove + value];
 		}
 	};
