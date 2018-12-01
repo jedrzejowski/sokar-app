@@ -52,6 +52,11 @@ bool WindowInt::genLUT() {
 	signedMove = signedMove ? maxValue : 0;
 
 	double _x0, _x1;
+	quint8 _y0 = 0, _y1 = 255;
+
+
+	if (isInversed())
+		std::swap(_y0, _y1);
 
 	_x0 = center - width / 2;
 	_x1 = center + width / 2;
@@ -62,11 +67,13 @@ bool WindowInt::genLUT() {
 	_x0 /= rescaleSlope;
 	_x1 /= rescaleSlope;
 
-	a = (y1 - y0) / (_x1 - _x0);
-	b = y1 - a * _x1;
+	a = (_y1 - _y0) / (_x1 - _x0);
+	b = _y1 - a * _x1;
 
 	x0 = static_cast<__int128_t>(_x0);
 	x1 = static_cast<__int128_t>(_x1);
+	y0 = _y0;
+	y1 = _y1;
 
 	shouldRegen = false;
 

@@ -2,8 +2,9 @@
 
 #include "dicomsceneset.h"
 
-#include "monochrome2/monochrome2.h"
 #include "unsupported/unsupported.h"
+#include "monochrome2/monochrome2.h"
+#include "monochrome1/monochrome1.h"
 
 
 using namespace Sokar;
@@ -46,6 +47,10 @@ void DicomSceneSet::initScenes() {
 		try {
 
 			switch (image.GetPhotometricInterpretation()) {
+				case gdcm::PhotometricInterpretation::MONOCHROME1:
+					scene = new Sokar::Monochrome1::Scene(sceneParams);
+					break;
+
 				case gdcm::PhotometricInterpretation::MONOCHROME2:
 					scene = new Sokar::Monochrome2::Scene(sceneParams);
 					break;

@@ -88,6 +88,7 @@ void Monochrome2::Scene::readAttributes() {
 
 		imgWindowInt->setWidth(imgWindowInt->getMaxValue());
 		imgWindowInt->setCenter(imgWindowInt->getMaxValue() / 2);
+
 	}
 
 	//
@@ -105,7 +106,6 @@ void Monochrome2::Scene::readAttributes() {
 			if (!ok) throw DicomTagParseError(gdcm::TagWindowCenter);
 
 			auto width = widths[0].toDouble(&ok);
-			if (!ok) throw DicomTagParseError(gdcm::TagWindowWidth);
 
 
 			switch (imgWindow->type()) {
@@ -120,28 +120,57 @@ void Monochrome2::Scene::readAttributes() {
 				default:
 					throw WrongScopeException(__FILE__, __LINE__);
 			}
+		} else if (gdcmDataSet.FindDataElement(gdcm::TagPixelPaddingValue)) {
+			__int128_t max = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelPaddingValue)).toInt(&ok);
+
+			if (!ok) throw DicomTagParseError(gdcm::TagPixelPaddingValue);
+
+			switch (imgWindow->type()) {
+				case Window::IntDynamic:
+				case Window::IntStatic:
+
+					imgWindowInt->setCenter(static_cast<__int128_t>(max / 2));
+					imgWindowInt->setWidth(static_cast<__int128_t>(max));
+
+					break;
+
+				default:
+					throw WrongScopeException(__FILE__, __LINE__);
+			}
 		}
 	}
 
-	//
+//
 
-	if (gdcmDataSet.FindDataElement(gdcm::TagRescaleIntercept)) {
-		gdcm::assertTagPresence(gdcmDataSet, gdcm::TagRescaleSlope);
+	if (gdcmDataSet.
+			FindDataElement(gdcm::TagRescaleIntercept)
+			) {
+		gdcm::assertTagPresence(gdcmDataSet, gdcm::TagRescaleSlope
+		);
 
 		auto b = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagRescaleIntercept)).toDouble(&ok);
-		if (!ok) throw DicomTagParseError(gdcm::TagRescaleIntercept);
+		if (!ok)
+			throw
+					DicomTagParseError(gdcm::TagRescaleIntercept);
 
 		auto m = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagRescaleSlope)).toDouble(&ok);
-		if (!ok) throw DicomTagParseError(gdcm::TagRescaleSlope);
+		if (!ok)
+			throw
+					DicomTagParseError(gdcm::TagRescaleSlope);
 
 
-		imgWindowInt->setRescaleIntercept(b);
-		imgWindowInt->setRescaleSlope(m);
+		imgWindowInt->
+				setRescaleIntercept(b);
+		imgWindowInt->
+				setRescaleSlope(m);
 	}
 
 	{
-		if (gdcmImage.GetNumberOfOverlays() > 0)
-			qDebug() << "Obraz z Overlayem (sprawdzić o co kaman)";
+		if (gdcmImage.
+				GetNumberOfOverlays()
+			> 0)
+			qDebug()
+					<< "Obraz z Overlayem (sprawdzić o co kaman)";
 	}
 }
 
@@ -171,6 +200,7 @@ bool Monochrome2::Scene::generatePixmap() {
 		case gdcm::PixelFormat::INT32:
 			genQPixmapOfType<qint32>();
 			break;
+
 		case gdcm::PixelFormat::UINT32:
 			genQPixmapOfType<qint32>();
 			break;
@@ -190,7 +220,6 @@ bool Monochrome2::Scene::generatePixmap() {
 
 	return true;
 }
-
 
 template<typename T>
 void Monochrome2::Scene::genQPixmapOfType() {

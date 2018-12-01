@@ -1,5 +1,4 @@
 
-#include <QtCore>
 
 #include "dicomview.h"
 #include "ui_dicomview.h"
@@ -13,6 +12,8 @@ DicomView::DicomView(QWidget *parent) :
 
 	ui->setupUi(this);
 	ui->frameChooser->hide();
+
+	setAcceptDrops(true);
 
 	connect(ui->frameChooser, &FrameChooser::selectSceneSignal, this, &DicomView::activateScene);
 	connect(ui->toolbar, &DicomToolBar::stateToggleSignal, this, &DicomView::toolbarStateToggle);
@@ -50,11 +51,11 @@ void DicomView::activateScene(DicomScene *scene) {
 	scene->reposItems();
 }
 
-DicomToolBar &DicomView::getToolBar(){
+DicomToolBar &DicomView::getToolBar() {
 	return *(ui->toolbar);
 }
 
-FrameChooser &DicomView::getFrameChooser(){
+FrameChooser &DicomView::getFrameChooser() {
 	return *(ui->frameChooser);
 }
 
@@ -82,5 +83,43 @@ void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
 }
 
 void DicomView::toolbarStateToggle(DicomToolBar::State state) {
+}
 
+void DicomView::dropEvent(QDropEvent *event) {
+	const auto *mimeData = event->mimeData();
+
+	if (mimeData->hasUrls()) {
+
+		QStringList pathList;
+		QList<QUrl> urlList = mimeData->urls();
+
+		for (auto &path : mimeData->urls()) {
+
+			auto *ir = new gdcm::ImageReader;
+
+			ir->SetFileName(path.toLocalFile().toStdString().c_str());
+
+			if (!ir->Read()) {
+				QMessageBox::critical(this, "Error", "An error has occured !");
+				delete ir;
+				continue;
+			}
+
+			addDicomImage(ir);
+		}
+
+		event->acceptProposedAction();
+	}
+}
+
+void DicomView::dragEnterEvent(QDragEnterEvent *event) {
+	event->acceptProposedAction();
+}
+
+void DicomView::dragMoveEvent(QDragMoveEvent *event) {
+	event->acceptProposedAction();
+}
+
+void DicomView::dragLeaveEvent(QDragLeaveEvent *event) {
+	event->accept();
 }

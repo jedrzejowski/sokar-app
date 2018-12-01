@@ -13,9 +13,8 @@ namespace Sokar::Monochrome2 {
 		}
 
 		bool genLUT() override {
-			auto changed = WindowInt::genLUT();
 
-			if (changed) {
+			if (WindowInt::genLUT()) {
 
 				if (array.size() != signedMove + maxValue)
 					array.resize(signedMove + maxValue);
@@ -35,12 +34,15 @@ namespace Sokar::Monochrome2 {
 
 					x++;
 				}
-			}
 
-			return changed;
+				return true;
+			}
+			return false;
 		}
 
 		inline const Pixel &getLUT(quint64 value) override {
+			if (value < signedMove || value > maxValue)
+				qDebug() << value;
 			return array[signedMove + value];
 		}
 	};

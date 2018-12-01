@@ -37,6 +37,11 @@ namespace Sokar {
 
 		//endregion
 
+	protected:
+		void dropEvent(QDropEvent *event) override;
+		void dragEnterEvent(QDragEnterEvent *event) override;
+		void dragMoveEvent(QDragMoveEvent *event) override;
+		void dragLeaveEvent(QDragLeaveEvent *event) override;
 
 	private slots:
 		void activateScene(DicomScene *scene);

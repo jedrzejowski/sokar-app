@@ -14,10 +14,10 @@ MainWindow::MainWindow(QWidget *parent) :
 		ui(new Ui::MainWindow) {
 	ui->setupUi(this);
 	this->setMouseTracking(true);
-	ui->centralWidget->setMouseTracking(true);
+//	ui->centralWidget->setMouseTracking(true);
 
-	QObject::connect(ui->pushButton, SIGNAL(clicked()), this,
-					 SLOT(selectFile()));
+
+	QObject::connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(selectFile()));
 }
 
 MainWindow::~MainWindow() {

@@ -18,6 +18,7 @@ namespace gdcm {
 			TagBitsAllocated(0x0028, 0x0100),
 			TagHighBit(0x0028, 0x0102),
 			TagBitsStored(0x0028, 0x0101),
+			TagPixelPaddingValue(0x0028, 0x0120),
 			PixelIntensityRelationship(0x0028, 0x1040),
 			TagWindowCenter(0x0028, 0x1050),
 			TagWindowWidth(0x0028, 0x1051),

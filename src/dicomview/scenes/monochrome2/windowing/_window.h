@@ -11,6 +11,7 @@ namespace Sokar::Monochrome2 {
 	Q_OBJECT
 	protected:
 		bool shouldRegen = true;
+		bool inversed = false;
 	public:
 
 		typedef enum {
@@ -27,5 +28,15 @@ namespace Sokar::Monochrome2 {
 		virtual const Pixel &getLUT(quint64 value) = 0;
 
 		virtual bool genLUT() = 0;
+
+		inline bool isInversed() const {
+			return inversed;
+		}
+
+		void setInversed(bool inversed) {
+			if (Window::inversed == inversed) return;
+			Window::inversed = inversed;
+			shouldRegen = true;
+		}
 	};
 }
