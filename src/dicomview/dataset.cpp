@@ -18,10 +18,15 @@ DataSetViewer::DataSetViewer(DicomSceneSet *dicomSceneSet, QWidget *parent)
 
 	setModel(&standardModel);
 
-	headerLabels << "Tag" << "VL" << "Keyword" << "VR" << "Value";
+	headerLabels << "Tag" << "VL" << "VR" << "Keyword" << "Value";
 	standardModel.setHorizontalHeaderLabels(headerLabels);
 
 	initTree();
+
+	resizeColumnToContents(0);//Tag
+	resizeColumnToContents(1);//VL
+	resizeColumnToContents(2);//VR
+	resizeColumnToContents(3);//Keyword
 }
 
 QString tagIdToString(const gdcm::Tag &tag) {
@@ -48,57 +53,51 @@ void DataSetViewer::initTree() {
 
 void DataSetViewer::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *parent) {
 
-
 	static auto &dicts = gdcm::Global::GetInstance().GetDicts();
 	static auto &pubdict = dicts.GetPublicDict();
 
-	QStandardItem *item;
 
 	for (auto elem : dataset.GetDES()) {
+
+		QList<QStandardItem *> row;
+
 		auto &tag = elem.GetTag();
+		auto tagItem = new QStandardItem(tagIdToString(tag));
 
-		QList<QStandardItem *> list;
+		auto &vl = elem.GetVL();
+		auto vlItem = new QStandardItem(vl.IsUndefined() ? "" : QString::number(vl));
+		vlItem->setTextAlignment(Qt::AlignRight);
 
-		item = new QStandardItem(tagIdToString(tag));
-		item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-		list << item;
+		auto &vr = elem.GetVR();
+		auto vrItem = new QStandardItem(gdcm::VR::GetVRStringFromFile(vr));
 
 		auto keyword = pubdict.GetKeywordFromTag(tag);
-		item = new QStandardItem(keyword == nullptr ? "" : QString::fromStdString(keyword));
-		item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-		list << item;
+		auto keywordItem = new QStandardItem(keyword == nullptr ? "" : QString::fromStdString(keyword));
 
-		item = new QStandardItem();
-		item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+		auto valueItem = new QStandardItem();
+		if (vr == gdcm::VR::SQ) {
+			auto sq = elem.GetValueAsSQ();
 
-		try {
+			for (int i = 1; i <= sq->GetNumberOfItems(); i++) {
+				auto childItem = new QStandardItem(QString::number(i));
+				childItem->setFlags(childItem->flags() & ~Qt::ItemIsEditable);
 
-			switch (elem.GetVR()) {
-
-				case gdcm::VR::SQ: {
-					auto sq = elem.GetValueAsSQ();
-
-					for (int i = 1; i <= sq->GetNumberOfItems(); i++) {
-
-						auto nestedDS = sq->GetItem(i).GetNestedDataSet();
-
-						forEachDataSet(nestedDS, item);
-
-					}
-				}
-					break;
-
-				default:
-					item->setText(QString::fromStdString(stringFilter.ToString(elem)));
+				auto &nestedDS = sq->GetItem(i).GetNestedDataSet();
+				forEachDataSet(nestedDS, childItem);
+				tagItem->appendRow(childItem);
 			}
-		} catch (std::exception &) {
-			item->setText("Error");
+
+		} else {
+			auto str = QString::fromStdString(stringFilter.ToString(elem));
+			valueItem->setText(str.left(128));
 		}
 
-		list << item;
+		row << tagItem << vlItem << vrItem << keywordItem << valueItem;
 
+		for (auto &item:row)
+			item->setFlags(item->flags() & ~Qt::ItemIsEditable);
 
-		parent->appendRow(list);
+		parent->appendRow(row);
 	}
 }
 

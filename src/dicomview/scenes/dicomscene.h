@@ -33,8 +33,7 @@ namespace Sokar {
 
 		std::vector<char> originBuffer;
 		std::vector<Pixel> targetBuffer;
-		uint dimX, dimY;
-		quint64 area;
+		uint imgDimX, imgDimY;
 
 		QPixmap pixmap, iconPixmap;
 		QGraphicsPixmapItem *pixmapItem = nullptr;

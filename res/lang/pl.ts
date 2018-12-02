@@ -100,108 +100,108 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="29"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="35"/>
         <source>Windowing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="33"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="39"/>
         <source>No Windows In File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="56"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="58"/>
         <source>Predefined</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="62"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="64"/>
         <source>Head And Neck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="63"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="65"/>
         <source>Brain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="64"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="66"/>
         <source>Subdural 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="65"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="67"/>
         <source>Subdural 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="66"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="68"/>
         <source>Stroke 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="67"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="69"/>
         <source>Stroke 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="68"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="70"/>
         <source>Temporal Bones</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="69"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="71"/>
         <source>Soft Tissues 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="70"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="72"/>
         <source>Soft Tissues 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="72"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="74"/>
         <source>Chest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="73"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="75"/>
         <source>Lungs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="74"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="76"/>
         <source>Mediastinum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="76"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="78"/>
         <source>Abdomen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="77"/>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="81"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="79"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="83"/>
         <source>Soft Tissues</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="78"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="80"/>
         <source>Liver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="80"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="82"/>
         <source>Spine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="82"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="84"/>
         <source>Bone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="106"/>
+        <location filename="../../src/dicomview/scenes/monochrome2/windowing/windowint.menu.cpp" line="107"/>
         <source>Inverse</source>
         <translation type="unfinished"></translation>
     </message>

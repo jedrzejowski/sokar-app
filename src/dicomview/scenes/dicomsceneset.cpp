@@ -5,6 +5,7 @@
 #include "unsupported/unsupported.h"
 #include "monochrome2/monochrome2.h"
 #include "monochrome1/monochrome1.h"
+#include "redgreenblue/redgreenblue.h"
 
 
 using namespace Sokar;
@@ -13,6 +14,8 @@ using namespace Sokar;
 DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent) :
 		QObject(parent),
 		imageReader(reader) {
+
+	gdcmStringFilter.SetFile(imageReader->GetFile());
 
 	initScenes();
 }
@@ -28,16 +31,18 @@ DicomSceneSet::~DicomSceneSet() {
 
 void DicomSceneSet::initScenes() {
 	auto &image = imageReader->GetImage();
+	auto &dataset = imageReader->GetFile().GetDataSet();
 
-	auto buffLength = image.GetBufferLength();
-	auto imgSize = image.GetDimension(0) * image.GetDimension(1) * gdcm::getPixelByteSize(imageReader->GetFile());
+	int numberOfFrames = 1;
+	if (dataset.FindDataElement(gdcm::TagNumberOfFrames))
+		numberOfFrames = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagNumberOfFrames)).toInt();
+	vector.resize(numberOfFrames);
 
-	vector.resize((int) buffLength / imgSize);
-
-	imageBuffer.resize(buffLength);
+	imageBuffer.resize(image.GetBufferLength());
 	image.GetBuffer(&imageBuffer[0]);
 
 	auto sceneParams = SceneParams();
+	sceneParams.imgSize = image.GetBufferLength() / numberOfFrames;
 	sceneParams.dicomSceneSet = this;
 	sceneParams.imageReader = imageReader;
 	sceneParams.imageBuffer = &imageBuffer;
@@ -53,6 +58,10 @@ void DicomSceneSet::initScenes() {
 
 				case gdcm::PhotometricInterpretation::MONOCHROME2:
 					scene = new Sokar::Monochrome2::Scene(sceneParams);
+					break;
+
+				case gdcm::PhotometricInterpretation::RGB:
+					scene = new Sokar::RedGreenBlue::Scene(sceneParams);
 					break;
 
 				default:

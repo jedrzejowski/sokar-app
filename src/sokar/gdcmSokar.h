@@ -14,6 +14,8 @@ namespace gdcm {
 	const static gdcm::Tag
 			TagImageType(0x0008, 0x0008),
 			TagImageOrientationPatient(0x0020, 0x0037),
+			TagNumberOfFrames(0x0028, 0x0008),
+			TagPlanarConfiguration(0x0028, 0x0006),
 			TagPixelSpacing(0x0028, 0x0030),
 			TagBitsAllocated(0x0028, 0x0100),
 			TagHighBit(0x0028, 0x0102),

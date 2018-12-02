@@ -12,7 +12,9 @@ namespace Sokar {
 	private:
 		QVector<DicomScene *> vector;
 		std::vector<char> imageBuffer;
+
 		const gdcm::ImageReader *imageReader;
+		gdcm::StringFilter gdcmStringFilter;
 
 		QVector<DataSetViewer *> dataSetViewers;
 

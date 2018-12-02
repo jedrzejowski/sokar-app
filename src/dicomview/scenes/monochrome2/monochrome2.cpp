@@ -43,7 +43,7 @@ void Monochrome2::Scene::readAttributes() {
 	{ // Tworzenie obiekty okienka
 
 		auto bitsStored = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagBitsStored).GetByteValue()->GetPointer());
-		bool isDynamic = dimX * dimY < ((1 << bitsStored) - 1), isSigned = false;
+		bool isDynamic = imgDimX * imgDimY < ((1 << bitsStored) - 1), isSigned = false;
 
 		// Tworzenie odpowiedzniego okienka
 		switch (gdcmImage.GetPixelFormat()) {
@@ -159,8 +159,6 @@ bool Monochrome2::Scene::generatePixmap() {
 
 	if (!imgWindow->genLUT()) return false;
 
-//	qDebug("Monochrome2::Scene::generatePixmap");
-
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::INT8:
 			genQPixmapOfType<qint8>();
@@ -183,21 +181,22 @@ bool Monochrome2::Scene::generatePixmap() {
 			break;
 
 		case gdcm::PixelFormat::UINT32:
-			genQPixmapOfType<qint32>();
+			genQPixmapOfType<quint32>();
 			break;
 
 		case gdcm::PixelFormat::INT64:
 			genQPixmapOfType<qint64>();
 			break;
 		case gdcm::PixelFormat::UINT64:
-			genQPixmapOfType<qint64>();
+			genQPixmapOfType<quint64>();
 			break;
 
 		default:
 			throw Sokar::ImageTypeNotSupportedException();
 	}
 
-	pixmap.convertFromImage(QImage((uchar *) &targetBuffer[0], dimX, dimY, QImage::Format_RGB888));
+	auto img = QImage((uchar *) &targetBuffer[0], imgDimX, imgDimY, sizeof(Pixel) * imgDimX, QImage::Format_RGB888);
+	pixmap.convertFromImage(img);
 
 	return true;
 }
@@ -213,7 +212,7 @@ void Monochrome2::Scene::genQPixmapOfType() {
 
 			auto windowPtr = (WindowIntDynamic *) imgWindow;
 
-			for (uint64_t i = 0; i < dimX * dimY; i++, origin++) {
+			for (quint64 i = 0; i < imgDimX * imgDimY; i++, origin++) {
 				*buffer++ = windowPtr->getLUT(*origin);
 			}
 		}
@@ -223,9 +222,10 @@ void Monochrome2::Scene::genQPixmapOfType() {
 
 			auto windowPtr = (WindowIntStatic *) imgWindow;
 
-			for (uint64_t i = 0; i < dimX * dimY; i++, origin++) {
+			for (quint64 i = 0; i < imgDimX * imgDimY; i++, origin++) {
 				*buffer++ = windowPtr->getLUT(*origin);
 			}
+
 		}
 			break;
 

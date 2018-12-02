@@ -22,24 +22,18 @@ DicomScene::DicomScene(SceneParams &sceneParams) :
 
 	gdcmStringFilter.SetFile(gdcmFile);
 
-	dimX = gdcmImage.GetDimension(0);
-	dimY = gdcmImage.GetDimension(1);
-	area = dimX * dimY;
+	imgDimX = gdcmImage.GetDimension(0);
+	imgDimY = gdcmImage.GetDimension(1);
 
 	{
-		ushort byteSize = gdcm::getPixelByteSize(gdcmFile);
+		//Tworzenie sub wektora dla naszych danych
+		auto offset = sceneParams.frame * sceneParams.imgSize;
 
-		if (byteSize != 0) {
-
-			auto imgSize = area * byteSize;
-			auto offset = sceneParams.frame * imgSize;
-
-			originBuffer = std::vector<char>(sceneParams.imageBuffer->begin() + offset,
-											 sceneParams.imageBuffer->begin() + offset + imgSize);
-		}
+		originBuffer = std::vector<char>(sceneParams.imageBuffer->begin() + offset,
+										 sceneParams.imageBuffer->begin() + offset + sceneParams.imgSize);
 	}
 
-	targetBuffer.resize(area);
+	targetBuffer.resize(sceneParams.imgSize);
 
 
 	initIndicators();
