@@ -54,3 +54,4 @@ target_link_libraries(
 #Inne zasoby
 
 file(COPY res/values/ DESTINATION res/values)
+file(COPY res/img/ DESTINATION res/img)

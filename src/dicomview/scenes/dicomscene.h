@@ -31,7 +31,7 @@ namespace Sokar {
 		const gdcm::DataSet &gdcmDataSet;
 		gdcm::StringFilter gdcmStringFilter;
 
-		std::vector<char> originBuffer;
+			std::vector<char> originBuffer;
 		std::vector<Pixel> targetBuffer;
 		uint imgDimX, imgDimY;
 

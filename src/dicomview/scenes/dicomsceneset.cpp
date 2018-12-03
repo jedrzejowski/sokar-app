@@ -6,6 +6,7 @@
 #include "monochrome2/monochrome2.h"
 #include "monochrome1/monochrome1.h"
 #include "redgreenblue/redgreenblue.h"
+#include "lumbluered/lumbluered.h"
 
 
 using namespace Sokar;
@@ -62,6 +63,15 @@ void DicomSceneSet::initScenes() {
 
 				case gdcm::PhotometricInterpretation::RGB:
 					scene = new Sokar::RedGreenBlue::Scene(sceneParams);
+					break;
+
+				case gdcm::PhotometricInterpretation::YBR_FULL:
+				case gdcm::PhotometricInterpretation::YBR_FULL_422:
+				case gdcm::PhotometricInterpretation::YBR_PARTIAL_422:
+				case gdcm::PhotometricInterpretation::YBR_PARTIAL_420:
+				case gdcm::PhotometricInterpretation::YBR_ICT:
+				case gdcm::PhotometricInterpretation::YBR_RCT:
+					scene = new Sokar::LumBlueRed::Scene(sceneParams);
 					break;
 
 				default:

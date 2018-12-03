@@ -1,18 +1,17 @@
-#include <src/sokar/gdcmSokar.h>
+#include "sokar/gdcmSokar.h"
 #include "redgreenblue.h"
 
-using namespace Sokar;
+using namespace Sokar::RedGreenBlue;
 
-RedGreenBlue::Scene::Scene(SceneParams &sceneParams) :
+Scene::Scene(SceneParams &sceneParams) :
 		DicomScene(sceneParams) {
 
 	reloadPixmap();
 }
 
-bool RedGreenBlue::Scene::generatePixmap() {
+bool Scene::generatePixmap() {
 	if (!pixmap.isNull()) return false;
 
-	qDebug() << "regen";
 	gdcm::assertTagPresence(gdcmDataSet, gdcm::TagPlanarConfiguration);
 
 	auto planarConfiguration = (ushort) *(gdcmDataSet.GetDataElement(
@@ -64,7 +63,7 @@ bool RedGreenBlue::Scene::generatePixmap() {
 	return true;
 }
 
-void RedGreenBlue::Scene::toolBarAdjust(DicomToolBar *toolbar) {
+void Scene::toolBarAdjust(DicomToolBar *toolbar) {
 	DicomScene::toolBarAdjust(toolbar);
 
 	toolbar->getActionWindowing()->setDisabled(true);

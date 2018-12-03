@@ -1,17 +1,25 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
     <qresource>
-        <file>img/icons/clean.png</file>
-        <file>img/icons/fit2screen.png</file>
-        <file>img/icons/flipHorizontal.png</file>
-        <file>img/icons/flipVertical.png</file>
-        <file>img/icons/hand.png</file>
-        <file>img/icons/originalSize.png</file>
-        <file>img/icons/rotate.png</file>
-        <file>img/icons/rotateLeft.png</file>
-        <file>img/icons/rotateRight.png</file>
-        <file>img/icons/tags.png</file>
-        <file>img/icons/window.png</file>
-        <file>img/icons/zoom.png</file>
+        <file>img/ico/clean.png</file>
+        <file>img/ico/fit2screen.png</file>
+        <file>img/ico/flipHorizontal.png</file>
+        <file>img/ico/flipVertical.png</file>
+        <file>img/ico/hand.png</file>
+        <file>img/ico/originalSize.png</file>
+        <file>img/ico/rotate.png</file>
+        <file>img/ico/rotateLeft.png</file>
+        <file>img/ico/rotateRight.png</file>
+        <file>img/ico/tags.png</file>
+        <file>img/ico/window.png</file>
+        <file>img/ico/zoom.png</file>
+
+
+        <file>img/ico/mouse.svg</file>
+        <file>img/ico/mouse-000.svg</file>
+        <file>img/ico/mouse-001.svg</file>
+        <file>img/ico/mouse-010.svg</file>
+        <file>img/ico/mouse-100.svg</file>
+        <file>img/ico/mouse-101.svg</file>
     </qresource>
 </RCC>

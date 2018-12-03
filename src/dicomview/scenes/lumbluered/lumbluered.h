@@ -4,18 +4,18 @@
 #include <QtWidgets>
 
 #include "../dicomscene.h"
+#include "../redgreenblue/redgreenblue.h"
 
-namespace Sokar::RedGreenBlue {
+namespace Sokar::LumBlueRed {
 
-	class Scene : public Sokar::DicomScene {
+	class Scene : public DicomScene {
 	Q_OBJECT
-
 	public:
 		explicit Scene(SceneParams &sceneParams);
 	protected:
 		bool generatePixmap() override;
+
 	public:
 		void toolBarAdjust(DicomToolBar *toolbar) override;
 	};
-
 }

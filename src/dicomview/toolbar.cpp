@@ -15,13 +15,54 @@ DicomToolBar::DicomToolBar(QWidget *parent) : QToolBar(parent) {
 	initActions();
 }
 
+const QIcon &iconWithMouse(const QString &name,
+						   const QString &tl, const QString &tr,
+						   const QString &br, const QString &bl) {
+	static QHash<QString, QIcon *> map;
+	auto key = name + tl + tr + br + bl;
+
+	if (map.contains(key)) return *map[key];
+
+	QImage base(":/img/ico/" + name);
+	QPainter painter(&base);
+	painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+
+	auto h2 = base.height() / 2;
+	auto w2 = base.width() / 2;
+
+	if (!tl.isEmpty())
+		painter.drawImage(
+				QRect(0, 0, w2, h2),
+				QImage(":/img/ico/" + tl));
+
+	if (!tr.isEmpty())
+		painter.drawImage(
+				QRect(0, h2, w2, h2),
+				QImage(":/img/ico/" + tr));
+
+	if (!tl.isEmpty())
+		painter.drawImage(
+				QRect(w2, h2, w2, h2),
+				QImage(":/img/ico/" + tl));
+
+	if (!tl.isEmpty())
+		painter.drawImage(
+				QRect(w2, 0, w2, h2),
+				QImage(":/img/ico/" + tl));
+
+
+	map[key] = new QIcon(QPixmap::fromImage(base));
+
+	return *map[key];
+}
+
 void DicomToolBar::initActions() {
 	QAction *action;
 
 	Windowing:
 	{
 
-		actionWindowing = new QAction(QIcon(":/img/icons/window.png"), tr("Windowing"), this);
+		actionWindowing = new QAction(QIcon(":/img/ico/window.png"), tr("Windowing"), this);
 		actionWindowing->setActionGroup(toggleActionGrp);
 		actionWindowing->setCheckable(true);
 		actionWindowing->setDisabled(true);
@@ -41,7 +82,7 @@ void DicomToolBar::initActions() {
 	Pan:
 	{
 
-		actionPan = new QAction(QIcon(":/img/icons/hand.png"), tr("Pan"), this);
+		actionPan = new QAction(QIcon(":/img/ico/hand.png"), tr("Pan"), this);
 		actionPan->setActionGroup(toggleActionGrp);
 		actionPan->setCheckable(true);
 		addAction(actionPan);
@@ -57,7 +98,7 @@ void DicomToolBar::initActions() {
 		actionPan->setMenu(menu);
 
 		{
-			action = new QAction(QIcon(":/img/icons/clean.png"), tr("Move To Center"), menu);
+			action = new QAction(QIcon(":/img/ico/clean.png"), tr("Move To Center"), menu);
 			menu->addAction(action);
 			connect(action, &QAction::triggered, [=](bool) {
 				emit actionTriggerSignal(ClearPan);
@@ -68,7 +109,7 @@ void DicomToolBar::initActions() {
 	Zoom:
 	{
 
-		actionZoom = new QAction(QIcon(":/img/icons/zoom.png"), tr("Zoom"), this);
+		actionZoom = new QAction(QIcon(":/img/ico/zoom.png"), tr("Zoom"), this);
 		actionZoom->setActionGroup(toggleActionGrp);
 		actionZoom->setCheckable(true);
 		addAction(actionZoom);
@@ -84,7 +125,7 @@ void DicomToolBar::initActions() {
 		actionZoom->setMenu(menu);
 
 		{
-			action = new QAction(QIcon(":/img/icons/fit2screen.png"), tr("Fit To Screen"), menu);
+			action = new QAction(QIcon(":/img/ico/fit2screen.png"), tr("Fit To Screen"), menu);
 			menu->addAction(action);
 			connect(action, &QAction::triggered, [=](bool) {
 				emit actionTriggerSignal(Fit2Screen);
@@ -92,7 +133,7 @@ void DicomToolBar::initActions() {
 		}
 
 		{
-			action = new QAction(QIcon(":/img/icons/originalSize.png"), tr("Original Resolution"), menu);
+			action = new QAction(QIcon(":/img/ico/originalSize.png"), tr("Original Resolution"), menu);
 			menu->addAction(action);
 			connect(action, &QAction::triggered, [=](bool) {
 				emit actionTriggerSignal(OriginalResolution);
@@ -103,7 +144,7 @@ void DicomToolBar::initActions() {
 	Rotate:
 	{
 
-		actionRotate = addAction(QIcon(":/img/icons/rotate.png"), tr("Rotate"));
+		actionRotate = addAction(QIcon(":/img/ico/rotate.png"), tr("Rotate"));
 		actionRotate->setActionGroup(toggleActionGrp);
 		actionRotate->setCheckable(true);
 
@@ -118,14 +159,14 @@ void DicomToolBar::initActions() {
 		actionRotate->setMenu(menu);
 
 		{
-			action = new QAction(QIcon(":/img/icons/rotateRight.png"), tr("Rotate Right"), menu);
+			action = new QAction(QIcon(":/img/ico/rotateRight.png"), tr("Rotate Right"), menu);
 			menu->addAction(action);
 			connect(action, &QAction::triggered, [=](bool) {
 				emit actionTriggerSignal(RotateRight90);
 			});
 		}
 		{
-			action = new QAction(QIcon(":/img/icons/rotateLeft.png"), tr("Rotate Left"), menu);
+			action = new QAction(QIcon(":/img/ico/rotateLeft.png"), tr("Rotate Left"), menu);
 			menu->addAction(action);
 			connect(action, &QAction::triggered, [=](bool) {
 				emit actionTriggerSignal(RotateLeft90);
@@ -133,14 +174,14 @@ void DicomToolBar::initActions() {
 		}
 		menu->addSeparator();
 		{
-			action = new QAction(QIcon(":/img/icons/flipHorizontal.png"), tr("Flip Horizontal"), menu);
+			action = new QAction(QIcon(":/img/ico/flipHorizontal.png"), tr("Flip Horizontal"), menu);
 			menu->addAction(action);
 			connect(action, &QAction::triggered, [=](bool) {
 				emit actionTriggerSignal(FlipHorizontal);
 			});
 		}
 		{
-			action = new QAction(QIcon(":/img/icons/flipVertical.png"), tr("Flip Vertical"), menu);
+			action = new QAction(QIcon(":/img/ico/flipVertical.png"), tr("Flip Vertical"), menu);
 			menu->addAction(action);
 			connect(action, &QAction::triggered, [=](bool) {
 				emit actionTriggerSignal(FlipVertical);
@@ -148,7 +189,7 @@ void DicomToolBar::initActions() {
 		}
 		menu->addSeparator();
 		{
-			action = new QAction(QIcon(":/img/icons/clean.png"), tr("Clear Transformation"), menu);
+			action = new QAction(QIcon(":/img/ico/clean.png"), tr("Clear Transformation"), menu);
 			menu->addAction(action);
 			connect(action, &QAction::triggered, [=](bool) {
 				emit actionTriggerSignal(ClearRotate);
@@ -159,7 +200,7 @@ void DicomToolBar::initActions() {
 
 	Tags:
 	{
-		actionTags = new QAction(QIcon(":/img/icons/tags.png"), tr("DICOM Tags"), this);
+		actionTags = new QAction(QIcon(":/img/ico/tags.png"), tr("DICOM Tags"), this);
 		addAction(actionTags);
 		connect(actionTags, &QAction::triggered, [=](bool) {
 			emit actionTriggerSignal(OpenDataSet);
