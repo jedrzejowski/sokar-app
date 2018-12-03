@@ -15,47 +15,6 @@ DicomToolBar::DicomToolBar(QWidget *parent) : QToolBar(parent) {
 	initActions();
 }
 
-const QIcon &iconWithMouse(const QString &name,
-						   const QString &tl, const QString &tr,
-						   const QString &br, const QString &bl) {
-	static QHash<QString, QIcon *> map;
-	auto key = name + tl + tr + br + bl;
-
-	if (map.contains(key)) return *map[key];
-
-	QImage base(":/img/ico/" + name);
-	QPainter painter(&base);
-	painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-
-	auto h2 = base.height() / 2;
-	auto w2 = base.width() / 2;
-
-	if (!tl.isEmpty())
-		painter.drawImage(
-				QRect(0, 0, w2, h2),
-				QImage(":/img/ico/" + tl));
-
-	if (!tr.isEmpty())
-		painter.drawImage(
-				QRect(0, h2, w2, h2),
-				QImage(":/img/ico/" + tr));
-
-	if (!tl.isEmpty())
-		painter.drawImage(
-				QRect(w2, h2, w2, h2),
-				QImage(":/img/ico/" + tl));
-
-	if (!tl.isEmpty())
-		painter.drawImage(
-				QRect(w2, 0, w2, h2),
-				QImage(":/img/ico/" + tl));
-
-
-	map[key] = new QIcon(QPixmap::fromImage(base));
-
-	return *map[key];
-}
-
 void DicomToolBar::initActions() {
 	QAction *action;
 
@@ -75,8 +34,6 @@ void DicomToolBar::initActions() {
 		//https://forum.qt.io/topic/23704/solved-submenu-from-qtoolbar-button/3
 		auto btn = (QToolButton *) widgetForAction(actionWindowing);
 		btn->setPopupMode(QToolButton::MenuButtonPopup);
-
-		//TODO import menu z oecnej scenie
 	}
 
 	Pan:
@@ -211,4 +168,3 @@ void DicomToolBar::initActions() {
 		action->setDisabled(true);
 	}
 }
-
