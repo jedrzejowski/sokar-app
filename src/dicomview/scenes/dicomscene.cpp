@@ -132,6 +132,9 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 				rotateTransform.rotate(rotate);
 				updatePixmapTransformation();
+
+				if (imageOrientationIndicator != nullptr)
+					imageOrientationIndicator->setRotateTransform(rotateTransform);
 			}
 				break;
 		}
@@ -143,7 +146,7 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 //region Indicators
 
 void DicomScene::initIndicators() {
-	initPixelSpacingIndicator();
+//	initPixelSpacingIndicator();
 	initImageOrientationIndicator();
 }
 
@@ -181,12 +184,7 @@ void DicomScene::initPixelSpacingIndicator() {
 void DicomScene::initImageOrientationIndicator() {
 	if (!gdcmDataSet.FindDataElement(gdcm::TagImageOrientationPatient)) return;
 
-	auto imgTypes = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagImageType))
-			.split(gdcm::StringSplitter);
-
-	if (!imgTypes.contains("AXIAL", Qt::CaseSensitivity::CaseInsensitive)) return;
-
-	auto orientations = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelSpacing));
+	auto orientations = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagImageOrientationPatient));
 
 	imageOrientationIndicator = new ImageOrientationIndicator();
 	imageOrientationIndicator->setOrientation(orientations);
@@ -276,6 +274,9 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action) {
 	if (updateTransform) {
 		updatePixmapTransformation();
 		reposItems();
+
+		if (imageOrientationIndicator != nullptr)
+			imageOrientationIndicator->setRotateTransform(rotateTransform);
 	}
 }
 

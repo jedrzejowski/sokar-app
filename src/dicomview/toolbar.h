@@ -56,9 +56,6 @@ namespace Sokar {
 
 		//endregion
 
-	protected:
-		void mousePressEvent(QMouseEvent *event) override;
-
 	private:
 		void initActions();
 

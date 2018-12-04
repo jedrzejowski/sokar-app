@@ -7,14 +7,22 @@ namespace Sokar {
 	private:
 		QGraphicsTextItem *topText, *leftText, *rightText, *bottomText;
 
-		static QString Left, Right, Anterior, Posterior, Feet, Head;
+		QMatrix4x4 imgMatrix;
+		QMatrix4x4 rotateTransform;
+
+		struct {
+			QVector4D right, left, head, feet, anterior, posterior;
+		} scenePosition;
 
 	public:
 		ImageOrientationIndicator();
 
+		void setRotateTransform(QTransform &rotateTransform);
 		void setOrientation(QString orient);
-		void setAngle(qreal angle);
 
 		void reposition() override;
+
+	public slots:
+		void update();
 	};
 }

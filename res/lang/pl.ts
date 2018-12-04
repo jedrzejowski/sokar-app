@@ -32,62 +32,62 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="44"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="42"/>
         <source>Pan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="60"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="58"/>
         <source>Move To Center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="71"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="69"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="87"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="85"/>
         <source>Fit To Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="95"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="93"/>
         <source>Original Resolution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="106"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="104"/>
         <source>Rotate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="121"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="119"/>
         <source>Rotate Right</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="128"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="126"/>
         <source>Rotate Left</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="136"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="134"/>
         <source>Flip Horizontal</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="143"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="141"/>
         <source>Flip Vertical</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="151"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="149"/>
         <source>Clear Transformation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="162"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="160"/>
         <source>DICOM Tags</source>
         <translation type="unfinished"></translation>
     </message>

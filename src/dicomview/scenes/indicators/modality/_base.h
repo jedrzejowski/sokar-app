@@ -11,7 +11,7 @@ namespace Sokar {
 		const gdcm::DataSet &dataset;
 		QGraphicsTextItem *text;
 
-		virtual QString genText() = 0;
+		virtual QString genText() {};
 
 	public:
 		explicit ModalityIndicator(const gdcm::DataSet &dataset);
