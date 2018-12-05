@@ -7,7 +7,7 @@
 
 #include "windowing/windowint.h"
 
-namespace Sokar::Monochrome2 {
+namespace Sokar::Monochrome {
 
 	class Scene : public Sokar::DicomScene {
 	Q_OBJECT

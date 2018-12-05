@@ -35,6 +35,7 @@ DicomScene::DicomScene(SceneParams &sceneParams) :
 
 	targetBuffer.resize(sceneParams.imgSize);
 
+	qImage = QImage((uchar *) &targetBuffer[0], imgDimX, imgDimY, sizeof(Pixel) * imgDimX, QImage::Format_RGB888);
 
 	initIndicators();
 }

@@ -3,7 +3,7 @@
 #include "windowint.h"
 #include <iostream>
 
-namespace Sokar::Monochrome2 {
+namespace Sokar::Monochrome {
 	class WindowIntStatic : public WindowInt {
 	protected:
 //		std::vector<Pixel> array;
@@ -21,7 +21,6 @@ namespace Sokar::Monochrome2 {
 		bool genLUT() override {
 
 			if (WindowInt::genLUT()) {
-				qDebug() << arraySize;
 
 //				if (array.size() != signedMove + maxValue)
 //					array.resize(signedMove + maxValue);

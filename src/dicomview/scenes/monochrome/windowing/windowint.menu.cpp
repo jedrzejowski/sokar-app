@@ -3,7 +3,7 @@
 
 #include "sokar/palette.h"
 
-using namespace Sokar::Monochrome2;
+using namespace Sokar::Monochrome;
 
 
 void WindowInt::genMenu() {

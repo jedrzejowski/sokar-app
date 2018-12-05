@@ -15,7 +15,8 @@ QVector<Palette *> &Palette::getAll() {
 	if (!all.isEmpty())
 		return all;
 
-	all << getDefault();
+	all << getMono1();
+	all << getMono2();
 
 	QDir directory("res/values/colorpalettes");
 
@@ -78,17 +79,36 @@ Palette *Palette::fromFile(QFile &file) {
 
 }
 
-Palette *Palette::getDefault() {
+Palette *Palette::getMono1() {
 	static Palette *palette;
 
 	if (palette != nullptr) return palette;
 
 	palette = new Palette();
+
 	palette->name = "";
-	palette->display = "Gray Scale";
+	palette->display = "Monochrome1";
+	palette->pixels.resize(256);
 
 	for (int i = 0; i <= 255; i++)
-		palette->pixels << Pixel(quint8(i));
+		palette->pixels[255 - i] = Pixel(quint8(i));
+
+	return palette;
+}
+
+Palette *Palette::getMono2() {
+	static Palette *palette;
+
+	if (palette != nullptr) return palette;
+
+	palette = new Palette();
+
+	palette->name = "";
+	palette->display = "Monochrome2";
+	palette->pixels.resize(256);
+
+	for (int i = 0; i <= 255; i++)
+		palette->pixels[i] = Pixel(quint8(i));
 
 	return palette;
 }

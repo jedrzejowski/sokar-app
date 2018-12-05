@@ -6,7 +6,7 @@
 #include "sokar/palette.h"
 #include "../../indicators/_base.h"
 
-namespace Sokar::Monochrome2 {
+namespace Sokar::Monochrome {
 
 	class Window : public QObject, public SceneIndicator {
 	Q_OBJECT
@@ -14,7 +14,7 @@ namespace Sokar::Monochrome2 {
 		bool shouldRegen = true;
 		bool inversed = false;
 
-		Palette *palette = Palette::getDefault();
+		Palette *palette = nullptr;
 
 		QMenu toolbarMenu;
 

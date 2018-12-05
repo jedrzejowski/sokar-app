@@ -3,14 +3,11 @@
 #include "dicomsceneset.h"
 
 #include "unsupported/unsupported.h"
-#include "monochrome2/monochrome2.h"
-#include "monochrome1/monochrome1.h"
+#include "monochrome/monochrome.h"
 #include "redgreenblue/redgreenblue.h"
 #include "lumbluered/lumbluered.h"
 
-
 using namespace Sokar;
-
 
 DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent) :
 		QObject(parent),
@@ -21,14 +18,12 @@ DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent) :
 	initScenes();
 }
 
-
 DicomSceneSet::~DicomSceneSet() {
 	for (auto &datasetViewer : dataSetViewers)
 		delete datasetViewer;
 
 	delete imageReader;
 }
-
 
 void DicomSceneSet::initScenes() {
 	auto &image = imageReader->GetImage();
@@ -54,11 +49,8 @@ void DicomSceneSet::initScenes() {
 
 			switch (image.GetPhotometricInterpretation()) {
 				case gdcm::PhotometricInterpretation::MONOCHROME1:
-					scene = new Sokar::Monochrome1::Scene(sceneParams);
-					break;
-
 				case gdcm::PhotometricInterpretation::MONOCHROME2:
-					scene = new Sokar::Monochrome2::Scene(sceneParams);
+					scene = new Sokar::Monochrome::Scene(sceneParams);
 					break;
 
 				case gdcm::PhotometricInterpretation::RGB:
@@ -66,11 +58,11 @@ void DicomSceneSet::initScenes() {
 					break;
 
 				case gdcm::PhotometricInterpretation::YBR_FULL:
-				case gdcm::PhotometricInterpretation::YBR_FULL_422:
-				case gdcm::PhotometricInterpretation::YBR_PARTIAL_422:
-				case gdcm::PhotometricInterpretation::YBR_PARTIAL_420:
-				case gdcm::PhotometricInterpretation::YBR_ICT:
-				case gdcm::PhotometricInterpretation::YBR_RCT:
+				case gdcm::PhotometricInterpretation::YBR_FULL_422://Nope
+				case gdcm::PhotometricInterpretation::YBR_PARTIAL_422://Nope
+				case gdcm::PhotometricInterpretation::YBR_PARTIAL_420://Nope
+				case gdcm::PhotometricInterpretation::YBR_ICT://Nope
+				case gdcm::PhotometricInterpretation::YBR_RCT://Nope
 					scene = new Sokar::LumBlueRed::Scene(sceneParams);
 					break;
 

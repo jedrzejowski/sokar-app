@@ -1,7 +1,7 @@
 
 #include "_window.h"
 
-using namespace Sokar::Monochrome2;
+using namespace Sokar::Monochrome;
 
 QMenu *Window::getMenu() {
 	if (toolbarMenu.isEmpty()) genMenu();

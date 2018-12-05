@@ -15,21 +15,20 @@
 #include "../../dicomview.h"
 #include "../../graphics.h"
 
-#include "monochrome2.h"
+#include "monochrome.h"
 #include "windowing/windowintdynamic.h"
 #include "windowing/windowintstatic.h"
 
-using namespace Sokar;
+using namespace Sokar::Monochrome;
 
-
-Monochrome2::Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
+Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
 
 	readAttributes();
 
 	reloadPixmap();
 }
 
-void Monochrome2::Scene::readAttributes() {
+void Scene::readAttributes() {
 
 	bool ok;
 	ushort us;
@@ -89,6 +88,22 @@ void Monochrome2::Scene::readAttributes() {
 		imgWindowInt->setCenter(imgWindowInt->getMaxValue() / 2);
 
 		connect(imgWindow, &Window::forceRefreshSignal, this, &DicomScene::reloadPixmap);
+	}
+
+	//Palette
+	{
+		switch (gdcmImage.GetPhotometricInterpretation()) {
+			case gdcm::PhotometricInterpretation::MONOCHROME1:
+				imgWindow->setPalette(Palette::getMono1());
+				break;
+
+			case gdcm::PhotometricInterpretation::MONOCHROME2:
+				imgWindow->setPalette(Palette::getMono2());
+				break;
+
+			default:
+				throw WrongScopeException(__FILE__, __LINE__);
+		}
 	}
 
 	//
@@ -152,15 +167,15 @@ void Monochrome2::Scene::readAttributes() {
 	}
 }
 
-bool Monochrome2::Scene::generatePixmap() {
+bool Scene::generatePixmap() {
 
-	SpeedTest okienkowanie("Okienkowanie");
+	SpeedTest okienkowanie("LUT");
 
 	if (!imgWindow->genLUT()) return false;
 
 	okienkowanie.close();
 
-	SpeedTest generowanie("Generowanie");
+	SpeedTest generowanie("Image");
 
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::INT8:
@@ -200,10 +215,9 @@ bool Monochrome2::Scene::generatePixmap() {
 
 	generowanie.close();
 
-	SpeedTest qting("Qting");
+	SpeedTest qting("QPixmap");
 
-	auto img = QImage((uchar *) &targetBuffer[0], imgDimX, imgDimY, sizeof(Pixel) * imgDimX, QImage::Format_RGB888);
-	pixmap.convertFromImage(img);
+	pixmap.convertFromImage(qImage);
 
 	qting.close();
 
@@ -211,7 +225,7 @@ bool Monochrome2::Scene::generatePixmap() {
 }
 
 template<typename IntType>
-void Monochrome2::Scene::genQPixmapOfType() {
+void Scene::genQPixmapOfType() {
 
 	switch (imgWindow->type()) {
 		case Window::IntDynamic:
@@ -228,7 +242,7 @@ void Monochrome2::Scene::genQPixmapOfType() {
 }
 
 template<typename IntType, typename WinClass>
-void Monochrome2::Scene::genQPixmapOfTypeWidthWindow() {
+void Scene::genQPixmapOfTypeWidthWindow() {
 
 	std::vector<std::thread> threads;
 
@@ -236,7 +250,7 @@ void Monochrome2::Scene::genQPixmapOfTypeWidthWindow() {
 	quint64 step = max / QThread::idealThreadCount();
 
 	for (int i = 1; i < QThread::idealThreadCount(); i++) {
-		std::thread t(&Monochrome2::Scene::genQPixmapOfTypeWidthWindowThread<IntType, WinClass>,
+		std::thread t(&Scene::genQPixmapOfTypeWidthWindowThread<IntType, WinClass>,
 					  this,
 					  i * step,
 					  std::min((i + 1) * step, max));
@@ -250,7 +264,7 @@ void Monochrome2::Scene::genQPixmapOfTypeWidthWindow() {
 }
 
 template<typename IntType, typename WinClass>
-void Monochrome2::Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 to) {
+void Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 to) {
 
 	auto buffer = &targetBuffer[from];
 	auto origin = (IntType *) &originBuffer[0];
@@ -263,12 +277,12 @@ void Monochrome2::Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64
 	}
 }
 
-Monochrome2::Scene::~Scene() {
+Scene::~Scene() {
 
 	delete imgWindow;
 }
 
-void Monochrome2::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
+void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 	if (event->buttons() & Qt::LeftButton) {
 
@@ -293,7 +307,7 @@ void Monochrome2::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 	DicomScene::mouseMoveEvent(event);
 }
 
-void Monochrome2::Scene::toolBarAdjust(DicomToolBar *toolbar) {
+void Scene::toolBarAdjust(DicomToolBar *toolbar) {
 	DicomScene::toolBarAdjust(toolbar);
 
 	auto winAction = toolbar->getActionWindowing();

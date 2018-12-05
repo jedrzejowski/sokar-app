@@ -4,8 +4,7 @@
 
 #include "_window.h"
 
-
-namespace Sokar::Monochrome2 {
+namespace Sokar::Monochrome {
 
 	class WindowInt : public Window {
 	Q_OBJECT

@@ -2,7 +2,7 @@
 
 #include "windowint.h"
 
-namespace Sokar::Monochrome2 {
+namespace Sokar::Monochrome {
 	class WindowIntDynamic : public WindowInt {
 	private:
 		Pixel background, foreground;

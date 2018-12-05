@@ -61,8 +61,7 @@ bool Scene::generatePixmap() {
 		origin += 3;
 	}
 
-	auto img = QImage((uchar * ) & targetBuffer[0], imgDimX, imgDimY, sizeof(Pixel) * imgDimX, QImage::Format_RGB888);
-	pixmap.convertFromImage(img);
+	pixmap.convertFromImage(qImage);
 
 	return true;
 }

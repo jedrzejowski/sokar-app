@@ -37,6 +37,7 @@ namespace Sokar {
 
 		inline const Pixel &getBackground() { return pixels.constFirst(); }
 
-		static Palette *getDefault();
+		static Palette *getMono1();
+		static Palette *getMono2();
 	};
 }
