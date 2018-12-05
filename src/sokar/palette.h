@@ -21,6 +21,7 @@ namespace Sokar {
 		}
 
 		inline const Pixel &getPixel(int i) {
+			i = std::max(0, std::min(size(), i));
 			return pixels[i];
 		}
 

@@ -29,7 +29,6 @@ Monochrome2::Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
 	reloadPixmap();
 }
 
-
 void Monochrome2::Scene::readAttributes() {
 
 	bool ok;
@@ -122,8 +121,6 @@ void Monochrome2::Scene::readAttributes() {
 		} else {
 
 		}
-
-
 	}
 
 	//
@@ -157,7 +154,13 @@ void Monochrome2::Scene::readAttributes() {
 
 bool Monochrome2::Scene::generatePixmap() {
 
+	SpeedTest okienkowanie("Okienkowanie");
+
 	if (!imgWindow->genLUT()) return false;
+
+	okienkowanie.close();
+
+	SpeedTest generowanie("Generowanie");
 
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::INT8:
@@ -195,38 +198,28 @@ bool Monochrome2::Scene::generatePixmap() {
 			throw Sokar::ImageTypeNotSupportedException();
 	}
 
+	generowanie.close();
+
+	SpeedTest qting("Qting");
+
 	auto img = QImage((uchar *) &targetBuffer[0], imgDimX, imgDimY, sizeof(Pixel) * imgDimX, QImage::Format_RGB888);
 	pixmap.convertFromImage(img);
+
+	qting.close();
 
 	return true;
 }
 
-template<typename T>
+template<typename IntType>
 void Monochrome2::Scene::genQPixmapOfType() {
 
-	auto *buffer = &targetBuffer[0];
-	auto *origin = (T *) &originBuffer[0];
-
 	switch (imgWindow->type()) {
-		case Window::IntDynamic: {
-
-			auto windowPtr = (WindowIntDynamic *) imgWindow;
-
-			for (quint64 i = 0; i < imgDimX * imgDimY; i++, origin++) {
-				*buffer++ = windowPtr->getLUT(*origin);
-			}
-		}
+		case Window::IntDynamic:
+			genQPixmapOfTypeWidthWindow<IntType, WindowIntDynamic>();
 			break;
 
-		case Window::IntStatic: {
-
-			auto windowPtr = (WindowIntStatic *) imgWindow;
-
-			for (quint64 i = 0; i < imgDimX * imgDimY; i++, origin++) {
-				*buffer++ = windowPtr->getLUT(*origin);
-			}
-
-		}
+		case Window::IntStatic:
+			genQPixmapOfTypeWidthWindow<IntType, WindowIntStatic>();
 			break;
 
 		default:
@@ -234,6 +227,41 @@ void Monochrome2::Scene::genQPixmapOfType() {
 	}
 }
 
+template<typename IntType, typename WinClass>
+void Monochrome2::Scene::genQPixmapOfTypeWidthWindow() {
+
+	std::vector<std::thread> threads;
+
+	quint64 max = imgDimX * imgDimY;
+	quint64 step = max / QThread::idealThreadCount();
+
+	for (int i = 1; i < QThread::idealThreadCount(); i++) {
+		std::thread t(&Monochrome2::Scene::genQPixmapOfTypeWidthWindowThread<IntType, WinClass>,
+					  this,
+					  i * step,
+					  std::min((i + 1) * step, max));
+
+		threads.push_back(std::move(t));
+	}
+
+	genQPixmapOfTypeWidthWindowThread<IntType, WinClass>(0, step);
+
+	for (auto &t: threads) t.join();
+}
+
+template<typename IntType, typename WinClass>
+void Monochrome2::Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 to) {
+
+	auto buffer = &targetBuffer[from];
+	auto origin = (IntType *) &originBuffer[0];
+	auto windowPtr = (WinClass *) imgWindow;
+
+	origin += from;
+
+	for (quint64 i = from; i < to; i++, origin++) {
+		*buffer++ = windowPtr->getLUT(*origin);
+	}
+}
 
 Monochrome2::Scene::~Scene() {
 

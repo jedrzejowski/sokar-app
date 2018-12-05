@@ -14,6 +14,7 @@ set_directory_properties(PROPERTIES CLEAN_NO_CUSTOM TRUE)
 
 set(APP_TARGET Sokar)
 
+find_package(Threads)
 
 #Biblioteka gdcmDICOM
 find_package(GDCM REQUIRED)
@@ -49,6 +50,7 @@ target_link_libraries(
         gdcmMSFF
         Qt5::Widgets
         ${EXTRA_LIBS}
+        ${CMAKE_THREAD_LIBS_INIT}
 )
 
 #Inne zasoby

@@ -123,37 +123,24 @@ void ImageOrientationIndicator::update() {
 	auto feet = rotateTransform * scenePosition.feet;
 
 	QVector<QString> chars(8);
-	int a;
 
-	if (isNotCenter(anterior)) {
-		a = sceneAngle(anterior);
-		chars[a] = QObject::tr("A");
-	}
+	if (isNotCenter(anterior))
+		chars[sceneAngle(anterior)] = QObject::tr("A");
 
-	if (isNotCenter(posterior)) {
-		a = sceneAngle(posterior);
-		chars[a] = QObject::tr("P");
-	}
+	if (isNotCenter(posterior))
+		chars[sceneAngle(posterior)] = QObject::tr("P");
 
-	if (isNotCenter(left)) {
-		a = sceneAngle(left);
-		chars[a] = QObject::tr("L");
-	}
+	if (isNotCenter(left))
+		chars[sceneAngle(left)] = QObject::tr("L");
 
-	if (isNotCenter(right)) {
-		a = sceneAngle(right);
-		chars[a] = QObject::tr("R");
-	}
+	if (isNotCenter(right))
+		chars[sceneAngle(right)] = QObject::tr("R");
 
-	if (isNotCenter(head)) {
-		a = sceneAngle(head);
-		chars[a] = QObject::tr("H");
-	}
+	if (isNotCenter(head))
+		chars[sceneAngle(head)] = QObject::tr("H");
 
-	if (isNotCenter(feet)) {
-		a = sceneAngle(feet);
-		chars[a] = QObject::tr("F");
-	}
+	if (isNotCenter(feet))
+		chars[sceneAngle(feet)] = QObject::tr("F");
 
 	leftText->setPlainText(chars[7] + chars[0] + chars[1]);
 	topText->setPlainText(chars[1] + chars[2] + chars[3]);

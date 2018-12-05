@@ -26,8 +26,14 @@ namespace Sokar::Monochrome2 {
 
 		bool generatePixmap() override;
 
-		template<typename T>
+		template<typename IntType>
 		void genQPixmapOfType();
+
+		template<typename IntType, typename WinClass>
+		void genQPixmapOfTypeWidthWindow();
+
+		template<typename IntType, typename WinClass>
+		void genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 to);
 
 		void readAttributes();
 

@@ -25,6 +25,39 @@
     </message>
 </context>
 <context>
+    <name>QObject</name>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="128"/>
+        <source>A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="131"/>
+        <source>P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="134"/>
+        <source>L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="137"/>
+        <source>R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="140"/>
+        <source>H</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="143"/>
+        <source>F</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Sokar::DicomToolBar</name>
     <message>
         <location filename="../../src/dicomview/toolbar.cpp" line="24"/>

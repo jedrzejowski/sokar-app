@@ -6,8 +6,13 @@
 namespace Sokar::Monochrome2 {
 	class WindowIntStatic : public WindowInt {
 	protected:
-		std::vector<Pixel> array;
+//		std::vector<Pixel> array;
+		Pixel *array = nullptr;
+		quint64 arraySize = 0;
 	public:
+		~WindowIntStatic() override {
+			delete array;
+		}
 
 		Type type() override {
 			return IntStatic;
@@ -16,9 +21,16 @@ namespace Sokar::Monochrome2 {
 		bool genLUT() override {
 
 			if (WindowInt::genLUT()) {
+				qDebug() << arraySize;
 
-				if (array.size() != signedMove + maxValue)
-					array.resize(signedMove + maxValue);
+//				if (array.size() != signedMove + maxValue)
+//					array.resize(signedMove + maxValue);
+
+				if (arraySize != signedMove + maxValue) {
+					delete array;
+					arraySize = signedMove + maxValue;
+					array = new Pixel[arraySize];
+				}
 
 				//http://gcc.gnu.org/onlinedocs/gcc/_005f_005fint128.html
 				//xD po całości, 8h na to zmarnowałem
@@ -28,17 +40,20 @@ namespace Sokar::Monochrome2 {
 				auto background = isInversed() ? palette->getForeground() : palette->getBackground();
 				auto foreground = isInversed() ? palette->getBackground() : palette->getForeground();
 
-				for (auto &pixel : array) {
+//				for (auto &pixel : array) {
+				Pixel *pixel = array;
+				for (int i = 0; i <= arraySize; i++) {
 
 					if (x < x0) {
-						pixel = background;
+						*pixel = background;
 					} else if (x > x1) {
-						pixel = foreground;
+						*pixel = foreground;
 					} else {
-						pixel = palette->getPixel(a * x + b);
+						*pixel = palette->getPixel(a * x + b);
 					}
 
 					x++;
+					pixel++;
 				}
 
 				return true;
@@ -47,7 +62,7 @@ namespace Sokar::Monochrome2 {
 		}
 
 		inline const Pixel &getLUT(quint64 value) override {
-			return array[signedMove + value];
+			return *(array + signedMove + value);
 		}
 	};
 }
