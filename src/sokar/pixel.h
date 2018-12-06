@@ -7,7 +7,7 @@ namespace Sokar {
 	struct Pixel {
 		quint8 red = 0, green = 0, blue = 0;
 
-		Pixel() {}
+		Pixel() = default;
 
 		Pixel(quint8 gray) : red(gray), green(gray), blue(gray) {}
 
