@@ -13,22 +13,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Zmiana Monochromu">
-      <change afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_layout.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_layout.h" afterDir="false" />
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Prace nad Indicatorami">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/framechooser.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/framechooser.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixel.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/scene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/scene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/speedtest.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/speedtest.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -124,7 +110,7 @@
     <session id="1017096187">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="8" />
@@ -137,7 +123,7 @@
           <entry key="cpp" value="13865" />
           <entry key="h" value="6060" />
           <entry key="qrc" value="146" />
-          <entry key="txt" value="412" />
+          <entry key="txt" value="434" />
           <entry key="ui" value="46" />
         </counts>
       </usages-collector>
@@ -146,7 +132,7 @@
           <entry key="CMakeLists.txt" value="272" />
           <entry key="Doxygen file" value="6" />
           <entry key="ObjectiveC" value="19919" />
-          <entry key="PLAIN_TEXT" value="140" />
+          <entry key="PLAIN_TEXT" value="162" />
           <entry key="Qt UI file" value="46" />
           <entry key="XML" value="146" />
         </counts>
@@ -208,7 +194,7 @@
         <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.cpp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="186">
-              <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+              <caret line="47" selection-start-line="47" selection-end-line="47" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -1705,11 +1691,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544013752953</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Prace nad Indicatorami">
+      <created>1544119499552</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1544119499552</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="343359000" />
+    <option name="totallyTimeSpent" value="343448000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1721,8 +1714,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-1" width="1366" height="769" extended-state="7" />
-    <editor active="true" />
+    <frame x="0" y="-1" width="1366" height="769" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.497191" visible="true" weight="0.22651514" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -1797,7 +1789,8 @@
     <MESSAGE value="Zaimplementowanie Strona(orientacji obrazka)" />
     <MESSAGE value="Dodanie Wątków do monochroma" />
     <MESSAGE value="Zmiana Monochromu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Zmiana Monochromu" />
+    <MESSAGE value="Prace nad Indicatorami" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prace nad Indicatorami" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file:///usr/include/c++/8.2.1/bits/valarray_after.h">
@@ -2185,7 +2178,7 @@
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
-          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+          <caret line="47" selection-start-line="47" selection-end-line="47" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
