@@ -14,6 +14,8 @@ namespace Sokar {
 		bool closed = false;
 
 	public:
+
+
 		SpeedTest(QString name) : name(name), start(high_resolution_clock::now()) {
 		}
 

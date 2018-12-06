@@ -80,6 +80,9 @@ QTransform DicomScene::pixmapTransformation() {
 
 void DicomScene::updatePixmapTransformation() {
 	pixmapItem->setTransform(pixmapTransformation(), false);
+
+	if (imageOrientationIndicator != nullptr)
+		imageOrientationIndicator->setRotateTransform(rotateTransform);
 }
 
 SceneAvatar *DicomScene::getAvatar() {
@@ -134,8 +137,6 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 				rotateTransform.rotate(rotate);
 				updatePixmapTransformation();
 
-				if (imageOrientationIndicator != nullptr)
-					imageOrientationIndicator->setRotateTransform(rotateTransform);
 			}
 				break;
 		}
@@ -147,7 +148,7 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 //region Indicators
 
 void DicomScene::initIndicators() {
-//	initPixelSpacingIndicator();
+	initPixelSpacingIndicator();
 	initImageOrientationIndicator();
 }
 
@@ -189,6 +190,10 @@ void DicomScene::initImageOrientationIndicator() {
 
 	imageOrientationIndicator = new ImageOrientationIndicator();
 	imageOrientationIndicator->setOrientation(orientations);
+
+	imageOrientationIndicator->setOffsetBottomParent(pixelSpacingIndicator);
+	imageOrientationIndicator->setOffsetRightParent(pixelSpacingIndicator);
+
 	addIndicator(imageOrientationIndicator);
 }
 
@@ -275,9 +280,6 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action) {
 	if (updateTransform) {
 		updatePixmapTransformation();
 		reposItems();
-
-		if (imageOrientationIndicator != nullptr)
-			imageOrientationIndicator->setRotateTransform(rotateTransform);
 	}
 }
 

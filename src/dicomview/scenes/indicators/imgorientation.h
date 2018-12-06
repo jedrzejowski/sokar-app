@@ -15,6 +15,7 @@ namespace Sokar {
 		} scenePosition;
 
 	public:
+
 		ImageOrientationIndicator();
 
 		void setRotateTransform(QTransform &rotateTransform);

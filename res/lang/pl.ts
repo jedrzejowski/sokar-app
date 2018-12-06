@@ -2,6 +2,21 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="pl_PL" sourcelanguage="en_US">
 <context>
+    <name>Form</name>
+    <message>
+        <location filename="../../src/dicomview/framechooser.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/framechooser.ui" line="40"/>
+        <location filename="../../src/dicomview/framechooser.ui" line="47"/>
+        <location filename="../../src/dicomview/framechooser.ui" line="54"/>
+        <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../src/win/main_win.ui" line="14"/>
@@ -27,32 +42,32 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="128"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="132"/>
         <source>A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="131"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="135"/>
         <source>P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="134"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="138"/>
         <source>L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="137"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="141"/>
         <source>R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="140"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="144"/>
         <source>H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="143"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="147"/>
         <source>F</source>
         <translation type="unfinished"></translation>
     </message>

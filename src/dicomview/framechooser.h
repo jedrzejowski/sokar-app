@@ -24,7 +24,16 @@ namespace Sokar {
 		void addSceneSet(DicomSceneSet *sceneSet);
 		void addScene(DicomScene *scene);
 
-		void moveNext();
+		void moveNext();struct {
+	//http://dicomiseasy.blogspot.com/2013/06/getting-oriented-using-image-plane.html?m=1
+	QVector4D
+			Right = QVector4D(-1, 0, 0, 1),
+			Left = QVector4D(+1, 0, 0, 1),
+			Head = QVector4D(0, 0, +1, 1),
+			Feet = QVector4D(0, 0, -1, 1),
+			Anterior = QVector4D(0, -1, 0, 1),
+			Posterior = QVector4D(0, +1, 0, 1);
+} PatientPoint;
 		void movePrev();
 
 	protected:

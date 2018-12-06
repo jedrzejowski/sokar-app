@@ -12,6 +12,9 @@ namespace Sokar {
 	protected:
 		std::vector<SceneIndicator *> indicators;
 
+		QHBoxLayout layoutH1, layoutH2;
+		QVBoxLayout layoutV1, layoutV2;
+
 	public:
 
 		explicit Scene(QObject *parent = nullptr);

@@ -84,21 +84,25 @@ void ImageOrientationIndicator::reposition() {
 	if (scene() == nullptr)
 		return;
 
-	leftText->setPos(0, (scene()->height() - leftText->document()->size().height()) / 2);
+	leftText->setPos(
+			0 + getOffsetLeft(),
+			(scene()->height() - leftText->document()->size().height()) / 2);
 
-	topText->setPos((scene()->width() - topText->document()->size().width()) / 2, 0);
+	topText->setPos(
+			(scene()->width() - topText->document()->size().width()) / 2,
+			0 + getOffsetTop());
 
 	rightText->setPos(
-			scene()->width() - rightText->document()->size().width(),
+			scene()->width() - rightText->document()->size().width() - getOffsetRight(),
 			(scene()->height() - rightText->document()->size().height()) / 2);
 
 	bottomText->setPos(
 			(scene()->width() - bottomText->document()->size().width()) / 2,
-			scene()->height() - bottomText->document()->size().height());
+			scene()->height() - bottomText->document()->size().height() - getOffsetBottom());
 }
 
 void ImageOrientationIndicator::setRotateTransform(QTransform &rotateTransform) {
-	ImageOrientationIndicator::rotateTransform = QMatrix4x4(rotateTransform);
+	this->rotateTransform = QMatrix4x4(rotateTransform);
 	update();
 }
 
