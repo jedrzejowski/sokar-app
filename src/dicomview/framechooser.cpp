@@ -1,24 +1,27 @@
 #include "framechooser.h"
+#include "ui_framechooser.h"
 
 using namespace Sokar;
 
-FrameChooser::FrameChooser(QWidget *parent) : QScrollArea(parent) {
-
-	setWidgetResizable(true);
-	setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-	setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-
+FrameChooser::FrameChooser(QWidget *parent) :
+		QWidget(parent),
+		ui(new Ui::FrameChooser) {
+	ui->setupUi(this);
 
 	layout = new QVBoxLayout;
-	layout->setSpacing(5);
 	layout->setMargin(0);
 	layout->setAlignment(Qt::AlignTop | Qt::AlignLeft);
+	ui->avatarContainer->setLayout(layout);
 
-	content = new QWidget;
-	content->setLayout(layout);
+	ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+	ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
-	setWidget(content);
+	connect(ui->nextBtn, &QToolButton::clicked, this, &FrameChooser::moveNext);
+	connect(ui->prevBtn, &QToolButton::clicked, this, &FrameChooser::movePrev);
+}
 
+FrameChooser::~FrameChooser() {
+	delete ui;
 }
 
 void FrameChooser::addSceneSet(DicomSceneSet *sceneSet) {
@@ -33,8 +36,9 @@ void FrameChooser::addSceneSet(DicomSceneSet *sceneSet) {
 void FrameChooser::addScene(DicomScene *scene) {
 
 	auto avatar = scene->getAvatar();
-	layout->addWidget(avatar);
+	avatar->updateSize(20);
 
+	layout->addWidget(avatar);
 	avatars << avatar;
 
 	connect(this, &FrameChooser::resizeAvatars, avatar, &SceneAvatar::updateSize);
@@ -47,7 +51,7 @@ void FrameChooser::addScene(DicomScene *scene) {
 void FrameChooser::resizeEvent(QResizeEvent *event) {
 
 	updateAvatars();
-	QScrollArea::resizeEvent(event);
+	QWidget::resizeEvent(event);
 }
 
 void FrameChooser::onAvatarClicked(SceneAvatar *avatar) {
@@ -56,10 +60,10 @@ void FrameChooser::onAvatarClicked(SceneAvatar *avatar) {
 }
 
 void FrameChooser::updateAvatars() {
-	auto dim = this->contentsRect().width() - this->verticalScrollBar()->width();
+	auto dim = this->contentsRect().width() - ui->scrollArea->verticalScrollBar()->width();
 	emit resizeAvatars(dim);
 
-	layout->update();
+//	ui->scrollLayout->update();
 }
 
 void FrameChooser::moveNext() {

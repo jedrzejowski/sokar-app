@@ -3,21 +3,38 @@
 #include "_base.h"
 
 namespace Sokar {
-	class PixelSpacingIndicator : public SceneIndicator {
+	class LineIndicator : public SceneIndicator {
 	private:
 		QPen pen;
-		QTransform transform;
+		uint pxLength = 0;
+		qreal realWidth;
+		QGraphicsTextItem *text;
+		QVector<QGraphicsLineItem *> lines;
+
+		void update();
+	public:
+
+		LineIndicator();
+
+		void setText(QString str);
+		uint getPxLength() const;
+		void setPxLength(uint pxLength);
+		qreal getRealWidth() const;
+		qreal getRealHeight() const;
+
+		void reposition() override;
+
+	};
+
+	class PixelSpacingIndicator : public SceneIndicator {
+	private:
 
 		double xSpacing, ySpacing;
 		uint xDim, yDim;
 
-		QGraphicsTextItem xText, yText;
+		LineIndicator xLine, yLine;
 
-		QGraphicsItemGroup xLine, yLine;
-		std::vector<QGraphicsLineItem> xLines, yLines;
-
-		void updateTextX();
-		void updateTextY();
+		void updateLines();
 
 	public:
 		PixelSpacingIndicator();

@@ -8,11 +8,16 @@
 #include "scenes/dicomscene.h"
 #include "scenes/dicomsceneset.h"
 
+namespace Ui{
+	class FrameChooser;
+}
+
 namespace Sokar {
 
-	class FrameChooser : public QScrollArea {
+	class FrameChooser : public QWidget {
 	Q_OBJECT
 	private:
+		Ui::FrameChooser *ui;
 		QWidget *content;
 		QVBoxLayout *layout;
 		QVector<SceneAvatar *> avatars;
@@ -20,6 +25,7 @@ namespace Sokar {
 
 	public:
 		explicit FrameChooser(QWidget *parent = nullptr);
+		virtual ~FrameChooser();
 
 		void addSceneSet(DicomSceneSet *sceneSet);
 		void addScene(DicomScene *scene);

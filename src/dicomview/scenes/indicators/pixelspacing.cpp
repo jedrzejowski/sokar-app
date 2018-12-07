@@ -1,16 +1,71 @@
-#include <QTextDocument>
+#include <QtWidgets>
 #include "pixelspacing.h"
 
 using namespace Sokar;
 
-PixelSpacingIndicator::PixelSpacingIndicator() : pen(defaultColor) {
-	xText.hide();
-	xText.setDefaultTextColor(defaultColor);
-	addToGroup(&xText);
+//region LineIndicator
 
-	yText.hide();
-	yText.setDefaultTextColor(defaultColor);
-	addToGroup(&yText);
+LineIndicator::LineIndicator() :
+		pen(QColor(255, 255, 255)) {
+
+	text = newText();
+}
+
+uint LineIndicator::getPxLength() const {
+	return pxLength;
+}
+
+void LineIndicator::setPxLength(uint pxLength) {
+	LineIndicator::pxLength = pxLength;
+}
+
+void LineIndicator::setText(QString str) {
+	text->setHtml(str);
+
+	update();
+}
+
+void LineIndicator::update() {
+
+	for (auto &line : lines) {
+		removeFromGroup(line);
+		delete line;
+	}
+	lines.clear();
+
+	uint paraLines = 4;
+
+	lines << newLine(0, 0, pxLength, 0);
+
+	auto step = pxLength / paraLines;
+	for (uint i = 0; i < paraLines + 1; i++) {
+		qreal width = 4.0 / (i % 2 + 1);
+		lines << newLine(i * step, -width, i * step, width);
+	}
+
+	auto dy = text->document()->size().height() / 2;
+	text->setPos(pxLength, 0);
+	for (auto &line : lines) {
+		line->moveBy(0, dy);
+		addToGroup(line);
+	}
+
+	realWidth = pxLength + text->document()->size().width();
+}
+
+void LineIndicator::reposition() {}
+
+qreal LineIndicator::getRealWidth() const {
+	return realWidth;
+}
+
+qreal LineIndicator::getRealHeight() const {
+	return text->document()->size().height();
+}
+
+//endregion
+
+PixelSpacingIndicator::PixelSpacingIndicator() {
 
 	xLine.hide();
 	addToGroup(&xLine);
@@ -25,7 +80,7 @@ double PixelSpacingIndicator::getXSpacing() const {
 
 void PixelSpacingIndicator::setXSpacing(double xSpacing) {
 	PixelSpacingIndicator::xSpacing = xSpacing;
-	updateTextX();
+	updateLines();
 }
 
 double PixelSpacingIndicator::getYSpacing() const {
@@ -34,7 +89,7 @@ double PixelSpacingIndicator::getYSpacing() const {
 
 void PixelSpacingIndicator::setYSpacing(double ySpacing) {
 	PixelSpacingIndicator::ySpacing = ySpacing;
-	updateTextY();
+	updateLines();
 }
 
 uint PixelSpacingIndicator::getXDim() const {
@@ -44,11 +99,7 @@ uint PixelSpacingIndicator::getXDim() const {
 void PixelSpacingIndicator::setXDim(uint xDim) {
 	PixelSpacingIndicator::xDim = xDim;
 
-	for(auto& line : xLines)
-
-
-	xLine->setLine(0, 0, (qreal) xDim / 2, 0);
-	updateTextX();
+	updateLines();
 }
 
 uint PixelSpacingIndicator::getYDim() const {
@@ -57,64 +108,53 @@ uint PixelSpacingIndicator::getYDim() const {
 
 void PixelSpacingIndicator::setYDim(uint yDim) {
 	PixelSpacingIndicator::yDim = yDim;
-	yLine->setLine(0, 0, 0, (qreal) yDim / 2);
-	updateTextY();
+
+	updateLines();
 }
 
 void PixelSpacingIndicator::reposition() {
-	xText.setPos(
-			(scene()->width() - xText.document()->size().width()) / 2,
-			scene()->height() - xText.document()->size().height());
 
 	xLine.setPos(
-			(scene()->width() - xLines[0].line().length()) / 2,
-			scene()->height() - xText.document()->size().height());
-
-	yText.setPos(
-			scene()->width() - yText.document()->size().width(),
-			(scene()->height() - yText.document()->size().height()) / 2);
+			(scene()->width() - xLine.getPxLength()) / 2,
+			scene()->height() - xLine.getRealHeight());
 
 	yLine.setPos(
-			scene()->width() - yText.document()->size().height(),
-			(scene()->height() - yLines[0].line().length()) / 2);
+			scene()->width() - yLine.getPxLength(),
+			(scene()->height() - yLine.getRealHeight()) / 2);
 }
 
-void PixelSpacingIndicator::updateTextX() {
+void PixelSpacingIndicator::updateLines() {
 	if (xSpacing == 0) {
 		xLine.hide();
 	} else {
-		xText.setHtml(QString::number(xSpacing * xDim / 2, 'f', 2) + +" <i>mm</i>");
-		xText.show();
+		xLine.setPxLength(xDim / 2);
+		xLine.setText(QString::number(xSpacing * xDim / 2, 'f', 2) + +" <i>mm</i>");
 		xLine.show();
 	}
-}
 
-void PixelSpacingIndicator::updateTextY() {
 	if (ySpacing == 0) {
 		yLine.hide();
 	} else {
-		yText.setHtml(QString::number(ySpacing * yDim / 2, 'f', 2) + +" <i>mm</i>");
+		yLine.setPxLength(yDim / 2);
+		yLine.setText(QString::number(ySpacing * yDim / 2, 'f', 2) + +" <i>mm</i>");
+		yLine.show();
 
 		// Obracanie
-		transform = QTransform();
-		auto dx = yText.document()->size().width() / 2,
-				dy = yText.document()->size().height() / 2;
+		auto transform = QTransform();
+		auto dx = (qreal) yLine.getPxLength(),
+				dy = yLine.getRealHeight();
 
-		transform.translate(dx, dy);
+		transform.translate(dx - dy / 2, 0);
 		transform.rotate(90);
-		transform.translate(-dx, -dx);
-		yText.setTransform(transform);
-
-		yText.show();
-		yLine.show();
+		transform.translate(-dx / 2, -dy / 2);
+		yLine.setTransform(transform);
 	}
 }
 
 qreal PixelSpacingIndicator::getBottomSpace() {
-	return xText.document()->size().height();
+	return xLine.getRealHeight();
 }
 
 qreal PixelSpacingIndicator::getRightSpace() {
-	return yText.document()->size().height();
+	return yLine.getRealHeight();
 }
-

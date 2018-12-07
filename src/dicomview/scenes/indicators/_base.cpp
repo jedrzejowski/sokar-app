@@ -2,7 +2,9 @@
 
 using namespace Sokar;
 
-SceneIndicator::SceneIndicator() : defaultColor(255, 255, 255) {
+SceneIndicator::SceneIndicator() :
+		defaultColor(255, 255, 255),
+		defaultPen(defaultColor) {
 
 }
 
@@ -88,4 +90,16 @@ SceneIndicator *SceneIndicator::getOffsetBottomParent() const {
 
 void SceneIndicator::setOffsetBottomParent(SceneIndicator *offsetBottomParent) {
 	SceneIndicator::offsetBottomParent = offsetBottomParent;
+}
+
+QGraphicsLineItem *SceneIndicator::newLine(qreal x1, qreal y1, qreal x2, qreal y2) {
+	auto line = new QGraphicsLineItem(x1, y1, x2, y2, this);
+	line->setPen(defaultPen);
+	return line;
+}
+
+QGraphicsTextItem *SceneIndicator::newText(const QString &string) {
+	auto text = new QGraphicsTextItem(string, this);
+	text->setDefaultTextColor(defaultColor);
+	return text;
 }
