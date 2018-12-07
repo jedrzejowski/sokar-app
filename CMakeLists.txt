@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(Sokar)
 
-#set(CMAKE_CXX_COMPILER "clang")
+set(CMAKE_CXX_COMPILER "g++")
 
 set(CMAKE_CXX_STANDARD 17)
 
@@ -20,6 +20,7 @@ find_package(Threads)
 find_package(GDCM REQUIRED)
 include_directories(${GDCM_INCLUDE_DIRS})
 link_libraries(${GDCM_LIBRARY_DIRS})
+include(${GDCM_USE_FILE})
 
 #Bibliotek QT
 find_package(Qt5Widgets CONFIG REQUIRED)
@@ -47,10 +48,10 @@ add_executable(${APP_TARGET}
 
 target_link_libraries(
         ${APP_TARGET}
-        gdcmMSFF
-        Qt5::Widgets
         ${EXTRA_LIBS}
+        gdcmMSFF
         ${CMAKE_THREAD_LIBS_INIT}
+        Qt5::Widgets
 )
 
 #Inne zasoby

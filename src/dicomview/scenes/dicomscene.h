@@ -17,7 +17,9 @@
 #include "scene.h"
 #include "params.h"
 #include "sceneavatar.h"
-#include "src/dicomview/scenes/indicators/pixelspacing.h"
+
+#include "indicators/patientdata.h"
+#include "indicators/pixelspacing.h"
 #include "indicators/imgorientation.h"
 
 namespace Sokar {
@@ -45,9 +47,11 @@ namespace Sokar {
 	private:
 		void initIndicators();
 
+		PatientDataIndicator *patientDataIndicator = nullptr;
 		PixelSpacingIndicator *pixelSpacingIndicator = nullptr;
 		ImageOrientationIndicator *imageOrientationIndicator = nullptr;
 
+		void initPatientDataIndicator();
 		void initPixelSpacingIndicator();
 		void initImageOrientationIndicator();
 		//endregion

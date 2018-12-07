@@ -133,9 +133,62 @@ void Scene::readAttributes() {
 
 			imgWindowInt->setCenter(static_cast<__int128_t>(centers[0].toDouble()));
 			imgWindowInt->setWidth(static_cast<__int128_t>(widths[0].toDouble()));
-		} else {
 
+			goto endOfWindowBorders;
 		}
+
+		{
+			goto endOfWindowBorders;
+			__int128 max, min;
+
+			switch (gdcmImage.GetPixelFormat()) {
+				case gdcm::PixelFormat::INT8:
+					findExtremes<qint8>(max, min);
+					break;
+
+				case gdcm::PixelFormat::UINT8:
+					findExtremes<quint8>(max, min);
+					break;
+
+				case gdcm::PixelFormat::INT16:
+					findExtremes<qint16>(max, min);
+					break;
+
+				case gdcm::PixelFormat::UINT16:
+					findExtremes<quint16>(max, min);
+					break;
+
+				case gdcm::PixelFormat::INT32:
+					findExtremes<qint32>(max, min);
+					break;
+
+				case gdcm::PixelFormat::UINT32:
+					findExtremes<quint32>(max, min);
+					break;
+
+				case gdcm::PixelFormat::INT64:
+					findExtremes<qint64>(max, min);
+					break;
+
+				case gdcm::PixelFormat::UINT64:
+					findExtremes<quint64>(max, min);
+					break;
+
+				default:
+					throw Sokar::ImageTypeNotSupportedException();
+			}
+
+			qDebug() << qint64(min) << quint64(max);
+			__int128 diff = max - min;
+			diff = ~diff + 1;
+
+			imgWindowInt->setCenter(min + diff / 2);
+			imgWindowInt->setWidth(diff);
+
+			goto endOfWindowBorders;
+		}
+
+		endOfWindowBorders:;
 	}
 
 	//
@@ -223,6 +276,20 @@ bool Scene::generatePixmap() {
 
 	return true;
 }
+
+template<typename IntType>
+void Scene::findExtremes(__int128 &max, __int128 &min) {
+
+	auto origin = (IntType *) &originBuffer[0];
+
+	max = min = *origin;
+
+	for (quint64 i = 0; i < imgDimX * imgDimY; i++, origin++) {
+		max = max < *origin ? *origin : max;
+		min = min > *origin ? *origin : min;
+	}
+}
+
 
 template<typename IntType>
 void Scene::genQPixmapOfType() {

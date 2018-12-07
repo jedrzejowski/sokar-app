@@ -148,8 +148,15 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 //region Indicators
 
 void DicomScene::initIndicators() {
+	initPatientDataIndicator();
 	initPixelSpacingIndicator();
 	initImageOrientationIndicator();
+}
+
+void DicomScene::initPatientDataIndicator() {
+	patientDataIndicator = new PatientDataIndicator;
+	patientDataIndicator->loadData(gdcmFile);
+	addIndicator(patientDataIndicator);
 }
 
 void DicomScene::initPixelSpacingIndicator() {
@@ -160,7 +167,7 @@ void DicomScene::initPixelSpacingIndicator() {
 
 	bool ok = false;
 
-	pixelSpacingIndicator = new PixelSpacingIndicator();
+	pixelSpacingIndicator = new PixelSpacingIndicator;
 	addIndicator(pixelSpacingIndicator);
 
 	if (pixelSpacings.length() >= 1) {

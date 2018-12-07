@@ -8,6 +8,9 @@
 
 namespace Sokar::Monochrome {
 
+	typedef __int128 TrueInt;
+	typedef unsigned __int128 TrueUInt;
+
 	class Window : public QObject, public SceneIndicator {
 	Q_OBJECT
 	protected:

@@ -8,6 +8,11 @@
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../src/dicomview/framechooser.ui" line="98"/>
+        <source> fps</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
