@@ -6,7 +6,12 @@
 #include "sokar/palette.h"
 #include "../../indicators/_base.h"
 
+#define __int128Problem(x) x = ~x + 1;
+
 namespace Sokar::Monochrome {
+
+	//http://gcc.gnu.org/onlinedocs/gcc/_005f_005fint128.html
+	//xD po całości, 8h na to zmarnowałem
 
 	typedef __int128 TrueInt;
 	typedef unsigned __int128 TrueUInt;

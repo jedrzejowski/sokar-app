@@ -11,8 +11,8 @@ namespace Sokar::Monochrome {
 
 	private:
 		struct DefaultWindow {
-			__int128 center;
-			__int128 width;
+			TrueInt center;
+			TrueInt width;
 			QString name = "";
 		};
 
@@ -22,13 +22,13 @@ namespace Sokar::Monochrome {
 
 		bool hasBackground = false;
 
-		__int128 center, width, backgroundLvl;
+		TrueInt center, width, backgroundLvl;
 		double rescaleIntercept = 0, rescaleSlope = 1;
 
 		quint64 signedMove = 0;
 		quint64 maxValue = 0;
 
-		__int128 x1, x0;
+		TrueInt x1, x0;
 		double a, b;
 
 	public:
@@ -37,51 +37,37 @@ namespace Sokar::Monochrome {
 
 		//region Getters & Setters
 
-		inline __int128 getCenter() const {
-			return center;
-		}
+		inline TrueInt getCenter() const { return center; }
 
-		void setCenter(__int128 center);
+		void setCenter(TrueInt center);
 
-		inline __int128 getWidth() const {
-			return width;
-		}
+		inline TrueInt getWidth() const { return width; }
 
-		void setWidth(__int128 width);
+		void setWidth(TrueInt width);
 
-		inline double getRescaleIntercept() const {
-			return rescaleIntercept;
-		}
+		inline double getRescaleIntercept() const { return rescaleIntercept; }
 
 		void setRescaleIntercept(double rescaleIntercept);
 
-		inline double getRescaleSlope() const {
-			return rescaleSlope;
-		}
+		inline double getRescaleSlope() const { return rescaleSlope; }
 
 		void setRescaleSlope(double rescaleSlope);
 
-		inline quint64 getMaxValue() const {
-			return maxValue;
-		}
+		inline quint64 getMaxValue() const { return maxValue; }
 
 		void setMaxValue(quint64 length);
 
-		inline bool isSigned() const {
-			return signedMove > 0;
-		}
+		inline bool isSigned() const { return signedMove > 0; }
 
 		void setSigned(bool isSigned);
 
-		inline __int128_t getBackgroundLvl() const {
-			return backgroundLvl;
-		}
+		inline TrueInt getBackgroundLvl() const { return backgroundLvl; }
 
-		void setBackgroundLvl(__int128_t backgroundLvl);
+		void setBackgroundLvl(TrueInt backgroundLvl);
 
 		//endregion
 
-		void pushDefaultValues(__int128 center, __int128 width, QString name = "");
+		void pushDefaultValues(TrueInt center, TrueInt width, QString name = "");
 
 
 		inline void mvHorizontal(int v) override {

@@ -41,6 +41,12 @@ void Scene::readAttributes() {
 	{ // Tworzenie obiekty okienka
 
 		auto bitsStored = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagBitsStored).GetByteValue()->GetPointer());
+		auto bitsAllocated = (ushort) *(gdcmDataSet.GetDataElement(
+				gdcm::TagBitsAllocated).GetByteValue()->GetPointer());
+
+		if (bitsAllocated > 62)
+			throw Sokar::ImageTypeNotSupportedException();
+
 		bool isDynamic = imgDimX * imgDimY < ((1 << bitsStored) - 1), isSigned = false;
 
 		// Tworzenie odpowiedzniego okienka
@@ -125,21 +131,21 @@ void Scene::readAttributes() {
 			for (int i = 0; i < centers.size(); i++) {
 
 				imgWindowInt->pushDefaultValues(
-						static_cast<__int128_t>(centers[i].toDouble()),
-						static_cast<__int128_t>(widths[i].toDouble()),
+						Monochrome::TrueInt(centers[i].toDouble()),
+						Monochrome::TrueInt(widths[i].toDouble()),
 						names.isEmpty() ? "" : names[i]
 				);
 			}
 
-			imgWindowInt->setCenter(static_cast<__int128_t>(centers[0].toDouble()));
-			imgWindowInt->setWidth(static_cast<__int128_t>(widths[0].toDouble()));
+			imgWindowInt->setCenter(Monochrome::TrueInt(centers[0].toDouble()));
+			imgWindowInt->setWidth(Monochrome::TrueInt(widths[0].toDouble()));
 
 			goto endOfWindowBorders;
 		}
 
 		{
 			goto endOfWindowBorders;
-			__int128 max, min;
+			TrueInt max, min;
 
 			switch (gdcmImage.GetPixelFormat()) {
 				case gdcm::PixelFormat::INT8:
@@ -179,7 +185,7 @@ void Scene::readAttributes() {
 			}
 
 			qDebug() << qint64(min) << quint64(max);
-			__int128 diff = max - min;
+			TrueInt diff = max - min;
 			diff = ~diff + 1;
 
 			imgWindowInt->setCenter(min + diff / 2);
@@ -278,7 +284,7 @@ bool Scene::generatePixmap() {
 }
 
 template<typename IntType>
-void Scene::findExtremes(__int128 &max, __int128 &min) {
+void Scene::findExtremes(TrueInt &max, TrueInt &min) {
 
 	auto origin = (IntType *) &originBuffer[0];
 

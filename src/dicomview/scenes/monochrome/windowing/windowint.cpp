@@ -17,7 +17,7 @@ WindowInt::WindowInt() {
 
 }
 
-void WindowInt::setCenter(__int128 newCenter) {
+void WindowInt::setCenter(TrueInt newCenter) {
 	if (newCenter == center)
 		return;
 
@@ -30,7 +30,7 @@ void WindowInt::setCenter(__int128 newCenter) {
 }
 
 
-void WindowInt::setWidth(__int128 newWidth) {
+void WindowInt::setWidth(TrueInt newWidth) {
 	if (newWidth == width)
 		return;
 
@@ -70,8 +70,8 @@ bool WindowInt::genLUT() {
 	b = _y1 - a * _x1;
 
 	// To może też spowodować jakiś błąd
-	x0 = static_cast<__int128_t>(_x0);
-	x1 = static_cast<__int128_t>(_x1);
+	x0 = TrueInt(_x0);
+	x1 = TrueInt(_x1);
 
 	if (hasBackground)
 		x0 = std::max(backgroundLvl, x0);
@@ -113,7 +113,7 @@ void WindowInt::setSigned(bool isSigned) {
 	shouldRegen = true;
 }
 
-void WindowInt::setBackgroundLvl(__int128_t backgroundLvl) {
+void WindowInt::setBackgroundLvl(TrueInt backgroundLvl) {
 	if (WindowInt::backgroundLvl == backgroundLvl)
 		return;
 
@@ -140,7 +140,7 @@ void WindowInt::regenText() {
 	reposition();
 }
 
-void WindowInt::pushDefaultValues(__int128 center, __int128 width, QString name) {
+void WindowInt::pushDefaultValues(TrueInt center, TrueInt width, QString name) {
 	defaultWindows << DefaultWindow{center, width, name};
 }
 

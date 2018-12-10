@@ -20,6 +20,7 @@
 
 #include "indicators/patientdata.h"
 #include "indicators/pixelspacing.h"
+#include "indicators/hospitaldata.h"
 #include "indicators/imgorientation.h"
 
 namespace Sokar {
@@ -48,12 +49,14 @@ namespace Sokar {
 		void initIndicators();
 
 		PatientDataIndicator *patientDataIndicator = nullptr;
+		HospitalDataIndicator *hospitalDataIndicator = nullptr;
 		PixelSpacingIndicator *pixelSpacingIndicator = nullptr;
 		ImageOrientationIndicator *imageOrientationIndicator = nullptr;
 
 		void initPatientDataIndicator();
 		void initPixelSpacingIndicator();
 		void initImageOrientationIndicator();
+		void initHospitalDataIndicator();
 		//endregion
 
 	public:

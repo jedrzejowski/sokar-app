@@ -149,6 +149,7 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 void DicomScene::initIndicators() {
 	initPatientDataIndicator();
+	initHospitalDataIndicator();
 	initPixelSpacingIndicator();
 	initImageOrientationIndicator();
 }
@@ -157,6 +158,12 @@ void DicomScene::initPatientDataIndicator() {
 	patientDataIndicator = new PatientDataIndicator;
 	patientDataIndicator->loadData(gdcmFile);
 	addIndicator(patientDataIndicator);
+}
+
+void DicomScene::initHospitalDataIndicator() {
+	hospitalDataIndicator = new HospitalDataIndicator;
+	hospitalDataIndicator->loadData(gdcmFile);
+	addIndicator(hospitalDataIndicator);
 }
 
 void DicomScene::initPixelSpacingIndicator() {

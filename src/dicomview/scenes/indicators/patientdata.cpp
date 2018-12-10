@@ -11,7 +11,7 @@ PatientDataIndicator::PatientDataIndicator() {
 }
 
 void PatientDataIndicator::reposition() {
-	text->setPos(scene()->width() - text->document()->size().width(), 0);
+	text->setPos(0, 0);
 }
 
 void PatientDataIndicator::loadData(const gdcm::File &file) {
@@ -21,7 +21,9 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 			TagPatientID(0x0010, 0x0020),
 			TagPatientBirthDate(0x0010, 0x0030),
 			TagPatientSex(0x0010, 0x0040),
-			TagPatientAge(0x0010, 0x1010);
+			TagPatientAge(0x0010, 0x1010),
+			TagStudyDescription(0x0008, 0x1030),
+			TagSeriesDescription(0x0008, 0x103E);
 
 	auto &dataset = file.GetDataSet();
 	auto stringFilter = gdcm::StringFilter();
@@ -31,33 +33,29 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 	QString temp;
 
 	{
-		QString line = "";
+		QString name = "", sex = "";
 		if (dataset.FindDataElement(TagPatientName)) {
-			temp += QString::fromStdString(
-					stringFilter.ToString(dataset.GetDataElement(TagPatientName))
-			).replace('^', ' ');
+			temp += QString::fromStdString(stringFilter.ToString(TagPatientName)).replace('^', ' ');
 
-			line += QObject::tr("%1").arg(temp);
+			name += QObject::tr("%1").arg(temp);
 		}
 
 		if (dataset.FindDataElement(TagPatientSex)) {
-			temp = QString::fromStdString(
-					stringFilter.ToString(dataset.GetDataElement(TagPatientSex))
-			).trimmed();
+			temp = QString::fromStdString(stringFilter.ToString(TagPatientSex)).trimmed();
 
 			if (temp == "M")
-				line += QObject::tr(" ♂");
+				sex += QObject::tr(" ♂");
 
 			if (temp == "F")
-				line += QObject::tr(" ♀");
+				sex += QObject::tr(" ♀");
 		}
 
-		lines << QObject::tr("<h3>%1</h3>").arg(line);
+		lines << QObject::tr("<div style='font-size:x-large;'><b>%1</b>%2</div>").arg(name, sex);
 	}
 
 	if (dataset.FindDataElement(TagPatientID)) {
-		temp = QString::fromStdString(stringFilter.ToString(dataset.GetDataElement(TagPatientID)));
-		lines << temp;
+		temp = QString::fromStdString(stringFilter.ToString(TagPatientID));
+		lines << QObject::tr("<div>%1</div>").arg(temp);
 	}
 
 	{
@@ -69,10 +67,10 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 			 * where YYYY shall contain year, MM shall contain the month, and DD shall contain the day,
 			 * interpreted as a date of the Gregorian calendar system.
 			 */
-			temp = QString::fromStdString(stringFilter.ToString(dataset.GetDataElement(TagPatientBirthDate)));
+			temp = QString::fromStdString(stringFilter.ToString(TagPatientBirthDate));
 
 			auto date = QDate::fromString(temp, "yyyyMMdd");
-			line += QObject::tr("born %1").arg(date.toString(Qt::DefaultLocaleLongDate));
+			line += QObject::tr("born %1").arg(date.toString("yyyy-MM-dd"));
 
 		}
 
@@ -82,7 +80,7 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 			 * where nnn shall contain the number of days for D, weeks for W, months for M, or years for Y.
 			 * Example: "018M" would represent an age of 18 months.
 			 */
-			temp = QString::fromStdString(stringFilter.ToString(dataset.GetDataElement(TagPatientAge)));
+			temp = QString::fromStdString(stringFilter.ToString(TagPatientAge));
 
 			auto unitChar = temp[3];
 			QString unitName;
@@ -100,7 +98,23 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 			line += QObject::tr(", %1 %2").arg(QString::number(temp.left(3).toInt()), unitName);
 
 		}
-		lines << line;
+		lines << QObject::tr("<div>%1</div>").arg(line);
 	}
+
+	{
+		if (dataset.FindDataElement(TagStudyDescription)) {
+			temp = QString::fromStdString(stringFilter.ToString(TagStudyDescription));
+
+			lines << QObject::tr("<div>%1</div>").arg(temp);
+		}
+
+		if (dataset.FindDataElement(TagSeriesDescription)) {
+			temp = QString::fromStdString(stringFilter.ToString(TagSeriesDescription));
+
+			lines << QObject::tr("<div>%1</div>").arg(temp);
+		}
+	}
+
 	text->setHtml(lines.join(""));
+	text->adjustSize();
 }

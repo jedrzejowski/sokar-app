@@ -31,10 +31,8 @@ namespace Sokar::Monochrome {
 					array = new Pixel[arraySize];
 				}
 
-				//http://gcc.gnu.org/onlinedocs/gcc/_005f_005fint128.html
-				//xD po całości, 8h na to zmarnowałem
-				__int128 x = signedMove;
-				x = ~x + 1;
+				TrueInt x = signedMove;
+				__int128Problem(x);
 
 				auto background = isInversed() ? palette->getForeground() : palette->getBackground();
 				auto foreground = isInversed() ? palette->getBackground() : palette->getForeground();
