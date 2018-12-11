@@ -47,5 +47,5 @@ void MainWindow::loadImage(const QString &path) {
 		return;
 	}
 
-	ui->dicomView->addDicomImage(ir);
+	ui->dicomTabs->addDicomFile(ir);
 }

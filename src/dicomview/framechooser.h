@@ -22,6 +22,7 @@ namespace Sokar {
 		QVBoxLayout *layout;
 		QVector<SceneAvatar *> avatars;
 		SceneAvatar *curentAvatar;
+		QTimer timer;
 
 	public:
 		explicit FrameChooser(QWidget *parent = nullptr);

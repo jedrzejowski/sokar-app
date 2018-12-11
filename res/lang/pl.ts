@@ -70,81 +70,78 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="40"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="40"/>
         <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="47"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="47"/>
         <source> ♂</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="50"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="50"/>
         <source> ♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="53"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="53"/>
-        <source>&lt;div align=&apos;right&apos; style=&apos;font-size:x-large;&apos;&gt;&lt;b&gt;%1&lt;/b&gt;%2&lt;/div&gt;</source>
+        <source>&lt;div style=&apos;font-size:x-large;&apos;&gt;&lt;b&gt;%1&lt;/b&gt;%2&lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="58"/>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="101"/>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="108"/>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="114"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="58"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="101"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="108"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="114"/>
-        <source>&lt;div align=&apos;right&apos;&gt;%1&lt;/div&gt;</source>
+        <source>&lt;div&gt;%1&lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="73"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="73"/>
         <source>born %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="89"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="89"/>
         <source>years</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="91"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="91"/>
         <source>months</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="93"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="93"/>
         <source>weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="95"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="95"/>
         <source>days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="96"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="96"/>
         <source>?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="98"/>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="98"/>
         <source>, %1 %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="38"/>
+        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="50"/>
+        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="55"/>
+        <source>&lt;div %1&gt;%2&lt;/div&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="45"/>
+        <source>&lt;div %1&gt;%2 %3&lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -1,8 +1,5 @@
-
-
 #include "dicomview.h"
 #include "ui_dicomview.h"
-
 
 using namespace Sokar;
 
@@ -13,8 +10,6 @@ DicomView::DicomView(QWidget *parent) :
 	ui->setupUi(this);
 	ui->frameChooser->hide();
 
-	setAcceptDrops(true);
-
 	connect(ui->frameChooser, &FrameChooser::selectSceneSignal, this, &DicomView::activateScene);
 	connect(ui->toolbar, &DicomToolBar::stateToggleSignal, this, &DicomView::toolbarStateToggle);
 	connect(ui->toolbar, &DicomToolBar::actionTriggerSignal, this, &DicomView::toolbarActionTrigger);
@@ -22,13 +17,14 @@ DicomView::DicomView(QWidget *parent) :
 
 DicomView::~DicomView() {
 	delete ui;
+	qDebug() << "destructor";
 }
 
 DicomScene *DicomView::currentDicomScene() {
 	return (DicomScene *) ui->graphicsView->scene();
 }
 
-void DicomView::addDicomImage(const gdcm::ImageReader *reader) {
+void DicomView::addDicomFile(const gdcm::ImageReader *reader) {
 
 	auto dicomSceneSet = new DicomSceneSet(reader, this);
 
@@ -86,41 +82,11 @@ void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
 void DicomView::toolbarStateToggle(DicomToolBar::State state) {
 }
 
-void DicomView::dropEvent(QDropEvent *event) {
-	const auto *mimeData = event->mimeData();
-
-	if (mimeData->hasUrls()) {
-
-		QStringList pathList;
-		QList<QUrl> urlList = mimeData->urls();
-
-		for (auto &path : mimeData->urls()) {
-
-			auto *ir = new gdcm::ImageReader;
-
-			ir->SetFileName(path.toLocalFile().toStdString().c_str());
-
-			if (!ir->Read()) {
-				QMessageBox::critical(this, "Error", "An error has occured !");
-				delete ir;
-				continue;
-			}
-
-			addDicomImage(ir);
-		}
-
-		event->acceptProposedAction();
-	}
+const QString &DicomView::getTitle() const {
+	return title;
 }
 
-void DicomView::dragEnterEvent(QDragEnterEvent *event) {
-	event->acceptProposedAction();
+void DicomView::setTitle(const QString &title) {
+	DicomView::title = title;
 }
 
-void DicomView::dragMoveEvent(QDragMoveEvent *event) {
-	event->acceptProposedAction();
-}
-
-void DicomView::dragLeaveEvent(QDragLeaveEvent *event) {
-	event->accept();
-}

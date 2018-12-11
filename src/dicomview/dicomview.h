@@ -17,6 +17,7 @@ namespace Sokar {
 
 	private:
 		Ui::DicomView *ui = nullptr;
+		QString title;
 
 		QVector<DicomSceneSet *> sceneSets;
 		DicomSceneSet *curentSceneSet;
@@ -24,29 +25,29 @@ namespace Sokar {
 	public:
 		explicit DicomView(QWidget *parent = nullptr);
 
-		~DicomView();
+		~DicomView() override;
 
 		DicomScene *currentDicomScene();
 
-		void addDicomImage(const gdcm::ImageReader *reader);
+		void addDicomFile(const gdcm::ImageReader *reader);
 
 		//region Getters
 
 		DicomToolBar &getToolBar();
 		FrameChooser &getFrameChooser();
 
-		//endregion
+		const QString &getTitle() const;
+		void setTitle(const QString &title);
 
-	protected:
-		void dropEvent(QDropEvent *event) override;
-		void dragEnterEvent(QDragEnterEvent *event) override;
-		void dragMoveEvent(QDragMoveEvent *event) override;
-		void dragLeaveEvent(QDragLeaveEvent *event) override;
+		//endregion
 
 	private slots:
 		void activateScene(DicomScene *scene);
 		void toolbarActionTrigger(DicomToolBar::Action action);
 		void toolbarStateToggle(DicomToolBar::State state);
+
+	signals:
+		void titleChanged();
 	};
 }
 
