@@ -3,37 +3,31 @@
 
 using namespace Sokar;
 
-DicomView::DicomView(QWidget *parent) :
+DicomView::DicomView(const gdcm::ImageReader *reader, QWidget *parent) :
 		QWidget(parent),
 		ui(new Ui::DicomView) {
 
+
 	ui->setupUi(this);
-	ui->frameChooser->hide();
 
 	connect(ui->frameChooser, &FrameChooser::selectSceneSignal, this, &DicomView::activateScene);
 	connect(ui->toolbar, &DicomToolBar::stateToggleSignal, this, &DicomView::toolbarStateToggle);
 	connect(ui->toolbar, &DicomToolBar::actionTriggerSignal, this, &DicomView::toolbarActionTrigger);
+
+	dicomSceneSet = new DicomSceneSet(reader, this);
+
+	ui->frameChooser->setSceneSet(dicomSceneSet);
+
+	if (dicomSceneSet->getVector().size() == 1)
+		ui->frameChooser->hide();
 }
 
 DicomView::~DicomView() {
 	delete ui;
-	qDebug() << "destructor";
 }
 
 DicomScene *DicomView::currentDicomScene() {
 	return (DicomScene *) ui->graphicsView->scene();
-}
-
-void DicomView::addDicomFile(const gdcm::ImageReader *reader) {
-
-	auto dicomSceneSet = new DicomSceneSet(reader, this);
-
-	sceneSets << dicomSceneSet;
-
-	ui->frameChooser->addSceneSet(dicomSceneSet);
-
-	if (sceneSets.size() > 1 || dicomSceneSet->getVector().size() > 1)
-		ui->frameChooser->show();
 }
 
 void DicomView::activateScene(DicomScene *scene) {
@@ -81,12 +75,3 @@ void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
 
 void DicomView::toolbarStateToggle(DicomToolBar::State state) {
 }
-
-const QString &DicomView::getTitle() const {
-	return title;
-}
-
-void DicomView::setTitle(const QString &title) {
-	DicomView::title = title;
-}
-

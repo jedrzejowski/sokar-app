@@ -19,25 +19,20 @@ namespace Sokar {
 		Ui::DicomView *ui = nullptr;
 		QString title;
 
-		QVector<DicomSceneSet *> sceneSets;
-		DicomSceneSet *curentSceneSet;
+		DicomSceneSet *dicomSceneSet;
 
 	public:
-		explicit DicomView(QWidget *parent = nullptr);
+		explicit DicomView(const gdcm::ImageReader *reader, QWidget *parent = nullptr);
 
 		~DicomView() override;
 
-		DicomScene *currentDicomScene();
-
-		void addDicomFile(const gdcm::ImageReader *reader);
-
 		//region Getters
 
+		DicomScene *currentDicomScene();
 		DicomToolBar &getToolBar();
 		FrameChooser &getFrameChooser();
 
-		const QString &getTitle() const;
-		void setTitle(const QString &title);
+		inline const QString &getTitle() { return dicomSceneSet->getTitle(); }
 
 		//endregion
 

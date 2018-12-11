@@ -10,11 +10,10 @@ DicomTabs::DicomTabs(QWidget *parent) : QTabWidget(parent) {
 	connect(this, &DicomTabs::tabCloseRequested, this, &DicomTabs::removeDicomView);
 }
 
-void DicomTabs::addDicomFile(gdcm::ImageReader *file) {
+void DicomTabs::addDicomFile(const gdcm::ImageReader *file) {
 
-	auto dicomView = new DicomView(this);
-	dicomView->addDicomFile(file);
-	addTab(dicomView, tr("Jupiii"));
+	auto dicomView = new DicomView(file, this);
+	addTab(dicomView, dicomView->getTitle());
 }
 
 
@@ -26,7 +25,6 @@ void DicomTabs::removeDicomView(int i) {
 
 
 void DicomTabs::dropEvent(QDropEvent *event) {
-	qDebug("dropEvent");
 	const auto *mimeData = event->mimeData();
 
 	if (mimeData->hasUrls()) {
@@ -55,15 +53,12 @@ void DicomTabs::dropEvent(QDropEvent *event) {
 
 void DicomTabs::dragEnterEvent(QDragEnterEvent *event) {
 	event->acceptProposedAction();
-	qDebug("dragEnterEvent");
 }
 
 void DicomTabs::dragMoveEvent(QDragMoveEvent *event) {
 	event->acceptProposedAction();
-	qDebug("dragMoveEvent");
 }
 
 void DicomTabs::dragLeaveEvent(QDragLeaveEvent *event) {
 	event->accept();
-	qDebug("dragLeaveEvent");
 }

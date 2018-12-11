@@ -102,7 +102,6 @@ const QPixmap &DicomScene::getIcon() {
 
 void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
-
 	if (event->buttons() & Qt::LeftButton) {
 
 		switch (getDicomView()->getToolBar().getState()) {

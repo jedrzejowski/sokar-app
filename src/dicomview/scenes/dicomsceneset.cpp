@@ -11,7 +11,10 @@ using namespace Sokar;
 
 DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent) :
 		QObject(parent),
-		imageReader(reader) {
+		imageReader(reader),
+		gdcmFile(reader->GetFile()),
+		gdcmDataSet(gdcmFile.GetDataSet()),
+		gdcmImage(reader->GetImage()) {
 
 	gdcmStringFilter.SetFile(imageReader->GetFile());
 
@@ -26,19 +29,16 @@ DicomSceneSet::~DicomSceneSet() {
 }
 
 void DicomSceneSet::initScenes() {
-	auto &image = imageReader->GetImage();
-	auto &dataset = imageReader->GetFile().GetDataSet();
 
-	int numberOfFrames = 1;
-	if (dataset.FindDataElement(gdcm::TagNumberOfFrames))
+	if (gdcmDataSet.FindDataElement(gdcm::TagNumberOfFrames))
 		numberOfFrames = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagNumberOfFrames)).toInt();
 	vector.resize(numberOfFrames);
 
-	imageBuffer.resize(image.GetBufferLength());
-	image.GetBuffer(&imageBuffer[0]);
+	imageBuffer.resize(gdcmImage.GetBufferLength());
+	gdcmImage.GetBuffer(&imageBuffer[0]);
 
 	auto sceneParams = SceneParams();
-	sceneParams.imgSize = image.GetBufferLength() / numberOfFrames;
+	sceneParams.imgSize = gdcmImage.GetBufferLength() / numberOfFrames;
 	sceneParams.dicomSceneSet = this;
 	sceneParams.imageReader = imageReader;
 	sceneParams.imageBuffer = &imageBuffer;
@@ -47,7 +47,7 @@ void DicomSceneSet::initScenes() {
 
 		try {
 
-			switch (image.GetPhotometricInterpretation()) {
+			switch (gdcmImage.GetPhotometricInterpretation()) {
 				case gdcm::PhotometricInterpretation::MONOCHROME1:
 				case gdcm::PhotometricInterpretation::MONOCHROME2:
 					scene = new Sokar::Monochrome::Scene(sceneParams);
@@ -62,7 +62,7 @@ void DicomSceneSet::initScenes() {
 				case gdcm::PhotometricInterpretation::YBR_PARTIAL_422://Nope
 				case gdcm::PhotometricInterpretation::YBR_PARTIAL_420://Nope
 				case gdcm::PhotometricInterpretation::YBR_ICT://Nope
-				case gdcm::PhotometricInterpretation::YBR_RCT://Nope
+				case gdcm::PhotometricInterpretation::YBR_RCT://Nopew
 					scene = new Sokar::LumBlueRed::Scene(sceneParams);
 					break;
 
@@ -76,4 +76,27 @@ void DicomSceneSet::initScenes() {
 
 		sceneParams.frame++;
 	}
+}
+
+qreal DicomSceneSet::getFrameTime() {
+	if (numberOfFrames == 1)
+		return 0;
+
+	static gdcm::Tag
+			TagFrameTime(0x0018, 0x1063);
+
+	if (gdcmDataSet.FindDataElement(TagFrameTime)) {
+		auto frameTime = QString::fromStdString(gdcmStringFilter.ToString(TagFrameTime)).toDouble();
+		return frameTime;
+	}
+
+	return 0;
+}
+
+const QString &DicomSceneSet::getTitle() {
+	if (!title.isEmpty()) return title;
+
+	title.append("To jest <b>tytuł</b> z dicom seta");
+
+	return title;
 }

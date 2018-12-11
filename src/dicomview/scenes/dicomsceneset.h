@@ -14,9 +14,16 @@ namespace Sokar {
 		std::vector<char> imageBuffer;
 
 		const gdcm::ImageReader *imageReader;
+		const gdcm::File &gdcmFile;
+		const gdcm::DataSet &gdcmDataSet;
+		const gdcm::Image &gdcmImage;
 		gdcm::StringFilter gdcmStringFilter;
 
 		QVector<DataSetViewer *> dataSetViewers;
+
+		QString title;
+
+		int numberOfFrames = 1;
 
 	public:
 		explicit DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent = nullptr);
@@ -24,17 +31,15 @@ namespace Sokar {
 
 		//region Getters
 
-		inline const QVector<DicomScene *> &getVector() const {
-			return vector;
-		}
+		inline const QVector<DicomScene *> &getVector() const { return vector; }
 
-		inline const gdcm::File &getGdcmFile() const {
-			return imageReader->GetFile();
-		}
+		inline const gdcm::File &getGdcmFile() const { return imageReader->GetFile(); }
 
-		inline QVector<DataSetViewer *> &getDataSetViewers() {
-			return dataSetViewers;
-		}
+		inline QVector<DataSetViewer *> &getDataSetViewers() { return dataSetViewers; }
+
+		qreal getFrameTime();
+
+		const QString &getTitle();
 
 		//endregion
 
