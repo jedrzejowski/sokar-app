@@ -7,7 +7,7 @@ static char StringSplitter = '\\';
 
 DataConverter::DataConverter(const gdcm::File &file) :
 		file(file),
-		dataset(file.GetDataSet()){
+		dataset(file.GetDataSet()) {
 
 	stringFilter.SetFile(file);
 

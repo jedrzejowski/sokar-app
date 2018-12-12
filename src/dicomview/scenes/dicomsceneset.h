@@ -20,8 +20,6 @@ namespace Sokar {
 		const gdcm::Image &gdcmImage;
 		DataConverter dataConventer;
 
-		QVector<DataSetViewer *> dataSetViewers;
-
 		QString title;
 
 		int numberOfFrames = 1;
@@ -35,8 +33,6 @@ namespace Sokar {
 		inline const QVector<DicomScene *> &getVector() const { return vector; }
 
 		inline const gdcm::File &getGdcmFile() const { return imageReader->GetFile(); }
-
-		inline QVector<DataSetViewer *> &getDataSetViewers() { return dataSetViewers; }
 
 		qreal getFrameTime();
 

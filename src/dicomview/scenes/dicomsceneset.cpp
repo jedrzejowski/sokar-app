@@ -3,7 +3,6 @@
 
 #include "dicomsceneset.h"
 
-#include "unsupported/unsupported.h"
 #include "exception/exception.h"
 #include "monochrome/monochrome.h"
 #include "redgreenblue/redgreenblue.h"
@@ -23,8 +22,6 @@ DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent) :
 }
 
 DicomSceneSet::~DicomSceneSet() {
-	for (auto &datasetViewer : dataSetViewers)
-		delete datasetViewer;
 
 	delete imageReader;
 }
@@ -73,10 +70,8 @@ void DicomSceneSet::initScenes() {
 					throw Sokar::ImageTypeNotSupportedException();
 			}
 
-		} catch (Sokar::ImageTypeNotSupportedException &) {
-			scene = new Sokar::Unsupported::Scene(sceneParams);
-		} catch (std::exception e) {
-			scene = new Sokar::ExceptionScene(sceneParams);
+		} catch (Sokar::Exception &e) {
+			scene = new Sokar::ExceptionScene(sceneParams, e);
 		}
 
 		sceneParams.frame++;

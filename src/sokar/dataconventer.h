@@ -19,6 +19,12 @@ namespace Sokar {
 			return QString::fromStdString(stringFilter.ToString(tag));
 		}
 
+		inline bool hasTagWihtData(const gdcm::Tag &tag) {
+			if (!dataset.FindDataElement(tag)) return false;
+
+			return dataset.GetDataElement(tag).GetVL() > 0;
+		}
+
 		/**
 		 * http://dicom.nema.org/dicom/2013/output/chtml/part05/sect_6.2.html
 		 */

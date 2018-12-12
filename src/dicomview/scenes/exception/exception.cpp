@@ -2,17 +2,48 @@
 
 using namespace Sokar;
 
-Unsupported::Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
+ExceptionScene::ExceptionScene(SceneParams &sceneParams, Sokar::Exception &exception) :
+		DicomScene(sceneParams) {
 
-	text22 = addText("Unsupported");
-	text22->setDefaultTextColor(QColor("white"));
+	msgText = addText("");
+	msgText->setDefaultTextColor(QColor("white"));
+
+
+	switch (exception.type()) {
+
+		case Exception::WrongScope:
+			msgText->setHtml("WrongScope");
+			break;
+		case Exception::ImageTypeNotSupported:
+			msgText->setHtml("ImageTypeNotSupported");
+			break;
+		case Exception::DicomTagMissing:
+			msgText->setHtml("DicomTagMissing");
+			break;
+		case Exception::DicomTagParseError:
+			msgText->setHtml("DicomTagParseError");
+			break;
+	}
+
+	static const gdcm::Tag
+			TagSegmentedRedPaletteColorLookupTableData(0x0028, 0x1221);
+
+	auto &redSeq = gdcmDataSet.GetDataElement(TagSegmentedRedPaletteColorLookupTableData);
+	auto qq = (quint16 *) redSeq.GetByteValue()->GetPointer();
+
+	auto ww = (quint16 *) &originBuffer[0];
+
+	for (int i = 0; i < imgDimX * imgDimY; i += 2) {
+		qDebug() << *ww;
+		ww++;
+	}
 }
 
-Unsupported::Scene::~Scene() {
+ExceptionScene::~ExceptionScene() {
 
 }
 
-bool Sokar::Unsupported::Scene::generatePixmap() {
+bool Sokar::ExceptionScene::generatePixmap() {
 	if (!pixmap.isNull())
 		return false;
 
@@ -22,14 +53,14 @@ bool Sokar::Unsupported::Scene::generatePixmap() {
 	return true;
 }
 
-void Unsupported::Scene::reposItems() {
+void ExceptionScene::reposItems() {
 	DicomScene::reposItems();
 
-	text22->setPos((this->width() - text22->document()->size().width()) / 2,
-				   (this->height() - text22->document()->size().height()) / 2);
+	msgText->setPos((this->width() - msgText->document()->size().width()) / 2,
+					(this->height() - msgText->document()->size().height()) / 2);
 }
 
-void Unsupported::Scene::toolBarAdjust(DicomToolBar *toolbar) {
+void ExceptionScene::toolBarAdjust(DicomToolBar *toolbar) {
 	DicomScene::toolBarAdjust(toolbar);
 
 	toolbar->getActionWindowing()->setEnabled(false);

@@ -18,6 +18,10 @@ DataSetViewer::DataSetViewer(DicomSceneSet *dicomSceneSet, QWidget *parent)
 
 	setModel(&standardModel);
 
+
+	connect(dicomSceneSet, &DicomSceneSet::destroyed, this, &DataSetViewer::close);
+
+
 	headerLabels << "Tag" << "VL" << "VR" << "Keyword" << "Value";
 	standardModel.setHorizontalHeaderLabels(headerLabels);
 
@@ -103,7 +107,6 @@ void DataSetViewer::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *
 
 DataSetViewer *DataSetViewer::openAsWindow(DicomSceneSet *sceneSet) {
 	auto widget = new DataSetViewer(sceneSet);
-	sceneSet->getDataSetViewers() << widget;
 
 	widget->setAttribute(Qt::WA_DeleteOnClose);
 	widget->show();

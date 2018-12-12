@@ -1,7 +1,8 @@
 #pragma once
 
-#include <QtCore>
 #include <gdcmImageReader.h>
+
+#include <QtCore>
 
 #include "../dicomscene.h"
 
@@ -10,12 +11,13 @@ namespace Sokar {
 	Q_OBJECT
 
 	private:
-		QGraphicsTextItem* text22;
+		QGraphicsTextItem *msgText;
+		Sokar::Exception *exception;
 
 	public:
-		explicit Scene(SceneParams &sceneParams);
+		explicit ExceptionScene(SceneParams &sceneParams, Sokar::Exception &exception);
 
-		~Scene() override;
+		~ExceptionScene() override;
 
 	protected:
 		bool generatePixmap() override;

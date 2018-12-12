@@ -55,6 +55,7 @@ void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
 		case DicomToolBar::OpenDataSet:
 
 			if (currentDicomScene() == nullptr) break;
+
 			DataSetViewer::openAsWindow(currentDicomScene()->getDicomSceneSet());
 
 			return;

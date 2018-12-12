@@ -147,10 +147,12 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 //region Indicators
 
 void DicomScene::initIndicators() {
-	initPatientDataIndicator();
-	initHospitalDataIndicator();
-	initPixelSpacingIndicator();
-	initImageOrientationIndicator();
+	try {
+		initPatientDataIndicator();
+		initHospitalDataIndicator();
+		initPixelSpacingIndicator();
+		initImageOrientationIndicator();
+	} catch (Sokar::Exception &) {}
 }
 
 void DicomScene::initPatientDataIndicator() {

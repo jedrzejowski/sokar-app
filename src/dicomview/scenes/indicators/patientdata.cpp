@@ -54,7 +54,7 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 		lines << QObject::tr("<div style='font-size:x-large;'><b>%1</b>%2</div>").arg(name, sex);
 	}
 
-	if (dataset.FindDataElement(TagPatientID)) {
+	if (dataConv.hasTagWihtData(TagPatientID)) {
 		temp = dataConv.toString(TagPatientID);
 		lines << QObject::tr("<div>%1</div>").arg(temp);
 	}
@@ -62,14 +62,14 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 	{
 		QString line = "";
 
-		if (dataset.FindDataElement(TagPatientBirthDate)) {
+		if (dataConv.hasTagWihtData(TagPatientBirthDate)) {
 			auto date = dataConv.toDate(TagPatientBirthDate);
 
 			line += QObject::tr("born %1").arg(date.toString("yyyy-MM-dd"));
 
 		}
 
-		if (dataset.FindDataElement(TagPatientAge)) {
+		if (dataConv.hasTagWihtData(TagPatientAge)) {
 
 			temp = dataConv.toAgeString(TagPatientAge);
 
@@ -80,13 +80,13 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 	}
 
 	{
-		if (dataset.FindDataElement(TagStudyDescription)) {
+		if (dataConv.hasTagWihtData(TagStudyDescription)) {
 			temp = dataConv.toString(TagStudyDescription);
 
 			lines << QObject::tr("<div>%1</div>").arg(temp);
 		}
 
-		if (dataset.FindDataElement(TagSeriesDescription)) {
+		if (dataConv.hasTagWihtData(TagSeriesDescription)) {
 			temp = dataConv.toString(TagSeriesDescription);
 
 			lines << QObject::tr("<div>%1</div>").arg(temp);
