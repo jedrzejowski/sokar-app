@@ -32,19 +32,22 @@ namespace Sokar {
 
 		void setSceneSet(DicomSceneSet *sceneSet);
 
-		void moveNext();
-		void movePrev();
-
 	protected:
 		void resizeEvent(QResizeEvent *event) override;
+
 		void updateAvatars();
+		void updateTimerUI();
 
 		void initTimer();
 
-	private slots:
+	public slots:
+		void moveNext();
+		void movePrev();
 		void onAvatarClicked(SceneAvatar *avatar);
 		void timerToggle();
-		void timerUpdate();
+		void timerStop();
+		void timerStart();
+		void timerUpdateInterval();
 		void timerStep();
 
 	signals:

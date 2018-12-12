@@ -6,6 +6,7 @@ using namespace Sokar;
 FrameChooser::FrameChooser(QWidget *parent) :
 		QWidget(parent),
 		ui(new Ui::FrameChooser) {
+
 	ui->setupUi(this);
 
 	layout = new QVBoxLayout;
@@ -16,11 +17,11 @@ FrameChooser::FrameChooser(QWidget *parent) :
 	ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
-	connect(ui->nextBtn, &QToolButton::clicked, this, &FrameChooser::moveNext);
-	connect(ui->prevBtn, &QToolButton::clicked, this, &FrameChooser::movePrev);
-	connect(ui->playBtn, &QToolButton::clicked, this, &FrameChooser::timerToggle);
-	connect(ui->fpsBox, &QSpinBox::valueChanged, this, &FrameChooser::timerUpdate);
-	connect(&qTimer, &QTimer::timeout, this, &FrameChooser::timerStep);
+	connect(ui->fpsBox, SIGNAL(valueChanged(int)), this, SLOT(timerUpdateInterval()));
+	connect(ui->nextBtn, SIGNAL(clicked()), this, SLOT(moveNext()));
+	connect(ui->prevBtn, SIGNAL(clicked()), this, SLOT(movePrev()));
+	connect(ui->playBtn, SIGNAL(clicked()), this, SLOT(timerToggle()));
+	connect(&qTimer, SIGNAL(timeout()), this, SLOT(timerStep()));
 }
 
 FrameChooser::~FrameChooser() {
@@ -91,17 +92,21 @@ void FrameChooser::initTimer() {
 }
 
 void FrameChooser::timerToggle() {
-	if (qTimer.isActive()) {
-		qTimer.stop();
-	} else {
-		qTimer.start();
-	}
-
-	ui->nextBtn->setDisabled(qTimer.isActive());
-	ui->prevBtn->setDisabled(qTimer.isActive());
+	if (qTimer.isActive()) timerStop();
+	else timerStart();
 }
 
-void FrameChooser::timerUpdate() {
+void FrameChooser::timerStart() {
+	qTimer.start();
+	updateTimerUI();
+}
+
+void FrameChooser::timerStop() {
+	qTimer.stop();
+	updateTimerUI();
+}
+
+void FrameChooser::timerUpdateInterval() {
 	qTimer.setInterval(1000 / ui->fpsBox->value());
 }
 
@@ -109,3 +114,13 @@ void FrameChooser::timerStep() {
 	this->moveNext();
 }
 
+void FrameChooser::updateTimerUI() {
+	if (qTimer.isActive()) {
+		ui->playBtn->setIcon(QIcon::fromTheme("player_stop"));
+	} else {
+		ui->playBtn->setIcon(QIcon::fromTheme("player_play"));
+	}
+
+	ui->nextBtn->setDisabled(qTimer.isActive());
+	ui->prevBtn->setDisabled(qTimer.isActive());
+}

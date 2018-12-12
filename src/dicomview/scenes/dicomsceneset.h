@@ -5,6 +5,7 @@
 #include "../_classdef.h"
 #include "../dataset.h"
 #include "dicomscene.h"
+#include "sokar/dataconventer.h"
 
 namespace Sokar {
 	class DicomSceneSet : public QObject {
@@ -17,7 +18,7 @@ namespace Sokar {
 		const gdcm::File &gdcmFile;
 		const gdcm::DataSet &gdcmDataSet;
 		const gdcm::Image &gdcmImage;
-		gdcm::StringFilter gdcmStringFilter;
+		DataConventer dataConventer;
 
 		QVector<DataSetViewer *> dataSetViewers;
 

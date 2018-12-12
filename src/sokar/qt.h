@@ -5,7 +5,6 @@
 
 namespace Qt {
 
-
 	const QImage &QImageCache(const QString &name);
 
 	const QIcon &QuadIcon(const QString &name,

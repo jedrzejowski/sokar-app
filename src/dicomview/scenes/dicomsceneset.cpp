@@ -1,4 +1,5 @@
 #include "sokar/gdcmSokar.h"
+#include "sokar/qt.h"
 
 #include "dicomsceneset.h"
 
@@ -14,9 +15,8 @@ DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent) :
 		imageReader(reader),
 		gdcmFile(reader->GetFile()),
 		gdcmDataSet(gdcmFile.GetDataSet()),
-		gdcmImage(reader->GetImage()) {
-
-	gdcmStringFilter.SetFile(imageReader->GetFile());
+		gdcmImage(reader->GetImage()),
+		dataConventer(imageReader->GetFile()) {
 
 	initScenes();
 }
@@ -96,7 +96,28 @@ qreal DicomSceneSet::getFrameTime() {
 const QString &DicomSceneSet::getTitle() {
 	if (!title.isEmpty()) return title;
 
-	title.append("To jest <b>tytuł</b> z dicom seta");
+	const static gdcm::Tag
+			TagModality(0x0008, 0x0060),
+			TagStudyDate(0x0008, 0x0020),
+			TagPatientName(0x0010, 0x0010);
+
+
+	if (gdcmDataSet.FindDataElement(TagPatientName)) {
+		title += dataConventer.toString(TagPatientName));
+	}
+
+	if (gdcmDataSet.FindDataElement(TagModality)) {
+		title += tr(" (%1)").arg(
+				dataConventer.toString(TagModality)
+		);
+	}
+
+	if (gdcmDataSet.FindDataElement(TagStudyDate)) {
+		title += tr(" - %1").arg(
+				dataConventer.asDate(TagStudyDate).toString(tr("yyyy-MM-dd"))
+		);
+	}
+
 
 	return title;
 }

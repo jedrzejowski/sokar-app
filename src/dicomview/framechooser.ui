@@ -14,6 +14,9 @@
             <string>Form</string>
         </property>
         <layout class="QVBoxLayout" name="f">
+            <property name="spacing">
+                <number>0</number>
+            </property>
             <property name="leftMargin">
                 <number>0</number>
             </property>
@@ -37,7 +40,7 @@
                                 <x>0</x>
                                 <y>0</y>
                                 <width>398</width>
-                                <height>262</height>
+                                <height>272</height>
                             </rect>
                         </property>
                     </widget>
@@ -66,12 +69,20 @@
                                 <property name="orientation">
                                     <enum>Qt::Horizontal</enum>
                                 </property>
+                                <property name="sizeHint" stdset="0">
+                                    <size>
+                                        <width>0</width>
+                                        <height>0</height>
+                                    </size>
+                                </property>
                             </spacer>
                         </item>
                         <item>
                             <widget class="QToolButton" name="prevBtn">
                                 <property name="icon">
-                                    <iconset theme="previous"/>
+                                    <iconset theme="previous">
+                                        <normaloff>.</normaloff>.
+                                    </iconset>
                                 </property>
                             </widget>
                         </item>
@@ -81,7 +92,9 @@
                         <item>
                             <widget class="QToolButton" name="nextBtn">
                                 <property name="icon">
-                                    <iconset theme="next"/>
+                                    <iconset theme="next">
+                                        <normaloff>.</normaloff>.
+                                    </iconset>
                                 </property>
                             </widget>
                         </item>
@@ -89,6 +102,12 @@
                             <spacer name="horizontalSpacer1">
                                 <property name="orientation">
                                     <enum>Qt::Horizontal</enum>
+                                </property>
+                                <property name="sizeHint" stdset="0">
+                                    <size>
+                                        <width>0</width>
+                                        <height>0</height>
+                                    </size>
                                 </property>
                             </spacer>
                         </item>

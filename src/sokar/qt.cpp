@@ -1,5 +1,6 @@
 
 #include "qt.h"
+#include "exception.h"
 
 const QImage &Qt::QImageCache(const QString &name) {
 	static QHash<QString, QImage *> cache;
@@ -9,12 +10,11 @@ const QImage &Qt::QImageCache(const QString &name) {
 	cache[name] = new QImage(name);
 
 	return *cache[name];
-
 }
 
 const QIcon &Qt::QuadIcon(const QString &name,
-					  const QString &tl, const QString &tr,
-					  const QString &br, const QString &bl) {
+						  const QString &tl, const QString &tr,
+						  const QString &br, const QString &bl) {
 
 	static QHash<QString, QIcon *> cache;
 

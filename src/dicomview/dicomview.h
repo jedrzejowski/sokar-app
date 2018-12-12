@@ -40,9 +40,6 @@ namespace Sokar {
 		void activateScene(DicomScene *scene);
 		void toolbarActionTrigger(DicomToolBar::Action action);
 		void toolbarStateToggle(DicomToolBar::State state);
-
-	signals:
-		void titleChanged();
 	};
 }
 
