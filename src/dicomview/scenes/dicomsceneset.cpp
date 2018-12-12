@@ -4,6 +4,7 @@
 #include "dicomsceneset.h"
 
 #include "unsupported/unsupported.h"
+#include "exception/exception.h"
 #include "monochrome/monochrome.h"
 #include "redgreenblue/redgreenblue.h"
 #include "lumbluered/lumbluered.h"
@@ -30,8 +31,10 @@ DicomSceneSet::~DicomSceneSet() {
 
 void DicomSceneSet::initScenes() {
 
-	if (gdcmDataSet.FindDataElement(gdcm::TagNumberOfFrames))
-		numberOfFrames = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagNumberOfFrames)).toInt();
+	static gdcm::Tag TagNumberOfFrames(0x0028, 0x0008);
+
+	if (gdcmDataSet.FindDataElement(TagNumberOfFrames))
+		numberOfFrames = dataConventer.toString(TagNumberOfFrames).toInt();
 	vector.resize(numberOfFrames);
 
 	imageBuffer.resize(gdcmImage.GetBufferLength());
@@ -62,7 +65,7 @@ void DicomSceneSet::initScenes() {
 				case gdcm::PhotometricInterpretation::YBR_PARTIAL_422://Nope
 				case gdcm::PhotometricInterpretation::YBR_PARTIAL_420://Nope
 				case gdcm::PhotometricInterpretation::YBR_ICT://Nope
-				case gdcm::PhotometricInterpretation::YBR_RCT://Nopew
+				case gdcm::PhotometricInterpretation::YBR_RCT://Nope
 					scene = new Sokar::LumBlueRed::Scene(sceneParams);
 					break;
 
@@ -72,6 +75,8 @@ void DicomSceneSet::initScenes() {
 
 		} catch (Sokar::ImageTypeNotSupportedException &) {
 			scene = new Sokar::Unsupported::Scene(sceneParams);
+		} catch (std::exception e) {
+			scene = new Sokar::ExceptionScene(sceneParams);
 		}
 
 		sceneParams.frame++;
@@ -86,7 +91,7 @@ qreal DicomSceneSet::getFrameTime() {
 			TagFrameTime(0x0018, 0x1063);
 
 	if (gdcmDataSet.FindDataElement(TagFrameTime)) {
-		auto frameTime = QString::fromStdString(gdcmStringFilter.ToString(TagFrameTime)).toDouble();
+		auto frameTime = dataConventer.toDecimalString(TagFrameTime)[0];
 		return frameTime;
 	}
 
@@ -103,7 +108,7 @@ const QString &DicomSceneSet::getTitle() {
 
 
 	if (gdcmDataSet.FindDataElement(TagPatientName)) {
-		title += dataConventer.toString(TagPatientName));
+		title += dataConventer.toString(TagPatientName);
 	}
 
 	if (gdcmDataSet.FindDataElement(TagModality)) {
@@ -114,7 +119,7 @@ const QString &DicomSceneSet::getTitle() {
 
 	if (gdcmDataSet.FindDataElement(TagStudyDate)) {
 		title += tr(" - %1").arg(
-				dataConventer.asDate(TagStudyDate).toString(tr("yyyy-MM-dd"))
+				dataConventer.toDate(TagStudyDate).toString(tr("yyyy-MM-dd"))
 		);
 	}
 

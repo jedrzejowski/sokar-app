@@ -7,12 +7,13 @@
 
 namespace Sokar {
 
-	class DataConventer : public QObject {
+	class DataConverter : public QObject {
 	Q_OBJECT
 		const gdcm::File &file;
+		const gdcm::DataSet &dataset;
 		gdcm::StringFilter stringFilter;
 	public:
-		explicit DataConventer(const gdcm::File &file);
+		explicit DataConverter(const gdcm::File &file);
 
 		inline QString toString(const gdcm::Tag &tag) {
 			return QString::fromStdString(stringFilter.ToString(tag));
@@ -22,27 +23,34 @@ namespace Sokar {
 		 * http://dicom.nema.org/dicom/2013/output/chtml/part05/sect_6.2.html
 		 */
 
-		QString asAgeString(const gdcm::Tag &tag);
-		QDate asDate(const gdcm::Tag &tag);
-		QVector<qreal> asDecimalString(const gdcm::Tag &tag);
+		QString toAgeString(const gdcm::Tag &tag);
+		QDate toDate(const gdcm::Tag &tag);
+		QVector<qreal> toDecimalString(const gdcm::Tag &tag);
+		qint16 toShort(const gdcm::Tag &tag);
+		quint16 toUShort(const gdcm::Tag &tag);
 
 		//region Aliases
 
-		inline QString asAS(const gdcm::Tag &tag) { return asAgeString(tag); }
+		inline QString toAS(const gdcm::Tag &tag) { return toAgeString(tag); }
 
-		gdcm::Tag asAT(const gdcm::Tag &tag);
-		QString asCS(const gdcm::Tag &tag);
+		gdcm::Tag toAT(const gdcm::Tag &tag);
+		QString toCS(const gdcm::Tag &tag);
 
-		inline QDate asDA(const gdcm::Tag &tag) { return asDate(tag); }
+		inline QDate toDA(const gdcm::Tag &tag) { return toDate(tag); }
 
-		inline QVector<qreal> asDS(const gdcm::Tag &tag) { return asDecimalString(tag); }
+		inline QVector<qreal> toDS(const gdcm::Tag &tag) { return toDecimalString(tag); }
 
-		QDateTime asDT(const gdcm::Tag &tag);
-		short asSS(const gdcm::Tag &tag);
-		QString asST(const gdcm::Tag &tag);
-		QTime asTM(const gdcm::Tag &tag);
-		ushort asUS(const gdcm::Tag &tag);
-		QString asUT(const gdcm::Tag &tag);
+		QDateTime toDT(const gdcm::Tag &tag);
+
+		inline short toSS(const gdcm::Tag &tag) { return toShort(tag); }
+
+		QString toST(const gdcm::Tag &tag);
+		QTime toTM(const gdcm::Tag &tag);
+
+		inline quint16 toUS(const gdcm::Tag &tag) { return toUShort(tag); }
+
+		inline QString toUT(const gdcm::Tag &tag) { return toString(tag); }
+
 		//endregion
 	};
 }

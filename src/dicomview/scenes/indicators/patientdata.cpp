@@ -28,7 +28,7 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 			TagSeriesDescription(0x0008, 0x103E);
 
 	auto &dataset = file.GetDataSet();
-	auto dataConv = DataConventer(file);
+	auto dataConv = DataConverter(file);
 
 	QStringList lines;
 	QString temp;
@@ -63,7 +63,7 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 		QString line = "";
 
 		if (dataset.FindDataElement(TagPatientBirthDate)) {
-			auto date = dataConv.asDate(TagPatientBirthDate);
+			auto date = dataConv.toDate(TagPatientBirthDate);
 
 			line += QObject::tr("born %1").arg(date.toString("yyyy-MM-dd"));
 
@@ -71,7 +71,7 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 
 		if (dataset.FindDataElement(TagPatientAge)) {
 
-			temp = dataConv.asAgeString(TagPatientAge);
+			temp = dataConv.toAgeString(TagPatientAge);
 
 			line += QObject::tr(", %1").arg(temp);
 

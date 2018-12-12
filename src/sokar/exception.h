@@ -4,6 +4,9 @@
 #include <gdcmTag.h>
 
 namespace Sokar {
+	
+	
+	
 	class WrongScopeException : public std::exception {
 	public:
 

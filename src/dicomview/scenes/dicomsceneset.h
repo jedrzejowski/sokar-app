@@ -18,7 +18,7 @@ namespace Sokar {
 		const gdcm::File &gdcmFile;
 		const gdcm::DataSet &gdcmDataSet;
 		const gdcm::Image &gdcmImage;
-		DataConventer dataConventer;
+		DataConverter dataConventer;
 
 		QVector<DataSetViewer *> dataSetViewers;
 
