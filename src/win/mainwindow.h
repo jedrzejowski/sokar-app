@@ -15,6 +15,9 @@ public:
 
 	~MainWindow();
 
+protected:
+	void initMenuBar();
+
 private:
 	Ui::MainWindow *ui = nullptr;
 

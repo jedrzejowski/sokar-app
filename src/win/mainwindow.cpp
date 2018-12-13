@@ -1,5 +1,5 @@
-#include "main_win.h"
-#include "ui_main_win.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 
 #include <QtGlobal>
 #include <QCoreApplication>
@@ -50,4 +50,11 @@ void MainWindow::loadImage(const QString &path) {
 	}
 
 	ui->dicomTabs->addDicomFile(ir);
+}
+
+void MainWindow::initMenuBar() {
+
+	connect(ui->actionExit, &QAction::triggered, this, [&]() {
+
+	});
 }

@@ -228,13 +228,13 @@ void Scene::readAttributes() {
 
 bool Scene::generatePixmap() {
 
-	SpeedTest okienkowanie("LUT");
+//	SpeedTest okienkowanie("LUT");
 
 	if (!imgWindow->genLUT()) return false;
 
-	okienkowanie.close();
+//	okienkowanie.close();
 
-	SpeedTest generowanie("Image");
+//	SpeedTest generowanie("Image");
 
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::INT8:
@@ -272,13 +272,13 @@ bool Scene::generatePixmap() {
 			throw Sokar::ImageTypeNotSupportedException();
 	}
 
-	generowanie.close();
+//	generowanie.close();
 
-	SpeedTest qting("QPixmap");
+//	SpeedTest qting("QPixmap");
 
 	pixmap.convertFromImage(qImage);
 
-	qting.close();
+//	qting.close();
 
 	return true;
 }

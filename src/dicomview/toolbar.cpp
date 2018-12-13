@@ -8,7 +8,7 @@ DicomToolBar::DicomToolBar(QWidget *parent) : QToolBar(parent) {
 
 	toggleActionGrp = new QActionGroup(this);
 
-	connect(this, &DicomToolBar::stateToggleSignal, [=](State state) {
+	connect(this, &DicomToolBar::stateToggleSignal, [&](State state) {
 		this->state = state;
 	});
 
@@ -27,7 +27,7 @@ void DicomToolBar::initActions() {
 		actionWindowing->setDisabled(true);
 		addAction(actionWindowing);
 
-		connect(actionWindowing, &QAction::toggled, [=](bool checked) {
+		connect(actionWindowing, &QAction::toggled, [&](bool checked) {
 			if (checked) emit stateToggleSignal(Windowing);
 		});
 
@@ -44,7 +44,7 @@ void DicomToolBar::initActions() {
 		actionPan->setCheckable(true);
 		addAction(actionPan);
 
-		connect(actionPan, &QAction::toggled, [=](bool checked) {
+		connect(actionPan, &QAction::toggled, [&](bool checked) {
 			if (checked) emit stateToggleSignal(Pan);
 		});
 

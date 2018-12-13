@@ -22,7 +22,7 @@ void WindowInt::genMenu() {
 			if (palette == Window::palette)
 				action->setChecked(true);
 
-			connect(action, &QAction::toggled, [this, palette](bool checked) {
+			connect(action, &QAction::toggled, this, [&](bool checked) {
 				if (!checked) return;
 				setPalette(palette);
 				emit forceRefreshSignal();
@@ -48,7 +48,7 @@ void WindowInt::genMenu() {
 						"W" + QString::number((int) win.width)
 				);
 
-				connect(action, &QAction::triggered, [this, win](bool) {
+				connect(action, &QAction::triggered, this, [&](bool) {
 					activateDefWin(win);
 				});
 			}
@@ -93,7 +93,7 @@ void WindowInt::genMenu() {
 							"W" + QString::number((int) win.width)
 					);
 
-					connect(action, &QAction::triggered, [this, win](bool) {
+					connect(action, &QAction::triggered, this, [&](bool) {
 						activateDefWin(win);
 					});
 				}
@@ -105,7 +105,7 @@ void WindowInt::genMenu() {
 
 	{
 		auto action = toolbarMenu.addAction(tr("Inverse"));
-		connect(action, &QAction::triggered, [this](bool) {
+		connect(action, &QAction::triggered, this, [&](bool) {
 			setInversed(!isInversed());
 			emit forceRefreshSignal();
 		});

@@ -53,13 +53,29 @@
      <x>0</x>
      <y>0</y>
      <width>514</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>F&amp;ile</string>
     </property>
+    <widget class="QMenu" name="menuExport">
+     <property name="title">
+      <string>E&amp;xport as </string>
+     </property>
+     <addaction name="actionJPEG"/>
+     <addaction name="actionPNG"/>
+     <addaction name="actionGIF"/>
+     <addaction name="actionBMP"/>
+    </widget>
+    <addaction name="actionOpen"/>
+    <addaction name="actionOpenRecent"/>
+    <addaction name="separator"/>
+    <addaction name="menuExport"/>
+    <addaction name="actionSaveAnonymously"/>
+    <addaction name="separator"/>
+    <addaction name="actionPreferences"/>
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -68,15 +84,22 @@
     </property>
     <addaction name="actionHelp"/>
     <addaction name="separator"/>
-    <addaction name="actionAbout"/>
-    <addaction name="actionAbout_GDCM"/>
-    <addaction name="actionAbout_Sokar"/>
+    <addaction name="actionAboutQt"/>
+    <addaction name="actionAboutGDCM"/>
+    <addaction name="actionAboutSokar"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionTheme"/>
+    <widget class="QMenu" name="menuTheme">
+     <property name="title">
+      <string>&amp;Theme</string>
+     </property>
+     <addaction name="actionLight"/>
+     <addaction name="actionDark"/>
+    </widget>
+    <addaction name="menuTheme"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuView"/>
@@ -87,17 +110,17 @@
     <string>&amp;Exit</string>
    </property>
   </action>
-  <action name="actionAbout">
+  <action name="actionAboutQt">
    <property name="text">
     <string>&amp;About Qt</string>
    </property>
   </action>
-  <action name="actionAbout_GDCM">
+  <action name="actionAboutGDCM">
    <property name="text">
     <string>About &amp;GDCM</string>
    </property>
   </action>
-  <action name="actionAbout_Sokar">
+  <action name="actionAboutSokar">
    <property name="text">
     <string>A&amp;bout Sokar</string>
    </property>
@@ -107,9 +130,54 @@
     <string>&amp;Sokar Help</string>
    </property>
   </action>
-  <action name="actionTheme">
+  <action name="actionLight">
    <property name="text">
-    <string>Theme</string>
+    <string>&amp;Light</string>
+   </property>
+  </action>
+  <action name="actionDark">
+   <property name="text">
+    <string>&amp;Dark</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+  </action>
+  <action name="actionOpenRecent">
+   <property name="text">
+    <string>Open &amp;Recent</string>
+   </property>
+  </action>
+  <action name="actionSaveAnonymously">
+   <property name="text">
+    <string>&amp;Save Anonymously</string>
+   </property>
+  </action>
+  <action name="actionJPEG">
+   <property name="text">
+    <string>&amp;JPEG</string>
+   </property>
+  </action>
+  <action name="actionPNG">
+   <property name="text">
+    <string>&amp;PNG</string>
+   </property>
+  </action>
+  <action name="actionGIF">
+   <property name="text">
+    <string>&amp;GIF</string>
+   </property>
+  </action>
+  <action name="actionBMP">
+   <property name="text">
+    <string>&amp;BMP</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="text">
+    <string>&amp;Preferences</string>
    </property>
   </action>
  </widget>

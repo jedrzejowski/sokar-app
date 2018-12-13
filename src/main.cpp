@@ -2,7 +2,7 @@
 #include <QtCore>
 #include <QApplication>
 
-#include "win/main_win.h"
+#include "win/mainwindow.h"
 
 
 int main(int argc, char *argv[]) {

@@ -17,22 +17,127 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/win/main_win.ui" line="14"/>
-        <source>MainWindow</source>
+        <location filename="../../src/win/mainwindow.ui" line="14"/>
+        <source>Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/main_win.ui" line="24"/>
+        <location filename="../../src/win/mainwindow.ui" line="31"/>
         <source>Ładuj</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/main_win.cpp" line="28"/>
+        <location filename="../../src/win/mainwindow.ui" line="43"/>
+        <source>TextLabel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="61"/>
+        <source>F&amp;ile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="65"/>
+        <source>E&amp;xport as </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="83"/>
+        <source>He&amp;lp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="93"/>
+        <source>View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="97"/>
+        <source>&amp;Theme</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="110"/>
+        <source>&amp;Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="115"/>
+        <source>&amp;About Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="120"/>
+        <source>About &amp;GDCM</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="125"/>
+        <source>A&amp;bout Sokar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="130"/>
+        <source>&amp;Sokar Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="135"/>
+        <source>&amp;Light</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="140"/>
+        <source>&amp;Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="145"/>
+        <source>&amp;Open</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="150"/>
+        <source>Open &amp;Recent</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="155"/>
+        <source>&amp;Save Anonymously</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="160"/>
+        <source>&amp;JPEG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="165"/>
+        <source>&amp;PNG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="170"/>
+        <source>&amp;GIF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="175"/>
+        <source>&amp;BMP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="180"/>
+        <source>&amp;Preferences</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="32"/>
         <source>Load DCM file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/main_win.cpp" line="29"/>
+        <location filename="../../src/win/mainwindow.cpp" line="33"/>
         <source>Dicom File (*.dcm);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
