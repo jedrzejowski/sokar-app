@@ -20,8 +20,6 @@ private:
 
 private slots:
 	void selectFile();
-
-private:
 	void loadImage(const QString &path);
 
 };

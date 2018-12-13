@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true" buildAllGenerated="true">
     <generated>
       <config projectName="Sokar" targetName="DiBrowser_autogen" />
       <config projectName="Sokar" targetName="Sokar_autogen" />
@@ -14,23 +14,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="DataConventer: rozpoczęcie">
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/widget/filetree.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/widget/filetree.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/dataset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/dataset.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/dicomview.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/dicomview.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/exception/exception.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/exception/exception.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/exception/exception.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/exception/exception.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintstatic.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintstatic.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/dataconventer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/dataconventer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/dataconventer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/dataconventer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/exception.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/exception.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/framechooser.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/framechooser.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widget/dicomtabs.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/widget/dicomtabs.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/win/main_win.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/win/main_win.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/win/main_win.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/win/main_win.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/win/main_win.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/win/main_win.ui" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -54,16 +47,76 @@
     <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FUSProjectUsageTrigger">
+    <session id="1017096187">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cpp" value="9" />
+          <entry key="h" value="9" />
+          <entry key="ui" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="ObjectiveC" value="18" />
+          <entry key="Qt UI file" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="cpp" value="602" />
+          <entry key="h" value="212" />
+          <entry key="ui" value="230" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="ObjectiveC" value="814" />
+          <entry key="Qt UI file" value="230" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="src/Sokar" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/exception/exception.cpp">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+            <state relative-caret-position="52">
+              <caret line="95" column="22" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#25#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.ui">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="32" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/win/main_win.ui">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="79">
+              <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+              <folding>
+                <element signature="e#1638#1643#0" expanded="true" />
+                <element signature="e#1805#1810#0" expanded="true" />
+                <element signature="e#2376#2381#0" expanded="true" />
+                <element signature="e#2490#2495#0" expanded="true" />
+                <element signature="e#2619#2624#0" expanded="true" />
+                <element signature="e#2740#2745#0" expanded="true" />
+                <element signature="e#2859#2864#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,8 +132,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>Monochrome2::</find>
-      <find>throw</find>
       <find>qDe</find>
       <find>okienk</find>
       <find>okien</find>
@@ -109,6 +160,8 @@
       <find>40</find>
       <find>65</find>
       <find>45</find>
+      <find>unsu</find>
+      <find>sep</find>
     </findStrings>
     <replaceStrings>
       <replace>++z</replace>
@@ -139,9 +192,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/scene.h" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/scenelayout.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/scene.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/_layout.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/_layout.cpp" />
@@ -164,15 +214,11 @@
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp" />
-        <option value="$PROJECT_DIR$/src/win/main_win.ui" />
-        <option value="$PROJECT_DIR$/src/win/main_win.cpp" />
         <option value="$PROJECT_DIR$/src/widget/dicomtabs.h" />
-        <option value="$PROJECT_DIR$/src/widget/dicomtabs.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/dicomview.h" />
         <option value="$PROJECT_DIR$/res/resources.qrc" />
         <option value="$PROJECT_DIR$/src/dicomview/framechooser.h" />
         <option value="$PROJECT_DIR$/src/dicomview/framechooser.cpp" />
-        <option value="$PROJECT_DIR$/src/dicomview/framechooser.ui" />
         <option value="$PROJECT_DIR$/src/sokar/qt.h" />
         <option value="$PROJECT_DIR$/src/sokar/qt.cpp" />
         <option value="$PROJECT_DIR$/src/sokar/gdcmSokar.h" />
@@ -190,14 +236,27 @@
         <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/dataset.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/exception/exception.cpp" />
+        <option value="$PROJECT_DIR$/src/widget/filetree.cpp" />
+        <option value="$PROJECT_DIR$/src/widget/filetree.h" />
+        <option value="$PROJECT_DIR$/src/win/main_win.h" />
+        <option value="$PROJECT_DIR$/src/win/main_win.cpp" />
+        <option value="$PROJECT_DIR$/src/widget/dicomtabs.cpp" />
+        <option value="$PROJECT_DIR$/src/dicomview/framechooser.ui" />
+        <option value="$PROJECT_DIR$/src/win/main_win.ui" />
       </list>
     </option>
   </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="-28" />
-    <option name="width" value="1920" />
-    <option name="height" value="1108" />
+    <option name="y" value="-1" />
+    <option name="width" value="683" />
+    <option name="height" value="769" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -231,33 +290,69 @@
           <expand>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="res" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="ico" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dicomview" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dicomview" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dicomview" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
               <item name="exception" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="sokar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="widget" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="bachelor-elek" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="win" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -289,6 +384,132 @@
       <recent name="$PROJECT_DIR$/src/sokar" />
       <recent name="$PROJECT_DIR$/src/dicomview/scenes/monochrome2/windowing" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/res/lang/pl.ts</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/dataset.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/dicomview.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/scenes/exception/exception.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/scenes/exception/exception.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintstatic.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/sokar/dataconventer.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/sokar/dataconventer.h</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/sokar/exception.h</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/codeStyles/Project.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.cpp</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -527,7 +748,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="394274000" />
+    <option name="totallyTimeSpent" value="402970000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -539,15 +760,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-28" width="1920" height="1108" extended-state="6" />
+    <frame x="0" y="-1" width="1366" height="769" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49534163" visible="true" weight="0.19465241" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49534163" visible="true" weight="0.21742424" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.5046584" side_tool="true" weight="0.20530303" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3257965" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.67728674" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.67701864" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5570401" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -556,7 +777,7 @@
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.24223602" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50106955" side_tool="true" weight="0.5072017" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32763976" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49893048" weight="0.44501543" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49893048" weight="0.44409937" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="13" weight="0.32921812" />
       <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32921812" />
@@ -566,31 +787,35 @@
       <window_info anchor="right" id="Database" order="3" weight="0.32954547" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.497191" visible="true" weight="0.22651514" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49534163" visible="true" weight="0.21742424" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" sideWeight="0.502809" side_tool="true" weight="0.22651514" />
+      <window_info id="Favorites" order="2" sideWeight="0.5046584" side_tool="true" weight="0.20530303" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32608697" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.41614908" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5590062" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3257965" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.67701864" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5570401" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3271605" />
-      <window_info anchor="bottom" id="CMake" order="7" weight="0.3425926" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32608697" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.3416149" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.24223602" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50106955" side_tool="true" weight="0.5072017" />
-      <window_info anchor="bottom" id="Version Control" order="10" weight="0.3281893" />
-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49893048" weight="0.44720498" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32763976" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49893048" weight="0.44409937" />
       <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="13" weight="0.32921812" />
+      <window_info anchor="bottom" id="Inspection Results" order="14" weight="0.32921812" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32954547" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -622,78 +847,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="DataConventer: rozpoczęcie" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/ui_main_win.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/win/main_win.ui">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="103">
-          <caret line="34" column="36" selection-start-line="34" selection-start-column="36" selection-end-line="34" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/win/main_win.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="458">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/widget/dicomtabs.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/cmake-build-debug/ui_dicomview.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="31" column="9" selection-start-line="31" selection-start-column="9" selection-end-line="31" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtCore/qtimer.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="159" column="9" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qabstractbutton.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="124" column="9" selection-start-line="124" selection-start-column="9" selection-end-line="124" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/include/qt/QtWidgets/qspinbox.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="103" column="9" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/res/img/ico/next.png" />
-    <entry file="file://$PROJECT_DIR$/res/img/ico/play.png" />
-    <entry file="file:///usr/include/qt/QtWidgets/qtabwidget.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="54" column="33" selection-start-line="54" selection-start-column="23" selection-end-line="54" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -717,16 +870,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/local/include/gdcm-2.8/gdcmTag.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -738,13 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
           <caret line="19" column="12" selection-start-line="19" selection-start-column="12" selection-end-line="19" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.ui">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="70" column="43" selection-start-line="70" selection-start-column="43" selection-end-line="70" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -767,9 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="492">
           <caret line="56" lean-forward="true" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="e#1#16#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -794,20 +927,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/widget/dicomtabs.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/unsupported/unsupported.h" />
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sceneavatar.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="544">
@@ -962,23 +1082,143 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-            <element signature="e#660#2227#0" />
-            <element signature="e#2229#2511#0" />
-            <element signature="e#2513#3123#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/exception/exception.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="35" column="41" selection-start-line="35" selection-start-column="41" selection-end-line="35" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/unsupported/exception.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="45" column="7" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtWidgets/qabstractitemview.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="98" lean-forward="true" selection-start-line="98" selection-end-line="98" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtWidgets/qtreeview.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="137" column="52" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Sokar_autogen/WFD7YQQOTJ/moc_filetree.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+          <folding>
+            <element signature="e#341#382#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/cmake-build-debug/Sokar_autogen/mocs_compilation.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/win/main_win.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-35">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/widget/filetree.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="25" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtWidgets/qtabwidget.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="117" column="39" selection-start-line="117" selection-start-column="29" selection-end-line="117" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/widget/dicomtabs.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/widget/filetree.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/win/main_win.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.ui">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="78" column="31" lean-forward="true" selection-start-line="78" selection-start-column="31" selection-end-line="78" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="52">
+          <caret line="95" column="22" selection-start-line="95" selection-start-column="22" selection-end-line="95" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.ui">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="29" column="16" selection-start-line="29" selection-start-column="16" selection-end-line="32" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/win/main_win.ui">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="79">
+          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+          <folding>
+            <element signature="e#1638#1643#0" expanded="true" />
+            <element signature="e#1805#1810#0" expanded="true" />
+            <element signature="e#2376#2381#0" expanded="true" />
+            <element signature="e#2490#2495#0" expanded="true" />
+            <element signature="e#2619#2624#0" expanded="true" />
+            <element signature="e#2740#2745#0" expanded="true" />
+            <element signature="e#2859#2864#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

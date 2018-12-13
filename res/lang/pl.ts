@@ -27,12 +27,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/main_win.cpp" line="30"/>
+        <location filename="../../src/win/main_win.cpp" line="28"/>
         <source>Load DCM file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/main_win.cpp" line="31"/>
+        <location filename="../../src/win/main_win.cpp" line="29"/>
         <source>Dicom File (*.dcm);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -151,17 +151,17 @@
 <context>
     <name>Sokar::DicomSceneSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="115"/>
+        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="110"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="121"/>
+        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="116"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="122"/>
+        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="117"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>

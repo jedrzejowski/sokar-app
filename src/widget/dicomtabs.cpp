@@ -13,7 +13,7 @@ DicomTabs::DicomTabs(QWidget *parent) : QTabWidget(parent) {
 void DicomTabs::addDicomFile(const gdcm::ImageReader *file) {
 
 	auto dicomView = new DicomView(file, this);
-	addTab(dicomView, dicomView->getTitle());
+	setCurrentIndex(addTab(dicomView, dicomView->getTitle()));
 }
 
 

@@ -13,11 +13,13 @@ MainWindow::MainWindow(QWidget *parent) :
 		QMainWindow(parent),
 		ui(new Ui::MainWindow) {
 	ui->setupUi(this);
+	ui->splitter->setStretchFactor(0, 0);
+	ui->splitter->setStretchFactor(1, 1);
+
 	this->setMouseTracking(true);
-//	ui->centralWidget->setMouseTracking(true);
 
-
-	QObject::connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(selectFile()));
+	connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(selectFile()));
+	connect(ui->fileTree, SIGNAL(fileSelected(QString)), this, SLOT(loadImage(QString)));
 }
 
 MainWindow::~MainWindow() {
