@@ -6,12 +6,13 @@
 #include "../dataset.h"
 #include "dicomscene.h"
 #include "sokar/dataconventer.h"
+#include "sokar/cmdseq.h"
 
 namespace Sokar {
 	class DicomSceneSet : public QObject {
 	Q_OBJECT
 	private:
-		QVector<DicomScene *> vector;
+		QVector<DicomScene *> dicomScenes;
 		std::vector<char> imageBuffer;
 
 		const gdcm::ImageReader *imageReader;
@@ -28,13 +29,15 @@ namespace Sokar {
 		explicit DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent = nullptr);
 		~DicomSceneSet() override;
 
+		//region
+
 		//region Getters
 
-		inline const QVector<DicomScene *> &getVector() const { return vector; }
+		inline const QVector<DicomScene *> &getScenesVector() const { return dicomScenes; }
 
 		inline const gdcm::File &getGdcmFile() const { return imageReader->GetFile(); }
 
-		qreal getFrameTime();
+		CommandSequence getFrameSequence();
 
 		const QString &getTitle();
 

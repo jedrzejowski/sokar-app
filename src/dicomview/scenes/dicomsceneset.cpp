@@ -22,6 +22,10 @@ DicomSceneSet::DicomSceneSet(const gdcm::ImageReader *reader, QObject *parent) :
 }
 
 DicomSceneSet::~DicomSceneSet() {
+	qDebug() << "~DicomSceneSet()";
+
+	for (auto scene : dicomScenes)
+		delete scene;
 
 	delete imageReader;
 }
@@ -32,7 +36,7 @@ void DicomSceneSet::initScenes() {
 
 	if (gdcmDataSet.FindDataElement(TagNumberOfFrames))
 		numberOfFrames = dataConventer.toString(TagNumberOfFrames).toInt();
-	vector.resize(numberOfFrames);
+	dicomScenes.resize(numberOfFrames);
 
 	imageBuffer.resize(gdcmImage.GetBufferLength());
 	gdcmImage.GetBuffer(&imageBuffer[0]);
@@ -43,7 +47,7 @@ void DicomSceneSet::initScenes() {
 	sceneParams.imageReader = imageReader;
 	sceneParams.imageBuffer = &imageBuffer;
 
-	for (auto &scene : vector) {
+	for (auto &scene : dicomScenes) {
 
 		try {
 
@@ -78,19 +82,33 @@ void DicomSceneSet::initScenes() {
 	}
 }
 
-qreal DicomSceneSet::getFrameTime() {
-	if (numberOfFrames == 1)
-		return 0;
+CommandSequence DicomSceneSet::getFrameSequence() {
+	auto cmds = CommandSequence();
+
+	if (numberOfFrames == 1) {
+		cmds << Command{GoTo, 1};
+		return cmds;
+	}
 
 	static gdcm::Tag
-			TagFrameTime(0x0018, 0x1063);
+			TagFrameTime(0x0018, 0x1063),
+			TagFrameIncrementPointer(0x0028, 0x0009);
 
-	if (gdcmDataSet.FindDataElement(TagFrameTime)) {
+
+	if (!dataConventer.hasTagWihtData(TagFrameIncrementPointer)) {
+		cmds << Command{GoTo, 1};
+		return cmds;
+	}
+
+	auto frameIncPtr = dataConventer.toAttributeTag(TagFrameIncrementPointer);
+
+	if (TagFrameTime == frameIncPtr) {
 		auto frameTime = dataConventer.toDecimalString(TagFrameTime)[0];
 		return frameTime;
 	}
 
-	return 0;
+	cmds << Command{GoTo, 1};
+	return cmds;
 }
 
 const QString &DicomSceneSet::getTitle() {

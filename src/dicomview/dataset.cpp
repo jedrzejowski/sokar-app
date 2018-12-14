@@ -114,4 +114,8 @@ DataSetViewer *DataSetViewer::openAsWindow(DicomSceneSet *sceneSet) {
 	return widget;
 }
 
+DataSetViewer::~DataSetViewer() {
+	qDebug() << "~DataSetViewer()";
+}
+
 

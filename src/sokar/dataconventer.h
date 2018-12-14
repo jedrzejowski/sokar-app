@@ -29,6 +29,7 @@ namespace Sokar {
 		 * http://dicom.nema.org/dicom/2013/output/chtml/part05/sect_6.2.html
 		 */
 
+		gdcm::Tag toAttributeTag(const gdcm::Tag &tag);
 		QString toAgeString(const gdcm::Tag &tag);
 		QDate toDate(const gdcm::Tag &tag);
 		QVector<qreal> toDecimalString(const gdcm::Tag &tag);
@@ -39,7 +40,8 @@ namespace Sokar {
 
 		inline QString toAS(const gdcm::Tag &tag) { return toAgeString(tag); }
 
-		gdcm::Tag toAT(const gdcm::Tag &tag);
+		inline gdcm::Tag toAT(const gdcm::Tag &tag) { return toAttributeTag(tag); }
+
 		QString toCS(const gdcm::Tag &tag);
 
 		inline QDate toDA(const gdcm::Tag &tag) { return toDate(tag); }

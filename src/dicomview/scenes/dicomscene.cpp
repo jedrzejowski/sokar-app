@@ -41,7 +41,7 @@ DicomScene::DicomScene(SceneParams &sceneParams) :
 }
 
 DicomScene::~DicomScene() {
-
+	qDebug() << "~DicomScene()";
 }
 
 void DicomScene::reposItems() {

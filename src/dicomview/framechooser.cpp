@@ -32,7 +32,7 @@ void FrameChooser::setSceneSet(DicomSceneSet *sceneSet) {
 
 	this->sceneSet = sceneSet;
 
-	for (auto &scene : sceneSet->getVector()) {
+	for (auto &scene : sceneSet->getScenesVector()) {
 
 		auto avatar = scene->getAvatar();
 		avatar->updateSize(20);

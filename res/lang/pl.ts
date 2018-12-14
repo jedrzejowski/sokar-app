@@ -22,122 +22,117 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="31"/>
-        <source>Ładuj</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/win/mainwindow.ui" line="43"/>
+        <location filename="../../src/win/mainwindow.ui" line="30"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="65"/>
+        <location filename="../../src/win/mainwindow.ui" line="52"/>
         <source>E&amp;xport as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="97"/>
+        <location filename="../../src/win/mainwindow.ui" line="84"/>
         <source>&amp;Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="110"/>
+        <location filename="../../src/win/mainwindow.ui" line="97"/>
         <source>&amp;Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="120"/>
+        <location filename="../../src/win/mainwindow.ui" line="107"/>
         <source>About &amp;GDCM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="61"/>
+        <location filename="../../src/win/mainwindow.ui" line="48"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="83"/>
+        <location filename="../../src/win/mainwindow.ui" line="70"/>
         <source>&amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="93"/>
+        <location filename="../../src/win/mainwindow.ui" line="80"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="115"/>
+        <location filename="../../src/win/mainwindow.ui" line="102"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="125"/>
+        <location filename="../../src/win/mainwindow.ui" line="112"/>
         <source>About &amp;Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="130"/>
+        <location filename="../../src/win/mainwindow.ui" line="117"/>
         <source>Sokar &amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="135"/>
+        <location filename="../../src/win/mainwindow.ui" line="122"/>
         <source>&amp;Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="140"/>
+        <location filename="../../src/win/mainwindow.ui" line="127"/>
         <source>&amp;Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="145"/>
+        <location filename="../../src/win/mainwindow.ui" line="132"/>
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="150"/>
+        <location filename="../../src/win/mainwindow.ui" line="137"/>
         <source>Open &amp;Recent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="155"/>
+        <location filename="../../src/win/mainwindow.ui" line="142"/>
         <source>&amp;Save Anonymously</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="160"/>
+        <location filename="../../src/win/mainwindow.ui" line="147"/>
         <source>&amp;JPEG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="165"/>
+        <location filename="../../src/win/mainwindow.ui" line="152"/>
         <source>&amp;PNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="170"/>
+        <location filename="../../src/win/mainwindow.ui" line="157"/>
         <source>&amp;GIF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="175"/>
+        <location filename="../../src/win/mainwindow.ui" line="162"/>
         <source>&amp;BMP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="180"/>
+        <location filename="../../src/win/mainwindow.ui" line="167"/>
         <source>&amp;Preferences</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="33"/>
+        <location filename="../../src/win/mainwindow.cpp" line="32"/>
         <source>Load DCM file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="34"/>
+        <location filename="../../src/win/mainwindow.cpp" line="33"/>
         <source>Dicom File (*.dcm);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -256,17 +251,17 @@
 <context>
     <name>Sokar::DicomSceneSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="110"/>
+        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="125"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="116"/>
+        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="131"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="117"/>
+        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="132"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>

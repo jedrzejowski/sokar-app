@@ -103,3 +103,14 @@ qint16 DataConverter::toShort(const gdcm::Tag &tag) {
 quint16 DataConverter::toUShort(const gdcm::Tag &tag) {
 	return *((quint16 *) dataset.GetDataElement(tag).GetByteValue()->GetPointer());
 }
+
+gdcm::Tag DataConverter::toAttributeTag(const gdcm::Tag &tag) {
+	quint16 *group, *element;
+
+	auto &elem = dataset.GetDataElement(tag);
+
+	group = (quint16 *) elem.GetByteValue()->GetPointer();
+	element = group + 1;
+
+	return gdcm::Tag(*group, *element);
+}

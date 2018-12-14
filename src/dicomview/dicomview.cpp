@@ -18,12 +18,14 @@ DicomView::DicomView(const gdcm::ImageReader *reader, QWidget *parent) :
 
 	ui->frameChooser->setSceneSet(dicomSceneSet);
 
-	if (dicomSceneSet->getVector().size() == 1)
+	if (dicomSceneSet->getScenesVector().size() == 1)
 		ui->frameChooser->hide();
 }
 
 DicomView::~DicomView() {
+	qDebug() << "~DicomView()";
 	delete ui;
+	delete dicomSceneSet;
 }
 
 DicomScene *DicomView::currentDicomScene() {

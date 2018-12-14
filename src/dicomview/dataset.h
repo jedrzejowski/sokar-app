@@ -28,6 +28,7 @@ namespace Sokar {
 
 	public:
 		explicit DataSetViewer(DicomSceneSet *dicomSceneSet, QWidget *parent = nullptr);
+		virtual ~DataSetViewer();
 
 		static DataSetViewer *openAsWindow(DicomSceneSet *sceneSet);
 
