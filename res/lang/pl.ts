@@ -32,23 +32,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="61"/>
-        <source>F&amp;ile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/win/mainwindow.ui" line="65"/>
-        <source>E&amp;xport as </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/win/mainwindow.ui" line="83"/>
-        <source>He&amp;lp</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/win/mainwindow.ui" line="93"/>
-        <source>View</source>
+        <source>E&amp;xport as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -62,23 +47,38 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="115"/>
-        <source>&amp;About Qt</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/win/mainwindow.ui" line="120"/>
         <source>About &amp;GDCM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/win/mainwindow.ui" line="61"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="83"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="93"/>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="115"/>
+        <source>About &amp;Qt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/win/mainwindow.ui" line="125"/>
-        <source>A&amp;bout Sokar</source>
+        <source>About &amp;Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/win/mainwindow.ui" line="130"/>
-        <source>&amp;Sokar Help</source>
+        <source>Sokar &amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -132,12 +132,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="32"/>
+        <location filename="../../src/win/mainwindow.cpp" line="33"/>
         <source>Load DCM file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="33"/>
+        <location filename="../../src/win/mainwindow.cpp" line="34"/>
         <source>Dicom File (*.dcm);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>

@@ -2,7 +2,6 @@
 
 #include <QtCore>
 
-
 namespace Sokar {
 	struct Pixel {
 		quint8 red = 0, green = 0, blue = 0;

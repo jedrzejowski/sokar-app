@@ -21,7 +21,7 @@ FileTree::FileTree(QWidget *parent) : QTreeView(parent) {
 		scrollTo(index, PositionAtTop);
 	}
 
-	connect(this, &FileTree::doubleClicked, this, [](const QModelIndex &index) {
+	connect(this, &FileTree::doubleClicked, [&](const QModelIndex &index) {
 		auto path = model.filePath(index);
 
 		if (QFileInfo(path).isFile())

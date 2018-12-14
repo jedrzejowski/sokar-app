@@ -1,13 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QtGlobal>
-#include <QCoreApplication>
-#include <QtWidgets/QFileDialog>
-#include <QtWidgets/QMessageBox>
-#include <QtWidgets/QScrollBar>
+#include <QtCore>
+#include <QtWidgets>
 
 #include <gdcmImageReader.h>
+
+#include "sokar/settings.h"
 
 MainWindow::MainWindow(QWidget *parent) :
 		QMainWindow(parent),
@@ -18,8 +17,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	this->setMouseTracking(true);
 
-	connect(ui->pushButton, SIGNAL(clicked()), this, SLOT(selectFile()));
 	connect(ui->fileTree, SIGNAL(fileSelected(QString)), this, SLOT(loadImage(QString)));
+
+	initMenuBar();
 }
 
 MainWindow::~MainWindow() {
@@ -49,12 +49,20 @@ void MainWindow::loadImage(const QString &path) {
 		return;
 	}
 
+//	Sokar::Settings::bumpRecentOpen(path);
+
 	ui->dicomTabs->addDicomFile(ir);
 }
 
 void MainWindow::initMenuBar() {
 
-	connect(ui->actionExit, &QAction::triggered, this, [&]() {
+	connect(ui->actionExit, &QAction::triggered, [&] {
+		QApplication::quit();
+	});
+
+	connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::selectFile);
+
+	connect(ui->actionOpenRecent, &QAction::triggered, [&] {
 
 	});
 }
