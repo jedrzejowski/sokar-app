@@ -24,7 +24,6 @@ FrameChooser::FrameChooser(QWidget *parent) :
 
 FrameChooser::~FrameChooser() {
 	delete ui;
-	delete frameSequence;
 }
 
 void FrameChooser::setSceneSet(DicomSceneSet *sceneSet) {

@@ -6,16 +6,13 @@
 namespace Sokar::Monochrome {
 	class WindowIntStatic : public WindowInt {
 	protected:
-//		std::vector<Pixel> array;
-		Pixel *array = nullptr;
+		std::vector<Pixel> arrayVector;
+		Pixel *pixelArray = nullptr;
 		quint64 arraySize = 0;
 	public:
 
 		WindowIntStatic(DataConverter &dataConverter) : WindowInt(dataConverter) {}
 
-		~WindowIntStatic() override {
-			delete array;
-		}
 
 		Type type() override {
 			return IntStatic;
@@ -29,9 +26,8 @@ namespace Sokar::Monochrome {
 //					array.resize(signedMove + maxValue);
 
 				if (arraySize != signedMove + maxValue) {
-					delete array;
 					arraySize = signedMove + maxValue;
-					array = new Pixel[arraySize];
+					arrayVector.resize(arraySize);
 				}
 
 				TrueInt x = signedMove;
@@ -41,20 +37,22 @@ namespace Sokar::Monochrome {
 				auto &foreground = isInversed() ? palette->getBackground() : palette->getForeground();
 
 //				for (auto &pixel : array) {
-				Pixel *pixel = array;
+				pixelArray = &arrayVector[0];
 				for (int i = 0; i <= arraySize; i++) {
 
 					if (x < x0) {
-						*pixel = background;
+						*pixelArray = background;
 					} else if (x > x1) {
-						*pixel = foreground;
+						*pixelArray = foreground;
 					} else {
-						*pixel = palette->getPixel(a * x + b);
+						*pixelArray = palette->getPixel(a * x + b);
 					}
 
 					x++;
-					pixel++;
+					pixelArray++;
 				}
+
+				pixelArray = &arrayVector[0];
 
 				return true;
 			}
@@ -62,7 +60,7 @@ namespace Sokar::Monochrome {
 		}
 
 		inline const Pixel &getLUT(quint64 value) override {
-			return *(array + signedMove + value);
+			return *(pixelArray + signedMove + value);
 		}
 	};
 }

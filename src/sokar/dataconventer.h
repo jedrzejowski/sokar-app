@@ -14,6 +14,7 @@ namespace Sokar {
 		gdcm::StringFilter stringFilter;
 	public:
 		explicit DataConverter(const gdcm::File &file);
+		~DataConverter() override;
 
 		inline QString toString(const gdcm::Tag &tag) {
 			return QString::fromStdString(stringFilter.ToString(tag));

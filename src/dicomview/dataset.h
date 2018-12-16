@@ -7,7 +7,8 @@
 #include <QtWidgets>
 
 #include "_classdef.h"
-#include "scenes/dicomsceneset.h"
+
+#include "scenes/dicomscene.h"
 
 namespace Sokar {
 
@@ -15,7 +16,7 @@ namespace Sokar {
 	Q_OBJECT
 
 	private:
-		DicomSceneSet *dicomSceneSet;
+		DicomScene *dicomScene;
 
 		QStandardItemModel standardModel;
 		QStringList headerLabels;
@@ -27,13 +28,13 @@ namespace Sokar {
 		void initTree();
 
 	public:
-		explicit DataSetViewer(DicomSceneSet *dicomSceneSet, QWidget *parent = nullptr);
+		explicit DataSetViewer(DicomScene *dicomScene, QWidget *parent = nullptr);
 		virtual ~DataSetViewer();
 
-		static DataSetViewer *openAsWindow(DicomSceneSet *sceneSet);
+		static DataSetViewer *openAsWindow(DicomScene *scene);
 
-		inline DicomSceneSet *getDicomSceneSet() {
-			return dicomSceneSet;
+		inline DicomScene *getDicomScene() {
+			return dicomScene;
 		}
 
 		inline bool operator==(const DataSetViewer &b) const {

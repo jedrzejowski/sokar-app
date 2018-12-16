@@ -1,10 +1,12 @@
 #pragma once
 
+#include <gdcmImageReader.h>
+
 #include <QtCore>
 #include <QtWidgets>
 #include "_classdef.h"
 
-#include "scenes/dicomsceneset.h"
+#include "scenes/sets/_sceneset.h"
 #include "toolbar.h"
 
 namespace Ui {
@@ -22,7 +24,7 @@ namespace Sokar {
 		DicomSceneSet *dicomSceneSet;
 
 	public:
-		explicit DicomView(const gdcm::ImageReader *reader, QWidget *parent = nullptr);
+		explicit DicomView(DicomSceneSet *dicomSceneSet, QWidget *parent = nullptr);
 
 		~DicomView() override;
 

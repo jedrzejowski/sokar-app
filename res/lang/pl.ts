@@ -264,19 +264,19 @@
     </message>
 </context>
 <context>
-    <name>Sokar::DicomSceneSet</name>
+    <name>Sokar::DicomFrameSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="172"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="174"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="178"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="180"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="179"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="181"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1,25 +1,27 @@
 #include "dicomview.h"
 #include "ui_dicomview.h"
 
+#include "scenes/sets/frameset.h"
+
 using namespace Sokar;
 
-DicomView::DicomView(const gdcm::ImageReader *reader, QWidget *parent) :
+DicomView::DicomView(DicomSceneSet *dicomSceneSet, QWidget *parent) :
 		QWidget(parent),
+		dicomSceneSet(dicomSceneSet),
 		ui(new Ui::DicomView) {
 
-
 	ui->setupUi(this);
+
+	dicomSceneSet->setParent(this);
 
 	connect(ui->frameChooser, &FrameChooser::selectSceneSignal, this, &DicomView::activateScene);
 	connect(ui->toolbar, &DicomToolBar::stateToggleSignal, this, &DicomView::toolbarStateToggle);
 	connect(ui->toolbar, &DicomToolBar::actionTriggerSignal, this, &DicomView::toolbarActionTrigger);
 
-	dicomSceneSet = new DicomSceneSet(reader, this);
-
-	ui->frameChooser->setSceneSet(dicomSceneSet);
-
-	if (dicomSceneSet->getScenesVector().size() == 1)
-		ui->frameChooser->hide();
+//	ui->frameChooser->setSceneSet(dicomSceneSet);
+//
+//	if (dicomSceneSet->getScenesVector().size() == 1)
+//		ui->frameChooser->hide();
 }
 
 DicomView::~DicomView() {
@@ -58,7 +60,7 @@ void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
 
 			if (currentDicomScene() == nullptr) break;
 
-			DataSetViewer::openAsWindow(currentDicomScene()->getDicomSceneSet());
+			DataSetViewer::openAsWindow(currentDicomScene());
 
 			return;
 

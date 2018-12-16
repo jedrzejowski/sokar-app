@@ -1,6 +1,8 @@
 #include "sokar/settings.h"
 #include "dicomtabs.h"
 
+#include "dicomview/scenes/sets/frameset.h"
+
 using namespace Sokar;
 
 DicomTabs::DicomTabs(QWidget *parent) : QTabWidget(parent) {
@@ -12,7 +14,8 @@ DicomTabs::DicomTabs(QWidget *parent) : QTabWidget(parent) {
 
 void DicomTabs::addDicomFile(const gdcm::ImageReader *file) {
 
-	auto dicomView = new DicomView(file, this);
+	auto sceneSet = new DicomFrameSet(file);
+	auto dicomView = new DicomView(sceneSet, this);
 	setCurrentIndex(addTab(dicomView, dicomView->getTitle()));
 }
 
@@ -28,9 +31,6 @@ void DicomTabs::dropEvent(QDropEvent *event) {
 	const auto *mimeData = event->mimeData();
 
 	if (mimeData->hasUrls()) {
-
-		QStringList pathList;
-		QList<QUrl> urlList = mimeData->urls();
 
 		for (auto &path : mimeData->urls()) {
 

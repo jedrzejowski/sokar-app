@@ -12,14 +12,14 @@
 using namespace Sokar;
 
 
-DataSetViewer::DataSetViewer(DicomSceneSet *dicomSceneSet, QWidget *parent)
+DataSetViewer::DataSetViewer(DicomScene *dicomScene, QWidget *parent)
 		: QTreeView(parent),
-		  dicomSceneSet(dicomSceneSet) {
+		  dicomScene(dicomScene) {
 
 	setModel(&standardModel);
 
 
-	connect(dicomSceneSet, &DicomSceneSet::destroyed, this, &DataSetViewer::close);
+	connect(dicomScene, &DicomScene::destroyed, this, &DataSetViewer::close);
 
 
 	headerLabels << "Tag" << "VL" << "VR" << "Keyword" << "Value";
@@ -45,11 +45,11 @@ QString tagIdToString(const gdcm::Tag &tag) {
 
 void DataSetViewer::initTree() {
 
-	stringFilter.SetFile(dicomSceneSet->getGdcmFile());
+	stringFilter.SetFile(dicomScene->getGdcmFile());
 
 	auto rootItem = standardModel.invisibleRootItem();
 
-	auto &dataset = dicomSceneSet->getGdcmFile().GetDataSet();
+	auto &dataset = dicomScene->getGdcmFile().GetDataSet();
 
 	forEachDataSet(dataset, rootItem);
 }
@@ -105,8 +105,8 @@ void DataSetViewer::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *
 	}
 }
 
-DataSetViewer *DataSetViewer::openAsWindow(DicomSceneSet *sceneSet) {
-	auto widget = new DataSetViewer(sceneSet);
+DataSetViewer *DataSetViewer::openAsWindow(DicomScene *scene) {
+	auto widget = new DataSetViewer(scene);
 
 	widget->setAttribute(Qt::WA_DeleteOnClose);
 	widget->show();

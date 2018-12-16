@@ -8,7 +8,7 @@ ExceptionScene::ExceptionScene(SceneParams &sceneParams, Sokar::Exception &excep
 	msgText = addText("");
 	msgText->setDefaultTextColor(QColor("white"));
 
-
+	return;
 	switch (exception.type()) {
 
 		case Exception::WrongScope:

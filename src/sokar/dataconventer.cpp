@@ -11,6 +11,12 @@ DataConverter::DataConverter(const gdcm::File &file) :
 
 }
 
+DataConverter::~DataConverter() {
+	qDebug("~DataConverter()");
+}
+
+
+
 QString DataConverter::toAgeString(const gdcm::Tag &tag) {
 	/**
 	 * A string of characters with one of the following formats -- nnnD, nnnW, nnnM, nnnY;
@@ -142,4 +148,3 @@ QString DataConverter::toPersonName(const gdcm::Tag &tag) {
 
 	return full.join(' ');
 }
-

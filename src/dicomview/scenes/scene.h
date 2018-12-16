@@ -9,21 +9,14 @@
 namespace Sokar {
 	class Scene : public QGraphicsScene {
 	Q_OBJECT
-	protected:
-		std::vector<SceneIndicator *> indicators;
-
-		QHBoxLayout layoutH1, layoutH2;
-		QVBoxLayout layoutV1, layoutV2;
+	private:
+		QVector<SceneIndicator *> indicators;
 
 	public:
 
 		explicit Scene(QObject *parent = nullptr);
 
 		~Scene() override;
-
-		const std::vector<SceneIndicator *> &allIndicators() const {
-			return indicators;
-		}
 
 		void addIndicator(SceneIndicator *indicator);
 

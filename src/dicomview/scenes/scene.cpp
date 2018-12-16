@@ -15,7 +15,7 @@ Scene::~Scene() {
 }
 
 void Scene::addIndicator(SceneIndicator *indicator) {
-	indicators.push_back(indicator);
+	indicators << indicator;
 	addItem(indicator);
 }
 

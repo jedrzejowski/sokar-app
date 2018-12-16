@@ -5,8 +5,9 @@
 
 #include "_classdef.h"
 
+#include "sokar/cmdseq.h"
 #include "scenes/dicomscene.h"
-#include "scenes/dicomsceneset.h"
+#include "scenes/sets/_sceneset.h"
 
 namespace Ui {
 	class FrameChooser;

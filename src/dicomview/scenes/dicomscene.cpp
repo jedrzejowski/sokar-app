@@ -8,7 +8,6 @@
 #include "sokar/gdcmSokar.h"
 
 #include "dicomscene.h"
-#include "dicomsceneset.h"
 #include "../dicomview.h"
 #include "../framechooser.h"
 

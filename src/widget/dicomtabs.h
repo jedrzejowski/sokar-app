@@ -14,6 +14,7 @@ namespace Sokar {
 		explicit DicomTabs(QWidget *parent = nullptr);
 
 		void addDicomFile(const gdcm::ImageReader *file);
+		void addDicomFileSet(const gdcm::ImageReader *file);
 
 		DicomView* currentDicomView();
 
