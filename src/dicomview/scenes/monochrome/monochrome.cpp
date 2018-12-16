@@ -78,8 +78,8 @@ void Scene::readAttributes() {
 				throw Sokar::ImageTypeNotSupportedException();
 		}
 
-		if (isDynamic) imgWindow = new WindowIntDynamic();
-		else imgWindow = new WindowIntStatic();
+		if (isDynamic) imgWindow = new WindowIntDynamic(dataConverter);
+		else imgWindow = new WindowIntStatic(dataConverter);
 
 		addIndicator(imgWindow);
 
@@ -114,31 +114,34 @@ void Scene::readAttributes() {
 
 	//
 	{
-		if (gdcmDataSet.FindDataElement(gdcm::TagWindowCenter)) {
-			gdcm::assertTagPresence(gdcmDataSet, gdcm::TagWindowWidth);
+		static gdcm::Tag
+				TagWindowCenter(0x0028, 0x1050),
+				TagWindowWidth(0x0028, 0x1051),
+				TagWindowCenterWidthExplanation(0x0028, 0x1055);
 
-			auto centers = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenter)).split('\\');
-			auto widths = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowWidth)).split('\\');
+		if (gdcmDataSet.FindDataElement(TagWindowCenter) && gdcmDataSet.FindDataElement(TagWindowWidth)) {
+
+			auto centers = dataConverter.toDecimalString(TagWindowCenter);
+			auto widths = dataConverter.toDecimalString(TagWindowWidth);
 			QStringList names;
 
-			if (gdcmDataSet.FindDataElement(gdcm::TagWindowCenterWidthExplanation))
-				names = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagWindowCenterWidthExplanation))
-						.split('\\');
+			if (gdcmDataSet.FindDataElement(TagWindowCenterWidthExplanation))
+				names = dataConverter.toStringList(TagWindowCenterWidthExplanation);
 
 			if (centers.size() != widths.size())
-				throw DicomTagParseError(gdcm::TagWindowWidth, "Number of WindowCenter's and WindowWidth's not match");
+				throw DicomTagParseError(TagWindowWidth, "Number of WindowCenter's and WindowWidth's not match");
 
 			for (int i = 0; i < centers.size(); i++) {
 
 				imgWindowInt->pushDefaultValues(
-						Monochrome::TrueInt(centers[i].toDouble()),
-						Monochrome::TrueInt(widths[i].toDouble()),
+						Monochrome::TrueInt(centers[i]),
+						Monochrome::TrueInt(widths[i]),
 						names.isEmpty() ? "" : names[i]
 				);
 			}
 
-			imgWindowInt->setCenter(Monochrome::TrueInt(centers[0].toDouble()));
-			imgWindowInt->setWidth(Monochrome::TrueInt(widths[0].toDouble()));
+			imgWindowInt->setCenter(Monochrome::TrueInt(centers[0]));
+			imgWindowInt->setWidth(Monochrome::TrueInt(widths[0]));
 
 			goto endOfWindowBorders;
 		}
@@ -200,7 +203,7 @@ void Scene::readAttributes() {
 	//
 
 	if (gdcmDataSet.FindDataElement(gdcm::TagPixelPaddingValue)) {
-		auto background = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelPaddingValue)).toInt(&ok);
+		auto background = dataConverter.toString(gdcm::TagPixelPaddingValue).toInt(&ok);
 
 		if (!ok) throw DicomTagParseError(gdcm::TagPixelPaddingValue);
 

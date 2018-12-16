@@ -3,6 +3,8 @@
 
 using namespace Sokar::Monochrome;
 
+Window::Window(DataConverter &dataConverter) : SceneIndicator(dataConverter) {}
+
 QMenu *Window::getMenu() {
 	if (toolbarMenu.isEmpty()) genMenu();
 	return &toolbarMenu;

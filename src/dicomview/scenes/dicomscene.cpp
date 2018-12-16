@@ -18,9 +18,8 @@ DicomScene::DicomScene(SceneParams &sceneParams) :
 		Scene((QObject *) sceneParams.dicomSceneSet),
 		gdcmFile(sceneParams.imageReader->GetFile()),
 		gdcmImage(sceneParams.imageReader->GetImage()),
-		gdcmDataSet(gdcmFile.GetDataSet()) {
-
-	gdcmStringFilter.SetFile(gdcmFile);
+		gdcmDataSet(gdcmFile.GetDataSet()),
+		dataConverter(*sceneParams.dataConverter) {
 
 	imgDimX = gdcmImage.GetDimension(0);
 	imgDimY = gdcmImage.GetDimension(1);
@@ -60,7 +59,7 @@ void DicomScene::reloadPixmap() {
 		pixmapItem = addPixmap(pixmap);
 		pixmapItem->setZValue(-1);
 
-		centerTransformat.translate((qreal) pixmap.width() / -2, (qreal) pixmap.height() / -2);
+		centerTransform.translate((qreal) pixmap.width() / -2, (qreal) pixmap.height() / -2);
 		updatePixmapTransformation();
 	} else {
 		pixmapItem->setPixmap(pixmap);
@@ -70,7 +69,7 @@ void DicomScene::reloadPixmap() {
 
 QTransform DicomScene::pixmapTransformation() {
 	QTransform transform;
-	transform *= centerTransformat;
+	transform *= centerTransform;
 	transform *= scaleTransform;
 	transform *= rotateTransform;
 	transform *= panTransform;
@@ -156,55 +155,33 @@ void DicomScene::initIndicators() {
 }
 
 void DicomScene::initPatientDataIndicator() {
-	patientDataIndicator = new PatientDataIndicator;
-	patientDataIndicator->loadData(gdcmFile);
+	patientDataIndicator = new PatientDataIndicator(dataConverter);
 	addIndicator(patientDataIndicator);
 }
 
 void DicomScene::initHospitalDataIndicator() {
-	hospitalDataIndicator = new HospitalDataIndicator;
-	hospitalDataIndicator->loadData(gdcmFile);
+	hospitalDataIndicator = new HospitalDataIndicator(dataConverter);
 	addIndicator(hospitalDataIndicator);
 }
 
 void DicomScene::initPixelSpacingIndicator() {
-	if (!gdcmDataSet.FindDataElement(gdcm::TagPixelSpacing)) return;
+	static gdcm::Tag
+			TagPixelSpacing(0x0028, 0x0030);
 
-	auto pixelSpacings = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagPixelSpacing))
-			.split(gdcm::StringSplitter);
+	if (!gdcmDataSet.FindDataElement(TagPixelSpacing)) return;
 
-	bool ok = false;
 
-	pixelSpacingIndicator = new PixelSpacingIndicator;
+	pixelSpacingIndicator = new PixelSpacingIndicator(dataConverter);
 	addIndicator(pixelSpacingIndicator);
-
-	if (pixelSpacings.length() >= 1) {
-		auto spacing = pixelSpacings[0].toDouble(&ok);
-
-		if (ok) {
-			pixelSpacingIndicator->setXSpacing(spacing);
-			pixelSpacingIndicator->setXDim(gdcmImage.GetDimension(0));
-		}
-	}
-
-	if (pixelSpacings.length() >= 2) {
-
-		auto spacing = pixelSpacings[1].toDouble(&ok);
-
-		if (ok) {
-			pixelSpacingIndicator->setYSpacing(spacing);
-			pixelSpacingIndicator->setYDim(gdcmImage.GetDimension(0));
-		}
-	}
 }
 
 void DicomScene::initImageOrientationIndicator() {
-	if (!gdcmDataSet.FindDataElement(gdcm::TagImageOrientationPatient)) return;
+	static gdcm::Tag
+			TagImageOrientationPatient(0x0020, 0x0037);
 
-	auto orientations = QString::fromStdString(gdcmStringFilter.ToString(gdcm::TagImageOrientationPatient));
+	if (!gdcmDataSet.FindDataElement(TagImageOrientationPatient)) return;
 
-	imageOrientationIndicator = new ImageOrientationIndicator();
-	imageOrientationIndicator->setOrientation(orientations);
+	imageOrientationIndicator = new ImageOrientationIndicator(dataConverter);
 
 	imageOrientationIndicator->setOffsetBottomParent(pixelSpacingIndicator);
 	imageOrientationIndicator->setOffsetRightParent(pixelSpacingIndicator);
@@ -306,4 +283,12 @@ void DicomScene::wheelEvent(QGraphicsSceneWheelEvent *event) {
 
 	if (event->delta() > 0)
 		getDicomView()->getFrameChooser().movePrev();
+}
+
+bool DicomScene::saveToFile(const QString &fileName, const char *format, int quality) {
+
+	qDebug() << fileName;
+	qDebug() << qImage;
+
+	return qImage.save(fileName);
 }

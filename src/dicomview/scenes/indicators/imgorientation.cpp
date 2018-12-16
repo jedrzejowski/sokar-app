@@ -16,7 +16,7 @@ struct {
 			Posterior = QVector4D(0, +1, 0, 1);
 } PatientPoint;
 
-ImageOrientationIndicator::ImageOrientationIndicator() {
+ImageOrientationIndicator::ImageOrientationIndicator(DataConverter &dataConverter) : SceneIndicator(dataConverter) {
 	leftText = new QGraphicsTextItem();
 	leftText->setDefaultTextColor(defaultColor);
 	leftText->hide();
@@ -38,19 +38,22 @@ ImageOrientationIndicator::ImageOrientationIndicator() {
 	addToGroup(rightText);
 }
 
-void ImageOrientationIndicator::setOrientation(QString orient) {
-	auto orientStrList = orient.split(gdcm::StringSplitter);
+void ImageOrientationIndicator::initData() {
+	static gdcm::Tag
+			TagImageOrientationPatient(0x0020, 0x0037);
 
-	if (orientStrList.size() != 6) return;
+	auto orientVec = dataConverter.toDecimalString(TagImageOrientationPatient);
+
+	if (orientVec.size() != 6) return;
 
 	{
-		// orientStrList = [Xx,Xy,Xz,Yx,Yy,Yz]
-		imgMatrix(0, 0) = orientStrList[0].toFloat();
-		imgMatrix(1, 0) = orientStrList[1].toFloat();
-		imgMatrix(2, 0) = orientStrList[2].toFloat();
-		imgMatrix(0, 1) = orientStrList[3].toFloat();
-		imgMatrix(1, 1) = orientStrList[4].toFloat();
-		imgMatrix(2, 1) = orientStrList[5].toFloat();
+		// orientVec = [Xx,Xy,Xz,Yx,Yy,Yz]
+		imgMatrix(0, 0) = float(orientVec[0]);
+		imgMatrix(1, 0) = float(orientVec[1]);
+		imgMatrix(2, 0) = float(orientVec[2]);
+		imgMatrix(0, 1) = float(orientVec[3]);
+		imgMatrix(1, 1) = float(orientVec[4]);
+		imgMatrix(2, 1) = float(orientVec[5]);
 
 		/**
 		 * https://dicom.innolitics.com/ciods/ct-image/image-plane/00200037

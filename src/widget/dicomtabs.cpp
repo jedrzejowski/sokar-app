@@ -1,5 +1,5 @@
+#include "sokar/settings.h"
 #include "dicomtabs.h"
-#include "dicomview/dicomview.h"
 
 using namespace Sokar;
 
@@ -44,6 +44,8 @@ void DicomTabs::dropEvent(QDropEvent *event) {
 				continue;
 			}
 
+			Settings::bumpRecentOpen(path.path());
+
 			addDicomFile(ir);
 		}
 
@@ -61,4 +63,8 @@ void DicomTabs::dragMoveEvent(QDragMoveEvent *event) {
 
 void DicomTabs::dragLeaveEvent(QDragLeaveEvent *event) {
 	event->accept();
+}
+
+DicomView *DicomTabs::currentDicomView() {
+	return (DicomView *) currentWidget();
 }

@@ -17,15 +17,14 @@ FrameChooser::FrameChooser(QWidget *parent) :
 	ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
-	connect(ui->fpsBox, SIGNAL(valueChanged(int)), this, SLOT(timerUpdateInterval()));
 	connect(ui->nextBtn, SIGNAL(clicked()), this, SLOT(moveNext()));
 	connect(ui->prevBtn, SIGNAL(clicked()), this, SLOT(movePrev()));
 	connect(ui->playBtn, SIGNAL(clicked()), this, SLOT(timerToggle()));
-	connect(&qTimer, SIGNAL(timeout()), this, SLOT(timerStep()));
 }
 
 FrameChooser::~FrameChooser() {
 	delete ui;
+	delete frameSequence;
 }
 
 void FrameChooser::setSceneSet(DicomSceneSet *sceneSet) {
@@ -44,7 +43,7 @@ void FrameChooser::setSceneSet(DicomSceneSet *sceneSet) {
 		connect(avatar, &SceneAvatar::clicked, this, &FrameChooser::onAvatarClicked);
 	}
 
-	if (avatars.size() > 0)
+	if (!avatars.empty())
 		onAvatarClicked(avatars[0]);
 
 	updateAvatars();
@@ -59,6 +58,7 @@ void FrameChooser::resizeEvent(QResizeEvent *event) {
 
 void FrameChooser::onAvatarClicked(SceneAvatar *avatar) {
 	curentAvatar = avatar;
+	timerStop();
 	emit selectSceneSignal(avatar->getScene());
 }
 
@@ -79,48 +79,57 @@ void FrameChooser::movePrev() {
 	onAvatarClicked(avatars[i]);
 }
 
+void FrameChooser::moveTo(int i) {
+	i %= avatars.size();
+	onAvatarClicked(avatars[i]);
+}
+
 void FrameChooser::initTimer() {
-	qreal frameTime = sceneSet->getFrameTime();
+	frameSequence = sceneSet->getFrameSequence();
 
-	if (frameTime == 0) return;
+	if (frameSequence->size() == 0) return;
 
-	qreal fps = 1000 / frameTime;
+	connect(&frameTimer, &QTimer::timeout, this, [&]() {
+		frameSequence->step();
+	});
 
-	ui->fpsBox->setValue(int(fps));
-	qTimer.setInterval(int(frameTime));
-	timerToggle();
+	connect(frameSequence, &CommandSequence::onSleep, this, [&](quint64 howlong) {
+		frameTimer.start(int(howlong * ui->speedBox->value()));
+		updateTimerUI();
+	});
+
+	connect(frameSequence, &CommandSequence::onGoTo, this, [&](quint64 to) {
+		moveTo(int(to));
+		frameSequence->step();
+	});
+
+	frameSequence->step();
+
+	updateTimerUI();
 }
 
 void FrameChooser::timerToggle() {
-	if (qTimer.isActive()) timerStop();
+	if (frameTimer.isActive()) timerStop();
 	else timerStart();
 }
 
 void FrameChooser::timerStart() {
-	qTimer.start();
+	frameTimer.start();
 	updateTimerUI();
 }
 
 void FrameChooser::timerStop() {
-	qTimer.stop();
+	frameTimer.stop();
 	updateTimerUI();
 }
 
-void FrameChooser::timerUpdateInterval() {
-	qTimer.setInterval(1000 / ui->fpsBox->value());
-}
-
-void FrameChooser::timerStep() {
-	this->moveNext();
-}
-
 void FrameChooser::updateTimerUI() {
-	if (qTimer.isActive()) {
+	if (frameTimer.isActive()) {
 		ui->playBtn->setIcon(QIcon::fromTheme("player_stop"));
 	} else {
 		ui->playBtn->setIcon(QIcon::fromTheme("player_play"));
 	}
 
-	ui->nextBtn->setDisabled(qTimer.isActive());
-	ui->prevBtn->setDisabled(qTimer.isActive());
+	ui->nextBtn->setDisabled(frameTimer.isActive());
+	ui->prevBtn->setDisabled(frameTimer.isActive());
 }

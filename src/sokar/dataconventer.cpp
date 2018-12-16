@@ -3,8 +3,6 @@
 
 using namespace Sokar;
 
-static char StringSplitter = '\\';
-
 DataConverter::DataConverter(const gdcm::File &file) :
 		file(file),
 		dataset(file.GetDataSet()) {
@@ -87,7 +85,7 @@ QVector<qreal> DataConverter::toDecimalString(const gdcm::Tag &tag) {
 	auto vec = QVector<qreal>();
 	bool ok;
 
-	for (auto &str : toString(tag).split(StringSplitter)) {
+	for (auto &str : toStringList(tag)) {
 		vec << str.toDouble(&ok);
 
 		if (!ok) throw DicomTagParseError(tag);
@@ -114,3 +112,34 @@ gdcm::Tag DataConverter::toAttributeTag(const gdcm::Tag &tag) {
 
 	return gdcm::Tag(*group, *element);
 }
+
+QString DataConverter::toPersonName(const gdcm::Tag &tag) {
+	/*
+	 *       0           1            2        3      4
+	 * [family name^given names^middle name^prefix^suffixes]
+	 */
+
+	auto str = toString(tag).trimmed();
+
+	auto list = str.split('^');
+
+	QStringList full;
+
+	if (list.length() >= 4)
+		full << list[3].trimmed();
+
+	if (list.length() >= 1)
+		full << list[0].trimmed();
+
+	if (list.length() >= 3)
+		full << list[2].trimmed();
+
+	if (list.length() >= 2)
+		full << list[1].trimmed();
+
+	if (list.length() >= 5)
+		full << list[4].trimmed();
+
+	return full.join(' ');
+}
+

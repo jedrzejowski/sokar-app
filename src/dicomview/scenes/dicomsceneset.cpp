@@ -46,6 +46,7 @@ void DicomSceneSet::initScenes() {
 	sceneParams.dicomSceneSet = this;
 	sceneParams.imageReader = imageReader;
 	sceneParams.imageBuffer = &imageBuffer;
+	sceneParams.dataConverter = &dataConventer;
 
 	for (auto &scene : dicomScenes) {
 
@@ -82,32 +83,75 @@ void DicomSceneSet::initScenes() {
 	}
 }
 
-CommandSequence DicomSceneSet::getFrameSequence() {
-	auto cmds = CommandSequence();
+CommandSequence *DicomSceneSet::getFrameSequence() {
+	auto cmds = new CommandSequence(this);
 
-	if (numberOfFrames == 1) {
-		cmds << Command{GoTo, 1};
+	if (numberOfFrames == 1)
 		return cmds;
-	}
 
 	static gdcm::Tag
-			TagFrameTime(0x0018, 0x1063),
-			TagFrameIncrementPointer(0x0028, 0x0009);
+			TagFrameIncrementPointer(0x0028, 0x0009),
+	/**
+	 * Nominal time (in msec) per individual frame. See Section C.7.6.5.1.1 for further explanation.
+	 * Required if Frame Increment Pointer (0028,0009) points to Frame Time.
+	 */		TagFrameTime(0x0018, 0x1063),
+	/**
+	 * An array that contains the real time increments (in msec) between frames for a Multi-frame image.
+	 * See Section C.7.6.5.1.2 for further explanation.
+	 * Required if Frame Increment Pointer (0028,0009) points to Frame Time Vector.
+	 */		TagFrameTimeVector(0x0018, 0x1065),
+	/**
+	 * Number of frames per second.
+	 */		TagCineRate(0x0018, 0x0040),
+	/**
+	 * Describes the preferred playback sequencing for a multi-frame image.
+	 * Enumerated Values:
+	 *   0:
+	 *     Looping (1,2…n,1,2,…n,1,2,….n,…)
+	 *   1:
+	 *     Sweeping (1,2,…n,n-1,…2,1,2,…n,…)
+	 */		TagPreferredPlaybackSequencing(0x0018, 0x1244); //TODO zaimplementować to
 
-
-	if (!dataConventer.hasTagWihtData(TagFrameIncrementPointer)) {
-		cmds << Command{GoTo, 1};
+	if (!dataConventer.hasTagWithData(TagFrameIncrementPointer))
 		return cmds;
-	}
 
 	auto frameIncPtr = dataConventer.toAttributeTag(TagFrameIncrementPointer);
 
+	auto playback = dataConventer.hasTagWithData(TagPreferredPlaybackSequencing) ?
+					dataConventer.toUShort(TagPreferredPlaybackSequencing) : 0;
+
 	if (TagFrameTime == frameIncPtr) {
 		auto frameTime = dataConventer.toDecimalString(TagFrameTime)[0];
-		return frameTime;
+
+		for (int i = 0; i < numberOfFrames; i++)
+			cmds << Command{GoTo, quint64(i)} << Command{Sleep, quint64(frameTime)};
+
+		return cmds;
 	}
 
-	cmds << Command{GoTo, 1};
+	if (TagFrameTimeVector == frameIncPtr) {
+
+		auto vec = dataConventer.toDecimalString(TagFrameTimeVector);
+		quint64 i = 0;
+
+		for (auto &time : vec)
+			cmds << Command{GoTo, i++} << Command{Sleep, quint64(time)};
+
+		return cmds;
+	}
+
+	if (TagCineRate == frameIncPtr) {
+
+		auto frameTime = quint64(1 / dataConventer.toDecimalString(TagCineRate)[0]);
+
+		for (int i = 0; i < numberOfFrames; i++)
+			cmds << Command{GoTo, quint64(i)} << Command{Sleep, frameTime};
+
+		return cmds;
+	}
+
+	qWarning("DicomSceneSet::getFrameSequence() unknown TagFrameIncrementPointer");
+
 	return cmds;
 }
 
@@ -121,7 +165,7 @@ const QString &DicomSceneSet::getTitle() {
 
 
 	if (gdcmDataSet.FindDataElement(TagPatientName)) {
-		title += dataConventer.toString(TagPatientName);
+		title += dataConventer.toPersonName(TagPatientName);
 	}
 
 	if (gdcmDataSet.FindDataElement(TagModality)) {

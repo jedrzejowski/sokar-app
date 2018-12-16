@@ -5,7 +5,8 @@ using namespace Sokar;
 
 //region LineIndicator
 
-LineIndicator::LineIndicator() :
+LineIndicator::LineIndicator(DataConverter &dataConverter) :
+		SceneIndicator(dataConverter),
 		pen(QColor(255, 255, 255)) {
 
 	text = newText();
@@ -65,7 +66,10 @@ qreal LineIndicator::getRealHeight() const {
 
 //endregion
 
-PixelSpacingIndicator::PixelSpacingIndicator() {
+PixelSpacingIndicator::PixelSpacingIndicator(DataConverter &dataConverter) :
+		SceneIndicator(dataConverter),
+		xLine(dataConverter),
+		yLine(dataConverter) {
 
 	xLine.hide();
 	addToGroup(&xLine);

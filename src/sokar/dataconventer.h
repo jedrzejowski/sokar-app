@@ -19,7 +19,11 @@ namespace Sokar {
 			return QString::fromStdString(stringFilter.ToString(tag));
 		}
 
-		inline bool hasTagWihtData(const gdcm::Tag &tag) {
+		inline QStringList toStringList(const gdcm::Tag &tag) {
+			return toString(tag).split('\\');
+		}
+
+		inline bool hasTagWithData(const gdcm::Tag &tag) {
 			if (!dataset.FindDataElement(tag)) return false;
 
 			return dataset.GetDataElement(tag).GetVL() > 0;
@@ -33,6 +37,7 @@ namespace Sokar {
 		QString toAgeString(const gdcm::Tag &tag);
 		QDate toDate(const gdcm::Tag &tag);
 		QVector<qreal> toDecimalString(const gdcm::Tag &tag);
+		QString toPersonName(const gdcm::Tag &tag);
 		qint16 toShort(const gdcm::Tag &tag);
 		quint16 toUShort(const gdcm::Tag &tag);
 
@@ -49,6 +54,8 @@ namespace Sokar {
 		inline QVector<qreal> toDS(const gdcm::Tag &tag) { return toDecimalString(tag); }
 
 		QDateTime toDT(const gdcm::Tag &tag);
+
+		QString toPN(const gdcm::Tag &tag) { return toPersonName(tag); }
 
 		inline short toSS(const gdcm::Tag &tag) { return toShort(tag); }
 

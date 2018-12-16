@@ -14,7 +14,7 @@ namespace Sokar {
 		void update();
 	public:
 
-		LineIndicator();
+		LineIndicator(DataConverter &dataConverter);
 
 		void setText(QString str);
 		uint getPxLength() const;
@@ -37,7 +37,7 @@ namespace Sokar {
 		void updateLines();
 
 	public:
-		PixelSpacingIndicator();
+		PixelSpacingIndicator(DataConverter& dataConverter);
 
 		//region Getter & Setters
 

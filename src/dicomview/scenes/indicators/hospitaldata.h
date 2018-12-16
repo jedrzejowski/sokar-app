@@ -8,9 +8,9 @@ namespace Sokar {
 	class HospitalDataIndicator : public SceneIndicator {
 	private:
 		QGraphicsTextItem* text;
+		void initData();
 	public:
-		HospitalDataIndicator();
+		HospitalDataIndicator(DataConverter &dataConverter);
 		void reposition() override;
-		void loadData(const gdcm::File& file);
 	};
 }

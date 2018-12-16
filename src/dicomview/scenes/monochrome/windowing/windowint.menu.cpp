@@ -13,7 +13,7 @@ void WindowInt::genMenu() {
 
 		auto actionGroup = new QActionGroup(this);
 
-		for (auto palette : Palette::getAll()) {
+		for (auto &palette : Palette::getAll()) {
 			auto action = submenu->addAction(palette->getDisplay());
 
 			action->setActionGroup(actionGroup);

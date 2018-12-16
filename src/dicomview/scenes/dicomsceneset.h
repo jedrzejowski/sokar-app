@@ -37,7 +37,7 @@ namespace Sokar {
 
 		inline const gdcm::File &getGdcmFile() const { return imageReader->GetFile(); }
 
-		CommandSequence getFrameSequence();
+		CommandSequence* getFrameSequence();
 
 		const QString &getTitle();
 

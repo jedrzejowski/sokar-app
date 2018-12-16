@@ -21,10 +21,11 @@ namespace Sokar {
 		QWidget *content;
 		QVBoxLayout *layout;
 		SceneAvatar *curentAvatar;
-		QTimer qTimer;
+		QTimer frameTimer;
 
 		DicomSceneSet *sceneSet;
 		QVector<SceneAvatar *> avatars;
+		CommandSequence* frameSequence;
 
 	public:
 		explicit FrameChooser(QWidget *parent = nullptr);
@@ -36,19 +37,20 @@ namespace Sokar {
 		void resizeEvent(QResizeEvent *event) override;
 
 		void updateAvatars();
-		void updateTimerUI();
 
 		void initTimer();
+
+	private slots:
+		void updateTimerUI();
+		void onAvatarClicked(SceneAvatar *avatar);
 
 	public slots:
 		void moveNext();
 		void movePrev();
-		void onAvatarClicked(SceneAvatar *avatar);
+		void moveTo(int i);
 		void timerToggle();
 		void timerStop();
 		void timerStart();
-		void timerUpdateInterval();
-		void timerStep();
 
 	signals:
 		void resizeAvatars(int width);

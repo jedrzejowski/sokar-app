@@ -10,6 +10,9 @@ namespace Sokar::Monochrome {
 		Pixel *array = nullptr;
 		quint64 arraySize = 0;
 	public:
+
+		WindowIntStatic(DataConverter &dataConverter) : WindowInt(dataConverter) {}
+
 		~WindowIntStatic() override {
 			delete array;
 		}

@@ -14,12 +14,12 @@ namespace Sokar {
 			QVector4D right, left, head, feet, anterior, posterior;
 		} scenePosition;
 
+		void initData();
 	public:
 
-		ImageOrientationIndicator();
+		ImageOrientationIndicator(DataConverter &dataConverter);
 
 		void setRotateTransform(QTransform &rotateTransform);
-		void setOrientation(QString orient);
 
 		void reposition() override;
 

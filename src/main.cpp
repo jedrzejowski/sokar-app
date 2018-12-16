@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
 
 	Sokar::qSettings = new QSettings();
 
-	MainWindow w;
+	Sokar::MainWindow w;
 	w.show();
 
 	return app.exec();

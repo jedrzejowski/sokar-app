@@ -1,20 +1,20 @@
-#include <gdcmStringFilter.h>
 #include "hospitaldata.h"
 
 using namespace Sokar;
 
-HospitalDataIndicator::HospitalDataIndicator() {
+HospitalDataIndicator::HospitalDataIndicator(DataConverter &dataConverter) : SceneIndicator(dataConverter) {
 
 	text = newText();
 	addToGroup(text);
 
+	initData();
 }
 
 void HospitalDataIndicator::reposition() {
 	text->setPos(scene()->width() - text->document()->size().width(), 0);
 }
 
-void HospitalDataIndicator::loadData(const gdcm::File &file) {
+void HospitalDataIndicator::initData() {
 
 	const static gdcm::Tag
 			TagModality(0x0008, 0x0060),
@@ -24,34 +24,30 @@ void HospitalDataIndicator::loadData(const gdcm::File &file) {
 			TagManufacturerModelName(0x0008, 0x1090),
 			TagReferringPhysicianName(0x0008, 0x0090);
 
-	auto &dataset = file.GetDataSet();
-	auto stringFilter = gdcm::StringFilter();
-	stringFilter.SetFile(file);
-
 	QString htmlTags = " style='white-space: nowrap;' align='right' ";
 
 	QStringList lines;
 	QString temp;
 
-	if (dataset.FindDataElement(TagInstitutionalDepartmentName)) {
-		temp = QString::fromStdString(stringFilter.ToString(TagInstitutionalDepartmentName)).trimmed();
+	if (dataConverter.hasTagWithData(TagInstitutionalDepartmentName)) {
+		temp = dataConverter.toString(TagInstitutionalDepartmentName).trimmed();
 		lines << QObject::tr("<div %1>%2</div>").arg(htmlTags, temp);
 	}
 
-	if (dataset.FindDataElement(TagManufacturer)) {
-		QString manufacture = QString::fromStdString(stringFilter.ToString(TagManufacturer)).trimmed();
-		QString model = QString::fromStdString(stringFilter.ToString(TagManufacturerModelName)).trimmed();
+	if (dataConverter.hasTagWithData(TagManufacturer)) {
+		QString manufacture = dataConverter.toString(TagManufacturer).trimmed();
+		QString model = dataConverter.toString(TagManufacturerModelName).trimmed();
 
 		lines << QObject::tr("<div %1>%2 %3</div>").arg(htmlTags, manufacture, model).trimmed();
 	}
 
-	if (dataset.FindDataElement(TagReferringPhysicianName)) {
-		temp = QString::fromStdString(stringFilter.ToString(TagReferringPhysicianName)).trimmed();
+	if (dataConverter.hasTagWithData(TagReferringPhysicianName)) {
+		temp = dataConverter.toString(TagReferringPhysicianName).trimmed();
 		lines << QObject::tr("<div %1>%2</div>").arg(htmlTags, temp);
 	}
 
-	if (dataset.FindDataElement(TagOperatorsName)) {
-		temp = QString::fromStdString(stringFilter.ToString(TagOperatorsName)).trimmed();
+	if (dataConverter.hasTagWithData(TagOperatorsName)) {
+		temp = dataConverter.toString(TagOperatorsName).trimmed();
 		lines << QObject::tr("<div %1>%2</div>").arg(htmlTags, temp);
 	}
 

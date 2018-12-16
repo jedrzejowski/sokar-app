@@ -32,9 +32,9 @@ namespace Sokar {
 		const gdcm::Image &gdcmImage;
 		const gdcm::File &gdcmFile;
 		const gdcm::DataSet &gdcmDataSet;
-		gdcm::StringFilter gdcmStringFilter;
+		DataConverter &dataConverter;
 
-			std::vector<char> originBuffer;
+		std::vector<char> originBuffer;
 		std::vector<Pixel> targetBuffer;
 		uint imgDimX, imgDimY;
 
@@ -42,7 +42,7 @@ namespace Sokar {
 		QPixmap pixmap, iconPixmap;
 		QGraphicsPixmapItem *pixmapItem = nullptr;
 
-		QTransform panTransform, scaleTransform, centerTransformat, rotateTransform;
+		QTransform panTransform, scaleTransform, centerTransform, rotateTransform;
 
 		//region Indicators
 	private:
@@ -82,6 +82,8 @@ namespace Sokar {
 		}
 
 		//endregion
+
+		bool saveToFile(const QString &fileName, const char *format = nullptr, int quality = -1);
 
 		virtual void toolBarAdjust(DicomToolBar *toolbar);
 

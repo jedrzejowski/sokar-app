@@ -9,8 +9,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/framechooser.ui" line="117"/>
-        <source>fps</source>
+        <location filename="../../src/dicomview/framechooser.ui" line="115"/>
+        <source>Slow factor - time between each frame will me multiplied by this value</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -22,27 +22,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="30"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/win/mainwindow.ui" line="52"/>
         <source>E&amp;xport as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="84"/>
+        <location filename="../../src/win/mainwindow.ui" line="89"/>
         <source>&amp;Theme</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="97"/>
+        <location filename="../../src/win/mainwindow.ui" line="102"/>
         <source>&amp;Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="107"/>
+        <location filename="../../src/win/mainwindow.ui" line="112"/>
         <source>About &amp;GDCM</source>
         <translation type="unfinished"></translation>
     </message>
@@ -52,47 +47,57 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="70"/>
-        <source>&amp;Help</source>
+        <location filename="../../src/win/mainwindow.ui" line="30"/>
+        <source>This software is the result of the work of a student of engineering studies, under no circumstances may it be used for medical analysis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="80"/>
+        <location filename="../../src/win/mainwindow.ui" line="75"/>
+        <source>He&amp;lp</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="85"/>
         <source>&amp;View</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="102"/>
+        <location filename="../../src/win/mainwindow.ui" line="107"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="112"/>
+        <location filename="../../src/win/mainwindow.ui" line="117"/>
         <source>About &amp;Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="117"/>
+        <location filename="../../src/win/mainwindow.ui" line="122"/>
         <source>Sokar &amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="122"/>
+        <location filename="../../src/win/mainwindow.ui" line="127"/>
         <source>&amp;Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="127"/>
+        <location filename="../../src/win/mainwindow.ui" line="132"/>
         <source>&amp;Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="132"/>
+        <location filename="../../src/win/mainwindow.ui" line="137"/>
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="137"/>
+        <location filename="../../src/win/mainwindow.ui" line="172"/>
+        <source>qq</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="61"/>
         <source>Open &amp;Recent</source>
         <translation type="unfinished"></translation>
     </message>
@@ -126,96 +131,86 @@
         <source>&amp;Preferences</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../src/win/mainwindow.cpp" line="32"/>
-        <source>Load DCM file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/win/mainwindow.cpp" line="33"/>
-        <source>Dicom File (*.dcm);;All Files (*)</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="132"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="135"/>
         <source>A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="135"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="138"/>
         <source>P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="138"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="141"/>
         <source>L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="141"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="144"/>
         <source>R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="144"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="147"/>
         <source>H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="147"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="150"/>
         <source>F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="41"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="39"/>
         <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="48"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="46"/>
         <source> ♂</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="51"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="49"/>
         <source> ♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="54"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="52"/>
         <source>&lt;div style=&apos;font-size:x-large;&apos;&gt;&lt;b&gt;%1&lt;/b&gt;%2&lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="59"/>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="79"/>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="86"/>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="92"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="57"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="77"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="84"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="90"/>
         <source>&lt;div&gt;%1&lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="68"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="66"/>
         <source>born %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="76"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="74"/>
         <source>, %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="38"/>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="50"/>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="55"/>
+        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="34"/>
+        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="46"/>
+        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="51"/>
         <source>&lt;div %1&gt;%2&lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="45"/>
+        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="41"/>
         <source>&lt;div %1&gt;%2 %3&lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -223,27 +218,27 @@
 <context>
     <name>Sokar::DataConverter</name>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="31"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="29"/>
         <source>years</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="33"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="31"/>
         <source>months</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="35"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="33"/>
         <source>weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="37"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="35"/>
         <source>days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="44"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="42"/>
         <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -251,17 +246,17 @@
 <context>
     <name>Sokar::DicomSceneSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="125"/>
+        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="172"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="131"/>
+        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="178"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="132"/>
+        <location filename="../../src/dicomview/scenes/dicomsceneset.cpp" line="179"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
@@ -335,7 +330,65 @@
     </message>
 </context>
 <context>
-    <name>WindowInt</name>
+    <name>Sokar::MainWindow</name>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="35"/>
+        <source>Load DCM file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="36"/>
+        <source>Dicom File (*.dcm);;All Files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="112"/>
+        <source>Save as JPEG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="112"/>
+        <source>JPEG File (*.jpg)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="116"/>
+        <source>Save as PNG</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="116"/>
+        <source>PNG File (*.png)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="120"/>
+        <source>Save as GIF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="120"/>
+        <source>GIF File (*.gif)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="124"/>
+        <source>Save as BMP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="124"/>
+        <source>BMP File (*.bmp)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="136"/>
+        <source>About Qt - Sokar</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Sokar::Monochrome::WindowInt</name>
     <message>
         <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="12"/>
         <source>Color Palettes</source>

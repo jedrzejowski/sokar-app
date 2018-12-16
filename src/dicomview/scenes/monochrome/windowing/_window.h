@@ -28,6 +28,8 @@ namespace Sokar::Monochrome {
 
 	public:
 
+		explicit Window(DataConverter &dataConverter);
+
 		typedef enum {
 			IntDynamic,
 			IntStatic

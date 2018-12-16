@@ -5,6 +5,8 @@
 
 #include <gdcmImageReader.h>
 
+#include "dicomview/dicomview.h"
+
 namespace Sokar {
 	class DicomTabs : public QTabWidget {
 	Q_OBJECT
@@ -12,6 +14,8 @@ namespace Sokar {
 		explicit DicomTabs(QWidget *parent = nullptr);
 
 		void addDicomFile(const gdcm::ImageReader *file);
+
+		DicomView* currentDicomView();
 
 	protected:
 

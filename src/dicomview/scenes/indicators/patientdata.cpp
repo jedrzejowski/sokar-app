@@ -5,18 +5,19 @@
 
 using namespace Sokar;
 
-PatientDataIndicator::PatientDataIndicator() {
+PatientDataIndicator::PatientDataIndicator(DataConverter &dataConverter) : SceneIndicator(dataConverter) {
 
 	text = newText();
 	addToGroup(text);
 
+	initData();
 }
 
 void PatientDataIndicator::reposition() {
 	text->setPos(0, 0);
 }
 
-void PatientDataIndicator::loadData(const gdcm::File &file) {
+void PatientDataIndicator::initData() {
 
 	const static gdcm::Tag
 			TagPatientName(0x0010, 0x0010),
@@ -27,22 +28,19 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 			TagStudyDescription(0x0008, 0x1030),
 			TagSeriesDescription(0x0008, 0x103E);
 
-	auto &dataset = file.GetDataSet();
-	auto dataConv = DataConverter(file);
-
 	QStringList lines;
 	QString temp;
 
 	{
 		QString name = "", sex = "";
-		if (dataset.FindDataElement(TagPatientName)) {
-			temp += dataConv.toString(TagPatientName).replace('^', ' ');
+		if (dataConverter.hasTagWithData(TagPatientName)) {
+			temp += dataConverter.toPersonName(TagPatientName);
 
 			name += QObject::tr("%1").arg(temp);
 		}
 
-		if (dataset.FindDataElement(TagPatientSex)) {
-			temp = dataConv.toString(TagPatientSex).trimmed();
+		if (dataConverter.hasTagWithData(TagPatientSex)) {
+			temp = dataConverter.toString(TagPatientSex).trimmed();
 
 			if (temp == "M")
 				sex += QObject::tr(" ♂");
@@ -54,24 +52,24 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 		lines << QObject::tr("<div style='font-size:x-large;'><b>%1</b>%2</div>").arg(name, sex);
 	}
 
-	if (dataConv.hasTagWihtData(TagPatientID)) {
-		temp = dataConv.toString(TagPatientID);
+	if (dataConverter.hasTagWithData(TagPatientID)) {
+		temp = dataConverter.toString(TagPatientID);
 		lines << QObject::tr("<div>%1</div>").arg(temp);
 	}
 
 	{
 		QString line = "";
 
-		if (dataConv.hasTagWihtData(TagPatientBirthDate)) {
-			auto date = dataConv.toDate(TagPatientBirthDate);
+		if (dataConverter.hasTagWithData(TagPatientBirthDate)) {
+			auto date = dataConverter.toDate(TagPatientBirthDate);
 
 			line += QObject::tr("born %1").arg(date.toString("yyyy-MM-dd"));
 
 		}
 
-		if (dataConv.hasTagWihtData(TagPatientAge)) {
+		if (dataConverter.hasTagWithData(TagPatientAge)) {
 
-			temp = dataConv.toAgeString(TagPatientAge);
+			temp = dataConverter.toAgeString(TagPatientAge);
 
 			line += QObject::tr(", %1").arg(temp);
 
@@ -80,14 +78,14 @@ void PatientDataIndicator::loadData(const gdcm::File &file) {
 	}
 
 	{
-		if (dataConv.hasTagWihtData(TagStudyDescription)) {
-			temp = dataConv.toString(TagStudyDescription);
+		if (dataConverter.hasTagWithData(TagStudyDescription)) {
+			temp = dataConverter.toString(TagStudyDescription);
 
 			lines << QObject::tr("<div>%1</div>").arg(temp);
 		}
 
-		if (dataConv.hasTagWihtData(TagSeriesDescription)) {
-			temp = dataConv.toString(TagSeriesDescription);
+		if (dataConverter.hasTagWithData(TagSeriesDescription)) {
+			temp = dataConverter.toString(TagSeriesDescription);
 
 			lines << QObject::tr("<div>%1</div>").arg(temp);
 		}

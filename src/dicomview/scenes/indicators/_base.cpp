@@ -2,9 +2,10 @@
 
 using namespace Sokar;
 
-SceneIndicator::SceneIndicator() :
+SceneIndicator::SceneIndicator(DataConverter &dataConverter) :
 		defaultColor(255, 255, 255),
-		defaultPen(defaultColor) {
+		defaultPen(defaultColor),
+		dataConverter(dataConverter) {
 
 }
 
