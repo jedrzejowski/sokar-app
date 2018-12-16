@@ -13,54 +13,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Prace dorywcze">
-      <change afterPath="$PROJECT_DIR$/src/sokar/cmdseq.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sokar/settings.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/win/about.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" />
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Dodanie wielu rzeczy z ostatnich dwóch dni">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/framechooser.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/framechooser.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/framechooser.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/framechooser.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/framechooser.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/framechooser.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomsceneset.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality/_base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality/_base.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality/_base.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality/_base.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintdynamic.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintdynamic.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintstatic.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintstatic.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/params.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/params.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/cmdseq.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/cmdseq.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/dataconventer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/dataconventer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/dataconventer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/dataconventer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/gdcmLUT.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/gdcmSokar.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/gdcmSokar.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sokar/settings.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar/settings.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widget/dicomtabs.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/widget/dicomtabs.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/widget/dicomtabs.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/widget/dicomtabs.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/win/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/win/mainwindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/win/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/win/mainwindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/win/mainwindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/win/mainwindow.ui" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -92,7 +47,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/win/mainwindow.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
+            <state relative-caret-position="2363">
               <caret line="139" column="18" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
@@ -101,14 +56,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/win/about.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-              <folding>
-                <element signature="e#14#31#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="527">
+              <caret line="45" column="69" lean-forward="true" selection-start-line="45" selection-start-column="69" selection-end-line="45" selection-end-column="69" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/doc/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -185,7 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/dicomview/framechooser.ui" />
         <option value="$PROJECT_DIR$/src/win/main_win.ui" />
         <option value="$PROJECT_DIR$/src/dicomview/toolbar.cpp" />
         <option value="$PROJECT_DIR$/src/widget/filetree.cpp" />
@@ -236,6 +196,7 @@
         <option value="$PROJECT_DIR$/src/win/aboutqt.h" />
         <option value="$PROJECT_DIR$/src/win/mainwindow.cpp" />
         <option value="$PROJECT_DIR$/src/win/about.h" />
+        <option value="$PROJECT_DIR$/doc/.gitignore" />
       </list>
     </option>
   </component>
@@ -281,38 +242,7 @@
             <path>
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dicomview" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dicomview" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sokar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="widget" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="win" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -325,6 +255,7 @@
     <property name="SearchEverywhereHistoryKey" value="dicom&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/src/dicomview/scenes/dicomscene.cpp&#10;cmak&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/CMakeLists.txt&#10;cma&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/CMakeLists.txt&#10;pal&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/src/sokar/palette.h&#10;mono&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/qwidgets/scenes/monochrome2/monochrome2.cpp&#10;ui&#9;FILE&#9;file:///home/adam/Programowanie/bucherol/browser/win/main_win.ui&#10;main&#9;FILE&#9;file:///home/adam/Programowanie/bucherol/browser/win/main_win.ui" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -427,7 +358,8 @@
       <workItem from="1544735793995" duration="1056000" />
       <workItem from="1544786384530" duration="8266000" />
       <workItem from="1544823508595" duration="1471000" />
-      <workItem from="1544912263618" duration="8516000" />
+      <workItem from="1544912263618" duration="8704000" />
+      <workItem from="1544967432855" duration="659000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>
@@ -590,11 +522,18 @@
       <option name="project" value="LOCAL" />
       <updated>1544803735994</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Dodanie wielu rzeczy z ostatnich dwóch dni">
+      <created>1544920827752</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1544920827752</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="438424000" />
+    <option name="totallyTimeSpent" value="439271000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -609,18 +548,18 @@
     <frame x="0" y="-28" width="1920" height="1108" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4964029" visible="true" weight="0.20374331" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4964029" visible="true" weight="0.20641711" />
       <window_info id="Structure" order="1" sideWeight="0.50359714" side_tool="true" weight="0.19893049" />
       <window_info id="Favorites" order="2" sideWeight="0.5046584" side_tool="true" weight="0.20530303" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32453415" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.48098662" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.48098662" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.5570401" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3257965" />
       <window_info anchor="bottom" id="CMake" order="7" weight="0.3416149" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.24223602" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.24152108" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50106955" side_tool="true" weight="0.5072017" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32763976" />
       <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49893048" weight="0.4409044" />
@@ -688,16 +627,10 @@
     <MESSAGE value="Prace nad FPSem" />
     <MESSAGE value="DataConventer: rozpoczęcie" />
     <MESSAGE value="Prace dorywcze" />
-    <option name="LAST_COMMIT_MESSAGE" value="Prace dorywcze" />
+    <MESSAGE value="Dodanie wielu rzeczy z ostatnich dwóch dni" />
+    <option name="LAST_COMMIT_MESSAGE" value="Dodanie wielu rzeczy z ostatnich dwóch dni" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -844,17 +777,17 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="66" selection-start-line="2" selection-start-column="66" selection-end-line="2" selection-end-column="66" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor>
             <markdownNavigatorState />
           </second_editor>
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="66" selection-start-line="2" selection-start-column="66" selection-end-line="2" selection-end-column="66" />
         </state>
       </provider>
     </entry>
@@ -1038,30 +971,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/win/aboutsokar.ui">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/win/about.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/win/mainwindow.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="139" column="18" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/win/aboutsokar.ui" />
+    <entry file="file://$PROJECT_DIR$/src/win/about.cpp" />
     <entry file="file:///usr/include/qt/QtWidgets/qmessagebox.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -1069,13 +980,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/win/mainwindow.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2363">
+          <caret line="139" column="18" selection-start-line="139" selection-start-column="18" selection-end-line="139" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/win/about.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="527">
+          <caret line="45" column="69" lean-forward="true" selection-start-line="45" selection-start-column="69" selection-end-line="45" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/doc/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
         </state>
       </provider>
     </entry>

@@ -214,6 +214,26 @@
         <source>&lt;div %1&gt;%2 %3&lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../src/win/about.h" line="10"/>
+        <source>About Sokar - Sokar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/about.h" line="12"/>
+        <source>&lt;b&gt;Sokar&lt;/b&gt; to jest moja przeglądarka, i huj</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/about.h" line="24"/>
+        <source>About GDCM - Sokar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/about.h" line="26"/>
+        <source>&lt;b&gt;Grassroots DiCoM&lt;/b&gt; is a &lt;b&gt;C++&lt;/b&gt; library for DICOM medical files. It is accessible from Python, C#, Java and PHP. It supports RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated transfer syntax.&lt;br&gt;It comes with a super fast scanner implementation to quickly scan hundreds of DICOM files.&lt;br&gt;It supports SCU network operations (C-ECHO, C-FIND, C-STORE, C-MOVE). PS 3.3 &amp; 3.6 are distributed as XML files.&lt;br&gt;It also provides PS 3.15 certificates and password based mecanism to anonymize and de-identify DICOM datasets.&lt;br&gt;&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt;RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated&lt;/li&gt;&lt;li&gt;Quickly scan DICOM for attributes&lt;/li&gt;&lt;li&gt;SCU: C-ECHO, C-FIND, C-STORE, C-MOVE&lt;/li&gt;&lt;li&gt;PS 3.3 &amp; PS 3.6/3.7 as XML files&lt;/li&gt;&lt;li&gt;PS 3.15 de-identify / re-identify (certificates+password based)&lt;/li&gt;&lt;li&gt;Portable C++&lt;/li&gt;&lt;li&gt;Bindings: Python, C#, Java, PHP and Perl&lt;/li&gt;&lt;li&gt;VTK bridge (ImageData and RTSTRUCT)&lt;/li&gt;&lt;li&gt;Nightly test suite&lt;/li&gt;&lt;li&gt;Support well-known DICOM issues (PMSCT_RLE1, JAI JPEG-LS, Signed Short JPEG)&lt;/li&gt;&lt;/ul&gt;Official sire: &lt;a href=&quot;%1&quot;&gt;%1/&lt;/a&gt;&lt;br&gt;SourceForge profile: &lt;a href=&quot;%2&quot;&gt;%2/&lt;/a&gt;&lt;br&gt;License: &lt;a href=&quot;%3&quot;&gt;BSD licenses&lt;/a&gt;, &lt;a href=&quot;%4&quot;&gt;Apache License V2.0/&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Sokar::DataConverter</name>
