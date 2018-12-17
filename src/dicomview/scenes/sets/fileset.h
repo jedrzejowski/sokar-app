@@ -5,15 +5,19 @@
 
 namespace Sokar {
 
-	typedef QVector<const gdcm::ImageReader *> DicomReaderVec;
-
 	class DicomFileSet : public DicomSceneSet {
 	Q_OBJECT
 	protected:
+		DicomReaderVec imgReaders;
 		QVector<DicomFrameSet *> frameSets;
+		QString seriesInstanceUID;
 
 	public:
+
 		DicomFileSet(DicomReaderVec &vec, QObject *parent = nullptr);
 		~DicomFileSet();
+
+		const QString &getTitle() override;
+		CommandSequence *getFrameSequence() override;
 	};
 }

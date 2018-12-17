@@ -24,7 +24,6 @@ namespace Sokar {
 
 	private slots:
 		void selectFile();
-		void loadImage(const QString &path);
 
 	};
 }

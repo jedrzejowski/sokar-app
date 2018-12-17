@@ -18,10 +18,10 @@ DicomView::DicomView(DicomSceneSet *dicomSceneSet, QWidget *parent) :
 	connect(ui->toolbar, &DicomToolBar::stateToggleSignal, this, &DicomView::toolbarStateToggle);
 	connect(ui->toolbar, &DicomToolBar::actionTriggerSignal, this, &DicomView::toolbarActionTrigger);
 
-//	ui->frameChooser->setSceneSet(dicomSceneSet);
-//
-//	if (dicomSceneSet->getScenesVector().size() == 1)
-//		ui->frameChooser->hide();
+	ui->frameChooser->setSceneSet(dicomSceneSet);
+
+	if (dicomSceneSet->getScenesVector().size() == 1)
+		ui->frameChooser->hide();
 }
 
 DicomView::~DicomView() {

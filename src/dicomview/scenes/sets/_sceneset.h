@@ -9,11 +9,15 @@
 #include "sokar/cmdseq.h"
 
 namespace Sokar {
+
+	typedef QVector<const gdcm::ImageReader *> DicomReaderVec;
+	typedef QVector<DicomScene *> DicomSceneVec;
+
 	class DicomSceneSet : public QObject {
 	Q_OBJECT
 	protected:
 		QMutex qMutex;
-		QVector<DicomScene *> dicomScenes;
+		DicomSceneVec dicomScenes;
 
 	public:
 		explicit DicomSceneSet(QObject *parent = nullptr);

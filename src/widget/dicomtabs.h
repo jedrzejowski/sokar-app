@@ -13,10 +13,7 @@ namespace Sokar {
 	public:
 		explicit DicomTabs(QWidget *parent = nullptr);
 
-		void addDicomFile(const gdcm::ImageReader *file);
-		void addDicomFileSet(const gdcm::ImageReader *file);
-
-		DicomView* currentDicomView();
+		DicomView *currentDicomView();
 
 	protected:
 
@@ -24,6 +21,12 @@ namespace Sokar {
 		void dragEnterEvent(QDragEnterEvent *event) override;
 		void dragMoveEvent(QDragMoveEvent *event) override;
 		void dragLeaveEvent(QDragLeaveEvent *event) override;
+
+	public slots:
+		void addDicomFile(const QString &path);
+		void addDicomFile(const gdcm::ImageReader *file);
+		void addDicomFiles(const QStringList &paths);
+		void addDicomFiles(DicomReaderVec &files);
 
 	private slots:
 		void removeDicomView(int i);

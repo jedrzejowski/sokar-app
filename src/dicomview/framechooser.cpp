@@ -86,6 +86,8 @@ void FrameChooser::moveTo(int i) {
 void FrameChooser::initTimer() {
 	frameSequence = sceneSet->getFrameSequence();
 
+	if (frameSequence == nullptr) return;
+
 	if (frameSequence->size() == 0) return;
 
 	connect(&frameTimer, &QTimer::timeout, this, [&]() {

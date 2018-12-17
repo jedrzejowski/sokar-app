@@ -78,7 +78,7 @@ namespace Sokar {
 		inline DicomSceneSet *getDicomSceneSet() { return (DicomSceneSet *) this->parent(); }
 
 		inline DicomView *getDicomView() {
-			return (DicomView *) this->parent()->parent();
+			return (DicomView *) this->parent()->parent()->parent();
 		}
 
 		//endregion

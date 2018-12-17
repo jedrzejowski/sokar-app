@@ -3,18 +3,23 @@
 
 using namespace Sokar;
 
-DataConverter::DataConverter(const gdcm::File &file) :
-		file(file),
-		dataset(file.GetDataSet()) {
+DataConverter::DataConverter() {
+}
 
-	stringFilter.SetFile(file);
-
+DataConverter::DataConverter(const gdcm::File &file) {
+	setFile(file);
 }
 
 DataConverter::~DataConverter() {
 	qDebug("~DataConverter()");
 }
 
+
+void DataConverter::setFile(const gdcm::File &file) {
+	this->file = &file;
+	this->dataset = &(file.GetDataSet());
+	stringFilter.SetFile(file);
+}
 
 
 QString DataConverter::toAgeString(const gdcm::Tag &tag) {
@@ -101,17 +106,17 @@ QVector<qreal> DataConverter::toDecimalString(const gdcm::Tag &tag) {
 }
 
 qint16 DataConverter::toShort(const gdcm::Tag &tag) {
-	return *((qint16 *) dataset.GetDataElement(tag).GetByteValue()->GetPointer());
+	return *((qint16 *) dataset->GetDataElement(tag).GetByteValue()->GetPointer());
 }
 
 quint16 DataConverter::toUShort(const gdcm::Tag &tag) {
-	return *((quint16 *) dataset.GetDataElement(tag).GetByteValue()->GetPointer());
+	return *((quint16 *) dataset->GetDataElement(tag).GetByteValue()->GetPointer());
 }
 
 gdcm::Tag DataConverter::toAttributeTag(const gdcm::Tag &tag) {
 	quint16 *group, *element;
 
-	auto &elem = dataset.GetDataElement(tag);
+	auto &elem = dataset->GetDataElement(tag);
 
 	group = (quint16 *) elem.GetByteValue()->GetPointer();
 	element = group + 1;
@@ -147,4 +152,8 @@ QString DataConverter::toPersonName(const gdcm::Tag &tag) {
 		full << list[4].trimmed();
 
 	return full.join(' ');
+}
+
+qint32 DataConverter::toIntegerString(const gdcm::Tag &tag) {
+	return toString(tag).toInt();
 }

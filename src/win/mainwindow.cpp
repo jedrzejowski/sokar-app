@@ -37,24 +37,7 @@ void MainWindow::selectFile() {
 	if (fileName.isEmpty())
 		return;
 
-	loadImage(fileName);
-}
-
-void MainWindow::loadImage(const QString &path) {
-
-	auto *ir = new gdcm::ImageReader;
-
-	ir->SetFileName(path.toStdString().c_str());
-
-	if (!ir->Read()) {
-		QMessageBox::critical(this, "Error", "An error has occurred !");
-		delete ir;
-		return;
-	}
-
-	Settings::bumpRecentOpen(path);
-
-	ui->dicomTabs->addDicomFile(ir);
+	ui->dicomTabs->addDicomFile(fileName);
 }
 
 void MainWindow::initMenuBar() {
@@ -86,7 +69,7 @@ void MainWindow::initMenuBar() {
 		auto action = new QAction(path, this);
 
 		connect(action, &QAction::triggered, this, [path, this] {
-			loadImage(path);
+			ui->dicomTabs->addDicomFile(path);
 		});
 
 		ui->menuOpenRecent->addAction(action);

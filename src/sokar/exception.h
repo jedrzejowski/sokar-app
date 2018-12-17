@@ -11,10 +11,20 @@ namespace Sokar {
 			WrongScope,
 			ImageTypeNotSupported,
 			DicomTagMissing,
-			DicomTagParseError
+			DicomTagParseError,
+			IOException
 		};
 
 		virtual Type type() = 0;
+	};
+
+	class IOException : public Exception {
+	public:
+		const QString file;
+
+		IOException(QString file) : file(file) {}
+
+		Type type() { return Type::IOException; }
 	};
 
 	class WrongScopeException : public Exception {

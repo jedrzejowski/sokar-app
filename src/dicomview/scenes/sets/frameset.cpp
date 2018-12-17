@@ -44,35 +44,34 @@ void DicomFrameSet::initScenes() {
 
 	for (auto &scene : dicomScenes) {
 
-//		try {
+		try {
 
-//			switch (gdcmImage.GetPhotometricInterpretation()) {
-//				case gdcm::PhotometricInterpretation::MONOCHROME1:
-//				case gdcm::PhotometricInterpretation::MONOCHROME2:
-//					scene = new Sokar::Monochrome::Scene(sceneParams);
-//					break;
-//
-//				case gdcm::PhotometricInterpretation::RGB:
-//					scene = new Sokar::RedGreenBlue::Scene(sceneParams);
-//					break;
-//
-//				case gdcm::PhotometricInterpretation::YBR_FULL:
-//				case gdcm::PhotometricInterpretation::YBR_FULL_422://Nope
-//				case gdcm::PhotometricInterpretation::YBR_PARTIAL_422://Nope
-//				case gdcm::PhotometricInterpretation::YBR_PARTIAL_420://Nope
-//				case gdcm::PhotometricInterpretation::YBR_ICT://Nope
-//				case gdcm::PhotometricInterpretation::YBR_RCT://Nope
-//					scene = new Sokar::LumBlueRed::Scene(sceneParams);
-//					break;
-//
-//				default:
-//					throw Sokar::ImageTypeNotSupportedException();
-//			}
-//
-//		} catch (Sokar::Exception &e) {
-		auto qq = ImageTypeNotSupportedException();
-		scene = new ExceptionScene(sceneParams, qq);
-//		}
+			switch (gdcmImage.GetPhotometricInterpretation()) {
+				case gdcm::PhotometricInterpretation::MONOCHROME1:
+				case gdcm::PhotometricInterpretation::MONOCHROME2:
+					scene = new Sokar::Monochrome::Scene(sceneParams);
+					break;
+
+				case gdcm::PhotometricInterpretation::RGB:
+					scene = new Sokar::RedGreenBlue::Scene(sceneParams);
+					break;
+
+				case gdcm::PhotometricInterpretation::YBR_FULL:
+				case gdcm::PhotometricInterpretation::YBR_FULL_422://Nope
+				case gdcm::PhotometricInterpretation::YBR_PARTIAL_422://Nope
+				case gdcm::PhotometricInterpretation::YBR_PARTIAL_420://Nope
+				case gdcm::PhotometricInterpretation::YBR_ICT://Nope
+				case gdcm::PhotometricInterpretation::YBR_RCT://Nope
+					scene = new Sokar::LumBlueRed::Scene(sceneParams);
+					break;
+
+				default:
+					throw Sokar::ImageTypeNotSupportedException();
+			}
+
+		} catch (Sokar::Exception &e) {
+			scene = new ExceptionScene(sceneParams, e);
+		}
 
 		sceneParams.frame++;
 	}

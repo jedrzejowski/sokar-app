@@ -238,27 +238,27 @@
 <context>
     <name>Sokar::DataConverter</name>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="29"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="35"/>
         <source>years</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="31"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="37"/>
         <source>months</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="33"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="39"/>
         <source>weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="35"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="41"/>
         <source>days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="42"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="48"/>
         <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -266,17 +266,17 @@
 <context>
     <name>Sokar::DicomFrameSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="174"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="172"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="180"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="178"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="181"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="179"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
