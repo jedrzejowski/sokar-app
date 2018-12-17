@@ -5,9 +5,9 @@
 
 #include "_classdef.h"
 
-#include "sokar/cmdseq.h"
 #include "scenes/dicomscene.h"
 #include "scenes/sets/_sceneset.h"
+#include "scenes/sets/sceneseq.h"
 
 namespace Ui {
 	class FrameChooser;
@@ -19,14 +19,16 @@ namespace Sokar {
 	Q_OBJECT
 	private:
 		Ui::FrameChooser *ui;
-		QWidget *content;
 		QVBoxLayout *layout;
-		SceneAvatar *curentAvatar;
 		QTimer frameTimer;
 
+		SceneAvatar *currentAvatar;
+
+		QHash<DicomScene *, SceneAvatar *> avatarsHash;
+		QVector<SceneAvatar *> avatarsVector;
+
 		DicomSceneSet *sceneSet;
-		QVector<SceneAvatar *> avatars;
-		CommandSequence* frameSequence;
+		SceneSequence *frameSequence;
 
 	public:
 		explicit FrameChooser(QWidget *parent = nullptr);
@@ -49,6 +51,7 @@ namespace Sokar {
 		void moveNext();
 		void movePrev();
 		void moveTo(int i);
+		void moveTo(DicomScene *scene);
 		void timerToggle();
 		void timerStop();
 		void timerStart();

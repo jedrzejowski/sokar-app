@@ -87,6 +87,12 @@ SceneAvatar *DicomScene::getAvatar() {
 	return new SceneAvatar(this);
 }
 
+DicomView *DicomScene::getDicomView() {
+	auto views = this->views();
+	if (views.count() != 1) return nullptr;
+
+	return (DicomView *) views[0]->parent()->parent();
+}
 
 const QPixmap &DicomScene::getIcon() {
 	if (iconPixmap.isNull()) {

@@ -3,7 +3,6 @@
 using namespace Sokar;
 
 DicomFileSet::DicomFileSet(DicomReaderVec &vec, QObject *parent) : DicomSceneSet(parent) {
-
 	static gdcm::Tag TagSeriesInstanceUID(0x0020, 0x000E);
 
 	DataConverter converter;
@@ -18,8 +17,8 @@ DicomFileSet::DicomFileSet(DicomReaderVec &vec, QObject *parent) : DicomSceneSet
 		if (seriesInstanceUID != converter.toString(TagSeriesInstanceUID))
 			throw DicomTagParseError(TagSeriesInstanceUID);
 
-	}
 
+	}
 
 	gdcm::StringFilter strFilter2;
 
@@ -54,6 +53,18 @@ const QString &DicomFileSet::getTitle() {
 	return frameSets[0]->getTitle();
 }
 
-CommandSequence *DicomFileSet::getFrameSequence() {
-	return nullptr;
+SceneSequence *DicomFileSet::getFrameSequence() {
+	QMutexLocker lock(&qMutex);
+
+	if (sceneSequence != nullptr)
+		return sceneSequence;
+
+	sceneSequence = new SceneSequence(this);
+
+	for (auto &frameSet : frameSets)
+		*sceneSequence << *frameSet->getFrameSequence();
+
+	sceneSequence->setSweeping(true);
+
+	return sceneSequence;
 }

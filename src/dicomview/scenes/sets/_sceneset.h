@@ -6,7 +6,7 @@
 #include "../../dataset.h"
 #include "../dicomscene.h"
 #include "sokar/dataconventer.h"
-#include "sokar/cmdseq.h"
+#include "sceneseq.h"
 
 namespace Sokar {
 
@@ -25,8 +25,10 @@ namespace Sokar {
 
 		inline const QVector<DicomScene *> &getScenesVector() const { return dicomScenes; }
 
-		virtual CommandSequence *getFrameSequence() = 0;
+		virtual SceneSequence *getFrameSequence() = 0;
 
 		virtual const QString &getTitle() = 0;
+
+		inline DicomScene *operator[](int index) { return dicomScenes[index]; }
 	};
 }

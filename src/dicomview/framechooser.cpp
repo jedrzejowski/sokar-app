@@ -36,14 +36,16 @@ void FrameChooser::setSceneSet(DicomSceneSet *sceneSet) {
 		avatar->updateSize(20);
 
 		layout->addWidget(avatar);
-		avatars << avatar;
+
+		avatarsVector << avatar;
+		avatarsHash[avatar->getScene()] = avatar;
 
 		connect(this, &FrameChooser::resizeAvatars, avatar, &SceneAvatar::updateSize);
 		connect(avatar, &SceneAvatar::clicked, this, &FrameChooser::onAvatarClicked);
 	}
 
-	if (!avatars.empty())
-		onAvatarClicked(avatars[0]);
+	if (!avatarsVector.empty())
+		onAvatarClicked(avatarsVector[0]);
 
 	updateAvatars();
 	initTimer();
@@ -56,7 +58,8 @@ void FrameChooser::resizeEvent(QResizeEvent *event) {
 }
 
 void FrameChooser::onAvatarClicked(SceneAvatar *avatar) {
-	curentAvatar = avatar;
+	currentAvatar = avatar;
+
 	timerStop();
 	emit selectSceneSignal(avatar->getScene());
 }
@@ -67,41 +70,42 @@ void FrameChooser::updateAvatars() {
 }
 
 void FrameChooser::moveNext() {
-	int i = avatars.indexOf(curentAvatar) + 1;
-	if (i >= avatars.size()) i = 0;
-	onAvatarClicked(avatars[i]);
+	int i = avatarsVector.indexOf(currentAvatar) + 1;
+	if (i >= avatarsVector.size()) i = 0;
+	onAvatarClicked(avatarsVector[i]);
 }
 
 void FrameChooser::movePrev() {
-	int i = avatars.indexOf(curentAvatar) - 1;
-	if (i < 0) i = avatars.size() - 1;
-	onAvatarClicked(avatars[i]);
+	int i = avatarsVector.indexOf(currentAvatar) - 1;
+	if (i < 0) i = avatarsVector.size() - 1;
+	onAvatarClicked(avatarsVector[i]);
 }
 
 void FrameChooser::moveTo(int i) {
-	i %= avatars.size();
-	onAvatarClicked(avatars[i]);
+	i %= avatarsVector.size();
+	onAvatarClicked(avatarsVector[i]);
+}
+
+void FrameChooser::moveTo(DicomScene *scene) {
+	if (avatarsHash.contains(scene))
+		moveTo(avatarsVector.indexOf(avatarsHash[scene]));
 }
 
 void FrameChooser::initTimer() {
 	frameSequence = sceneSet->getFrameSequence();
 
-	if (frameSequence == nullptr) return;
-
-	if (frameSequence->size() == 0) return;
+	if (frameSequence == nullptr || frameSequence->size() < 2) {
+		ui->timerWidget->hide();
+		return;
+	}
 
 	connect(&frameTimer, &QTimer::timeout, this, [&]() {
 		frameSequence->step();
 	});
 
-	connect(frameSequence, &CommandSequence::onSleep, this, [&](quint64 howlong) {
-		frameTimer.start(int(howlong * ui->speedBox->value()));
-		updateTimerUI();
-	});
-
-	connect(frameSequence, &CommandSequence::onGoTo, this, [&](quint64 to) {
-		moveTo(int(to));
-		frameSequence->step();
+	connect(frameSequence, &SceneSequence::steped, this, [&](const Step &step) {
+		moveTo(step.scene);
+		frameTimer.start(int(step.time * ui->speedBox->value()));
 	});
 
 	frameSequence->step();

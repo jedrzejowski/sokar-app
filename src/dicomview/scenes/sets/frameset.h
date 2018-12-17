@@ -18,7 +18,7 @@ namespace Sokar {
 		QString title;
 
 		int numberOfFrames = 1;
-		CommandSequence *cmdSequence = nullptr;
+		SceneSequence *sceneSequence = nullptr;
 
 	public:
 
@@ -27,7 +27,7 @@ namespace Sokar {
 
 		inline const gdcm::File &getGdcmFile() const { return imageReader->GetFile(); }
 
-		CommandSequence *getFrameSequence() override;
+		SceneSequence *getFrameSequence() override;
 
 		const QString &getTitle() override;
 

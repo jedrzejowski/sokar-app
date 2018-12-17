@@ -238,27 +238,27 @@
 <context>
     <name>Sokar::DataConverter</name>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="35"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="40"/>
         <source>years</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="37"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="42"/>
         <source>months</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="39"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="44"/>
         <source>weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="41"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="46"/>
         <source>days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/sokar/dataconventer.cpp" line="48"/>
+        <location filename="../../src/sokar/dataconventer.cpp" line="53"/>
         <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -266,18 +266,31 @@
 <context>
     <name>Sokar::DicomFrameSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="172"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="171"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="178"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="177"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="179"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="178"/>
         <source>yyyy-MM-dd</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Sokar::DicomTabs</name>
+    <message>
+        <location filename="../../src/widget/dicomtabs.cpp" line="88"/>
+        <source>I/O Error</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/widget/dicomtabs.cpp" line="89"/>
+        <source>Error occured while reading file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -362,47 +375,47 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="112"/>
+        <location filename="../../src/win/mainwindow.cpp" line="95"/>
         <source>Save as JPEG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="112"/>
+        <location filename="../../src/win/mainwindow.cpp" line="95"/>
         <source>JPEG File (*.jpg)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="116"/>
+        <location filename="../../src/win/mainwindow.cpp" line="99"/>
         <source>Save as PNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="116"/>
+        <location filename="../../src/win/mainwindow.cpp" line="99"/>
         <source>PNG File (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="120"/>
+        <location filename="../../src/win/mainwindow.cpp" line="103"/>
         <source>Save as GIF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="120"/>
+        <location filename="../../src/win/mainwindow.cpp" line="103"/>
         <source>GIF File (*.gif)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="124"/>
+        <location filename="../../src/win/mainwindow.cpp" line="107"/>
         <source>Save as BMP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="124"/>
+        <location filename="../../src/win/mainwindow.cpp" line="107"/>
         <source>BMP File (*.bmp)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="136"/>
+        <location filename="../../src/win/mainwindow.cpp" line="119"/>
         <source>About Qt - Sokar</source>
         <translation type="unfinished"></translation>
     </message>

@@ -77,16 +77,18 @@ void DicomFrameSet::initScenes() {
 	}
 }
 
-CommandSequence *DicomFrameSet::getFrameSequence() {
+SceneSequence *DicomFrameSet::getFrameSequence() {
 	QMutexLocker lock(&qMutex);
 
-	if (cmdSequence != nullptr)
-		return cmdSequence;
+	if (sceneSequence != nullptr)
+		return sceneSequence;
 
-	cmdSequence = new CommandSequence(this);
+	sceneSequence = new SceneSequence(this);
 
-	if (numberOfFrames == 1)
-		return cmdSequence;
+	if (numberOfFrames == 1) {
+		sceneSequence << Step{dicomScenes[0], quint64(1000 / 12)};
+		return sceneSequence;
+	}
 
 	static gdcm::Tag
 			TagFrameIncrementPointer(0x0028, 0x0009),
@@ -112,7 +114,7 @@ CommandSequence *DicomFrameSet::getFrameSequence() {
 	 */        TagPreferredPlaybackSequencing(0x0018, 0x1244); //TODO zaimplementować to
 
 	if (!dataConverter.hasTagWithData(TagFrameIncrementPointer))
-		return cmdSequence;
+		return sceneSequence;
 
 	auto frameIncPtr = dataConverter.toAttributeTag(TagFrameIncrementPointer);
 
@@ -120,12 +122,14 @@ CommandSequence *DicomFrameSet::getFrameSequence() {
 					dataConverter.toUShort(TagPreferredPlaybackSequencing) : 0;
 
 	if (TagFrameTime == frameIncPtr) {
-		auto frameTime = dataConverter.toDecimalString(TagFrameTime)[0];
+		auto frameTime = quint64(dataConverter.toDecimalString(TagFrameTime)[0]);
 
 		for (int i = 0; i < numberOfFrames; i++)
-			cmdSequence << Command{GoTo, quint64(i)} << Command{Sleep, quint64(frameTime)};
+			sceneSequence << Step{dicomScenes[i], frameTime};
 
-		return cmdSequence;
+		if (playback == 1) sceneSequence->setSweeping(true);
+
+		return sceneSequence;
 	}
 
 	if (TagFrameTimeVector == frameIncPtr) {
@@ -134,9 +138,11 @@ CommandSequence *DicomFrameSet::getFrameSequence() {
 		quint64 i = 0;
 
 		for (auto &time : vec)
-			cmdSequence << Command{GoTo, i++} << Command{Sleep, quint64(time)};
+			sceneSequence << Step{dicomScenes[i++], quint64(time)};
 
-		return cmdSequence;
+		if (playback == 1) sceneSequence->setSweeping(true);
+
+		return sceneSequence;
 	}
 
 	if (TagCineRate == frameIncPtr) {
@@ -144,14 +150,16 @@ CommandSequence *DicomFrameSet::getFrameSequence() {
 		auto frameTime = quint64(1 / dataConverter.toDecimalString(TagCineRate)[0]);
 
 		for (int i = 0; i < numberOfFrames; i++)
-			cmdSequence << Command{GoTo, quint64(i)} << Command{Sleep, frameTime};
+			sceneSequence << Step{dicomScenes[i], frameTime};
 
-		return cmdSequence;
+		if (playback == 1) sceneSequence->setSweeping(true);
+
+		return sceneSequence;
 	}
 
 	qWarning("DicomSceneSet::getFrameSequence() unknown TagFrameIncrementPointer");
 
-	return cmdSequence;
+	return sceneSequence;
 }
 
 const QString &DicomFrameSet::getTitle() {
