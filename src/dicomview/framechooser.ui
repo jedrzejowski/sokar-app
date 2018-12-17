@@ -40,7 +40,7 @@
         <x>0</x>
         <y>0</y>
         <width>398</width>
-        <height>268</height>
+        <height>272</height>
        </rect>
       </property>
      </widget>
@@ -64,6 +64,13 @@
       <property name="bottomMargin">
        <number>0</number>
       </property>
+      <item>
+       <widget class="QToolButton" name="sweepBtn">
+        <property name="text">
+         <string>...</string>
+        </property>
+       </widget>
+      </item>
       <item>
        <spacer name="horizontalSpacer2">
         <property name="orientation">

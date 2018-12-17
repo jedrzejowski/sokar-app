@@ -9,7 +9,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/framechooser.ui" line="115"/>
+        <location filename="../../src/dicomview/framechooser.ui" line="70"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/framechooser.ui" line="122"/>
         <source>Slow factor - time between each frame will me multiplied by this value</source>
         <translation type="unfinished"></translation>
     </message>
@@ -266,17 +271,17 @@
 <context>
     <name>Sokar::DicomFrameSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="171"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="179"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="177"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="185"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="178"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="186"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
@@ -284,12 +289,14 @@
 <context>
     <name>Sokar::DicomTabs</name>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="88"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="79"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="127"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="89"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="80"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="128"/>
         <source>Error occured while reading file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>

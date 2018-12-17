@@ -6,10 +6,12 @@
         <file>img/ico/flipHorizontal.png</file>
         <file>img/ico/flipVertical.png</file>
         <file>img/ico/hand.png</file>
+        <file>img/ico/dark/looping.png</file>
         <file>img/ico/originalSize.png</file>
         <file>img/ico/rotate.png</file>
         <file>img/ico/rotateLeft.png</file>
         <file>img/ico/rotateRight.png</file>
+        <file>img/ico/dark/sweeping.png</file>
         <file>img/ico/tags.png</file>
         <file>img/ico/window.png</file>
         <file>img/ico/zoom.png</file>

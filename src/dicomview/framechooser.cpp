@@ -17,6 +17,7 @@ FrameChooser::FrameChooser(QWidget *parent) :
 	ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
+
 	connect(ui->nextBtn, SIGNAL(clicked()), this, SLOT(moveNext()));
 	connect(ui->prevBtn, SIGNAL(clicked()), this, SLOT(movePrev()));
 	connect(ui->playBtn, SIGNAL(clicked()), this, SLOT(timerToggle()));
@@ -106,9 +107,25 @@ void FrameChooser::initTimer() {
 	connect(frameSequence, &SceneSequence::steped, this, [&](const Step &step) {
 		moveTo(step.scene);
 		frameTimer.start(int(step.time * ui->speedBox->value()));
+		updateTimerUI();
 	});
 
 	frameSequence->step();
+
+	//region Sweeping&Looping
+
+	static QIcon sweepingIcon = QIcon(":/img/ico/dark/sweeping.png");
+	static QIcon loopingIcon = QIcon(":/img/ico/dark/looping.png");
+
+	ui->sweepBtn->setIcon(frameSequence->isSweeping() ? sweepingIcon : loopingIcon);
+
+	connect(ui->sweepBtn, &QToolButton::clicked, this, [&]() {
+		frameSequence->setSweeping(!frameSequence->isSweeping());
+
+		ui->sweepBtn->setIcon(frameSequence->isSweeping() ? sweepingIcon : loopingIcon);
+	});
+
+	//endregion
 
 	updateTimerUI();
 }

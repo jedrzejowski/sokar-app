@@ -67,7 +67,6 @@ void DicomTabs::addDicomFile(const QString &path) {
 		reader->SetFileName(path.toStdString().c_str());
 
 		if (!reader->Read()) {
-			delete reader;
 			throw IOException(path);
 		}
 
@@ -78,9 +77,8 @@ void DicomTabs::addDicomFile(const QString &path) {
 	} catch (IOException &e) {
 		QMessageBox::critical(this, tr("I/O Error"),
 							  tr("Error occured while reading file '%1'").arg(e.file));
+		delete reader;
 	}
-
-	delete reader;
 }
 
 void DicomTabs::addDicomFile(const gdcm::ImageReader *reader) {
@@ -122,14 +120,14 @@ void DicomTabs::addDicomFiles(const QStringList &paths) {
 		}
 
 		addDicomFiles(readers);
-		return;
+
 	} catch (IOException &e) {
 		QMessageBox::critical(this, tr("I/O Error"),
 							  tr("Error occured while reading file '%1'").arg(e.file));
-	}
 
-	for (auto &reader : readers)
-		delete reader;
+		for (auto &reader : readers)
+			delete reader;
+	}
 }
 
 void DicomTabs::addDicomFiles(DicomReaderVec &readers) {

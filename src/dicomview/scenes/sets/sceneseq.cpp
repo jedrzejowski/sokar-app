@@ -21,6 +21,7 @@ void SceneSequence::step() {
 			index = steps.size() - 1;
 		}
 	} else {
+		direction = 1;
 		index %= steps.size();
 	}
 
@@ -31,6 +32,10 @@ void SceneSequence::step() {
 
 void SceneSequence::setSweeping(bool sweeping) {
 	SceneSequence::sweeping = sweeping;
+
+	if (sweeping) {
+		direction = 1;
+	}
 }
 
 SceneSequence &SceneSequence::operator<<(const Step &step) {
