@@ -17,6 +17,7 @@
 #include "scene.h"
 #include "params.h"
 #include "sceneavatar.h"
+#include "moviemode.h"
 
 #include "indicators/patientdata.h"
 #include "indicators/pixelspacing.h"
@@ -43,6 +44,8 @@ namespace Sokar {
 		QGraphicsPixmapItem *pixmapItem = nullptr;
 
 		QTransform panTransform, scaleTransform, centerTransform, rotateTransform;
+
+		MovieMode *movieMode = nullptr;
 
 		//region Indicators
 	private:
@@ -84,6 +87,12 @@ namespace Sokar {
 		bool saveToFile(const QString &fileName, const char *format = nullptr, int quality = -1);
 
 		virtual void toolBarAdjust(DicomToolBar *toolbar);
+
+		bool isMovieMode() { return movieMode == nullptr; }
+
+		virtual bool acceptMovieMode(MovieMode *movieMode);
+
+		void disableMovieMode();
 
 	protected:
 		virtual bool generatePixmap() = 0;

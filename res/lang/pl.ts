@@ -289,14 +289,14 @@
 <context>
     <name>Sokar::DicomTabs</name>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="79"/>
-        <location filename="../../src/widget/dicomtabs.cpp" line="127"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="78"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="125"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="80"/>
-        <location filename="../../src/widget/dicomtabs.cpp" line="128"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="79"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="126"/>
         <source>Error occured while reading file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>

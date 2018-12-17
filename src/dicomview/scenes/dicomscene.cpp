@@ -47,7 +47,6 @@ void DicomScene::reposItems() {
 
 	if (pixmapItem != nullptr)
 		pixmapItem->setPos(this->width() / 2, this->height() / 2);
-
 }
 
 void DicomScene::reloadPixmap() {
@@ -75,12 +74,17 @@ QTransform DicomScene::pixmapTransformation() {
 	return transform;
 }
 
-
 void DicomScene::updatePixmapTransformation() {
-	pixmapItem->setTransform(pixmapTransformation(), false);
+	pixmapItem->setTransform(isMovieMode() ?
+							 movieMode->getOriginScene()->pixmapTransformation() :
+							 pixmapTransformation());
 
-	if (imageOrientationIndicator != nullptr)
-		imageOrientationIndicator->setRotateTransform(rotateTransform);
+	if (imageOrientationIndicator != nullptr) {
+		imageOrientationIndicator->setRotateTransform(
+				isMovieMode() ?
+				movieMode->getOriginScene()->rotateTransform :
+				rotateTransform);
+	}
 }
 
 SceneAvatar *DicomScene::getAvatar() {
@@ -106,7 +110,7 @@ const QPixmap &DicomScene::getIcon() {
 
 void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
-	if (event->buttons() & Qt::LeftButton) {
+	if ((event->buttons() bitand Qt::LeftButton) and (not isMovieMode())) {
 
 		switch (getDicomView()->getToolBar().getState()) {
 
@@ -283,17 +287,27 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action) {
 void DicomScene::wheelEvent(QGraphicsSceneWheelEvent *event) {
 	QGraphicsScene::wheelEvent(event);
 
-	if (event->delta() < 0)
-		getDicomView()->getFrameChooser().moveNext();
+	if (not isMovieMode()) {
 
-	if (event->delta() > 0)
-		getDicomView()->getFrameChooser().movePrev();
+		if (event->delta() < 0)
+			getDicomView()->getFrameChooser().moveNext();
+
+		if (event->delta() > 0)
+			getDicomView()->getFrameChooser().movePrev();
+	}
 }
 
 bool DicomScene::saveToFile(const QString &fileName, const char *format, int quality) {
-
-	qDebug() << fileName;
-	qDebug() << qImage;
-
 	return qImage.save(fileName);
+}
+
+bool DicomScene::acceptMovieMode(MovieMode *movieMode) {
+	this->movieMode = movieMode;
+
+	return true;
+}
+
+void DicomScene::disableMovieMode() {
+	movieMode = nullptr;
+	reloadPixmap();
 }
