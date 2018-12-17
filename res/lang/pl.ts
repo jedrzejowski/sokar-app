@@ -138,6 +138,22 @@
     </message>
 </context>
 <context>
+    <name>MovieBar</name>
+    <message>
+        <location filename="../../src/dicomview/moviebar.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/moviebar.ui" line="20"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="27"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="34"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="51"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
         <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="135"/>

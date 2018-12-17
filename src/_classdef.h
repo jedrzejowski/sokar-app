@@ -6,6 +6,7 @@ namespace Sokar {
 	class DicomToolBar;
 	class DicomGraphics;
 	class DataSetViewer;
+	class MovieBar;
 
 	class Scene;
 	class DicomScene;
