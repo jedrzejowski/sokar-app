@@ -13,15 +13,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Poprwki małych błędów">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/moviemode.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/moviemode.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/moviemode.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/moviemode.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types.h" beforeDir="false" />
-    </list>
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Wstępna implemenatacja MovieModa'a" />
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -398,7 +390,7 @@
       <workItem from="1544984856404" duration="7944000" />
       <workItem from="1545054565569" duration="7000" />
       <workItem from="1545054669655" duration="7795000" />
-      <workItem from="1545064930675" duration="1366000" />
+      <workItem from="1545064930675" duration="1501000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>
@@ -589,11 +581,18 @@
       <option name="project" value="LOCAL" />
       <updated>1545064800721</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Wstępna implemenatacja MovieModa'a">
+      <created>1545068024257</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1545068024257</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="466643000" />
+    <option name="totallyTimeSpent" value="466778000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -606,7 +605,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1366" height="769" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4964029" visible="true" weight="0.24015151" />
       <window_info id="Structure" order="1" sideWeight="0.50359714" side_tool="true" weight="0.19893049" />
@@ -664,7 +662,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="Dodanie Unsuported" />
     <MESSAGE value="Coś" />
     <MESSAGE value="W cholere zmian" />
     <MESSAGE value="Prace nad framowaniem" />
@@ -689,7 +686,8 @@
     <MESSAGE value="Rozpoczęcie Doca" />
     <MESSAGE value="Nowe sekwencyjne obrazowanie" />
     <MESSAGE value="Poprwki małych błędów" />
-    <option name="LAST_COMMIT_MESSAGE" value="Poprwki małych błędów" />
+    <MESSAGE value="Wstępna implemenatacja MovieModa'a" />
+    <option name="LAST_COMMIT_MESSAGE" value="Wstępna implemenatacja MovieModa'a" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/lumbluered/lumbluered.cpp">
