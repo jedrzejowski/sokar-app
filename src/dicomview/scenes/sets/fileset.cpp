@@ -54,8 +54,6 @@ const QString &DicomFileSet::getTitle() {
 }
 
 SceneSequence *DicomFileSet::getFrameSequence() {
-	QMutexLocker lock(&qMutex);
-
 	if (sceneSequence != nullptr)
 		return sceneSequence;
 

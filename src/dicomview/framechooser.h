@@ -27,8 +27,9 @@ namespace Sokar {
 		QHash<DicomScene *, SceneAvatar *> avatarsHash;
 		QVector<SceneAvatar *> avatarsVector;
 
-		DicomSceneSet *sceneSet;
-		SceneSequence *frameSequence;
+		DicomSceneSet *sceneSet = nullptr;
+		SceneSequence *frameSequence = nullptr;
+		MovieMode *movieMode = nullptr;
 
 	public:
 		explicit FrameChooser(QWidget *parent = nullptr);
@@ -36,15 +37,17 @@ namespace Sokar {
 
 		void setSceneSet(DicomSceneSet *sceneSet);
 
+		inline bool isMovieMode() { return movieMode != nullptr; }
+
 	protected:
 		void resizeEvent(QResizeEvent *event) override;
 
 		void updateAvatars();
 
-		void initTimer();
+		void setupFrameMovieMode();
 
 	private slots:
-		void updateTimerUI();
+		void updateMovieModeUI();
 		void onAvatarClicked(SceneAvatar *avatar);
 
 	public slots:
@@ -52,9 +55,9 @@ namespace Sokar {
 		void movePrev();
 		void moveTo(int i);
 		void moveTo(DicomScene *scene);
-		void timerToggle();
-		void timerStop();
-		void timerStart();
+		void toggleMovieMode();
+		void stopMovieMode();
+		void startMovieMode();
 
 	signals:
 		void resizeAvatars(int width);

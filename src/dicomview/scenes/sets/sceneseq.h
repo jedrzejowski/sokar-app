@@ -29,6 +29,8 @@ namespace Sokar {
 
 		void setSweeping(bool sweeping);
 
+		void reset();
+
 		SceneSequence &operator<<(const Step &cmd);
 
 		SceneSequence &operator<<(const SceneSequence &sceneSequence);

@@ -7,13 +7,13 @@
 #include <gdcmImageReader.h>
 #include <gdcmStringFilter.h>
 
-#include "dicomview/_classdef.h"
+#include "_classdef.h"
+
 #include "dicomview/graphics.h"
 #include "dicomview/toolbar.h"
 
 #include "sokar/pixel.h"
 #include "sokar/exception.h"
-#include "../_classdef.h"
 #include "scene.h"
 #include "params.h"
 #include "sceneavatar.h"
@@ -88,7 +88,7 @@ namespace Sokar {
 
 		virtual void toolBarAdjust(DicomToolBar *toolbar);
 
-		bool isMovieMode() { return movieMode == nullptr; }
+		bool isMovieMode() { return movieMode != nullptr; }
 
 		virtual bool acceptMovieMode(MovieMode *movieMode);
 

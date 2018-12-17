@@ -2,7 +2,7 @@
 
 #include <QtCore>
 
-#include "../../_classdef.h"
+#include "_classdef.h"
 #include "../../dataset.h"
 #include "../dicomscene.h"
 #include "sokar/dataconventer.h"

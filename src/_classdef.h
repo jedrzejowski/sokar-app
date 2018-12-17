@@ -13,6 +13,8 @@ namespace Sokar {
 	class SceneIndicator;
 	class SceneAvatar;
 
+	class MovieMode;
+
 	struct SceneParams;
 
 }

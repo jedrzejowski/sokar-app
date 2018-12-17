@@ -50,3 +50,8 @@ SceneSequence &SceneSequence::operator<<(const SceneSequence &sceneSequence) {
 
 	return *this;
 }
+
+void SceneSequence::reset() {
+	index = -1;
+	direction = 1;
+}

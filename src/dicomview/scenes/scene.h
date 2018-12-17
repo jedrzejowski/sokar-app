@@ -3,7 +3,7 @@
 #include <QtCore>
 #include <QtWidgets>
 
-#include "../_classdef.h"
+#include "_classdef.h"
 #include "indicators/_base.h"
 
 namespace Sokar {

@@ -4,7 +4,7 @@
 
 #include <QtCore>
 
-#include "../_classdef.h"
+#include "_classdef.h"
 
 namespace Sokar {
 	struct SceneParams {

@@ -3,7 +3,7 @@
 #include <QtCore>
 #include <QtWidgets>
 
-#include "../../_classdef.h"
+#include "_classdef.h"
 #include "../scene.h"
 #include "sokar/dataconventer.h"
 

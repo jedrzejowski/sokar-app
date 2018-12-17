@@ -17,10 +17,14 @@ FrameChooser::FrameChooser(QWidget *parent) :
 	ui->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	ui->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
+	connect(ui->nextBtn, &QToolButton::clicked, this, &FrameChooser::moveNext);
+	connect(ui->prevBtn, &QToolButton::clicked, this, &FrameChooser::movePrev);
+	connect(ui->playBtn, &QToolButton::clicked, this, &FrameChooser::toggleMovieMode);
 
-	connect(ui->nextBtn, SIGNAL(clicked()), this, SLOT(moveNext()));
-	connect(ui->prevBtn, SIGNAL(clicked()), this, SLOT(movePrev()));
-	connect(ui->playBtn, SIGNAL(clicked()), this, SLOT(timerToggle()));
+	connect(ui->sweepBtn, &QToolButton::clicked, this, [&]() {
+		frameSequence->setSweeping(!frameSequence->isSweeping());
+		updateMovieModeUI();
+	});
 }
 
 FrameChooser::~FrameChooser() {
@@ -49,7 +53,8 @@ void FrameChooser::setSceneSet(DicomSceneSet *sceneSet) {
 		onAvatarClicked(avatarsVector[0]);
 
 	updateAvatars();
-	initTimer();
+
+	setupFrameMovieMode();
 }
 
 void FrameChooser::resizeEvent(QResizeEvent *event) {
@@ -59,9 +64,10 @@ void FrameChooser::resizeEvent(QResizeEvent *event) {
 }
 
 void FrameChooser::onAvatarClicked(SceneAvatar *avatar) {
+	stopMovieMode();
+
 	currentAvatar = avatar;
 
-	timerStop();
 	emit selectSceneSignal(avatar->getScene());
 }
 
@@ -92,10 +98,16 @@ void FrameChooser::moveTo(DicomScene *scene) {
 		moveTo(avatarsVector.indexOf(avatarsHash[scene]));
 }
 
-void FrameChooser::initTimer() {
-	frameSequence = sceneSet->getFrameSequence();
+void FrameChooser::toggleMovieMode() {
+	if (isMovieMode()) stopMovieMode();
+	else startMovieMode();
+}
 
-	if (frameSequence == nullptr || frameSequence->size() < 2) {
+
+void FrameChooser::setupFrameMovieMode() {
+
+	frameSequence = sceneSet->getFrameSequence();
+	if (frameSequence->size() <= 1) {
 		ui->timerWidget->hide();
 		return;
 	}
@@ -107,51 +119,58 @@ void FrameChooser::initTimer() {
 	connect(frameSequence, &SceneSequence::steped, this, [&](const Step &step) {
 		moveTo(step.scene);
 		frameTimer.start(int(step.time * ui->speedBox->value()));
-		updateTimerUI();
+		updateMovieModeUI();
 	});
+}
 
+void FrameChooser::startMovieMode() {
+	if (isMovieMode())
+		return;
+
+	qDebug("startMovieMode");
+
+	movieMode = new MovieMode(this);
+
+	for (auto &avatar : avatarsVector) {
+
+		auto scene = avatar->getScene();
+
+		if (not scene->acceptMovieMode(movieMode)) {
+			stopMovieMode();
+			return;
+		}
+
+		scene->reloadPixmap();
+	}
+
+	frameSequence->reset();
 	frameSequence->step();
 
-	//region Sweeping&Looping
+	updateMovieModeUI();
+}
+
+void FrameChooser::stopMovieMode() {
+	if (not isMovieMode()) return;
+	frameTimer.stop();
+
+	for (auto &avatar : avatarsVector) {
+		avatar->getScene()->disableMovieMode();
+	}
+	delete movieMode;
+	movieMode = nullptr;
+}
+
+void FrameChooser::updateMovieModeUI() {
 
 	static QIcon sweepingIcon = QIcon(":/img/ico/dark/sweeping.png");
 	static QIcon loopingIcon = QIcon(":/img/ico/dark/looping.png");
+	static QIcon IconPlayerStart = QIcon::fromTheme("player_start");
+	static QIcon IconPlayerStop = QIcon::fromTheme("player_stop");
+
+	ui->playBtn->setIcon(frameTimer.isActive() ? IconPlayerStop : IconPlayerStart);
+
+	ui->nextBtn->setDisabled(isMovieMode());
+	ui->prevBtn->setDisabled(isMovieMode());
 
 	ui->sweepBtn->setIcon(frameSequence->isSweeping() ? sweepingIcon : loopingIcon);
-
-	connect(ui->sweepBtn, &QToolButton::clicked, this, [&]() {
-		frameSequence->setSweeping(!frameSequence->isSweeping());
-
-		ui->sweepBtn->setIcon(frameSequence->isSweeping() ? sweepingIcon : loopingIcon);
-	});
-
-	//endregion
-
-	updateTimerUI();
-}
-
-void FrameChooser::timerToggle() {
-	if (frameTimer.isActive()) timerStop();
-	else timerStart();
-}
-
-void FrameChooser::timerStart() {
-	frameTimer.start();
-	updateTimerUI();
-}
-
-void FrameChooser::timerStop() {
-	frameTimer.stop();
-	updateTimerUI();
-}
-
-void FrameChooser::updateTimerUI() {
-	if (frameTimer.isActive()) {
-		ui->playBtn->setIcon(QIcon::fromTheme("player_stop"));
-	} else {
-		ui->playBtn->setIcon(QIcon::fromTheme("player_play"));
-	}
-
-	ui->nextBtn->setDisabled(frameTimer.isActive());
-	ui->prevBtn->setDisabled(frameTimer.isActive());
 }
