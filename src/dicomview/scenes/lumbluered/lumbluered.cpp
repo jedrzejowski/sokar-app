@@ -34,10 +34,12 @@ Sokar::Pixel ybr2Pixel(quint8 y, quint8 b, quint8 r) {
 bool Scene::generatePixmap() {
 	if (!pixmap.isNull()) return false;
 
-	gdcm::assertTagPresence(gdcmDataSet, gdcm::TagPlanarConfiguration);
+	const static gdcm::Tag
+			TagPlanarConfiguration(0x0028, 0x0006);
 
-	auto planarConfiguration = (ushort) * (gdcmDataSet.GetDataElement(
-			gdcm::TagPlanarConfiguration).GetByteValue()->GetPointer());
+	gdcm::assertTagPresence(gdcmDataSet, TagPlanarConfiguration);
+
+	auto planarConfiguration = dataConverter.toUShort(TagPlanarConfiguration);
 
 	if (gdcmImage.GetPixelFormat() != gdcm::PixelFormat::UINT8)
 		throw Sokar::ImageTypeNotSupportedException();

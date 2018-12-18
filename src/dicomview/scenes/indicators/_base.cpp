@@ -104,3 +104,22 @@ QGraphicsTextItem *SceneIndicator::newText(const QString &string) {
 	text->setDefaultTextColor(defaultColor);
 	return text;
 }
+
+QString SceneIndicator::wrapAsHtml(QStringList lines) {
+	const static QString htmlHead = QObject::tr(
+			"<html>"
+			"<head>"
+			"<style>"
+			"body{font-size:medium;}"
+			"unit{font-style:italic;font-size:small;}"
+			"value{font-weight:500;}"
+			"line{background-color:rgba(255,0,0,0.5);margin-bottom:1px;}"
+			"</style>"
+			"</head>"
+			"<body>");
+
+	for (auto &line : lines)
+		line = "<line>" + line + "</line>";
+
+	return htmlHead + lines.join("<br>") + "</body></html>";
+}

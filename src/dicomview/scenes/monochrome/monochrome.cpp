@@ -28,21 +28,21 @@ Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
 	reloadPixmap();
 }
 
+Scene::~Scene() {
+
+	delete imgWindow;
+}
+
 void Scene::readAttributes() {
 
 	bool ok;
 	ushort us;
 	WindowInt *imgWindowInt;
 
-	if (!gdcmDataSet.FindDataElement(gdcm::TagBitsStored))
-		throw DicomTagMissing(gdcm::TagBitsStored);
-
-
 	{ // Tworzenie obiekty okienka
 
-		auto bitsStored = (ushort) *(gdcmDataSet.GetDataElement(gdcm::TagBitsStored).GetByteValue()->GetPointer());
-		auto bitsAllocated = (ushort) *(gdcmDataSet.GetDataElement(
-				gdcm::TagBitsAllocated).GetByteValue()->GetPointer());
+		auto bitsStored = gdcmImage.GetPixelFormat().GetBitsStored();
+		auto bitsAllocated = gdcmImage.GetPixelFormat().GetBitsAllocated();
 
 		if (bitsAllocated > 62)
 			throw Sokar::ImageTypeNotSupportedException();
@@ -202,18 +202,23 @@ void Scene::readAttributes() {
 
 	//
 
-	if (gdcmDataSet.FindDataElement(gdcm::TagPixelPaddingValue)) {
-		auto background = dataConverter.toString(gdcm::TagPixelPaddingValue).toInt(&ok);
+	const static gdcm::Tag TagPixelPaddingValue(0x0028, 0x0120);
 
-		if (!ok) throw DicomTagParseError(gdcm::TagPixelPaddingValue);
+	if (gdcmDataSet.FindDataElement(TagPixelPaddingValue)) {
+		//TODO ten tag może mieć różne wartości
+		auto background = dataConverter.toString(TagPixelPaddingValue).toInt(&ok);
+
+		if (!ok) throw DicomTagParseError(TagPixelPaddingValue);
 
 		imgWindowInt->setBackgroundLvl(background);
 	}
 
 	//
 
-	if (gdcmDataSet.FindDataElement(gdcm::TagRescaleIntercept)) {
-		gdcm::assertTagPresence(gdcmDataSet, gdcm::TagRescaleSlope);
+	const static gdcm::Tag TagRescaleIntercept(0x0028, 0x1052), TagRescaleSlope(0x0028, 0x1053);
+
+	if (gdcmDataSet.FindDataElement(TagRescaleIntercept)) {
+		gdcm::assertTagPresence(gdcmDataSet, TagRescaleSlope);
 
 		auto rescale = gdcm::ImageHelper::GetRescaleInterceptSlopeValue(gdcmFile);
 
@@ -353,11 +358,6 @@ void Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 to) {
 	}
 }
 
-Scene::~Scene() {
-
-	delete imgWindow;
-}
-
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 	if (event->buttons() & Qt::LeftButton) {
@@ -372,7 +372,6 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 				imgWindow->mvHorizontal(dx);
 				imgWindow->mvVertical(dy);
-
 
 				reloadPixmap();
 			}
@@ -389,4 +388,13 @@ void Scene::toolBarAdjust(DicomToolBar *toolbar) {
 	auto winAction = toolbar->getActionWindowing();
 	winAction->setMenu(imgWindow->getMenu());
 	winAction->setEnabled(true);
+}
+
+bool Scene::acceptMovieMode(Sokar::MovieMode *movieMode) {
+	if (not DicomScene::acceptMovieMode(movieMode))
+		return false;
+
+	//TODO dodać jakieś warunki
+
+	return true;
 }

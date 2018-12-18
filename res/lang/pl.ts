@@ -135,13 +135,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/moviebar.ui" line="32"/>
         <location filename="../../src/dicomview/moviebar.ui" line="39"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="85"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/moviebar.ui" line="63"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="60"/>
         <source>Slow factor - time between each frame will me multiplied by this value</source>
         <translation type="unfinished"></translation>
     </message>
@@ -381,57 +381,57 @@
 <context>
     <name>Sokar::MainWindow</name>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="35"/>
+        <location filename="../../src/win/mainwindow.cpp" line="33"/>
         <source>Load DCM file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="36"/>
+        <location filename="../../src/win/mainwindow.cpp" line="34"/>
         <source>Dicom File (*.dcm);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="95"/>
+        <location filename="../../src/win/mainwindow.cpp" line="93"/>
         <source>Save as JPEG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="95"/>
+        <location filename="../../src/win/mainwindow.cpp" line="93"/>
         <source>JPEG File (*.jpg)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="99"/>
+        <location filename="../../src/win/mainwindow.cpp" line="97"/>
         <source>Save as PNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="99"/>
+        <location filename="../../src/win/mainwindow.cpp" line="97"/>
         <source>PNG File (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="103"/>
+        <location filename="../../src/win/mainwindow.cpp" line="101"/>
         <source>Save as GIF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="103"/>
+        <location filename="../../src/win/mainwindow.cpp" line="101"/>
         <source>GIF File (*.gif)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="107"/>
+        <location filename="../../src/win/mainwindow.cpp" line="105"/>
         <source>Save as BMP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="107"/>
+        <location filename="../../src/win/mainwindow.cpp" line="105"/>
         <source>BMP File (*.bmp)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="119"/>
+        <location filename="../../src/win/mainwindow.cpp" line="117"/>
         <source>About Qt - Sokar</source>
         <translation type="unfinished"></translation>
     </message>

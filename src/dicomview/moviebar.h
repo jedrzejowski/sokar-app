@@ -35,6 +35,8 @@ namespace Sokar {
 
 		inline bool isRunning() { return movieMode != nullptr; };
 
+		inline DicomView *getDicomView() { return (DicomView *) this->parent(); }
+
 	public slots:
 		void togglePlaying();
 		void stop();

@@ -23,12 +23,15 @@
 #include "indicators/pixelspacing.h"
 #include "indicators/hospitaldata.h"
 #include "indicators/imgorientation.h"
+#include "indicators/modality.h"
 
 namespace Sokar {
 	class DicomScene : public Scene {
 	Q_OBJECT
 
 	protected:
+
+		QMutex processing;
 
 		const gdcm::Image &gdcmImage;
 		const gdcm::File &gdcmFile;
@@ -55,11 +58,13 @@ namespace Sokar {
 		HospitalDataIndicator *hospitalDataIndicator = nullptr;
 		PixelSpacingIndicator *pixelSpacingIndicator = nullptr;
 		ImageOrientationIndicator *imageOrientationIndicator = nullptr;
+		ModalityIndicator *modalityIndicator = nullptr;
 
 		void initPatientDataIndicator();
 		void initPixelSpacingIndicator();
 		void initImageOrientationIndicator();
 		void initHospitalDataIndicator();
+		void initModalityIndicator();
 		//endregion
 
 	public:
@@ -88,7 +93,7 @@ namespace Sokar {
 
 		virtual void toolBarAdjust(DicomToolBar *toolbar);
 
-		bool isMovieMode() { return movieMode != nullptr; }
+		bool isMovieMode();
 
 		virtual bool acceptMovieMode(MovieMode *movieMode);
 

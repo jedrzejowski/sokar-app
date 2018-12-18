@@ -50,7 +50,7 @@ void MainWindow::initMenuBar() {
 		if (dicomView == nullptr) {
 			disable = true;
 		} else {
-			auto scene = dicomView->currentDicomScene();
+			auto scene = dicomView->getDicomScene();
 
 			if (scene == nullptr)
 				disable = true;
@@ -77,7 +77,7 @@ void MainWindow::initMenuBar() {
 
 	auto exportAs = [this](QString title, QString filter, QString ext) {
 
-		auto scene = ui->dicomTabs->currentDicomView()->currentDicomScene();
+		auto scene = ui->dicomTabs->currentDicomView()->getDicomScene();
 
 		auto fileName = QFileDialog::getSaveFileName(this, title, "", filter);
 

@@ -30,9 +30,11 @@ namespace Sokar {
 
 		//region Getters
 
-		DicomScene *currentDicomScene();
+		DicomScene *getDicomScene();
 		DicomToolBar &getToolBar();
 		FrameChooser &getFrameChooser();
+
+		inline DicomSceneSet *getDicomSceneSet() { return dicomSceneSet; }
 
 		inline const QString &getTitle() { return dicomSceneSet->getTitle(); }
 
@@ -47,6 +49,5 @@ namespace Sokar {
 		void stepChanged(const Step *step);
 	};
 }
-
 
 

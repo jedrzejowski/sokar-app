@@ -1,4 +1,5 @@
 #include "moviebar.h"
+#include "dicomview.h"
 
 #include "ui_moviebar.h"
 
@@ -73,18 +74,15 @@ void MovieBar::start() {
 		return;
 
 	movieMode = new MovieMode(this);
+	movieMode->setOriginScene(getDicomView()->getDicomScene());
 
-	for (auto &scene : sceneSet->getScenesVector()) {
+	// W przypadku inicjacji, DicomView nie posiada żadnej sceny dlatego bierzemy pierwszą
+	if (movieMode->getOriginScene() == nullptr)
+		movieMode->setOriginScene(sceneSequence->operator[](0)->scene);
 
-		if (not scene->acceptMovieMode(movieMode)) {
-			stop();
-			return;
-		}
+	for (auto &scene : sceneSet->getScenesVector())
+		scene->acceptMovieMode(movieMode);
 
-		scene->reloadPixmap();
-	}
-
-	sceneSequence->reset();
 	sceneSequence->step();
 
 	updateUI();

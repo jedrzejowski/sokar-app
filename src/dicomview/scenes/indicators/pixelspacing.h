@@ -6,7 +6,7 @@ namespace Sokar {
 	class LineIndicator : public SceneIndicator {
 	private:
 		QPen pen;
-		uint pxLength = 0;
+		qreal pxLength = 0;
 		qreal realWidth;
 		QGraphicsTextItem *text;
 		QVector<QGraphicsLineItem *> lines;
@@ -17,8 +17,8 @@ namespace Sokar {
 		LineIndicator(DataConverter &dataConverter);
 
 		void setText(QString str);
-		uint getPxLength() const;
-		void setPxLength(uint pxLength);
+		qreal getPxLength() const;
+		void setPxLength(qreal pxLength);
 		qreal getRealWidth() const;
 		qreal getRealHeight() const;
 
@@ -29,26 +29,25 @@ namespace Sokar {
 	class PixelSpacingIndicator : public SceneIndicator {
 	private:
 
-		double xSpacing, ySpacing;
-		uint xDim, yDim;
+		qreal xSpacing, ySpacing;
+		qreal xDim, yDim;
 
 		LineIndicator xLine, yLine;
 
-		void updateLines();
 
 	public:
 		PixelSpacingIndicator(DataConverter& dataConverter);
 
 		//region Getter & Setters
 
-		double getXSpacing() const;
-		void setXSpacing(double xSpacing);
-		double getYSpacing() const;
-		void setYSpacing(double ySpacing);
-		uint getXDim() const;
-		void setXDim(uint xDim);
-		uint getYDim() const;
-		void setYDim(uint yDim);
+		qreal getXSpacing() const;
+		void setXSpacing(qreal xSpacing);
+		qreal getYSpacing() const;
+		void setYSpacing(qreal ySpacing);
+		qreal getXDim() const;
+		void setXDim(qreal xDim);
+		qreal getYDim() const;
+		void setYDim(qreal yDim);
 
 		qreal getBottomSpace() override;
 		qreal getRightSpace() override;
@@ -56,5 +55,6 @@ namespace Sokar {
 		//endregion
 
 		void reposition() override;
+		void updateLines();
 	};
 }

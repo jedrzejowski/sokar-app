@@ -12,10 +12,12 @@ Scene::Scene(SceneParams &sceneParams) :
 bool Scene::generatePixmap() {
 	if (!pixmap.isNull()) return false;
 
-	gdcm::assertTagPresence(gdcmDataSet, gdcm::TagPlanarConfiguration);
+	const static gdcm::Tag
+			TagPlanarConfiguration(0x0028, 0x0006);
 
-	auto planarConfiguration = (ushort) *(gdcmDataSet.GetDataElement(
-			gdcm::TagPlanarConfiguration).GetByteValue()->GetPointer());
+	gdcm::assertTagPresence(gdcmDataSet, TagPlanarConfiguration);
+
+	auto planarConfiguration = dataConverter.toUShort(TagPlanarConfiguration);
 
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::UINT8: {

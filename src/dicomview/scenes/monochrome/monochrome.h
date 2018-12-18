@@ -41,6 +41,9 @@ namespace Sokar::Monochrome {
 		void readAttributes();
 
 	public:
+		bool acceptMovieMode(MovieMode *movieMode) override;
+
+	public:
 		void toolBarAdjust(DicomToolBar *toolbar) override;
 
 	};

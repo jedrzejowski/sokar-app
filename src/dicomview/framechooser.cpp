@@ -69,18 +69,6 @@ void FrameChooser::updateAvatars() {
 	emit resizeAvatars(dim);
 }
 
-void FrameChooser::moveNext() {
-	int i = avatarsVector.indexOf(currentAvatar) + 1;
-	if (i >= avatarsVector.size()) i = 0;
-	onAvatarClicked(avatarsVector[i]);
-}
-
-void FrameChooser::movePrev() {
-	int i = avatarsVector.indexOf(currentAvatar) - 1;
-	if (i < 0) i = avatarsVector.size() - 1;
-	onAvatarClicked(avatarsVector[i]);
-}
-
 void FrameChooser::moveTo(int i) {
 	i %= avatarsVector.size();
 	onAvatarClicked(avatarsVector[i]);

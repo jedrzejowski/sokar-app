@@ -22,6 +22,8 @@ namespace Sokar {
 		QGraphicsLineItem *newLine(qreal x1, qreal y1, qreal x2, qreal y2);
 		QGraphicsTextItem *newText(const QString &string = "");
 
+		static QString wrapAsHtml(QStringList lines);
+
 	public:
 		SceneIndicator(DataConverter &dataConverter);
 

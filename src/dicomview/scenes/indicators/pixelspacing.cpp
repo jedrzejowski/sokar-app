@@ -1,4 +1,5 @@
 #include <QtWidgets>
+#include "sokar/exception.h"
 #include "pixelspacing.h"
 
 using namespace Sokar;
@@ -12,11 +13,11 @@ LineIndicator::LineIndicator(DataConverter &dataConverter) :
 	text = newText();
 }
 
-uint LineIndicator::getPxLength() const {
+qreal LineIndicator::getPxLength() const {
 	return pxLength;
 }
 
-void LineIndicator::setPxLength(uint pxLength) {
+void LineIndicator::setPxLength(qreal pxLength) {
 	LineIndicator::pxLength = pxLength;
 }
 
@@ -78,45 +79,41 @@ PixelSpacingIndicator::PixelSpacingIndicator(DataConverter &dataConverter) :
 	addToGroup(&yLine);
 }
 
-double PixelSpacingIndicator::getXSpacing() const {
+qreal PixelSpacingIndicator::getXSpacing() const {
 	return xSpacing;
 }
 
-void PixelSpacingIndicator::setXSpacing(double xSpacing) {
+void PixelSpacingIndicator::setXSpacing(qreal xSpacing) {
 	PixelSpacingIndicator::xSpacing = xSpacing;
-	updateLines();
 }
 
-double PixelSpacingIndicator::getYSpacing() const {
+qreal PixelSpacingIndicator::getYSpacing() const {
 	return ySpacing;
 }
 
-void PixelSpacingIndicator::setYSpacing(double ySpacing) {
+void PixelSpacingIndicator::setYSpacing(qreal ySpacing) {
 	PixelSpacingIndicator::ySpacing = ySpacing;
-	updateLines();
 }
 
-uint PixelSpacingIndicator::getXDim() const {
+qreal PixelSpacingIndicator::getXDim() const {
 	return xDim;
 }
 
-void PixelSpacingIndicator::setXDim(uint xDim) {
+void PixelSpacingIndicator::setXDim(qreal xDim) {
 	PixelSpacingIndicator::xDim = xDim;
-
-	updateLines();
 }
 
-uint PixelSpacingIndicator::getYDim() const {
+qreal PixelSpacingIndicator::getYDim() const {
 	return yDim;
 }
 
-void PixelSpacingIndicator::setYDim(uint yDim) {
+void PixelSpacingIndicator::setYDim(qreal yDim) {
 	PixelSpacingIndicator::yDim = yDim;
-
-	updateLines();
 }
 
 void PixelSpacingIndicator::reposition() {
+
+	updateLines();
 
 	xLine.setPos(
 			(scene()->width() - xLine.getPxLength()) / 2,
@@ -125,27 +122,30 @@ void PixelSpacingIndicator::reposition() {
 	yLine.setPos(
 			scene()->width() - yLine.getPxLength(),
 			(scene()->height() - yLine.getRealHeight()) / 2);
+
 }
 
 void PixelSpacingIndicator::updateLines() {
 	if (xSpacing == 0) {
 		xLine.hide();
 	} else {
-		xLine.setPxLength(xDim / 2);
-		xLine.setText(QString::number(xSpacing * xDim / 2, 'f', 2) + +" <i>mm</i>");
+		auto width = qMin(scene()->width() / 2, xDim);
+		xLine.setPxLength(width);
+		xLine.setText(QString::number(xSpacing * width, 'f', 2) + +" <i>mm</i>");
 		xLine.show();
 	}
 
 	if (ySpacing == 0) {
 		yLine.hide();
 	} else {
-		yLine.setPxLength(yDim / 2);
-		yLine.setText(QString::number(ySpacing * yDim / 2, 'f', 2) + +" <i>mm</i>");
+		auto height = qMin(scene()->height() / 2, yDim);
+		yLine.setPxLength(height);
+		yLine.setText(QString::number(ySpacing * height, 'f', 2) + +" <i>mm</i>");
 		yLine.show();
 
 		// Obracanie
 		auto transform = QTransform();
-		auto dx = (qreal) yLine.getPxLength(),
+		auto dx = yLine.getPxLength(),
 				dy = yLine.getRealHeight();
 
 		transform.translate(dx - dy / 2, 0);

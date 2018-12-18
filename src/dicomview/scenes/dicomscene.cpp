@@ -1,4 +1,3 @@
-
 #include <gdcmDict.h>
 #include <gdcmDicts.h>
 #include <gdcmGlobal.h>
@@ -50,6 +49,7 @@ void DicomScene::reposItems() {
 }
 
 void DicomScene::reloadPixmap() {
+	QMutexLocker locker(&processing);
 
 	if (!generatePixmap()) return;
 
@@ -58,7 +58,6 @@ void DicomScene::reloadPixmap() {
 		pixmapItem->setZValue(-1);
 
 		centerTransform.translate((qreal) pixmap.width() / -2, (qreal) pixmap.height() / -2);
-		updatePixmapTransformation();
 	} else {
 		pixmapItem->setPixmap(pixmap);
 	}
@@ -75,6 +74,7 @@ QTransform DicomScene::pixmapTransformation() {
 }
 
 void DicomScene::updatePixmapTransformation() {
+
 	pixmapItem->setTransform(isMovieMode() ?
 							 movieMode->getOriginScene()->pixmapTransformation() :
 							 pixmapTransformation());
@@ -110,12 +110,16 @@ const QPixmap &DicomScene::getIcon() {
 
 void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
-	if ((event->buttons() bitand Qt::LeftButton) and (not isMovieMode())) {
+	if (event->buttons() bitand Qt::LeftButton) {
+
+		auto target = this;
+
+		if (isMovieMode()) target = movieMode->getOriginScene();
 
 		switch (getDicomView()->getToolBar().getState()) {
 
 			case DicomToolBar::Pan: {
-				panTransform.translate(
+				target->panTransform.translate(
 						event->screenPos().x() - event->lastScreenPos().x(),
 						event->screenPos().y() - event->lastScreenPos().y());
 
@@ -129,7 +133,7 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 				scale -= (event->screenPos().y() - event->lastScreenPos().y()) * 0.01;
 				scale -= (event->screenPos().x() - event->lastScreenPos().x()) * 0.001;
 
-				scaleTransform.scale(scale, scale);
+				target->scaleTransform.scale(scale, scale);
 				updatePixmapTransformation();
 			}
 				break;
@@ -141,7 +145,7 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 				rotate += (event->screenPos().y() - event->lastScreenPos().y()) * 0.5;
 				rotate += (event->screenPos().x() - event->lastScreenPos().x()) * 0.1;
 
-				rotateTransform.rotate(rotate);
+				target->rotateTransform.rotate(rotate);
 				updatePixmapTransformation();
 
 			}
@@ -157,9 +161,22 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 void DicomScene::initIndicators() {
 	try {
 		initPatientDataIndicator();
+	} catch (Sokar::Exception &) {}
+
+	try {
 		initHospitalDataIndicator();
+	} catch (Sokar::Exception &) {}
+
+	try {
 		initPixelSpacingIndicator();
+	} catch (Sokar::Exception &) {}
+
+	try {
 		initImageOrientationIndicator();
+	} catch (Sokar::Exception &) {}
+
+	try {
+		initModalityIndicator();
 	} catch (Sokar::Exception &) {}
 }
 
@@ -174,14 +191,31 @@ void DicomScene::initHospitalDataIndicator() {
 }
 
 void DicomScene::initPixelSpacingIndicator() {
-	static gdcm::Tag
-			TagPixelSpacing(0x0028, 0x0030);
-
-	if (!gdcmDataSet.FindDataElement(TagPixelSpacing)) return;
-
-
 	pixelSpacingIndicator = new PixelSpacingIndicator(dataConverter);
+
+	const static gdcm::Tag
+	/**
+	 * All pixel spacing related Attributes are encoded as the physical distance between the centers of each two-dimensional pixel, specified by two numeric values.
+	 * The first value is the row spacing in mm, that is the spacing between the centers of adjacent rows, or vertical spacing.
+	 * The second value is the column spacing in mm, that is the spacing between the centers of adjacent columns, or horizontal spacing.
+	 */     TagPixelSpacing(0x0028, 0x0030);
+
+	if (!dataConverter.hasTagWithData(TagPixelSpacing)) return;
 	addIndicator(pixelSpacingIndicator);
+
+	auto spacing = dataConverter.toDecimalString(TagPixelSpacing);
+
+	if (spacing.length() != 2)
+		throw DicomTagParseError(TagPixelSpacing);
+
+	pixelSpacingIndicator->setXSpacing(spacing[1]);
+	pixelSpacingIndicator->setYSpacing(spacing[0]);
+
+	pixelSpacingIndicator->setXDim(gdcmImage.GetDimension(0));
+	pixelSpacingIndicator->setYDim(gdcmImage.GetDimension(1));
+
+	pixelSpacingIndicator->updateLines();
+
 }
 
 void DicomScene::initImageOrientationIndicator() {
@@ -196,6 +230,11 @@ void DicomScene::initImageOrientationIndicator() {
 	imageOrientationIndicator->setOffsetRightParent(pixelSpacingIndicator);
 
 	addIndicator(imageOrientationIndicator);
+}
+
+void DicomScene::initModalityIndicator() {
+	modalityIndicator = new ModalityIndicator(dataConverter);
+	addIndicator(modalityIndicator);
 }
 
 //endregion
@@ -290,10 +329,10 @@ void DicomScene::wheelEvent(QGraphicsSceneWheelEvent *event) {
 	if (not isMovieMode()) {
 
 		if (event->delta() < 0)
-			getDicomView()->getFrameChooser().moveNext();
+			getDicomSceneSet()->getSceneSequence()->stepForward();
 
 		if (event->delta() > 0)
-			getDicomView()->getFrameChooser().movePrev();
+			getDicomSceneSet()->getSceneSequence()->stepBackward();
 	}
 }
 
@@ -302,12 +341,34 @@ bool DicomScene::saveToFile(const QString &fileName, const char *format, int qua
 }
 
 bool DicomScene::acceptMovieMode(MovieMode *movieMode) {
+	auto *scene = movieMode->getOriginScene();
+
+	if (scene == nullptr) return false;
+
+	if (scene->gdcmImage.GetPhotometricInterpretation() not_eq gdcmImage.GetPhotometricInterpretation())
+		return false;
+
+	if (scene->gdcmImage.GetColumns() not_eq gdcmImage.GetColumns())
+		return false;
+
+	if (scene->gdcmImage.GetRows() not_eq gdcmImage.GetRows())
+		return false;
+
+	if (scene->gdcmImage.GetPixelFormat() not_eq gdcmImage.GetPixelFormat())
+		return false;
+
 	this->movieMode = movieMode;
 
+	updatePixmapTransformation();
 	return true;
 }
 
 void DicomScene::disableMovieMode() {
 	movieMode = nullptr;
-	reloadPixmap();
+
+	updatePixmapTransformation();
+}
+
+bool DicomScene::isMovieMode() {
+	return movieMode != nullptr && movieMode->getOriginScene() != nullptr;
 }

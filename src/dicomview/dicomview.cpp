@@ -35,11 +35,15 @@ DicomView::DicomView(DicomSceneSet *dicomSceneSet, QWidget *parent) :
 
 DicomView::~DicomView() {
 	qDebug() << "~DicomView()";
+
+	// Po to aby timer nie wywołał jakieś funkcji w czasie usuwania
+	ui->movieBar->stop();
+
 	delete ui;
 	delete dicomSceneSet;
 }
 
-DicomScene *DicomView::currentDicomScene() {
+DicomScene *DicomView::getDicomScene() {
 	return (DicomScene *) ui->graphicsView->scene();
 }
 
@@ -54,6 +58,8 @@ void DicomView::setStep(const Step *step) {
 
 	scene->reposItems();
 	scene->toolBarAdjust(ui->toolbar);
+	scene->reloadPixmap();
+	scene->updatePixmapTransformation();
 
 	emit stepChanged(step);
 }
@@ -70,9 +76,9 @@ void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
 	switch (action) {
 		case DicomToolBar::OpenDataSet:
 
-			if (currentDicomScene() == nullptr) break;
+			if (getDicomScene() == nullptr) break;
 
-			DataSetViewer::openAsWindow(currentDicomScene());
+			DataSetViewer::openAsWindow(getDicomScene());
 
 			return;
 
@@ -84,8 +90,8 @@ void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
 		case DicomToolBar::FlipHorizontal:
 		case DicomToolBar::FlipVertical:
 		case DicomToolBar::ClearRotate:
-			if (currentDicomScene() == nullptr) break;
-			currentDicomScene()->toolBarActionSlot(action);
+			if (getDicomScene() == nullptr) break;
+			getDicomScene()->toolBarActionSlot(action);
 			break;
 	}
 }

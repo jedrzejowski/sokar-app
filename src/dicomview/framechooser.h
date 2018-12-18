@@ -42,8 +42,6 @@ namespace Sokar {
 		void onAvatarClicked(SceneAvatar *avatar);
 
 	public slots:
-		void moveNext();
-		void movePrev();
 		void moveTo(int i);
 		void moveTo(DicomScene *scene);
 		void stepChanged(const Step* step);
