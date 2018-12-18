@@ -10,14 +10,32 @@ MovieBar::MovieBar(QWidget *parent) :
 	ui->setupUi(this);
 
 
-//	connect(ui->nextBtn, &QToolButton::clicked, this, &MovieBar::moveNext);
-//	connect(ui->prevBtn, &QToolButton::clicked, this, &MovieBar::movePrev);
+	connect(ui->nextBtn, &QToolButton::clicked, [&]() {
+		stop();
+		sceneSequence->stepForward();
+	});
+
+	connect(ui->prevBtn, &QToolButton::clicked, [&]() {
+		stop();
+		sceneSequence->stepBackward();
+	});
+
 	connect(ui->playBtn, &QToolButton::clicked, this, &MovieBar::togglePlaying);
 
-	connect(ui->sweepBtn, &QToolButton::clicked, this, [&]() {
+	connect(ui->movieSlider, &QSlider::valueChanged, [&](int value) {
+		stop();
+		setStep(sceneSequence->operator[](value));
+	});
+
+	connect(ui->sweepBtn, &QToolButton::clicked, [&]() {
 		sceneSequence->setSweeping(!sceneSequence->isSweeping());
 		updateUI();
 	});
+
+	connect(&frameTimer, &QTimer::timeout, [&]() {
+		if (isRunning()) sceneSequence->step();
+	});
+
 }
 
 MovieBar::~MovieBar() {
@@ -35,11 +53,7 @@ void MovieBar::setSceneSet(DicomSceneSet *sceneSet) {
 
 	ui->movieSlider->setMaximum(sceneSequence->size() - 1);
 
-	connect(&frameTimer, &QTimer::timeout, this, [&]() {
-		if (isRunning()) sceneSequence->step();
-	});
-
-	connect(sceneSequence, &SceneSequence::steped, this, [&](const Step *step) {
+	connect(sceneSequence, &SceneSequence::steped, [&](const Step *step) {
 		setStep(step);
 		frameTimer.start(int(step->time * ui->speedBox->value()));
 		updateUI();
@@ -99,16 +113,15 @@ void MovieBar::updateUI() {
 
 	ui->playBtn->setIcon(isRunning() ? IconPlayerStop : IconPlayerStart);
 
-	ui->nextBtn->setDisabled(isRunning());
-	ui->prevBtn->setDisabled(isRunning());
-
 	ui->sweepBtn->setIcon(sceneSequence->isSweeping() ? sweepingIcon : loopingIcon);
 
-	ui->movieSlider->setInvertedControls(sceneSequence->getDirection() == -1);
 }
 
 void MovieBar::stepChanged(const Step *step) {
 
 	int i = sceneSequence->indexOf(step);
+
+	ui->movieSlider->blockSignals(true);
 	ui->movieSlider->setValue(i);
+	ui->movieSlider->blockSignals(false);
 }

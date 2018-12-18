@@ -86,7 +86,7 @@ void DicomTabs::addDicomFile(const gdcm::ImageReader *reader) {
 	try {
 		auto sceneSet = new DicomFrameSet(reader, this);
 		auto dicomView = new DicomView(sceneSet, this);
-		setCurrentIndex(addTab(dicomView, dicomView->getTitle()));
+		addDicomView(dicomView);
 
 		return;
 	} catch (DicomTagParseError &e) {
@@ -135,7 +135,7 @@ void DicomTabs::addDicomFiles(DicomReaderVec &readers) {
 	try {
 		auto sceneSet = new DicomFileSet(readers, this);
 		auto dicomView = new DicomView(sceneSet, this);
-		setCurrentIndex(addTab(dicomView, dicomView->getTitle()));
+		addDicomView(dicomView);
 
 		return;
 	} catch (DicomTagParseError &e) {
@@ -146,4 +146,8 @@ void DicomTabs::addDicomFiles(DicomReaderVec &readers) {
 
 	for (auto &reader : readers)
 		delete reader;
+}
+
+void DicomTabs::addDicomView(DicomView *dicomView) {
+	setCurrentIndex(addTab(dicomView, dicomView->getTitle()));
 }

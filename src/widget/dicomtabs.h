@@ -27,6 +27,7 @@ namespace Sokar {
 		void addDicomFile(const gdcm::ImageReader *file);
 		void addDicomFiles(const QStringList &paths);
 		void addDicomFiles(DicomReaderVec &files);
+		void addDicomView(DicomView* dicomView);
 
 	private slots:
 		void removeDicomView(int i);

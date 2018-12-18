@@ -49,8 +49,12 @@ namespace Sokar {
 
 		SceneSequence &operator<<(SceneSequence *sceneSequence);
 
+		inline const Step *operator[](int index) { return steps[index]; }
+
 	public slots:
 		const Step *step();
+		const Step *stepForward();
+		const Step *stepBackward();
 
 	signals:
 		void steped(const Step *step);

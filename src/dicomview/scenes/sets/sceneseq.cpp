@@ -7,25 +7,34 @@ SceneSequence::SceneSequence(QObject *parent) : QObject(parent) {
 }
 
 const Step *SceneSequence::step() {
-	index += direction;
+	return direction > 0 ? stepForward() : stepBackward();
+}
 
-	if (sweeping) {
+const Step *SceneSequence::stepForward() {
+	index++;
 
-		if (index <= 0) {
+	if (index >= steps.size() - 1) {
+		if (sweeping) {
+			direction = -1;
+			index = steps.size() - 1;
+		} else {
 			direction = 1;
 			index = 0;
 		}
-
-		if (index >= steps.size() - 1) {
-			direction = -1;
-			index = steps.size() - 1;
-		}
-	} else {
-		direction = 1;
-		index %= steps.size();
 	}
 
-	qDebug() << index;
+	emit steped(steps[index]);
+	return steps[index];
+}
+
+const Step *SceneSequence::stepBackward() {
+	index--;
+
+	if (index <= 0) {
+		direction = 1;
+		index = 0;
+	}
+
 	emit steped(steps[index]);
 	return steps[index];
 }

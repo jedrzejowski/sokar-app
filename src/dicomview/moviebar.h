@@ -31,7 +31,7 @@ namespace Sokar {
 
 		void setSceneSet(DicomSceneSet *sceneSet);
 
-		void updateUI(	);
+		void updateUI();
 
 		inline bool isRunning() { return movieMode != nullptr; };
 
