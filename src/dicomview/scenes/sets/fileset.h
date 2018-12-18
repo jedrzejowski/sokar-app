@@ -20,6 +20,6 @@ namespace Sokar {
 		~DicomFileSet();
 
 		const QString &getTitle() override;
-		SceneSequence *getFrameSequence() override;
+		SceneSequence *getSceneSequence() override;
 	};
 }

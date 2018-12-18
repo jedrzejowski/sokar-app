@@ -20,8 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	this->setMouseTracking(true);
 
-	connect(ui->fileTree, SIGNAL(fileSelected(QString)), this, SLOT(loadImage(QString)));
-
 	initMenuBar();
 }
 

@@ -8,16 +8,6 @@
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="../../src/dicomview/framechooser.ui" line="70"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/framechooser.ui" line="122"/>
-        <source>Slow factor - time between each frame will me multiplied by this value</source>
-        <translation type="unfinished"></translation>
-    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -145,11 +135,14 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/moviebar.ui" line="20"/>
-        <location filename="../../src/dicomview/moviebar.ui" line="27"/>
-        <location filename="../../src/dicomview/moviebar.ui" line="34"/>
-        <location filename="../../src/dicomview/moviebar.ui" line="51"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="32"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="39"/>
         <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/moviebar.ui" line="63"/>
+        <source>Slow factor - time between each frame will me multiplied by this value</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

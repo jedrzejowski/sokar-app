@@ -25,7 +25,7 @@ namespace Sokar {
 
 		inline const QVector<DicomScene *> &getScenesVector() const { return dicomScenes; }
 
-		virtual SceneSequence *getFrameSequence() = 0;
+		virtual SceneSequence *getSceneSequence() = 0;
 
 		virtual const QString &getTitle() = 0;
 

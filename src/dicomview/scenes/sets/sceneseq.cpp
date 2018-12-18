@@ -6,7 +6,7 @@ SceneSequence::SceneSequence(QObject *parent) : QObject(parent) {
 
 }
 
-void SceneSequence::step() {
+const Step *SceneSequence::step() {
 	index += direction;
 
 	if (sweeping) {
@@ -25,9 +25,9 @@ void SceneSequence::step() {
 		index %= steps.size();
 	}
 
-	auto &step = steps[index];
-
-	emit steped(step);
+	qDebug() << index;
+	emit steped(steps[index]);
+	return steps[index];
 }
 
 void SceneSequence::setSweeping(bool sweeping) {
@@ -38,15 +38,18 @@ void SceneSequence::setSweeping(bool sweeping) {
 	}
 }
 
-SceneSequence &SceneSequence::operator<<(const Step &step) {
+SceneSequence &SceneSequence::operator<<(Step *step) {
 	steps << step;
+	step->setParent(this);
 	return *this;
 }
 
-SceneSequence &SceneSequence::operator<<(const SceneSequence &sceneSequence) {
+SceneSequence &SceneSequence::operator<<(SceneSequence *sceneSequence) {
 
-	for (auto &step : sceneSequence.steps)
-		this << step;
+	for (auto &step : sceneSequence->steps) {
+		steps << step;
+		//TODO tu będzie wywałka
+	}
 
 	return *this;
 }
@@ -54,4 +57,8 @@ SceneSequence &SceneSequence::operator<<(const SceneSequence &sceneSequence) {
 void SceneSequence::reset() {
 	index = -1;
 	direction = 1;
+}
+
+int SceneSequence::indexOf(const Step *step) {
+	return steps.indexOf(step);
 }

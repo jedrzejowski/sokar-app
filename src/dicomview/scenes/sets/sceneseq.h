@@ -6,15 +6,23 @@
 
 namespace Sokar {
 
-	struct Step {
+	class Step : public QObject {
+	Q_OBJECT
+	public:
 		DicomScene *scene;
 		quint64 time;
+
+		Step(DicomScene *scene, quint64 time) : scene(scene), time(time) {}
+
+		inline bool operator==(const Step &step) {
+			return this == &step;
+		}
 	};
 
 	class SceneSequence : public QObject {
 	Q_OBJECT
 	private:
-		QVector<Step> steps;
+		QVector<const Step *> steps;
 		int index = -1;
 		int direction = 1;
 
@@ -25,25 +33,26 @@ namespace Sokar {
 
 		inline int size() const { return steps.size(); }
 
+		inline int currentIndex() { return index; }
+
 		inline bool isSweeping() const { return sweeping; }
+
+		inline int getDirection() const { return direction; }
+
+		int indexOf(const Step *step);
 
 		void setSweeping(bool sweeping);
 
 		void reset();
 
-		SceneSequence &operator<<(const Step &cmd);
+		SceneSequence &operator<<(Step *step);
 
-		SceneSequence &operator<<(const SceneSequence &sceneSequence);
+		SceneSequence &operator<<(SceneSequence *sceneSequence);
 
 	public slots:
-		void step();
+		const Step *step();
 
 	signals:
-		void steped(const Step &step);
+		void steped(const Step *step);
 	};
-
-	inline SceneSequence *operator<<(SceneSequence *cs, const Step &cmd) {
-		(*cs) << cmd;
-		return cs;
-	}
 }

@@ -14,14 +14,23 @@ DicomView::DicomView(DicomSceneSet *dicomSceneSet, QWidget *parent) :
 
 	dicomSceneSet->setParent(this);
 
-	connect(ui->frameChooser, &FrameChooser::selectSceneSignal, this, &DicomView::activateScene);
 	connect(ui->toolbar, &DicomToolBar::stateToggleSignal, this, &DicomView::toolbarStateToggle);
 	connect(ui->toolbar, &DicomToolBar::actionTriggerSignal, this, &DicomView::toolbarActionTrigger);
+	connect(ui->frameChooser, &FrameChooser::setStep, this, &DicomView::setStep);
+	connect(ui->movieBar, &MovieBar::setStep, this, &DicomView::setStep);
+	connect(this, &DicomView::stepChanged, ui->frameChooser, &FrameChooser::stepChanged);
+	connect(this, &DicomView::stepChanged, ui->movieBar, &MovieBar::stepChanged);
 
 	ui->frameChooser->setSceneSet(dicomSceneSet);
+	ui->movieBar->setSceneSet(dicomSceneSet);
 
-	if (dicomSceneSet->getScenesVector().size() == 1)
-		ui->frameChooser->hide();
+	// Aktywacja pierwszego kroku
+	{
+		auto sequence = dicomSceneSet->getSceneSequence();
+		if (sequence->size() == 1)
+			setStep(sequence->step());
+		else ui->movieBar->start();
+	}
 }
 
 DicomView::~DicomView() {
@@ -34,7 +43,8 @@ DicomScene *DicomView::currentDicomScene() {
 	return (DicomScene *) ui->graphicsView->scene();
 }
 
-void DicomView::activateScene(DicomScene *scene) {
+void DicomView::setStep(const Step *step) {
+	auto *scene = step->scene;
 
 	scene->setSceneRect(0, 0,
 						ui->graphicsView->width(),
@@ -44,6 +54,8 @@ void DicomView::activateScene(DicomScene *scene) {
 
 	scene->reposItems();
 	scene->toolBarAdjust(ui->toolbar);
+
+	emit stepChanged(step);
 }
 
 DicomToolBar &DicomView::getToolBar() {

@@ -77,7 +77,7 @@ void DicomFrameSet::initScenes() {
 	}
 }
 
-SceneSequence *DicomFrameSet::getFrameSequence() {
+SceneSequence *DicomFrameSet::getSceneSequence() {
 	QMutexLocker lock(&qMutex);
 
 	if (sceneSequence != nullptr)
@@ -86,7 +86,7 @@ SceneSequence *DicomFrameSet::getFrameSequence() {
 	sceneSequence = new SceneSequence(this);
 
 	if (numberOfFrames == 1) {
-		sceneSequence << Step{dicomScenes[0], quint64(1000 / 12)};
+		*sceneSequence << new Step(dicomScenes[0], quint64(1000 / 12));
 		return sceneSequence;
 	}
 
@@ -125,7 +125,7 @@ SceneSequence *DicomFrameSet::getFrameSequence() {
 		auto frameTime = quint64(dataConverter.toDecimalString(TagFrameTime)[0]);
 
 		for (int i = 0; i < numberOfFrames; i++)
-			sceneSequence << Step{dicomScenes[i], frameTime};
+			*sceneSequence << new Step(dicomScenes[i], frameTime);
 
 		if (playback == 1) sceneSequence->setSweeping(true);
 
@@ -138,7 +138,7 @@ SceneSequence *DicomFrameSet::getFrameSequence() {
 		quint64 i = 0;
 
 		for (auto &time : vec)
-			sceneSequence << Step{dicomScenes[i++], quint64(time)};
+			*sceneSequence << new Step(dicomScenes[i++], quint64(time));
 
 		if (playback == 1) sceneSequence->setSweeping(true);
 
@@ -150,14 +150,14 @@ SceneSequence *DicomFrameSet::getFrameSequence() {
 		auto frameTime = quint64(1 / dataConverter.toDecimalString(TagCineRate)[0]);
 
 		for (int i = 0; i < numberOfFrames; i++)
-			sceneSequence << Step{dicomScenes[i], frameTime};
+			*sceneSequence << new Step(dicomScenes[i], frameTime);
 
 		if (playback == 1) sceneSequence->setSweeping(true);
 
 		return sceneSequence;
 	}
 
-	qWarning("DicomSceneSet::getFrameSequence() unknown TagFrameIncrementPointer");
+	qWarning("DicomSceneSet::getSceneSequence() unknown TagFrameIncrementPointer");
 
 	return sceneSequence;
 }

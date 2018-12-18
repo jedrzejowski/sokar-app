@@ -53,14 +53,14 @@ const QString &DicomFileSet::getTitle() {
 	return frameSets[0]->getTitle();
 }
 
-SceneSequence *DicomFileSet::getFrameSequence() {
+SceneSequence *DicomFileSet::getSceneSequence() {
 	if (sceneSequence != nullptr)
 		return sceneSequence;
 
 	sceneSequence = new SceneSequence(this);
 
 	for (auto &frameSet : frameSets)
-		*sceneSequence << *frameSet->getFrameSequence();
+		*sceneSequence << frameSet->getSceneSequence();
 
 	sceneSequence->setSweeping(true);
 

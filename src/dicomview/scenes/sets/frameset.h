@@ -27,7 +27,7 @@ namespace Sokar {
 
 		inline const gdcm::File &getGdcmFile() const { return imageReader->GetFile(); }
 
-		SceneSequence *getFrameSequence() override;
+		SceneSequence *getSceneSequence() override;
 
 		const QString &getTitle() override;
 
