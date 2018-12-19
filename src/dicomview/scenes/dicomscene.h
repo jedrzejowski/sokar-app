@@ -91,7 +91,7 @@ namespace Sokar {
 
 		bool saveToFile(const QString &fileName, const char *format = nullptr, int quality = -1);
 
-		virtual void toolBarAdjust(DicomToolBar *toolbar);
+		virtual void toolBarAdjust();
 
 		bool isMovieMode();
 
@@ -114,6 +114,8 @@ namespace Sokar {
 		virtual void toolBarActionSlot(DicomToolBar::Action action);
 		void reposItems() override;
 		void updatePixmapTransformation();
+		void prepare();
+		void attached();
 
 	};
 }

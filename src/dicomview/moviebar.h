@@ -15,6 +15,10 @@ namespace Ui {
 
 namespace Sokar {
 
+	/**
+	 * \class MovieBar
+	 * Kontrolka to zarządzania czasem w sekwencjach ramek
+	 */
 	class MovieBar : public QWidget {
 	Q_OBJECT
 	protected:
@@ -26,9 +30,17 @@ namespace Sokar {
 		SceneSequence *sceneSequence = nullptr;
 		MovieMode *movieMode = nullptr;
 	public:
+		/**
+		 *
+		 * @param parent musi być to \class DicomView
+		 */
 		explicit MovieBar(QWidget *parent = nullptr);
-		~MovieBar();
+		~MovieBar() override;
 
+		/**
+		 * Ustawia \class Sokar::DicomSceneSet
+		 * @param sceneSet
+		 */
 		void setSceneSet(DicomSceneSet *sceneSet);
 
 		void updateUI();

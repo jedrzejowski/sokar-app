@@ -1,4 +1,5 @@
 #include "exception.h"
+#include "../../dicomview.h"
 
 using namespace Sokar;
 
@@ -60,11 +61,13 @@ void ExceptionScene::reposItems() {
 					(this->height() - msgText->document()->size().height()) / 2);
 }
 
-void ExceptionScene::toolBarAdjust(DicomToolBar *toolbar) {
-	DicomScene::toolBarAdjust(toolbar);
+void ExceptionScene::toolBarAdjust() {
+	DicomScene::toolBarAdjust();
 
-	toolbar->getActionWindowing()->setEnabled(false);
-	toolbar->getActionPan()->setEnabled(false);
-	toolbar->getActionZoom()->setEnabled(false);
-	toolbar->getActionRotate()->setEnabled(false);
+	auto *toolBar = getDicomView()->getToolBar();
+
+	toolBar->getActionWindowing()->setEnabled(false);
+	toolBar->getActionPan()->setEnabled(false);
+	toolBar->getActionZoom()->setEnabled(false);
+	toolBar->getActionRotate()->setEnabled(false);
 }

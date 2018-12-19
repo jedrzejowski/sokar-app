@@ -31,8 +31,8 @@ namespace Sokar {
 		//region Getters
 
 		DicomScene *getDicomScene();
-		DicomToolBar &getToolBar();
-		FrameChooser &getFrameChooser();
+		DicomToolBar *getToolBar();
+		FrameChooser *getFrameChooser();
 
 		inline DicomSceneSet *getDicomSceneSet() { return dicomSceneSet; }
 

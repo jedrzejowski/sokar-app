@@ -56,20 +56,18 @@ void DicomView::setStep(const Step *step) {
 
 	ui->graphicsView->setScene(scene);
 
-	scene->reposItems();
-	scene->toolBarAdjust(ui->toolbar);
-	scene->reloadPixmap();
-	scene->updatePixmapTransformation();
+	scene->prepare();
+	scene->attached();
 
 	emit stepChanged(step);
 }
 
-DicomToolBar &DicomView::getToolBar() {
-	return *(ui->toolbar);
+DicomToolBar *DicomView::getToolBar() {
+	return ui->toolbar;
 }
 
-FrameChooser &DicomView::getFrameChooser() {
-	return *(ui->frameChooser);
+FrameChooser *DicomView::getFrameChooser() {
+	return ui->frameChooser;
 }
 
 void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {

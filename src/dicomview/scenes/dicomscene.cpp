@@ -116,7 +116,7 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 		if (isMovieMode()) target = movieMode->getOriginScene();
 
-		switch (getDicomView()->getToolBar().getState()) {
+		switch (getDicomView()->getToolBar()->getState()) {
 
 			case DicomToolBar::Pan: {
 				target->panTransform.translate(
@@ -239,7 +239,10 @@ void DicomScene::initModalityIndicator() {
 
 //endregion
 
-void DicomScene::toolBarAdjust(DicomToolBar *toolBar) {
+//region ToolBar Actions
+
+void DicomScene::toolBarAdjust() {
+	auto *toolBar = getDicomView()->getToolBar();
 	toolBar->getActionPan()->setEnabled(true);
 	toolBar->getActionZoom()->setEnabled(true);
 	toolBar->getActionRotate()->setEnabled(true);
@@ -336,9 +339,13 @@ void DicomScene::wheelEvent(QGraphicsSceneWheelEvent *event) {
 	}
 }
 
+//endregion
+
 bool DicomScene::saveToFile(const QString &fileName, const char *format, int quality) {
 	return qImage.save(fileName);
 }
+
+//region MovieMode
 
 bool DicomScene::acceptMovieMode(MovieMode *movieMode) {
 	auto *scene = movieMode->getOriginScene();
@@ -371,4 +378,16 @@ void DicomScene::disableMovieMode() {
 
 bool DicomScene::isMovieMode() {
 	return movieMode != nullptr && movieMode->getOriginScene() != nullptr;
+}
+
+//endregion
+
+void DicomScene::prepare() {
+	reloadPixmap();
+}
+
+void DicomScene::attached() {
+	reposItems();
+	toolBarAdjust();
+	updatePixmapTransformation();
 }

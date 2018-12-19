@@ -4,8 +4,7 @@
 #include <QtWidgets>
 
 #include "../dicomscene.h"
-
-#include "windowing/windowint.h"
+#include "windowing/_window.h"
 
 namespace Sokar::Monochrome {
 
@@ -44,7 +43,7 @@ namespace Sokar::Monochrome {
 		bool acceptMovieMode(MovieMode *movieMode) override;
 
 	public:
-		void toolBarAdjust(DicomToolBar *toolbar) override;
+		void toolBarAdjust() override;
 
 	};
 

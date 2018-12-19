@@ -16,6 +16,6 @@ namespace Sokar::LumBlueRed {
 		bool generatePixmap() override;
 
 	public:
-		void toolBarAdjust(DicomToolBar *toolbar) override;
+		void toolBarAdjust() override;
 	};
 }

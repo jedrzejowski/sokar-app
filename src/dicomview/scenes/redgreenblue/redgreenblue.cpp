@@ -1,5 +1,6 @@
 #include "sokar/gdcmSokar.h"
 #include "redgreenblue.h"
+#include "../../dicomview.h"
 
 using namespace Sokar::RedGreenBlue;
 
@@ -64,8 +65,10 @@ bool Scene::generatePixmap() {
 	return true;
 }
 
-void Scene::toolBarAdjust(DicomToolBar *toolbar) {
-	DicomScene::toolBarAdjust(toolbar);
+void Scene::toolBarAdjust() {
+	DicomScene::toolBarAdjust();
 
-	toolbar->getActionWindowing()->setDisabled(true);
+	auto *toolBar = getDicomView()->getToolBar();
+
+	toolBar->getActionWindowing()->setDisabled(true);
 }

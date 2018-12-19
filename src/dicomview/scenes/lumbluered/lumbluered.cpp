@@ -1,5 +1,6 @@
 #include "sokar/gdcmSokar.h"
 #include "lumbluered.h"
+#include "../../dicomview.h"
 
 using namespace Sokar::LumBlueRed;
 
@@ -68,8 +69,9 @@ bool Scene::generatePixmap() {
 	return true;
 }
 
-void Scene::toolBarAdjust(DicomToolBar *toolbar) {
-	DicomScene::toolBarAdjust(toolbar);
+void Scene::toolBarAdjust() {
+	DicomScene::toolBarAdjust();
+	auto *toolBar = getDicomView()->getToolBar();
 
-	toolbar->getActionWindowing()->setDisabled(true);
+	toolBar->getActionWindowing()->setDisabled(true);
 }

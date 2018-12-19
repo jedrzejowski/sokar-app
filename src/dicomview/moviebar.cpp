@@ -99,6 +99,9 @@ void MovieBar::stop() {
 	delete movieMode;
 	movieMode = nullptr;
 
+	// Trzeba jeszcze powiedzieć scenie, aby dostosowała środowisko
+	getDicomView()->getDicomScene()->attached();
+
 	updateUI();
 }
 

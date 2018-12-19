@@ -362,7 +362,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 	if (event->buttons() & Qt::LeftButton) {
 
-		switch (getDicomView()->getToolBar().getState()) {
+		switch (getDicomView()->getToolBar()->getState()) {
 
 			case DicomToolBar::Windowing: {
 				event->accept();
@@ -382,12 +382,13 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 	DicomScene::mouseMoveEvent(event);
 }
 
-void Scene::toolBarAdjust(DicomToolBar *toolbar) {
-	DicomScene::toolBarAdjust(toolbar);
+void Scene::toolBarAdjust() {
+	DicomScene::toolBarAdjust();
+	auto *toolBar = getDicomView()->getToolBar();
 
-	auto winAction = toolbar->getActionWindowing();
+	auto winAction = toolBar->getActionWindowing();
 	winAction->setMenu(imgWindow->getMenu());
-	winAction->setEnabled(true);
+	winAction->setEnabled(not isMovieMode());
 }
 
 bool Scene::acceptMovieMode(Sokar::MovieMode *movieMode) {

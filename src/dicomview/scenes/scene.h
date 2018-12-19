@@ -7,6 +7,9 @@
 #include "indicators/_base.h"
 
 namespace Sokar {
+	/**
+	 *
+	 */
 	class Scene : public QGraphicsScene {
 	Q_OBJECT
 	private:
@@ -18,6 +21,10 @@ namespace Sokar {
 
 		~Scene() override;
 
+		/**
+		 * Dodaje @class{SceneIndicator}
+		 * @param indicator
+		 */
 		void addIndicator(SceneIndicator *indicator);
 
 		void removeIndicator(SceneIndicator *indicator);
