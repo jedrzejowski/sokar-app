@@ -22,12 +22,14 @@ namespace Sokar {
 		QGraphicsLineItem *newLine(qreal x1, qreal y1, qreal x2, qreal y2);
 		QGraphicsTextItem *newText(const QString &string = "");
 
-		static QString wrapAsHtml(QStringList lines);
+		static QString wrapAsHtml(QStringList lines, bool right = false);
 
 	public:
 		SceneIndicator(DataConverter &dataConverter);
 
 		virtual void reposition() = 0;
+
+		virtual bool isAlive() = 0;
 
 		//region Getters & Setters
 

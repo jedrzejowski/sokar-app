@@ -65,6 +65,10 @@ qreal LineIndicator::getRealHeight() const {
 	return text->document()->size().height();
 }
 
+bool LineIndicator::isAlive() {
+	return true;
+}
+
 //endregion
 
 PixelSpacingIndicator::PixelSpacingIndicator(DataConverter &dataConverter) :
@@ -161,4 +165,8 @@ qreal PixelSpacingIndicator::getBottomSpace() {
 
 qreal PixelSpacingIndicator::getRightSpace() {
 	return yLine.getRealHeight();
+}
+
+bool PixelSpacingIndicator::isAlive() {
+	return true;
 }

@@ -3,7 +3,6 @@
 using namespace Sokar;
 
 SceneSequence::SceneSequence(QObject *parent) : QObject(parent) {
-
 }
 
 const Step *SceneSequence::step() {
@@ -13,7 +12,7 @@ const Step *SceneSequence::step() {
 const Step *SceneSequence::stepForward() {
 	index++;
 
-	if (index >= steps.size() - 1) {
+	if (index > steps.size() - 1) {
 		if (sweeping) {
 			direction = -1;
 			index = steps.size() - 1;
@@ -22,6 +21,8 @@ const Step *SceneSequence::stepForward() {
 			index = 0;
 		}
 	}
+
+	qDebug() << index;
 
 	emit steped(steps[index]);
 	return steps[index];

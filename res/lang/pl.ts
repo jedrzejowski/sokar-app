@@ -149,32 +149,32 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="135"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="137"/>
         <source>A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="138"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="140"/>
         <source>P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="141"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="143"/>
         <source>L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="144"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="146"/>
         <source>R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="147"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="149"/>
         <source>H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="150"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="152"/>
         <source>F</source>
         <translation type="unfinished"></translation>
     </message>
@@ -353,37 +353,37 @@
 <context>
     <name>Sokar::DicomToolBar</name>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="24"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="23"/>
         <source>Windowing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="42"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="41"/>
         <source>Pan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="58"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="57"/>
         <source>Move To Center</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="69"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="68"/>
         <source>Zoom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="85"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="84"/>
         <source>Fit To Screen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="93"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="92"/>
         <source>Original Resolution</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="104"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="103"/>
         <source>Rotate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -413,7 +413,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="160"/>
+        <location filename="../../src/dicomview/toolbar.cpp" line="159"/>
+        <source>Indicators</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="182"/>
+        <source>Patient Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="191"/>
+        <source>Hospital Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="200"/>
+        <source>Image Acquisition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="214"/>
         <source>DICOM Tags</source>
         <translation type="unfinished"></translation>
     </message>

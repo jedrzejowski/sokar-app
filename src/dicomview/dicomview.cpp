@@ -70,7 +70,7 @@ FrameChooser *DicomView::getFrameChooser() {
 	return ui->frameChooser;
 }
 
-void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
+void DicomView::toolbarActionTrigger(DicomToolBar::Action action, bool state) {
 	switch (action) {
 		case DicomToolBar::OpenDataSet:
 
@@ -88,8 +88,11 @@ void DicomView::toolbarActionTrigger(DicomToolBar::Action action) {
 		case DicomToolBar::FlipHorizontal:
 		case DicomToolBar::FlipVertical:
 		case DicomToolBar::ClearRotate:
+		case DicomToolBar::PatientData:
+		case DicomToolBar::HospitalData:
+		case DicomToolBar::ModalityData:
 			if (getDicomScene() == nullptr) break;
-			getDicomScene()->toolBarActionSlot(action);
+			getDicomScene()->toolBarActionSlot(action, state);
 			break;
 	}
 }

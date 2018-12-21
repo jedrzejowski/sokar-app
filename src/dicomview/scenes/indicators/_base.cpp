@@ -105,21 +105,23 @@ QGraphicsTextItem *SceneIndicator::newText(const QString &string) {
 	return text;
 }
 
-QString SceneIndicator::wrapAsHtml(QStringList lines) {
+QString SceneIndicator::wrapAsHtml(QStringList lines, bool right) {
+
+
 	const static QString htmlHead = QObject::tr(
 			"<html>"
 			"<head>"
 			"<style>"
-			"body{font-size:medium;}"
+			"body{font-size:medium;background-color:rgba(0,255,0,0.5);}"
 			"unit{font-style:italic;font-size:small;}"
 			"value{font-weight:500;}"
-			"line{background-color:rgba(255,0,0,0.5);margin-bottom:1px;}"
+			".line{background-color:rgba(255,0,0,0.5);}"
 			"</style>"
 			"</head>"
 			"<body>");
 
 	for (auto &line : lines)
-		line = "<line>" + line + "</line>";
+		line = "<div class='line'>" + line + "</div>";
 
-	return htmlHead + lines.join("<br>") + "</body></html>";
+	return htmlHead + lines.join("") + "</body></html>";
 }

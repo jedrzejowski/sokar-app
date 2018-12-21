@@ -22,7 +22,7 @@ namespace Sokar {
 		void setRotateTransform(QTransform &rotateTransform);
 
 		void reposition() override;
-
+		bool isAlive() override;
 	public slots:
 		void update();
 	};

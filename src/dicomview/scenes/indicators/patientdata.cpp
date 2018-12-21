@@ -94,3 +94,7 @@ void PatientDataIndicator::initData() {
 	text->setHtml(lines.join(""));
 	text->adjustSize();
 }
+
+bool PatientDataIndicator::isAlive() {
+	return true;
+}

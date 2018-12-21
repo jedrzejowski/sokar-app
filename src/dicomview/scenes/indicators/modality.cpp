@@ -70,3 +70,7 @@ void ModalityIndicator::genTextUS() {
 
 }
 
+bool ModalityIndicator::isAlive() {
+	return true;
+}
+

@@ -54,3 +54,7 @@ void HospitalDataIndicator::initData() {
 	text->setHtml(lines.join(""));
 	text->adjustSize();
 }
+
+bool HospitalDataIndicator::isAlive() {
+	return true;
+}

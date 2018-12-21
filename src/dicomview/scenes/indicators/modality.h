@@ -11,13 +11,10 @@ namespace Sokar {
 
 	public:
 		explicit ModalityIndicator(DataConverter &dataConverter);
-
-	private:
-	public:
 		void reposition() override;
+		bool isAlive() override;
 	private:
 		void genText();
-
 		void genTextUS();
 
 	};

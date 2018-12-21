@@ -2,6 +2,7 @@
 #include <gdcmDicts.h>
 #include <gdcmGlobal.h>
 #include <gdcmAttribute.h>
+#include <src/dicomview/toolbar.h>
 
 #include "sokar/gdcmSokar.h"
 #include "sokar/gdcmSokar.h"
@@ -61,7 +62,6 @@ void DicomScene::reloadPixmap() {
 	} else {
 		pixmapItem->setPixmap(pixmap);
 	}
-
 }
 
 QTransform DicomScene::pixmapTransformation() {
@@ -147,7 +147,6 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 				target->rotateTransform.rotate(rotate);
 				updatePixmapTransformation();
-
 			}
 				break;
 		}
@@ -215,14 +214,9 @@ void DicomScene::initPixelSpacingIndicator() {
 	pixelSpacingIndicator->setYDim(gdcmImage.GetDimension(1));
 
 	pixelSpacingIndicator->updateLines();
-
 }
 
 void DicomScene::initImageOrientationIndicator() {
-	static gdcm::Tag
-			TagImageOrientationPatient(0x0020, 0x0037);
-
-	if (!gdcmDataSet.FindDataElement(TagImageOrientationPatient)) return;
 
 	imageOrientationIndicator = new ImageOrientationIndicator(dataConverter);
 
@@ -247,9 +241,14 @@ void DicomScene::toolBarAdjust() {
 	toolBar->getActionZoom()->setEnabled(true);
 	toolBar->getActionRotate()->setEnabled(true);
 	toolBar->getActionTags()->setEnabled(true);
+
+	toolBar->getActionIndicators()->setEnabled(true);
+	patientDataIndicator->setVisible(toolBar->getActionPatientData()->isChecked());
+	hospitalDataIndicator->setVisible(toolBar->getActionHospital()->isChecked());
+	modalityIndicator->setVisible(toolBar->getActionModality()->isChecked());
 }
 
-void DicomScene::toolBarActionSlot(DicomToolBar::Action action) {
+void DicomScene::toolBarActionSlot(DicomToolBar::Action action, bool state) {
 	bool updateTransform = false;
 
 	switch (action) {
@@ -285,7 +284,6 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action) {
 					scaleTransform.scale(nw / pw, nh / ph);
 					break;
 				}
-
 			}
 			break;
 
@@ -317,6 +315,18 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action) {
 		case DicomToolBar::ClearRotate:
 			rotateTransform = QTransform();
 			updateTransform = true;
+			break;
+
+		case DicomToolBar::PatientData:
+			patientDataIndicator->setVisible(state);
+			break;
+
+		case DicomToolBar::HospitalData:
+			hospitalDataIndicator->setVisible(state);
+			break;
+
+		case DicomToolBar::ModalityData:
+			modalityIndicator->setVisible(state);
 			break;
 	}
 

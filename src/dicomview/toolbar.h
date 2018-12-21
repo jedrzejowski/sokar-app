@@ -21,13 +21,11 @@ namespace Sokar {
 
 		enum Action {
 			ClearPan,
-			Fit2Screen,
-			OriginalResolution,
-			RotateRight90,
-			RotateLeft90,
-			FlipHorizontal,
-			FlipVertical,
+			Fit2Screen, OriginalResolution,
+			RotateRight90, RotateLeft90,
+			FlipHorizontal, FlipVertical,
 			ClearRotate,
+			PatientData, HospitalData, ModalityData,
 			OpenDataSet
 		};
 
@@ -35,7 +33,24 @@ namespace Sokar {
 		enum State state = None;
 
 		QActionGroup *toggleActionGrp;
-		QAction *actionWindowing, *actionPan, *actionZoom, *actionRotate, *actionTags;
+
+		struct {
+
+			QAction *windowing,
+					*pan, *panClean,
+					*zoom, *zoomFit, *zoom11,
+					*rotate, *rotateRight, *rotateLeft,
+					*flipH, *flipV, *rotateClear,
+					*tags;
+
+			struct {
+				QAction *all,
+						*patientData,
+						*modality,
+						*hospital;
+			} indicator;
+		} action;
+
 
 	public:
 		explicit DicomToolBar(QWidget *parent);
@@ -43,16 +58,16 @@ namespace Sokar {
 		//region Getters
 
 		inline const State &getState() const { return state; }
+		inline const auto getActionWindowing() const { return action.windowing; }
+		inline const auto getActionPan() const { return action.pan; }
+		inline const auto getActionZoom() const { return action.zoom; }
+		inline const auto getActionRotate() const { return action.rotate; }
+		inline const auto getActionTags() const { return action.tags; }
 
-		inline QAction *getActionWindowing() const { return actionWindowing; }
-
-		inline QAction *getActionPan() const { return actionPan; }
-
-		inline QAction *getActionZoom() const { return actionZoom; }
-
-		inline QAction *getActionRotate() const { return actionRotate; }
-
-		inline QAction *getActionTags() const { return actionTags; }
+		inline const auto getActionIndicators() const { return action.indicator.all; }
+		inline const auto getActionPatientData() const { return action.indicator.patientData; }
+		inline const auto getActionModality() const { return action.indicator.modality; }
+		inline const auto getActionHospital() const { return action.indicator.hospital; }
 
 		//endregion
 
@@ -61,7 +76,7 @@ namespace Sokar {
 
 	signals:
 		void stateToggleSignal(State state);
-		void actionTriggerSignal(Action action);
+		void actionTriggerSignal(Action action, bool state = false);
 	};
 }
 

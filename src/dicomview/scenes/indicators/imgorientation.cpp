@@ -36,11 +36,13 @@ ImageOrientationIndicator::ImageOrientationIndicator(DataConverter &dataConverte
 	rightText->setDefaultTextColor(defaultColor);
 	rightText->hide();
 	addToGroup(rightText);
+
+	if (isAlive())
+		initData();
 }
 
 void ImageOrientationIndicator::initData() {
-	static gdcm::Tag
-			TagImageOrientationPatient(0x0020, 0x0037);
+	static gdcm::Tag TagImageOrientationPatient(0x0020, 0x0037);
 
 	auto orientVec = dataConverter.toDecimalString(TagImageOrientationPatient);
 
@@ -155,6 +157,13 @@ void ImageOrientationIndicator::update() {
 	bottomText->setPlainText(chars[7] + chars[6] + chars[5]);
 
 	reposition();
+}
+
+bool ImageOrientationIndicator::isAlive() {
+
+	static gdcm::Tag TagImageOrientationPatient(0x0020, 0x0037);
+
+	return dataConverter.hasTagWithData(TagImageOrientationPatient);
 }
 
 

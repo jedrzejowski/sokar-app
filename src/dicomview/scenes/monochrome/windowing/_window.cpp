@@ -25,3 +25,7 @@ void Window::setPalette(Sokar::Palette *palette) {
 	Window::palette = palette;
 	shouldRegen = true;
 }
+
+bool Window::isAlive() {
+	return true;
+}

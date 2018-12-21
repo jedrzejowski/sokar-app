@@ -55,6 +55,8 @@ namespace Sokar::Monochrome {
 
 		void setPalette(Palette *palette);
 
+		bool isAlive() override;
+
 	protected:
 		virtual void genMenu() = 0;
 

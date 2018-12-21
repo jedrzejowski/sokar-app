@@ -41,7 +41,7 @@ namespace Sokar {
 		//endregion
 
 	private slots:
-		void toolbarActionTrigger(DicomToolBar::Action action);
+		void toolbarActionTrigger(DicomToolBar::Action action, bool state = false);
 		void toolbarStateToggle(DicomToolBar::State state);
 	public slots:
 		void setStep(const Step *step);

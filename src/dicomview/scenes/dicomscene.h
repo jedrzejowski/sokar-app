@@ -111,7 +111,7 @@ namespace Sokar {
 
 	public slots:
 		void reloadPixmap();
-		virtual void toolBarActionSlot(DicomToolBar::Action action);
+		virtual void toolBarActionSlot(DicomToolBar::Action action, bool state = false);
 		void reposItems() override;
 		void updatePixmapTransformation();
 		void prepare();

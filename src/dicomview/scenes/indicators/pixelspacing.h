@@ -23,6 +23,7 @@ namespace Sokar {
 		qreal getRealHeight() const;
 
 		void reposition() override;
+		bool isAlive() override;
 
 	};
 
@@ -56,5 +57,6 @@ namespace Sokar {
 
 		void reposition() override;
 		void updateLines();
+		bool isAlive() override;
 	};
 }

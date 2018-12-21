@@ -12,5 +12,6 @@ namespace Sokar {
 	public:
 		PatientDataIndicator(DataConverter& dataConverter);
 		void reposition() override;
+		bool isAlive() override;
 	};
 }
