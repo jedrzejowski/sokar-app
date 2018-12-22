@@ -29,32 +29,27 @@ void PatientDataIndicator::initData() {
 			TagSeriesDescription(0x0008, 0x103E);
 
 	QStringList lines;
-	QString temp;
-
 	{
 		QString name = "", sex = "";
 		if (dataConverter.hasTagWithData(TagPatientName)) {
-			temp += dataConverter.toPersonName(TagPatientName);
-
-			name += QObject::tr("%1").arg(temp);
+			name += dataConverter.toPersonName(TagPatientName);
 		}
 
 		if (dataConverter.hasTagWithData(TagPatientSex)) {
-			temp = dataConverter.toString(TagPatientSex).trimmed();
+			sex = dataConverter.toString(TagPatientSex).trimmed();
 
-			if (temp == "M")
-				sex += QObject::tr(" ♂");
-
-			if (temp == "F")
-				sex += QObject::tr(" ♀");
+			if (sex == "M")
+				sex = QObject::tr(" ♂");
+			else if (sex == "F")
+				sex = QObject::tr(" ♀");
+			else sex = "";
 		}
 
-		lines << QObject::tr("<div style='font-size:x-large;'><b>%1</b>%2</div>").arg(name, sex);
+		lines << QObject::tr("<b>%1</b>%2").arg(name, sex);
 	}
 
 	if (dataConverter.hasTagWithData(TagPatientID)) {
-		temp = dataConverter.toString(TagPatientID);
-		lines << QObject::tr("<div>%1</div>").arg(temp);
+		lines << dataConverter.toString(TagPatientID);
 	}
 
 	{
@@ -64,34 +59,29 @@ void PatientDataIndicator::initData() {
 			auto date = dataConverter.toDate(TagPatientBirthDate);
 
 			line += QObject::tr("born %1").arg(date.toString("yyyy-MM-dd"));
-
 		}
 
 		if (dataConverter.hasTagWithData(TagPatientAge)) {
 
-			temp = dataConverter.toAgeString(TagPatientAge);
-
-			line += QObject::tr(", %1").arg(temp);
-
+			line += QObject::tr(", %1").arg(
+					dataConverter.toAgeString(TagPatientAge)
+			);
 		}
-		lines << QObject::tr("<div>%1</div>").arg(line);
+
+		lines << line;
 	}
 
 	{
 		if (dataConverter.hasTagWithData(TagStudyDescription)) {
-			temp = dataConverter.toString(TagStudyDescription);
-
-			lines << QObject::tr("<div>%1</div>").arg(temp);
+			lines << dataConverter.toString(TagStudyDescription);
 		}
 
 		if (dataConverter.hasTagWithData(TagSeriesDescription)) {
-			temp = dataConverter.toString(TagSeriesDescription);
-
-			lines << QObject::tr("<div>%1</div>").arg(temp);
+			lines << dataConverter.toString(TagSeriesDescription);
 		}
 	}
 
-	text->setHtml(lines.join(""));
+	text->setHtml(wrapAsHtml(lines));
 	text->adjustSize();
 }
 

@@ -6,13 +6,8 @@ using namespace Sokar;
 ModalityIndicator::ModalityIndicator(DataConverter &dataConverter)
 		: SceneIndicator(dataConverter) {
 
-	text = new QGraphicsTextItem();
-
 	genText();
-
-	text->setHtml(wrapAsHtml(lines));
-
-	addToGroup(text);
+	text = newText(wrapAsHtml(lines));
 }
 
 void ModalityIndicator::genText() {

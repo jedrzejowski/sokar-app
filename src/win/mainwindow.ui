@@ -1,190 +1,190 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>893</width>
-    <height>426</height>
-   </rect>
-  </property>
-  <property name="windowTitle">
-   <string>Sokar</string>
-  </property>
-  <widget class="QWidget" name="mainWidget">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
-    <item>
-     <widget class="QSplitter" name="splitter">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <widget class="Sokar::FileTree" name="fileTree"/>
-      <widget class="Sokar::DicomTabs" name="dicomTabs" native="true"/>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>This software is the result of the work of a student of engineering studies, under no circumstances may it be used for medical analysis</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
-  <widget class="QMenuBar" name="menuBar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>893</width>
-     <height>26</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="menuFile">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-    <widget class="QMenu" name="menuExport">
-     <property name="title">
-      <string>E&amp;xport as</string>
-     </property>
-     <addaction name="actionJPEG"/>
-     <addaction name="actionPNG"/>
-     <addaction name="actionGIF"/>
-     <addaction name="actionBMP"/>
+    <class>MainWindow</class>
+    <widget class="QMainWindow" name="MainWindow">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>893</width>
+                <height>426</height>
+            </rect>
+        </property>
+        <property name="windowTitle">
+            <string>Sokar</string>
+        </property>
+        <widget class="QWidget" name="mainWidget">
+            <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0">
+                <item>
+                    <widget class="QSplitter" name="splitter">
+                        <property name="orientation">
+                            <enum>Qt::Horizontal</enum>
+                        </property>
+                        <widget class="Sokar::FileTree" name="fileTree"/>
+                        <widget class="Sokar::DicomTabs" name="dicomTabs" native="true"/>
+                    </widget>
+                </item>
+                <item>
+                    <widget class="QLabel" name="label">
+                        <property name="text">
+                            <string>This software is the result of the work of a student of engineering studies, under no circumstances may it be used for medical analysis</string>
+                        </property>
+                    </widget>
+                </item>
+            </layout>
+        </widget>
+        <widget class="QStatusBar" name="statusBar"/>
+        <widget class="QMenuBar" name="menuBar">
+            <property name="geometry">
+                <rect>
+                    <x>0</x>
+                    <y>0</y>
+                    <width>893</width>
+                    <height>26</height>
+                </rect>
+            </property>
+            <widget class="QMenu" name="menuFile">
+                <property name="title">
+                    <string>&amp;File</string>
+                </property>
+                <widget class="QMenu" name="menuExport">
+                    <property name="title">
+                        <string>E&amp;xport as</string>
+                    </property>
+                    <addaction name="actionJPEG"/>
+                    <addaction name="actionPNG"/>
+                    <addaction name="actionGIF"/>
+                    <addaction name="actionBMP"/>
+                </widget>
+                <widget class="QMenu" name="menuOpenRecent">
+                    <property name="title">
+                        <string>Open &amp;Recent</string>
+                    </property>
+                </widget>
+                <addaction name="actionOpen"/>
+                <addaction name="menuOpenRecent"/>
+                <addaction name="separator"/>
+                <addaction name="menuExport"/>
+                <addaction name="actionSaveAnonymously"/>
+                <addaction name="separator"/>
+                <addaction name="actionPreferences"/>
+                <addaction name="actionExit"/>
+            </widget>
+            <widget class="QMenu" name="menuHelp">
+                <property name="title">
+                    <string>He&amp;lp</string>
+                </property>
+                <addaction name="actionHelp"/>
+                <addaction name="separator"/>
+                <addaction name="actionAboutQt"/>
+                <addaction name="actionAboutGDCM"/>
+                <addaction name="actionAboutSokar"/>
+            </widget>
+            <widget class="QMenu" name="menuView">
+                <property name="title">
+                    <string>&amp;View</string>
+                </property>
+                <widget class="QMenu" name="menuTheme">
+                    <property name="title">
+                        <string>&amp;Theme</string>
+                    </property>
+                    <addaction name="actionLight"/>
+                    <addaction name="actionDark"/>
+                </widget>
+                <addaction name="menuTheme"/>
+            </widget>
+            <addaction name="menuFile"/>
+            <addaction name="menuView"/>
+            <addaction name="menuHelp"/>
+        </widget>
+        <action name="actionExit">
+            <property name="text">
+                <string>&amp;Exit</string>
+            </property>
+        </action>
+        <action name="actionAboutQt">
+            <property name="text">
+                <string>About &amp;Qt</string>
+            </property>
+        </action>
+        <action name="actionAboutGDCM">
+            <property name="text">
+                <string>About &amp;GDCM</string>
+            </property>
+        </action>
+        <action name="actionAboutSokar">
+            <property name="text">
+                <string>About &amp;Sokar</string>
+            </property>
+        </action>
+        <action name="actionHelp">
+            <property name="text">
+                <string>Sokar &amp;Help</string>
+            </property>
+        </action>
+        <action name="actionLight">
+            <property name="text">
+                <string>&amp;Light</string>
+            </property>
+        </action>
+        <action name="actionDark">
+            <property name="text">
+                <string>&amp;Dark</string>
+            </property>
+        </action>
+        <action name="actionOpen">
+            <property name="text">
+                <string>&amp;Open</string>
+            </property>
+        </action>
+        <action name="actionSaveAnonymously">
+            <property name="text">
+                <string>&amp;Save Anonymously</string>
+            </property>
+        </action>
+        <action name="actionJPEG">
+            <property name="text">
+                <string>&amp;JPEG</string>
+            </property>
+        </action>
+        <action name="actionPNG">
+            <property name="text">
+                <string>&amp;PNG</string>
+            </property>
+        </action>
+        <action name="actionGIF">
+            <property name="text">
+                <string>&amp;GIF</string>
+            </property>
+        </action>
+        <action name="actionBMP">
+            <property name="text">
+                <string>&amp;BMP</string>
+            </property>
+        </action>
+        <action name="actionPreferences">
+            <property name="text">
+                <string>&amp;Preferences</string>
+            </property>
+        </action>
+        <action name="actionqq">
+            <property name="text">
+                <string>qq</string>
+            </property>
+        </action>
     </widget>
-    <widget class="QMenu" name="menuOpenRecent">
-     <property name="title">
-      <string>Open &amp;Recent</string>
-     </property>
-    </widget>
-    <addaction name="actionOpen"/>
-    <addaction name="menuOpenRecent"/>
-    <addaction name="separator"/>
-    <addaction name="menuExport"/>
-    <addaction name="actionSaveAnonymously"/>
-    <addaction name="separator"/>
-    <addaction name="actionPreferences"/>
-    <addaction name="actionExit"/>
-   </widget>
-   <widget class="QMenu" name="menuHelp">
-    <property name="title">
-     <string>He&amp;lp</string>
-    </property>
-    <addaction name="actionHelp"/>
-    <addaction name="separator"/>
-    <addaction name="actionAboutQt"/>
-    <addaction name="actionAboutGDCM"/>
-    <addaction name="actionAboutSokar"/>
-   </widget>
-   <widget class="QMenu" name="menuView">
-    <property name="title">
-     <string>&amp;View</string>
-    </property>
-    <widget class="QMenu" name="menuTheme">
-     <property name="title">
-      <string>&amp;Theme</string>
-     </property>
-     <addaction name="actionLight"/>
-     <addaction name="actionDark"/>
-    </widget>
-    <addaction name="menuTheme"/>
-   </widget>
-   <addaction name="menuFile"/>
-   <addaction name="menuView"/>
-   <addaction name="menuHelp"/>
-  </widget>
-  <action name="actionExit">
-   <property name="text">
-    <string>&amp;Exit</string>
-   </property>
-  </action>
-  <action name="actionAboutQt">
-   <property name="text">
-    <string>About &amp;Qt</string>
-   </property>
-  </action>
-  <action name="actionAboutGDCM">
-   <property name="text">
-    <string>About &amp;GDCM</string>
-   </property>
-  </action>
-  <action name="actionAboutSokar">
-   <property name="text">
-    <string>About &amp;Sokar</string>
-   </property>
-  </action>
-  <action name="actionHelp">
-   <property name="text">
-    <string>Sokar &amp;Help</string>
-   </property>
-  </action>
-  <action name="actionLight">
-   <property name="text">
-    <string>&amp;Light</string>
-   </property>
-  </action>
-  <action name="actionDark">
-   <property name="text">
-    <string>&amp;Dark</string>
-   </property>
-  </action>
-  <action name="actionOpen">
-   <property name="text">
-    <string>&amp;Open</string>
-   </property>
-  </action>
-  <action name="actionSaveAnonymously">
-   <property name="text">
-    <string>&amp;Save Anonymously</string>
-   </property>
-  </action>
-  <action name="actionJPEG">
-   <property name="text">
-    <string>&amp;JPEG</string>
-   </property>
-  </action>
-  <action name="actionPNG">
-   <property name="text">
-    <string>&amp;PNG</string>
-   </property>
-  </action>
-  <action name="actionGIF">
-   <property name="text">
-    <string>&amp;GIF</string>
-   </property>
-  </action>
-  <action name="actionBMP">
-   <property name="text">
-    <string>&amp;BMP</string>
-   </property>
-  </action>
-  <action name="actionPreferences">
-   <property name="text">
-    <string>&amp;Preferences</string>
-   </property>
-  </action>
-  <action name="actionqq">
-   <property name="text">
-    <string>qq</string>
-   </property>
-  </action>
- </widget>
- <customwidgets>
-  <customwidget>
-   <class>Sokar::DicomTabs</class>
-   <extends>QWidget</extends>
-   <header>widget/dicomtabs.h</header>
-  </customwidget>
-  <customwidget>
-   <class>Sokar::FileTree</class>
-   <extends>QTreeView</extends>
-   <header>widget/filetree.h</header>
-  </customwidget>
- </customwidgets>
- <resources/>
- <connections/>
+    <customwidgets>
+        <customwidget>
+            <class>Sokar::DicomTabs</class>
+            <extends>QWidget</extends>
+            <header>widget/dicomtabs.h</header>
+        </customwidget>
+        <customwidget>
+            <class>Sokar::FileTree</class>
+            <extends>QTreeView</extends>
+            <header>widget/filetree.h</header>
+        </customwidget>
+    </customwidgets>
+    <resources/>
+    <connections/>
 </ui>

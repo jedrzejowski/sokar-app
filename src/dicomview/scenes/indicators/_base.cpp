@@ -6,7 +6,6 @@ SceneIndicator::SceneIndicator(DataConverter &dataConverter) :
 		defaultColor(255, 255, 255),
 		defaultPen(defaultColor),
 		dataConverter(dataConverter) {
-
 }
 
 qreal SceneIndicator::getTopSpace() { return 0; }
@@ -100,8 +99,10 @@ QGraphicsLineItem *SceneIndicator::newLine(qreal x1, qreal y1, qreal x2, qreal y
 }
 
 QGraphicsTextItem *SceneIndicator::newText(const QString &string) {
-	auto text = new QGraphicsTextItem(string, this);
+	auto text = new QGraphicsTextItem(this);
 	text->setDefaultTextColor(defaultColor);
+	text->setHtml(string);
+	text->adjustSize();
 	return text;
 }
 
@@ -112,16 +113,23 @@ QString SceneIndicator::wrapAsHtml(QStringList lines, bool right) {
 			"<html>"
 			"<head>"
 			"<style>"
-			"body{font-size:medium;background-color:rgba(0,255,0,0.5);}"
+			"body{font-size:medium;background-color:rgba(0,0,0,0.5);}"
 			"unit{font-style:italic;font-size:small;}"
 			"value{font-weight:500;}"
-			".line{background-color:rgba(255,0,0,0.5);}"
+			"div{white-space: nowrap;}"
 			"</style>"
 			"</head>"
 			"<body>");
 
+	QString align = QString("align='%1'").arg(
+			right ? "right" : "left"
+	);
+
 	for (auto &line : lines)
-		line = "<div class='line'>" + line + "</div>";
+		line = QString("<div class='line' %1>%2</div>").arg(
+				align,
+				line
+		);
 
 	return htmlHead + lines.join("") + "</body></html>";
 }

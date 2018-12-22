@@ -249,11 +249,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/_base.cpp" line="109"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;style&gt;body{font-size:medium;}unit{font-style:italic;font-size:small;}value{font-weight:500;}line{background-color:rgba(255,0,0,0.5);margin-bottom:1px;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="30"/>
         <source>&lt;unit&gt;mm&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
@@ -286,6 +281,11 @@
     <message>
         <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="51"/>
         <source>Slice location: &lt;value&gt;%1&lt;/value&gt;%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/_base.cpp" line="111"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;style&gt;body{font-size:medium;background-color:rgba(0,255,0,0.5);}unit{font-style:italic;font-size:small;}value{font-weight:500;}.line{background-color:rgba(255,0,0,0.5);}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

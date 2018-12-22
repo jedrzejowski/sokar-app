@@ -23,6 +23,7 @@ void LineIndicator::setPxLength(qreal pxLength) {
 
 void LineIndicator::setText(QString str) {
 	text->setHtml(str);
+	text->adjustSize();
 
 	update();
 }
@@ -126,7 +127,6 @@ void PixelSpacingIndicator::reposition() {
 	yLine.setPos(
 			scene()->width() - yLine.getPxLength(),
 			(scene()->height() - yLine.getRealHeight()) / 2);
-
 }
 
 void PixelSpacingIndicator::updateLines() {
