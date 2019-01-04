@@ -23,7 +23,7 @@ namespace Sokar {
 		explicit DicomSceneSet(QObject *parent = nullptr);
 		~DicomSceneSet() override;
 
-		inline const QVector<DicomScene *> &getScenesVector() const { return dicomScenes; }
+		inline const DicomSceneVec &getScenesVector() const { return dicomScenes; }
 
 		virtual SceneSequence *getSceneSequence() = 0;
 

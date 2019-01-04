@@ -14,35 +14,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Prace nad MovieBarem ukończone, zostało jeszcze okienkowanie w Monochromie">
-      <change afterPath="$PROJECT_DIR$/res/img/ico/dark/typography.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/img/ico/light/typography.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/browsers.tex" beforeDir="false" afterPath="$PROJECT_DIR$/doc/browsers.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/res/resources.qrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/dicomview.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/dicomview.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/dicomview.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/dicomview.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_layout.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_layout.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/sets/sceneseq.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/sets/sceneseq.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/toolbar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/toolbar.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/toolbar.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/toolbar.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/sets/_sceneset.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/sets/_sceneset.h" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -72,37 +45,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp">
+        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-221">
-              <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="112" column="19" lean-forward="true" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
+            <state relative-caret-position="816">
+              <caret line="48" column="60" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="60" />
+              <folding>
+                <element signature="e#2203#4760#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/sceneseq.cpp">
+        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/_sceneset.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-170">
-              <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="24" column="71" selection-start-line="24" selection-start-column="71" selection-end-line="24" selection-end-column="71" />
+            <state relative-caret-position="459">
+              <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
               <folding>
                 <element signature="e#14#31#0" expanded="true" />
               </folding>
@@ -111,10 +69,31 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp">
+        <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
+            <state relative-caret-position="731">
+              <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="884">
+              <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,7 +109,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>[=](</find>
       <find>](</find>
       <find>bumpRecentOpen</find>
       <find>toS</find>
@@ -160,6 +138,7 @@
       <find>to</find>
       <find>c</find>
       <find>toolbarActionTrigger</find>
+      <find>pal</find>
     </findStrings>
     <replaceStrings>
       <replace>++z</replace>
@@ -194,7 +173,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/dicomview/moviebar.ui" />
-        <option value="$PROJECT_DIR$/src/dicomview/scenes/sets/_sceneset.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/sets/fileset.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.cpp" />
         <option value="$PROJECT_DIR$/src/win/mainwindow.cpp" />
@@ -238,12 +216,13 @@
         <option value="$PROJECT_DIR$/src/dicomview/toolbar.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp" />
-        <option value="$PROJECT_DIR$/src/dicomview/dicomview.h" />
         <option value="$PROJECT_DIR$/src/dicomview/dicomview.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/toolbar.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/sets/sceneseq.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp" />
+        <option value="$PROJECT_DIR$/src/dicomview/scenes/sets/_sceneset.h" />
+        <option value="$PROJECT_DIR$/src/dicomview/dicomview.h" />
       </list>
     </option>
   </component>
@@ -279,6 +258,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -310,14 +290,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="dicomview" type="462c0819:PsiDirectoryNode" />
               <item name="scenes" type="462c0819:PsiDirectoryNode" />
-              <item name="indicators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="browser" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dicomview" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
               <item name="sets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -336,7 +308,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -458,6 +429,9 @@
       <workItem from="1545176878436" duration="2242000" />
       <workItem from="1545378177845" duration="6412000" />
       <workItem from="1545400210167" duration="1720000" />
+      <workItem from="1546428605463" duration="1272000" />
+      <workItem from="1546589959195" duration="247000" />
+      <workItem from="1546591857765" duration="31000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>
@@ -673,7 +647,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="507594000" />
+    <option name="totallyTimeSpent" value="509144000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -686,13 +660,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-1" width="1366" height="769" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49447513" visible="true" weight="0.25530303" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49447513" visible="true" weight="0.26742426" />
       <window_info id="Structure" order="1" sideWeight="0.50542635" side_tool="true" weight="0.2439394" />
       <window_info id="Favorites" order="2" sideWeight="0.5055249" side_tool="true" weight="0.2439394" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32374102" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4775194" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.4775194" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.55503875" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -771,23 +746,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Prace nad MovieBarem ukończone, zostało jeszcze okienkowanie w Monochromie" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="48" column="60" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="60" />
-          <folding>
-            <element signature="e#2203#4760#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///usr/local/include/gdcm-2.8/gdcmImageHelper.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="101" column="29" selection-start-line="101" selection-start-column="29" selection-end-line="101" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="558">
@@ -805,13 +763,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///usr/include/qt/QtCore/qstringlist.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="314">
@@ -820,16 +771,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/qq.html" />
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/sceneseq.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="654">
-          <caret line="51" column="35" selection-start-line="51" selection-start-column="35" selection-end-line="51" selection-end-column="35" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/exception/exception.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="296">
@@ -915,16 +856,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/_sceneset.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="15" />
-          <folding>
-            <element signature="e#14#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/scene.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -1003,13 +934,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -1021,13 +945,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="80" column="49" selection-start-line="80" selection-start-column="49" selection-end-line="80" selection-end-column="49" />
         </state>
       </provider>
     </entry>
@@ -1109,20 +1026,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.cpp">
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="104">
-          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#22#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="137">
+          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.h">
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+        <state relative-caret-position="17">
+          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/sceneseq.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
         </state>
       </provider>
     </entry>
@@ -1136,31 +1057,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/sceneseq.cpp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-170">
-          <caret line="14" column="15" selection-start-line="14" selection-start-column="15" selection-end-line="14" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
+        <state relative-caret-position="561">
           <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp">
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-221">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+        <state relative-caret-position="194">
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp">
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="112" column="19" lean-forward="true" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
+        <state relative-caret-position="206">
+          <caret line="102" column="33" selection-start-line="102" selection-start-column="33" selection-end-line="102" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/include/qt/QtWidgets/qgraphicsview.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="159" column="9" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/sceneseq.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="48" column="60" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="60" />
+          <folding>
+            <element signature="e#2203#4760#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/_sceneset.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="10" selection-start-line="27" selection-start-column="10" selection-end-line="27" selection-end-column="10" />
+          <folding>
+            <element signature="e#14#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/framechooser.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="43" column="17" selection-start-line="43" selection-start-column="17" selection-end-line="43" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="884">
+          <caret line="52" column="29" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/dicomview/dicomview.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
         </state>
       </provider>
     </entry>
