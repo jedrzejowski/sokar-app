@@ -2,25 +2,36 @@
 
 using namespace Sokar;
 
-DicomFileSet::DicomFileSet(DicomReaderVec &vec, QObject *parent) : DicomSceneSet(parent) {
+QVector<DicomFileSet *> DicomFileSet::create(DicomReaderVec &vec, QObject* parent) {
 	static gdcm::Tag TagSeriesInstanceUID(0x0020, 0x000E);
 
+	QHash<QString, DicomReaderVec> hash;
 	DataConverter converter;
 
 	for (auto &imgReader: vec) {
 
 		converter.setFile(imgReader->GetFile());
 
-		if (seriesInstanceUID.isEmpty())
-			seriesInstanceUID = converter.toString(TagSeriesInstanceUID);
+		auto seriesInstanceUID = converter.toString(TagSeriesInstanceUID);
 
-		if (seriesInstanceUID != converter.toString(TagSeriesInstanceUID))
-			throw DicomTagParseError(TagSeriesInstanceUID);
+		if (!hash.contains(seriesInstanceUID))
+			hash[seriesInstanceUID] = DicomReaderVec();
 
-
+		hash[seriesInstanceUID] << imgReader;
 	}
 
-	gdcm::StringFilter strFilter2;
+	QVector<DicomFileSet *> fileSets;
+
+	for (auto readers : hash)
+		fileSets << new DicomFileSet(readers, parent);
+
+	return fileSets;
+}
+
+
+DicomFileSet::DicomFileSet(DicomReaderVec &vec, QObject *parent) : DicomSceneSet(parent) {
+
+	DataConverter converter;
 
 	qSort(vec.begin(), vec.end(), [&](const gdcm::ImageReader *&a, const gdcm::ImageReader *&b) {
 		static gdcm::Tag TagInstanceNumber(0x0020, 0x0013);
@@ -41,12 +52,10 @@ DicomFileSet::DicomFileSet(DicomReaderVec &vec, QObject *parent) : DicomSceneSet
 
 		for (auto &dicomScene : frameSet->getScenesVector())
 			dicomScenes << dicomScene;
-
 	}
 }
 
 DicomFileSet::~DicomFileSet() {
-
 }
 
 const QString &DicomFileSet::getTitle() {

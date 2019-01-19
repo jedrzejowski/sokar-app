@@ -29,7 +29,6 @@ void DicomTabs::dropEvent(QDropEvent *event) {
 		if (urls.size() == 1) {
 
 			addDicomFile(urls[0].toLocalFile());
-
 		} else {
 
 			QStringList paths;
@@ -37,7 +36,6 @@ void DicomTabs::dropEvent(QDropEvent *event) {
 			for (auto &path : urls)
 				paths << path.toLocalFile();
 			addDicomFiles(paths);
-
 		}
 	}
 }
@@ -90,9 +88,7 @@ void DicomTabs::addDicomFile(const gdcm::ImageReader *reader) {
 
 		return;
 	} catch (DicomTagParseError &e) {
-
 	} catch (Exception &e) {
-
 	}
 
 	delete reader;
@@ -120,7 +116,6 @@ void DicomTabs::addDicomFiles(const QStringList &paths) {
 		}
 
 		addDicomFiles(readers);
-
 	} catch (IOException &e) {
 		QMessageBox::critical(this, tr("I/O Error"),
 							  tr("Error occured while reading file '%1'").arg(e.file));
@@ -133,15 +128,14 @@ void DicomTabs::addDicomFiles(const QStringList &paths) {
 void DicomTabs::addDicomFiles(DicomReaderVec &readers) {
 
 	try {
-		auto sceneSet = new DicomFileSet(readers, this);
-		auto dicomView = new DicomView(sceneSet, this);
-		addDicomView(dicomView);
+		for (auto sceneSet : DicomFileSet::create(readers, this)) {
+			auto dicomView = new DicomView(sceneSet, this);
+			addDicomView(dicomView);
+		}
 
 		return;
 	} catch (DicomTagParseError &e) {
-
 	} catch (Exception &e) {
-
 	}
 
 	for (auto &reader : readers)

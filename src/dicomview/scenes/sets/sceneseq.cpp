@@ -21,9 +21,6 @@ const Step *SceneSequence::stepForward() {
 			index = 0;
 		}
 	}
-
-	qDebug() << index;
-
 	emit steped(steps[index]);
 	return steps[index];
 }

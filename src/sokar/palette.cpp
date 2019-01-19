@@ -35,7 +35,6 @@ QVector<Palette *> &Palette::getAll() {
 
 	mutex.unlock();
 
-	// xD jak zakomentuje tego returna to się skompluje xD
 	return all;
 }
 

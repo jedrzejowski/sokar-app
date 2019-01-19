@@ -1,3 +1,6 @@
 
 #Pliki binarne
 /cmake-build-debug
+
+#Pliki budowania Latexa
+/out

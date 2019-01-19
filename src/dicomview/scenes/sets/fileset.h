@@ -14,9 +14,12 @@ namespace Sokar {
 
 		SceneSequence *sceneSequence = nullptr;
 
+		DicomFileSet(DicomReaderVec &vec, QObject *parent = nullptr);
+
 	public:
 
-		DicomFileSet(DicomReaderVec &vec, QObject *parent = nullptr);
+		static QVector<DicomFileSet *> create(DicomReaderVec &vec, QObject *parent = nullptr);
+
 		~DicomFileSet();
 
 		const QString &getTitle() override;

@@ -17,7 +17,6 @@ void HospitalDataIndicator::reposition() {
 void HospitalDataIndicator::initData() {
 
 	const static gdcm::Tag
-			TagModality(0x0008, 0x0060),
 			TagManufacturer(0x0008, 0x0070),
 			TagInstitutionalDepartmentName(0x0008, 0x1040),
 			TagOperatorsName(0x0008, 0x1070),
@@ -27,31 +26,27 @@ void HospitalDataIndicator::initData() {
 	QString htmlTags = " style='white-space: nowrap;' align='right' ";
 
 	QStringList lines;
-	QString temp;
 
 	if (dataConverter.hasTagWithData(TagInstitutionalDepartmentName)) {
-		temp = dataConverter.toString(TagInstitutionalDepartmentName).trimmed();
-		lines << QObject::tr("<div %1>%2</div>").arg(htmlTags, temp);
+		lines << dataConverter.toString(TagInstitutionalDepartmentName).trimmed();
 	}
 
 	if (dataConverter.hasTagWithData(TagManufacturer)) {
 		QString manufacture = dataConverter.toString(TagManufacturer).trimmed();
 		QString model = dataConverter.toString(TagManufacturerModelName).trimmed();
 
-		lines << QObject::tr("<div %1>%2 %3</div>").arg(htmlTags, manufacture, model).trimmed();
+		lines << QObject::tr("%1 %2").arg(manufacture, model).trimmed();
 	}
 
 	if (dataConverter.hasTagWithData(TagReferringPhysicianName)) {
-		temp = dataConverter.toString(TagReferringPhysicianName).trimmed();
-		lines << QObject::tr("<div %1>%2</div>").arg(htmlTags, temp);
+		lines << dataConverter.toString(TagReferringPhysicianName).trimmed();
 	}
 
 	if (dataConverter.hasTagWithData(TagOperatorsName)) {
-		temp = dataConverter.toString(TagOperatorsName).trimmed();
-		lines << QObject::tr("<div %1>%2</div>").arg(htmlTags, temp);
+		lines << dataConverter.toString(TagOperatorsName).trimmed();
 	}
 
-	text->setHtml(lines.join(""));
+	text->setHtml(wrapAsHtml(lines, true));
 	text->adjustSize();
 }
 

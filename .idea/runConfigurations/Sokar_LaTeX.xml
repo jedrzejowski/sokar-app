@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Sokar LaTeX" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+    <texify>
+      <compiler>PDFLATEX</compiler>
+      <compiler-path />
+      <compiler-arguments />
+      <main-file>$PROJECT_DIR$/doc/index.tex</main-file>
+      <aux-dir>false</aux-dir>
+      <out-dir>true</out-dir>
+      <output-format>PDF</output-format>
+      <bib-run-config />
+    </texify>
+    <method v="2" />
+  </configuration>
+</component>

@@ -149,83 +149,58 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="137"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="152"/>
         <source>A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="140"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="155"/>
         <source>P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="143"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="158"/>
         <source>L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="146"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="161"/>
         <source>R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="149"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="164"/>
         <source>H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="152"/>
+        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="167"/>
         <source>F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="39"/>
-        <source>%1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="46"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="42"/>
         <source> ♂</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="49"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="44"/>
         <source> ♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="52"/>
-        <source>&lt;div style=&apos;font-size:x-large;&apos;&gt;&lt;b&gt;%1&lt;/b&gt;%2&lt;/div&gt;</source>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="48"/>
+        <source>&lt;b&gt;%1&lt;/b&gt;%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="57"/>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="77"/>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="84"/>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="90"/>
-        <source>&lt;div&gt;%1&lt;/div&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="66"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="61"/>
         <source>born %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="74"/>
+        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="66"/>
         <source>, %1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="34"/>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="46"/>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="51"/>
-        <source>&lt;div %1&gt;%2&lt;/div&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="41"/>
-        <source>&lt;div %1&gt;%2 %3&lt;/div&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -249,43 +224,48 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/_base.cpp" line="109"/>
-        <source>&lt;html&gt;&lt;head&gt;&lt;style&gt;body{font-size:medium;}unit{font-style:italic;font-size:small;}value{font-weight:500;}line{background-color:rgba(255,0,0,0.5);margin-bottom:1px;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="30"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="25"/>
         <source>&lt;unit&gt;mm&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="34"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="29"/>
         <source>Modality: &lt;value&gt;%1&lt;/value&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="37"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="32"/>
         <source>Series: &lt;value&gt;%1&lt;/value&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="40"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="35"/>
         <source>Instance Num: &lt;value&gt;%1&lt;/value&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="43"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="38"/>
         <source>Slice thick: &lt;value&gt;%1&lt;/value&gt;%3, loc.: &lt;value&gt;%2&lt;/value&gt;%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="48"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="43"/>
         <source>Slice thickness: &lt;value&gt;%1&lt;/value&gt;%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="51"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="46"/>
         <source>Slice location: &lt;value&gt;%1&lt;/value&gt;%2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/_base.cpp" line="112"/>
+        <source>&lt;html&gt;&lt;head&gt;&lt;style&gt;body{font-size:medium;background-color:rgba(0,0,0,0.5);}unit{font-style:italic;font-size:small;}value{font-weight:500;}div{white-space: nowrap;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="38"/>
+        <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -338,14 +318,14 @@
 <context>
     <name>Sokar::DicomTabs</name>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="78"/>
-        <location filename="../../src/widget/dicomtabs.cpp" line="125"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="76"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="120"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="79"/>
-        <location filename="../../src/widget/dicomtabs.cpp" line="126"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="77"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="121"/>
         <source>Error occured while reading file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>

@@ -42,11 +42,14 @@ ImageOrientationIndicator::ImageOrientationIndicator(DataConverter &dataConverte
 }
 
 void ImageOrientationIndicator::initData() {
-	static gdcm::Tag TagImageOrientationPatient(0x0020, 0x0037);
+	static gdcm::Tag
+			TagImageOrientation(0x0020, 0x0037),
+			TagImagePosition(0x0020, 0x0032);
 
-	auto orientVec = dataConverter.toDecimalString(TagImageOrientationPatient);
+	auto orientVec = dataConverter.toDecimalString(TagImageOrientation);
+	auto posVec = dataConverter.toDecimalString(TagImagePosition);
 
-	if (orientVec.size() != 6) return;
+	if (orientVec.size() != 6 || posVec.size() != 3) return;
 
 	{
 		// orientVec = [Xx,Xy,Xz,Yx,Yy,Yz]
@@ -56,6 +59,11 @@ void ImageOrientationIndicator::initData() {
 		imgMatrix(0, 1) = float(orientVec[3]);
 		imgMatrix(1, 1) = float(orientVec[4]);
 		imgMatrix(2, 1) = float(orientVec[5]);
+//		imgMatrix(0, 3) = float(posVec[0]);
+//		imgMatrix(1, 3) = float(posVec[1]);
+//		imgMatrix(2, 3) = float(posVec[2]);
+
+//		qDebug() << imgMatrix;
 
 		/**
 		 * https://dicom.innolitics.com/ciods/ct-image/image-plane/00200037
@@ -113,8 +121,13 @@ void ImageOrientationIndicator::setRotateTransform(QTransform &rotateTransform) 
 
 int sceneAngle(const QVector4D &one) {
 	auto a = std::atan2(one[1], one[0]);
-	a += (M_PI / 8) + M_PI;
+
+	a += M_PI;
 	a /= M_PI_4;
+	a += 0.5;
+
+//	qDebug() << one << std::atan2(one[1], one[0]) << std::atan2(one[1], one[0]) << a << int(std::floor(a)) % 8;
+
 	return int(std::floor(a)) % 8;
 }
 
@@ -130,6 +143,8 @@ void ImageOrientationIndicator::update() {
 	auto right = rotateTransform * scenePosition.right;
 	auto head = rotateTransform * scenePosition.head;
 	auto feet = rotateTransform * scenePosition.feet;
+
+//	qDebug() << anterior << posterior << left << right << head << feet;
 
 	QVector<QString> chars(8);
 

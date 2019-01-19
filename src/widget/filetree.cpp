@@ -10,6 +10,8 @@ FileTree::FileTree(QWidget *parent) : QTreeView(parent) {
 
 	setModel(&model);
 
+	setSelectionMode(MultiSelection);
+
 	setColumnHidden(1, true);
 	setColumnHidden(2, true);
 	setColumnHidden(3, true);
@@ -27,4 +29,13 @@ FileTree::FileTree(QWidget *parent) : QTreeView(parent) {
 		if (QFileInfo(path).isFile())
 			fileSelected(path);
 	});
+}
+void FileTree::contextMenuEvent(QContextMenuEvent *event) {
+
+	if (menu.isEmpty()) {
+		auto open = new QAction("Otwórz", this);
+		menu.addAction(open);
+	}
+
+	menu.exec(event->globalPos());
 }
