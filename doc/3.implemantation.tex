@@ -1,0 +1,100 @@
+\section{Implementacja}
+
+\subsection{Wieloplatformowość}
+
+Przeglądarka jest napisana w taki sposób, że jej implementacja nie uwzględnia systemu operacyjnego na którym pracuje
+
+Zróżnych perspektyw
+
+\subsection{Język programowania}
+
+Przeglądarka została napisana w C++ w standardzie z 2017 roku w skrócie C++17
+
+\subsection{Środowisko programistyczne}
+
+Do programowania głównie używałem CLion, IDE stworzonego przez firmę JetBrians.
+Zdecydowana większość czasu przeglądarka była testowana i debugowana na aktualizowanym systemie ArchLinux.
+
+\subsection{Obiektowy model w oprogramowaniu}
+
+Cały projekt jest zaprojektowany w sposób obiektowy, za wyjątkiem kilku pomniejszych elementów.
+
+\subsubsection{DicomScene}
+
+Klasa dziedzicząca pośrednio po \qtclass{QGraphicsScene} przez \sokarclass{Scene}.
+Jest to obiektem jednej ramki obrazu i jest odpowiedzialna za pośrednie wygenerowanie obrazu oraz jego wyświetlenie na ekranie.
+
+Informacje na obrazie są wyświetlane za pomocą obiektów \sokarclass{SceneIndicator}.
+Obiekty te mają dostęp do bazy danych obrazu DICOM i odpowiednio zmieniają swoją zawartość.
+
+\begin{itemize}
+
+    \item \sokarclass{PatientDataIndicator}
+
+    Obiekt wyświetlający dane pacjenta, pojawia się od zawsze na obrazie i zawiera następujące linie:
+
+    \begin{itemize}
+        \item Nazwa pacjenta oraz płeć
+
+        Nazwa pacjenta znajduje się w \dicomtag{PatientName}{0010}{0010}
+        Jako, że pacjenta, bądź obiekt badany można nazwać w sposób dowolny i odbiegający od polskiego standardu nazewnictwa, standard DICOM nie przewiduje rozdzielenie poszczególnych składowych nazwy na oznaczone fragmenty.
+        Do nazwy osoby został utworzony specjalny VR, \dicomvr{Person Name}{PN}, który dzieli nazwę na podane fragmenty, rozdzielony znakiem \texttt{\^{}} (94 znak kodu ASCII):
+        \begin{itemize}
+            \item family name complex - nazwisko, np. Smolik
+            \item given name complex - imię, np. Adam
+            \item middle name - środkowe imię, brak odpowiednika w polskim nazewnictwie
+            \item name prefix - prefiks przed imieniem, np: mgr. inż.
+            \item name suffix - sufiks po imieniu, brak odpowiednika
+        \end{itemize}
+        W przypadku mniejszej ilości segmentów, mamy założyć, że są puste
+        Na przykład "prof. dr. hab. inż. Waldemar Smolik pracownik ZEJIM" był by zapisany w sposób następujący: \texttt{Smolik\^{}Waldemar\^{}\^{}prof. dr. hab. inż.\^{}pracownik ZEJIM}
+
+        Płeć, zapisana jest w \dicomtag{PatientSex}{0010}{0040} i przedstawiana jest za pomocą znaków UTF-8, "O" i "O", odpowiednio mężczyzny i kobiety.
+        W przypadku określenia inne płci niż jest w standardzie bądź braku tagu płeć nie będzie widoczna.
+
+        \item Identyfikator pacjenta
+
+        ID pacjenta z tagu \dicomtag{PatientID}{0010}{0020} wyświetlane w takiej formie jakiej jest zapisane, bez żadnej obróbki.
+
+        \item Data urodzenia oraz wiek pacjenta
+
+        Data urodzenia znajdująca się w , zamieniana jest na format \texttt{yyyy-MM-dd}, czyli rok-miesiąc-dzień.
+
+        Dodatkowo, jeżeli tag jest \dicomtag{PatientAge}{0010}{1010} obecny wyświetlany jest także wiek pacjenta.
+
+        \item TagStudyDescription
+        \item TagSeriesDescription
+    \end{itemize}
+
+    \item \sokarclass{HospitalDataIndicator}
+    \item \sokarclass{ImageOrientationIndicator}
+    \item \sokarclass{ModalityIndicator}
+    \item \sokarclass{PixelSpacingIndicator}
+\end{itemize}
+
+\paragraph{Podział obowiązków w klasie}
+\sokarclass{DicomScene} dzieli obowiązki wyświetlania poszczególnych rzeczy innym obiektom, które dziedziczą po \sokarclass
+
+\paragraph{Interfejs generowanie obrazu}
+\sokarclass{DicomScene} to klasa abstrakcyjna i nie implementuje sposoby generowania obrazu, ale implementuje interfejs do generowania obrazu, który wykorzystują klasy dziedziczące po \sokarclass{DicomScene}.
+Sposoby generowania obrazu są opisane w sekcji ... ;
+
+\paragraph{Informacje o obrazie}
+\sokarclass{DicomScene} jest odpowiedzialny za wyświetlenie informacji o obrazie, które nie są zależne od interpretacji woksela obrazu.
+Czyli takie jak wielkość obrazka w skali rzeczywistej zapisana w \dicomtag{PixelSpacing}{0028}{0030} określający wielkość woksela w milimetrach.
+Szczegóły wyświetlania informacji są zawarte w sekcji ... ;
+
+Funkcjonalność(zajżenć do UML)
+
+Współbierzność
+
+Struktura danych
+
+Dlaczego wektor, a nie drzewo
+
+\subsection{Generowanie obrazów z danych}
+
+\subsubsection{Monochorme}
+
+Obrazy
+
