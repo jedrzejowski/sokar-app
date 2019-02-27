@@ -84,7 +84,7 @@ void WindowInt::genMenu() {
 						<< DefaultWindow{400, 1800, tr("Bone")};
 
 			for (auto &win : prefeined) {
-				if (win.center == 0 and win.width == 0) {
+				if (win.center == 0 && win.width == 0) {
 					submenu->addSection(win.name);
 				} else {
 					auto action = submenu->addAction(

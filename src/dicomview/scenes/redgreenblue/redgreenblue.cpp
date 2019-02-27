@@ -2,15 +2,15 @@
 #include "redgreenblue.h"
 #include "../../dicomview.h"
 
-using namespace Sokar::RedGreenBlue;
+using namespace Sokar;
 
-Scene::Scene(SceneParams &sceneParams) :
+RedGreenBlue::Scene::Scene(SceneParams &sceneParams) :
 		DicomScene(sceneParams) {
 
 	reloadPixmap();
 }
 
-bool Scene::generatePixmap() {
+bool RedGreenBlue::Scene::generatePixmap() {
 	if (!pixmap.isNull()) return false;
 
 	const static gdcm::Tag
@@ -65,7 +65,7 @@ bool Scene::generatePixmap() {
 	return true;
 }
 
-void Scene::toolBarAdjust() {
+void RedGreenBlue::Scene::toolBarAdjust() {
 	DicomScene::toolBarAdjust();
 
 	auto *toolBar = getDicomView()->getToolBar();

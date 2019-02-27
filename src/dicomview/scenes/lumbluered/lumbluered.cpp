@@ -2,9 +2,9 @@
 #include "lumbluered.h"
 #include "../../dicomview.h"
 
-using namespace Sokar::LumBlueRed;
+using namespace Sokar;
 
-Scene::Scene(SceneParams &sceneParams) :
+LumBlueRed::Scene::Scene(SceneParams &sceneParams) :
 		DicomScene(sceneParams) {
 
 	reloadPixmap();
@@ -32,7 +32,7 @@ Sokar::Pixel ybr2Pixel(quint8 y, quint8 b, quint8 r) {
 	return Sokar::Pixel(quint8(red), quint8(green), quint8(blue));
 }
 
-bool Scene::generatePixmap() {
+bool LumBlueRed::Scene::generatePixmap() {
 	if (!pixmap.isNull()) return false;
 
 	const static gdcm::Tag
@@ -69,7 +69,7 @@ bool Scene::generatePixmap() {
 	return true;
 }
 
-void Scene::toolBarAdjust() {
+void LumBlueRed::Scene::toolBarAdjust() {
 	DicomScene::toolBarAdjust();
 	auto *toolBar = getDicomView()->getToolBar();
 

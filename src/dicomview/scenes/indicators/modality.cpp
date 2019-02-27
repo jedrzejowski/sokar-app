@@ -34,15 +34,15 @@ void ModalityIndicator::genText() {
 	if (dataConverter.hasTagWithData(TagInstanceNumber))
 		lines << QObject::tr("Instance Num: <value>%1</value>").arg(toStr(TagInstanceNumber));
 	{
-		if (dataConverter.hasTagWithData(TagSliceThickness) and dataConverter.hasTagWithData(TagSliceLocation))
+		if (dataConverter.hasTagWithData(TagSliceThickness) && dataConverter.hasTagWithData(TagSliceLocation))
 			lines << QObject::tr("Slice thick: <value>%1</value>%3, loc.: <value>%2</value>%3")
 					.arg(QString::number(dataConverter.toDS(TagSliceThickness)[0], 'f', 2),
 						 QString::number(dataConverter.toDS(TagSliceLocation)[0], 'f', 2),
 						 millimeter);
-		else if (dataConverter.hasTagWithData(TagSliceThickness) and not dataConverter.hasTagWithData(TagSliceLocation))
+		else if (dataConverter.hasTagWithData(TagSliceThickness) && ! dataConverter.hasTagWithData(TagSliceLocation))
 			lines << QObject::tr("Slice thickness: <value>%1</value>%2")
 					.arg(QString::number(dataConverter.toDS(TagSliceThickness)[0], 'f', 2), millimeter);
-		else if (not dataConverter.hasTagWithData(TagSliceThickness) and dataConverter.hasTagWithData(TagSliceLocation))
+		else if (! dataConverter.hasTagWithData(TagSliceThickness) && dataConverter.hasTagWithData(TagSliceLocation))
 			lines << QObject::tr("Slice location: <value>%1</value>%2")
 					.arg(QString::number(dataConverter.toDS(TagSliceLocation)[0], 'f', 2), millimeter);
 	}

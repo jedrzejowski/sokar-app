@@ -110,7 +110,7 @@ const QPixmap &DicomScene::getIcon() {
 
 void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
-	if (event->buttons() bitand Qt::LeftButton) {
+	if (event->buttons() & Qt::LeftButton) {
 
 		auto target = this;
 
@@ -339,7 +339,7 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action, bool state) {
 void DicomScene::wheelEvent(QGraphicsSceneWheelEvent *event) {
 	QGraphicsScene::wheelEvent(event);
 
-	if (not isMovieMode()) {
+	if (! isMovieMode()) {
 
 		if (event->delta() < 0)
 			getDicomSceneSet()->getSceneSequence()->stepForward();
@@ -362,16 +362,16 @@ bool DicomScene::acceptMovieMode(MovieMode *movieMode) {
 
 	if (scene == nullptr) return false;
 
-	if (scene->gdcmImage.GetPhotometricInterpretation() not_eq gdcmImage.GetPhotometricInterpretation())
+	if (scene->gdcmImage.GetPhotometricInterpretation() != gdcmImage.GetPhotometricInterpretation())
 		return false;
 
-	if (scene->gdcmImage.GetColumns() not_eq gdcmImage.GetColumns())
+	if (scene->gdcmImage.GetColumns() != gdcmImage.GetColumns())
 		return false;
 
-	if (scene->gdcmImage.GetRows() not_eq gdcmImage.GetRows())
+	if (scene->gdcmImage.GetRows() != gdcmImage.GetRows())
 		return false;
 
-	if (scene->gdcmImage.GetPixelFormat() not_eq gdcmImage.GetPixelFormat())
+	if (scene->gdcmImage.GetPixelFormat() != gdcmImage.GetPixelFormat())
 		return false;
 
 	this->movieMode = movieMode;

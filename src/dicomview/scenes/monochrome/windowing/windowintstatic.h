@@ -31,7 +31,6 @@ namespace Sokar::Monochrome {
 				}
 
 				TrueInt x = signedMove;
-				__int128Problem(x);
 
 				auto &background = isInversed() ? palette->getForeground() : palette->getBackground();
 				auto &foreground = isInversed() ? palette->getBackground() : palette->getForeground();

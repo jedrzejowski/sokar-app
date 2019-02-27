@@ -19,21 +19,21 @@
 #include "windowing/windowintdynamic.h"
 #include "windowing/windowintstatic.h"
 
-using namespace Sokar::Monochrome;
+using namespace Sokar;
 
-Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
+Monochrome::Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
 
 	readAttributes();
 
 	reloadPixmap();
 }
 
-Scene::~Scene() {
+Monochrome::Scene::~Scene() {
 
 	delete imgWindow;
 }
 
-void Scene::readAttributes() {
+void Monochrome::Scene::readAttributes() {
 
 	bool ok;
 	ushort us;
@@ -234,7 +234,7 @@ void Scene::readAttributes() {
 	}
 }
 
-bool Scene::generatePixmap() {
+bool Monochrome::Scene::generatePixmap() {
 
 //	SpeedTest okienkowanie("LUT");
 
@@ -292,7 +292,7 @@ bool Scene::generatePixmap() {
 }
 
 template<typename IntType>
-void Scene::findExtremes(TrueInt &max, TrueInt &min) {
+void Monochrome::Scene::findExtremes(TrueInt &max, TrueInt &min) {
 
 	auto origin = (IntType *) &originBuffer[0];
 
@@ -306,7 +306,7 @@ void Scene::findExtremes(TrueInt &max, TrueInt &min) {
 
 
 template<typename IntType>
-void Scene::genQPixmapOfType() {
+void Monochrome::Scene::genQPixmapOfType() {
 
 	switch (imgWindow->type()) {
 		case Window::IntDynamic:
@@ -323,7 +323,7 @@ void Scene::genQPixmapOfType() {
 }
 
 template<typename IntType, typename WinClass>
-void Scene::genQPixmapOfTypeWidthWindow() {
+void Monochrome::Scene::genQPixmapOfTypeWidthWindow() {
 
 	std::vector<std::thread> threads;
 
@@ -345,7 +345,7 @@ void Scene::genQPixmapOfTypeWidthWindow() {
 }
 
 template<typename IntType, typename WinClass>
-void Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 to) {
+void Monochrome::Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 to) {
 
 	auto buffer = &targetBuffer[from];
 	auto origin = (IntType *) &originBuffer[0];
@@ -358,7 +358,7 @@ void Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 to) {
 	}
 }
 
-void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
+void Monochrome::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 	if (event->buttons() & Qt::LeftButton) {
 
@@ -382,17 +382,17 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 	DicomScene::mouseMoveEvent(event);
 }
 
-void Scene::toolBarAdjust() {
+void Monochrome::Scene::toolBarAdjust() {
 	DicomScene::toolBarAdjust();
 	auto *toolBar = getDicomView()->getToolBar();
 
 	auto winAction = toolBar->getActionWindowing();
 	winAction->setMenu(imgWindow->getMenu());
-	winAction->setEnabled(not isMovieMode());
+	winAction->setEnabled(! isMovieMode());
 }
 
-bool Scene::acceptMovieMode(Sokar::MovieMode *movieMode) {
-	if (not DicomScene::acceptMovieMode(movieMode))
+bool Monochrome::Scene::acceptMovieMode(Sokar::MovieMode *movieMode) {
+	if (! DicomScene::acceptMovieMode(movieMode))
 		return false;
 
 	//TODO dodać jakieś warunki

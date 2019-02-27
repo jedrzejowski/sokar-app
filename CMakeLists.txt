@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(Sokar)
 
+
+
 set(CMAKE_CXX_COMPILER "g++")
 
 set(CMAKE_CXX_STANDARD 17)
@@ -16,24 +18,41 @@ set(APP_TARGET Sokar)
 
 find_package(Threads)
 
-#Biblioteka gdcmDICOM
+#Biblioteka GDCM
+    set(GDCM_DIR ${CMAKE_CURRENT_LIST_DIR}/lib-win/gdcm/lib/gdcm-2.8/)
+if(WIN32)
+elseif(APPLE)
+
+elseif(UNIX)
+else()
+	message( FATAL_ERROR "System not supported" )
+endif()
+
 find_package(GDCM REQUIRED)
 include_directories(${GDCM_INCLUDE_DIRS})
 link_libraries(${GDCM_LIBRARY_DIRS})
 include(${GDCM_USE_FILE})
 
 #Bibliotek QT
+if(WIN32)
+	#C:/Qt/5.12.1/msvc2017_64
+    set(Qt5Widgets_DIR C:/Qt/5.12.1/msvc2017_64/lib/cmake/Qt5Widgets/)
+    set(Qt5LinguistTools_DIR C:/Qt/5.12.1/msvc2017_64/lib/cmake/Qt5LinguistTools/)
+elseif(APPLE)
+
+elseif(UNIX)
+else()
+	message( FATAL_ERROR "System not supported" )
+endif()
+
 find_package(Qt5Widgets CONFIG REQUIRED)
 find_package(Qt5LinguistTools REQUIRED)
-include_directories(${PROJECT_SOURCE_DIR})
-
-
-include_directories(${PROJECT_SOURCE_DIR}/src)
 
 #Tłumaczenia
 file(GLOB TS_FILES "${PROJECT_SOURCE_DIR}/res/lang/*.ts")
 qt5_create_translation(QM_FILES ${PROJECT_SOURCE_DIR}/src ${TS_FILES} OPTIONS -source-language en_US -no-obsolete)
 
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
 file(GLOB_RECURSE CPP_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
 file(GLOB_RECURSE HEADER_FILES "${PROJECT_SOURCE_DIR}/src/*.h")

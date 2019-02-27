@@ -1,6 +1,7 @@
 
 #include "_window.h"
 
+using namespace Sokar;
 using namespace Sokar::Monochrome;
 
 Window::Window(DataConverter &dataConverter) : SceneIndicator(dataConverter) {}

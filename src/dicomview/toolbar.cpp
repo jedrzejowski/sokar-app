@@ -164,9 +164,9 @@ void DicomToolBar::initActions() {
 			auto checked = false;
 
 			for (auto &action : subactions)
-				checked = checked or action->isChecked();
+				checked = checked || action->isChecked();
 
-			checked = not checked;
+			checked = ! checked;
 
 			for (auto &action : subactions)
 				action->setChecked(checked);

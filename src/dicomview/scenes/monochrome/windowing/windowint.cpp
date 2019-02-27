@@ -6,9 +6,9 @@
 
 #include "windowint.h"
 
-using namespace Sokar::Monochrome;
+using namespace Sokar;
 
-WindowInt::WindowInt(DataConverter &dataConverter) : Window(dataConverter) {
+Monochrome::WindowInt::WindowInt(DataConverter &dataConverter) : Window(dataConverter) {
 
 	text = new QGraphicsTextItem();
 	text->setDefaultTextColor(defaultColor);
@@ -17,7 +17,7 @@ WindowInt::WindowInt(DataConverter &dataConverter) : Window(dataConverter) {
 
 }
 
-void WindowInt::setCenter(TrueInt newCenter) {
+void Monochrome::WindowInt::setCenter(TrueInt newCenter) {
 	if (newCenter == center)
 		return;
 
@@ -30,7 +30,7 @@ void WindowInt::setCenter(TrueInt newCenter) {
 }
 
 
-void WindowInt::setWidth(TrueInt newWidth) {
+void Monochrome::WindowInt::setWidth(TrueInt newWidth) {
 	if (newWidth == width)
 		return;
 
@@ -46,7 +46,7 @@ void WindowInt::setWidth(TrueInt newWidth) {
 }
 
 
-bool WindowInt::genLUT() {
+bool Monochrome::WindowInt::genLUT() {
 	if (!shouldRegen) return false;
 
 	signedMove = signedMove ? maxValue : 0;
@@ -81,7 +81,7 @@ bool WindowInt::genLUT() {
 	return true;
 }
 
-void WindowInt::setRescaleIntercept(double rescaleIntercept) {
+void Monochrome::WindowInt::setRescaleIntercept(double rescaleIntercept) {
 	if (WindowInt::rescaleIntercept == rescaleIntercept)
 		return;
 
@@ -89,7 +89,7 @@ void WindowInt::setRescaleIntercept(double rescaleIntercept) {
 	shouldRegen = true;
 }
 
-void WindowInt::setRescaleSlope(double rescaleSlope) {
+void Monochrome::WindowInt::setRescaleSlope(double rescaleSlope) {
 	if (WindowInt::rescaleSlope == rescaleSlope)
 		return;
 
@@ -97,7 +97,7 @@ void WindowInt::setRescaleSlope(double rescaleSlope) {
 	shouldRegen = true;
 }
 
-void WindowInt::setMaxValue(quint64 length) {
+void Monochrome::WindowInt::setMaxValue(quint64 length) {
 	if (WindowInt::maxValue == length)
 		return;
 
@@ -105,7 +105,7 @@ void WindowInt::setMaxValue(quint64 length) {
 	shouldRegen = true;
 }
 
-void WindowInt::setSigned(bool isSigned) {
+void Monochrome::WindowInt::setSigned(bool isSigned) {
 	if (signedMove > 0 == isSigned)
 		return;
 
@@ -113,7 +113,7 @@ void WindowInt::setSigned(bool isSigned) {
 	shouldRegen = true;
 }
 
-void WindowInt::setBackgroundLvl(TrueInt backgroundLvl) {
+void Monochrome::WindowInt::setBackgroundLvl(TrueInt backgroundLvl) {
 	if (WindowInt::backgroundLvl == backgroundLvl)
 		return;
 
@@ -122,13 +122,13 @@ void WindowInt::setBackgroundLvl(TrueInt backgroundLvl) {
 	shouldRegen = true;
 }
 
-void WindowInt::reposition() {
+void Monochrome::WindowInt::reposition() {
 
 	setPos(scene()->width() - text->document()->size().width(),
 		   scene()->height() - text->document()->size().height());
 }
 
-void WindowInt::regenText() {
+void Monochrome::WindowInt::regenText() {
 	QString str;
 
 	str += "<b>C</b> " + QString::number((qlonglong) center);
@@ -140,11 +140,11 @@ void WindowInt::regenText() {
 	reposition();
 }
 
-void WindowInt::pushDefaultValues(TrueInt center, TrueInt width, QString name) {
+void Monochrome::WindowInt::pushDefaultValues(TrueInt center, TrueInt width, QString name) {
 	defaultWindows << DefaultWindow{center, width, name};
 }
 
-void WindowInt::activateDefWin(const WindowInt::DefaultWindow &win) {
+void Monochrome::WindowInt::activateDefWin(const WindowInt::DefaultWindow &win) {
 	setWidth(win.width);
 	setCenter(win.center);
 	emit forceRefreshSignal();

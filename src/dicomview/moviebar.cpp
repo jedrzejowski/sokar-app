@@ -89,7 +89,7 @@ void MovieBar::start() {
 }
 
 void MovieBar::stop() {
-	if (not isRunning()) return;
+	if (! isRunning()) return;
 	frameTimer.stop();
 
 	for (auto &scene : sceneSet->getScenesVector()) {

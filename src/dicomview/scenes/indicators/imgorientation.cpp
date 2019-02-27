@@ -132,7 +132,7 @@ int sceneAngle(const QVector4D &one) {
 }
 
 bool isNotCenter(const QVector4D &one) {
-	return not(one[0] == 0.0 and one[1] == 0.0);
+	return !(one[0] == 0.0 && one[1] == 0.0);
 }
 
 void ImageOrientationIndicator::update() {
