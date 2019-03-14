@@ -7,24 +7,22 @@
 
 using namespace Sokar;
 
-DicomFrameSet::DicomFrameSet(const gdcm::ImageReader *reader, QObject *parent) :
+DicomFrameSet::DicomFrameSet(const DicomBundle *bundle, QObject *parent) :
 		DicomSceneSet(parent),
-		imageReader(reader),
-		gdcmFile(reader->GetFile()),
-		gdcmDataSet(gdcmFile.GetDataSet()),
-		gdcmImage(reader->GetImage()),
-		dataConverter(imageReader->GetFile()) {
+		bundle(bundle) {
 
 	initScenes();
 }
 
 DicomFrameSet::~DicomFrameSet() {
-	qDebug() << "~DicomFrameSet()";
-
-	delete imageReader;
+	delete bundle;
 }
 
 void DicomFrameSet::initScenes() {
+
+	switch (bundle->type)
+
+	}
 
 	static gdcm::Tag TagNumberOfFrames(0x0028, 0x0008);
 
@@ -68,7 +66,6 @@ void DicomFrameSet::initScenes() {
 				default:
 					throw Sokar::ImageTypeNotSupportedException();
 			}
-
 		} catch (Sokar::Exception &e) {
 			scene = new ExceptionScene(sceneParams, e);
 		}

@@ -58,31 +58,24 @@ DicomView *DicomTabs::currentDicomView() {
 
 void DicomTabs::addDicomFile(const QString &path) {
 
-	auto *reader = new gdcm::ImageReader;
 
 	try {
-
-		reader->SetFileName(path.toStdString().c_str());
-
-		if (!reader->Read()) {
-			throw IOException(path);
-		}
+		auto *bundle = DicomBundle::create(path);
 
 		Settings::bumpRecentOpen(path);
 
-		addDicomFile(reader);
+		addDicomFile(bundle);
 		return;
 	} catch (IOException &e) {
 		QMessageBox::critical(this, tr("I/O Error"),
 							  tr("Error occured while reading file '%1'").arg(e.file));
-		delete reader;
 	}
 }
 
-void DicomTabs::addDicomFile(const gdcm::ImageReader *reader) {
+void DicomTabs::addDicomFile(const DicomBundle *bundle) {
 
 	try {
-		auto sceneSet = new DicomFrameSet(reader, this);
+		auto sceneSet = new DicomFrameSet(bundle, this);
 		auto dicomView = new DicomView(sceneSet, this);
 		addDicomView(dicomView);
 
@@ -91,44 +84,37 @@ void DicomTabs::addDicomFile(const gdcm::ImageReader *reader) {
 	} catch (Exception &e) {
 	}
 
-	delete reader;
+	delete bundle;
 }
 
 
 void DicomTabs::addDicomFiles(const QStringList &paths) {
-	DicomReaderVec readers;
+	gdcmBundleVec bundles;
 
 	try {
 		for (auto &path : paths) {
 
-			auto *reader = new gdcm::ImageReader;
-
-			reader->SetFileName(path.toStdString().c_str());
-
-			if (!reader->Read()) {
-				delete reader;
-				throw IOException(path);
-			}
+			auto *bundle = DicomBundle::create(path);
 
 			Settings::bumpRecentOpen(path);
 
-			readers << reader;
+			bundles << bundle;
 		}
 
-		addDicomFiles(readers);
+		addDicomFiles(bundles);
 	} catch (IOException &e) {
 		QMessageBox::critical(this, tr("I/O Error"),
 							  tr("Error occured while reading file '%1'").arg(e.file));
 
-		for (auto &reader : readers)
-			delete reader;
+		for (auto &bundle : bundles)
+			delete bundle;
 	}
 }
 
-void DicomTabs::addDicomFiles(DicomReaderVec &readers) {
+void DicomTabs::addDicomFiles(gdcmBundleVec &bundles) {
 
 	try {
-		for (auto sceneSet : DicomFileSet::create(readers, this)) {
+		for (auto sceneSet : DicomFileSet::create(bundles, this)) {
 			auto dicomView = new DicomView(sceneSet, this);
 			addDicomView(dicomView);
 		}
@@ -138,8 +124,8 @@ void DicomTabs::addDicomFiles(DicomReaderVec &readers) {
 	} catch (Exception &e) {
 	}
 
-	for (auto &reader : readers)
-		delete reader;
+	for (auto &bundle : bundles)
+		delete bundle;
 }
 
 void DicomTabs::addDicomView(DicomView *dicomView) {

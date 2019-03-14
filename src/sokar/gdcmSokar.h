@@ -47,5 +47,4 @@ namespace gdcm {
 				return 0;
 		}
 	}
-
 }

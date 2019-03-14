@@ -300,17 +300,17 @@
 <context>
     <name>Sokar::DicomFrameSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="179"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="176"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="185"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="182"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="186"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="183"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
@@ -318,14 +318,14 @@
 <context>
     <name>Sokar::DicomTabs</name>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="76"/>
-        <location filename="../../src/widget/dicomtabs.cpp" line="120"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="70"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="106"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="77"/>
-        <location filename="../../src/widget/dicomtabs.cpp" line="121"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="71"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="107"/>
         <source>Error occured while reading file &apos;%1&apos;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -479,113 +479,113 @@
 <context>
     <name>Sokar::Monochrome::WindowInt</name>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="12"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="12"/>
         <source>Color Palettes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="35"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="35"/>
         <source>Windowing</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="39"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="39"/>
         <source>No Windows In File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="58"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="58"/>
         <source>Predefined</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="64"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="64"/>
         <source>Head And Neck</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="65"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="65"/>
         <source>Brain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="66"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="66"/>
         <source>Subdural 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="67"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="67"/>
         <source>Subdural 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="68"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="68"/>
         <source>Stroke 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="69"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="69"/>
         <source>Stroke 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="70"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="70"/>
         <source>Temporal Bones</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="71"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="71"/>
         <source>Soft Tissues 1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="72"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="72"/>
         <source>Soft Tissues 2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="74"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="74"/>
         <source>Chest</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="75"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="75"/>
         <source>Lungs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="76"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="76"/>
         <source>Mediastinum</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="78"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="78"/>
         <source>Abdomen</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="79"/>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="83"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="79"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="83"/>
         <source>Soft Tissues</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="80"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="80"/>
         <source>Liver</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="82"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="82"/>
         <source>Spine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="84"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="84"/>
         <source>Bone</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/monochrome/windowing/windowint.menu.cpp" line="107"/>
+        <location filename="../../src/dicomview/scenes/image/monochrome/windowing/windowint.menu.cpp" line="107"/>
         <source>Inverse</source>
         <translation type="unfinished"></translation>
     </message>

@@ -6,6 +6,7 @@
 #include <gdcmImageReader.h>
 
 #include "dicomview/dicomview.h"
+#include "sokar/dicombundle.h"
 
 namespace Sokar {
 	class DicomTabs : public QTabWidget {
@@ -24,9 +25,9 @@ namespace Sokar {
 
 	public slots:
 		void addDicomFile(const QString &path);
-		void addDicomFile(const gdcm::ImageReader *file);
+		void addDicomFile(const DicomBundle* bundle);
 		void addDicomFiles(const QStringList &paths);
-		void addDicomFiles(DicomReaderVec &files);
+		void addDicomFiles(gdcmBundleVec &bundles);
 		void addDicomView(DicomView* dicomView);
 
 	private slots:

@@ -14,6 +14,7 @@
 
 #include "sokar/pixel.h"
 #include "sokar/exception.h"
+#include "sokar/dicombundle.h"
 #include "scene.h"
 #include "params.h"
 #include "sceneavatar.h"
@@ -33,89 +34,60 @@ namespace Sokar {
 
 		QMutex processing;
 
-		const gdcm::Image &gdcmImage;
-		const gdcm::File &gdcmFile;
-		const gdcm::DataSet &gdcmDataSet;
+		const DicomBundle *dicomBundle;
 		DataConverter &dataConverter;
-
-		std::vector<char> originBuffer;
-		std::vector<Pixel> targetBuffer;
-		uint imgDimX, imgDimY;
-
-		QImage qImage;
-		QPixmap pixmap, iconPixmap;
-		QGraphicsPixmapItem *pixmapItem = nullptr;
-
-		QTransform panTransform, scaleTransform, centerTransform, rotateTransform;
+		DicomSceneSet *dicomSceneSet;
 
 		MovieMode *movieMode = nullptr;
 
 		//region Indicators
-	private:
 		void initIndicators();
 
 		PatientDataIndicator *patientDataIndicator = nullptr;
 		HospitalDataIndicator *hospitalDataIndicator = nullptr;
-		PixelSpacingIndicator *pixelSpacingIndicator = nullptr;
-		ImageOrientationIndicator *imageOrientationIndicator = nullptr;
 		ModalityIndicator *modalityIndicator = nullptr;
 
 		void initPatientDataIndicator();
-		void initPixelSpacingIndicator();
-		void initImageOrientationIndicator();
 		void initHospitalDataIndicator();
 		void initModalityIndicator();
 		//endregion
 
 	public:
 
-		explicit DicomScene(SceneParams &sceneParams);
+		explicit DicomScene(const DicomBundle *dicomBundle, DicomSceneSet *dicomSceneSet);
 
 		~DicomScene() override;
 
 		//region Getters
 
-		inline const gdcm::File &getGdcmFile() { return gdcmFile; }
+		inline const DicomBundle &getDicomBundle() { return *dicomBundle; }
 
-		inline const QPixmap *getPixmap() const { return &pixmap; }
-
-		SceneAvatar *getAvatar();
-
-		const QPixmap &getIcon();
-
-		inline DicomSceneSet *getDicomSceneSet() { return (DicomSceneSet *) this->parent(); }
+		inline DicomSceneSet *getDicomSceneSet() { return dicomSceneSet; }
 
 		DicomView *getDicomView();
 
 		//endregion
 
-		bool saveToFile(const QString &fileName, const char *format = nullptr, int quality = -1);
+		bool exportToFile(const QString &fileName, const uchar *options = nullptr) = 0;
 
 		virtual void toolBarAdjust();
 
+		//region MoveMode
+	public:
+		bool acceptMovieMode(MovieMode *movieMode);
 		bool isMovieMode();
-
-		virtual bool acceptMovieMode(MovieMode *movieMode);
-
 		void disableMovieMode();
-
 	protected:
-		virtual bool generatePixmap() = 0;
-
-		void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
-
-		virtual QTransform pixmapTransformation();
-
-		void wheelEvent(QGraphicsSceneWheelEvent *event) override;
-
+		virtual bool isMovieModeAcceptable(MovieMode *movieMode);
+	signals:
+		void movieModeAccepted();
+		void movieModeDisabled();
+		//endregion
 
 	public slots:
-		void reloadPixmap();
 		virtual void toolBarActionSlot(DicomToolBar::Action action, bool state = false);
 		void reposItems() override;
-		void updatePixmapTransformation();
 		void prepare();
 		void attached();
-
 	};
 }

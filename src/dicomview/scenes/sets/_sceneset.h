@@ -10,7 +10,6 @@
 
 namespace Sokar {
 
-	typedef QVector<const gdcm::ImageReader *> DicomReaderVec;
 	typedef QVector<DicomScene *> DicomSceneVec;
 
 	class DicomSceneSet : public QObject {

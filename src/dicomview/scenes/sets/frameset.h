@@ -1,17 +1,14 @@
 #pragma once
 
 #include "_sceneset.h"
+#include "sokar/dicombundle.h"
 
 namespace Sokar {
 	class DicomFrameSet : public DicomSceneSet {
 	Q_OBJECT
 	protected:
 
-		const gdcm::ImageReader *imageReader;
-		const gdcm::File &gdcmFile;
-		const gdcm::DataSet &gdcmDataSet;
-		const gdcm::Image &gdcmImage;
-		DataConverter dataConverter;
+		const DicomBundle* bundle;
 
 		std::vector<char> imageBuffer;
 
@@ -22,7 +19,7 @@ namespace Sokar {
 
 	public:
 
-		explicit DicomFrameSet(const gdcm::ImageReader *reader, QObject *parent = nullptr);
+		explicit DicomFrameSet(const DicomBundle *bundle, QObject *parent = nullptr);
 		~DicomFrameSet() override;
 
 		inline const gdcm::File &getGdcmFile() const { return imageReader->GetFile(); }
