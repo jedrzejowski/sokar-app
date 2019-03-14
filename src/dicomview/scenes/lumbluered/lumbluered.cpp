@@ -25,9 +25,9 @@ Sokar::Pixel ybr2Pixel(quint8 y, quint8 b, quint8 r) {
 	green -= 255.0 / 224 * 1.402 * (r - 128) * (0.299 / 0.587);
 	blue += 255.0 / 224 * 1.772 * (b - 128);
 
-	red = std::max(0.0, std::min(255.0, red));
-	green = std::max(0.0, std::min(255.0, green));
-	blue = std::max(0.0, std::min(255.0, blue));
+	red = qBound(0.0, red, 255.0);
+	green = qBound(0.0, green, 255.0);
+	blue = qBound(0.0, blue, 255.0);
 
 	return Sokar::Pixel(quint8(red), quint8(green), quint8(blue));
 }
@@ -48,7 +48,7 @@ bool LumBlueRed::Scene::generatePixmap() {
 	if (gdcmImage.GetPhotometricInterpretation() != gdcm::PhotometricInterpretation::YBR_FULL)
 		throw Sokar::ImageTypeNotSupportedException();
 
-	auto *origin = (quint8 * ) & originBuffer[0];
+	auto *origin = (quint8 *) &originBuffer[0];
 	auto *buffer = &targetBuffer[0];
 
 	quint8 y, b, r;

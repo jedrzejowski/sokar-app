@@ -30,7 +30,7 @@ namespace Sokar::Monochrome {
 					arrayVector.resize(arraySize);
 				}
 
-				TrueInt x = signedMove;
+				TrueInt x = -signedMove;
 
 				auto &background = isInversed() ? palette->getForeground() : palette->getBackground();
 				auto &foreground = isInversed() ? palette->getBackground() : palette->getForeground();
