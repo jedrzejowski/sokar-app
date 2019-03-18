@@ -135,7 +135,7 @@ void PixelSpacingIndicator::updateLines() {
 	} else {
 		auto width = qMin(scene()->width() / 2, xDim);
 		xLine.setPxLength(width);
-		xLine.setText(QString::number(xSpacing * width, 'f', 2) + +" <i>mm</i>");
+		xLine.setText(QString::number(xSpacing * width * xScale, 'f', 2) + +" <i>mm</i>");
 		xLine.show();
 	}
 
@@ -144,7 +144,7 @@ void PixelSpacingIndicator::updateLines() {
 	} else {
 		auto height = qMin(scene()->height() / 2, yDim);
 		yLine.setPxLength(height);
-		yLine.setText(QString::number(ySpacing * height, 'f', 2) + +" <i>mm</i>");
+		yLine.setText(QString::number(ySpacing * height * yScale, 'f', 2) + +" <i>mm</i>");
 		yLine.show();
 
 		// Obracanie
@@ -169,4 +169,18 @@ qreal PixelSpacingIndicator::getRightSpace() {
 
 bool PixelSpacingIndicator::isAlive() {
 	return true;
+}
+
+void PixelSpacingIndicator::setScaleTransform(const QTransform &scaleTransform) {
+
+	auto xPoint = QPointF(1, 0);
+	auto yPoint = QPointF(0, 1);
+
+	xPoint = scaleTransform.map(xPoint);
+	yPoint = scaleTransform.map(yPoint);
+
+	xScale = 1 / qSqrt(qPow(xPoint.x(), 2) + qPow(xPoint.y(), 2));
+	yScale = 1 / qSqrt(qPow(yPoint.x(), 2) + qPow(yPoint.y(), 2));
+
+	updateLines();
 }

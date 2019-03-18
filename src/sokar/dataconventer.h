@@ -52,22 +52,15 @@ namespace Sokar {
 
 		inline gdcm::Tag toAT(const gdcm::Tag &tag) { return toAttributeTag(tag); }
 
-		QString toCS(const gdcm::Tag &tag);
-
 		inline QDate toDA(const gdcm::Tag &tag) { return toDate(tag); }
 
 		inline QVector<qreal> toDS(const gdcm::Tag &tag) { return toDecimalString(tag); }
-
-		QDateTime toDT(const gdcm::Tag &tag);
 
 		inline qint32 toIS(const gdcm::Tag &tag) { return toIntegerString(tag); }
 
 		QString toPN(const gdcm::Tag &tag) { return toPersonName(tag); }
 
 		inline short toSS(const gdcm::Tag &tag) { return toShort(tag); }
-
-		QString toST(const gdcm::Tag &tag);
-		QTime toTM(const gdcm::Tag &tag);
 
 		inline quint16 toUS(const gdcm::Tag &tag) { return toUShort(tag); }
 

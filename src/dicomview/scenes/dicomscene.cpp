@@ -64,7 +64,7 @@ void DicomScene::reloadPixmap() {
 	}
 }
 
-QTransform DicomScene::pixmapTransformation() {
+QTransform DicomScene::getPixmapTransformation() {
 	QTransform transform;
 	transform *= centerTransform;
 	transform *= scaleTransform;
@@ -75,15 +75,18 @@ QTransform DicomScene::pixmapTransformation() {
 
 void DicomScene::updatePixmapTransformation() {
 
-	pixmapItem->setTransform(isMovieMode() ?
-							 movieMode->getOriginScene()->pixmapTransformation() :
-							 pixmapTransformation());
+	auto *scene = isMovieMode() ? movieMode->getOriginScene() : this;
 
-	if (imageOrientationIndicator != nullptr) {
-		imageOrientationIndicator->setRotateTransform(
-				isMovieMode() ?
-				movieMode->getOriginScene()->rotateTransform :
-				rotateTransform);
+	pixmapItem->setTransform(scene->getPixmapTransformation());
+
+	if (imageOrientationIndicator != nullptr)
+		imageOrientationIndicator->setRotateTransform(rotateTransform);
+
+	if (pixelSpacingIndicator != nullptr) {
+		QTransform transform;
+		transform *= scaleTransform;
+		transform *= rotateTransform;
+		pixelSpacingIndicator->setScaleTransform(transform);
 	}
 }
 
@@ -167,15 +170,15 @@ void DicomScene::initIndicators() {
 	} catch (Sokar::Exception &) {}
 
 	try {
+		initModalityIndicator();
+	} catch (Sokar::Exception &) {}
+
+	try {
 		initPixelSpacingIndicator();
 	} catch (Sokar::Exception &) {}
 
 	try {
 		initImageOrientationIndicator();
-	} catch (Sokar::Exception &) {}
-
-	try {
-		initModalityIndicator();
 	} catch (Sokar::Exception &) {}
 }
 
@@ -190,7 +193,6 @@ void DicomScene::initHospitalDataIndicator() {
 }
 
 void DicomScene::initPixelSpacingIndicator() {
-	pixelSpacingIndicator = new PixelSpacingIndicator(dataConverter);
 
 	const static gdcm::Tag
 	/**
@@ -200,6 +202,8 @@ void DicomScene::initPixelSpacingIndicator() {
 	 */     TagPixelSpacing(0x0028, 0x0030);
 
 	if (!dataConverter.hasTagWithData(TagPixelSpacing)) return;
+
+	pixelSpacingIndicator = new PixelSpacingIndicator(dataConverter);
 	addIndicator(pixelSpacingIndicator);
 
 	auto spacing = dataConverter.toDecimalString(TagPixelSpacing);
@@ -339,7 +343,7 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action, bool state) {
 void DicomScene::wheelEvent(QGraphicsSceneWheelEvent *event) {
 	QGraphicsScene::wheelEvent(event);
 
-	if (! isMovieMode()) {
+	if (!isMovieMode()) {
 
 		if (event->delta() < 0)
 			getDicomSceneSet()->getSceneSequence()->stepForward();

@@ -104,7 +104,7 @@ namespace Sokar {
 
 		void mouseMoveEvent(QGraphicsSceneMouseEvent *event) override;
 
-		virtual QTransform pixmapTransformation();
+		virtual QTransform getPixmapTransformation();
 
 		void wheelEvent(QGraphicsSceneWheelEvent *event) override;
 

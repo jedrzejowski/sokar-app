@@ -53,22 +53,22 @@ void PatientDataIndicator::initData() {
 	}
 
 	{
-		QString line = "";
+		QStringList data;
 
 		if (dataConverter.hasTagWithData(TagPatientBirthDate)) {
 			auto date = dataConverter.toDate(TagPatientBirthDate);
 
-			line += QObject::tr("born %1").arg(date.toString("yyyy-MM-dd"));
+			data << QObject::tr("born %1").arg(date.toString("yyyy-MM-dd"));
 		}
 
 		if (dataConverter.hasTagWithData(TagPatientAge)) {
 
-			line += QObject::tr(", %1").arg(
+			data << QObject::tr("%1").arg(
 					dataConverter.toAgeString(TagPatientAge)
 			);
 		}
 
-		lines << line;
+		lines << data.join(", ");
 	}
 
 	{

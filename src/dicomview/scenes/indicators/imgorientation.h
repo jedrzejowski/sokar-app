@@ -19,7 +19,7 @@ namespace Sokar {
 
 		ImageOrientationIndicator(DataConverter &dataConverter);
 
-		void setRotateTransform(QTransform &rotateTransform);
+		void setRotateTransform(const QTransform &rotateTransform);
 
 		void reposition() override;
 		bool isAlive() override;

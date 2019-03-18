@@ -32,12 +32,12 @@ namespace Sokar {
 
 		qreal xSpacing, ySpacing;
 		qreal xDim, yDim;
+		qreal xScale = 1.0, yScale = 1.0;
 
 		LineIndicator xLine, yLine;
 
-
 	public:
-		PixelSpacingIndicator(DataConverter& dataConverter);
+		explicit PixelSpacingIndicator(DataConverter& dataConverter);
 
 		//region Getter & Setters
 
@@ -52,6 +52,9 @@ namespace Sokar {
 
 		qreal getBottomSpace() override;
 		qreal getRightSpace() override;
+
+
+		void setScaleTransform(const QTransform &scaleTransform);
 
 		//endregion
 

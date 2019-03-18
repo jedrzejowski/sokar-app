@@ -114,7 +114,7 @@ void ImageOrientationIndicator::reposition() {
 			scene()->height() - bottomText->document()->size().height() - getOffsetBottom());
 }
 
-void ImageOrientationIndicator::setRotateTransform(QTransform &rotateTransform) {
+void ImageOrientationIndicator::setRotateTransform(const QTransform &rotateTransform) {
 	this->rotateTransform = QMatrix4x4(rotateTransform);
 	update();
 }
@@ -149,22 +149,22 @@ void ImageOrientationIndicator::update() {
 	QVector<QString> chars(8);
 
 	if (isNotCenter(anterior))
-		chars[sceneAngle(anterior)] = QObject::tr("A");
+		chars[sceneAngle(anterior)] += QObject::tr("A");
 
 	if (isNotCenter(posterior))
-		chars[sceneAngle(posterior)] = QObject::tr("P");
+		chars[sceneAngle(posterior)] += QObject::tr("P");
 
 	if (isNotCenter(left))
-		chars[sceneAngle(left)] = QObject::tr("L");
+		chars[sceneAngle(left)] += QObject::tr("L");
 
 	if (isNotCenter(right))
-		chars[sceneAngle(right)] = QObject::tr("R");
+		chars[sceneAngle(right)] += QObject::tr("R");
 
 	if (isNotCenter(head))
-		chars[sceneAngle(head)] = QObject::tr("H");
+		chars[sceneAngle(head)] += QObject::tr("H");
 
 	if (isNotCenter(feet))
-		chars[sceneAngle(feet)] = QObject::tr("F");
+		chars[sceneAngle(feet)] += QObject::tr("F");
 
 	leftText->setPlainText(chars[7] + chars[0] + chars[1]);
 	topText->setPlainText(chars[1] + chars[2] + chars[3]);
