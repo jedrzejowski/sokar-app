@@ -47,7 +47,7 @@ void Monochrome::Scene::readAttributes() {
 		if (bitsAllocated > 62)
 			throw Sokar::ImageTypeNotSupportedException();
 
-		bool isDynamic = imgDimX * imgDimY < ((1 << bitsStored) - 1), isSigned = false;
+		bool isDynamic = bitsStored > 16, isSigned = false;
 
 		// Tworzenie odpowiedzniego okienka
 		switch (gdcmImage.GetPixelFormat()) {
@@ -238,7 +238,9 @@ bool Monochrome::Scene::generatePixmap() {
 
 //	SpeedTest okienkowanie("LUT");
 
-	if (!imgWindow->genLUT()) return false;
+	getCurrentWindow()->genLUT();
+
+	if (lastPixmapChange >= getCurrentWindow()->getLastChange()) return false;
 
 //	okienkowanie.close();
 
@@ -308,7 +310,7 @@ void Monochrome::Scene::findExtremes(TrueInt &max, TrueInt &min) {
 template<typename IntType>
 void Monochrome::Scene::genQPixmapOfType() {
 
-	switch (imgWindow->type()) {
+	switch (getCurrentWindow()->type()) {
 		case Window::IntDynamic:
 			genQPixmapOfTypeWidthWindow<IntType, WindowIntDynamic>();
 			break;
@@ -349,7 +351,7 @@ void Monochrome::Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 
 
 	auto buffer = &targetBuffer[from];
 	auto origin = (IntType *) &originBuffer[0];
-	auto windowPtr = (WinClass *) imgWindow;
+	auto windowPtr = (WinClass *) getCurrentWindow();
 
 	origin += from;
 
@@ -370,8 +372,8 @@ void Monochrome::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 				int dx = event->lastScreenPos().x() - event->screenPos().x(),
 						dy = event->lastScreenPos().y() - event->screenPos().y();
 
-				imgWindow->mvHorizontal(dx);
-				imgWindow->mvVertical(dy);
+				getCurrentWindow()->mvHorizontal(dx);
+				getCurrentWindow()->mvVertical(dy);
 
 				reloadPixmap();
 			}
@@ -387,15 +389,29 @@ void Monochrome::Scene::toolBarAdjust() {
 	auto *toolBar = getDicomView()->getToolBar();
 
 	auto winAction = toolBar->getActionWindowing();
-	winAction->setMenu(imgWindow->getMenu());
-	winAction->setEnabled(! isMovieMode());
+	winAction->setMenu(getCurrentWindow()->getMenu());
+	winAction->setEnabled(!isMovieMode());
 }
 
 bool Monochrome::Scene::acceptMovieMode(Sokar::MovieMode *movieMode) {
-	if (! DicomScene::acceptMovieMode(movieMode))
+	if (!DicomScene::acceptMovieMode(movieMode))
 		return false;
 
-	//TODO dodać jakieś warunki
+	imgWindow->hide();
 
 	return true;
+}
+
+void Monochrome::Scene::disableMovieMode() {
+	DicomScene::disableMovieMode();
+
+	imgWindow->show();
+}
+
+
+Monochrome::Window *Monochrome::Scene::getCurrentWindow() {
+	if (isMovieMode() && movieMode->isUseSameWindow())
+		return ((Monochrome::Scene *) movieMode->getOriginScene())->imgWindow;
+
+	return imgWindow;
 }

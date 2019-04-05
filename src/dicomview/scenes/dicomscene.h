@@ -2,6 +2,7 @@
 
 #include <QtCore>
 #include <QtWidgets>
+#include <chrono>
 
 #include <gdcmImage.h>
 #include <gdcmImageReader.h>
@@ -45,6 +46,7 @@ namespace Sokar {
 		QImage qImage;
 		QPixmap pixmap, iconPixmap;
 		QGraphicsPixmapItem *pixmapItem = nullptr;
+		std::chrono::high_resolution_clock::time_point lastPixmapChange;
 
 		QTransform panTransform, scaleTransform, centerTransform, rotateTransform;
 
@@ -97,7 +99,7 @@ namespace Sokar {
 
 		virtual bool acceptMovieMode(MovieMode *movieMode);
 
-		void disableMovieMode();
+		virtual void disableMovieMode();
 
 	protected:
 		virtual bool generatePixmap() = 0;

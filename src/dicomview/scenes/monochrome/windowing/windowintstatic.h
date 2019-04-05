@@ -53,6 +53,8 @@ namespace Sokar::Monochrome {
 
 				pixelArray = &arrayVector[0];
 
+				updateLastChange();
+
 				return true;
 			}
 			return false;

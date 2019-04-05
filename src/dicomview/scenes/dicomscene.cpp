@@ -54,6 +54,8 @@ void DicomScene::reloadPixmap() {
 
 	if (!generatePixmap()) return;
 
+	lastPixmapChange = std::chrono::high_resolution_clock::now();
+
 	if (pixmapItem == nullptr) {
 		pixmapItem = addPixmap(pixmap);
 		pixmapItem->setZValue(-1);
@@ -75,17 +77,18 @@ QTransform DicomScene::getPixmapTransformation() {
 
 void DicomScene::updatePixmapTransformation() {
 
-	auto *scene = isMovieMode() ? movieMode->getOriginScene() : this;
+	auto *scene = isMovieMode() && movieMode->isUseSameTranform() ?
+				  movieMode->getOriginScene() : this;
 
 	pixmapItem->setTransform(scene->getPixmapTransformation());
 
 	if (imageOrientationIndicator != nullptr)
-		imageOrientationIndicator->setRotateTransform(rotateTransform);
+		imageOrientationIndicator->setRotateTransform(scene->rotateTransform);
 
 	if (pixelSpacingIndicator != nullptr) {
 		QTransform transform;
-		transform *= scaleTransform;
-		transform *= rotateTransform;
+		transform *= scene->scaleTransform;
+		transform *= scene->rotateTransform;
 		pixelSpacingIndicator->setScaleTransform(transform);
 	}
 }
@@ -388,6 +391,7 @@ void DicomScene::disableMovieMode() {
 	movieMode = nullptr;
 
 	updatePixmapTransformation();
+	reloadPixmap();
 }
 
 bool DicomScene::isMovieMode() {

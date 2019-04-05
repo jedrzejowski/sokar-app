@@ -200,7 +200,7 @@
     </message>
     <message>
         <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="66"/>
-        <source>, %1</source>
+        <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

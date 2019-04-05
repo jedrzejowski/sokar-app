@@ -21,6 +21,8 @@ namespace Sokar::Monochrome {
 				background = isInversed() ? palette->getForeground() : palette->getBackground();
 				foreground = isInversed() ? palette->getBackground() : palette->getForeground();
 
+				updateLastChange();
+
 				return true;
 			}
 			return false;

@@ -30,3 +30,7 @@ void Window::setPalette(Sokar::Palette *palette) {
 bool Window::isAlive() {
 	return true;
 }
+
+void Window::updateLastChange() {
+	lastChange = std::chrono::high_resolution_clock::now();
+}

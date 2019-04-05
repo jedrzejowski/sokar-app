@@ -14,6 +14,8 @@ namespace Sokar::Monochrome {
 	protected:
 		Window *imgWindow;
 
+		Window *getCurrentWindow();
+
 	public:
 		explicit Scene(SceneParams &sceneParams);
 
@@ -42,10 +44,9 @@ namespace Sokar::Monochrome {
 	public:
 		bool acceptMovieMode(MovieMode *movieMode) override;
 
+		void disableMovieMode() override;
+
 	public:
 		void toolBarAdjust() override;
-
 	};
-
-
 }

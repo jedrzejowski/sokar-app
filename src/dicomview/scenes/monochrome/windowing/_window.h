@@ -1,10 +1,13 @@
 #pragma once
 
+#include <chrono>
+
 #include <QObject>
 
 #include "sokar/pixel.h"
 #include "sokar/palette.h"
 #include "../../indicators/_base.h"
+
 
 namespace Sokar::Monochrome {
 
@@ -20,6 +23,8 @@ namespace Sokar::Monochrome {
 		Palette *palette = nullptr;
 
 		QMenu toolbarMenu;
+
+		std::chrono::high_resolution_clock::time_point lastChange;
 
 	public:
 
@@ -52,8 +57,14 @@ namespace Sokar::Monochrome {
 
 		bool isAlive() override;
 
+		inline auto getLastChange() const {
+			return lastChange;
+		}
+
 	protected:
 		virtual void genMenu() = 0;
+
+		void updateLastChange();
 
 	signals:
 		void forceRefreshSignal();

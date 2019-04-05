@@ -37,6 +37,9 @@ MovieBar::MovieBar(QWidget *parent) :
 		if (isRunning()) sceneSequence->step();
 	});
 
+	ui->sameWindowBtn->setIcon(QIcon(":/img/ico/window.png"));
+	ui->sameTransformBtn->setIcon(QIcon(":/img/ico/rotateRight.png"));
+
 }
 
 MovieBar::~MovieBar() {
@@ -75,6 +78,8 @@ void MovieBar::start() {
 
 	movieMode = new MovieMode(this);
 	movieMode->setOriginScene(getDicomView()->getDicomScene());
+	movieMode->setUseSameTranform(ui->sameTransformBtn->isChecked());
+	movieMode->setUseSameWindow(ui->sameWindowBtn->isChecked());
 
 	// W przypadku inicjacji, DicomView nie posiada żadnej sceny dlatego bierzemy pierwszą
 	if (movieMode->getOriginScene() == nullptr)
@@ -115,6 +120,9 @@ void MovieBar::updateUI() {
 	ui->playBtn->setIcon(isRunning() ? IconPlayerStop : IconPlayerStart);
 
 	ui->sweepBtn->setIcon(sceneSequence->isSweeping() ? sweepingIcon : loopingIcon);
+
+	ui->sameTransformBtn->setDisabled(isRunning());
+	ui->sameWindowBtn->setDisabled(isRunning());
 
 }
 
