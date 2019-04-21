@@ -10,7 +10,7 @@ FileTree::FileTree(QWidget *parent) : QTreeView(parent) {
 
 	setModel(&model);
 
-	setSelectionMode(MultiSelection);
+//	setSelectionMode(MultiSelection);
 
 	setColumnHidden(1, true);
 	setColumnHidden(2, true);

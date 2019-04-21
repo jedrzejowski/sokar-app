@@ -12,8 +12,6 @@ namespace Sokar {
 		QVector<DicomFrameSet *> frameSets;
 		QString seriesInstanceUID;
 
-		SceneSequence *sceneSequence = nullptr;
-
 		DicomFileSet(DicomReaderVec &vec, QObject *parent = nullptr);
 
 	public:

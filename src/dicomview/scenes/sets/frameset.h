@@ -18,7 +18,6 @@ namespace Sokar {
 		QString title;
 
 		int numberOfFrames = 1;
-		SceneSequence *sceneSequence = nullptr;
 
 	public:
 
