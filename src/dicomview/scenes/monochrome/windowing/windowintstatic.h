@@ -60,7 +60,7 @@ namespace Sokar::Monochrome {
 			return false;
 		}
 
-		inline const Pixel &getLUT(quint64 value) override {
+		inline const Pixel &getPixel(quint64 value) override {
 			return *(pixelArray + signedMove + value);
 		}
 	};

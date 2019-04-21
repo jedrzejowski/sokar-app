@@ -28,7 +28,7 @@ namespace Sokar::Monochrome {
 			return false;
 		}
 
-		inline const Pixel &getLUT(quint64 value) override {
+		inline const Pixel &getPixel(quint64 value) override {
 			value += signedMove;
 
 			if (value < x0) {

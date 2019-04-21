@@ -116,7 +116,7 @@ void DicomToolBar::initActions() {
 		action.rotate->setMenu(menu);
 
 		{
-			action.rotateRight = new QAction(QIcon(":/img/ico/rotateRight.png"), tr("Rotate Right"), menu);
+			action.rotateRight = new QAction(QIcon(":/img/ico/actionTriggerSignal.png"), tr("Rotate Right"), menu);
 			menu->addAction(action.rotateRight);
 			connect(action.rotateRight, &QAction::triggered, [&](bool) {
 				emit actionTriggerSignal(RotateRight90);

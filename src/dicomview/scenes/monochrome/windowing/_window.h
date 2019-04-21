@@ -41,7 +41,7 @@ namespace Sokar::Monochrome {
 
 		virtual void mvVertical(int v) = 0;
 
-		virtual const Pixel &getLUT(quint64 value) = 0;
+		virtual const Pixel &getPixel(quint64 value) = 0;
 
 		virtual bool genLUT() = 0;
 

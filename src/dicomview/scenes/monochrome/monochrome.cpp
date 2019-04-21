@@ -356,7 +356,7 @@ void Monochrome::Scene::genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 
 	origin += from;
 
 	for (quint64 i = from; i < to; i++, origin++) {
-		*buffer++ = windowPtr->getLUT(*origin);
+		*buffer++ = windowPtr->getPixel(*origin);
 	}
 }
 

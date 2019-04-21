@@ -19,6 +19,8 @@ namespace Sokar {
 		QMutex qMutex;
 		DicomSceneVec dicomScenes;
 
+		SceneSequence *sceneSequence = nullptr;
+
 	public:
 		explicit DicomSceneSet(QObject *parent = nullptr);
 		~DicomSceneSet() override;
