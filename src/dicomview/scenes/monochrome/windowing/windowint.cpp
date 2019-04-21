@@ -57,8 +57,9 @@ bool Monochrome::WindowInt::genLUT() {
 	if (isInversed())
 		std::swap(_y0, _y1);
 
-	_x0 = center - width / 2;
-	_x1 = center + width / 2;
+
+	_x0 = double(center) - double(width) / 2;
+	_x1 = double(center) + double(width) / 2;
 
 	_x0 -= rescaleIntercept;
 	_x1 -= rescaleIntercept;
@@ -69,9 +70,8 @@ bool Monochrome::WindowInt::genLUT() {
 	a = (_y1 - _y0) / (_x1 - _x0);
 	b = _y1 - a * _x1;
 
-	// To może też spowodować jakiś błąd
-	x0 = TrueInt(_x0);
-	x1 = TrueInt(_x1);
+	x0 = _x0;
+	x1 = _x1;
 
 	if (hasBackground)
 		x0 = std::max(backgroundLvl, x0);

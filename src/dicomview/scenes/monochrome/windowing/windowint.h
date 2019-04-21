@@ -28,7 +28,7 @@ namespace Sokar::Monochrome {
 		quint64 signedMove = 0;
 		quint64 maxValue = 0;
 
-		TrueInt x1, x0;
+		double x1, x0;
 		double a, b;
 
 	public:

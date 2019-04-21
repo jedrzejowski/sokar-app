@@ -1,4 +1,3 @@
-
 #include <QtCore>
 #include <QApplication>
 

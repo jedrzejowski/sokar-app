@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.10)
 project(Sokar)
 
+
+
 set(CMAKE_CXX_COMPILER "g++")
 
 set(CMAKE_CXX_STANDARD 17)
@@ -22,14 +24,14 @@ set(GDCM_DIR ${CMAKE_CURRENT_LIST_DIR}/../gdcm-bin/)
 find_package(GDCM REQUIRED)
 include(${GDCM_USE_FILE})
 set(GDCM_LIBRARIES
-#        gdcmCommon
-#        gdcmDICT
-#        gdcmDSED
-#        gdcmIOD
-#        gdcmjpeg12
-#        gdcmjpeg16
-#        gdcmjpeg8
-#        gdcmMEXD
+        #        gdcmCommon
+        #        gdcmDICT
+        #        gdcmDSED
+        #        gdcmIOD
+        #        gdcmjpeg12
+        #        gdcmjpeg16
+        #        gdcmjpeg8
+        #        gdcmMEXD
         gdcmMSFF)
 
 #Bibliotek QT
@@ -75,12 +77,3 @@ target_link_libraries(
 
 file(COPY res/values/ DESTINATION res/values)
 file(COPY res/img/ DESTINATION res/img)
-
-#add_custom_command(
-#        TARGET ${APP_TARGET} POST_BUILD
-#        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-#        ${GDCM_LIBRARY_DIRS}
-#)
-#
-#message("${GDCM_LIBRARY_DIRS}")
-#message("${Qt5Widgets}")

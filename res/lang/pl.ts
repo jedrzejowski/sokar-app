@@ -137,12 +137,24 @@
     <message>
         <location filename="../../src/dicomview/moviebar.ui" line="40"/>
         <location filename="../../src/dicomview/moviebar.ui" line="90"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="100"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="116"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/dicomview/moviebar.ui" line="65"/>
         <source>Slow factor - time between each frame will me multiplied by this value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/moviebar.ui" line="97"/>
+        <source>Try using same window during movie</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/moviebar.ui" line="113"/>
+        <source>Try using same rotate/scale during movie</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
