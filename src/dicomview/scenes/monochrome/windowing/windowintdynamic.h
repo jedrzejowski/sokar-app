@@ -14,6 +14,8 @@ namespace Sokar::Monochrome {
 			return IntDynamic;
 		}
 
+
+
 		bool genLUT() override {
 
 			if (WindowInt::genLUT()) {
@@ -27,6 +29,8 @@ namespace Sokar::Monochrome {
 			}
 			return false;
 		}
+
+
 
 		inline const Pixel &getPixel(quint64 value) override {
 			value += signedMove;

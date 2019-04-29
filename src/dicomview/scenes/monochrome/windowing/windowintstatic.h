@@ -18,19 +18,18 @@ namespace Sokar::Monochrome {
 			return IntStatic;
 		}
 
+
+
 		bool genLUT() override {
 
 			if (WindowInt::genLUT()) {
-
-//				if (array.size() != signedMove + maxValue)
-//					array.resize(signedMove + maxValue);
 
 				if (arraySize != signedMove + maxValue) {
 					arraySize = signedMove + maxValue;
 					arrayVector.resize(arraySize);
 				}
 
-				TrueInt x = -signedMove;
+				qreal x = qreal(signedMove) * -1;
 
 				auto &background = isInversed() ? palette->getForeground() : palette->getBackground();
 				auto &foreground = isInversed() ? palette->getBackground() : palette->getForeground();
@@ -59,6 +58,9 @@ namespace Sokar::Monochrome {
 			}
 			return false;
 		}
+
+
+
 
 		inline const Pixel &getPixel(quint64 value) override {
 			return *(pixelArray + signedMove + value);

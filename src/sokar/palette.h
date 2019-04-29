@@ -25,7 +25,7 @@ namespace Sokar {
 			return pixels[i];
 		}
 
-		inline const Pixel &getPixel(double i) {
+		inline const Pixel &getPixel(qreal i) {
 			return getPixel(int(i * (size() - 1)));
 		}
 

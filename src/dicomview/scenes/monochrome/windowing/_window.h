@@ -11,9 +11,6 @@
 
 namespace Sokar::Monochrome {
 
-	typedef qint64 TrueInt;
-	typedef quint64 TrueUInt;
-
 	class Window : public QObject, public SceneIndicator {
 	Q_OBJECT
 	protected:

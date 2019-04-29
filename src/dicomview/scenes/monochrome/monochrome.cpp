@@ -134,67 +134,67 @@ void Monochrome::Scene::readAttributes() {
 			for (int i = 0; i < centers.size(); i++) {
 
 				imgWindowInt->pushDefaultValues(
-						Monochrome::TrueInt(centers[i]),
-						Monochrome::TrueInt(widths[i]),
+						qreal(centers[i]),
+						qreal(widths[i]),
 						names.isEmpty() ? "" : names[i]
 				);
 			}
 
-			imgWindowInt->setCenter(Monochrome::TrueInt(centers[0]));
-			imgWindowInt->setWidth(Monochrome::TrueInt(widths[0]));
+			imgWindowInt->setCenter(qreal(centers[0]));
+			imgWindowInt->setWidth(qreal(widths[0]));
 
 			goto endOfWindowBorders;
 		}
 
 		{
 			goto endOfWindowBorders;
-			TrueInt max, min;
-
-			switch (gdcmImage.GetPixelFormat()) {
-				case gdcm::PixelFormat::INT8:
-					findExtremes<qint8>(max, min);
-					break;
-
-				case gdcm::PixelFormat::UINT8:
-					findExtremes<quint8>(max, min);
-					break;
-
-				case gdcm::PixelFormat::INT16:
-					findExtremes<qint16>(max, min);
-					break;
-
-				case gdcm::PixelFormat::UINT16:
-					findExtremes<quint16>(max, min);
-					break;
-
-				case gdcm::PixelFormat::INT32:
-					findExtremes<qint32>(max, min);
-					break;
-
-				case gdcm::PixelFormat::UINT32:
-					findExtremes<quint32>(max, min);
-					break;
-
-				case gdcm::PixelFormat::INT64:
-					findExtremes<qint64>(max, min);
-					break;
-
-				case gdcm::PixelFormat::UINT64:
-					findExtremes<quint64>(max, min);
-					break;
-
-				default:
-					throw Sokar::ImageTypeNotSupportedException();
-			}
-
-			qDebug() << qint64(min) << quint64(max);
-			TrueInt diff = max - min;
-			diff = ~diff + 1;
-
-			imgWindowInt->setCenter(min + diff / 2);
-			imgWindowInt->setWidth(diff);
-
-			goto endOfWindowBorders;
+//			TrueInt max, min;
+//
+//			switch (gdcmImage.GetPixelFormat()) {
+//				case gdcm::PixelFormat::INT8:
+//					findExtremes<qint8>(max, min);
+//					break;
+//
+//				case gdcm::PixelFormat::UINT8:
+//					findExtremes<quint8>(max, min);
+//					break;
+//
+//				case gdcm::PixelFormat::INT16:
+//					findExtremes<qint16>(max, min);
+//					break;
+//
+//				case gdcm::PixelFormat::UINT16:
+//					findExtremes<quint16>(max, min);
+//					break;
+//
+//				case gdcm::PixelFormat::INT32:
+//					findExtremes<qint32>(max, min);
+//					break;
+//
+//				case gdcm::PixelFormat::UINT32:
+//					findExtremes<quint32>(max, min);
+//					break;
+//
+//				case gdcm::PixelFormat::INT64:
+//					findExtremes<qint64>(max, min);
+//					break;
+//
+//				case gdcm::PixelFormat::UINT64:
+//					findExtremes<quint64>(max, min);
+//					break;
+//
+//				default:
+//					throw Sokar::ImageTypeNotSupportedException();
+//			}
+//
+//			qDebug() << qint64(min) << quint64(max);
+//			TrueInt diff = max - min;
+//			diff = ~diff + 1;
+//
+//			imgWindowInt->setCenter(min + diff / 2);
+//			imgWindowInt->setWidth(diff);
+//
+//			goto endOfWindowBorders;
 		}
 
 		endOfWindowBorders:;
@@ -294,7 +294,7 @@ bool Monochrome::Scene::generatePixmap() {
 }
 
 template<typename IntType>
-void Monochrome::Scene::findExtremes(TrueInt &max, TrueInt &min) {
+void Monochrome::Scene::findExtremes(qreal &max, qreal &min) {
 
 	auto origin = (IntType *) &originBuffer[0];
 

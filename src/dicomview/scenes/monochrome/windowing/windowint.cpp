@@ -14,10 +14,9 @@ Monochrome::WindowInt::WindowInt(DataConverter &dataConverter) : Window(dataConv
 	text->setDefaultTextColor(defaultColor);
 	text->setPos(0, 0);
 	addToGroup(text);
-
 }
 
-void Monochrome::WindowInt::setCenter(TrueInt newCenter) {
+void Monochrome::WindowInt::setCenter(qreal newCenter) {
 	if (newCenter == center)
 		return;
 
@@ -30,7 +29,7 @@ void Monochrome::WindowInt::setCenter(TrueInt newCenter) {
 }
 
 
-void Monochrome::WindowInt::setWidth(TrueInt newWidth) {
+void Monochrome::WindowInt::setWidth(qreal newWidth) {
 	if (newWidth == width)
 		return;
 
@@ -45,21 +44,19 @@ void Monochrome::WindowInt::setWidth(TrueInt newWidth) {
 	emit widthChanged();
 }
 
-
 bool Monochrome::WindowInt::genLUT() {
 	if (!shouldRegen) return false;
 
 	signedMove = signedMove ? maxValue : 0;
 
-	double _x0, _x1;
-	double _y0 = 0, _y1 = 1.0;
+	qreal _x0, _x1;
+	qreal _y0 = 0, _y1 = 1.0;
 
 	if (isInversed())
 		std::swap(_y0, _y1);
 
-
-	_x0 = double(center) - double(width) / 2;
-	_x1 = double(center) + double(width) / 2;
+	_x0 = qreal(center) - qreal(width) / 2;
+	_x1 = qreal(center) + qreal(width) / 2;
 
 	_x0 -= rescaleIntercept;
 	_x1 -= rescaleIntercept;
@@ -113,7 +110,7 @@ void Monochrome::WindowInt::setSigned(bool isSigned) {
 	shouldRegen = true;
 }
 
-void Monochrome::WindowInt::setBackgroundLvl(TrueInt backgroundLvl) {
+void Monochrome::WindowInt::setBackgroundLvl(qreal backgroundLvl) {
 	if (WindowInt::backgroundLvl == backgroundLvl)
 		return;
 
@@ -140,7 +137,7 @@ void Monochrome::WindowInt::regenText() {
 	reposition();
 }
 
-void Monochrome::WindowInt::pushDefaultValues(TrueInt center, TrueInt width, QString name) {
+void Monochrome::WindowInt::pushDefaultValues(qreal center, qreal width, QString name) {
 	defaultWindows << DefaultWindow{center, width, name};
 }
 

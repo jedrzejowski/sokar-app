@@ -11,8 +11,8 @@ namespace Sokar::Monochrome {
 
 	private:
 		struct DefaultWindow {
-			TrueInt center;
-			TrueInt width;
+			qreal center;
+			qreal width;
 			QString name = "";
 		};
 
@@ -22,7 +22,7 @@ namespace Sokar::Monochrome {
 
 		bool hasBackground = false;
 
-		TrueInt center, width, backgroundLvl;
+		qreal center, width, backgroundLvl;
 		double rescaleIntercept = 0, rescaleSlope = 1;
 
 		quint64 signedMove = 0;
@@ -37,13 +37,13 @@ namespace Sokar::Monochrome {
 
 		//region Getters & Setters
 
-		inline TrueInt getCenter() const { return center; }
+		inline qreal getCenter() const { return center; }
 
-		void setCenter(TrueInt center);
+		void setCenter(qreal center);
 
-		inline TrueInt getWidth() const { return width; }
+		inline qreal getWidth() const { return width; }
 
-		void setWidth(TrueInt width);
+		void setWidth(qreal width);
 
 		inline double getRescaleIntercept() const { return rescaleIntercept; }
 
@@ -61,13 +61,13 @@ namespace Sokar::Monochrome {
 
 		void setSigned(bool isSigned);
 
-		inline TrueInt getBackgroundLvl() const { return backgroundLvl; }
+		inline qreal getBackgroundLvl() const { return backgroundLvl; }
 
-		void setBackgroundLvl(TrueInt backgroundLvl);
+		void setBackgroundLvl(qreal backgroundLvl);
 
 		//endregion
 
-		void pushDefaultValues(TrueInt center, TrueInt width, QString name = "");
+		void pushDefaultValues(qreal center, qreal width, QString name = "");
 
 
 		inline void mvHorizontal(int v) override {

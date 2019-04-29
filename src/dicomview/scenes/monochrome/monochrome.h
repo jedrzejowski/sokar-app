@@ -37,7 +37,7 @@ namespace Sokar::Monochrome {
 		void genQPixmapOfTypeWidthWindowThread(quint64 from, quint64 to);
 
 		template<typename IntType>
-		void findExtremes(TrueInt &max, TrueInt &min);
+		void findExtremes(qreal &max, qreal &min);
 
 		void readAttributes();
 
