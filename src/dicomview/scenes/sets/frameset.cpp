@@ -147,7 +147,7 @@ SceneSequence *DicomFrameSet::getSceneSequence() {
 
 	if (TagCineRate == frameIncPtr) {
 
-		auto frameTime = quint64(1 / dataConverter.toDecimalString(TagCineRate)[0]);
+		auto frameTime = quint64(1 / dataConverter.toDecimalString(TagCineRate)[0]) * 1000;
 
 		for (int i = 0; i < numberOfFrames; i++)
 			*sceneSequence << new Step(dicomScenes[i], frameTime);
