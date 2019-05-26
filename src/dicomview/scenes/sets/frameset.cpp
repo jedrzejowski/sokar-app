@@ -57,11 +57,6 @@ void DicomFrameSet::initScenes() {
 					break;
 
 				case gdcm::PhotometricInterpretation::YBR_FULL:
-				case gdcm::PhotometricInterpretation::YBR_FULL_422://Nope
-				case gdcm::PhotometricInterpretation::YBR_PARTIAL_422://Nope
-				case gdcm::PhotometricInterpretation::YBR_PARTIAL_420://Nope
-				case gdcm::PhotometricInterpretation::YBR_ICT://Nope
-				case gdcm::PhotometricInterpretation::YBR_RCT://Nope
 					scene = new Sokar::LumBlueRed::Scene(sceneParams);
 					break;
 
