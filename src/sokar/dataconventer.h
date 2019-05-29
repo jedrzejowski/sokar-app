@@ -60,7 +60,7 @@ namespace Sokar {
 
 		QString toPN(const gdcm::Tag &tag) { return toPersonName(tag); }
 
-		inline short toSS(const gdcm::Tag &tag) { return toShort(tag); }
+		inline qint16 toSS(const gdcm::Tag &tag) { return toShort(tag); }
 
 		inline quint16 toUS(const gdcm::Tag &tag) { return toUShort(tag); }
 

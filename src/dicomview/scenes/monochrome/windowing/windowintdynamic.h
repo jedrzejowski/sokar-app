@@ -30,10 +30,7 @@ namespace Sokar::Monochrome {
 			return false;
 		}
 
-
-
 		inline const Pixel &getPixel(quint64 value) override {
-			value += signedMove;
 
 			if (value < x0) {
 				return background;

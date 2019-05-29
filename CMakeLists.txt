@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.10)
 project(Sokar)
 
 
-
 set(CMAKE_CXX_COMPILER "g++")
 
 set(CMAKE_CXX_STANDARD 17)
@@ -24,14 +23,14 @@ set(GDCM_DIR ${CMAKE_CURRENT_LIST_DIR}/../gdcm-bin/)
 find_package(GDCM REQUIRED)
 include(${GDCM_USE_FILE})
 set(GDCM_LIBRARIES
-        #        gdcmCommon
-        #        gdcmDICT
-        #        gdcmDSED
-        #        gdcmIOD
-        #        gdcmjpeg12
-        #        gdcmjpeg16
-        #        gdcmjpeg8
-        #        gdcmMEXD
+        gdcmCommon
+        gdcmDICT
+        gdcmDSED
+        gdcmIOD
+        gdcmjpeg12
+        gdcmjpeg16
+        gdcmjpeg8
+        gdcmMEXD
         gdcmMSFF)
 
 #Bibliotek QT
@@ -47,6 +46,10 @@ endif ()
 # Na linuxie powinna być już zainstalowana
 find_package(Qt5Widgets CONFIG REQUIRED)
 find_package(Qt5LinguistTools REQUIRED)
+set(QT_LIBRARIES
+        Qt5::Core
+        Qt5::Gui
+        Qt5::Widgets)
 
 #Tłumaczenia
 file(GLOB TS_FILES "${PROJECT_SOURCE_DIR}/res/lang/*.ts")
@@ -67,13 +70,23 @@ add_executable(${APP_TARGET}
 
 target_link_libraries(
         ${APP_TARGET}
+        LINK_PUBLIC
         ${EXTRA_LIBS}
         ${GDCM_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
-        Qt5::Widgets
+        ${QT_LIBRARIES}
 )
+
+install(TARGETS ${APP_TARGET} RUNTIME DESTINATION ${INSTALL_DIR})
 
 #Inne zasoby
 
 file(COPY res/values/ DESTINATION res/values)
 file(COPY res/img/ DESTINATION res/img)
+
+foreach (lib ${GDCM_LIBRARIES} ${QT_LIBRARIES})
+
+    add_custom_command(TARGET ${APP_TARGET} POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:${lib}> $<TARGET_FILE_DIR:${APP_TARGET}>)
+
+endforeach ()

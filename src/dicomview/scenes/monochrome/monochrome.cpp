@@ -36,7 +36,7 @@ Monochrome::Scene::~Scene() {
 void Monochrome::Scene::readAttributes() {
 
 	bool ok;
-	ushort us;
+	quint16 us;
 	WindowInt *imgWindowInt;
 
 	{ // Tworzenie obiekty okienka

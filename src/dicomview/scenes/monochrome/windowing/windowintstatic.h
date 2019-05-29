@@ -59,9 +59,6 @@ namespace Sokar::Monochrome {
 			return false;
 		}
 
-
-
-
 		inline const Pixel &getPixel(quint64 value) override {
 			return *(pixelArray + signedMove + value);
 		}

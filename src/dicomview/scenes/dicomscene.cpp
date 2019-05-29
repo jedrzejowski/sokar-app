@@ -120,7 +120,8 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
 		auto target = this;
 
-		if (isMovieMode()) target = movieMode->getOriginScene();
+		if (isMovieMode() && movieMode->isUseSameTranform())
+			target = movieMode->getOriginScene();
 
 		switch (getDicomView()->getToolBar()->getState()) {
 
@@ -258,17 +259,22 @@ void DicomScene::toolBarAdjust() {
 void DicomScene::toolBarActionSlot(DicomToolBar::Action action, bool state) {
 	bool updateTransform = false;
 
+	auto target = this;
+
+	if (isMovieMode() && movieMode->isUseSameTranform())
+		target = movieMode->getOriginScene();
+
 	switch (action) {
 
 		case DicomToolBar::ClearPan:
-			panTransform = QTransform();
+			target->panTransform = QTransform();
 			updateTransform = true;
 			break;
 
 		case DicomToolBar::Fit2Screen:
 			if (!pixmap.isNull()) {
 				updateTransform = true;
-				scaleTransform = QTransform();
+				target->scaleTransform = QTransform();
 
 				auto pw = pixmap.size().width();
 				auto ph = pixmap.size().height();
@@ -281,14 +287,14 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action, bool state) {
 				nw = sw;
 				nh = nw * ph / pw;
 				if (nh <= sh) {
-					scaleTransform.scale(nw / pw, nh / ph);
+					target->scaleTransform.scale(nw / pw, nh / ph);
 					break;
 				}
 
 				nh = sh;
 				nw = nh * pw / ph;
 				if (nw <= sw) {
-					scaleTransform.scale(nw / pw, nh / ph);
+					target->scaleTransform.scale(nw / pw, nh / ph);
 					break;
 				}
 			}
@@ -296,31 +302,31 @@ void DicomScene::toolBarActionSlot(DicomToolBar::Action action, bool state) {
 
 		case DicomToolBar::OriginalResolution:
 			updateTransform = true;
-			scaleTransform = QTransform();
+			target->scaleTransform = QTransform();
 			break;
 
 		case DicomToolBar::RotateRight90:
 			updateTransform = true;
-			rotateTransform.rotate(90);
+			target->rotateTransform.rotate(90);
 			break;
 
 		case DicomToolBar::RotateLeft90:
-			rotateTransform.rotate(-90);
+			target->rotateTransform.rotate(-90);
 			updateTransform = true;
 			break;
 
 		case DicomToolBar::FlipHorizontal:
-			rotateTransform.scale(1, -1);
+			target->rotateTransform.scale(1, -1);
 			updateTransform = true;
 			break;
 
 		case DicomToolBar::FlipVertical:
-			rotateTransform.scale(-1, 1);
+			target->rotateTransform.scale(-1, 1);
 			updateTransform = true;
 			break;
 
 		case DicomToolBar::ClearRotate:
-			rotateTransform = QTransform();
+			target->rotateTransform = QTransform();
 			updateTransform = true;
 			break;
 

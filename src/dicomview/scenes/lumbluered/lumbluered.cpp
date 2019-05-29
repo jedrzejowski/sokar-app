@@ -11,7 +11,7 @@ LumBlueRed::Scene::Scene(SceneParams &sceneParams) :
 }
 
 Sokar::Pixel ybr2Pixel(quint8 y, quint8 b, quint8 r) {
-	static double red, green, blue;
+	qreal red, green, blue;
 
 	//https://www.dabsoft.ch/dicom/3/C.7.6.3.1.2/
 	//https://pl.wikipedia.org/wiki/YCbCr
