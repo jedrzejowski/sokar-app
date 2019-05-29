@@ -17,112 +17,97 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="52"/>
+        <location filename="../../src/win/mainwindow.ui" line="44"/>
         <source>E&amp;xport as</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="89"/>
-        <source>&amp;Theme</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/win/mainwindow.ui" line="102"/>
+        <location filename="../../src/win/mainwindow.ui" line="78"/>
         <source>&amp;Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="112"/>
+        <location filename="../../src/win/mainwindow.ui" line="88"/>
         <source>About &amp;GDCM</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="48"/>
+        <location filename="../../src/win/mainwindow.ui" line="40"/>
         <source>&amp;File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="30"/>
-        <source>This software is the result of the work of a student of engineering studies, under no circumstances may it be used for medical analysis</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/win/mainwindow.ui" line="75"/>
+        <location filename="../../src/win/mainwindow.ui" line="65"/>
         <source>He&amp;lp</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="85"/>
-        <source>&amp;View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/win/mainwindow.ui" line="107"/>
+        <location filename="../../src/win/mainwindow.ui" line="83"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="117"/>
+        <location filename="../../src/win/mainwindow.ui" line="93"/>
         <source>About &amp;Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="122"/>
+        <location filename="../../src/win/mainwindow.ui" line="98"/>
         <source>Sokar &amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="127"/>
+        <location filename="../../src/win/mainwindow.ui" line="103"/>
         <source>&amp;Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="132"/>
+        <location filename="../../src/win/mainwindow.ui" line="108"/>
         <source>&amp;Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="137"/>
+        <location filename="../../src/win/mainwindow.ui" line="113"/>
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="172"/>
+        <location filename="../../src/win/mainwindow.ui" line="148"/>
         <source>qq</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="61"/>
+        <location filename="../../src/win/mainwindow.ui" line="53"/>
         <source>Open &amp;Recent</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="142"/>
+        <location filename="../../src/win/mainwindow.ui" line="118"/>
         <source>&amp;Save Anonymously</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="147"/>
+        <location filename="../../src/win/mainwindow.ui" line="123"/>
         <source>&amp;JPEG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="152"/>
+        <location filename="../../src/win/mainwindow.ui" line="128"/>
         <source>&amp;PNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="157"/>
+        <location filename="../../src/win/mainwindow.ui" line="133"/>
         <source>&amp;GIF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="162"/>
+        <location filename="../../src/win/mainwindow.ui" line="138"/>
         <source>&amp;BMP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="167"/>
+        <location filename="../../src/win/mainwindow.ui" line="143"/>
         <source>&amp;Preferences</source>
         <translation type="unfinished"></translation>
     </message>
@@ -222,16 +207,16 @@
     </message>
     <message>
         <location filename="../../src/win/about.h" line="12"/>
-        <source>&lt;b&gt;Sokar&lt;/b&gt; to jest moja przeglądarka, i huj</source>
+        <source>&lt;b&gt;Sokar&lt;/b&gt; jest efektem pracy inżynierskiej Adama Jędrzejowskiego&amp;lt;adam@jedrzejowski.pl&amp;gt;&lt;br&gt;&lt;br&gt;Linki:&lt;br&gt;Tekst pracy: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;&lt;br&gt;Kod aplikacji: &lt;a href=&quot;%2&quot;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="24"/>
+        <location filename="../../src/win/about.h" line="28"/>
         <source>About GDCM - Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="26"/>
+        <location filename="../../src/win/about.h" line="30"/>
         <source>&lt;b&gt;Grassroots DiCoM&lt;/b&gt; is a &lt;b&gt;C++&lt;/b&gt; library for DICOM medical files. It is accessible from Python, C#, Java and PHP. It supports RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated transfer syntax.&lt;br&gt;It comes with a super fast scanner implementation to quickly scan hundreds of DICOM files.&lt;br&gt;It supports SCU network operations (C-ECHO, C-FIND, C-STORE, C-MOVE). PS 3.3 &amp; 3.6 are distributed as XML files.&lt;br&gt;It also provides PS 3.15 certificates and password based mecanism to anonymize and de-identify DICOM datasets.&lt;br&gt;&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt;RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated&lt;/li&gt;&lt;li&gt;Quickly scan DICOM for attributes&lt;/li&gt;&lt;li&gt;SCU: C-ECHO, C-FIND, C-STORE, C-MOVE&lt;/li&gt;&lt;li&gt;PS 3.3 &amp; PS 3.6/3.7 as XML files&lt;/li&gt;&lt;li&gt;PS 3.15 de-identify / re-identify (certificates+password based)&lt;/li&gt;&lt;li&gt;Portable C++&lt;/li&gt;&lt;li&gt;Bindings: Python, C#, Java, PHP and Perl&lt;/li&gt;&lt;li&gt;VTK bridge (ImageData and RTSTRUCT)&lt;/li&gt;&lt;li&gt;Nightly test suite&lt;/li&gt;&lt;li&gt;Support well-known DICOM issues (PMSCT_RLE1, JAI JPEG-LS, Signed Short JPEG)&lt;/li&gt;&lt;/ul&gt;Official sire: &lt;a href=&quot;%1&quot;&gt;%1/&lt;/a&gt;&lt;br&gt;SourceForge profile: &lt;a href=&quot;%2&quot;&gt;%2/&lt;/a&gt;&lt;br&gt;License: &lt;a href=&quot;%3&quot;&gt;BSD licenses&lt;/a&gt;, &lt;a href=&quot;%4&quot;&gt;Apache License V2.0/&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -433,57 +418,62 @@
 <context>
     <name>Sokar::MainWindow</name>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="33"/>
+        <location filename="../../src/win/mainwindow.cpp" line="23"/>
+        <source>This software is the result of the work of a student of engineering studies, under no circumstances may it be used for medical analysis</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.cpp" line="35"/>
         <source>Load DCM file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="34"/>
+        <location filename="../../src/win/mainwindow.cpp" line="36"/>
         <source>Dicom File (*.dcm);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="93"/>
+        <location filename="../../src/win/mainwindow.cpp" line="94"/>
         <source>Save as JPEG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="93"/>
+        <location filename="../../src/win/mainwindow.cpp" line="94"/>
         <source>JPEG File (*.jpg)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="97"/>
+        <location filename="../../src/win/mainwindow.cpp" line="98"/>
         <source>Save as PNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="97"/>
+        <location filename="../../src/win/mainwindow.cpp" line="98"/>
         <source>PNG File (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="101"/>
+        <location filename="../../src/win/mainwindow.cpp" line="102"/>
         <source>Save as GIF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="101"/>
+        <location filename="../../src/win/mainwindow.cpp" line="102"/>
         <source>GIF File (*.gif)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="105"/>
+        <location filename="../../src/win/mainwindow.cpp" line="106"/>
         <source>Save as BMP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="105"/>
+        <location filename="../../src/win/mainwindow.cpp" line="106"/>
         <source>BMP File (*.bmp)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="117"/>
+        <location filename="../../src/win/mainwindow.cpp" line="118"/>
         <source>About Qt - Sokar</source>
         <translation type="unfinished"></translation>
     </message>

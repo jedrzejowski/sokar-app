@@ -20,6 +20,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	this->setMouseTracking(true);
 
+	ui->statusBar->addWidget(new QLabel(tr("This software is the result of the work of a student of engineering studies, under no circumstances may it be used for medical analysis")));
+
 	initMenuBar();
 }
 
@@ -57,7 +59,6 @@ void MainWindow::initMenuBar() {
 		}
 
 		ui->menuExport->setDisabled(disable);
-		ui->actionSaveAnonymously->setDisabled(disable);
 	});
 
 	connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::selectFile);
@@ -123,6 +124,10 @@ void MainWindow::initMenuBar() {
 
 	connect(ui->actionAboutSokar, &QAction::triggered, this, [this](){
 		About::Sokar(this);
+	});
+
+	connect(ui->actionAboutCMake, &QAction::triggered, this, [this](){
+		About::CMake(this);
 	});
 
 	//endregion

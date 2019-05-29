@@ -4,7 +4,7 @@
 #include <iostream>
 
 namespace Sokar::Monochrome {
-	class WindowIntStatic : public WindowInt {
+		class WindowIntStatic : public WindowInt {
 	protected:
 		std::vector<Pixel> arrayVector;
 		Pixel *pixelArray = nullptr;

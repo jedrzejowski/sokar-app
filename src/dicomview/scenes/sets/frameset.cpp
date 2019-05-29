@@ -57,11 +57,6 @@ void DicomFrameSet::initScenes() {
 					break;
 
 				case gdcm::PhotometricInterpretation::YBR_FULL:
-				case gdcm::PhotometricInterpretation::YBR_FULL_422://Nope
-				case gdcm::PhotometricInterpretation::YBR_PARTIAL_422://Nope
-				case gdcm::PhotometricInterpretation::YBR_PARTIAL_420://Nope
-				case gdcm::PhotometricInterpretation::YBR_ICT://Nope
-				case gdcm::PhotometricInterpretation::YBR_RCT://Nope
 					scene = new Sokar::LumBlueRed::Scene(sceneParams);
 					break;
 
@@ -147,7 +142,7 @@ SceneSequence *DicomFrameSet::getSceneSequence() {
 
 	if (TagCineRate == frameIncPtr) {
 
-		auto frameTime = quint64(1 / dataConverter.toDecimalString(TagCineRate)[0]);
+		auto frameTime = quint64(1 / dataConverter.toDecimalString(TagCineRate)[0]) * 1000;
 
 		for (int i = 0; i < numberOfFrames; i++)
 			*sceneSequence << new Step(dicomScenes[i], frameTime);

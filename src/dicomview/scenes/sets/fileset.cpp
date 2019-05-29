@@ -33,7 +33,7 @@ DicomFileSet::DicomFileSet(DicomReaderVec &vec, QObject *parent) : DicomSceneSet
 
 	DataConverter converter;
 
-	qSort(vec.begin(), vec.end(), [&](const gdcm::ImageReader *&a, const gdcm::ImageReader *&b) {
+	std::sort(vec.begin(), vec.end(), [&](const gdcm::ImageReader *&a, const gdcm::ImageReader *&b) {
 		static gdcm::Tag TagInstanceNumber(0x0020, 0x0013);
 		int numA, numB;
 

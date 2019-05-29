@@ -10,10 +10,14 @@ namespace Sokar {
 			static QString title = QObject::tr("About Sokar - Sokar");
 
 			static QString text = QObject::tr(
-					"<b>Sokar</b> to jest moja przeglądarka, i huj"
-
+					"<b>Sokar</b> jest efektem pracy inżynierskiej Adama Jędrzejowskiego&lt;adam@jedrzejowski.pl&gt;<br>"
+					"<br>"
+					"Linki:<br>"
+					"Tekst pracy: <a href=\"%1\">%1</a><br>"
+					"Kod aplikacji: <a href=\"%2\">%2</a>"
 			).arg(
-					""
+					"https://github.com/jedrzejowski/sokar-writing",
+					"https://github.com/jedrzejowski/sokar-app"
 			);
 
 			QMessageBox::about(window, title, text);
@@ -42,9 +46,9 @@ namespace Sokar {
 					"<li>Nightly test suite</li>"
 					"<li>Support well-known DICOM issues (PMSCT_RLE1, JAI JPEG-LS, Signed Short JPEG)</li>"
 					"</ul>"
-					"Official sire: <a href=\"%1\">%1/</a><br>"
-					"SourceForge profile: <a href=\"%2\">%2/</a><br>"
-					"License: <a href=\"%3\">BSD licenses</a>, <a href=\"%4\">Apache License V2.0/</a>"
+					"Official site: <a href=\"%1\">%1</a><br>"
+					"SourceForge profile: <a href=\"%2\">%2</a><br>"
+					"License: <a href=\"%3\">BSD licenses</a>, <a href=\"%4\">Apache License V2.0</a>"
 
 			).arg(
 					/* %1 */"http://gdcm.sourceforge.net/",
@@ -56,6 +60,23 @@ namespace Sokar {
 			QMessageBox::about(window, title, text);
 		}
 
+		static void CMake(QWidget *window) {
+			static QString title = QObject::tr("About Sokar - Sokar");
+
+			static QString text = QObject::tr(
+					"<b>CMake</b> is an open-source, cross-platform family of tools designed to build, test and package software."
+					"CMake is used to control the software compilation process using simple platform and compiler independent configuration files, and generate native makefiles and workspaces that can be used in the compiler environment of your choice."
+					"<br>"
+					"Links:<br>"
+					"Official site: <a href=\"%1\">%1</a><br>"
+					"License: <a href=\"%2\">BSD licenses</a>"
+			).arg(
+					/* %1 */"https://cmake.org/",
+					/* %2*/"https://en.wikipedia.org/wiki/BSD_licenses"
+			);
+
+			QMessageBox::about(window, title, text);
+		}
 	}
 }
 
