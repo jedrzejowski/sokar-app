@@ -22,12 +22,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="78"/>
+        <location filename="../../src/win/mainwindow.ui" line="79"/>
         <source>&amp;Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="88"/>
+        <location filename="../../src/win/mainwindow.ui" line="89"/>
         <source>About &amp;GDCM</source>
         <translation type="unfinished"></translation>
     </message>
@@ -42,38 +42,43 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="83"/>
+        <location filename="../../src/win/mainwindow.ui" line="84"/>
         <source>About &amp;Qt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="93"/>
+        <location filename="../../src/win/mainwindow.ui" line="94"/>
         <source>About &amp;Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="98"/>
+        <location filename="../../src/win/mainwindow.ui" line="99"/>
         <source>Sokar &amp;Help</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="103"/>
+        <location filename="../../src/win/mainwindow.ui" line="104"/>
         <source>&amp;Light</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="108"/>
+        <location filename="../../src/win/mainwindow.ui" line="109"/>
         <source>&amp;Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="113"/>
+        <location filename="../../src/win/mainwindow.ui" line="114"/>
         <source>&amp;Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="148"/>
+        <location filename="../../src/win/mainwindow.ui" line="149"/>
         <source>qq</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/win/mainwindow.ui" line="154"/>
+        <source>About CMake</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -82,32 +87,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="118"/>
+        <location filename="../../src/win/mainwindow.ui" line="119"/>
         <source>&amp;Save Anonymously</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="123"/>
+        <location filename="../../src/win/mainwindow.ui" line="124"/>
         <source>&amp;JPEG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="128"/>
+        <location filename="../../src/win/mainwindow.ui" line="129"/>
         <source>&amp;PNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="133"/>
+        <location filename="../../src/win/mainwindow.ui" line="134"/>
         <source>&amp;GIF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="138"/>
+        <location filename="../../src/win/mainwindow.ui" line="139"/>
         <source>&amp;BMP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.ui" line="143"/>
+        <location filename="../../src/win/mainwindow.ui" line="144"/>
         <source>&amp;Preferences</source>
         <translation type="unfinished"></translation>
     </message>
@@ -202,6 +207,7 @@
     </message>
     <message>
         <location filename="../../src/win/about.h" line="10"/>
+        <location filename="../../src/win/about.h" line="64"/>
         <source>About Sokar - Sokar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -217,41 +223,83 @@
     </message>
     <message>
         <location filename="../../src/win/about.h" line="30"/>
-        <source>&lt;b&gt;Grassroots DiCoM&lt;/b&gt; is a &lt;b&gt;C++&lt;/b&gt; library for DICOM medical files. It is accessible from Python, C#, Java and PHP. It supports RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated transfer syntax.&lt;br&gt;It comes with a super fast scanner implementation to quickly scan hundreds of DICOM files.&lt;br&gt;It supports SCU network operations (C-ECHO, C-FIND, C-STORE, C-MOVE). PS 3.3 &amp; 3.6 are distributed as XML files.&lt;br&gt;It also provides PS 3.15 certificates and password based mecanism to anonymize and de-identify DICOM datasets.&lt;br&gt;&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt;RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated&lt;/li&gt;&lt;li&gt;Quickly scan DICOM for attributes&lt;/li&gt;&lt;li&gt;SCU: C-ECHO, C-FIND, C-STORE, C-MOVE&lt;/li&gt;&lt;li&gt;PS 3.3 &amp; PS 3.6/3.7 as XML files&lt;/li&gt;&lt;li&gt;PS 3.15 de-identify / re-identify (certificates+password based)&lt;/li&gt;&lt;li&gt;Portable C++&lt;/li&gt;&lt;li&gt;Bindings: Python, C#, Java, PHP and Perl&lt;/li&gt;&lt;li&gt;VTK bridge (ImageData and RTSTRUCT)&lt;/li&gt;&lt;li&gt;Nightly test suite&lt;/li&gt;&lt;li&gt;Support well-known DICOM issues (PMSCT_RLE1, JAI JPEG-LS, Signed Short JPEG)&lt;/li&gt;&lt;/ul&gt;Official sire: &lt;a href=&quot;%1&quot;&gt;%1/&lt;/a&gt;&lt;br&gt;SourceForge profile: &lt;a href=&quot;%2&quot;&gt;%2/&lt;/a&gt;&lt;br&gt;License: &lt;a href=&quot;%3&quot;&gt;BSD licenses&lt;/a&gt;, &lt;a href=&quot;%4&quot;&gt;Apache License V2.0/&lt;/a&gt;</source>
+        <source>&lt;b&gt;Grassroots DiCoM&lt;/b&gt; is a &lt;b&gt;C++&lt;/b&gt; library for DICOM medical files. It is accessible from Python, C#, Java and PHP. It supports RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated transfer syntax.&lt;br&gt;It comes with a super fast scanner implementation to quickly scan hundreds of DICOM files.&lt;br&gt;It supports SCU network operations (C-ECHO, C-FIND, C-STORE, C-MOVE). PS 3.3 &amp; 3.6 are distributed as XML files.&lt;br&gt;It also provides PS 3.15 certificates and password based mecanism to anonymize and de-identify DICOM datasets.&lt;br&gt;&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt;RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated&lt;/li&gt;&lt;li&gt;Quickly scan DICOM for attributes&lt;/li&gt;&lt;li&gt;SCU: C-ECHO, C-FIND, C-STORE, C-MOVE&lt;/li&gt;&lt;li&gt;PS 3.3 &amp; PS 3.6/3.7 as XML files&lt;/li&gt;&lt;li&gt;PS 3.15 de-identify / re-identify (certificates+password based)&lt;/li&gt;&lt;li&gt;Portable C++&lt;/li&gt;&lt;li&gt;Bindings: Python, C#, Java, PHP and Perl&lt;/li&gt;&lt;li&gt;VTK bridge (ImageData and RTSTRUCT)&lt;/li&gt;&lt;li&gt;Nightly test suite&lt;/li&gt;&lt;li&gt;Support well-known DICOM issues (PMSCT_RLE1, JAI JPEG-LS, Signed Short JPEG)&lt;/li&gt;&lt;/ul&gt;Official site: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;&lt;br&gt;SourceForge profile: &lt;a href=&quot;%2&quot;&gt;%2&lt;/a&gt;&lt;br&gt;License: &lt;a href=&quot;%3&quot;&gt;BSD licenses&lt;/a&gt;, &lt;a href=&quot;%4&quot;&gt;Apache License V2.0&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="25"/>
+        <location filename="../../src/win/about.h" line="66"/>
+        <source>&lt;b&gt;CMake&lt;/b&gt; is an open-source, cross-platform family of tools designed to build, test and package software.CMake is used to control the software compilation process using simple platform and compiler independent configuration files, and generate native makefiles and workspaces that can be used in the compiler environment of your choice.&lt;br&gt;Links:&lt;br&gt;Official site: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;&lt;br&gt;License: &lt;a href=&quot;%2&quot;&gt;BSD licenses&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="22"/>
         <source>&lt;unit&gt;mm&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="29"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="26"/>
         <source>Modality: &lt;value&gt;%1&lt;/value&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="32"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="29"/>
         <source>Series: &lt;value&gt;%1&lt;/value&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="35"/>
-        <source>Instance Num: &lt;value&gt;%1&lt;/value&gt;</source>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="32"/>
+        <source>Instance number: &lt;value&gt;%1&lt;/value&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="38"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="79"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="122"/>
+        <source>KVP: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;kV&lt;/unit&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="82"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="119"/>
+        <source>Exposure time: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;ms&lt;/unit&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="85"/>
+        <source>Exposure: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;mAs&lt;/unit&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="99"/>
+        <source>Repetition time: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;ms&lt;/unit&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="102"/>
+        <source>Echo time: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;ms&lt;/unit&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="105"/>
+        <source>Magnetic field: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;T&lt;/unit&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="108"/>
+        <source>SAR: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;W/kg&lt;/unit&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="36"/>
         <source>Slice thick: &lt;value&gt;%1&lt;/value&gt;%3, loc.: &lt;value&gt;%2&lt;/value&gt;%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="43"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="41"/>
         <source>Slice thickness: &lt;value&gt;%1&lt;/value&gt;%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="46"/>
+        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="44"/>
         <source>Slice location: &lt;value&gt;%1&lt;/value&gt;%2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -297,17 +345,17 @@
 <context>
     <name>Sokar::DicomFrameSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="179"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="174"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="185"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="180"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="186"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="181"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>

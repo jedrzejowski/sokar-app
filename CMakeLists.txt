@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 project(Sokar)
 
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif ()
 
 set(CMAKE_CXX_COMPILER "g++")
 
@@ -34,12 +37,16 @@ set(GDCM_LIBRARIES
         gdcmMSFF)
 
 #Bibliotek QT
-if (WIN32)
-    set(QtDir C:/Qt/5.12.1/msvc2017_64)
-    set(Qt5Widgets_DIR ${QtDir}/lib/cmake/Qt5Widgets/)
-    set(Qt5LinguistTools_DIR ${QtDir}/lib/cmake/Qt5LinguistTools/)
-elseif (APPLE)
-    set(QtDir /Applications/Qt)
+if (WIN32 OR APPLE)
+
+#    if (WIN32)
+#        option(QtDir "Qt directory" C:/Qt/5.12.1/msvc2017_64)
+#    elseif (APPLE)
+#        option(QtDir "Qt directory" /Applications/Qt)
+#    endif ()
+
+    set(QtDir "C:/Qt/5.12.1/msvc2017_64" CACHE STRING "Qt directory")
+
     set(Qt5Widgets_DIR ${QtDir}/lib/cmake/Qt5Widgets/)
     set(Qt5LinguistTools_DIR ${QtDir}/lib/cmake/Qt5LinguistTools/)
 endif ()
@@ -84,6 +91,7 @@ install(TARGETS ${APP_TARGET} RUNTIME DESTINATION ${INSTALL_DIR})
 file(COPY res/values/ DESTINATION res/values)
 file(COPY res/img/ DESTINATION res/img)
 
+# Kopiowanie plików bibliotek do folderu instalacji
 foreach (lib ${GDCM_LIBRARIES} ${QT_LIBRARIES})
 
     add_custom_command(TARGET ${APP_TARGET} POST_BUILD

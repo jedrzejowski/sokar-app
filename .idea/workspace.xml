@@ -3,8 +3,8 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="Sokar" targetName="DiBrowser_autogen" />
-      <config projectName="Sokar" targetName="Sokar" />
       <config projectName="Sokar" targetName="Sokar_autogen" />
+      <config projectName="Sokar" targetName="Sokar" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -14,10 +14,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="Dodanie informa">
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations/Sokar_LaTeX.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,6 +25,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -47,40 +50,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp">
+        <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="53" column="28" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/dicomscene.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="82" selection-start-line="82" selection-end-line="82" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.cpp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="49" column="66" lean-forward="true" selection-start-line="49" selection-start-column="66" selection-end-line="49" selection-end-column="66" />
-              <folding>
-                <element signature="e#0#21#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.h">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="23" selection-start-line="21" selection-start-column="23" selection-end-line="21" selection-end-column="23" />
+            <state relative-caret-position="162">
+              <caret line="43" column="18" selection-start-line="43" selection-start-column="18" selection-end-line="43" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -96,7 +69,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>QStringList</find>
       <find>ut</find>
       <find>setsc</find>
       <find>text</find>
@@ -126,6 +98,7 @@
       <find>about</find>
       <find>iconPixmap</find>
       <find>mouse</find>
+      <find>OPT</find>
     </findStrings>
     <replaceStrings>
       <replace>++z</replace>
@@ -185,7 +158,6 @@
         <option value="$PROJECT_DIR$/src/widget/filetree.h" />
         <option value="$PROJECT_DIR$/src/widget/filetree.cpp" />
         <option value="$PROJECT_DIR$/src/sokar/dataconventer.cpp" />
-        <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/src/sokar/dataconventer.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" />
@@ -215,14 +187,15 @@
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.h" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.cpp" />
         <option value="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
       </list>
     </option>
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="-26" />
-    <option name="width" value="1920" />
-    <option name="height" value="1106" />
+    <option name="y" value="-1" />
+    <option name="width" value="683" />
+    <option name="height" value="769" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -250,6 +223,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -257,73 +231,21 @@
               <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
               <item name="sokar-app" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sokar-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sokar-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dicomview" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sokar-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dicomview" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sokar-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dicomview" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
-              <item name="indicators" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sokar-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="dicomview" type="462c0819:PsiDirectoryNode" />
-              <item name="scenes" type="462c0819:PsiDirectoryNode" />
-              <item name="sets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sokar-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sokar" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sokar-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="widget" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Sokar" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sokar-app" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="win" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SearchEverywhereHistoryKey" value="dicom&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/src/dicomview/scenes/dicomscene.cpp&#10;cmak&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/CMakeLists.txt&#10;cma&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/CMakeLists.txt&#10;pal&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/src/sokar/palette.h&#10;mono&#9;FILE&#9;file:///home/adam/Programowanie/studia/bachelor-elek/qwidgets/scenes/monochrome2/monochrome2.cpp&#10;ui&#9;FILE&#9;file:///home/adam/Programowanie/bucherol/browser/win/main_win.ui&#10;main&#9;FILE&#9;file:///home/adam/Programowanie/bucherol/browser/win/main_win.ui" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="jsx.switch.disabled" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="typescript-compiler-editor-notification" value="false" />
   </component>
@@ -355,7 +277,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Sokar">
+  <component name="RunManager" selected="CMake Application.Build All">
     <configuration name="Sokar" type="CMakeRunConfiguration" factoryName="Application" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="Sokar">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -367,10 +289,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.Build All" />
-      <item itemvalue="Application.Sokar" />
-      <item itemvalue="Application.Sokar_autogen" />
-      <item itemvalue="LaTeX.Sokar LaTeX" />
+      <item itemvalue="CMake Application.Build All" />
+      <item itemvalue="CMake Application.Sokar" />
+      <item itemvalue="CMake Application.Sokar_autogen" />
     </list>
   </component>
   <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="$PROJECT_DIR$/../../.." CustomDictionaries="1" CustomDictionary0="$PROJECT_DIR$/../../../pl.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
@@ -705,7 +626,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="631514000" />
+    <option name="totallyTimeSpent" value="633912000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -717,23 +638,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="-26" width="1920" height="1106" extended-state="6" />
+    <frame x="0" y="2" width="1366" height="766" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49447513" visible="true" weight="0.30522946" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49447513" visible="true" weight="0.26818183" />
       <window_info id="Structure" order="1" sideWeight="0.50542635" side_tool="true" weight="0.2439394" />
       <window_info id="Favorites" order="2" sideWeight="0.5055249" side_tool="true" weight="0.2439394" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32212028" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49848485" visible="true" weight="0.34760448" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49848485" weight="0.3462733" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.55453616" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3255814" />
-      <window_info anchor="bottom" id="CMake" order="7" weight="0.37277487" />
+      <window_info anchor="bottom" id="CMake" order="7" weight="0.3726708" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.23955148" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32517838" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49893048" weight="0.43119267" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49893048" weight="0.43012422" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="12" weight="0.32921812" />
       <window_info anchor="bottom" id="Inspection Results" order="13" weight="0.32921812" />
@@ -804,7 +725,7 @@
     <option name="LAST_COMMIT_MESSAGE" value="Commit z nieznanymi mi pracami" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/Programowanie/studia/sokar/gdcm/Source/MediaStorageAndFileFormat/gdcmBitmap.cxx">
+    <entry file="file://$PROJECT_DIR$/../gdcm/Source/MediaStorageAndFileFormat/gdcmBitmap.cxx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="309">
           <caret line="895" column="13" selection-start-line="895" selection-start-column="13" selection-end-line="895" selection-end-column="13" />
@@ -874,7 +795,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Programowanie/studia/sokar/gdcm/Source/DataStructureAndEncodingDefinition/gdcmReader.h">
+    <entry file="file://$PROJECT_DIR$/../gdcm/Source/DataStructureAndEncodingDefinition/gdcmReader.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="71" column="14" selection-start-line="71" selection-start-column="14" selection-end-line="71" selection-end-column="14" />
@@ -901,7 +822,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/Programowanie/studia/sokar/gdcm/Source/DataStructureAndEncodingDefinition/gdcmDataSet.h">
+    <entry file="file://$PROJECT_DIR$/../gdcm/Source/DataStructureAndEncodingDefinition/gdcmDataSet.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="97">
           <caret line="174" column="17" lean-forward="true" selection-start-line="174" selection-start-column="17" selection-end-line="174" selection-end-column="17" />
