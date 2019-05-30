@@ -30,11 +30,16 @@ set(GDCM_LIBRARIES
         gdcmDICT
         gdcmDSED
         gdcmIOD
+        gdcmexpat
+        gdcmzlib
+        gdcmcharls
+        gdcmopenjp2
         gdcmjpeg12
         gdcmjpeg16
         gdcmjpeg8
         gdcmMEXD
-        gdcmMSFF)
+        gdcmMSFF
+        socketxx)
 
 #Bibliotek QT
 if (WIN32 OR APPLE)
