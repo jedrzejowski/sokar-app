@@ -26,7 +26,8 @@ namespace Sokar {
 			FlipHorizontal, FlipVertical,
 			ClearRotate,
 			PatientData, HospitalData, ModalityData,
-			OpenDataSet
+			OpenDataSet,
+			Segmentation,
 		};
 
 	private:
@@ -41,7 +42,8 @@ namespace Sokar {
 					*zoom, *zoomFit, *zoom11,
 					*rotate, *rotateRight, *rotateLeft,
 					*flipH, *flipV, *rotateClear,
-					*tags;
+					*tags,
+					*segmentation;
 
 			struct {
 				QAction *all,
@@ -63,6 +65,7 @@ namespace Sokar {
 		inline const auto getActionZoom() const { return action.zoom; }
 		inline const auto getActionRotate() const { return action.rotate; }
 		inline const auto getActionTags() const { return action.tags; }
+		inline const auto getActionSegmentation() const { return action.segmentation; }
 
 		inline const auto getActionIndicators() const { return action.indicator.all; }
 		inline const auto getActionPatientData() const { return action.indicator.patientData; }

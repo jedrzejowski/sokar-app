@@ -462,6 +462,11 @@
         <source>DICOM Tags</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../src/dicomview/toolbar.cpp" line="223"/>
+        <source>Segmentation</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Sokar::MainWindow</name>

@@ -1,19 +1,14 @@
-#include <gdcmDict.h>
-#include <gdcmDicts.h>
 #include <gdcmGlobal.h>
-#include <gdcmAttribute.h>
-#include <gdcmDataElement.h>
-#include <gdcmValue.h>
 #include <gdcmTag.h>
-#include <gdcmImageApplyLookupTable.h>
-#include <gdcmStringFilter.h>
 #include <gdcmImageHelper.h>
+#include <opencv2/core/mat.hpp>
+#include <segmentation/mySegmentation.h>
+#include <segmentation/GrayScaleImage.h>
 
 #include "sokar/speedtest.h"
 #include "sokar/gdcmSokar.h"
 
 #include "../../dicomview.h"
-#include "../../graphics.h"
 
 #include "monochrome.h"
 #include "windowing/windowintdynamic.h"
@@ -391,6 +386,8 @@ void Monochrome::Scene::toolBarAdjust() {
 	auto winAction = toolBar->getActionWindowing();
 	winAction->setMenu(getCurrentWindow()->getMenu());
 	winAction->setEnabled(!isMovieMode());
+
+	toolBar->getActionSegmentation()->setEnabled(true);
 }
 
 bool Monochrome::Scene::acceptMovieMode(Sokar::MovieMode *movieMode) {
@@ -408,10 +405,46 @@ void Monochrome::Scene::disableMovieMode() {
 	imgWindow->show();
 }
 
-
 Monochrome::Window *Monochrome::Scene::getCurrentWindow() {
 	if (isMovieMode() && movieMode->isUseSameWindow())
 		return ((Monochrome::Scene *) movieMode->getOriginScene())->imgWindow;
 
 	return imgWindow;
+}
+
+void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool state) {
+
+	DicomScene::toolBarActionSlot(action, state);
+
+	if (action == DicomToolBar::Segmentation) {
+	}
+}
+
+vec3 Monochrome::Scene::getWokselValue(uint32 x, uint32 y) const {
+
+	switch (gdcmImage.GetPixelFormat()) {
+		case gdcm::PixelFormat::INT8: {
+			auto origin = (int8 *) &originBuffer[0];
+			origin += y * imgDimY + x;
+			return vec3(*origin, 0, 0);
+		}
+			break;
+
+		case gdcm::PixelFormat::UINT8:
+
+		case gdcm::PixelFormat::INT16:
+
+		case gdcm::PixelFormat::UINT16:
+
+		case gdcm::PixelFormat::INT32:
+
+		case gdcm::PixelFormat::UINT32:
+
+		case gdcm::PixelFormat::INT64:
+
+		case gdcm::PixelFormat::UINT64:
+
+		default:
+			throw Sokar::ImageTypeNotSupportedException();
+	}
 }

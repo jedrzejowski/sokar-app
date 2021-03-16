@@ -21,8 +21,10 @@ set(APP_TARGET Sokar)
 #Biblioteka wątków
 find_package(Threads)
 
+find_package(OpenCV REQUIRED)
+
 #Biblioteka GDCM
-set(GDCM_DIR ${CMAKE_CURRENT_LIST_DIR}/../gdcm-bin/)
+set(GDCM_DIR ${CMAKE_CURRENT_LIST_DIR}/../gdcm-3.0.8-bin/)
 find_package(GDCM REQUIRED)
 include(${GDCM_USE_FILE})
 set(GDCM_LIBRARIES
@@ -87,6 +89,7 @@ target_link_libraries(
         ${GDCM_LIBRARIES}
         ${CMAKE_THREAD_LIBS_INIT}
         ${QT_LIBRARIES}
+        ${OpenCV_LIBS}
 )
 
 install(TARGETS ${APP_TARGET} RUNTIME DESTINATION ${INSTALL_DIR})

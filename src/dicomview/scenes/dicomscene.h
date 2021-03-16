@@ -41,7 +41,7 @@ namespace Sokar {
 
 		std::vector<char> originBuffer;
 		std::vector<Pixel> targetBuffer;
-		uint imgDimX, imgDimY;
+		uint32 imgDimX, imgDimY;
 
 		QImage qImage;
 		QPixmap pixmap, iconPixmap;
@@ -89,6 +89,16 @@ namespace Sokar {
 
 		DicomView *getDicomView();
 
+		inline uint32 getImgDimX() const {
+			return imgDimX;
+		}
+
+		inline uint32 getImgDimY() const {
+			return imgDimY;
+		}
+
+		virtual vec3 getWokselValue(uint32 x, uint32 y) const;
+
 		//endregion
 
 		bool saveToFile(const QString &fileName, const char *format = nullptr, int quality = -1);
@@ -118,6 +128,5 @@ namespace Sokar {
 		void updatePixmapTransformation();
 		void prepare();
 		void attached();
-
 	};
 }

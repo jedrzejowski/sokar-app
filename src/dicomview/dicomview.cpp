@@ -80,17 +80,7 @@ void DicomView::toolbarActionTrigger(DicomToolBar::Action action, bool state) {
 
 			return;
 
-		case DicomToolBar::ClearPan:
-		case DicomToolBar::Fit2Screen:
-		case DicomToolBar::OriginalResolution:
-		case DicomToolBar::RotateRight90:
-		case DicomToolBar::RotateLeft90:
-		case DicomToolBar::FlipHorizontal:
-		case DicomToolBar::FlipVertical:
-		case DicomToolBar::ClearRotate:
-		case DicomToolBar::PatientData:
-		case DicomToolBar::HospitalData:
-		case DicomToolBar::ModalityData:
+		default:
 			if (getDicomScene() == nullptr) break;
 			getDicomScene()->toolBarActionSlot(action, state);
 			break;

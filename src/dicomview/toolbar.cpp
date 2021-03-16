@@ -218,6 +218,15 @@ void DicomToolBar::initActions() {
 		});
 	}
 
+	Segmentation:
+	{
+		action.segmentation = new QAction(QIcon(":/img/ico/tags.png"), tr("Segmentation"), this);
+		addAction(action.segmentation);
+		connect(action.segmentation, &QAction::triggered, [&](bool) {
+			emit actionTriggerSignal(Segmentation);
+		});
+	}
+
 	for (auto &action : actions()) {
 		action->setDisabled(true);
 	}

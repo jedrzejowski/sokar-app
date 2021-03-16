@@ -46,7 +46,10 @@ namespace Sokar::Monochrome {
 
 		void disableMovieMode() override;
 
+		vec3 getWokselValue(uint32 x, uint32 y) const override;
+
 	public:
+		void toolBarActionSlot(DicomToolBar::Action action, bool state) override;
 		void toolBarAdjust() override;
 	};
 }

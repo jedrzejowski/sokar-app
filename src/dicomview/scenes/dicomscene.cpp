@@ -1,10 +1,7 @@
 #include <gdcmDict.h>
-#include <gdcmDicts.h>
 #include <gdcmGlobal.h>
-#include <gdcmAttribute.h>
 #include <src/dicomview/toolbar.h>
 
-#include "sokar/gdcmSokar.h"
 #include "sokar/gdcmSokar.h"
 
 #include "dicomscene.h"
@@ -27,8 +24,10 @@ DicomScene::DicomScene(SceneParams &sceneParams) :
 		//Tworzenie sub wektora dla naszych danych
 		auto offset = sceneParams.frame * sceneParams.imgSize;
 
-		originBuffer = std::vector<char>(sceneParams.imageBuffer->begin() + offset,
-										 sceneParams.imageBuffer->begin() + offset + sceneParams.imgSize);
+		originBuffer = std::vector<char>(
+				sceneParams.imageBuffer->begin() + offset,
+				sceneParams.imageBuffer->begin() + offset + sceneParams.imgSize
+		);
 	}
 
 	targetBuffer.resize(sceneParams.imgSize);
@@ -415,3 +414,8 @@ void DicomScene::attached() {
 	toolBarAdjust();
 	updatePixmapTransformation();
 }
+
+vec3 DicomScene::getWokselValue(uint32 x, uint32 y) const {
+	return vec3();
+}
+
