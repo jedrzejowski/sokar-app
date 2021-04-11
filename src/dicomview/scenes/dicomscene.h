@@ -7,6 +7,7 @@
 #include <gdcmImage.h>
 #include <gdcmImageReader.h>
 #include <gdcmStringFilter.h>
+#include <glm/vec3.hpp>
 
 #include "_classdef.h"
 
@@ -41,7 +42,7 @@ namespace Sokar {
 
 		std::vector<char> originBuffer;
 		std::vector<Pixel> targetBuffer;
-		uint32 imgDimX, imgDimY;
+		quint32 imgDimX, imgDimY;
 
 		QImage qImage;
 		QPixmap pixmap, iconPixmap;
@@ -89,15 +90,15 @@ namespace Sokar {
 
 		DicomView *getDicomView();
 
-		inline uint32 getImgDimX() const {
+		inline quint32 getImgDimX() const {
 			return imgDimX;
 		}
 
-		inline uint32 getImgDimY() const {
+		inline quint32 getImgDimY() const {
 			return imgDimY;
 		}
 
-		virtual vec3 getWokselValue(uint32 x, uint32 y) const;
+		virtual glm::vec3 getWokselValue(quint32 x, quint32 y) const;
 
 		//endregion
 

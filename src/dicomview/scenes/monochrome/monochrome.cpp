@@ -4,6 +4,9 @@
 #include <opencv2/core/mat.hpp>
 #include <segmentation/mySegmentation.h>
 #include <segmentation/GrayScaleImage.h>
+#include <algo/MarchingCubes.h>
+#include <3d/Renderer.h>
+#include <3d/VulkanWidget.h>
 
 #include "sokar/speedtest.h"
 #include "sokar/gdcmSokar.h"
@@ -13,6 +16,9 @@
 #include "monochrome.h"
 #include "windowing/windowintdynamic.h"
 #include "windowing/windowintstatic.h"
+
+#include "QFutureWatcher"
+#include "QFutureWatcherBase"
 
 using namespace Sokar;
 
@@ -417,24 +423,60 @@ void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool stat
 	DicomScene::toolBarActionSlot(action, state);
 
 	if (action == DicomToolBar::Segmentation) {
+		auto vv = new SokarAlg::VirtualVolume();
+		vv->setSceneSet(getDicomView()->getDicomSceneSet());
+		auto mc = new SokarAlg::MarchingCubes();
+		mc->setVirtualVolume(vv);
+		mc->setIsoLevel(200);
+
+		auto future = mc->marchingCubes();
+
+		auto watcher = new QFutureWatcher<void>();
+
+		connect(watcher, &QFutureWatcherBase::finished, [&]() {
+			qDebug() << "end with " << mc->getTriangles().size();
+
+			auto *vulkanWindow = Sokar3D::VulkanWidget::New<Sokar3D::Renderer>();
+		});
+
+		watcher->setFuture(future);
 	}
 }
 
-vec3 Monochrome::Scene::getWokselValue(uint32 x, uint32 y) const {
+glm::vec3 Monochrome::Scene::getWokselValue(quint32 x, quint32 y) const {
 
 	switch (gdcmImage.GetPixelFormat()) {
 		case gdcm::PixelFormat::INT8: {
-			auto origin = (int8 *) &originBuffer[0];
+			auto origin = (qint8 *) &originBuffer[0];
 			origin += y * imgDimY + x;
-			return vec3(*origin, 0, 0);
+
+
+			return glm::vec3(*origin, 0, 0);
 		}
-			break;
 
-		case gdcm::PixelFormat::UINT8:
+		case gdcm::PixelFormat::UINT8: {
+			auto origin = (quint8 *) &originBuffer[0];
+			origin += y * imgDimY + x;
 
-		case gdcm::PixelFormat::INT16:
 
-		case gdcm::PixelFormat::UINT16:
+			return glm::vec3(*origin, 0, 0);
+		}
+
+		case gdcm::PixelFormat::INT16: {
+			auto origin = (qint16 *) &originBuffer[0];
+			origin += y * imgDimY + x;
+
+
+			return glm::vec3(*origin, 0, 0);
+		}
+
+		case gdcm::PixelFormat::UINT16: {
+			auto origin = (quint16 *) &originBuffer[0];
+			origin += y * imgDimY + x;
+
+
+			return glm::vec3(*origin, 0, 0);
+		}
 
 		case gdcm::PixelFormat::INT32:
 

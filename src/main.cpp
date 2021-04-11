@@ -1,8 +1,10 @@
 #include <QtCore>
 #include <QApplication>
+#include <sokar/settings.h>
 
-#include "sokar/settings.h"
-#include "win/mainwindow.h"
+#include <QGuiApplication>
+#include <3d/Renderer.h>
+#include <win/mainwindow.h>
 
 QSettings *Sokar::qSettings;
 

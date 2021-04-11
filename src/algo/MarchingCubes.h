@@ -4,10 +4,31 @@
 
 #pragma once
 
+#include "./_def.h"
+#include "./Triangle.h"
+#include "./VirtualVolume.h"
 
-class MarchingCubes {
+namespace SokarAlg {
 
-};
+	class MarchingCubes {
+		VirtualVolume *virtualVolume;
+		QVector<Triangle> triangles;
+		float isoLevel;
+	public:
 
+		[[nodiscard]]
+		VirtualVolume *getVirtualVolume() const;
+		void setVirtualVolume(VirtualVolume *virtualVolume);
 
+		const QVector<Triangle> &getTriangles() const;
+
+		float getIsoLevel() const;
+		void setIsoLevel(float isoLevel);
+
+		QFuture<void> marchingCubes();
+
+	private:
+		quint32 marchCube(Cube cube);
+	};
+}
 

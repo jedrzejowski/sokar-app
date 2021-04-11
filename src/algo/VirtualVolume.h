@@ -4,46 +4,43 @@
 
 #pragma once
 
+#include "./_def.h"
 #include "../_classdef.h"
+#include "./Cube.h"
 #include "../dicomview/scenes/sets/_sceneset.h"
 
-namespace Sokar {
+namespace SokarAlg {
 
-	struct Cube {
-		u32vec2 position[8];
-		float64 value[8];
-	};
 
 	class VirtualVolume {
 
-
-		const DicomSceneSet *sceneSet = nullptr;
+		const Sokar::DicomSceneSet *sceneSet = nullptr;
 
 	public:
 
 		[[nodiscard]]
-		const DicomSceneSet *getSceneSet() const;
+		const Sokar::DicomSceneSet *getSceneSet() const;
 
-		void setSceneSet(const DicomSceneSet *sceneSet);
-
-		[[nodiscard]]
-		u32vec3 getSize() const;
+		void setSceneSet(const Sokar::DicomSceneSet *sceneSet);
 
 		[[nodiscard]]
-		inline Cube getCube(const u32vec3 &position) const {
+		glm::u32vec3 getSize() const;
+
+		[[nodiscard]]
+		inline Cube getCube(const glm::u32vec3 &position) const {
 			return getCube(position.x, position.y, position.z);
 		}
 
 		[[nodiscard]]
-		Cube getCube(const uint32 &x, const uint32 &y, const uint32 &z) const;
+		Cube getCube(const quint32 &x, const quint32 &y, const quint32 &z) const;
 
 		[[nodiscard]]
-		inline float64 getValue(const u32vec3 &position) const {
+		inline double getValue(const glm::u32vec3 &position) const {
 			return getValue(position.x, position.y, position.z);
 		}
 
 		[[nodiscard]]
-		float64 getValue(const uint32 &x, const uint32 &y, const uint32 &z) const;
+		double getValue(const quint32 &x, const quint32 &y, const quint32 &z) const;
 	};
 }
 

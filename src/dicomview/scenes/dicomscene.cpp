@@ -415,7 +415,7 @@ void DicomScene::attached() {
 	updatePixmapTransformation();
 }
 
-vec3 DicomScene::getWokselValue(uint32 x, uint32 y) const {
-	return vec3();
+glm::vec3 DicomScene::getWokselValue(quint32 x, quint32 y) const {
+	return glm::vec3();
 }
 
