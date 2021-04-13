@@ -11,15 +11,14 @@
  */
 namespace Sokar3D {
 
-	struct Vertex {
+	struct MeshVertex {
 		vec3 pos;
-		vec2 tex;
 		vec3 color;
 		vec3 normal;
 
 		static VkVertexInputBindingDescription getBindingDescription();
 
-		static std::array<VkVertexInputAttributeDescription, 4> getAttributeDescriptions();
+		static std::array<VkVertexInputAttributeDescription, 3> getAttributeDescriptions();
 	};
 }
 

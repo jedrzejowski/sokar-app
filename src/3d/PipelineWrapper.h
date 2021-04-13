@@ -16,6 +16,8 @@ namespace Sokar3D {
 		VulkanWidget *vkWidget;
 		QVulkanDeviceFunctions *vkDeviceFunctions;
 		VkPipelineCache vkPipelineCache;
+		glm::mat4 projectionMatrix;
+		Camera *camera;
 	};
 
 	class PipelineWrapper {

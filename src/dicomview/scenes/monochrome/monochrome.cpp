@@ -5,8 +5,10 @@
 #include <segmentation/mySegmentation.h>
 #include <segmentation/GrayScaleImage.h>
 #include <algo/MarchingCubes.h>
+
 #include <3d/Renderer.h>
 #include <3d/VulkanWidget.h>
+#include <3d/MeshPipeline.h>
 
 #include "sokar/speedtest.h"
 #include "sokar/gdcmSokar.h"
@@ -436,7 +438,24 @@ void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool stat
 		connect(watcher, &QFutureWatcherBase::finished, [&]() {
 			qDebug() << "end with " << mc->getTriangles().size();
 
-			auto *vulkanWindow = Sokar3D::VulkanWidget::New<Sokar3D::Renderer>();
+			auto ret = Sokar3D::VulkanWidget::New<Sokar3D::Renderer>();
+
+			auto mesh = new Sokar3D::Mesh();
+			mesh->addTriangle(
+					{
+							glm::vec3{-1, -1, 0}
+					},
+					{
+							glm::vec3{-1, 1, 0}
+					},
+					{
+							glm::vec3{1, -1, 1}
+					}
+			);
+
+			auto meshpw = new Sokar3D::MeshPipeline(mesh);
+
+			ret.renderer->addPipelineWrapper(meshpw);
 		});
 
 		watcher->setFuture(future);

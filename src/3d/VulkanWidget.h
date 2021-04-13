@@ -11,6 +11,13 @@
 
 namespace Sokar3D {
 
+	template<class T>
+	struct VulkanWidgetReturn {
+		QWidget *wrapper;
+		VulkanWidget *window;
+		T *renderer;
+	};
+
 	class VulkanWidget : public QVulkanWindow {
 		QVulkanWindowRenderer *renderer = nullptr;
 
@@ -23,11 +30,12 @@ namespace Sokar3D {
 		bool isDebugEnabled() const { return true; }
 
 		template<class T>
-		static QWidget *New(QVulkanInstance *inst = getVulkanInstance()) {
+		static VulkanWidgetReturn<T> New(QVulkanInstance *inst = getVulkanInstance()) {
 
 			auto *window = new VulkanWidget();
 			window->setVulkanInstance(inst);
-			window->renderer = new T(window);
+			auto renderer = new T(window);
+			window->renderer = renderer;
 
 			QWidget *wrapper = QWidget::createWindowContainer(window);
 			wrapper->setFocusPolicy(Qt::StrongFocus);
@@ -35,7 +43,7 @@ namespace Sokar3D {
 			window->resize(1024, 768);
 			wrapper->show();
 
-			return wrapper;
+			return {wrapper, window, renderer};
 		}
 	};
 }

@@ -13,7 +13,7 @@
 namespace Sokar3D {
 	class Renderer : public QVulkanWindowRenderer {
 	public:
-		Renderer(VulkanWidget *w, int initialCount = 128);
+		explicit Renderer(VulkanWidget *w);
 
 		void preInitResources() override;
 		void initResources() override;
@@ -22,37 +22,26 @@ namespace Sokar3D {
 		void releaseResources() override;
 		void startNextFrame() override;
 
+		void addPipelineWrapper(PipelineWrapper* pw);
+
 	private:
+
+		QVector<PipelineWrapper *> pipelineWrappers;
 
 		VulkanWidget *vkWidget;
 		QVulkanDeviceFunctions *vkDeviceFunctions;
 		VkPipelineCache vkPipelineCache = VK_NULL_HANDLE;
 
-
 		QFutureWatcher<void> frameWatcher;
-		QVector3D m_lightPos;
-		Camera m_cam;
-		QMatrix4x4 m_proj;
+		Camera camera;
+		glm::vec3 m_lightPos;
+		glm::mat4 projectionMatrix;
 
 		bool framePending;
+
 		void buildFrame();
 		void ensureBuffers();
 		void buildDrawCalls();
-		bool buffersDone = false;
-		VkDeviceMemory bufMem = VK_NULL_HANDLE;
-
-		void createBackgroundPipeline();
-
-		struct {
-			Mesh mesh;
-			Shader vertexShader;
-			Shader fragmentShader;
-			VkPipelineLayout pipelineLayout = VK_NULL_HANDLE;
-			VkPipeline pipeline = VK_NULL_HANDLE;
-			VkBuffer vertexBuf = VK_NULL_HANDLE;
-
-			QMatrix4x4 model;
-		} backgroundMaterial;
 	};
 }
 

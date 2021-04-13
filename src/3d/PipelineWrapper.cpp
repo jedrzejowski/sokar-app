@@ -6,5 +6,9 @@
 
 using namespace Sokar3D;
 
+
+PipelineWrapper::PipelineWrapper() {
+}
+
 PipelineWrapper::~PipelineWrapper() {
 }

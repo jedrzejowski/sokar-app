@@ -8,31 +8,32 @@
 #include <QtConcurrent/QtConcurrentRun>
 #include <QTime>
 #include "../lib/concat_array.h"
+#include "./PipelineWrapper.h"
 
 using namespace Sokar3D;
 
 #define DBG Q_UNLIKELY(m_window->isDebugEnabled())
 
-Renderer::Renderer(VulkanWidget *widget, int initialCount)
+Renderer::Renderer(VulkanWidget *widget)
 		: vkWidget(widget),
 		  m_lightPos(0.0f, 0.0f, 25.0f),
-		  m_cam(QVector3D(0.0f, 0.0f, 20.0f)) {
+		  camera(glm::vec3(0.0f, 0.0f, 20.0f)) {
 
-	backgroundMaterial.model.translate(0, -5, 0);
+//	backgroundMaterial.model.translate(0, -5, 0);
 //	backgroundMaterial.model.rotate(-90, 1, 0, 0);
 //	backgroundMaterial.model.scale(20, 100, 1);
 
-	backgroundMaterial.mesh.addTriangle(
-			Vertex{
-					vec3{-1, -1, 0}
-			},
-			Vertex{
-					vec3{-1, 1, 0}
-			},
-			Vertex{
-					vec3{1, -1, 1}
-			}
-	);
+//	backgroundMaterial.mesh.addTriangle(
+//			Vertex{
+//					vec3{-1, -1, 0}
+//			},
+//			Vertex{
+//					vec3{-1, 1, 0}
+//			},
+//			Vertex{
+//					vec3{1, -1, 1}
+//			}
+//	);
 
 	QObject::connect(&frameWatcher, &QFutureWatcherBase::finished, [this] {
 		if (framePending) {
@@ -54,28 +55,39 @@ void Renderer::initResources() {
 	QVulkanInstance *vkInstance = vkWidget->vulkanInstance();
 	vkDeviceFunctions = vkInstance->deviceFunctions(vkDevice);
 
-
-	if (!backgroundMaterial.vertexShader.isValid())
-		backgroundMaterial.vertexShader.load(vkInstance, vkDevice, QStringLiteral(":/vk-shader/background.vert.spv"));
-	if (!backgroundMaterial.fragmentShader.isValid())
-		backgroundMaterial.fragmentShader.load(vkInstance, vkDevice, QStringLiteral(":/vk-shader/background.frag.spv"));
-
 	VkPipelineCacheCreateInfo pipelineCacheInfo{};
 	pipelineCacheInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_CACHE_CREATE_INFO;
 	VkResult err = vkDeviceFunctions->vkCreatePipelineCache(vkDevice, &pipelineCacheInfo, nullptr, &vkPipelineCache);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to create pipeline cache: %d", err);
 
-	createBackgroundPipeline();
+	VkPipelineMetaArgs args{};
+	args.vkInstance = vkInstance;
+	args.vkDevice = vkDevice;
+	args.vkWidget = vkWidget;
+	args.vkDeviceFunctions = vkDeviceFunctions;
+	args.vkPipelineCache = vkPipelineCache;
+	args.projectionMatrix = projectionMatrix;
+	args.camera = &camera;
+
+	for (auto pw : pipelineWrappers) {
+		pw->initResources(args);
+	}
+
+	for (auto pw : pipelineWrappers) {
+		pw->createVkPipeline(args);
+	}
 }
 
 void Renderer::initSwapChainResources() {
 	qDebug("initSwapChainResources");
 
-	m_proj = vkWidget->clipCorrectionMatrix();
+	auto proj = vkWidget->clipCorrectionMatrix();
 	const QSize sz = vkWidget->swapChainImageSize();
-	m_proj.perspective(45.0f, sz.width() / (float) sz.height(), 0.01f, 100.0f);
-	m_proj.translate(0, 0, -4);
+	proj.perspective(45.0f, sz.width() / (float) sz.height(), 0.01f, 100.0f);
+	proj.translate(0, 0, -4);
+
+	projectionMatrix = glm::make_mat4(proj.data());
 }
 
 void Renderer::releaseSwapChainResources() {
@@ -101,16 +113,17 @@ void Renderer::releaseResources() {
 		vkPipelineCache = VK_NULL_HANDLE;
 	}
 
-	if (backgroundMaterial.vertexShader.isValid()) {
-		vkDeviceFunctions->vkDestroyShaderModule(
-				vkDevice, backgroundMaterial.vertexShader.data()->shaderModule, nullptr);
-		backgroundMaterial.vertexShader.reset();
-	}
+	VkPipelineMetaArgs args{};
+	args.vkInstance = VK_NULL_HANDLE;
+	args.vkDevice = vkDevice;
+	args.vkWidget = vkWidget;
+	args.vkDeviceFunctions = vkDeviceFunctions;
+	args.vkPipelineCache = vkPipelineCache;
+	args.projectionMatrix = projectionMatrix;
+	args.camera = &camera;
 
-	if (backgroundMaterial.fragmentShader.isValid()) {
-		vkDeviceFunctions->vkDestroyShaderModule(
-				vkDevice, backgroundMaterial.fragmentShader.data()->shaderModule, nullptr);
-		backgroundMaterial.fragmentShader.reset();
+	for (auto pw : pipelineWrappers) {
+		pw->releaseResources(args);
 	}
 }
 
@@ -121,133 +134,6 @@ void Renderer::startNextFrame() {
 	framePending = true;
 	QFuture<void> future = QtConcurrent::run(this, &Renderer::buildFrame);
 	frameWatcher.setFuture(future);
-}
-
-void Renderer::createBackgroundPipeline() {
-	VkDevice vkDevice = vkWidget->device();
-	VkResult err;
-
-	std::array<VkVertexInputBindingDescription, 1> vertexBindingDesc{
-			{
-					Vertex::getBindingDescription()
-			}
-	};
-	auto vertexAttrDesc = concat_array(Vertex::getAttributeDescriptions());
-
-	std::array<VkPushConstantRange, 2> pushConstantDesc{
-			{
-					{
-							VK_SHADER_STAGE_VERTEX_BIT,
-							0,
-							64
-					},
-					{
-							VK_SHADER_STAGE_FRAGMENT_BIT,
-							64,
-							12
-					}
-			}};
-
-	std::array<VkPipelineShaderStageCreateInfo, 2> shaderStages{
-			{
-					{
-							VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
-							nullptr,
-							0,
-							VK_SHADER_STAGE_VERTEX_BIT,
-							backgroundMaterial.vertexShader.data()->shaderModule,
-							"main",
-							nullptr
-					},
-					{
-							VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO,
-							nullptr,
-							0,
-							VK_SHADER_STAGE_FRAGMENT_BIT,
-							backgroundMaterial.fragmentShader.data()->shaderModule,
-							"main",
-							nullptr
-					}
-			}};
-
-	VkPipelineVertexInputStateCreateInfo vertexInputInfo{};
-	vertexInputInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	vertexInputInfo.pNext = nullptr;
-	vertexInputInfo.flags = 0;
-	vertexInputInfo.vertexBindingDescriptionCount = vertexBindingDesc.size();
-	vertexInputInfo.pVertexBindingDescriptions = vertexBindingDesc.data();
-	vertexInputInfo.vertexAttributeDescriptionCount = vertexAttrDesc.size();
-	vertexInputInfo.pVertexAttributeDescriptions = vertexAttrDesc.data();
-
-	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
-	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-	pipelineLayoutInfo.pushConstantRangeCount = pushConstantDesc.size();
-	pipelineLayoutInfo.pPushConstantRanges = pushConstantDesc.data();
-
-	err = vkDeviceFunctions->vkCreatePipelineLayout(
-			vkDevice, &pipelineLayoutInfo, nullptr, &backgroundMaterial.pipelineLayout);
-	if (err != VK_SUCCESS)
-		qFatal("Failed to create pipeline layout: %d", err);
-
-	VkGraphicsPipelineCreateInfo pipelineInfo{};
-	pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
-	pipelineInfo.stageCount = shaderStages.size();
-	pipelineInfo.pStages = shaderStages.data();
-	pipelineInfo.pVertexInputState = &vertexInputInfo;
-
-	VkPipelineInputAssemblyStateCreateInfo ia{};
-	ia.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
-	ia.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP;
-	pipelineInfo.pInputAssemblyState = &ia;
-
-	VkPipelineViewportStateCreateInfo vp{};
-	vp.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
-	vp.viewportCount = 1;
-	vp.scissorCount = 1;
-	pipelineInfo.pViewportState = &vp;
-
-	VkPipelineRasterizationStateCreateInfo rs{};
-	rs.sType = VK_STRUCTURE_TYPE_PIPELINE_RASTERIZATION_STATE_CREATE_INFO;
-	rs.polygonMode = VK_POLYGON_MODE_FILL;
-	rs.cullMode = VK_CULL_MODE_BACK_BIT;
-	rs.frontFace = VK_FRONT_FACE_CLOCKWISE;
-	rs.lineWidth = 1.0f;
-	pipelineInfo.pRasterizationState = &rs;
-
-	VkPipelineMultisampleStateCreateInfo ms{};
-	ms.sType = VK_STRUCTURE_TYPE_PIPELINE_MULTISAMPLE_STATE_CREATE_INFO;
-	ms.rasterizationSamples = vkWidget->sampleCountFlagBits();
-	pipelineInfo.pMultisampleState = &ms;
-
-	VkPipelineDepthStencilStateCreateInfo ds{};
-	ds.sType = VK_STRUCTURE_TYPE_PIPELINE_DEPTH_STENCIL_STATE_CREATE_INFO;
-	ds.depthTestEnable = VK_TRUE;
-	ds.depthWriteEnable = VK_TRUE;
-	ds.depthCompareOp = VK_COMPARE_OP_LESS_OR_EQUAL;
-	pipelineInfo.pDepthStencilState = &ds;
-
-	VkPipelineColorBlendStateCreateInfo cb{};
-	cb.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
-	VkPipelineColorBlendAttachmentState att{};
-	att.colorWriteMask = 0xF;
-	cb.attachmentCount = 1;
-	cb.pAttachments = &att;
-	pipelineInfo.pColorBlendState = &cb;
-
-	VkDynamicState dynEnable[] = {VK_DYNAMIC_STATE_VIEWPORT, VK_DYNAMIC_STATE_SCISSOR};
-	VkPipelineDynamicStateCreateInfo dyn{};
-	dyn.sType = VK_STRUCTURE_TYPE_PIPELINE_DYNAMIC_STATE_CREATE_INFO;
-	dyn.dynamicStateCount = sizeof(dynEnable) / sizeof(VkDynamicState);
-	dyn.pDynamicStates = dynEnable;
-	pipelineInfo.pDynamicState = &dyn;
-
-	pipelineInfo.layout = backgroundMaterial.pipelineLayout;
-	pipelineInfo.renderPass = vkWidget->defaultRenderPass();
-
-	err = vkDeviceFunctions->vkCreateGraphicsPipelines(
-			vkDevice, vkPipelineCache, 1, &pipelineInfo, nullptr, &backgroundMaterial.pipeline);
-	if (err != VK_SUCCESS)
-		qFatal("Failed to create graphics pipeline: %d", err);
 }
 
 void Renderer::buildFrame() {
@@ -295,70 +181,42 @@ void Renderer::buildFrame() {
 }
 
 void Renderer::ensureBuffers() {
-	if (buffersDone) {
-		return;
-	}
-	qDebug("ensureBuffers");
-	buffersDone = true;
-
 	VkDevice vkDevice = vkWidget->device();
-	const int concurrentFrameCount = vkWidget->concurrentFrameCount();
-	VkResult err;
 
-	VkBufferCreateInfo bufInfo{};
+	VkPipelineMetaArgs args{};
+	args.vkInstance = VK_NULL_HANDLE;
+	args.vkDevice = vkDevice;
+	args.vkWidget = vkWidget;
+	args.vkDeviceFunctions = vkDeviceFunctions;
+	args.vkPipelineCache = vkPipelineCache;
+	args.projectionMatrix = projectionMatrix;
+	args.camera = &camera;
 
-	bufInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
-	bufInfo.size = backgroundMaterial.mesh.data()->sizeInBytes();
-	bufInfo.usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
-	err = vkDeviceFunctions->vkCreateBuffer(vkDevice, &bufInfo, nullptr, &backgroundMaterial.vertexBuf);
-	if (err != VK_SUCCESS)
-		qFatal("Failed to create vertex buffer: %d", err);
-
-	VkMemoryRequirements backgroundVertMemReq;
-	vkDeviceFunctions->vkGetBufferMemoryRequirements(vkDevice, backgroundMaterial.vertexBuf, &backgroundVertMemReq);
-
-	VkMemoryAllocateInfo memAllocInfo = {
-			VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO,
-			nullptr,
-			static_cast<VkDeviceSize>(backgroundMaterial.mesh.data()->sizeInBytes()),
-			vkWidget->hostVisibleMemoryIndex()
-	};
-	err = vkDeviceFunctions->vkAllocateMemory(vkDevice, &memAllocInfo, nullptr, &bufMem);
-	if (err != VK_SUCCESS)
-		qFatal("Failed to allocate memory: %d", err);
-
-	err = vkDeviceFunctions->vkBindBufferMemory(vkDevice, backgroundMaterial.vertexBuf, bufMem, 0);
-	if (err != VK_SUCCESS)
-		qFatal("Failed to bind vertex buffer memory: %d", err);
-
-	// kopiowanie
-
-	quint8 *p;
-	err = vkDeviceFunctions->vkMapMemory(vkDevice, bufMem, 0, backgroundMaterial.mesh.data()->sizeInBytes(), 0,
-										 reinterpret_cast<void **>(&p));
-	if (err != VK_SUCCESS)
-		qFatal("Failed to map memory: %d", err);
-	memcpy(p, backgroundMaterial.mesh.data()->geom.data(), backgroundMaterial.mesh.data()->sizeInBytes());
-	vkDeviceFunctions->vkUnmapMemory(vkDevice, bufMem);
+	for (auto pw : pipelineWrappers) {
+		pw->ensureBuffers(args);
+	}
 }
 
 void Renderer::buildDrawCalls() {
-	VkCommandBuffer cb = vkWidget->currentCommandBuffer();
+	VkDevice vkDevice = vkWidget->device();
 
-	vkDeviceFunctions->vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS, backgroundMaterial.pipeline);
+	VkPipelineMetaArgs args{};
+	args.vkInstance = VK_NULL_HANDLE;
+	args.vkDevice = vkDevice;
+	args.vkWidget = vkWidget;
+	args.vkDeviceFunctions = vkDeviceFunctions;
+	args.vkPipelineCache = vkPipelineCache;
+	args.projectionMatrix = projectionMatrix;
+	args.camera = &camera;
 
-	VkDeviceSize vbOffset = 0;
-	vkDeviceFunctions->vkCmdBindVertexBuffers(cb, 0, 1, &backgroundMaterial.vertexBuf, &vbOffset);
+	for (auto pw : pipelineWrappers) {
+		pw->buildDrawCalls(args);
+	}
+}
 
-	QMatrix4x4 mvp = m_proj * m_cam.viewMatrix() * backgroundMaterial.model;
-
-	vkDeviceFunctions->vkCmdPushConstants(cb, backgroundMaterial.pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, 64,
-										  mvp.constData());
-	float color[] = {0.67f, 1.0f, 0.2f};
-	vkDeviceFunctions->vkCmdPushConstants(cb, backgroundMaterial.pipelineLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 64, 12,
-										  color);
-
-	vkDeviceFunctions->vkCmdDraw(cb, 3, 1, 0, 0);
+void Renderer::addPipelineWrapper(PipelineWrapper *pw) {
+	qDebug() << "addPipelineWrapper";
+	pipelineWrappers << pw;
 }
 
 

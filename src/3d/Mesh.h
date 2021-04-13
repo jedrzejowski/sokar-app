@@ -7,7 +7,7 @@
 #include <QString>
 #include <QFuture>
 #include "./_def.h"
-#include "./Vertex.h"
+#include "./MeshVertex.h"
 
 namespace Sokar3D {
 
@@ -15,10 +15,10 @@ namespace Sokar3D {
 		inline bool isValid() const { return !geom.isEmpty(); }
 
 		inline int sizeInBytes() const {
-			return geom.size() * sizeof(Vertex);
+			return geom.size() * sizeof(MeshVertex);
 		}
 
-		QVector<Vertex> geom;
+		QVector<MeshVertex> geom;
 	};
 
 	class Mesh {
@@ -27,7 +27,7 @@ namespace Sokar3D {
 		bool isValid() { return data()->isValid(); }
 		void reset();
 
-		void addTriangle(Vertex v0, Vertex v1, Vertex v2);
+		void addTriangle(MeshVertex v0, MeshVertex v1, MeshVertex v2);
 
 	private:
 		bool m_maybeRunning = false;

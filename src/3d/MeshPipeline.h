@@ -8,15 +8,28 @@
 #include "./PipelineWrapper.h"
 
 namespace Sokar3D {
+	struct MeshConstants {
+		glm::mat4 model;
+		glm::mat4 camera;
+		glm::mat4 proj;
+		glm::vec3 color;
+	};
+
 	class MeshPipeline : public PipelineWrapper {
-		Mesh mesh;
+		Mesh *mesh;
 		Shader vertexShader;
 		Shader fragmentShader;
 		VkBuffer vertexBuf = VK_NULL_HANDLE;
+		VkBuffer instanceBuf = VK_NULL_HANDLE;
+		VkDeviceMemory bufMem = VK_NULL_HANDLE;
+		glm::mat4 model;
+		bool buffersDone = false;
 
-		QMatrix4x4 model;
 	public:
+		explicit MeshPipeline(Mesh *mesh);
+
 		void initResources(VkPipelineMetaArgs &args) override;
+		void createDescriptorSetLayout();
 		void createVkPipeline(VkPipelineMetaArgs &args) override;
 		void ensureBuffers(VkPipelineMetaArgs &args) override;
 		void buildDrawCalls(VkPipelineMetaArgs &args) override;

@@ -3,17 +3,23 @@
 //
 
 #include <QVulkanDeviceFunctions>
-#include "lib/concat_array.h"
-#include "MeshPipeline.h"
-#include "VulkanWidget.h"
+#include "../lib/concat_array.h"
+#include "./MeshPipeline.h"
+#include "./VulkanWidget.h"
+#include "./Camera.h"
 
 using namespace Sokar3D;
 
+MeshPipeline::MeshPipeline(Mesh *mesh) : mesh(mesh) {
+	model = glm::translate(model, glm::vec3(0, -5, 0));
+	//	backgroundMaterial.model.translate(0, -5, 0);
+}
+
 void MeshPipeline::initResources(VkPipelineMetaArgs &args) {
 	if (!vertexShader.isValid())
-		vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/background.vert.spv"));
+		vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/mesh.vert.spv"));
 	if (!fragmentShader.isValid())
-		fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/background.frag.spv"));
+		fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/mesh.frag.spv"));
 }
 
 void MeshPipeline::releaseResources(VkPipelineMetaArgs &args) {
@@ -29,18 +35,20 @@ void MeshPipeline::releaseResources(VkPipelineMetaArgs &args) {
 		fragmentShader.reset();
 	}
 }
-}
-
 
 void MeshPipeline::createVkPipeline(VkPipelineMetaArgs &args) {
 	VkResult err;
 
 	std::array<VkVertexInputBindingDescription, 1> vertexBindingDesc{
 			{
-					Vertex::getBindingDescription()
+					{
+							0,
+							sizeof(MeshVertex),
+							VK_VERTEX_INPUT_RATE_VERTEX
+					}
 			}
 	};
-	auto vertexAttrDesc = concat_array(Vertex::getAttributeDescriptions());
+	auto vertexAttrDesc = concat_array(MeshVertex::getAttributeDescriptions());
 
 	std::array<VkPushConstantRange, 2> pushConstantDesc{
 			{
@@ -105,7 +113,7 @@ void MeshPipeline::createVkPipeline(VkPipelineMetaArgs &args) {
 
 	VkPipelineInputAssemblyStateCreateInfo ia{};
 	ia.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
-	ia.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP;
+	ia.topology = VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST;
 	pipelineInfo.pInputAssemblyState = &ia;
 
 	VkPipelineViewportStateCreateInfo vp{};
@@ -152,14 +160,79 @@ void MeshPipeline::createVkPipeline(VkPipelineMetaArgs &args) {
 	pipelineInfo.layout = pipelineLayout;
 	pipelineInfo.renderPass = args.vkWidget->defaultRenderPass();
 
-	err =  args.vkDeviceFunctions->vkCreateGraphicsPipelines(
-			args.vkDevice,  args.vkPipelineCache, 1, &pipelineInfo, nullptr, &pipeline);
+	err = args.vkDeviceFunctions->vkCreateGraphicsPipelines(
+			args.vkDevice, args.vkPipelineCache, 1, &pipelineInfo, nullptr, &pipeline);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to create graphics pipeline: %d", err);
 }
 
 void MeshPipeline::ensureBuffers(VkPipelineMetaArgs &args) {
+	if (buffersDone) {
+		return;
+	}
+	qDebug("buffersDone: ensureBuffers");
+	qDebug() << "initing buffers with " << mesh->data()->sizeInBytes();
+	buffersDone = true;
+
+	const int concurrentFrameCount = args.vkWidget->concurrentFrameCount();
+	VkResult err;
+
+	VkBufferCreateInfo bufInfo{};
+
+	bufInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+	bufInfo.size = mesh->data()->sizeInBytes();
+	bufInfo.usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
+	err = args.vkDeviceFunctions->vkCreateBuffer(args.vkDevice, &bufInfo, nullptr, &vertexBuf);
+	if (err != VK_SUCCESS)
+		qFatal("Failed to create vertex buffer: %d", err);
+
+	VkMemoryRequirements backgroundVertMemReq;
+	args.vkDeviceFunctions->vkGetBufferMemoryRequirements(args.vkDevice, vertexBuf, &backgroundVertMemReq);
+
+	VkMemoryAllocateInfo memAllocInfo = {
+			VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO,
+			nullptr,
+			static_cast<VkDeviceSize>(mesh->data()->sizeInBytes()),
+			args.vkWidget->hostVisibleMemoryIndex()
+	};
+	err = args.vkDeviceFunctions->vkAllocateMemory(args.vkDevice, &memAllocInfo, nullptr, &bufMem);
+	if (err != VK_SUCCESS)
+		qFatal("Failed to allocate memory: %d", err);
+
+	err = args.vkDeviceFunctions->vkBindBufferMemory(args.vkDevice, vertexBuf, bufMem, 0);
+	if (err != VK_SUCCESS)
+		qFatal("Failed to bind vertex buffer memory: %d", err);
+
+	// kopiowanie
+
+	quint8 *p;
+	err = args.vkDeviceFunctions->vkMapMemory(
+			args.vkDevice, bufMem, 0, mesh->data()->sizeInBytes(), 0, reinterpret_cast<void **>(&p));
+	if (err != VK_SUCCESS)
+		qFatal("Failed to map memory: %d", err);
+	qDebug() << "kopiowanie" << mesh->data()->sizeInBytes();
+	memcpy(p, mesh->data()->geom.data(), mesh->data()->sizeInBytes());
+	args.vkDeviceFunctions->vkUnmapMemory(args.vkDevice, bufMem);
 }
 
 void MeshPipeline::buildDrawCalls(VkPipelineMetaArgs &args) {
+	VkCommandBuffer cb = args.vkWidget->currentCommandBuffer();
+
+	args.vkDeviceFunctions->vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
+
+	VkDeviceSize vbOffset = 0;
+	args.vkDeviceFunctions->vkCmdBindVertexBuffers(cb, 0, 1, &vertexBuf, &vbOffset);
+
+	glm::mat4 mvp(0.5);
+//	qDebug() << glm::to_string(args.camera->viewMatrix()).c_str();
+//	auto mvp = args.projectionMatrix * args.camera->viewMatrix() * model;
+
+
+	float color[] = {0.67f, 1.0f, 0.2f};
+	args.vkDeviceFunctions->vkCmdPushConstants(
+			cb, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, 64, &mvp);
+	args.vkDeviceFunctions->vkCmdPushConstants(
+			cb, pipelineLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 64, 12, color);
+
+	args.vkDeviceFunctions->vkCmdDraw(cb, 6, 1, 0, 0);
 }

@@ -3,7 +3,7 @@
 //
 
 #include "Mesh.h"
-#include "Vertex.h"
+#include "./MeshVertex.h"
 #include <QtConcurrent/QtConcurrentRun>
 #include <QFile>
 
@@ -21,7 +21,7 @@ void Mesh::reset() {
 	m_maybeRunning = false;
 }
 
-void Mesh::addTriangle(Vertex v0, Vertex v1, Vertex v2) {
+void Mesh::addTriangle(MeshVertex v0, MeshVertex v1, MeshVertex v2) {
 	qDebug() << "adding tirangle";
 	m_data.geom << v0 << v1 << v2;
 }
