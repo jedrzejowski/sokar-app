@@ -11,7 +11,6 @@
 using namespace Sokar3D;
 
 MeshPipeline::MeshPipeline(Mesh *mesh) : mesh(mesh) {
-	model = glm::translate(model, glm::vec3(0, -5, 0));
 	//	backgroundMaterial.model.translate(0, -5, 0);
 }
 
@@ -223,16 +222,18 @@ void MeshPipeline::buildDrawCalls(VkPipelineMetaArgs &args) {
 	VkDeviceSize vbOffset = 0;
 	args.vkDeviceFunctions->vkCmdBindVertexBuffers(cb, 0, 1, &vertexBuf, &vbOffset);
 
-	glm::mat4 mvp(0.5);
-//	qDebug() << glm::to_string(args.camera->viewMatrix()).c_str();
-//	auto mvp = args.projectionMatrix * args.camera->viewMatrix() * model;
+	meshConstants.model = meshModel;
+	if (!args.camera) {
+		qFatal("Camera not set");
+	}
+	meshConstants.camera = args.camera->viewMatrix();
+	meshConstants.proj = args.projectionMatrix;
+	meshConstants.color = glm::vec3(1.0f, 0.0f, 0.2f);
 
-
-	float color[] = {0.67f, 1.0f, 0.2f};
 	args.vkDeviceFunctions->vkCmdPushConstants(
-			cb, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, 64, &mvp);
+			cb, pipelineLayout, VK_SHADER_STAGE_VERTEX_BIT, 0, sizeof(MeshConstants), &meshConstants);
 	args.vkDeviceFunctions->vkCmdPushConstants(
-			cb, pipelineLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 64, 12, color);
+			cb, pipelineLayout, VK_SHADER_STAGE_FRAGMENT_BIT, 0, sizeof(MeshConstants), &meshConstants);
 
-	args.vkDeviceFunctions->vkCmdDraw(cb, 6, 1, 0, 0);
+	args.vkDeviceFunctions->vkCmdDraw(cb, mesh->data()->geom.size(), 1, 0, 0);
 }

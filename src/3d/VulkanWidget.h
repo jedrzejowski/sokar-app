@@ -19,7 +19,10 @@ namespace Sokar3D {
 	};
 
 	class VulkanWidget : public QVulkanWindow {
-		QVulkanWindowRenderer *renderer = nullptr;
+		VulkanRenderer *renderer = nullptr;
+
+	protected:
+		bool event(QEvent *event) override;
 
 	public:
 		VulkanWidget();

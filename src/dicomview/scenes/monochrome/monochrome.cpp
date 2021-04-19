@@ -6,7 +6,7 @@
 #include <segmentation/GrayScaleImage.h>
 #include <algo/MarchingCubes.h>
 
-#include <3d/Renderer.h>
+#include <3d/VulkanRenderer.h>
 #include <3d/VulkanWidget.h>
 #include <3d/MeshPipeline.h>
 
@@ -438,7 +438,7 @@ void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool stat
 		connect(watcher, &QFutureWatcherBase::finished, [&]() {
 			qDebug() << "end with " << mc->getTriangles().size();
 
-			auto ret = Sokar3D::VulkanWidget::New<Sokar3D::Renderer>();
+			auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
 
 			auto mesh = new Sokar3D::Mesh();
 			mesh->addTriangle(

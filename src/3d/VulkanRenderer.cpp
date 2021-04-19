@@ -2,11 +2,12 @@
 // Created by adam on 29.03.2021.
 //
 
-#include "./Renderer.h"
+#include "./VulkanRenderer.h"
 #include "qrandom.h"
 #include <QVulkanFunctions>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QTime>
+#include <QMouseEvent>
 #include "../lib/concat_array.h"
 #include "./PipelineWrapper.h"
 
@@ -14,10 +15,10 @@ using namespace Sokar3D;
 
 #define DBG Q_UNLIKELY(m_window->isDebugEnabled())
 
-Renderer::Renderer(VulkanWidget *widget)
-		: vkWidget(widget),
-		  m_lightPos(0.0f, 0.0f, 25.0f),
-		  camera(glm::vec3(0.0f, 0.0f, 20.0f)) {
+VulkanRenderer::VulkanRenderer(
+		VulkanWidget *widget
+) : vkWidget(widget),
+	m_lightPos(0.0f, 0.0f, 25.0f) {
 
 //	backgroundMaterial.model.translate(0, -5, 0);
 //	backgroundMaterial.model.rotate(-90, 1, 0, 0);
@@ -44,11 +45,11 @@ Renderer::Renderer(VulkanWidget *widget)
 	});
 }
 
-void Renderer::preInitResources() {
+void VulkanRenderer::preInitResources() {
 	qDebug("preInitResources");
 }
 
-void Renderer::initResources() {
+void VulkanRenderer::initResources() {
 	qDebug("initResources");
 	VkDevice vkDevice = vkWidget->device();
 
@@ -68,7 +69,7 @@ void Renderer::initResources() {
 	args.vkDeviceFunctions = vkDeviceFunctions;
 	args.vkPipelineCache = vkPipelineCache;
 	args.projectionMatrix = projectionMatrix;
-	args.camera = &camera;
+	args.camera = camera;
 
 	for (auto pw : pipelineWrappers) {
 		pw->initResources(args);
@@ -79,18 +80,17 @@ void Renderer::initResources() {
 	}
 }
 
-void Renderer::initSwapChainResources() {
+void VulkanRenderer::initSwapChainResources() {
 	qDebug("initSwapChainResources");
 
 	auto proj = vkWidget->clipCorrectionMatrix();
 	const QSize sz = vkWidget->swapChainImageSize();
 	proj.perspective(45.0f, sz.width() / (float) sz.height(), 0.01f, 100.0f);
-	proj.translate(0, 0, -4);
 
 	projectionMatrix = glm::make_mat4(proj.data());
 }
 
-void Renderer::releaseSwapChainResources() {
+void VulkanRenderer::releaseSwapChainResources() {
 	qDebug("releaseSwapChainResources");
 
 
@@ -104,39 +104,31 @@ void Renderer::releaseSwapChainResources() {
 	}
 }
 
-void Renderer::releaseResources() {
+void VulkanRenderer::releaseResources() {
 	qDebug("releaseResources");
 	VkDevice vkDevice = vkWidget->device();
+	auto args = getMetaArgs();
 
 	if (vkPipelineCache) {
 		vkDeviceFunctions->vkDestroyPipelineCache(vkDevice, vkPipelineCache, nullptr);
 		vkPipelineCache = VK_NULL_HANDLE;
 	}
 
-	VkPipelineMetaArgs args{};
-	args.vkInstance = VK_NULL_HANDLE;
-	args.vkDevice = vkDevice;
-	args.vkWidget = vkWidget;
-	args.vkDeviceFunctions = vkDeviceFunctions;
-	args.vkPipelineCache = vkPipelineCache;
-	args.projectionMatrix = projectionMatrix;
-	args.camera = &camera;
-
 	for (auto pw : pipelineWrappers) {
 		pw->releaseResources(args);
 	}
 }
 
-void Renderer::startNextFrame() {
+void VulkanRenderer::startNextFrame() {
 //	qDebug("startNextFrame");
 
 	Q_ASSERT(!framePending);
 	framePending = true;
-	QFuture<void> future = QtConcurrent::run(this, &Renderer::buildFrame);
+	QFuture<void> future = QtConcurrent::run(this, &VulkanRenderer::buildFrame);
 	frameWatcher.setFuture(future);
 }
 
-void Renderer::buildFrame() {
+void VulkanRenderer::buildFrame() {
 //	pipelinesFuture.waitForFinished();
 
 	ensureBuffers();
@@ -180,24 +172,15 @@ void Renderer::buildFrame() {
 	vkDeviceFunctions->vkCmdEndRenderPass(cmdBuf);
 }
 
-void Renderer::ensureBuffers() {
-	VkDevice vkDevice = vkWidget->device();
-
-	VkPipelineMetaArgs args{};
-	args.vkInstance = VK_NULL_HANDLE;
-	args.vkDevice = vkDevice;
-	args.vkWidget = vkWidget;
-	args.vkDeviceFunctions = vkDeviceFunctions;
-	args.vkPipelineCache = vkPipelineCache;
-	args.projectionMatrix = projectionMatrix;
-	args.camera = &camera;
+void VulkanRenderer::ensureBuffers() {
+	auto args = getMetaArgs();
 
 	for (auto pw : pipelineWrappers) {
 		pw->ensureBuffers(args);
 	}
 }
 
-void Renderer::buildDrawCalls() {
+void VulkanRenderer::buildDrawCalls() {
 	VkDevice vkDevice = vkWidget->device();
 
 	VkPipelineMetaArgs args{};
@@ -207,17 +190,53 @@ void Renderer::buildDrawCalls() {
 	args.vkDeviceFunctions = vkDeviceFunctions;
 	args.vkPipelineCache = vkPipelineCache;
 	args.projectionMatrix = projectionMatrix;
-	args.camera = &camera;
+	args.camera = camera;
 
 	for (auto pw : pipelineWrappers) {
 		pw->buildDrawCalls(args);
 	}
 }
 
-void Renderer::addPipelineWrapper(PipelineWrapper *pw) {
+void VulkanRenderer::addPipelineWrapper(PipelineWrapper *pw) {
 	qDebug() << "addPipelineWrapper";
 	pipelineWrappers << pw;
 }
+
+Camera *VulkanRenderer::getCamera() const {
+	return camera;
+}
+
+void VulkanRenderer::setCamera(Camera *newCamera) {
+	camera = newCamera;
+}
+
+VkPipelineMetaArgs VulkanRenderer::getMetaArgs() {
+	VkDevice vkDevice = vkWidget->device();
+
+	VkPipelineMetaArgs args{};
+
+	args.vkInstance = VK_NULL_HANDLE;
+	args.vkDevice = vkDevice;
+	args.vkWidget = vkWidget;
+	args.vkDeviceFunctions = vkDeviceFunctions;
+	args.vkPipelineCache = vkPipelineCache;
+	args.projectionMatrix = projectionMatrix;
+	args.camera = camera;
+
+	return args;
+}
+//region Ui Events
+
+bool VulkanRenderer::uiEvent(QEvent *event) {
+
+	if (camera && camera->uiEvent(event)) {
+		return true;
+	}
+
+	return false;
+}
+
+//endregion
 
 
 //static inline VkDeviceSize aligned(VkDeviceSize v, VkDeviceSize byteAlign) {

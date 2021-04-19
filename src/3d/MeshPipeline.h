@@ -22,7 +22,8 @@ namespace Sokar3D {
 		VkBuffer vertexBuf = VK_NULL_HANDLE;
 		VkBuffer instanceBuf = VK_NULL_HANDLE;
 		VkDeviceMemory bufMem = VK_NULL_HANDLE;
-		glm::mat4 model;
+		MeshConstants meshConstants;
+		glm::mat4 meshModel = glm::mat4(1);
 		bool buffersDone = false;
 
 	public:

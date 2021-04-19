@@ -12,9 +12,9 @@
 namespace Sokar3D {
 
 	struct MeshVertex {
-		vec3 pos;
-		vec3 color;
-		vec3 normal;
+		glm::vec3 pos;
+		glm::vec2 tex;
+		glm::vec3 normal;
 
 		static VkVertexInputBindingDescription getBindingDescription();
 

@@ -17,22 +17,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="kommit kontrolny">
+      <change afterPath="$PROJECT_DIR$/src/3d/CenterCamera.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/3d/CenterCamera.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/3d/GameCamera.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/3d/GameCamera.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/res/resources.qrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/vk-shader/background.frag" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/vk-shader/background.vert" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.frag" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.frag.spv" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.frag.spv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.vert" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.vert.spv" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.vert.spv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Camera.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Camera.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Mesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Mesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Mesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Mesh.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/PipelineWrapper.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/PipelineWrapper.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/PipelineWrapper.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/PipelineWrapper.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Renderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Renderer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Vertex.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshVertex.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Vertex.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshVertex.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshVertex.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshVertex.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshVertex.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshVertex.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanRenderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanRenderer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/VulkanWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanWidget.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/VulkanWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanWidget.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/_def.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" afterDir="false" />
@@ -554,7 +556,12 @@
       <workItem from="1618150080977" duration="14596000" />
       <workItem from="1618259024759" duration="6665000" />
       <workItem from="1618309456885" duration="7376000" />
-      <workItem from="1618318139846" duration="1550000" />
+      <workItem from="1618318139846" duration="4330000" />
+      <workItem from="1618510334369" duration="600000" />
+      <workItem from="1618578986172" duration="2000" />
+      <workItem from="1618681661035" duration="606000" />
+      <workItem from="1618765930673" duration="8919000" />
+      <workItem from="1618842823348" duration="6176000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>
@@ -808,7 +815,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618183616119</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="kommit kontrolny">
+      <created>1618319944425</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1618319944425</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
