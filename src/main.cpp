@@ -19,36 +19,13 @@ int main(int argc, char *argv[]) {
 	QApplication app(argc, argv);
 
 	Sokar::qSettings = new QSettings();
-
+//
 //	Sokar::MainWindow w;
 //	w.show();
 
 	auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
 
-	auto mesh = new Sokar3D::Mesh();
-
-	mesh->addTriangle(
-			{
-					glm::vec3{-1, -1, 0}
-			},
-			{
-					glm::vec3{-1, 1, 0}
-			},
-			{
-					glm::vec3{0, 0, 0}
-			}
-	);
-	mesh->addTriangle(
-			{
-					glm::vec3{-1, -1, 0}
-			},
-			{
-					glm::vec3{0, 0, 0}
-			},
-			{
-					glm::vec3{-1, 1, 0}
-			}
-	);
+	auto mesh = Sokar3D::Mesh::createCubeMesh();
 
 	auto meshpw = new Sokar3D::MeshPipeline(mesh);
 

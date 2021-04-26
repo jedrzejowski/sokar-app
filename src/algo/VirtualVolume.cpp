@@ -24,7 +24,7 @@ glm::u32vec3 VirtualVolume::getSize() const {
 	);
 }
 
-double VirtualVolume::getValue(const quint32 &x, const quint32 &y, const quint32 &z) const {
+float VirtualVolume::getValue(const quint32 &x, const quint32 &y, const quint32 &z) const {
 	return sceneSet->getScenesVector()[z]->getWokselValue(x, y).x;
 }
 

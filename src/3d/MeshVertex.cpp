@@ -16,8 +16,8 @@ VkVertexInputBindingDescription MeshVertex::getBindingDescription() {
 	return bindingDescription;
 }
 
-std::array<VkVertexInputAttributeDescription, 3> MeshVertex::getAttributeDescriptions(){
-	std::array<VkVertexInputAttributeDescription, 3> attributeDescriptions{};
+std::vector<VkVertexInputAttributeDescription> MeshVertex::getAttributeDescriptions(){
+	std::vector<VkVertexInputAttributeDescription> attributeDescriptions(3);
 
 	attributeDescriptions[0].binding = 0;
 	attributeDescriptions[0].location = 0;

@@ -21,7 +21,9 @@ namespace Sokar3D {
 	struct MeshVertex;
 
 	class Camera;
+
 	class GameCamera;
+
 	class CenterCamera;
 
 	class Mesh;
@@ -41,4 +43,8 @@ namespace Sokar3D {
 	class MeshPipeline;
 
 	QVulkanInstance *getVulkanInstance();
+
+	static inline VkDeviceSize makeBuffSizeAligned(VkDeviceSize v, VkDeviceSize byteAlign) {
+		return (v + byteAlign - 1) & ~(byteAlign - 1);
+	}
 }

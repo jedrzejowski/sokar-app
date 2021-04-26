@@ -29,6 +29,8 @@ namespace Sokar3D {
 
 		void addTriangle(MeshVertex v0, MeshVertex v1, MeshVertex v2);
 
+		static Mesh* createCubeMesh();
+
 	private:
 		bool m_maybeRunning = false;
 		QFuture<MeshData> m_future;

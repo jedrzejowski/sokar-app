@@ -22,6 +22,8 @@
 #include "QFutureWatcher"
 #include "QFutureWatcherBase"
 
+#include "../../../3d/CenterCamera.h"
+
 using namespace Sokar;
 
 Monochrome::Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
@@ -435,25 +437,53 @@ void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool stat
 
 		auto watcher = new QFutureWatcher<void>();
 
-		connect(watcher, &QFutureWatcherBase::finished, [&]() {
+		connect(watcher, &QFutureWatcherBase::finished, [mc, vv]() {
+			auto size = vv->getSize();
 			qDebug() << "end with " << mc->getTriangles().size();
-
-			auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
+			qDebug() << std::max(std::max(size.x, size.y), size.z);
 
 			auto mesh = new Sokar3D::Mesh();
+
+			for (const auto tri : mc->getTriangles()) {
+
+				mesh->addTriangle(
+						{
+								tri.vertex0
+						},
+						{
+								tri.vertex1
+						},
+						{
+								tri.vertex2
+						}
+				);
+
+//				break;
+			}
+
 			mesh->addTriangle(
-					{
-							glm::vec3{-1, -1, 0}
-					},
-					{
-							glm::vec3{-1, 1, 0}
-					},
-					{
-							glm::vec3{1, -1, 1}
-					}
+					{glm::vec3{-1, -1, 0}},
+					{glm::vec3{-1, 1, 0}},
+					{glm::vec3{0, 0, 0}}
+			);
+			mesh->addTriangle(
+					{glm::vec3{-1, -1, 0}},
+					{glm::vec3{0, 0, 0}},
+					{glm::vec3{-1, 1, 0}}
 			);
 
+			auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
 			auto meshpw = new Sokar3D::MeshPipeline(mesh);
+
+			auto renderer = ret.renderer;
+			renderer->addPipelineWrapper(meshpw);
+
+			auto camera = new Sokar3D::CenterCamera(
+					glm::vec3(size.x / 2, size.y / 2, size.z / 2),
+					std::max(std::max(size.x, size.y), size.z) * 10
+			);
+
+			renderer->setCamera(camera);
 
 			ret.renderer->addPipelineWrapper(meshpw);
 		});

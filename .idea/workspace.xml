@@ -17,26 +17,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="kommit kontrolny">
-      <change afterPath="$PROJECT_DIR$/src/3d/CenterCamera.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d/CenterCamera.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d/GameCamera.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d/GameCamera.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.frag" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.frag" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.frag.spv" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.frag.spv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.vert" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.vert" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.vert.spv" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.vert.spv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Camera.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/CenterCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/CenterCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/Mesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Mesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/Mesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Mesh.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/MeshVertex.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshVertex.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/MeshVertex.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshVertex.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanRenderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Renderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanRenderer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/VulkanWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/VulkanWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanWidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/VulkanRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanRenderer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/_def.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Cube.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Cube.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VirtualVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VirtualVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VirtualVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VirtualVolume.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
@@ -393,16 +391,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="vk:color_phong" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
@@ -561,7 +549,10 @@
       <workItem from="1618578986172" duration="2000" />
       <workItem from="1618681661035" duration="606000" />
       <workItem from="1618765930673" duration="8919000" />
-      <workItem from="1618842823348" duration="6176000" />
+      <workItem from="1618842823348" duration="10576000" />
+      <workItem from="1618922010853" duration="2343000" />
+      <workItem from="1619360540204" duration="18315000" />
+      <workItem from="1619437900636" duration="5379000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>
@@ -822,7 +813,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618319944425</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="kommit kontrolny">
+      <created>1618851913093</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1618851913093</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

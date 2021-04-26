@@ -24,11 +24,12 @@ QFuture<void> MarchingCubes::marchingCubes() {
 				}
 			}
 		}
+		qDebug() << "done," << triangles.length();
 	});
 }
 
 
-glm::vec3 vertexInterp(double isoLevel, glm::u32vec3 p1, glm::u32vec3 p2, double valp1, double valp2) {
+glm::vec3 vertexInterp(double isoLevel, glm::u32vec3 p1, glm::u32vec3 p2, float valp1, float valp2) {
 	double mu;
 	glm::vec3 p;
 

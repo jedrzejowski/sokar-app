@@ -19,14 +19,14 @@ glm::mat4 CenterCamera::viewMatrix() const {
 
 	glm::vec3 cameraFront = glm::vec3(1.0f, 0.0f, 0.0f);
 
-	qDebug() << "pitchAngle=" << pitchAngle << " yawAngle=" << yawAngle;
+//	qDebug() << "pitchAngle=" << pitchAngle << " yawAngle=" << yawAngle << " distance=" << distance;
 
 	cameraFront = glm::rotate(cameraFront, glm::radians(pitchAngle), glm::vec3(0, 0, 1));
 	cameraFront = glm::rotate(cameraFront, glm::radians(yawAngle), glm::vec3(0, 1, 0));
 
 	cameraFront = glm::normalize(cameraFront) * distance;
 
-	return glm::lookAt(centerPos - cameraFront, centerPos, cameraUp);
+	return glm::lookAt(centerPos + cameraFront, centerPos, cameraUp);
 }
 
 bool CenterCamera::uiEvent(QEvent *event) {
@@ -54,6 +54,14 @@ bool CenterCamera::uiEvent(QEvent *event) {
 		}
 	}
 
+
+	if (event->type() == QEvent::Wheel) {
+		event->accept();
+		auto wheelEvent = (QWheelEvent *) event;
+		zoom(wheelEvent->angleDelta().y() / 10 / speedRatio);
+		return true;
+	}
+
 	return Camera::uiEvent(event);
 }
 
@@ -66,4 +74,5 @@ void CenterCamera::pitch(float degrees) {
 }
 
 void CenterCamera::zoom(float zoom) {
+	distance += zoom;
 }

@@ -85,7 +85,7 @@ void VulkanRenderer::initSwapChainResources() {
 
 	auto proj = vkWidget->clipCorrectionMatrix();
 	const QSize sz = vkWidget->swapChainImageSize();
-	proj.perspective(45.0f, sz.width() / (float) sz.height(), 0.01f, 100.0f);
+	proj.perspective(45.0f, sz.width() / (float) sz.height(), 0.01f, 1000000.0f);
 
 	projectionMatrix = glm::make_mat4(proj.data());
 }

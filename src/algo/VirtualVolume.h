@@ -40,7 +40,7 @@ namespace SokarAlg {
 		}
 
 		[[nodiscard]]
-		double getValue(const quint32 &x, const quint32 &y, const quint32 &z) const;
+		float getValue(const quint32 &x, const quint32 &y, const quint32 &z) const;
 	};
 }
 

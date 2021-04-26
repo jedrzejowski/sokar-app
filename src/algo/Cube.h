@@ -9,6 +9,6 @@ namespace SokarAlg {
 
 	struct Cube {
 		glm::u32vec3 position[8];
-		double value[8];
+		float value[8];
 	};
 }

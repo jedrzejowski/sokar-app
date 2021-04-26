@@ -18,7 +18,7 @@ namespace Sokar3D {
 
 		static VkVertexInputBindingDescription getBindingDescription();
 
-		static std::array<VkVertexInputAttributeDescription, 3> getAttributeDescriptions();
+		static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
 	};
 }
 
