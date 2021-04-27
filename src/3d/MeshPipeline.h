@@ -29,7 +29,7 @@ namespace Sokar3D {
 	};
 
 	struct FragUniformBufferObject {
-		glm::mat4 camera;
+		glm::vec3 cameraPos;
 		SimpleLight light;
 		SolidMaterial material;
 

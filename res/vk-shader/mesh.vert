@@ -22,6 +22,7 @@ uniform VertUniformBufferObject {
 out gl_PerVertex { vec4 gl_Position; };
 layout(location = 0) out vec3 vertNormal;
 layout(location = 1) out vec3 vertPos;
+layout(location = 2) out vec3 vertColor;
 
 void main()
 {

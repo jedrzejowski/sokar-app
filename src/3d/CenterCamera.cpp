@@ -76,3 +76,7 @@ void CenterCamera::pitch(float degrees) {
 void CenterCamera::zoom(float zoom) {
 	distance += zoom;
 }
+
+glm::vec3 CenterCamera::position() const {
+	return centerPos;
+}

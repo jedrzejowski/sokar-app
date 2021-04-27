@@ -354,7 +354,16 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 	vertUniformBufferObject.camera = args.camera->viewMatrix();
 	vertUniformBufferObject.proj = args.projectionMatrix;
 
-	fragUniformBufferObject.material.color = glm::vec3(1.0f, 0.0f, 0.0f);
+	fragUniformBufferObject.cameraPos = args.camera->position();
+
+	fragUniformBufferObject.light.position = glm::vec3(5.0f, 4.0f, -3.0f);
+	fragUniformBufferObject.light.ambient = glm::vec3(0.4f);
+	fragUniformBufferObject.light.diffuse = glm::vec3(0.5f);
+	fragUniformBufferObject.light.specular = glm::vec3(1.0f);
+
+	fragUniformBufferObject.material.shininess = 64.0f;
+	fragUniformBufferObject.material.specular = glm::vec3(0.5f, 0.5f, 0.5f);
+	fragUniformBufferObject.material.color = glm::vec3(0.0f, 1.f, 0.f);
 
 
 	args.vkDeviceFunctions->vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline);

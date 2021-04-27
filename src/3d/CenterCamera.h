@@ -21,6 +21,7 @@ namespace Sokar3D {
 	public:
 		[[nodiscard]]
 		glm::mat4 viewMatrix() const override;
+		glm::vec3 position() const override;
 
 		CenterCamera(const glm::vec3 &centerPos, float distance);
 
