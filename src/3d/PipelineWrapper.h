@@ -22,18 +22,18 @@ namespace Sokar3D {
 
 	class PipelineWrapper {
 	protected:
-		VkPipelineLayout pipelineLayout = VK_NULL_HANDLE;
-		VkPipeline pipeline = VK_NULL_HANDLE;
+		VkPipelineLayout vkPipelineLayout = VK_NULL_HANDLE;
+		VkPipeline vkPipeline = VK_NULL_HANDLE;
 
 	public:
 		PipelineWrapper();
 		virtual ~PipelineWrapper();
 
-		virtual void initResources(VkPipelineMetaArgs &args) = 0;
-		virtual void createVkPipeline(VkPipelineMetaArgs &args) = 0;
-		virtual void ensureBuffers(VkPipelineMetaArgs &args) = 0;
-		virtual void buildDrawCalls(VkPipelineMetaArgs &args) = 0;
-		virtual void releaseResources(VkPipelineMetaArgs &args) = 0;
+		virtual void initResources(const VkPipelineMetaArgs &args) = 0;
+		virtual void createVkPipeline(const VkPipelineMetaArgs &args) = 0;
+		virtual void ensureBuffers(const VkPipelineMetaArgs &args) = 0;
+		virtual void buildDrawCalls(const VkPipelineMetaArgs &args) = 0;
+		virtual void releaseResources(const VkPipelineMetaArgs &args) = 0;
 	};
 }
 

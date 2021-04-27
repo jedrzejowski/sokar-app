@@ -21,6 +21,7 @@ namespace Sokar3D {
 		VkPipelineCache vkPipelineCache = VK_NULL_HANDLE;
 
 		QFutureWatcher<void> frameWatcher;
+		QFuture<void> initResourceFuture;
 		Camera *camera = nullptr;
 		glm::vec3 m_lightPos;
 		glm::mat4 projectionMatrix;

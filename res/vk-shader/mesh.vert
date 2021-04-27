@@ -6,12 +6,10 @@ layout(location = 2) in vec3 normal;
 
 //
 layout(binding = 0)
-uniform MeshUniformVertBuf {
+uniform VertUniformBufferObject {
     mat4 model;
     mat4 camera;
     mat4 proj;
-    vec3 color;
-    vec3 lightPos;
 } uniBuf;
 
 //layout(push_constant) uniform MeshConstants {
@@ -22,9 +20,12 @@ uniform MeshUniformVertBuf {
 //} meshConsts;
 
 out gl_PerVertex { vec4 gl_Position; };
+layout(location = 0) out vec3 vertNormal;
+layout(location = 1) out vec3 vertPos;
 
 void main()
 {
+    vertNormal = vec3(normalize(uniBuf.model * vec4(normal, 1.0f)));
+    vertPos = vec3(uniBuf.model * vec4(position, 1.0f));
     gl_Position = uniBuf.proj * uniBuf.camera * uniBuf.model * vec4(position, 1.0f);
-    //        gl_Position = vec4(position, 1.0f);
 }

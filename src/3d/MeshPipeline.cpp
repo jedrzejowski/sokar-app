@@ -14,12 +14,12 @@ MeshPipeline::MeshPipeline(Mesh *mesh) : mesh(mesh) {
 	//	backgroundMaterial.model.translate(0, -5, 0);
 }
 
-void MeshPipeline::initResources(VkPipelineMetaArgs &args) {
+void MeshPipeline::initResources(const VkPipelineMetaArgs &args) {
 
 	const VkPhysicalDeviceLimits *pdevLimits = &args.vkWidget->physicalDeviceProperties()->limits;
 	const VkDeviceSize uniAlign = pdevLimits->minUniformBufferOffsetAlignment;
 
-	uniformBufferObjectSize = makeBuffSizeAligned(sizeof(UniformBufferObject), uniAlign);
+//	uniformBufferObjectSize = makeBuffSizeAligned(sizeof(UniformBufferObject), uniAlign);
 
 	if (!vertexShader.isValid())
 		vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/mesh.vert.spv"));
@@ -27,7 +27,50 @@ void MeshPipeline::initResources(VkPipelineMetaArgs &args) {
 		fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/mesh.frag.spv"));
 }
 
-void MeshPipeline::releaseResources(VkPipelineMetaArgs &args) {
+void MeshPipeline::releaseResources(const VkPipelineMetaArgs &args) {
+
+	if (vkDescriptorPool) {
+		args.vkDeviceFunctions->vkDestroyDescriptorPool(args.vkDevice, vkDescriptorPool, nullptr);
+		vkDescriptorPool = VK_NULL_HANDLE;
+	}
+
+	if (vkDescriptorSetLayout) {
+		args.vkDeviceFunctions->vkDestroyDescriptorSetLayout(args.vkDevice, vkDescriptorSetLayout, nullptr);
+		vkDescriptorSetLayout = VK_NULL_HANDLE;
+	}
+
+
+	if (vkPipeline) {
+		args.vkDeviceFunctions->vkDestroyPipeline(args.vkDevice, vkPipeline, nullptr);
+		vkPipeline = VK_NULL_HANDLE;
+	}
+
+	if (vkPipelineLayout) {
+		args.vkDeviceFunctions->vkDestroyPipelineLayout(args.vkDevice, vkPipelineLayout, nullptr);
+		vkPipelineLayout = VK_NULL_HANDLE;
+	}
+
+	if (vertexBuf) {
+		args.vkDeviceFunctions->vkDestroyBuffer(args.vkDevice, vertexBuf, nullptr);
+		vertexBuf = VK_NULL_HANDLE;
+	}
+
+	if (uniformBuf) {
+		args.vkDeviceFunctions->vkDestroyBuffer(args.vkDevice, uniformBuf, nullptr);
+		uniformBuf = VK_NULL_HANDLE;
+	}
+
+	if (instanceBuf) {
+		args.vkDeviceFunctions->vkDestroyBuffer(args.vkDevice, instanceBuf, nullptr);
+		instanceBuf = VK_NULL_HANDLE;
+	}
+
+	if (bufMem) {
+		args.vkDeviceFunctions->vkFreeMemory(args.vkDevice, bufMem, nullptr);
+		bufMem = VK_NULL_HANDLE;
+	}
+
+
 	if (vertexShader.isValid()) {
 		args.vkDeviceFunctions->vkDestroyShaderModule(
 				args.vkDevice, vertexShader.data()->shaderModule, nullptr);
@@ -41,7 +84,7 @@ void MeshPipeline::releaseResources(VkPipelineMetaArgs &args) {
 	}
 }
 
-void MeshPipeline::createVkPipeline(VkPipelineMetaArgs &args) {
+void MeshPipeline::createVkPipeline(const VkPipelineMetaArgs &args) {
 	VkResult err;
 
 	std::vector<VkVertexInputBindingDescription> vertexBindingDesc = {
@@ -83,6 +126,13 @@ void MeshPipeline::createVkPipeline(VkPipelineMetaArgs &args) {
 					1,
 					VK_SHADER_STAGE_VERTEX_BIT,
 					nullptr
+			},
+			{
+					1,
+					VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC,
+					1,
+					VK_SHADER_STAGE_FRAGMENT_BIT,
+					nullptr
 			}
 	};
 	VkDescriptorSetLayoutCreateInfo descLayoutInfo{};
@@ -91,7 +141,8 @@ void MeshPipeline::createVkPipeline(VkPipelineMetaArgs &args) {
 	descLayoutInfo.flags = 0;
 	descLayoutInfo.bindingCount = layoutBindings.size();
 	descLayoutInfo.pBindings = layoutBindings.data();
-	err = args.vkDeviceFunctions->vkCreateDescriptorSetLayout(args.vkDevice, &descLayoutInfo, nullptr, &descSetLayout);
+	err = args.vkDeviceFunctions->vkCreateDescriptorSetLayout(args.vkDevice, &descLayoutInfo, nullptr,
+															  &vkDescriptorSetLayout);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to create descriptor set layout: %d", err);
 
@@ -100,18 +151,18 @@ void MeshPipeline::createVkPipeline(VkPipelineMetaArgs &args) {
 	descSetAllocInfo.pNext = nullptr;
 	descSetAllocInfo.descriptorPool = vkDescriptorPool;
 	descSetAllocInfo.descriptorSetCount = descPoolSizes.size();
-	descSetAllocInfo.pSetLayouts = &descSetLayout;
-	err = args.vkDeviceFunctions->vkAllocateDescriptorSets(args.vkDevice, &descSetAllocInfo, &descSet);
+	descSetAllocInfo.pSetLayouts = &vkDescriptorSetLayout;
+	err = args.vkDeviceFunctions->vkAllocateDescriptorSets(args.vkDevice, &descSetAllocInfo, &vkDescriptorSet);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to allocate descriptor set: %d", err);
 
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo{};
 	pipelineLayoutInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
-	pipelineLayoutInfo.pSetLayouts = &descSetLayout;
+	pipelineLayoutInfo.pSetLayouts = &vkDescriptorSetLayout;
 	pipelineLayoutInfo.setLayoutCount = 1;
 
 	err = args.vkDeviceFunctions->vkCreatePipelineLayout(
-			args.vkDevice, &pipelineLayoutInfo, nullptr, &pipelineLayout);
+			args.vkDevice, &pipelineLayoutInfo, nullptr, &vkPipelineLayout);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to create pipeline layout: %d", err);
 
@@ -188,21 +239,20 @@ void MeshPipeline::createVkPipeline(VkPipelineMetaArgs &args) {
 	dyn.pDynamicStates = dynEnable;
 	pipelineInfo.pDynamicState = &dyn;
 
-	pipelineInfo.layout = pipelineLayout;
+	pipelineInfo.layout = vkPipelineLayout;
 	pipelineInfo.renderPass = args.vkWidget->defaultRenderPass();
 
 	err = args.vkDeviceFunctions->vkCreateGraphicsPipelines(
-			args.vkDevice, args.vkPipelineCache, 1, &pipelineInfo, nullptr, &pipeline);
+			args.vkDevice, args.vkPipelineCache, 1, &pipelineInfo, nullptr, &vkPipeline);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to create graphics pipeline: %d", err);
 }
 
-void MeshPipeline::ensureBuffers(VkPipelineMetaArgs &args) {
-	if (buffersDone) {
+void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
+	if (vertexBuf) {
 		return;
 	}
 	qDebug("buffersDone: ensureBuffers");
-	buffersDone = true;
 
 	const int concurrentFrameCount = args.vkWidget->concurrentFrameCount();
 	VkResult err;
@@ -222,8 +272,11 @@ void MeshPipeline::ensureBuffers(VkPipelineMetaArgs &args) {
 	VkMemoryRequirements vertexMemReq;
 	args.vkDeviceFunctions->vkGetBufferMemoryRequirements(args.vkDevice, vertexBuf, &vertexMemReq);
 
+	qDebug() << VertUniformBufferObject::size() << ";" << FragUniformBufferObject::size() << ";"
+			 << concurrentFrameCount;
+
 	// uniform buffer
-	bufInfo.size = uniformBufferObjectSize * concurrentFrameCount;
+	bufInfo.size = (VertUniformBufferObject::size() + FragUniformBufferObject::size()) * concurrentFrameCount;
 	bufInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
 	err = args.vkDeviceFunctions->vkCreateBuffer(args.vkDevice, &bufInfo, nullptr, &uniformBuf);
 	if (err != VK_SUCCESS)
@@ -237,7 +290,7 @@ void MeshPipeline::ensureBuffers(VkPipelineMetaArgs &args) {
 	memAllocInfo.sType = VK_STRUCTURE_TYPE_MEMORY_ALLOCATE_INFO;
 	memAllocInfo.pNext = nullptr;
 	memAllocInfo.allocationSize =
-			uniformBufferObjectSize * concurrentFrameCount +
+			(VertUniformBufferObject::size() + FragUniformBufferObject::size()) * concurrentFrameCount +
 			static_cast<VkDeviceSize>(mesh->data()->sizeInBytes());
 	memAllocInfo.memoryTypeIndex = args.vkWidget->hostVisibleMemoryIndex();
 
@@ -269,56 +322,66 @@ void MeshPipeline::ensureBuffers(VkPipelineMetaArgs &args) {
 
 	// deskryptry
 
-	VkDescriptorBufferInfo uniDescBuffInfo = {uniformBuf, 0, uniformBufferObjectSize};
+	VkDescriptorBufferInfo vertUniformDescBuffInfo = {uniformBuf, 0, VertUniformBufferObject::size()};
+	VkDescriptorBufferInfo fragUniformDescBuffInfo = {uniformBuf, VertUniformBufferObject::size(),
+													  FragUniformBufferObject::size()};
 
-	std::vector<VkWriteDescriptorSet> descWrite(1);
+	std::vector<VkWriteDescriptorSet> descWrite(2);
 
 	descWrite[0].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
-	descWrite[0].dstSet = descSet;
+	descWrite[0].dstSet = vkDescriptorSet;
 	descWrite[0].dstBinding = 0;
 	descWrite[0].descriptorCount = 1;
 	descWrite[0].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC;
-	descWrite[0].pBufferInfo = &uniDescBuffInfo;
+	descWrite[0].pBufferInfo = &vertUniformDescBuffInfo;
+
+	descWrite[1].sType = VK_STRUCTURE_TYPE_WRITE_DESCRIPTOR_SET;
+	descWrite[1].dstSet = vkDescriptorSet;
+	descWrite[1].dstBinding = 1;
+	descWrite[1].descriptorCount = 1;
+	descWrite[1].descriptorType = VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC;
+	descWrite[1].pBufferInfo = &fragUniformDescBuffInfo;
 
 	args.vkDeviceFunctions->vkUpdateDescriptorSets(args.vkDevice, descWrite.size(), descWrite.data(), 0, nullptr);
 }
 
-void MeshPipeline::buildDrawCalls(VkPipelineMetaArgs &args) {
+void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 	VkCommandBuffer cb = args.vkWidget->currentCommandBuffer();
 	VkResult err;
 
-	args.vkDeviceFunctions->vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS, pipeline);
+
+	vertUniformBufferObject.model = meshModel;
+	vertUniformBufferObject.camera = args.camera->viewMatrix();
+	vertUniformBufferObject.proj = args.projectionMatrix;
+
+	fragUniformBufferObject.material.color = glm::vec3(1.0f, 0.0f, 0.0f);
+
+
+	args.vkDeviceFunctions->vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline);
 
 	VkDeviceSize vbOffset = 0;
 	args.vkDeviceFunctions->vkCmdBindVertexBuffers(cb, 0, 1, &vertexBuf, &vbOffset);
 
-	uint32_t frameUniOffset = args.vkWidget->currentFrame() * uniformBufferObjectSize;
-	uint32_t frameUniOffsets[] = {frameUniOffset};
+	uint32_t frameUniOffset =
+			args.vkWidget->currentFrame() * (VertUniformBufferObject::size() + FragUniformBufferObject::size());
+	uint32_t frameUniOffsets[] = {frameUniOffset, frameUniOffset};
 	args.vkDeviceFunctions->vkCmdBindDescriptorSets(
-			cb, VK_PIPELINE_BIND_POINT_GRAPHICS, pipelineLayout,
+			cb, VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipelineLayout,
 			0, 1,
-			&descSet,
-			1,
+			&vkDescriptorSet,
+			2,
 			frameUniOffsets);
-
-
-	uniformBufferObject.model = meshModel;
-	if (!args.camera) {
-		qFatal("Camera not set");
-	}
-	uniformBufferObject.camera = args.camera->viewMatrix();
-	uniformBufferObject.proj = args.projectionMatrix;
-	uniformBufferObject.color = glm::vec3(1.0f, 0.0f, 0.2f);
 
 	quint8 *p;
 	err = args.vkDeviceFunctions->vkMapMemory(
 			args.vkDevice, bufMem, uniformMemOffset + frameUniOffset,
-			uniformBufferObjectSize, 0,
-			reinterpret_cast<void **>(&p));
+			VertUniformBufferObject::size(), 0, reinterpret_cast<void **>(&p));
 	if (err != VK_SUCCESS)
 		qFatal("Failed to map memory: %d", err);
-	memcpy(p, &uniformBufferObject, uniformBufferObjectSize);
+	memcpy(p, &vertUniformBufferObject, VertUniformBufferObject::size());
+	memcpy(p + VertUniformBufferObject::size(), &fragUniformBufferObject, FragUniformBufferObject::size());
 	args.vkDeviceFunctions->vkUnmapMemory(args.vkDevice, bufMem);
+
 
 	args.vkDeviceFunctions->vkCmdDraw(cb, mesh->data()->geom.size(), 1, 0, 0);
 }

@@ -6,6 +6,8 @@
 
 #include "./_def.h"
 #include "./PipelineWrapper.h"
+#include "./SimpleLight.h"
+#include "./SolidMaterial.h"
 
 namespace Sokar3D {
 	struct MeshConstants {
@@ -15,13 +17,26 @@ namespace Sokar3D {
 		glm::vec3 color;
 	};
 
-	struct UniformBufferObject {
+	struct VertUniformBufferObject {
 		glm::mat4 model;
 		glm::mat4 camera;
 		glm::mat4 proj;
-		glm::vec3 color;
 
-		glm::vec3 lightPos;
+		static inline VkDeviceSize size() {
+//			return sizeof(VertUniformBufferObject);
+			return 256;
+		}
+	};
+
+	struct FragUniformBufferObject {
+		glm::mat4 camera;
+		SimpleLight light;
+		SolidMaterial material;
+
+		static inline VkDeviceSize size() {
+//			return sizeof(FragUniformBufferObject);
+			return 512;
+		}
 	};
 
 	class MeshPipeline : public PipelineWrapper {
@@ -33,23 +48,24 @@ namespace Sokar3D {
 		VkBuffer instanceBuf = VK_NULL_HANDLE;
 		VkDeviceMemory bufMem = VK_NULL_HANDLE;
 		VkDescriptorPool vkDescriptorPool = VK_NULL_HANDLE;
-		VkDescriptorSetLayout descSetLayout = VK_NULL_HANDLE;
+		VkDescriptorSetLayout vkDescriptorSetLayout = VK_NULL_HANDLE;
 		VkDeviceSize vertexMemOffset = VK_NULL_HANDLE;
 		VkDeviceSize uniformMemOffset = VK_NULL_HANDLE;
-		VkDescriptorSet descSet = VK_NULL_HANDLE;
-		VkDeviceSize uniformBufferObjectSize = sizeof(UniformBufferObject);
-		UniformBufferObject uniformBufferObject;
+		VkDescriptorSet vkDescriptorSet = VK_NULL_HANDLE;
+
+		VertUniformBufferObject vertUniformBufferObject;
+		FragUniformBufferObject fragUniformBufferObject;
+
 		glm::mat4 meshModel = glm::mat4(1);
-		bool buffersDone = false;
 
 	public:
 		explicit MeshPipeline(Mesh *mesh);
 
-		void initResources(VkPipelineMetaArgs &args) override;
-		void createVkPipeline(VkPipelineMetaArgs &args) override;
-		void ensureBuffers(VkPipelineMetaArgs &args) override;
-		void buildDrawCalls(VkPipelineMetaArgs &args) override;
-		void releaseResources(VkPipelineMetaArgs &args) override;
+		void initResources(const VkPipelineMetaArgs &args) override;
+		void createVkPipeline(const VkPipelineMetaArgs &args) override;
+		void ensureBuffers(const VkPipelineMetaArgs &args) override;
+		void buildDrawCalls(const VkPipelineMetaArgs &args) override;
+		void releaseResources(const VkPipelineMetaArgs &args) override;
 	};
 }
 

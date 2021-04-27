@@ -14,6 +14,7 @@ QVulkanInstance *Sokar3D::getVulkanInstance() {
 
 		SokarQVkInstance(){
 			const bool dbg = qEnvironmentVariableIntValue("QT_VK_DEBUG");
+//			const bool dbg = true;
 
 			if (dbg) {
 				QLoggingCategory::setFilterRules(QStringLiteral("qt.vulkan=true"));

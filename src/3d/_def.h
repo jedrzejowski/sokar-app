@@ -26,6 +26,10 @@ namespace Sokar3D {
 
 	class CenterCamera;
 
+	struct SimpleLight;
+
+	struct SolidMaterial;
+
 	class Mesh;
 
 	class VulkanRenderer;
