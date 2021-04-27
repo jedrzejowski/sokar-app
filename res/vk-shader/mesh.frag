@@ -8,7 +8,6 @@ struct SolidMaterial {
 
 struct SimpleLight {
     vec3 position;
-
     vec3 ambient;
     vec3 diffuse;
     vec3 specular;
@@ -28,6 +27,8 @@ layout(location = 0) out vec4 fragColor;
 
 void main()
 {
-    fragColor = vec4(uniBuf.material.color, 1.0);
-//        fragColor = vec4(1.0, 0.0, 0.0, 1.0);
+    vec3 ambient = uniBuf.light.ambient * uniBuf.material.diffuse, TexCoord).rgb;
+
+    fragColor = vec4(uniBuf.material.color, 1.0f);
+    //        fragColor = vec4(1.0, 0.0, 0.0, 1.0);
 }

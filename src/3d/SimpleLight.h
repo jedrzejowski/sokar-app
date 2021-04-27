@@ -7,12 +7,13 @@
 #include "./_def.h"
 
 namespace Sokar3D {
-	struct SimpleLight {
-		glm::vec3 position;
 
-		glm::vec3 ambient;
-		glm::vec3 diffuse;
-		glm::vec3 specular;
+	// https://fvcaputo.github.io/2019/02/06/memory-alignment.html
+	struct SimpleLight {
+		alignas(16) glm::vec3 position;
+		alignas(16) glm::vec3 ambient;
+		alignas(16) glm::vec3 diffuse;
+		alignas(16) glm::vec3 specular;
 	};
 }
 

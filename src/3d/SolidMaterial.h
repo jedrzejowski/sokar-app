@@ -7,10 +7,12 @@
 #include "./_def.h"
 
 namespace Sokar3D {
+
+	// https://fvcaputo.github.io/2019/02/06/memory-alignment.html
 	struct SolidMaterial {
-		glm::vec3 color;
-		glm::vec3 specular;
-		float shininess;
+		alignas(16) glm::vec3 color;
+		alignas(16) glm::vec3 specular;
+		alignas(4) float shininess;
 	};
 }
 
