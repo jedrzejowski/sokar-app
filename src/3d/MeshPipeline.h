@@ -40,7 +40,7 @@ namespace Sokar3D {
 	};
 
 	class MeshPipeline : public PipelineWrapper {
-		Mesh *mesh;
+		StaticMesh *mesh;
 		Shader vertexShader;
 		Shader fragmentShader;
 		VkBuffer vertexBuf = VK_NULL_HANDLE;
@@ -59,7 +59,7 @@ namespace Sokar3D {
 		glm::mat4 meshModel = glm::mat4(1);
 
 	public:
-		explicit MeshPipeline(Mesh *mesh);
+		explicit MeshPipeline(StaticMesh *mesh);
 
 		void initResources(const VkPipelineMetaArgs &args) override;
 		void createVkPipeline(const VkPipelineMetaArgs &args) override;

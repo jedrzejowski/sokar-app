@@ -29,4 +29,5 @@ void main()
     vertNormal = vec3(normalize(uniBuf.model * vec4(normal, 1.0f)));
     vertPos = vec3(uniBuf.model * vec4(position, 1.0f));
     gl_Position = uniBuf.proj * uniBuf.camera * uniBuf.model * vec4(position, 1.0f);
+    vertColor = vec3(tex, 0.0f);
 }

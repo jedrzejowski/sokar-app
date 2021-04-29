@@ -4,6 +4,7 @@
 
 #include <QGuiApplication>
 #include <win/mainwindow.h>
+#include "./algo/test/cube.h"
 #include "./3d/VulkanRenderer.h"
 #include "./3d/MeshPipeline.h"
 #include "./3d/CenterCamera.h"
@@ -23,19 +24,7 @@ int main(int argc, char *argv[]) {
 //	Sokar::MainWindow w;
 //	w.show();
 
-	auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
-
-	auto mesh = Sokar3D::Mesh::createCubeMesh();
-
-	auto meshpw = new Sokar3D::MeshPipeline(mesh);
-
-	auto renderer = ret.renderer;
-	renderer->addPipelineWrapper(meshpw);
-	auto camera = new Sokar3D::CenterCamera(
-			{0, 0, 0},
-			10
-	);
-	renderer->setCamera(camera);
+	sokarCubeTest();
 
 	return app.exec();
 }

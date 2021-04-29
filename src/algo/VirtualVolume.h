@@ -14,17 +14,10 @@ namespace SokarAlg {
 
 	class VirtualVolume {
 
-		const Sokar::DicomSceneSet *sceneSet = nullptr;
-
 	public:
 
 		[[nodiscard]]
-		const Sokar::DicomSceneSet *getSceneSet() const;
-
-		void setSceneSet(const Sokar::DicomSceneSet *sceneSet);
-
-		[[nodiscard]]
-		glm::u32vec3 getSize() const;
+		virtual glm::u32vec3 getSize() const = 0;
 
 		[[nodiscard]]
 		inline Cube getCube(const glm::u32vec3 &position) const {
@@ -40,7 +33,7 @@ namespace SokarAlg {
 		}
 
 		[[nodiscard]]
-		float getValue(const quint32 &x, const quint32 &y, const quint32 &z) const;
+		virtual float getValue(const quint32 &x, const quint32 &y, const quint32 &z) const = 0;
 	};
 }
 

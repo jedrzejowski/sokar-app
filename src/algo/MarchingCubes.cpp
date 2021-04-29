@@ -421,3 +421,22 @@ void MarchingCubes::setIsoLevel(float lvl) {
 }
 
 //endregion
+
+
+Sokar3D::StaticMesh *MarchingCubes::toStaticMesh() const {
+	auto mesh = new Sokar3D::StaticMesh();
+
+	for (const auto tri : triangles) {
+
+		auto tex = glm::vec2(0);
+		auto normal = glm::vec3(0);
+
+		mesh->addTriangle(
+				{tri.vertex0, tex, normal},
+				{tri.vertex1, tex, normal},
+				{tri.vertex2, tex, normal}
+		);
+	}
+
+	return mesh;
+}

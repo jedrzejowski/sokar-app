@@ -16,6 +16,9 @@ namespace SokarAlg {
 
 	class VirtualVolume;
 
-	class MarchingCubes;
+	class DicomVolume;
 
+	class ExampleVolume;
+
+	class MarchingCubes;
 }

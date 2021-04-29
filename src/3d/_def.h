@@ -30,7 +30,7 @@ namespace Sokar3D {
 
 	struct SolidMaterial;
 
-	class Mesh;
+	class StaticMesh;
 
 	class VulkanRenderer;
 

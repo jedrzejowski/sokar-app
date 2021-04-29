@@ -5,7 +5,7 @@
 #pragma once
 
 #include "./_def.h"
-#include "./Mesh.h"
+#include "./StaticMesh.h"
 #include "./Shader.h"
 
 namespace Sokar3D {

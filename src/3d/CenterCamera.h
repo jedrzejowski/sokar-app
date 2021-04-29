@@ -10,7 +10,7 @@
 namespace Sokar3D {
 	class CenterCamera : public Camera {
 	private:
-		glm::vec3 centerPos = glm::vec3(2.0f, 2.0f, 2.0f);
+		glm::vec3 lookAtPos = glm::vec3(2.0f, 2.0f, 2.0f);
 		glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
 		float distance;
 		float yawAngle = 0.0f;
@@ -21,6 +21,8 @@ namespace Sokar3D {
 	public:
 		[[nodiscard]]
 		glm::mat4 viewMatrix() const override;
+
+		[[nodiscard]]
 		glm::vec3 position() const override;
 
 		CenterCamera(const glm::vec3 &centerPos, float distance);

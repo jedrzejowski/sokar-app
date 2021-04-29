@@ -6,30 +6,10 @@
 
 using namespace SokarAlg;
 
-const Sokar::DicomSceneSet *VirtualVolume::getSceneSet() const {
-	return sceneSet;
-}
-
-void VirtualVolume::setSceneSet(const Sokar::DicomSceneSet *sceneSet) {
-	VirtualVolume::sceneSet = sceneSet;
-}
-
-glm::u32vec3 VirtualVolume::getSize() const {
-	const auto &vec = sceneSet->getScenesVector();
-
-	return glm::u32vec3(
-			vec[0]->getImgDimX(),
-			vec[0]->getImgDimX(),
-			vec.size()
-	);
-}
-
-float VirtualVolume::getValue(const quint32 &x, const quint32 &y, const quint32 &z) const {
-	return sceneSet->getScenesVector()[z]->getWokselValue(x, y).x;
-}
-
 Cube VirtualVolume::getCube(const quint32 &x, const quint32 &y, const quint32 &z) const {
 	auto cube = Cube();
+
+	// TODO dodać if'a
 
 	cube.position[0] = glm::u32vec3(x, y, z);
 	cube.value[0] = getValue(x, y, z);

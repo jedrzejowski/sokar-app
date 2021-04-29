@@ -21,7 +21,7 @@ namespace Sokar3D {
 		QVector<MeshVertex> geom;
 	};
 
-	class Mesh {
+	class StaticMesh {
 	public:
 		MeshData *data();
 		bool isValid() { return data()->isValid(); }
@@ -29,7 +29,7 @@ namespace Sokar3D {
 
 		void addTriangle(MeshVertex v0, MeshVertex v1, MeshVertex v2);
 
-		static Mesh* createCubeMesh();
+		static StaticMesh* createCubeMesh();
 
 	private:
 		bool m_maybeRunning = false;

@@ -7,6 +7,7 @@
 #include "./_def.h"
 #include "./Triangle.h"
 #include "./VirtualVolume.h"
+#include "../3d/StaticMesh.h"
 
 namespace SokarAlg {
 
@@ -26,6 +27,7 @@ namespace SokarAlg {
 		void setIsoLevel(float isoLevel);
 
 		QFuture<void> marchingCubes();
+		Sokar3D::StaticMesh *toStaticMesh() const;
 
 	private:
 		quint32 marchCube(Cube cube);

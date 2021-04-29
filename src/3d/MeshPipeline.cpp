@@ -10,7 +10,7 @@
 
 using namespace Sokar3D;
 
-MeshPipeline::MeshPipeline(Mesh *mesh) : mesh(mesh) {
+MeshPipeline::MeshPipeline(StaticMesh *mesh) : mesh(mesh) {
 	//	backgroundMaterial.model.translate(0, -5, 0);
 }
 
@@ -272,9 +272,6 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 	VkMemoryRequirements vertexMemReq;
 	args.vkDeviceFunctions->vkGetBufferMemoryRequirements(args.vkDevice, vertexBuf, &vertexMemReq);
 
-	qDebug() << VertUniformBufferObject::size() << ";" << FragUniformBufferObject::size() << ";"
-			 << concurrentFrameCount;
-
 	// uniform buffer
 	bufInfo.size = (VertUniformBufferObject::size() + FragUniformBufferObject::size()) * concurrentFrameCount;
 	bufInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
@@ -356,7 +353,7 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 
 	fragUniformBufferObject.cameraPos = args.camera->position();
 
-	fragUniformBufferObject.light.position = glm::vec3(5.0f, 4.0f, -3.0f);
+	fragUniformBufferObject.light.position = args.camera->position() + glm::vec3(0.0f, 2.0f, 0.0f);
 	fragUniformBufferObject.light.ambient = glm::vec3(0.4f);
 	fragUniformBufferObject.light.diffuse = glm::vec3(0.5f);
 	fragUniformBufferObject.light.specular = glm::vec3(1.0f);

@@ -23,6 +23,7 @@
 #include "QFutureWatcherBase"
 
 #include "../../../3d/CenterCamera.h"
+#include "../../../algo/DicomVolume.h"
 
 using namespace Sokar;
 
@@ -427,7 +428,7 @@ void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool stat
 	DicomScene::toolBarActionSlot(action, state);
 
 	if (action == DicomToolBar::Segmentation) {
-		auto vv = new SokarAlg::VirtualVolume();
+		auto vv = new SokarAlg::DicomVolume();
 		vv->setSceneSet(getDicomView()->getDicomSceneSet());
 		auto mc = new SokarAlg::MarchingCubes();
 		mc->setVirtualVolume(vv);
@@ -442,35 +443,7 @@ void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool stat
 			qDebug() << "end with " << mc->getTriangles().size();
 			qDebug() << std::max(std::max(size.x, size.y), size.z);
 
-			auto mesh = new Sokar3D::Mesh();
-
-			for (const auto tri : mc->getTriangles()) {
-
-				mesh->addTriangle(
-						{
-								tri.vertex0
-						},
-						{
-								tri.vertex1
-						},
-						{
-								tri.vertex2
-						}
-				);
-
-//				break;
-			}
-
-			mesh->addTriangle(
-					{glm::vec3{-1, -1, 0}},
-					{glm::vec3{-1, 1, 0}},
-					{glm::vec3{0, 0, 0}}
-			);
-			mesh->addTriangle(
-					{glm::vec3{-1, -1, 0}},
-					{glm::vec3{0, 0, 0}},
-					{glm::vec3{-1, 1, 0}}
-			);
+			auto mesh = mc->toStaticMesh();
 
 			auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
 			auto meshpw = new Sokar3D::MeshPipeline(mesh);
