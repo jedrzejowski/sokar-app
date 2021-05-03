@@ -22,10 +22,10 @@ void StaticMesh::reset() {
 }
 
 void StaticMesh::addTriangle(MeshVertex v0, MeshVertex v1, MeshVertex v2) {
-	qDebug() << "adding tirangle"
-			 << glm::to_string(v0.pos).c_str()
-			 << glm::to_string(v0.pos).c_str()
-			 << glm::to_string(v0.pos).c_str();
+//	qDebug() << "adding tirangle"
+//			 << glm::to_string(v0.pos).c_str()
+//			 << glm::to_string(v1.pos).c_str()
+//			 << glm::to_string(v2.pos).c_str();
 
 	m_data.geom << v0 << v1 << v2;
 }

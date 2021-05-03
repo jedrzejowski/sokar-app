@@ -2,7 +2,6 @@
 
 #include "./_def.h"
 #include <QVector3D>
-#include <QMatrix4x4>
 
 namespace Sokar3D {
 

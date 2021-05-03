@@ -5,9 +5,6 @@
 #include <QGuiApplication>
 #include <win/mainwindow.h>
 #include "./algo/test/cube.h"
-#include "./3d/VulkanRenderer.h"
-#include "./3d/MeshPipeline.h"
-#include "./3d/CenterCamera.h"
 
 QSettings *Sokar::qSettings;
 
@@ -20,11 +17,11 @@ int main(int argc, char *argv[]) {
 	QApplication app(argc, argv);
 
 	Sokar::qSettings = new QSettings();
-//
-//	Sokar::MainWindow w;
-//	w.show();
 
-	sokarCubeTest();
+	Sokar::MainWindow w;
+	w.show();
+
+//	sokarCubeTest();
 
 	return app.exec();
 }

@@ -22,18 +22,18 @@ glm::u32vec3 ExampleVolume::getSize() const {
 	return mySize;
 }
 
-ExampleVolume ExampleVolume::Sphere(quint32 volSize, float radius, float inVal, float outVal) {
+ExampleVolume *ExampleVolume::Sphere(quint32 volSize, float radius, float inVal, float outVal) {
 
 	auto center = glm::vec3(volSize / 2, volSize / 2, volSize / 2);
 
 	FunctionIn3D function = [=](auto x, auto y, auto z) -> float {
-		return glm::distance(glm::vec3(x, y, x), center) <= radius ? inVal : outVal;
+		return glm::distance(glm::vec3(x, y, z), center) <= radius ? inVal : outVal;
 	};
 
-	return ExampleVolume(glm::u32vec3(volSize, volSize, volSize), function);
+	return new ExampleVolume(glm::u32vec3(volSize, volSize, volSize), function);
 }
 
-ExampleVolume ExampleVolume::Cube(
+ExampleVolume *ExampleVolume::Cube(
 		glm::u32vec3 volSize,
 		glm::vec3 cubeSize,
 		float inVal,
@@ -44,16 +44,17 @@ ExampleVolume ExampleVolume::Cube(
 	float x1, x2, y1, y2, z1, z2;
 
 	if (transform == glm::mat4(0.f)) {
-		x1 = (volSize.x - cubeSize.x) / 2.f;
-		x2 = (volSize.x - cubeSize.x) / 2.f;
+		x1 = (float(volSize.x) - cubeSize.x) / 2.f;
+		x2 = (float(volSize.x) + cubeSize.x) / 2.f;
 
-		y1 = (volSize.y - cubeSize.y) / 2.f;
-		y2 = (volSize.y - cubeSize.y) / 2.f;
+		y1 = (float(volSize.y) - cubeSize.y) / 2.f;
+		y2 = (float(volSize.y) + cubeSize.y) / 2.f;
 
-		z1 = (volSize.z - cubeSize.z) / 2.f;
-		z2 = (volSize.z - cubeSize.z) / 2.f;
+		z1 = (float(volSize.z) - cubeSize.z) / 2.f;
+		z2 = (float(volSize.z) + cubeSize.z) / 2.f;
 	} else {
 		//TODO
+		qDebug() << "TODO";
 	}
 
 	FunctionIn3D function = [=](auto x, auto y, auto z) -> float {
@@ -64,5 +65,5 @@ ExampleVolume ExampleVolume::Cube(
 			   ) ? inVal : outVal;
 	};
 
-	return ExampleVolume(volSize, function);
+	return new ExampleVolume(volSize, function);
 }

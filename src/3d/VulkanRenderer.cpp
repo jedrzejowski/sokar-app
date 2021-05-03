@@ -185,6 +185,8 @@ void VulkanRenderer::ensureBuffers() {
 }
 
 void VulkanRenderer::buildDrawCalls() {
+//	qDebug() << "buildDrawCalls";
+
 	VkDevice vkDevice = vkWidget->device();
 
 	VkPipelineMetaArgs args{};

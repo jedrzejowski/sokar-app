@@ -1,16 +1,12 @@
 #pragma once
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtx/string_cast.hpp>
-#include <glm/gtx/rotate_vector.hpp>
-
 #include <QtGlobal>
 #include <QVulkanInstance>
 #include <QVulkanWindowRenderer>
 #include <QVector3D>
 #include <QVector2D>
+
+#include "../sokar_glm.h"
 
 
 namespace Sokar3D {

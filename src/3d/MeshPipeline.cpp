@@ -313,7 +313,7 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 			args.vkDevice, bufMem, 0, mesh->data()->sizeInBytes(), 0, reinterpret_cast<void **>(&p));
 	if (err != VK_SUCCESS)
 		qFatal("Failed to map memory: %d", err);
-	qDebug() << "kopiowanie" << mesh->data()->sizeInBytes();
+	// qDebug() << "kopiowanie" << mesh->data()->sizeInBytes();
 	memcpy(p, mesh->data()->geom.data(), mesh->data()->sizeInBytes());
 	args.vkDeviceFunctions->vkUnmapMemory(args.vkDevice, bufMem);
 
@@ -346,8 +346,6 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 	VkCommandBuffer cb = args.vkWidget->currentCommandBuffer();
 	VkResult err;
 
-
-	vertUniformBufferObject.model = meshModel;
 	vertUniformBufferObject.camera = args.camera->viewMatrix();
 	vertUniformBufferObject.proj = args.projectionMatrix;
 
@@ -390,4 +388,9 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 
 
 	args.vkDeviceFunctions->vkCmdDraw(cb, mesh->data()->geom.size(), 1, 0, 0);
+}
+
+
+void MeshPipeline::setModelMatrix(const glm::mat4 &model) {
+	vertUniformBufferObject.model = model;
 }

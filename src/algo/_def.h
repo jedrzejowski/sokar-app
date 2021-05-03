@@ -5,8 +5,7 @@
 #pragma once
 
 #include <QtGlobal>
-#include <glm/glm.hpp>
-#include <glm/gtx/string_cast.hpp>
+#include "../sokar_glm.h"
 
 namespace SokarAlg {
 
@@ -15,6 +14,8 @@ namespace SokarAlg {
 	struct Cube;
 
 	class VirtualVolume;
+
+	class VolSegmAlgorithm;
 
 	class DicomVolume;
 

@@ -7,7 +7,6 @@
 #include <gdcmImage.h>
 #include <gdcmImageReader.h>
 #include <gdcmStringFilter.h>
-#include <glm/vec3.hpp>
 
 #include "_classdef.h"
 
@@ -15,6 +14,7 @@
 #include "dicomview/toolbar.h"
 
 #include "sokar/pixel.h"
+#include "sokar_glm.h"
 #include "sokar/exception.h"
 #include "scene.h"
 #include "params.h"

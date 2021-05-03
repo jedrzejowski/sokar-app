@@ -10,15 +10,9 @@
 #include "./SolidMaterial.h"
 
 namespace Sokar3D {
-	struct MeshConstants {
-		glm::mat4 model;
-		glm::mat4 camera;
-		glm::mat4 proj;
-		glm::vec3 color;
-	};
 
 	struct VertUniformBufferObject {
-		glm::mat4 model;
+		glm::mat4 model = glm::mat4(1);
 		glm::mat4 camera;
 		glm::mat4 proj;
 
@@ -56,8 +50,6 @@ namespace Sokar3D {
 		VertUniformBufferObject vertUniformBufferObject;
 		FragUniformBufferObject fragUniformBufferObject;
 
-		glm::mat4 meshModel = glm::mat4(1);
-
 	public:
 		explicit MeshPipeline(StaticMesh *mesh);
 
@@ -66,6 +58,8 @@ namespace Sokar3D {
 		void ensureBuffers(const VkPipelineMetaArgs &args) override;
 		void buildDrawCalls(const VkPipelineMetaArgs &args) override;
 		void releaseResources(const VkPipelineMetaArgs &args) override;
+
+		void setModelMatrix(const glm::mat4 &model);
 	};
 }
 

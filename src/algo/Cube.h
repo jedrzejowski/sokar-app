@@ -3,6 +3,7 @@
 //
 #pragma once
 
+#include <QDebug>
 #include "./_def.h"
 
 namespace SokarAlg {
@@ -12,3 +13,5 @@ namespace SokarAlg {
 		float value[8];
 	};
 }
+
+QDebug operator<<(QDebug dbg, const SokarAlg::Cube &cube);

@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <QDebug>
 #include "./_def.h"
 
 namespace SokarAlg {
@@ -16,4 +17,4 @@ namespace SokarAlg {
 }
 
 
-
+QDebug operator<<(QDebug dbg, const SokarAlg::Triangle &tri);
