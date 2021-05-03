@@ -12,8 +12,15 @@
 namespace SokarAlg {
 
 	class DicomVolume : public VirtualVolume {
+	Q_OBJECT
 
 		const Sokar::DicomSceneSet *sceneSet = nullptr;
+		Sokar::DataConverter dataConverter;
+
+		float upScale = 1.f;
+		glm::vec3 scale;
+		glm::mat4 model;
+		glm::mat4 inverseModel;
 
 	public:
 
@@ -27,6 +34,13 @@ namespace SokarAlg {
 
 		[[nodiscard]]
 		float getValue(const quint32 &x, const quint32 &y, const quint32 &z) const override;
+
+		float getUpScale() const;
+		void setUpScale(float upScale);
+
+	private:
+
+		void updateModel();
 	};
 }
 

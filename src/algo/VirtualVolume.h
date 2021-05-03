@@ -12,8 +12,8 @@
 namespace SokarAlg {
 
 
-	class VirtualVolume {
-
+	class VirtualVolume : public QObject {
+	Q_OBJECT
 	public:
 
 		[[nodiscard]]

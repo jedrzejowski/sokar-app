@@ -17,31 +17,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="commit kontrolny">
-      <change afterPath="$PROJECT_DIR$/src/algo/Cube.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/Triangle.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/sokar_glm.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/Camera.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/VulkanRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanRenderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/_def.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/Cube.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Cube.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/ExampleVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ExampleVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/CenterCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/CenterCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/DicomVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/DicomVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/DicomVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/DicomVolume.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/ExampleVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ExampleVolume.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/Triangle.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Triangle.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/_def.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/test/cube.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/cube.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VirtualVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VirtualVolume.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -572,6 +555,8 @@
       <workItem from="1619731744361" duration="7236000" />
       <workItem from="1619979655855" duration="7628000" />
       <workItem from="1619995601190" duration="6009000" />
+      <workItem from="1620038728920" duration="3299000" />
+      <workItem from="1620073049189" duration="3813000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>

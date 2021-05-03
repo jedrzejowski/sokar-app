@@ -4,14 +4,12 @@
 
 #include "./easyVolumeTest.h"
 
-#include <QtCore>
 #include <QObject>
 #include "../../3d/VulkanWidget.h"
 #include "../../3d/StaticMesh.h"
 #include "../../3d/MeshPipeline.h"
 #include "../../3d/CenterCamera.h"
 #include "../../3d/VulkanRenderer.h"
-#include "../ExampleVolume.h"
 #include "../MarchingCubes.h"
 
 
@@ -19,7 +17,7 @@ void easyVolumeTest(const SokarAlg::VirtualVolume *vv) {
 
 	auto mc = new SokarAlg::MarchingCubes();
 	mc->setVirtualVolume(vv);
-	mc->setIsoLevel(400);
+	mc->setIsoLevel(75);
 
 	auto future = mc->exec();
 
@@ -32,9 +30,11 @@ void easyVolumeTest(const SokarAlg::VirtualVolume *vv) {
 		auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
 		auto renderer = ret.renderer;
 
+		auto vvSize = vv->getSize();
+
 		auto camera = new Sokar3D::CenterCamera(
-				{50, 50, 50},
-				100
+				glm::vec3(vvSize) * 0.5f,
+				std::max(std::max(vvSize.x, vvSize.y), vvSize.z) * 2.f
 		);
 		renderer->setCamera(camera);
 
@@ -43,5 +43,4 @@ void easyVolumeTest(const SokarAlg::VirtualVolume *vv) {
 	});
 
 	watcher->setFuture(future);
-
 }

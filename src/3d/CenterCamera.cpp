@@ -35,7 +35,7 @@ bool CenterCamera::uiEvent(QEvent *event) {
 			event->accept();
 
 			auto delta = mouseEvent->pos() - lastMousePos;
-			yaw(float(delta.x()) / speedRatio);
+			yaw(float(delta.x()) / speedRatio * -1);
 			pitch(float(delta.y()) / speedRatio);
 
 			lastMousePos = mouseEvent->pos();
@@ -48,7 +48,7 @@ bool CenterCamera::uiEvent(QEvent *event) {
 	if (event->type() == QEvent::Wheel) {
 		event->accept();
 		auto wheelEvent = (QWheelEvent *) event;
-		zoom(wheelEvent->angleDelta().y() / 10 / speedRatio);
+		zoom(wheelEvent->angleDelta().y() / -10 / speedRatio);
 		return true;
 	}
 

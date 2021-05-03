@@ -431,6 +431,7 @@ void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool stat
 	if (action == DicomToolBar::Segmentation) {
 		auto vv = new SokarAlg::DicomVolume();
 		vv->setSceneSet(getDicomView()->getDicomSceneSet());
+		vv->setUpScale(4);
 		easyVolumeTest(vv);
 	}
 }
