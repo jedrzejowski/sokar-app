@@ -14,7 +14,7 @@ ExampleVolume::ExampleVolume(
 		FunctionIn3D myFunction
 ) : mySize(mySize), myFunction(std::move(myFunction)) {}
 
-float ExampleVolume::getValue(const quint32 &x, const quint32 &y, const quint32 &z) const {
+float ExampleVolume::getValue(quint32 x, quint32 y, quint32 z) const {
 	return myFunction(x, y, z);
 }
 

@@ -43,8 +43,8 @@ namespace Sokar3D {
 		VkDeviceMemory bufMem = VK_NULL_HANDLE;
 		VkDescriptorPool vkDescriptorPool = VK_NULL_HANDLE;
 		VkDescriptorSetLayout vkDescriptorSetLayout = VK_NULL_HANDLE;
-		VkDeviceSize vertexMemOffset = VK_NULL_HANDLE;
-		VkDeviceSize uniformMemOffset = VK_NULL_HANDLE;
+		VkDeviceSize vertexMemOffset = 0;
+		VkDeviceSize uniformMemOffset = 0;
 		VkDescriptorSet vkDescriptorSet = VK_NULL_HANDLE;
 
 		VertUniformBufferObject vertUniformBufferObject;

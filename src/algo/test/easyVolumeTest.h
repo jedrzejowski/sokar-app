@@ -6,4 +6,4 @@
 
 #include "algo/VirtualVolume.h"
 
-void easyVolumeTest(const SokarAlg::VirtualVolume* volume);
+void easyVolumeTest(SokarAlg::VirtualVolume* volume);

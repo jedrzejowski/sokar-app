@@ -19,21 +19,15 @@ void DicomVolume::setSceneSet(const Sokar::DicomSceneSet *newSceneSet) {
 }
 
 glm::u32vec3 DicomVolume::getSize() const {
-	const auto &vec = sceneSet->getScenesVector();
-
-	qDebug() << scale;
-
-	return glm::u32vec3(
-			std::ceil(float(vec[0]->getImgDimX()) * scale.x),
-			std::ceil(float(vec[0]->getImgDimX()) * scale.y),
-			std::ceil(float(vec.size()) * scale.z)
-	);
+	return size;
 }
 
-float DicomVolume::getValue(const quint32 &x, const quint32 &y, const quint32 &z) const {
+float DicomVolume::getValue(quint32 x, quint32 y, quint32 z) const {
 	auto point = glm::vec4(x, y, z, 1.f);
 
+
 	point = inverseModel * point;
+
 
 	glm::u32vec3 point32 = point;
 
@@ -63,8 +57,6 @@ void DicomVolume::updateModel() {
 
 		auto thickness = dataConverter.toDecimalString(TagSliceThickness);
 
-		qDebug() << thickness.length() << thickness[0];
-
 		if (thickness.length() == 1) {
 
 			scale.z = thickness[0];
@@ -74,9 +66,22 @@ void DicomVolume::updateModel() {
 	scale = scale * upScale;
 
 	model = glm::mat4(1);
+	qDebug() << "scale" << scale;
 	model = glm::scale(model, scale);
 
 	inverseModel = glm::inverse(model);
+
+	// size
+
+	const auto &sceneVec = sceneSet->getScenesVector();
+
+	size = glm::vec4(
+			sceneVec[0]->getImgDimX(),
+			sceneVec[0]->getImgDimY(),
+			sceneVec.size(),
+			1.f
+	) * model;
+	size -= 1;
 }
 
 float DicomVolume::getUpScale() const {
@@ -85,4 +90,6 @@ float DicomVolume::getUpScale() const {
 
 void DicomVolume::setUpScale(float upScale) {
 	DicomVolume::upScale = upScale;
+
+	updateModel();
 }

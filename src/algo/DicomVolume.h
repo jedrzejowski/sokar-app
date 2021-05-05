@@ -17,6 +17,7 @@ namespace SokarAlg {
 		const Sokar::DicomSceneSet *sceneSet = nullptr;
 		Sokar::DataConverter dataConverter;
 
+		glm::u32vec3 size;
 		float upScale = 1.f;
 		glm::vec3 scale;
 		glm::mat4 model;
@@ -33,8 +34,9 @@ namespace SokarAlg {
 		glm::u32vec3 getSize() const override;
 
 		[[nodiscard]]
-		float getValue(const quint32 &x, const quint32 &y, const quint32 &z) const override;
+		float getValue(quint32 x, quint32 y, quint32 z) const override;
 
+		[[nodiscard]]
 		float getUpScale() const;
 		void setUpScale(float upScale);
 

@@ -6,7 +6,7 @@
 
 using namespace SokarAlg;
 
-Cube VirtualVolume::getCube(const quint32 &x, const quint32 &y, const quint32 &z) const {
+Cube VirtualVolume::getCube(quint32 x, quint32 y, quint32 z) const {
 	auto cube = Cube();
 
 	// TODO dodać if'a

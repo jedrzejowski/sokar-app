@@ -25,7 +25,7 @@ namespace SokarAlg {
 		}
 
 		[[nodiscard]]
-		Cube getCube(const quint32 &x, const quint32 &y, const quint32 &z) const;
+		Cube getCube(quint32 x, quint32 y, quint32 z) const;
 
 		[[nodiscard]]
 		inline double getValue(const glm::u32vec3 &position) const {
@@ -33,7 +33,7 @@ namespace SokarAlg {
 		}
 
 		[[nodiscard]]
-		virtual float getValue(const quint32 &x, const quint32 &y, const quint32 &z) const = 0;
+		virtual float getValue(quint32 x, quint32 y, quint32 z) const = 0;
 	};
 }
 

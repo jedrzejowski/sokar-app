@@ -25,7 +25,7 @@ namespace SokarAlg {
 		glm::u32vec3 getSize() const override;
 
 		[[nodiscard]]
-		float getValue(const quint32 &x, const quint32 &y, const quint32 &z) const override;
+		float getValue(quint32 x, quint32 y, quint32 z) const override;
 
 		static ExampleVolume *Sphere(quint32 volSize, float radius, float inVal = 1.f, float outVal = 0.f);
 		static ExampleVolume *Cube(glm::u32vec3 volSize, glm::vec3 cubeSize, float inVal = 1.f, float outVal = 0.f,

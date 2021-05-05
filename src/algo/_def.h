@@ -15,6 +15,8 @@ namespace SokarAlg {
 
 	class VirtualVolume;
 
+	class VolumeEnv;
+
 	class VolSegmAlgorithm;
 
 	class DicomVolume;

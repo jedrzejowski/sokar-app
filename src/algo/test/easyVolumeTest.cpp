@@ -11,9 +11,12 @@
 #include "../../3d/CenterCamera.h"
 #include "../../3d/VulkanRenderer.h"
 #include "../MarchingCubes.h"
+#include "../VolumeEnv.h"
 
 
-void easyVolumeTest(const SokarAlg::VirtualVolume *vv) {
+void easyVolumeTest(SokarAlg::VirtualVolume *vv) {
+
+	vv = new SokarAlg::VolumeEnv(0.f, vv);
 
 	auto mc = new SokarAlg::MarchingCubes();
 	mc->setVirtualVolume(vv);
