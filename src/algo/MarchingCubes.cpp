@@ -307,7 +307,7 @@ const qint32 triTable[256][16] = {
 
 QFuture<void> MarchingCubes::execAlg() {
 	return QtConcurrent::run([&]() {
-		triangles.clear();
+		triangleIndex = 0;
 
 
 		auto size = virtualVolume->getSize();
@@ -321,7 +321,8 @@ QFuture<void> MarchingCubes::execAlg() {
 				}
 			}
 		}
-		qDebug() << "done," << triangles.length();
+		triangles.resize(triangleIndex - 1);
+		qDebug() << "done," << triangles.size();
 	});
 }
 
@@ -408,7 +409,7 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 		tri.vertex0 = vertlist[triTable[cubeindex][i]];
 		tri.vertex1 = vertlist[triTable[cubeindex][i + 1]];
 		tri.vertex2 = vertlist[triTable[cubeindex][i + 2]];
-		triangles.push_back(tri);
+		triangles[++triangleIndex] = tri;
 	}
 
 

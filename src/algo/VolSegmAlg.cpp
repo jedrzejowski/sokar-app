@@ -10,9 +10,8 @@ QFuture<void> VolSegmAlg::exec() {
 	triangles.clear();
 
 	glm::vec3 size = virtualVolume->getSize();
-	qDebug() << int(size.x * size.y * size.z / 4) * sizeof(Triangle);
-	triangles.reserve(int(size.x * size.y * size.z / 4));
-	qDebug() << triangles.capacity();
+	triangles.resize(int(size.x * size.y * size.z / 4));
+	// test pamięci
 
 	return execAlg();
 }
@@ -25,7 +24,7 @@ void VolSegmAlg::setVirtualVolume(const VirtualVolume *vv) {
 	virtualVolume = vv;
 }
 
-const QVector<Triangle> &VolSegmAlg::getTriangles() const {
+const std::vector<Triangle> &VolSegmAlg::getTriangles() const {
 	return triangles;
 }
 

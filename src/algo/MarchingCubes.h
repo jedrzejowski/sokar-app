@@ -14,6 +14,7 @@ namespace SokarAlg {
 
 	class MarchingCubes : public VolSegmAlg {
 		float isoLevel = 0.5;
+		quint32 triangleIndex = 0;
 	protected:
 		QFuture<void> execAlg() override;
 

@@ -15,7 +15,7 @@ namespace SokarAlg {
 	protected:
 
 		const VirtualVolume *virtualVolume;
-		QVector<Triangle> triangles;
+		std::vector<Triangle> triangles;
 
 		virtual QFuture<void> execAlg() = 0;
 
@@ -28,7 +28,7 @@ namespace SokarAlg {
 		void setVirtualVolume(const VirtualVolume *virtualVolume);
 
 		[[nodiscard]]
-		const QVector<Triangle> &getTriangles() const;
+		const std::vector<Triangle> &getTriangles() const;
 
 		[[nodiscard]]
 		Sokar3D::StaticMesh *toStaticMesh() const;
