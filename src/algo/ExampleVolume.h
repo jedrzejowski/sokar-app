@@ -12,23 +12,23 @@ namespace SokarAlg {
 
 	class ExampleVolume : public VirtualVolume {
 	Q_OBJECT
-		using FunctionIn3D = std::function<float(const quint32 &x, const quint32 &y, const quint32 &z)>;
+		using FunctionIn3D = std::function<float(const glm::vec3& position)>;
 
-		glm::u32vec3 mySize;
+		glm::vec3 mySize;
 		FunctionIn3D myFunction;
 
 	public:
 
-		ExampleVolume(const glm::u32vec3 &mySize, FunctionIn3D myFunction);
+		ExampleVolume(const glm::vec3 &mySize, FunctionIn3D myFunction);
 
 		[[nodiscard]]
-		glm::u32vec3 getSize() const override;
+		glm::vec3 getSize() const override;
 
 		[[nodiscard]]
-		float getValue(quint32 x, quint32 y, quint32 z) const override;
+		float getValue(const glm::vec3& position) const override;
 
-		static ExampleVolume *Sphere(quint32 volSize, float radius, float inVal = 1.f, float outVal = 0.f);
-		static ExampleVolume *Cube(glm::u32vec3 volSize, glm::vec3 cubeSize, float inVal = 1.f, float outVal = 0.f,
+		static ExampleVolume *Sphere(float volSize, float radius, float inVal = 1.f, float outVal = 0.f);
+		static ExampleVolume *Cube(glm::vec3 volSize, glm::vec3 cubeSize, float inVal = 1.f, float outVal = 0.f,
 								   glm::mat4 transform = glm::mat4(0.f));
 	};
 }

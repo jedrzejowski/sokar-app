@@ -10,31 +10,31 @@ using namespace SokarAlg;
 
 
 ExampleVolume::ExampleVolume(
-		const glm::u32vec3 &mySize,
+		const glm::vec3 &mySize,
 		FunctionIn3D myFunction
 ) : mySize(mySize), myFunction(std::move(myFunction)) {}
 
-float ExampleVolume::getValue(quint32 x, quint32 y, quint32 z) const {
-	return myFunction(x, y, z);
+float ExampleVolume::getValue(const glm::vec3& position) const {
+	return myFunction(position);
 }
 
-glm::u32vec3 ExampleVolume::getSize() const {
+glm::vec3 ExampleVolume::getSize() const {
 	return mySize;
 }
 
-ExampleVolume *ExampleVolume::Sphere(quint32 volSize, float radius, float inVal, float outVal) {
+ExampleVolume *ExampleVolume::Sphere(float volSize, float radius, float inVal, float outVal) {
 
 	auto center = glm::vec3(volSize / 2, volSize / 2, volSize / 2);
 
-	FunctionIn3D function = [=](auto x, auto y, auto z) -> float {
-		return glm::distance(glm::vec3(x, y, z), center) <= radius ? inVal : outVal;
+	FunctionIn3D function = [=](auto pos) -> float {
+		return glm::distance(pos, center) <= radius ? inVal : outVal;
 	};
 
 	return new ExampleVolume(glm::u32vec3(volSize, volSize, volSize), function);
 }
 
 ExampleVolume *ExampleVolume::Cube(
-		glm::u32vec3 volSize,
+		glm::vec3 volSize,
 		glm::vec3 cubeSize,
 		float inVal,
 		float outVal,
@@ -57,11 +57,11 @@ ExampleVolume *ExampleVolume::Cube(
 		qDebug() << "TODO";
 	}
 
-	FunctionIn3D function = [=](auto x, auto y, auto z) -> float {
+	FunctionIn3D function = [=](auto pos) -> float {
 		return (
-					   (x1 < x && x < x2) &&
-					   (y1 < y && y < y2) &&
-					   (z1 < z && z < z2)
+					   (x1 < pos.x && pos.x < x2) &&
+					   (y1 < pos.y && pos.y < y2) &&
+					   (z1 < pos.z && pos.z < z2)
 			   ) ? inVal : outVal;
 	};
 

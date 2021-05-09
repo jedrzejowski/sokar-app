@@ -8,11 +8,6 @@ using namespace SokarAlg;
 
 QFuture<void> VolSegmAlg::exec() {
 	triangles.clear();
-
-	glm::vec3 size = virtualVolume->getSize();
-	triangles.resize(int(size.x * size.y * size.z / 4));
-	// test pamięci
-
 	return execAlg();
 }
 

@@ -24,4 +24,18 @@ namespace SokarAlg {
 	class ExampleVolume;
 
 	class MarchingCubes;
+
+	// VertexInterpolator
+
+	class VertexInterpolator;
+
+	class NearestVertexInterpolator;
+
+	class LinearVertexInterpolator;
+
+	class CubicVertexInterpolator;
+
+	class MakimaVertexInterpolator;
+
+	class SplineVertexInterpolator;
 }

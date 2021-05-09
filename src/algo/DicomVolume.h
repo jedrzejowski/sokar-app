@@ -7,6 +7,7 @@
 #include "./_def.h"
 #include "../_classdef.h"
 #include "./VirtualVolume.h"
+#include "./VertexInterpolator.h"
 #include "../dicomview/scenes/sets/_sceneset.h"
 
 namespace SokarAlg {
@@ -17,13 +18,14 @@ namespace SokarAlg {
 		const Sokar::DicomSceneSet *sceneSet = nullptr;
 		Sokar::DataConverter dataConverter;
 
-		glm::u32vec3 size;
-		float upScale = 1.f;
-		glm::vec3 scale;
-		glm::mat4 model;
-		glm::mat4 inverseModel;
+		VertexInterpolator *interpolator = new LinearVertexInterpolator();
+
+		glm::vec3 size;
+		glm::u32vec3 trueSize;
+		glm::vec3 cubeSize;
 
 	public:
+		~DicomVolume() override;
 
 		[[nodiscard]]
 		const Sokar::DicomSceneSet *getSceneSet() const;
@@ -31,14 +33,23 @@ namespace SokarAlg {
 		void setSceneSet(const Sokar::DicomSceneSet *sceneSet);
 
 		[[nodiscard]]
-		glm::u32vec3 getSize() const override;
+		glm::vec3 getSize() const override;
 
 		[[nodiscard]]
-		float getValue(quint32 x, quint32 y, quint32 z) const override;
+		glm::u32vec3 getTrueSize() const;
 
 		[[nodiscard]]
-		float getUpScale() const;
-		void setUpScale(float upScale);
+		float getTrueValue(const glm::i32vec3 &position) const;
+
+		[[nodiscard]]
+		float getValue(const glm::vec3 &position) const override;
+
+		[[nodiscard]]
+		const glm::vec3 &getCubeSize() const;
+
+		[[nodiscard]]
+		VertexInterpolator *getInterpolator() const;
+		void setInterpolator(VertexInterpolator *interpolator);
 
 	private:
 

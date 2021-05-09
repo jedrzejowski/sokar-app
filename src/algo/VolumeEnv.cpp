@@ -6,26 +6,30 @@
 
 using namespace SokarAlg;
 
-VolumeEnv::VolumeEnv(float envValue, VirtualVolume *child)
-		: envValue(envValue), child(child) {
+VolumeEnv::VolumeEnv(VirtualVolume *child, const glm::vec3 &envSize, float envValue)
+		: envSize(envSize), child(child), envValue(envValue) {
 
 	child->setParent(this);
 }
 
-glm::u32vec3 VolumeEnv::getSize() const {
-	return child->getSize() + glm::u32vec3(2);
+glm::vec3 VolumeEnv::getSize() const {
+	return child->getSize() + envSize * 2.f;
 }
 
-float VolumeEnv::getValue(quint32 x, quint32 y, quint32 z) const {
-	if (x == 0 || y == 0 || z == 0) {
-		return envValue;
-	}
-
+float VolumeEnv::getValue(const glm::vec3 &position) const {
+	auto pos = position - envSize;
 	auto size = child->getSize();
 
-	if (x == size.x + 1 || y == size.y + 1 || z == size.z + 1) {
-		return envValue;
+	if (
+			position.x >= 0.f &&
+			position.y >= 0.f &&
+			position.z >= 0.f &&
+			position.x <= size.x &&
+			position.y <= size.y &&
+			position.z <= size.z
+			) {
+		return child->getValue(pos);
 	}
 
-	return child->getValue(x - 1, y - 1, z - 1);
+	return envValue;
 }

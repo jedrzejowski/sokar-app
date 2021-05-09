@@ -17,23 +17,13 @@ namespace SokarAlg {
 	public:
 
 		[[nodiscard]]
-		virtual glm::u32vec3 getSize() const = 0;
+		Cube getCube(const glm::vec3 &position, const glm::vec3 &size) const;
 
 		[[nodiscard]]
-		inline Cube getCube(const glm::u32vec3 &position) const {
-			return getCube(position.x, position.y, position.z);
-		}
+		virtual glm::vec3 getSize() const = 0;
 
 		[[nodiscard]]
-		Cube getCube(quint32 x, quint32 y, quint32 z) const;
-
-		[[nodiscard]]
-		inline double getValue(const glm::u32vec3 &position) const {
-			return getValue(position.x, position.y, position.z);
-		}
-
-		[[nodiscard]]
-		virtual float getValue(quint32 x, quint32 y, quint32 z) const = 0;
+		virtual float getValue(const glm::vec3 &position) const = 0;
 	};
 }
 

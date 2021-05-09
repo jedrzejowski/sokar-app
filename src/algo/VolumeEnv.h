@@ -11,13 +11,14 @@ namespace SokarAlg {
 	class VolumeEnv : public VirtualVolume {
 	Q_OBJECT
 		const VirtualVolume *child;
+		glm::vec3 envSize;
 		float envValue;
 	public:
-		explicit VolumeEnv(float envValue, VirtualVolume *child);
+		explicit VolumeEnv(VirtualVolume *child, const glm::vec3& size, float envValue);
 
 		[[nodiscard]]
-		glm::u32vec3 getSize() const override;
-		float getValue(quint32 x, quint32 y, quint32 z) const override;
+		glm::vec3 getSize() const override;
+		float getValue(const glm::vec3& position) const override;
 	};
 }
 

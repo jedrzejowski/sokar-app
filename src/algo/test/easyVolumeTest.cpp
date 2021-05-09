@@ -16,11 +16,10 @@
 
 void easyVolumeTest(SokarAlg::VirtualVolume *vv) {
 
-	vv = new SokarAlg::VolumeEnv(0.f, vv);
-
 	auto mc = new SokarAlg::MarchingCubes();
 	mc->setVirtualVolume(vv);
-	mc->setIsoLevel(75);
+	mc->setCubeSize(glm::vec3(0.25f));
+	mc->setIsoLevel(75.f);
 
 	auto future = mc->exec();
 

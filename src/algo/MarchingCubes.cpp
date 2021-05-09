@@ -311,13 +311,16 @@ QFuture<void> MarchingCubes::execAlg() {
 
 
 		auto size = virtualVolume->getSize();
+		auto cubes = size / cubeSize;
+		triangles.resize(int(cubes.x * cubes.y * cubes.z));
+
 		qDebug() << "size=" << size.x << ";" << size.y << ";" << size.z;
 
-		for (quint32 x = 0; x < size.x - 1; x++) {
-			for (quint32 y = 0; y < size.y - 1; y++) {
-				for (quint32 z = 0; z < size.z - 1; z++) {
+		for (float x = 0; x < size.x - 1; x += cubeSize.x) {
+			for (float y = 0; y < size.y - 1; y += cubeSize.y) {
+				for (float z = 0; z < size.z - 1; z += cubeSize.z) {
 
-					marchCube(virtualVolume->getCube(x, y, z));
+					marchCube(virtualVolume->getCube(glm::vec3(x, y, z), cubeSize));
 				}
 			}
 		}
@@ -362,6 +365,7 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 	quint32 cubeindex = 0;
 	std::vector<glm::vec3> vertlist(12);
 
+
 	if (cube.value[0] < isoLevel) cubeindex |= 1;
 	if (cube.value[1] < isoLevel) cubeindex |= 2;
 	if (cube.value[2] < isoLevel) cubeindex |= 4;
@@ -374,7 +378,6 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 	if (edgeTable[cubeindex] == 0)
 		return 0;
 
-	/* Find the vertices where the surface intersects the cube */
 	if (edgeTable[cubeindex] & 1)
 		vertlist[0] = vertexInterp(isoLevel, cube.position[0], cube.position[1], cube.value[0], cube.value[1]);
 	if (edgeTable[cubeindex] & 2)
@@ -422,5 +425,12 @@ float MarchingCubes::getIsoLevel() const {
 }
 void MarchingCubes::setIsoLevel(float lvl) {
 	isoLevel = lvl;
+}
+
+const glm::vec3 &MarchingCubes::getCubeSize() const {
+	return cubeSize;
+}
+void MarchingCubes::setCubeSize(const glm::vec3 &cubeSize) {
+	MarchingCubes::cubeSize = cubeSize;
 }
 
