@@ -20,9 +20,10 @@ namespace SokarAlg {
 
 		ValueInterpolator *interpolator = nullptr;
 
-		glm::vec3 size;
+		glm::i32vec3 size;
 		glm::i32vec3 trueSize;
-		glm::vec3 cubeSize;
+		glm::vec3 wokselSize;
+		float cubesPerMM = 1.f;
 
 	public:
 		~DicomVolume() override;
@@ -33,10 +34,10 @@ namespace SokarAlg {
 		void setSceneSet(const Sokar::DicomSceneSet *sceneSet);
 
 		[[nodiscard]]
-		glm::vec3 getSize() const override;
+		glm::i32vec3 getSize() const override;
 
 		[[nodiscard]]
-		glm::u32vec3 getTrueSize() const;
+		glm::i32vec3 getTrueSize() const;
 
 		[[nodiscard]]
 		float getTrueValue(const glm::i32vec3 &position) const;
@@ -45,10 +46,10 @@ namespace SokarAlg {
 		float getTrueValueSafe(const glm::i32vec3 &position) const;
 
 		[[nodiscard]]
-		float getValue(const glm::vec3 &position) const override;
+		float getValue(const glm::i32vec3 &position) const override;
 
-		[[nodiscard]]
-		const glm::vec3 &getCubeSize() const;
+		float getCubesPerMM() const;
+		void setCubesPerMM(float cubesPerMm);
 
 		[[nodiscard]]
 		ValueInterpolator *getInterpolator() const;

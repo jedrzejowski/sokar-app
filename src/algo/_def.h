@@ -11,8 +11,6 @@ namespace SokarAlg {
 
 	struct Triangle;
 
-	struct Cube;
-
 	class VirtualVolume;
 
 	class VolumeEnv;
@@ -32,6 +30,20 @@ namespace SokarAlg {
 	class NearestValueInterpolator;
 
 	class LinearValueInterpolator;
+
+	class CubicValueInterpolator;
+
+	class MakimaValueInterpolator;
+
+	class SplineValueInterpolator;
+
+	// VertexInterpolator
+
+	class VertexInterpolator;
+
+	class NearestVertexInterpolator;
+
+	class LinearVertexInterpolator;
 
 	class CubicVertexInterpolator;
 

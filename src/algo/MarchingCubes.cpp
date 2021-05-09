@@ -346,13 +346,6 @@ glm::vec3 vertexInterp(float isoLevel, const glm::u32vec3 &p1, const glm::u32vec
 	p.y = float(p1.y) + mu * (float(p2.y) - float(p1.y));
 	p.z = float(p1.z) + mu * (float(p2.z) - float(p1.z));
 
-//	qDebug() << "vertexInterp(" << Qt::endl
-//			 << "isoLevel=" << isoLevel << Qt::endl
-//			 << "p1=" << p1 << Qt::endl
-//			 << "p2=" << p2 << Qt::endl
-//			 << "valp1=" << valp1 << Qt::endl
-//			 << "valp2=" << valp2 << Qt::endl
-//			 << ") = " << p;
 
 	return p;
 }
@@ -425,11 +418,11 @@ void MarchingCubes::setIsoLevel(float lvl) {
 	isoLevel = lvl;
 }
 
-const glm::vec3 &MarchingCubes::getCubeSize() const {
+const glm::i32vec3 &MarchingCubes::getCubeSize() const {
 	return cubeSize;
 }
 
-void MarchingCubes::setCubeSize(const glm::vec3 &newCubeSize) {
+void MarchingCubes::setCubeSize(const glm::i32vec3 &newCubeSize) {
 	cubeSize = newCubeSize;
 }
 

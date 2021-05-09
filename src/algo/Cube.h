@@ -9,7 +9,7 @@
 namespace SokarAlg {
 
 	struct Cube {
-		glm::vec3 position[8];
+		glm::i32vec3 position[8];
 		float value[8];
 	};
 }

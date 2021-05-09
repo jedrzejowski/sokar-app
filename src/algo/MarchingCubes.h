@@ -15,7 +15,7 @@ namespace SokarAlg {
 	class MarchingCubes : public VolSegmAlg {
 
 		float isoLevel = 0.5;
-		glm::vec3 cubeSize = glm::vec3(1.f);
+		glm::i32vec3 cubeSize = glm::i32vec3(1.f);
 		quint32 triangleIndex = 0;
 
 	protected:
@@ -27,8 +27,8 @@ namespace SokarAlg {
 		float getIsoLevel() const;
 		void setIsoLevel(float isoLevel);
 
-		const glm::vec3 &getCubeSize() const;
-		void setCubeSize(const glm::vec3 &cubeSize);
+		const glm::i32vec3 &getCubeSize() const;
+		void setCubeSize(const glm::i32vec3 &cubeSize);
 
 
 	private:

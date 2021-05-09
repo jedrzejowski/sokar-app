@@ -23,17 +23,18 @@ void DicomVolume::setSceneSet(const Sokar::DicomSceneSet *newSceneSet) {
 	updateModel();
 }
 
-glm::vec3 DicomVolume::getSize() const {
+glm::i32vec3 DicomVolume::getSize() const {
 	return size;
 }
 
-glm::u32vec3 DicomVolume::getTrueSize() const {
+glm::i32vec3 DicomVolume::getTrueSize() const {
 	return trueSize;
 }
 
-float DicomVolume::getValue(const glm::vec3 &position) const {
-	glm::vec3 truePos = position / cubeSize;
-	return interpolator->interpolate(truePos);
+float DicomVolume::getValue(const glm::i32vec3 &position) const {
+	return interpolator->interpolate(
+			glm::vec3(position) / wokselSize
+	);
 }
 
 float DicomVolume::getTrueValue(const glm::i32vec3 &position) const {
@@ -54,7 +55,7 @@ void DicomVolume::updateModel() {
 	const static gdcm::Tag TagPixelSpacing(0x0028, 0x0030);
 	const static gdcm::Tag TagSliceThickness(0x0018, 0x0050);
 
-	cubeSize = glm::vec3(1);
+	wokselSize = glm::vec3(1);
 
 	if (dataConverter.hasTagWithData(TagPixelSpacing)) {
 
@@ -62,8 +63,8 @@ void DicomVolume::updateModel() {
 
 		if (spacing.length() == 2) {
 
-			cubeSize.x = spacing[1];
-			cubeSize.y = spacing[0];
+			wokselSize.x = spacing[1];
+			wokselSize.y = spacing[0];
 		}
 	}
 
@@ -74,11 +75,13 @@ void DicomVolume::updateModel() {
 
 		if (thickness.length() == 1) {
 
-			cubeSize.z = thickness[0];
+			wokselSize.z = thickness[0];
 		}
 	}
 
 	const auto &sceneVec = sceneSet->getScenesVector();
+
+	wokselSize = wokselSize * cubesPerMM;
 
 	trueSize = glm::u32vec3(
 			sceneVec[0]->getImgDimX(),
@@ -90,7 +93,7 @@ void DicomVolume::updateModel() {
 			sceneVec[0]->getImgDimX(),
 			sceneVec[0]->getImgDimY(),
 			sceneVec.size()
-	) * cubeSize;
+	) * wokselSize;
 }
 
 
@@ -104,6 +107,11 @@ void DicomVolume::setInterpolator(ValueInterpolator *newInterpolator) {
 	interpolator->setVolume(this);
 }
 
-const glm::vec3 &DicomVolume::getCubeSize() const {
-	return cubeSize;
+float DicomVolume::getCubesPerMM() const {
+	return cubesPerMM;
+}
+
+void DicomVolume::setCubesPerMM(float cubesPerMm) {
+	cubesPerMM = cubesPerMm;
+	updateModel();
 }

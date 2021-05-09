@@ -10,19 +10,19 @@ using namespace SokarAlg;
 
 
 ExampleVolume::ExampleVolume(
-		const glm::vec3 &mySize,
+		const glm::i32vec3 &mySize,
 		FunctionIn3D myFunction
 ) : mySize(mySize), myFunction(std::move(myFunction)) {}
 
-float ExampleVolume::getValue(const glm::vec3& position) const {
+float ExampleVolume::getValue(const glm::i32vec3& position) const {
 	return myFunction(position);
 }
 
-glm::vec3 ExampleVolume::getSize() const {
+glm::i32vec3 ExampleVolume::getSize() const {
 	return mySize;
 }
 
-ExampleVolume *ExampleVolume::Sphere(float volSize, float radius, float inVal, float outVal) {
+ExampleVolume *ExampleVolume::Sphere(qint32 volSize, float radius, float inVal, float outVal) {
 
 	auto center = glm::vec3(volSize / 2, volSize / 2, volSize / 2);
 
@@ -34,7 +34,7 @@ ExampleVolume *ExampleVolume::Sphere(float volSize, float radius, float inVal, f
 }
 
 ExampleVolume *ExampleVolume::Cube(
-		glm::vec3 volSize,
+		glm::i32vec3 volSize,
 		glm::vec3 cubeSize,
 		float inVal,
 		float outVal,
