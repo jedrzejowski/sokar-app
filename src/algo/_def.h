@@ -25,13 +25,13 @@ namespace SokarAlg {
 
 	class MarchingCubes;
 
-	// VertexInterpolator
+	// ValueInterpolator
 
-	class VertexInterpolator;
+	class ValueInterpolator;
 
-	class NearestVertexInterpolator;
+	class NearestValueInterpolator;
 
-	class LinearVertexInterpolator;
+	class LinearValueInterpolator;
 
 	class CubicVertexInterpolator;
 

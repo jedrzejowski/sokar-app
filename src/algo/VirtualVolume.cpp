@@ -3,7 +3,7 @@
 //
 
 #include "./VirtualVolume.h"
-#include "./VertexInterpolator.h"
+#include "./ValueInterpolator.h"
 
 using namespace SokarAlg;
 

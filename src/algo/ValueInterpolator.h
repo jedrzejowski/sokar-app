@@ -8,28 +8,28 @@
 
 namespace SokarAlg {
 
-	class VertexInterpolator {
+	class ValueInterpolator {
 	protected:
 		const DicomVolume *vv = nullptr;
 
 	public:
-		virtual ~VertexInterpolator();
+		virtual ~ValueInterpolator();
 
 		[[nodiscard]]
-		const DicomVolume *getVirtualVolume() const;
-		void setVirtualVolume(const DicomVolume *vv);
+		const DicomVolume *getVolume() const;
+		void setVolume(const DicomVolume *vv);
 
 		[[nodiscard]]
 		virtual float interpolate(const glm::vec3 &position) const = 0;
 	};
 
-	class NearestVertexInterpolator : public VertexInterpolator {
+	class NearestValueInterpolator : public ValueInterpolator {
 	public:
 		[[nodiscard]]
 		float interpolate(const glm::vec3 &position) const override;
 	};
 
-	class LinearVertexInterpolator : public VertexInterpolator {
+	class LinearValueInterpolator : public ValueInterpolator {
 	public:
 		[[nodiscard]]
 		float interpolate(const glm::vec3 &position) const override;

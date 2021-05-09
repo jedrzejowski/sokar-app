@@ -7,7 +7,13 @@
 using namespace SokarAlg;
 
 QFuture<void> VolSegmAlg::exec() {
-	triangles.clear();
+
+	if (staticMesh != nullptr) {
+		delete staticMesh;
+	}
+
+	staticMesh = new Sokar3D::StaticMesh();
+
 	return execAlg();
 }
 
@@ -19,25 +25,19 @@ void VolSegmAlg::setVirtualVolume(const VirtualVolume *vv) {
 	virtualVolume = vv;
 }
 
-const std::vector<Triangle> &VolSegmAlg::getTriangles() const {
-	return triangles;
+Sokar3D::StaticMesh *VolSegmAlg::dumpStaticMesh() {
+	auto mesh = staticMesh;
+	staticMesh = nullptr;
+	return mesh;
 }
 
+void VolSegmAlg::addTriangle(const Triangle &tri) {
+	auto tex = glm::vec2(0);
+	auto normal = glm::triangleNormal(tri.vertex0, tri.vertex1, tri.vertex2) * -1.f;
 
-Sokar3D::StaticMesh *VolSegmAlg::toStaticMesh() const {
-	auto mesh = new Sokar3D::StaticMesh();
-
-	for (const auto tri : triangles) {
-
-		auto tex = glm::vec2(0);
-		auto normal = glm::triangleNormal(tri.vertex0, tri.vertex1, tri.vertex2) * -1.f;
-
-		mesh->addTriangle(
-				{tri.vertex0, tex, normal},
-				{tri.vertex1, tex, normal},
-				{tri.vertex2, tex, normal}
-		);
-	}
-
-	return mesh;
+	staticMesh->addTriangle(
+			{tri.vertex0, tex, normal},
+			{tri.vertex1, tex, normal},
+			{tri.vertex2, tex, normal}
+	);
 }

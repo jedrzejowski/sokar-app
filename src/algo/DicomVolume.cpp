@@ -3,7 +3,7 @@
 //
 
 #include "./DicomVolume.h"
-#include "./VertexInterpolator.h"
+#include "./ValueInterpolator.h"
 
 using namespace SokarAlg;
 
@@ -31,16 +31,21 @@ glm::u32vec3 DicomVolume::getTrueSize() const {
 	return trueSize;
 }
 
-
 float DicomVolume::getValue(const glm::vec3 &position) const {
-
-	glm::i32vec3 point32 = position / cubeSize;
-
-	return getTrueValue(point32);
+	glm::vec3 truePos = position / cubeSize;
+	return interpolator->interpolate(truePos);
 }
 
 float DicomVolume::getTrueValue(const glm::i32vec3 &position) const {
 	return glm::length(sceneSet->getScenesVector()[position.z]->getWokselValue(position.x, position.y));
+}
+
+float DicomVolume::getTrueValueSafe(const glm::i32vec3 &position) const {
+	return getTrueValue({
+								std::clamp(position.x, 0, trueSize.x - 1),
+								std::clamp(position.y, 0, trueSize.y - 1),
+								std::clamp(position.z, 0, trueSize.z - 1)
+						});
 }
 
 
@@ -89,14 +94,14 @@ void DicomVolume::updateModel() {
 }
 
 
-VertexInterpolator *DicomVolume::getInterpolator() const {
+ValueInterpolator *DicomVolume::getInterpolator() const {
 	return interpolator;
 }
 
-void DicomVolume::setInterpolator(VertexInterpolator *newInterpolator) {
+void DicomVolume::setInterpolator(ValueInterpolator *newInterpolator) {
 	delete interpolator;
 	interpolator = newInterpolator;
-	interpolator->setVirtualVolume(this);
+	interpolator->setVolume(this);
 }
 
 const glm::vec3 &DicomVolume::getCubeSize() const {

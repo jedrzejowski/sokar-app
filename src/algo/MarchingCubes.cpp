@@ -310,22 +310,19 @@ QFuture<void> MarchingCubes::execAlg() {
 		triangleIndex = 0;
 
 
-		auto size = virtualVolume->getSize();
+		auto size = virtualVolume->getSize() - cubeSize;
 		auto cubes = size / cubeSize;
-		triangles.resize(int(cubes.x * cubes.y * cubes.z));
 
 		qDebug() << "size=" << size.x << ";" << size.y << ";" << size.z;
 
-		for (float x = 0; x < size.x - 1; x += cubeSize.x) {
-			for (float y = 0; y < size.y - 1; y += cubeSize.y) {
-				for (float z = 0; z < size.z - 1; z += cubeSize.z) {
+		for (float x = 0; x < size.x - cubeSize.x; x += cubeSize.x) {
+			for (float y = 0; y < size.y - cubeSize.y; y += cubeSize.y) {
+				for (float z = 0; z < size.z - cubeSize.z; z += cubeSize.z) {
 
 					marchCube(virtualVolume->getCube(glm::vec3(x, y, z), cubeSize));
 				}
 			}
 		}
-		triangles.resize(triangleIndex - 1);
-		qDebug() << "done," << triangles.size();
 	});
 }
 
@@ -412,7 +409,7 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 		tri.vertex0 = vertlist[triTable[cubeindex][i]];
 		tri.vertex1 = vertlist[triTable[cubeindex][i + 1]];
 		tri.vertex2 = vertlist[triTable[cubeindex][i + 2]];
-		triangles[++triangleIndex] = tri;
+		addTriangle(tri);
 	}
 
 
@@ -423,6 +420,7 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 float MarchingCubes::getIsoLevel() const {
 	return isoLevel;
 }
+
 void MarchingCubes::setIsoLevel(float lvl) {
 	isoLevel = lvl;
 }
@@ -430,7 +428,8 @@ void MarchingCubes::setIsoLevel(float lvl) {
 const glm::vec3 &MarchingCubes::getCubeSize() const {
 	return cubeSize;
 }
-void MarchingCubes::setCubeSize(const glm::vec3 &cubeSize) {
-	MarchingCubes::cubeSize = cubeSize;
+
+void MarchingCubes::setCubeSize(const glm::vec3 &newCubeSize) {
+	cubeSize = newCubeSize;
 }
 

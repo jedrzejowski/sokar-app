@@ -17,29 +17,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="commit kontrolny">
-      <change afterPath="$PROJECT_DIR$/cmake/add_shader.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/vk-shader/struct/Mesh.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/vk-shader/struct/SimpleLight.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/res/vk-shader/struct/SolidMaterial.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/VertexInterpolator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/VertexInterpolator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/Cube.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Cube.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/DicomVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/DicomVolume.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/DicomVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/DicomVolume.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/ExampleVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ExampleVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/ExampleVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ExampleVolume.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VertexInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ValueInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VertexInterpolator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ValueInterpolator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/VirtualVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VirtualVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VirtualVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VirtualVolume.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VolumeEnv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolumeEnv.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VolumeEnv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolumeEnv.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/_def.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/test/cube.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/cube.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -384,11 +374,6 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="Sokar">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -399,9 +384,9 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="vk:color_phong" type="ShConfigurationType">
@@ -576,6 +561,8 @@
       <workItem from="1620252915848" duration="1860000" />
       <workItem from="1620307328490" duration="2400000" />
       <workItem from="1620500140396" duration="13044000" />
+      <workItem from="1620548227450" duration="1903000" />
+      <workItem from="1620571685228" duration="4953000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>

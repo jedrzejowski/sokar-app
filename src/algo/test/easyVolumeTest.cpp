@@ -12,13 +12,16 @@
 #include "../../3d/VulkanRenderer.h"
 #include "../MarchingCubes.h"
 #include "../VolumeEnv.h"
+#include "../DicomVolume.h"
 
 
-void easyVolumeTest(SokarAlg::VirtualVolume *vv) {
+void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 
 	auto mc = new SokarAlg::MarchingCubes();
 	mc->setVirtualVolume(vv);
-	mc->setCubeSize(glm::vec3(0.25f));
+	mc->setCubeSize(glm::vec3(0.5f));
+//	vv->setInterpolator(new SokarAlg::NearestVertexInterpolator());
+	vv->setInterpolator(new SokarAlg::LinearValueInterpolator());
 	mc->setIsoLevel(75.f);
 
 	auto future = mc->exec();
@@ -27,7 +30,8 @@ void easyVolumeTest(SokarAlg::VirtualVolume *vv) {
 
 	QObject::connect(watcher, &QFutureWatcherBase::finished, [mc, vv]() {
 		qDebug() << "here";
-		auto mesh = mc->toStaticMesh();
+		auto mesh = mc->dumpStaticMesh();
+		qDebug() << mesh->data()->geom.size();
 
 		auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
 		auto renderer = ret.renderer;

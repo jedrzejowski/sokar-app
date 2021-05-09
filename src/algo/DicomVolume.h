@@ -7,7 +7,7 @@
 #include "./_def.h"
 #include "../_classdef.h"
 #include "./VirtualVolume.h"
-#include "./VertexInterpolator.h"
+#include "./ValueInterpolator.h"
 #include "../dicomview/scenes/sets/_sceneset.h"
 
 namespace SokarAlg {
@@ -18,10 +18,10 @@ namespace SokarAlg {
 		const Sokar::DicomSceneSet *sceneSet = nullptr;
 		Sokar::DataConverter dataConverter;
 
-		VertexInterpolator *interpolator = new LinearVertexInterpolator();
+		ValueInterpolator *interpolator = nullptr;
 
 		glm::vec3 size;
-		glm::u32vec3 trueSize;
+		glm::i32vec3 trueSize;
 		glm::vec3 cubeSize;
 
 	public:
@@ -42,14 +42,17 @@ namespace SokarAlg {
 		float getTrueValue(const glm::i32vec3 &position) const;
 
 		[[nodiscard]]
+		float getTrueValueSafe(const glm::i32vec3 &position) const;
+
+		[[nodiscard]]
 		float getValue(const glm::vec3 &position) const override;
 
 		[[nodiscard]]
 		const glm::vec3 &getCubeSize() const;
 
 		[[nodiscard]]
-		VertexInterpolator *getInterpolator() const;
-		void setInterpolator(VertexInterpolator *interpolator);
+		ValueInterpolator *getInterpolator() const;
+		void setInterpolator(ValueInterpolator *interpolator);
 
 	private:
 
