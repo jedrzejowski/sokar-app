@@ -15,7 +15,6 @@ struct SimpleLight {
 
 layout(location = 0) in vec3 vertNormal;
 layout(location = 1) in vec3 vertPos;
-layout(location = 2) in vec3 vertColor;
 
 layout(binding = 1)
 uniform FragUniformBufferObject {
@@ -50,7 +49,7 @@ void main()
     float spec = pow(max(dot(viewDir, reflectDir), 0.0), uniBuf.material.shininess);
     vec3 specular = uniBuf.light.specular * (spec * uniBuf.material.specular);
 
-     vec3 result = ambient + diffuse + specular;
+    vec3 result = ambient + diffuse + specular;
 
     fragColor = vec4(result, 1.0f);
 }

@@ -13,12 +13,14 @@ namespace Sokar3D {
 
 	struct MeshVertex {
 		glm::vec3 pos;
-		glm::vec2 tex;
+//		glm::vec2 tex;
 		glm::vec3 normal;
 
 		static VkVertexInputBindingDescription getBindingDescription();
 
 		static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
+
+		static bool areEquals(const MeshVertex &v1, const MeshVertex &v2, float esp = ESP);
 	};
 }
 

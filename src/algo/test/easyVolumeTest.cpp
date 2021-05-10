@@ -19,7 +19,7 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 
 	auto mc = new SokarAlg::MarchingCubes();
 	mc->setVirtualVolume(vv);
-	vv->setCubesPerMM(2);
+	vv->setCubesPerMM(1);
 //	vv->setInterpolator(new SokarAlg::NearestValueInterpolator());
 	vv->setInterpolator(new SokarAlg::LinearValueInterpolator());
 	mc->setIsoLevel(100.f);

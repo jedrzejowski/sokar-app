@@ -56,96 +56,96 @@ StaticMesh *StaticMesh::createCubeMesh() {
 	};
 
 	static glm::vec2 tex[6] = {
-			glm::vec2(0.16*0),
-			glm::vec2(0.16*1),
-			glm::vec2(0.16*2),
-			glm::vec2(0.16*3),
-			glm::vec2(0.16*4),
-			glm::vec2(0.16*5),
+			glm::vec2(0.16 * 0),
+			glm::vec2(0.16 * 1),
+			glm::vec2(0.16 * 2),
+			glm::vec2(0.16 * 3),
+			glm::vec2(0.16 * 4),
+			glm::vec2(0.16 * 5),
 	};
 
 	//face front
 
 	mesh->addTriangle(
-			{pos[0], tex[0], norm[0]},
-			{pos[1], tex[0], norm[0]},
-			{pos[2], tex[0], norm[0]}
+			{pos[0], norm[0]},
+			{pos[1], norm[0]},
+			{pos[2], norm[0]}
 	);
 
 	mesh->addTriangle(
-			{pos[0], tex[0], norm[0]},
-			{pos[2], tex[0], norm[0]},
-			{pos[3], tex[0], norm[0]}
+			{pos[0], norm[0]},
+			{pos[2], norm[0]},
+			{pos[3], norm[0]}
 	);
 
 	//face top
 
 	mesh->addTriangle(
-			{pos[2], tex[1], norm[1]},
-			{pos[4], tex[1], norm[1]},
-			{pos[3], tex[1], norm[1]}
+			{pos[2], norm[1]},
+			{pos[4], norm[1]},
+			{pos[3], norm[1]}
 	);
 
 	mesh->addTriangle(
-			{pos[2], tex[1], norm[1]},
-			{pos[5], tex[1], norm[1]},
-			{pos[4], tex[1], norm[1]}
+			{pos[2], norm[1]},
+			{pos[5], norm[1]},
+			{pos[4], norm[1]}
 	);
 
 	//face right
 
 	mesh->addTriangle(
-			{pos[1], tex[2], norm[2]},
-			{pos[5], tex[2], norm[2]},
-			{pos[2], tex[2], norm[2]}
+			{pos[1], norm[2]},
+			{pos[5], norm[2]},
+			{pos[2], norm[2]}
 	);
 
 	mesh->addTriangle(
-			{pos[1], tex[2], norm[2]},
-			{pos[6], tex[2], norm[2]},
-			{pos[5], tex[2], norm[2]}
+			{pos[1], norm[2]},
+			{pos[6], norm[2]},
+			{pos[5], norm[2]}
 	);
 
 	//face left
 
 	mesh->addTriangle(
-			{pos[0], tex[3], norm[3]},
-			{pos[4], tex[3], norm[3]},
-			{pos[7], tex[3], norm[3]}
+			{pos[0], norm[3]},
+			{pos[4], norm[3]},
+			{pos[7], norm[3]}
 	);
 
 	mesh->addTriangle(
-			{pos[0], tex[3], norm[3]},
-			{pos[3], tex[3], norm[3]},
-			{pos[4], tex[3], norm[3]}
+			{pos[0], norm[3]},
+			{pos[3], norm[3]},
+			{pos[4], norm[3]}
 	);
 
 	//face back
 
 	mesh->addTriangle(
-			{pos[5], tex[4], norm[4]},
-			{pos[7], tex[4], norm[4]},
-			{pos[4], tex[4], norm[4]}
+			{pos[5], norm[4]},
+			{pos[7], norm[4]},
+			{pos[4], norm[4]}
 	);
 
 	mesh->addTriangle(
-			{pos[5], tex[4], norm[4]},
-			{pos[6], tex[4], norm[4]},
-			{pos[7], tex[4], norm[4]}
+			{pos[5], norm[4]},
+			{pos[6], norm[4]},
+			{pos[7], norm[4]}
 	);
 
 	//face bottom
 
 	mesh->addTriangle(
-			{pos[0], tex[5], norm[5]},
-			{pos[7], tex[5], norm[5]},
-			{pos[6], tex[5], norm[5]}
+			{pos[0], norm[5]},
+			{pos[7], norm[5]},
+			{pos[6], norm[5]}
 	);
 
 	mesh->addTriangle(
-			{pos[0], tex[5], norm[5]},
-			{pos[6], tex[5], norm[5]},
-			{pos[1], tex[5], norm[5]}
+			{pos[0], norm[5]},
+			{pos[6], norm[5]},
+			{pos[1], norm[5]}
 	);
 
 

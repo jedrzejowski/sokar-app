@@ -16,23 +16,27 @@ VkVertexInputBindingDescription MeshVertex::getBindingDescription() {
 	return bindingDescription;
 }
 
-std::vector<VkVertexInputAttributeDescription> MeshVertex::getAttributeDescriptions(){
-	std::vector<VkVertexInputAttributeDescription> attributeDescriptions(3);
+std::vector<VkVertexInputAttributeDescription> MeshVertex::getAttributeDescriptions() {
+	std::vector<VkVertexInputAttributeDescription> attributeDescriptions(2);
 
 	attributeDescriptions[0].binding = 0;
 	attributeDescriptions[0].location = 0;
 	attributeDescriptions[0].format = VK_FORMAT_R32G32B32_SFLOAT;
 	attributeDescriptions[0].offset = offsetof(MeshVertex, pos);
 
+//	attributeDescriptions[1].binding = 0;
+//	attributeDescriptions[1].location = 1;
+//	attributeDescriptions[1].format = VK_FORMAT_R32G32_SFLOAT;
+//	attributeDescriptions[1].offset = offsetof(MeshVertex, tex);
+
 	attributeDescriptions[1].binding = 0;
 	attributeDescriptions[1].location = 1;
-	attributeDescriptions[1].format = VK_FORMAT_R32G32_SFLOAT;
-	attributeDescriptions[1].offset = offsetof(MeshVertex, tex);
-
-	attributeDescriptions[2].binding = 0;
-	attributeDescriptions[2].location = 2;
-	attributeDescriptions[2].format = VK_FORMAT_R32G32B32_SFLOAT;
-	attributeDescriptions[2].offset = offsetof(MeshVertex, normal);
+	attributeDescriptions[1].format = VK_FORMAT_R32G32B32_SFLOAT;
+	attributeDescriptions[1].offset = offsetof(MeshVertex, normal);
 
 	return attributeDescriptions;
+}
+
+bool MeshVertex::areEquals(const MeshVertex &v1, const MeshVertex &v2, float esp) {
+	return glm::distance(v1.pos, v2.pos) < esp;
 }

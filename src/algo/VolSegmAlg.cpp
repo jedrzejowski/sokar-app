@@ -32,12 +32,11 @@ Sokar3D::StaticMesh *VolSegmAlg::dumpStaticMesh() {
 }
 
 void VolSegmAlg::addTriangle(const Triangle &tri) {
-	auto tex = glm::vec2(0);
 	auto normal = glm::triangleNormal(tri.vertex0, tri.vertex1, tri.vertex2) * -1.f;
 
 	staticMesh->addTriangle(
-			{tri.vertex0, tex, normal},
-			{tri.vertex1, tex, normal},
-			{tri.vertex2, tex, normal}
+			{tri.vertex0, normal},
+			{tri.vertex1, normal},
+			{tri.vertex2, normal}
 	);
 }

@@ -14,6 +14,8 @@ namespace Sokar3D {
 //	typedef glm::vec3 vec3;
 //	typedef glm::vec2 vec2;
 
+	static const float ESP = 0.00001f;
+
 	struct MeshVertex;
 
 	class Camera;
