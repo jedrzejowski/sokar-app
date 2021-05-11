@@ -25,3 +25,5 @@ namespace Sokar3D {
 }
 
 
+QDebug operator<<(QDebug dbg, const Sokar3D::MeshVertex &tri);
+

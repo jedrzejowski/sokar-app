@@ -40,3 +40,13 @@ std::vector<VkVertexInputAttributeDescription> MeshVertex::getAttributeDescripti
 bool MeshVertex::areEquals(const MeshVertex &v1, const MeshVertex &v2, float esp) {
 	return glm::distance(v1.pos, v2.pos) < esp;
 }
+
+
+QDebug operator<<(QDebug dbg, const Sokar3D::MeshVertex &vertex) {
+
+	return dbg
+			<< "MeshVertex{"
+			<< "pos:" << vertex.pos
+			<< "normal:" << vertex.normal
+			<< "}";
+}

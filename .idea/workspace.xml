@@ -16,16 +16,21 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="commit kontrolny">
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="ulepszenia pamięci">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.frag" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.frag.spv" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.frag.spv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.vert" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.vert" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.vert.spv" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/mesh.vert.spv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/res/resources.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.frag" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/staticMesh.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.frag.spv" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/staticMesh.frag.spv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.vert" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/staticMesh.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/mesh.vert.spv" beforeDir="false" afterPath="$PROJECT_DIR$/res/vk-shader/staticMesh.vert.spv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/MeshVertex.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshVertex.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/MeshVertex.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshVertex.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/_def.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -385,9 +390,9 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="vk:color_phong" type="ShConfigurationType">
@@ -563,7 +568,9 @@
       <workItem from="1620307328490" duration="2400000" />
       <workItem from="1620500140396" duration="13044000" />
       <workItem from="1620548227450" duration="1903000" />
-      <workItem from="1620571685228" duration="10837000" />
+      <workItem from="1620571685228" duration="11169000" />
+      <workItem from="1620683257952" duration="4429000" />
+      <workItem from="1620739200510" duration="8346000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>
@@ -873,7 +880,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620590598476</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="ulepszenia pamięci">
+      <created>1620605246720</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1620605246720</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -947,7 +961,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="Dodanie Wątków do monochroma" />
     <MESSAGE value="Zmiana Monochromu" />
     <MESSAGE value="PixelIndicator: zrobiony" />
     <MESSAGE value="Prace nad PatientDataIndicator" />
@@ -972,7 +985,8 @@
     <MESSAGE value="Dodanie bibliotek do kopiowania" />
     <MESSAGE value="kommit kontrolny" />
     <MESSAGE value="commit kontrolny" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit kontrolny" />
+    <MESSAGE value="ulepszenia pamięci" />
+    <option name="LAST_COMMIT_MESSAGE" value="ulepszenia pamięci" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">

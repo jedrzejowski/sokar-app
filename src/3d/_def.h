@@ -30,6 +30,8 @@ namespace Sokar3D {
 
 	class StaticMesh;
 
+	class IndexedStaticMesh;
+
 	class VulkanRenderer;
 
 	class Shader;

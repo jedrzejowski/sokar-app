@@ -11,29 +11,59 @@
 
 namespace Sokar3D {
 
-	struct MeshData {
-		inline bool isValid() const { return !geom.isEmpty(); }
 
-		inline int sizeInBytes() const {
-			return geom.size() * sizeof(MeshVertex);
-		}
+	class StaticMesh : public QObject {
+	Q_OBJECT
 
-		QVector<MeshVertex> geom;
+	protected:
+		QVector<MeshVertex> vertices;
+
+	public:
+
+		virtual void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2);
+
+		static StaticMesh *createCubeMesh();
+
+		[[nodiscard]]
+		qsizetype verticesSizeInBytes() const;
+
+		[[nodiscard]]
+		qsizetype vertCount() const;
+
+		[[nodiscard]]
+		const quint8 *vertexData() const;
+
+		[[nodiscard]]
+		virtual StaticMesh *toStaticMash() const;
+
+		[[nodiscard]]
+		virtual IndexedStaticMesh *toIndexedStaticMesh() const;
 	};
 
-	class StaticMesh {
+	class IndexedStaticMesh : public StaticMesh {
+	Q_OBJECT
+
+	protected:
+		QVector<quint32> indexes;
+
 	public:
-		MeshData *data();
-		bool isValid() { return data()->isValid(); }
-		void reset();
+		void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2) override;
+		[[nodiscard]]
+		qsizetype indexesSizeInBytes() const;
 
-		void addTriangle(MeshVertex v0, MeshVertex v1, MeshVertex v2);
+		[[nodiscard]]
+		const quint8 *indexData() const;
 
-		static StaticMesh* createCubeMesh();
+		[[nodiscard]]
+		qsizetype indexCount() const;
 
-	private:
-		bool m_maybeRunning = false;
-		QFuture<MeshData> m_future;
-		MeshData m_data;
+		[[nodiscard]]
+		StaticMesh *toStaticMash() const override;
+
+		[[nodiscard]]
+		IndexedStaticMesh *toIndexedStaticMesh() const override;
+
+		[[nodiscard]]
+		quint32 addVertex(const MeshVertex &v);
 	};
 }

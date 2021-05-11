@@ -41,9 +41,9 @@
       <file>vk-shader/color.frag</file>
       <file>vk-shader/color_phong.frag.spv</file>
       <file>vk-shader/color_phong.vert.spv</file>
-      <file>vk-shader/mesh.vert</file>
-      <file>vk-shader/mesh.frag</file>
-      <file>vk-shader/mesh.frag.spv</file>
-      <file>vk-shader/mesh.vert.spv</file>
+      <file>vk-shader/staticMesh.vert</file>
+      <file>vk-shader/staticMesh.frag</file>
+      <file>vk-shader/staticMesh.frag.spv</file>
+      <file>vk-shader/staticMesh.vert.spv</file>
   </qresource>
 </RCC>

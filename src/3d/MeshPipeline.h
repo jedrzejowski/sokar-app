@@ -34,16 +34,19 @@ namespace Sokar3D {
 	};
 
 	class MeshPipeline : public PipelineWrapper {
-		StaticMesh *mesh;
+		StaticMesh *staticMesh;
+		IndexedStaticMesh *indexedStaticMesh;
 		Shader vertexShader;
 		Shader fragmentShader;
 		VkBuffer vertexBuf = VK_NULL_HANDLE;
+		VkBuffer indexBuf = VK_NULL_HANDLE;
 		VkBuffer uniformBuf = VK_NULL_HANDLE;
 		VkBuffer instanceBuf = VK_NULL_HANDLE;
 		VkDeviceMemory bufMem = VK_NULL_HANDLE;
 		VkDescriptorPool vkDescriptorPool = VK_NULL_HANDLE;
 		VkDescriptorSetLayout vkDescriptorSetLayout = VK_NULL_HANDLE;
 		VkDeviceSize vertexMemOffset = 0;
+		VkDeviceSize indexMemOffset = 0;
 		VkDeviceSize uniformMemOffset = 0;
 		VkDescriptorSet vkDescriptorSet = VK_NULL_HANDLE;
 

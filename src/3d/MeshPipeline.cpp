@@ -10,7 +10,8 @@
 
 using namespace Sokar3D;
 
-MeshPipeline::MeshPipeline(StaticMesh *mesh) : mesh(mesh) {
+MeshPipeline::MeshPipeline(StaticMesh *mesh) : staticMesh(mesh) {
+	indexedStaticMesh = qobject_cast<IndexedStaticMesh *>(mesh);
 	//	backgroundMaterial.model.translate(0, -5, 0);
 }
 
@@ -22,9 +23,9 @@ void MeshPipeline::initResources(const VkPipelineMetaArgs &args) {
 //	uniformBufferObjectSize = makeBuffSizeAligned(sizeof(UniformBufferObject), uniAlign);
 
 	if (!vertexShader.isValid())
-		vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/mesh.vert.spv"));
+		vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/staticMesh.vert.spv"));
 	if (!fragmentShader.isValid())
-		fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/mesh.frag.spv"));
+		fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/staticMesh.frag.spv"));
 }
 
 void MeshPipeline::releaseResources(const VkPipelineMetaArgs &args) {
@@ -53,6 +54,11 @@ void MeshPipeline::releaseResources(const VkPipelineMetaArgs &args) {
 	if (vertexBuf) {
 		args.vkDeviceFunctions->vkDestroyBuffer(args.vkDevice, vertexBuf, nullptr);
 		vertexBuf = VK_NULL_HANDLE;
+	}
+
+	if (indexBuf) {
+		args.vkDeviceFunctions->vkDestroyBuffer(args.vkDevice, indexBuf, nullptr);
+		indexBuf = VK_NULL_HANDLE;
 	}
 
 	if (uniformBuf) {
@@ -260,17 +266,27 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 
 	// Tworzenie bufforów
 
+
 	// vetrex buffor
 	VkBufferCreateInfo bufInfo{};
 	bufInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
 	bufInfo.pNext = nullptr;
-	bufInfo.size = mesh->data()->sizeInBytes();
+	bufInfo.size = staticMesh->verticesSizeInBytes();
 	bufInfo.usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
 	err = args.vkDeviceFunctions->vkCreateBuffer(args.vkDevice, &bufInfo, nullptr, &vertexBuf);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to create vertex buffer: %d", err);
 	VkMemoryRequirements vertexMemReq;
 	args.vkDeviceFunctions->vkGetBufferMemoryRequirements(args.vkDevice, vertexBuf, &vertexMemReq);
+
+	// index buffer
+	bufInfo.size = indexedStaticMesh != nullptr ? indexedStaticMesh->indexesSizeInBytes() : 0;
+	bufInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
+	err = args.vkDeviceFunctions->vkCreateBuffer(args.vkDevice, &bufInfo, nullptr, &indexBuf);
+	if (err != VK_SUCCESS)
+		qFatal("Failed to create index buffer: %d", err);
+	VkMemoryRequirements indexMemReq;
+	args.vkDeviceFunctions->vkGetBufferMemoryRequirements(args.vkDevice, indexBuf, &indexMemReq);
 
 	// uniform buffer
 	bufInfo.size = (VertUniformBufferObject::size() + FragUniformBufferObject::size()) * concurrentFrameCount;
@@ -288,20 +304,26 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 	memAllocInfo.pNext = nullptr;
 	memAllocInfo.allocationSize =
 			(VertUniformBufferObject::size() + FragUniformBufferObject::size()) * concurrentFrameCount +
-			static_cast<VkDeviceSize>(mesh->data()->sizeInBytes());
+			(indexedStaticMesh != nullptr ? indexedStaticMesh->indexesSizeInBytes() : 0) +
+			static_cast<VkDeviceSize>(staticMesh->verticesSizeInBytes());
 	memAllocInfo.memoryTypeIndex = args.vkWidget->hostVisibleMemoryIndex();
 
 	err = args.vkDeviceFunctions->vkAllocateMemory(args.vkDevice, &memAllocInfo, nullptr, &bufMem);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to allocate memory: %d", err);
 
-	// budowanie bufforów do pamięci
+	// przpypisywanie bufforów do pamięci
+
 	vertexMemOffset = 0;
-	uniformMemOffset = makeBuffSizeAligned(vertexMemOffset + vertexMemReq.size, uniformMemReq.alignment);
+	indexMemOffset = makeBuffSizeAligned(vertexMemOffset + vertexMemReq.size, indexMemReq.alignment);
+	uniformMemOffset = makeBuffSizeAligned(indexMemOffset + indexMemReq.size, uniformMemReq.alignment);
 
 	err = args.vkDeviceFunctions->vkBindBufferMemory(args.vkDevice, vertexBuf, bufMem, vertexMemOffset);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to bind vertex buffer memory: %d", err);
+	err = args.vkDeviceFunctions->vkBindBufferMemory(args.vkDevice, indexBuf, bufMem, indexMemOffset);
+	if (err != VK_SUCCESS)
+		qFatal("Failed to bind index buffer memory: %d", err);
 	err = args.vkDeviceFunctions->vkBindBufferMemory(args.vkDevice, uniformBuf, bufMem, uniformMemOffset);
 	if (err != VK_SUCCESS)
 		qFatal("Failed to bind uniform buffer memory: %d", err);
@@ -310,11 +332,13 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 
 	quint8 *p;
 	err = args.vkDeviceFunctions->vkMapMemory(
-			args.vkDevice, bufMem, 0, mesh->data()->sizeInBytes(), 0, reinterpret_cast<void **>(&p));
+			args.vkDevice, bufMem, 0, staticMesh->verticesSizeInBytes(), 0, reinterpret_cast<void **>(&p));
 	if (err != VK_SUCCESS)
 		qFatal("Failed to map memory: %d", err);
-	// qDebug() << "kopiowanie" << mesh->data()->sizeInBytes();
-	memcpy(p, mesh->data()->geom.data(), mesh->data()->sizeInBytes());
+	memcpy(p, staticMesh->vertexData(), staticMesh->verticesSizeInBytes());
+	if (indexedStaticMesh) {
+		memcpy(p + indexMemOffset, indexedStaticMesh->indexData(), indexedStaticMesh->indexesSizeInBytes());
+	}
 	args.vkDeviceFunctions->vkUnmapMemory(args.vkDevice, bufMem);
 
 	// deskryptry
@@ -360,11 +384,13 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 	fragUniformBufferObject.material.specular = glm::vec3(0.5f, 0.5f, 0.5f);
 	fragUniformBufferObject.material.color = glm::vec3(0.0f, 1.f, 0.f);
 
-
 	args.vkDeviceFunctions->vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline);
 
-	VkDeviceSize vbOffset = 0;
+	VkDeviceSize vbOffset = 0, ibOffset = 0;
 	args.vkDeviceFunctions->vkCmdBindVertexBuffers(cb, 0, 1, &vertexBuf, &vbOffset);
+	if (indexedStaticMesh) {
+		args.vkDeviceFunctions->vkCmdBindIndexBuffer(cb, indexBuf, ibOffset, VK_INDEX_TYPE_UINT32);
+	}
 
 	uint32_t frameUniOffset =
 			args.vkWidget->currentFrame() * (VertUniformBufferObject::size() + FragUniformBufferObject::size());
@@ -386,8 +412,11 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 	memcpy(p + VertUniformBufferObject::size(), &fragUniformBufferObject, FragUniformBufferObject::size());
 	args.vkDeviceFunctions->vkUnmapMemory(args.vkDevice, bufMem);
 
-
-	args.vkDeviceFunctions->vkCmdDraw(cb, mesh->data()->geom.size(), 1, 0, 0);
+	if (indexedStaticMesh) {
+		args.vkDeviceFunctions->vkCmdDrawIndexed(cb, indexedStaticMesh->indexCount(), 1, 0, 0, 0);
+	} else {
+		args.vkDeviceFunctions->vkCmdDraw(cb, staticMesh->vertCount(), 1, 0, 0);
+	}
 }
 
 

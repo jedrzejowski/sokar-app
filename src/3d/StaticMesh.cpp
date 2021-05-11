@@ -9,26 +9,105 @@
 
 using namespace Sokar3D;
 
-MeshData *StaticMesh::data() {
-	if (m_maybeRunning && !m_data.isValid())
-		m_data = m_future.result();
-
-	return &m_data;
+const quint8 *StaticMesh::vertexData() const {
+	return reinterpret_cast<const quint8 *>(vertices.data());
 }
 
-void StaticMesh::reset() {
-	*data() = MeshData();
-	m_maybeRunning = false;
+
+void StaticMesh::addTriangle(
+		const MeshVertex &v0,
+		const MeshVertex &v1,
+		const MeshVertex &v2
+) {
+	vertices << v0 << v1 << v2;
 }
 
-void StaticMesh::addTriangle(MeshVertex v0, MeshVertex v1, MeshVertex v2) {
-//	qDebug() << "adding tirangle"
-//			 << glm::to_string(v0.pos).c_str()
-//			 << glm::to_string(v1.pos).c_str()
-//			 << glm::to_string(v2.pos).c_str();
-
-	m_data.geom << v0 << v1 << v2;
+qsizetype StaticMesh::verticesSizeInBytes() const {
+	return vertices.size() * sizeof(MeshVertex);
 }
+
+qsizetype StaticMesh::vertCount() const {
+	return vertices.size();
+}
+
+qsizetype IndexedStaticMesh::indexesSizeInBytes() const {
+	return indexes.size() * sizeof(quint32);
+}
+
+qsizetype IndexedStaticMesh::indexCount() const {
+	return indexes.size();
+}
+
+const quint8 *IndexedStaticMesh::indexData() const {
+	return reinterpret_cast<const quint8 *>(indexes.data());
+}
+
+quint32 IndexedStaticMesh::addVertex(const MeshVertex &v) {
+
+	for (auto iter = vertices.begin(); iter != vertices.begin(); ++iter) {
+
+		if (MeshVertex::areEquals(v, *iter)) {
+			return iter - vertices.begin();
+		}
+	}
+
+	vertices << v;
+	return vertices.size() - 1;
+}
+
+void IndexedStaticMesh::addTriangle(
+		const MeshVertex &v0,
+		const MeshVertex &v1,
+		const MeshVertex &v2
+) {
+	auto i0 = addVertex(v0);
+	auto i1 = addVertex(v1);
+	auto i2 = addVertex(v2);
+
+	indexes << i0 << i2 << i1;
+}
+
+
+//region Converters
+
+StaticMesh *StaticMesh::toStaticMash() const {
+	auto newMesh = new StaticMesh();
+
+	newMesh->vertices = QVector<MeshVertex>(vertices);
+
+	return newMesh;
+}
+
+IndexedStaticMesh *IndexedStaticMesh::toIndexedStaticMesh() const {
+	auto newMesh = new IndexedStaticMesh();
+
+	newMesh->vertices = QVector<MeshVertex>(vertices);
+	newMesh->indexes = QVector<quint32>(indexes);
+
+	return newMesh;
+}
+
+StaticMesh *IndexedStaticMesh::toStaticMash() const {
+	auto newMesh = new StaticMesh();
+
+
+	return newMesh;
+}
+
+IndexedStaticMesh *StaticMesh::toIndexedStaticMesh() const {
+
+	auto newMesh = new IndexedStaticMesh();
+
+	auto iter = vertices.begin();
+
+	while (iter != vertices.end()) {
+		newMesh->addTriangle(*iter++, *iter++, *iter++);
+	}
+
+	return newMesh;
+}
+
+//endregion
 
 StaticMesh *StaticMesh::createCubeMesh() {
 	auto mesh = new Sokar3D::StaticMesh();

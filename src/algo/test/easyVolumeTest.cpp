@@ -19,7 +19,7 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 
 	auto mc = new SokarAlg::MarchingCubes();
 	mc->setVirtualVolume(vv);
-	vv->setCubesPerMM(1);
+	vv->setCubesPerMM(0.25f);
 //	vv->setInterpolator(new SokarAlg::NearestValueInterpolator());
 	vv->setInterpolator(new SokarAlg::LinearValueInterpolator());
 	mc->setIsoLevel(100.f);
@@ -31,7 +31,6 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 	QObject::connect(watcher, &QFutureWatcherBase::finished, [mc, vv]() {
 		qDebug() << "here";
 		auto mesh = mc->dumpStaticMesh();
-		qDebug() << mesh->data()->geom.size();
 
 		auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
 		auto renderer = ret.renderer;
@@ -44,7 +43,12 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 		);
 		renderer->setCamera(camera);
 
-		auto pipeline = new Sokar3D::MeshPipeline(mesh);
+		auto mesh2 = mesh->toIndexedStaticMesh();
+
+		qDebug() << mesh->vertCount();
+		qDebug() << mesh2->indexCount() << mesh2->vertCount();
+
+		auto pipeline = new Sokar3D::MeshPipeline(mesh2);
 		renderer->addPipelineWrapper(pipeline);
 	});
 
