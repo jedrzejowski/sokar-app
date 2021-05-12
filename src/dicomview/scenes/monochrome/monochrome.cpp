@@ -24,7 +24,7 @@
 #include "QFutureWatcherBase"
 
 #include "../../../3d/CenterCamera.h"
-#include "../../../algo/DicomVolume.h"
+#include "algo/volume/DicomVolume.h"
 
 using namespace Sokar;
 

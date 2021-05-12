@@ -11,8 +11,8 @@
 #include "../../3d/CenterCamera.h"
 #include "../../3d/VulkanRenderer.h"
 #include "../MarchingCubes.h"
-#include "../VolumeEnv.h"
-#include "../DicomVolume.h"
+#include "../volume/VolumeEnv.h"
+#include "../volume/DicomVolume.h"
 
 
 void easyVolumeTest(SokarAlg::DicomVolume *vv) {

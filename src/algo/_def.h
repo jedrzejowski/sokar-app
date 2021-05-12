@@ -23,6 +23,16 @@ namespace SokarAlg {
 
 	class MarchingCubes;
 
+	// MeshSimplificator
+
+	class MeshSimplificator;
+
+	class VertexClustering;
+
+	class EdgeContraction;
+
+	class VertexDecimation;
+
 	// ValueInterpolator
 
 	class ValueInterpolator;

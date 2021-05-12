@@ -4,6 +4,6 @@
 
 #pragma once
 
-#include "algo/VirtualVolume.h"
+#include "./../volume/VirtualVolume.h"
 
 void easyVolumeTest(SokarAlg::DicomVolume* volume);

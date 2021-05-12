@@ -4,11 +4,11 @@
 
 #pragma once
 
-#include "./_def.h"
-#include "../_classdef.h"
+#include "../_def.h"
+#include "_classdef.h"
 #include "./VirtualVolume.h"
-#include "./ValueInterpolator.h"
-#include "../dicomview/scenes/sets/_sceneset.h"
+#include "../ValueInterpolator.h"
+#include "dicomview/scenes/sets/_sceneset.h"
 
 namespace SokarAlg {
 

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "./_def.h"
+#include "../_def.h"
 #include "./VirtualVolume.h"
 
 namespace SokarAlg {

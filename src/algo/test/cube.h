@@ -4,17 +4,6 @@
 
 #pragma once
 
-#include <QtCore>
-#include <QObject>
-#include "../../3d/VulkanWidget.h"
-#include "../../3d/StaticMesh.h"
-#include "../../3d/MeshPipeline.h"
-#include "../../3d/CenterCamera.h"
-#include "../../3d/VulkanRenderer.h"
-#include "../ExampleVolume.h"
-#include "../MarchingCubes.h"
-#include "../ValueInterpolator.h"
-#include "easyVolumeTest.h"
 
 void sokarCubeTest() {
 
