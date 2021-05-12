@@ -12,6 +12,13 @@ namespace SokarAlg {
 	class MeshSimplificator {
 	public:
 		virtual QFuture<Sokar3D::StaticMesh *> simplify(const Sokar3D::StaticMesh *mesh) = 0;
+
+		struct Extrema {
+			glm::vec3 min;
+			glm::vec3 max;
+		};
+
+		Extrema findExtrema(const Sokar3D::StaticMesh *mesh);
 	};
 }
 

@@ -6,7 +6,7 @@
 
 #include "./_def.h"
 #include "./Triangle.h"
-#include "./volume/VirtualVolume.h"
+#include "./Volume/VirtualVolume.h"
 #include "../3d/StaticMesh.h"
 
 namespace SokarAlg {

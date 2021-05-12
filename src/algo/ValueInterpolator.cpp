@@ -3,7 +3,7 @@
 //
 
 #include "./ValueInterpolator.h"
-#include "./volume/DicomVolume.h"
+#include "./Volume/DicomVolume.h"
 
 using namespace SokarAlg;
 

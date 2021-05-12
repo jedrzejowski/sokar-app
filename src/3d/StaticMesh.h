@@ -28,10 +28,13 @@ namespace Sokar3D {
 		qsizetype verticesSizeInBytes() const;
 
 		[[nodiscard]]
-		qsizetype vertCount() const;
+		qsizetype verticesCount() const;
 
 		[[nodiscard]]
-		const quint8 *vertexData() const;
+		const quint8 *verticesData() const;
+
+		[[nodiscard]]
+		const QVector<MeshVertex> &getVertices() const;
 
 		[[nodiscard]]
 		virtual StaticMesh *toStaticMash() const;
@@ -59,6 +62,9 @@ namespace Sokar3D {
 
 		[[nodiscard]]
 		StaticMesh *toStaticMash() const override;
+
+		[[nodiscard]]
+		const QVector<quint32> &getIndexes() const;
 
 		[[nodiscard]]
 		IndexedStaticMesh *toIndexedStaticMesh() const override;

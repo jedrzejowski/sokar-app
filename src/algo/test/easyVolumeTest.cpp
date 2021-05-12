@@ -11,8 +11,8 @@
 #include "../../3d/CenterCamera.h"
 #include "../../3d/VulkanRenderer.h"
 #include "../MarchingCubes.h"
-#include "../volume/VolumeEnv.h"
-#include "../volume/DicomVolume.h"
+#include "../Volume/VolumeEnv.h"
+#include "../Volume/DicomVolume.h"
 
 
 void easyVolumeTest(SokarAlg::DicomVolume *vv) {
@@ -45,8 +45,8 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 
 		auto mesh2 = mesh->toIndexedStaticMesh();
 
-		qDebug() << mesh->vertCount();
-		qDebug() << mesh2->indexCount() << mesh2->vertCount();
+		qDebug() << mesh->verticesCount();
+		qDebug() << mesh2->indexCount() << mesh2->verticesCount();
 
 		auto pipeline = new Sokar3D::MeshPipeline(mesh2);
 		renderer->addPipelineWrapper(pipeline);

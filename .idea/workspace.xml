@@ -16,31 +16,33 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="dodanie nowego mesha">
-      <change afterPath="$PROJECT_DIR$/src/algo/mesh-simplification/EdgeContraction.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/mesh-simplification/EdgeContraction.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/mesh-simplification/MeshSimplificator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/mesh-simplification/MeshSimplificator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexClustering.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexClustering.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexDecimation.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexDecimation.h" afterDir="false" />
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="refactor kodu">
+      <change afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/DicomVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/volume/DicomVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/DicomVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/volume/DicomVolume.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/ExampleVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/volume/ExampleVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/ExampleVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/volume/ExampleVolume.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/ValueInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ValueInterpolator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VirtualVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/volume/VirtualVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VirtualVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/volume/VirtualVolume.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VolumeEnv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/volume/VolumeEnv.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VolumeEnv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/volume/VolumeEnv.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/_def.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/test/cube.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/cube.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/EdgeContraction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/EdgeContraction.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/EdgeContraction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/EdgeContraction.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/MeshSimplificator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexClustering.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexDecimation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexDecimation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexDecimation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexDecimation.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/volume/DicomVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/volume/DicomVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/volume/ExampleVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/ExampleVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/volume/ExampleVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/ExampleVolume.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/volume/VirtualVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/VirtualVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/volume/VirtualVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/VirtualVolume.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/volume/VolumeEnv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/VolumeEnv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/volume/VolumeEnv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/VolumeEnv.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -386,17 +388,17 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="Sokar">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="Sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar_autogen" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -582,7 +584,8 @@
       <workItem from="1620571685228" duration="11169000" />
       <workItem from="1620683257952" duration="4429000" />
       <workItem from="1620739200510" duration="8785000" />
-      <workItem from="1620854762483" duration="1396000" />
+      <workItem from="1620854762483" duration="2298000" />
+      <workItem from="1620859403333" duration="633000" />
     </task>
     <task id="LOCAL-00001" summary="Prace rozpoczęte">
       <created>1541289636914</created>
@@ -906,7 +909,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620773392557</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="refactor kodu">
+      <created>1620858515615</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1620858515615</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -980,7 +990,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="PixelIndicator: zrobiony" />
     <MESSAGE value="Prace nad PatientDataIndicator" />
     <MESSAGE value="Dodanie wyświetlania danych o szpitalu" />
     <MESSAGE value="Dodanie DicomTabs" />
@@ -1005,7 +1014,8 @@
     <MESSAGE value="commit kontrolny" />
     <MESSAGE value="ulepszenia pamięci" />
     <MESSAGE value="dodanie nowego mesha" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodanie nowego mesha" />
+    <MESSAGE value="refactor kodu" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor kodu" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">

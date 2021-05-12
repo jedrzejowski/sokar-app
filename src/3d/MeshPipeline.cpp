@@ -335,7 +335,7 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 			args.vkDevice, bufMem, 0, staticMesh->verticesSizeInBytes(), 0, reinterpret_cast<void **>(&p));
 	if (err != VK_SUCCESS)
 		qFatal("Failed to map memory: %d", err);
-	memcpy(p, staticMesh->vertexData(), staticMesh->verticesSizeInBytes());
+	memcpy(p, staticMesh->verticesData(), staticMesh->verticesSizeInBytes());
 	if (indexedStaticMesh) {
 		memcpy(p + indexMemOffset, indexedStaticMesh->indexData(), indexedStaticMesh->indexesSizeInBytes());
 	}
@@ -415,7 +415,7 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 	if (indexedStaticMesh) {
 		args.vkDeviceFunctions->vkCmdDrawIndexed(cb, indexedStaticMesh->indexCount(), 1, 0, 0, 0);
 	} else {
-		args.vkDeviceFunctions->vkCmdDraw(cb, staticMesh->vertCount(), 1, 0, 0);
+		args.vkDeviceFunctions->vkCmdDraw(cb, staticMesh->verticesCount(), 1, 0, 0);
 	}
 }
 

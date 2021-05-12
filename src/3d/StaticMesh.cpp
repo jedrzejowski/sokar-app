@@ -9,7 +9,7 @@
 
 using namespace Sokar3D;
 
-const quint8 *StaticMesh::vertexData() const {
+const quint8 *StaticMesh::verticesData() const {
 	return reinterpret_cast<const quint8 *>(vertices.data());
 }
 
@@ -26,7 +26,7 @@ qsizetype StaticMesh::verticesSizeInBytes() const {
 	return vertices.size() * sizeof(MeshVertex);
 }
 
-qsizetype StaticMesh::vertCount() const {
+qsizetype StaticMesh::verticesCount() const {
 	return vertices.size();
 }
 
@@ -36,6 +36,15 @@ qsizetype IndexedStaticMesh::indexesSizeInBytes() const {
 
 qsizetype IndexedStaticMesh::indexCount() const {
 	return indexes.size();
+}
+
+const QVector<quint32> &IndexedStaticMesh::getIndexes() const {
+	return indexes;
+}
+
+
+const QVector<MeshVertex> &StaticMesh::getVertices() const {
+	return vertices;
 }
 
 const quint8 *IndexedStaticMesh::indexData() const {
