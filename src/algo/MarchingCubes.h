@@ -8,7 +8,7 @@
 #include "./Triangle.h"
 #include "./Volume/VirtualVolume.h"
 #include "./VolSegmAlg.h"
-#include "../3d/StaticMesh.h"
+#include "../3d/StaticMesh.hpp"
 
 namespace SokarAlg {
 

@@ -7,7 +7,7 @@
 #include "./_def.h"
 #include "./VulkanWidget.h"
 #include "./Shader.h"
-#include "./StaticMesh.h"
+#include "./StaticMesh.hpp"
 #include "./Camera.h"
 #include "./PipelineWrapper.h"
 

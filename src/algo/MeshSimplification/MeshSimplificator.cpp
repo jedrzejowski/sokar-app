@@ -3,7 +3,7 @@
 //
 
 #include "./MeshSimplificator.h"
-#include "3d/StaticMesh.h"
+#include "3d/StaticMesh.hpp"
 
 using namespace SokarAlg;
 

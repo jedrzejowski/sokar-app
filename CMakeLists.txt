@@ -6,9 +6,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif ()
 
 set(CMAKE_CXX_COMPILER "g++")
-
 set(CMAKE_CXX_STANDARD 17)
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -21,53 +19,14 @@ set(APP_TARGET Sokar)
 #Biblioteka wątków
 find_package(Threads)
 find_package(Vulkan REQUIRED FATAL_ERROR)
-find_package(OpenCV REQUIRED)
 
 find_package(glfw3 REQUIRED)
 include_directories(${GLFW_INCLUDE_DIRS})
 link_libraries(${GLFW_LIBRARY_DIRS})
 
-#Biblioteka GDCM
-set(GDCM_DIR ${CMAKE_CURRENT_LIST_DIR}/../gdcm-3.0.8-bin/)
-find_package(GDCM REQUIRED)
-include(${GDCM_USE_FILE})
-set(GDCM_LIBRARIES
-        gdcmCommon
-        gdcmDICT
-        gdcmDSED
-        gdcmIOD
-        gdcmexpat
-        gdcmzlib
-        gdcmcharls
-        gdcmopenjp2
-        gdcmjpeg12
-        gdcmjpeg16
-        gdcmjpeg8
-        gdcmMEXD
-        gdcmMSFF
-        socketxx)
+include(cmake/gdcm.cmake)
+include(cmake/qt.cmake)
 
-#Bibliotek QT
-if (WIN32 OR APPLE)
-
-#    if (WIN32)
-#        option(QtDir "Qt directory" C:/Qt/5.12.1/msvc2017_64)
-#    elseif (APPLE)
-#        option(QtDir "Qt directory" /Applications/Qt)
-#    endif ()
-
-    set(QtDir "C:/Qt/5.12.1/msvc2017_64" CACHE STRING "Qt directory")
-
-    set(Qt5Widgets_DIR ${QtDir}/lib/cmake/Qt5Widgets/)
-    set(Qt5LinguistTools_DIR ${QtDir}/lib/cmake/Qt5LinguistTools/)
-endif ()
-# Na linuxie powinna być już zainstalowana
-find_package(Qt5Widgets CONFIG REQUIRED)
-find_package(Qt5LinguistTools REQUIRED)
-set(QT_LIBRARIES
-        Qt5::Core
-        Qt5::Gui
-        Qt5::Widgets)
 
 #Tłumaczenia
 file(GLOB TS_FILES "${PROJECT_SOURCE_DIR}/res/lang/*.ts")

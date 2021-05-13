@@ -17,33 +17,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="refactor kodu">
-      <change afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake/gdcm.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmake/rpm.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/3d/SimpleLight.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/3d/SolidMaterial.glsl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/3d/StaticMesh.frag" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/3d/StaticMesh.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/PipelineWrapper.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/PipelineWrapper.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/VulkanRenderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanRenderer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/ValueInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ValueInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/EdgeContraction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/EdgeContraction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/EdgeContraction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/EdgeContraction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/MeshSimplificator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexClustering.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexDecimation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexDecimation.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/mesh-simplification/VertexDecimation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexDecimation.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/volume/DicomVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/volume/DicomVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/volume/ExampleVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/ExampleVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/volume/ExampleVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/ExampleVolume.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/volume/VirtualVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/VirtualVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/volume/VirtualVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/VirtualVolume.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/volume/VolumeEnv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/VolumeEnv.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/volume/VolumeEnv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/VolumeEnv.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -326,7 +320,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/algo/test" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/3d" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
@@ -335,11 +329,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/3d" />
       <recent name="$PROJECT_DIR$/src/algo/test" />
       <recent name="$PROJECT_DIR$/src/algo" />
       <recent name="$PROJECT_DIR$/res/vk-shader" />
       <recent name="$PROJECT_DIR$/src/3d/shader" />
-      <recent name="$PROJECT_DIR$/src/3d" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/algo/volume" />
@@ -355,16 +349,46 @@
         <compiler />
         <compiler-path />
         <compiler-arguments />
+        <envs />
         <main-file>$USER_HOME$</main-file>
         <aux-dir>$USER_HOME$</aux-dir>
       </texify-bibtex>
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="Sokar">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar_autogen" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="EXTERNAL_TOOL_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify-external>
+        <program>PYTHONTEX</program>
+        <main-file />
+        <work-dir />
+      </texify-external>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration default="true" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify>
         <compiler>PDFLATEX</compiler>
         <compiler-path />
         <sumatra-path />
+        <pdf-viewer>EVINCE</pdf-viewer>
         <viewer-command />
         <compiler-arguments />
         <envs />
@@ -387,26 +411,6 @@
         <work-dir>$USER_HOME$</work-dir>
       </texify-makeindex>
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="Sokar">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar_autogen" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
     </configuration>
     <configuration name="vk:color_phong" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="" />

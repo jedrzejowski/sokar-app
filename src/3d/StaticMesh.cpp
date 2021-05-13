@@ -2,7 +2,7 @@
 // Created by adam on 29.03.2021.
 //
 
-#include "StaticMesh.h"
+#include "StaticMesh.hpp"
 #include "./MeshVertex.h"
 #include <QtConcurrent/QtConcurrentRun>
 #include <QFile>

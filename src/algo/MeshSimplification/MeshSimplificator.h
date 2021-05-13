@@ -5,7 +5,7 @@
 #pragma once
 
 #include <QFuture>
-#include "3d/StaticMesh.h"
+#include "3d/StaticMesh.hpp"
 #include "../_def.h"
 
 namespace SokarAlg {
