@@ -51,6 +51,8 @@ namespace Sokar3D {
 
 	public:
 		void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2) override;
+		void addTriangle(quint32 i0, quint32 v1, quint32 v2, bool checkDuplicates = true);
+
 		[[nodiscard]]
 		qsizetype indexesSizeInBytes() const;
 

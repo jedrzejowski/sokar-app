@@ -53,7 +53,7 @@ const quint8 *IndexedStaticMesh::indexData() const {
 
 quint32 IndexedStaticMesh::addVertex(const MeshVertex &v) {
 
-	for (auto iter = vertices.begin(); iter != vertices.begin(); ++iter) {
+	for (auto iter = vertices.begin(); iter != vertices.end(); ++iter) {
 
 		if (MeshVertex::areEquals(v, *iter)) {
 			return iter - vertices.begin();
@@ -72,6 +72,33 @@ void IndexedStaticMesh::addTriangle(
 	auto i0 = addVertex(v0);
 	auto i1 = addVertex(v1);
 	auto i2 = addVertex(v2);
+
+	addTriangle(i0, i2, i1);
+}
+
+void IndexedStaticMesh::addTriangle(quint32 i0, quint32 i1, quint32 i2, bool checkDuplicates) {
+	if (i0 == i1 || i1 == i2 || i0 == i2) {
+		return;
+	}
+
+	if (checkDuplicates) {
+
+		auto iter = indexes.begin();
+		while (iter != indexes.end()) {
+			auto n0 = *iter++;
+			auto n1 = *iter++;
+			auto n2 = *iter++;
+
+			if (
+					n0 == i0 && n1 == i1 && n2 == i2 ||
+					n0 == i1 && n1 == i2 && n2 == i0 ||
+					n0 == i2 && n1 == i1 && n2 == i0
+					) {
+
+				return;
+			}
+		}
+	}
 
 	indexes << i0 << i2 << i1;
 }

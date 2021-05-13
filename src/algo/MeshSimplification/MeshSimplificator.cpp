@@ -7,7 +7,7 @@
 
 using namespace SokarAlg;
 
-MeshSimplificator::Extrema MeshSimplificator::findExtrema(const Sokar3D::StaticMesh *mesh) {
+MeshSimplificator::Extrema MeshSimplificator::findExtrema(const Sokar3D::IndexedStaticMesh *mesh) {
 	Extrema extrema{};
 
 	extrema.max.x = +std::numeric_limits<float>::infinity();
@@ -25,10 +25,6 @@ MeshSimplificator::Extrema MeshSimplificator::findExtrema(const Sokar3D::StaticM
 		extrema.min.y = std::min(vert.pos.y, extrema.min.y);
 		extrema.min.z = std::min(vert.pos.z, extrema.min.z);
 	}
-
-
-
-
 
 	return extrema;
 }
