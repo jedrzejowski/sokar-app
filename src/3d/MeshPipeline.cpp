@@ -23,9 +23,9 @@ void MeshPipeline::initResources(const VkPipelineMetaArgs &args) {
 //	uniformBufferObjectSize = makeBuffSizeAligned(sizeof(UniformBufferObject), uniAlign);
 
 	if (!vertexShader.isValid())
-		vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/staticMesh.vert.spv"));
+		vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/3d/StaticMesh.vert"));
 	if (!fragmentShader.isValid())
-		fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/vk-shader/staticMesh.frag.spv"));
+		fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/3d/StaticMesh.frag"));
 }
 
 void MeshPipeline::releaseResources(const VkPipelineMetaArgs &args) {

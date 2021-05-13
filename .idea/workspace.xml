@@ -6,8 +6,8 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="Sokar" targetName="DiBrowser_autogen" />
-      <config projectName="Sokar" targetName="Sokar_autogen" />
-      <config projectName="Sokar" targetName="Sokar" />
+      <config projectName="Sokar" targetName="sokar_autogen" />
+      <config projectName="Sokar" targetName="sokar" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -17,27 +17,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="refactor kodu">
-      <change afterPath="$PROJECT_DIR$/cmake/gdcm.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cmake/rpm.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/makefile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d/SimpleLight.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d/SolidMaterial.glsl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d/StaticMesh.frag" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d/StaticMesh.vert" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/PipelineWrapper.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/PipelineWrapper.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/VulkanRenderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/VulkanRenderer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/add_shader.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/shaders.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/gdcm.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/res/resources.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/values/colorpalettes/readAll.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/color.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/color.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/color_frag.spv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/color_phong.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/color_phong.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/color_vert.spv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/staticMesh.frag" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/staticMesh.frag.spv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/staticMesh.vert" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/staticMesh.vert.spv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/struct/Mesh.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/struct/SimpleLight.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/vk-shader/struct/SolidMaterial.glsl" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SimpleLight.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/SimpleLight.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SimpleLight.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/SimpleLight.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SolidMaterial.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/SolidMaterial.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SolidMaterial.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/SolidMaterial.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/segmentation/GrayScaleImage.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/segmentation/GrayScaleImage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/segmentation/mySegmentation.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,12 +140,12 @@
     </dirStrings>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="dev" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -343,7 +351,7 @@
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="CMake Application.Sokar">
+  <component name="RunManager" selected="CMake Application.sokar">
     <configuration default="true" type="BIBTEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify-bibtex>
         <compiler />
@@ -355,21 +363,6 @@
       </texify-bibtex>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="Sokar">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="Sokar_autogen" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="EXTERNAL_TOOL_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify-external>
         <program>PYTHONTEX</program>
@@ -377,11 +370,6 @@
         <work-dir />
       </texify-external>
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
       <texify>
@@ -411,6 +399,26 @@
         <work-dir>$USER_HOME$</work-dir>
       </texify-makeindex>
       <method v="2" />
+    </configuration>
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="sokar">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="sokar_autogen" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
     </configuration>
     <configuration name="vk:color_phong" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="" />
@@ -444,8 +452,8 @@
     </configuration>
     <list>
       <item itemvalue="CMake Application.Build All" />
-      <item itemvalue="CMake Application.Sokar" />
-      <item itemvalue="CMake Application.Sokar_autogen" />
+      <item itemvalue="CMake Application.sokar" />
+      <item itemvalue="CMake Application.sokar_autogen" />
       <item itemvalue="Shell Script.vk:color_phong" />
       <item itemvalue="Shell Script.vk:mesh" />
     </list>

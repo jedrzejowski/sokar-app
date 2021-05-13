@@ -1,14 +1,9 @@
 #include <gdcmGlobal.h>
 #include <gdcmTag.h>
 #include <gdcmImageHelper.h>
-#include <opencv2/core/mat.hpp>
-#include <segmentation/mySegmentation.h>
-#include <segmentation/GrayScaleImage.h>
 #include <algo/MarchingCubes.h>
 
-#include <3d/VulkanRenderer.h>
 #include <3d/VulkanWidget.h>
-#include <3d/MeshPipeline.h>
 #include <algo/test/easyVolumeTest.h>
 
 #include "sokar/speedtest.h"
@@ -21,9 +16,6 @@
 #include "windowing/windowintstatic.h"
 
 #include "QFutureWatcher"
-#include "QFutureWatcherBase"
-
-#include "../../../3d/CenterCamera.h"
 #include "algo/Volume/DicomVolume.h"
 
 using namespace Sokar;

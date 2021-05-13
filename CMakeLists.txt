@@ -14,7 +14,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_SOURCE_DIR src)
 set_directory_properties(PROPERTIES CLEAN_NO_CUSTOM TRUE)
 
-set(APP_TARGET Sokar)
+set(APP_TARGET sokar)
 
 #Biblioteka wątków
 find_package(Threads)
@@ -26,6 +26,8 @@ link_libraries(${GLFW_LIBRARY_DIRS})
 
 include(cmake/gdcm.cmake)
 include(cmake/qt.cmake)
+include(cmake/rpm.cmake)
+include(cmake/shaders.cmake)
 
 
 #Tłumaczenia
@@ -41,11 +43,19 @@ file(GLOB_RECURSE QRC_FILES "${PROJECT_SOURCE_DIR}/src/*.qrc")
 
 qt5_wrap_ui(UI_HEADERS ${UI_FILES})
 
+
+file(GLOB_RECURSE SHADER_FILES
+        "${PROJECT_SOURCE_DIR}/src/*.vert"
+        "${PROJECT_SOURCE_DIR}/src/*.frag"
+        )
+
 add_executable(${APP_TARGET}
         ${HEADER_FILES} ${CPP_FILES}
         ${UI_HEADERS} ${QM_FILES}
         res/resources.qrc
         ${QRC_FILES})
+
+add_all_shaders(${APP_TARGET})
 
 target_link_libraries(
         ${APP_TARGET}
@@ -61,15 +71,3 @@ target_link_libraries(
 
 install(TARGETS ${APP_TARGET} RUNTIME DESTINATION ${INSTALL_DIR})
 
-#Inne zasoby
-
-file(COPY res/values/ DESTINATION res/values)
-file(COPY res/img/ DESTINATION res/img)
-
-# Kopiowanie plików bibliotek do folderu instalacji
-foreach (lib ${GDCM_LIBRARIES} ${QT_LIBRARIES})
-
-    add_custom_command(TARGET ${APP_TARGET} POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:${lib}> $<TARGET_FILE_DIR:${APP_TARGET}>)
-
-endforeach ()

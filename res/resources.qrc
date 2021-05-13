@@ -1,8 +1,6 @@
 <!DOCTYPE RCC>
   <RCC version="1.0">
     <qresource>
-      <file>resources.qrc</file>
-      <file>values/colorpalettes/readAll.js</file>
       <file>values/colorpalettes/hotmetalblue.xml</file>
       <file>values/colorpalettes/pet.xml</file>
       <file>values/colorpalettes/pet20stepcolor.xml</file>
@@ -33,17 +31,5 @@
       <file>img/ico/window.png</file>
       <file>img/ico/zoom.png</file>
       <file>lang/pl.ts</file>
-      <file>vk-shader/color_vert.spv</file>
-      <file>vk-shader/color_phong.vert</file>
-      <file>vk-shader/color_phong.frag</file>
-      <file>vk-shader/color_frag.spv</file>
-      <file>vk-shader/color.vert</file>
-      <file>vk-shader/color.frag</file>
-      <file>vk-shader/color_phong.frag.spv</file>
-      <file>vk-shader/color_phong.vert.spv</file>
-      <file>vk-shader/staticMesh.vert</file>
-      <file>vk-shader/staticMesh.frag</file>
-      <file>vk-shader/staticMesh.frag.spv</file>
-      <file>vk-shader/staticMesh.vert.spv</file>
   </qresource>
 </RCC>

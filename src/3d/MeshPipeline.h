@@ -6,8 +6,8 @@
 
 #include "./_def.h"
 #include "./PipelineWrapper.h"
-#include "./SimpleLight.h"
-#include "./SolidMaterial.h"
+#include "./SimpleLight.hpp"
+#include "./SolidMaterial.hpp"
 
 namespace Sokar3D {
 
