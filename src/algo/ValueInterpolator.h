@@ -35,6 +35,17 @@ namespace SokarAlg {
 		float interpolate(const glm::vec3 &position) const override;
 	};
 
+	class PolynomialValueInterpolator : public ValueInterpolator {
+		glm::i32vec3 size = glm::i32vec3(1);
+	public:
+		[[nodiscard]]
+		const glm::i32vec3 &getSize() const;
+		void setSize(const glm::i32vec3 &size);
+
+		[[nodiscard]]
+		float interpolate(const glm::vec3 &position) const override;
+	};
+
 	//https://www.mathworks.com/help/matlab/ref/interp3.html
 }
 

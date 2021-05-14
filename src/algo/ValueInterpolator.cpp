@@ -20,10 +20,10 @@ void ValueInterpolator::setVolume(const DicomVolume *newVV) {
 
 float NearestValueInterpolator::interpolate(const glm::vec3 &position) const {
 	return vv->getTrueValue({
-								std::round(position.x),
-								std::round(position.y),
-								std::round(position.z)
-						});
+									std::round(position.x),
+									std::round(position.y),
+									std::round(position.z)
+							});
 }
 
 float LinearValueInterpolator::interpolate(const glm::vec3 &position) const {
@@ -56,3 +56,58 @@ float LinearValueInterpolator::interpolate(const glm::vec3 &position) const {
 
 	return c0 * (1 - zd) + c1 * zd;
 }
+
+float PolynomialValueInterpolator::interpolate(const glm::vec3 &pos) const {
+	// rozwiązanie analityczne
+	// https://math.stackexchange.com/a/2099510
+
+	float u = 0;
+
+	auto centerIndex = glm::i32vec3(
+			std::round(pos.x),
+			std::round(pos.y),
+			std::round(pos.z)
+	);
+
+	auto startIndex = vv->clamp(centerIndex - size);
+	auto endIndex = vv->clamp(centerIndex + size);
+
+	qDebug() << "startIndex" << startIndex << "endIndex" << endIndex;
+
+	SokarGlm::foreachSpace(startIndex, endIndex, [&](glm::i32vec3 pos_i) {
+		qDebug() << pos;
+		float ui = vv->getTrueValue(pos_i);
+		bool first = true;
+		float Li = 0;
+
+		SokarGlm::foreachSpace(startIndex, endIndex, [&](glm::i32vec3 pos_k) {
+			if (pos_i == pos_k) {
+				return;
+			}
+
+			float Lk =
+					((pos.x - pos_k.x) * (pos.y - pos_k.y) * (pos.z - pos_k.z)) /
+					((pos_i.x - pos_k.x) * (pos_i.y - pos_k.y) * (pos_i.z - pos_k.z));
+
+			Li = first ? Lk : Li * Lk;
+			first = false;
+		});
+
+		u += ui * Li;
+	});
+
+
+	return u;
+}
+
+// region getter & setters
+
+const glm::i32vec3 &PolynomialValueInterpolator::getSize() const {
+	return size;
+}
+
+void PolynomialValueInterpolator::setSize(const glm::i32vec3 &newSize) {
+	size = newSize;
+}
+
+//endregion

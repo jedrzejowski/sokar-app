@@ -18,7 +18,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="dodanie shaderów">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gdcm.mk" beforeDir="false" afterPath="$PROJECT_DIR$/gdcm.mk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/ValueInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ValueInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/ValueInterpolator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/ValueInterpolator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokar_glm.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/sokar_glm.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1008,6 +1014,22 @@
     <MESSAGE value="refactor kodu" />
     <MESSAGE value="dodanie shaderów" />
     <option name="LAST_COMMIT_MESSAGE" value="dodanie shaderów" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/algo/ValueInterpolator.cpp</url>
+          <line>97</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/algo/ValueInterpolator.cpp</url>
+          <line>64</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">

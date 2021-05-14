@@ -55,6 +55,9 @@ namespace SokarAlg {
 		ValueInterpolator *getInterpolator() const;
 		void setInterpolator(ValueInterpolator *interpolator);
 
+		[[nodiscard]]
+		glm::i32vec3 clamp(const glm::i32vec3& size) const;
+
 	private:
 
 		void updateModel();

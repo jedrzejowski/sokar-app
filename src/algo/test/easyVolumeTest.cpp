@@ -21,7 +21,8 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 	mc->setVirtualVolume(vv);
 	vv->setCubesPerMM(0.25f);
 //	vv->setInterpolator(new SokarAlg::NearestValueInterpolator());
-	vv->setInterpolator(new SokarAlg::LinearValueInterpolator());
+//	vv->setInterpolator(new SokarAlg::LinearValueInterpolator());
+	vv->setInterpolator(new SokarAlg::PolynomialValueInterpolator());
 	mc->setIsoLevel(100.f);
 
 	auto future = mc->exec();
@@ -30,7 +31,8 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 
 	QObject::connect(watcher, &QFutureWatcherBase::finished, [mc, vv]() {
 		qDebug() << "here";
-		auto mesh = mc->dumpStaticMesh();
+		auto mesh = mc->dumpStaticMesh()->toIndexedStaticMesh();
+
 
 		auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
 		auto renderer = ret.renderer;
@@ -43,12 +45,12 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 		);
 		renderer->setCamera(camera);
 
-		auto mesh2 = mesh->toIndexedStaticMesh();
+//		auto mesh2 = mesh->toIndexedStaticMesh();
 
-		qDebug() << mesh->verticesCount();
-		qDebug() << mesh2->indexCount() << mesh2->verticesCount();
+//		qDebug() << mesh->verticesCount();
+//		qDebug() << mesh2->indexCount() << mesh2->verticesCount();
 
-		auto pipeline = new Sokar3D::MeshPipeline(mesh2);
+		auto pipeline = new Sokar3D::MeshPipeline(mesh);
 		renderer->addPipelineWrapper(pipeline);
 	});
 

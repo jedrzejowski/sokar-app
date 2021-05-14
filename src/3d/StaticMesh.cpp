@@ -73,7 +73,7 @@ void IndexedStaticMesh::addTriangle(
 	auto i1 = addVertex(v1);
 	auto i2 = addVertex(v2);
 
-	addTriangle(i0, i2, i1);
+	addTriangle(i0, i1, i2);
 }
 
 void IndexedStaticMesh::addTriangle(quint32 i0, quint32 i1, quint32 i2, bool checkDuplicates) {
