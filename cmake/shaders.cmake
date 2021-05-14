@@ -18,13 +18,6 @@ function(add_shader TARGET SHADER)
 
     set(qrc_file "${CMAKE_BINARY_DIR}/shaders/${shader_relative}.qrc")
 
-    add_custom_command(
-            OUTPUT ${shader_output}
-            COMMAND ${GLSLC} -o ${shader_output} ${SHADER}
-            DEPENDS ${SHADER}
-            IMPLICIT_DEPENDS CXX ${shader_directory}
-            VERBATIM)
-
     file(WRITE ${qrc_file}
             "<!DOCTYPE RCC> <RCC version=\"1.0\"> <qresource>
                 <file alias=\"${shader_relative}\">${shader_output}</file>

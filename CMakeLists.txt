@@ -26,7 +26,7 @@ link_libraries(${GLFW_LIBRARY_DIRS})
 
 include(cmake/gdcm.cmake)
 include(cmake/qt.cmake)
-include(cmake/rpm.cmake)
+include(cmake/package.cmake)
 include(cmake/shaders.cmake)
 
 
