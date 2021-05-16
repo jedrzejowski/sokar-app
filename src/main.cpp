@@ -5,6 +5,7 @@
 #include <QGuiApplication>
 #include <win/mainwindow.h>
 #include "./algo/test/cube.h"
+#include "sokar_glm.h"
 
 QSettings *Sokar::qSettings;
 

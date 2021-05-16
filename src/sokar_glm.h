@@ -22,22 +22,3 @@ template<int L, int R, typename T, glm::qualifier Q>
 inline QDebug operator<<(QDebug dbg, const glm::mat<L, R, T, Q> &mat) {
 	return dbg << glm::to_string(mat).c_str();
 }
-
-namespace SokarGlm {
-
-	inline void foreachSpace(
-			const glm::i32vec3 &from,
-			const glm::i32vec3 &to,
-			std::function<void(glm::i32vec3 pos)> functor
-	) {
-		glm::i32vec3 pos = from;
-		for (; pos.x <= to.x; ++pos.x) {
-			for (; pos.y <= to.y; ++pos.y) {
-				for (; pos.z <= to.z; ++pos.z) {
-					qDebug() << pos;
-					functor(pos);
-				}
-			}
-		}
-	}
-}

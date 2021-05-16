@@ -12,6 +12,8 @@ namespace SokarAlg {
 	protected:
 		const DicomVolume *vv = nullptr;
 
+		virtual void dicomVolumeChanged();
+
 	public:
 		virtual ~ValueInterpolator();
 
@@ -35,9 +37,11 @@ namespace SokarAlg {
 		float interpolate(const glm::vec3 &position) const override;
 	};
 
-	class PolynomialValueInterpolator : public ValueInterpolator {
-		glm::i32vec3 size = glm::i32vec3(1);
+	class PolynomialValueInterpolator1 : public ValueInterpolator {
+	protected:
+		glm::i32vec3 size = glm::i32vec3(2, 2, 2);
 	public:
+
 		[[nodiscard]]
 		const glm::i32vec3 &getSize() const;
 		void setSize(const glm::i32vec3 &size);
@@ -45,6 +49,15 @@ namespace SokarAlg {
 		[[nodiscard]]
 		float interpolate(const glm::vec3 &position) const override;
 	};
+
+	class PolynomialValueInterpolator2 : public PolynomialValueInterpolator1 {
+	public:
+
+		[[nodiscard]]
+		float interpolate(const glm::vec3 &position) const override;
+	};
+
+
 
 	//https://www.mathworks.com/help/matlab/ref/interp3.html
 }

@@ -9,6 +9,20 @@
 
 namespace SokarAlg {
 
+	static const float EPS = 0.00001f;
+
+	inline bool isZero(float num) {
+		return num < EPS;
+	}
+
+	inline bool areSame(float num1, float num2) {
+		return std::abs(num1 - num2) < EPS;
+	}
+
+	template<typename T>
+	using Vector3 = std::vector<std::vector<std::vector<T>>>;
+
+
 	struct Triangle;
 
 	class VirtualVolume;

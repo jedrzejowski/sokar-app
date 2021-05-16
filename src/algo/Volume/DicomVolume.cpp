@@ -117,5 +117,5 @@ void DicomVolume::setCubesPerMM(float cubesPerMm) {
 }
 
 glm::i32vec3 DicomVolume::clamp(const glm::i32vec3 &index) const {
-	return glm::clamp(index, {0, 0, 0}, size - 1);
+	return glm::clamp(index, {0, 0, 0}, trueSize - 1);
 }

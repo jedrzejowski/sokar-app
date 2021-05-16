@@ -18,6 +18,54 @@ void ValueInterpolator::setVolume(const DicomVolume *newVV) {
 	vv = newVV;
 }
 
+void ValueInterpolator::dicomVolumeChanged() {
+}
+
+//region help functions
+
+void forI32space(
+		const glm::i32vec3 &from,
+		const glm::i32vec3 &to,
+		const std::function<void(const glm::i32vec3 &pos)> &functor
+) {
+	glm::i32vec3 pos = from;
+	for (pos.x = from.x; pos.x <= to.x; ++(pos.x)) {
+
+		for (pos.y = from.y; pos.y <= to.y; ++(pos.y)) {
+
+			for (pos.z = from.z; pos.z <= to.z; ++(pos.z)) {
+
+				functor(pos);
+			}
+		}
+	}
+}
+
+std::unique_ptr<std::vector<glm::vec3>> makeI32space(
+		const glm::i32vec3 &from,
+		const glm::i32vec3 &to
+) {
+	auto space = std::make_unique<std::vector<glm::vec3>>();
+
+	glm::i32vec3 pos = from;
+
+	for (pos.x = from.x; pos.x <= to.x; ++(pos.x)) {
+
+		for (pos.y = from.y; pos.y <= to.y; ++(pos.y)) {
+
+			for (pos.z = from.z; pos.z <= to.z; ++(pos.z)) {
+
+				space->push_back(pos);
+			}
+		}
+	}
+
+	return space;
+}
+
+//endregion
+
+
 float NearestValueInterpolator::interpolate(const glm::vec3 &position) const {
 	return vv->getTrueValue({
 									std::round(position.x),
@@ -57,7 +105,7 @@ float LinearValueInterpolator::interpolate(const glm::vec3 &position) const {
 	return c0 * (1 - zd) + c1 * zd;
 }
 
-float PolynomialValueInterpolator::interpolate(const glm::vec3 &pos) const {
+float PolynomialValueInterpolator1::interpolate(const glm::vec3 &pos) const {
 	// rozwiązanie analityczne
 	// https://math.stackexchange.com/a/2099510
 
@@ -72,41 +120,88 @@ float PolynomialValueInterpolator::interpolate(const glm::vec3 &pos) const {
 	auto startIndex = vv->clamp(centerIndex - size);
 	auto endIndex = vv->clamp(centerIndex + size);
 
-	qDebug() << "startIndex" << startIndex << "endIndex" << endIndex;
+	forI32space(startIndex, endIndex, [&](const auto &i32pos_i) {
+		float ui = vv->getTrueValue(i32pos_i);
+		float Li = 1;
+		glm::vec3 pos_i = i32pos_i;
 
-	SokarGlm::foreachSpace(startIndex, endIndex, [&](glm::i32vec3 pos_i) {
-		qDebug() << pos;
-		float ui = vv->getTrueValue(pos_i);
-		bool first = true;
-		float Li = 0;
+		forI32space(startIndex, endIndex, [&](const auto &i32pos_k) {
+			glm::vec3 pos_k = i32pos_k;
 
-		SokarGlm::foreachSpace(startIndex, endIndex, [&](glm::i32vec3 pos_k) {
-			if (pos_i == pos_k) {
+			if (
+					areSame(pos_i.x, pos_k.x) ||
+					areSame(pos_i.y, pos_k.y) ||
+					areSame(pos_i.z, pos_k.z)
+					) {
 				return;
 			}
 
-			float Lk =
-					((pos.x - pos_k.x) * (pos.y - pos_k.y) * (pos.z - pos_k.z)) /
-					((pos_i.x - pos_k.x) * (pos_i.y - pos_k.y) * (pos_i.z - pos_k.z));
-
-			Li = first ? Lk : Li * Lk;
-			first = false;
+			Li = Li * (
+					(
+							(pos.x - pos_k.x) * (pos.y - pos_k.y) * (pos.z - pos_k.z)
+					) / (
+							(pos_i.x - pos_k.x) * (pos_i.y - pos_k.y) * (pos_i.z - pos_k.z)
+					)
+			);
 		});
 
 		u += ui * Li;
 	});
 
-
 	return u;
+}
+
+float PolynomialValueInterpolator2::interpolate(const glm::vec3 &pos) const {
+	// rozwiązanie analityczne
+	// https://math.stackexchange.com/a/2099510
+
+	auto centerIndex = glm::i32vec3(
+			std::round(pos.x),
+			std::round(pos.y),
+			std::round(pos.z)
+	);
+
+	auto space = makeI32space(
+			vv->clamp(centerIndex - size),
+			vv->clamp(centerIndex + size)
+	);
+
+	return std::accumulate(space->begin(), space->end(), 0.f, [&](float value, const auto &i32pos_i) {
+		glm::vec3 pos_i = i32pos_i;
+
+		return value + (
+				vv->getTrueValue(i32pos_i)
+				*
+				std::accumulate(space->begin(), space->end(), 1.f, [&](float value, const auto &i32pos_k) {
+					glm::vec3 pos_k = i32pos_k;
+
+					if (
+							areSame(pos_i.x, pos_k.x) ||
+							areSame(pos_i.y, pos_k.y) ||
+							areSame(pos_i.z, pos_k.z)
+							) {
+						return 1.f;
+					}
+
+					return value * (
+							(
+									(pos.x - pos_k.x) * (pos.y - pos_k.y) * (pos.z - pos_k.z)
+							) / (
+									(pos_i.x - pos_k.x) * (pos_i.y - pos_k.y) * (pos_i.z - pos_k.z)
+							)
+					);
+				})
+		);
+	});
 }
 
 // region getter & setters
 
-const glm::i32vec3 &PolynomialValueInterpolator::getSize() const {
+const glm::i32vec3 &PolynomialValueInterpolator1::getSize() const {
 	return size;
 }
 
-void PolynomialValueInterpolator::setSize(const glm::i32vec3 &newSize) {
+void PolynomialValueInterpolator1::setSize(const glm::i32vec3 &newSize) {
 	size = newSize;
 }
 

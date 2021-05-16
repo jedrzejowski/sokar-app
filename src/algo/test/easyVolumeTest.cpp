@@ -22,7 +22,8 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 	vv->setCubesPerMM(0.25f);
 //	vv->setInterpolator(new SokarAlg::NearestValueInterpolator());
 //	vv->setInterpolator(new SokarAlg::LinearValueInterpolator());
-	vv->setInterpolator(new SokarAlg::PolynomialValueInterpolator());
+	vv->setInterpolator(new SokarAlg::PolynomialValueInterpolator1());
+//	vv->setInterpolator(new SokarAlg::PolynomialValueInterpolator2());
 	mc->setIsoLevel(100.f);
 
 	auto future = mc->exec();
@@ -31,7 +32,7 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 
 	QObject::connect(watcher, &QFutureWatcherBase::finished, [mc, vv]() {
 		qDebug() << "here";
-		auto mesh = mc->dumpStaticMesh()->toIndexedStaticMesh();
+		auto mesh = mc->dumpStaticMesh();
 
 
 		auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
