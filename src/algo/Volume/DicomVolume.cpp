@@ -3,7 +3,7 @@
 //
 
 #include "./DicomVolume.h"
-#include "../ValueInterpolator.h"
+#include "../DicomVolumeInterpolator.h"
 
 using namespace SokarAlg;
 
@@ -97,11 +97,11 @@ void DicomVolume::updateModel() {
 }
 
 
-ValueInterpolator *DicomVolume::getInterpolator() const {
+DicomVolumeInterpolator *DicomVolume::getInterpolator() const {
 	return interpolator;
 }
 
-void DicomVolume::setInterpolator(ValueInterpolator *newInterpolator) {
+void DicomVolume::setInterpolator(DicomVolumeInterpolator *newInterpolator) {
 	delete interpolator;
 	interpolator = newInterpolator;
 	interpolator->setVolume(this);
@@ -118,4 +118,8 @@ void DicomVolume::setCubesPerMM(float cubesPerMm) {
 
 glm::i32vec3 DicomVolume::clamp(const glm::i32vec3 &index) const {
 	return glm::clamp(index, {0, 0, 0}, trueSize - 1);
+}
+
+const glm::vec3 &DicomVolume::getWokselSize() const {
+	return wokselSize;
 }

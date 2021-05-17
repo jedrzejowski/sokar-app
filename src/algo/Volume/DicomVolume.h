@@ -7,7 +7,7 @@
 #include "../_def.h"
 #include "_classdef.h"
 #include "./VirtualVolume.h"
-#include "../ValueInterpolator.h"
+#include "../DicomVolumeInterpolator.h"
 #include "dicomview/scenes/sets/_sceneset.h"
 
 namespace SokarAlg {
@@ -18,7 +18,7 @@ namespace SokarAlg {
 		const Sokar::DicomSceneSet *sceneSet = nullptr;
 		Sokar::DataConverter dataConverter;
 
-		ValueInterpolator *interpolator = nullptr;
+		DicomVolumeInterpolator *interpolator = nullptr;
 
 		glm::i32vec3 size;
 		glm::i32vec3 trueSize;
@@ -48,12 +48,16 @@ namespace SokarAlg {
 		[[nodiscard]]
 		float getValue(const glm::i32vec3 &position) const override;
 
+		[[nodiscard]]
 		float getCubesPerMM() const;
 		void setCubesPerMM(float cubesPerMm);
 
 		[[nodiscard]]
-		ValueInterpolator *getInterpolator() const;
-		void setInterpolator(ValueInterpolator *interpolator);
+		const glm::vec3 &getWokselSize() const;
+
+		[[nodiscard]]
+		DicomVolumeInterpolator *getInterpolator() const;
+		void setInterpolator(DicomVolumeInterpolator *interpolator);
 
 		[[nodiscard]]
 		glm::i32vec3 clamp(const glm::i32vec3& size) const;

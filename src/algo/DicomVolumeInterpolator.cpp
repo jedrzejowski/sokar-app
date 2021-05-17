@@ -2,23 +2,25 @@
 // Created by adam on 08.05.2021.
 //
 
-#include "./ValueInterpolator.h"
+#include "./DicomVolumeInterpolator.h"
 #include "./Volume/DicomVolume.h"
 
 using namespace SokarAlg;
 
-ValueInterpolator::~ValueInterpolator() {
+DicomVolumeInterpolator::~DicomVolumeInterpolator() {
 }
 
-const DicomVolume *ValueInterpolator::getVolume() const {
+const DicomVolume *DicomVolumeInterpolator::getVolume() const {
 	return vv;
 }
 
-void ValueInterpolator::setVolume(const DicomVolume *newVV) {
+void DicomVolumeInterpolator::setVolume(const DicomVolume *newVV) {
 	vv = newVV;
+
+	dicomVolumeChanged();
 }
 
-void ValueInterpolator::dicomVolumeChanged() {
+void DicomVolumeInterpolator::dicomVolumeChanged() {
 }
 
 //region help functions
@@ -66,7 +68,7 @@ std::unique_ptr<std::vector<glm::vec3>> makeI32space(
 //endregion
 
 
-float NearestValueInterpolator::interpolate(const glm::vec3 &position) const {
+float NearestVolumeInterpolator::interpolate(const glm::vec3 &position) const {
 	return vv->getTrueValue({
 									std::round(position.x),
 									std::round(position.y),
@@ -105,7 +107,7 @@ float LinearValueInterpolator::interpolate(const glm::vec3 &position) const {
 	return c0 * (1 - zd) + c1 * zd;
 }
 
-float PolynomialValueInterpolator1::interpolate(const glm::vec3 &pos) const {
+float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
 	// rozwiązanie analityczne
 	// https://math.stackexchange.com/a/2099510
 
@@ -195,13 +197,137 @@ float PolynomialValueInterpolator2::interpolate(const glm::vec3 &pos) const {
 	});
 }
 
+void AkimaVolumeInterpolator::dicomVolumeChanged() {
+
+	if (externInterpolator) {
+		delete externInterpolator;
+	}
+
+	auto trueSize = vv->getTrueSize();
+	values.resize(trueSize.x * trueSize.y * trueSize.y);
+
+	forI32space({0, 0, 0}, trueSize - 1, [&](const auto &pos) {
+		values[pos.x + trueSize.x * (pos.y + trueSize.y * pos.z)] = vv->getTrueValue(pos);
+	});
+
+	externInterpolator = new gte::IntpAkimaUniform3<float>(
+			trueSize.x, trueSize.y, trueSize.z,
+			0, vv->getWokselSize().x,
+			0, vv->getWokselSize().y,
+			0, vv->getWokselSize().z,
+			values.data()
+	);
+}
+
+float AkimaVolumeInterpolator::interpolate(const glm::vec3 &position) const {
+	return externInterpolator->operator()(position.x, position.y, position.z);
+}
+
+
+CubicVolumeInterpolator::CubicVolumeInterpolator(bool catmullRom) {
+	if (catmullRom) {
+		blend[0][0] = 0.f;
+		blend[0][1] = -0.5f;
+		blend[0][2] = 1.f;
+		blend[0][3] = -0.5f;
+		blend[1][0] = 1.f;
+		blend[1][1] = 0.f;
+		blend[1][2] = -2.5f;
+		blend[1][3] = 1.5f;
+		blend[2][0] = 0.f;
+		blend[2][1] = 0.5f;
+		blend[2][2] = 2.f;
+		blend[2][3] = -1.5f;
+		blend[3][0] = 0.f;
+		blend[3][1] = 0.f;
+		blend[3][2] = -0.5f;
+		blend[3][3] = 0.5f;
+	} else {
+		blend[0][0] = 1.f / 6.f;
+		blend[0][1] = -3.f / 6.f;
+		blend[0][2] = 3.f / 6.f;
+		blend[0][3] = -1.f / 6.f;
+		blend[1][0] = 4.f / 6.f;
+		blend[1][1] = 0.f / 6.f;
+		blend[1][2] = -6.f / 6.f;
+		blend[1][3] = 3.f / 6.f;
+		blend[2][0] = 1.f / 6.f;
+		blend[2][1] = 3.f / 6.f;
+		blend[2][2] = 3.f / 6.f;
+		blend[2][3] = -3.f / 6.f;
+		blend[3][0] = 0.f / 6.f;
+		blend[3][1] = 0.f / 6.f;
+		blend[3][2] = 0.f / 6.f;
+		blend[3][3] = 1.f / 6.f;
+	}
+}
+
+float CubicVolumeInterpolator::interpolate(const glm::vec3 &pos) const {
+	auto centerIndex = glm::i32vec3(
+			std::floor(pos.x),
+			std::floor(pos.y),
+			std::floor(pos.z)
+	);
+
+	std::array<float, 4> U;
+	U[0] = 1.f;
+	U[1] = float(centerIndex.x) - pos.x;
+	U[2] = U[1] * U[1];
+	U[3] = U[1] * U[2];
+
+	std::array<float, 4> V;
+	V[0] = 1.f;
+	V[1] = float(centerIndex.y) - pos.y;
+	V[2] = V[1] * V[1];
+	V[3] = V[1] * V[2];
+
+	std::array<float, 4> W;
+	W[0] = 1.f;
+	W[1] = float(centerIndex.z) - pos.z;
+	W[2] = W[1] * W[1];
+	W[3] = W[1] * W[2];
+
+	// Compute P = M*U, Q = M*V, R = M*W.
+	std::array<float, 4> P, Q, R;
+	for (int row = 0; row < 4; ++row) {
+		P[row] = 0.f;
+		Q[row] = 0.f;
+		R[row] = 0.f;
+		for (int col = 0; col < 4; ++col) {
+			P[row] += blend[row][col] * U[col];
+			Q[row] += blend[row][col] * V[col];
+			R[row] += blend[row][col] * W[col];
+		}
+	}
+
+	// Compute the tensor product (M*U)(M*V)(M*W)*D where D is the 4x4x4
+	// subimage containing (x,y,z).
+
+	centerIndex -= 1;
+	float result = 0.f;
+
+	for (int slice = 0; slice < 4; ++slice) {
+
+		for (int row = 0; row < 4; ++row) {
+
+			for (int col = 0; col < 4; ++col) {
+
+				result += P[col] * Q[row] * R[slice] *
+						  vv->getTrueValueSafe(centerIndex + glm::i32vec3({slice, row, col}));
+			}
+		}
+	}
+
+	return result;
+}
+
 // region getter & setters
 
-const glm::i32vec3 &PolynomialValueInterpolator1::getSize() const {
+const glm::i32vec3 &PolynomialVolumeInterpolator1::getSize() const {
 	return size;
 }
 
-void PolynomialValueInterpolator1::setSize(const glm::i32vec3 &newSize) {
+void PolynomialVolumeInterpolator1::setSize(const glm::i32vec3 &newSize) {
 	size = newSize;
 }
 

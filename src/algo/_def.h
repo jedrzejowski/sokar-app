@@ -20,8 +20,7 @@ namespace SokarAlg {
 	}
 
 	template<typename T>
-	using Vector3 = std::vector<std::vector<std::vector<T>>>;
-
+	class Array3;
 
 	struct Triangle;
 
@@ -47,15 +46,15 @@ namespace SokarAlg {
 
 	class VertexDecimation;
 
-	// ValueInterpolator
+	// DicomVolumeInterpolator
 
-	class ValueInterpolator;
+	class DicomVolumeInterpolator;
 
-	class NearestValueInterpolator;
+	class NearestVolumeInterpolator;
 
 	class LinearValueInterpolator;
 
-	class CubicValueInterpolator;
+	class CubicVolumeInterpolator;
 
 	class MakimaValueInterpolator;
 
