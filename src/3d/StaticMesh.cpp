@@ -22,6 +22,21 @@ void StaticMesh::addTriangle(
 	vertices << v0 << v1 << v2;
 }
 
+
+void StaticMesh::addTriangle(
+		const glm::vec3 &v0,
+		const glm::vec3 &v1,
+		const glm::vec3 &v2
+) {
+	auto norm = glm::triangleNormal(v0, v1, v2);
+
+	addTriangle(
+			{v0, norm},
+			{v1, norm},
+			{v2, norm}
+	);
+}
+
 qsizetype StaticMesh::verticesSizeInBytes() const {
 	return vertices.size() * sizeof(MeshVertex);
 }

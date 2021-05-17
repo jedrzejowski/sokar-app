@@ -14,8 +14,8 @@ namespace SokarAlg {
 	class VolSegmAlg {
 	protected:
 
-		const VirtualVolume *virtualVolume;
-		Sokar3D::StaticMesh *staticMesh = nullptr;
+		const VirtualVolume *virtualVolume = nullptr;
+		IndexedMesh *mesh = nullptr;
 
 		virtual QFuture<void> execAlg() = 0;
 
@@ -30,7 +30,7 @@ namespace SokarAlg {
 		void addTriangle(const Triangle &t);
 
 		[[nodiscard]]
-		Sokar3D::StaticMesh *dumpStaticMesh();
+		const IndexedMesh *getMesh() const;
 	};
 }
 

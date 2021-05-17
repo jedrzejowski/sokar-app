@@ -13,6 +13,7 @@
 #include "../MarchingCubes.h"
 #include "../Volume/VolumeEnv.h"
 #include "../Volume/DicomVolume.h"
+#include "../IndexedMesh.h"
 
 
 void easyVolumeTest(SokarAlg::DicomVolume *vv) {
@@ -27,7 +28,7 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 //	vv->setInterpolator(new SokarAlg::AkimaVolumeInterpolator());
 //	vv->setInterpolator(new SokarAlg::CubicVolumeInterpolator(false));
 //	vv->setInterpolator(new SokarAlg::CubicVolumeInterpolator(true));
-	mc->setIsoLevel(100.f);
+	mc->setIsoLevel({100.f, 115.f});
 
 	auto future = mc->exec();
 
@@ -35,7 +36,7 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 
 	QObject::connect(watcher, &QFutureWatcherBase::finished, [mc, vv]() {
 		qDebug() << "here";
-		auto mesh = mc->dumpStaticMesh();
+		auto mesh = mc->getMesh()->toStaticMash();
 
 
 		auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();

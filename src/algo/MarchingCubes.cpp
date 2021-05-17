@@ -327,17 +327,27 @@ QFuture<void> MarchingCubes::execAlg() {
 }
 
 
-glm::vec3 vertexInterp(float isoLevel, const glm::u32vec3 &p1, const glm::u32vec3 &p2, float valp1, float valp2) {
-	float mu;
+glm::vec3 vertexInterp(
+		const Range<float> range,
+		const glm::u32vec3 &p1,
+		const glm::u32vec3 &p2,
+		float valp1, float valp2
+) {
+	float mu, isoLevel = range.from;
 	glm::vec3 p;
 
-	if (std::abs(isoLevel - valp1) < 0.00001f) {
+	if ((valp1 < range.to && range.to < valp2) ||
+		(valp1 > range.to && range.to > valp2)) {
+		isoLevel = range.to;
+	}
+
+	if (areSame(isoLevel, valp1)) {
 		return p1;
 	}
-	if (std::abs(isoLevel - valp2) < 0.00001f) {
+	if (areSame(isoLevel, valp2)) {
 		return p2;
 	}
-	if (std::abs(valp1 - valp2) < 0.00001f) {
+	if (areSame(valp1, valp2)) {
 		return p1;
 	}
 
@@ -356,14 +366,14 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 	std::vector<glm::vec3> vertlist(12);
 
 
-	if (cube.value[0] < isoLevel) cubeindex |= 1;
-	if (cube.value[1] < isoLevel) cubeindex |= 2;
-	if (cube.value[2] < isoLevel) cubeindex |= 4;
-	if (cube.value[3] < isoLevel) cubeindex |= 8;
-	if (cube.value[4] < isoLevel) cubeindex |= 16;
-	if (cube.value[5] < isoLevel) cubeindex |= 32;
-	if (cube.value[6] < isoLevel) cubeindex |= 64;
-	if (cube.value[7] < isoLevel) cubeindex |= 128;
+	if (isoLevel.distance(cube.value[0]) > 0) cubeindex |= 1;
+	if (isoLevel.distance(cube.value[1]) > 0) cubeindex |= 2;
+	if (isoLevel.distance(cube.value[2]) > 0) cubeindex |= 4;
+	if (isoLevel.distance(cube.value[3]) > 0) cubeindex |= 8;
+	if (isoLevel.distance(cube.value[4]) > 0) cubeindex |= 16;
+	if (isoLevel.distance(cube.value[5]) > 0) cubeindex |= 32;
+	if (isoLevel.distance(cube.value[6]) > 0) cubeindex |= 64;
+	if (isoLevel.distance(cube.value[7]) > 0) cubeindex |= 128;
 
 	if (edgeTable[cubeindex] == 0)
 		return 0;
@@ -410,11 +420,11 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 }
 
 
-float MarchingCubes::getIsoLevel() const {
+const Range<float> &MarchingCubes::getIsoLevel() const {
 	return isoLevel;
 }
 
-void MarchingCubes::setIsoLevel(float lvl) {
+void MarchingCubes::setIsoLevel(const Range<float> &lvl) {
 	isoLevel = lvl;
 }
 

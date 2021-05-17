@@ -22,7 +22,7 @@ const quint8 *IndexedMesh::verticesData() const {
 	return reinterpret_cast<const quint8 *>(vertices.data());
 }
 
-const QVector<IndexedMesh::Vertex> &IndexedMesh::getVertices() const {
+const std::vector<IndexedMesh::Vertex> &IndexedMesh::getVertices() const {
 	return vertices;
 }
 
@@ -30,7 +30,7 @@ qsizetype IndexedMesh::indexCount() const {
 	return indexes.size();
 }
 
-const QVector<quint32> &IndexedMesh::getIndexes() const {
+const std::vector<quint32> &IndexedMesh::getIndexes() const {
 	return indexes;
 }
 
@@ -62,7 +62,7 @@ quint32 IndexedMesh::addVertex(const Vertex &newVertex, bool checkDup) {
 		}
 	}
 
-	vertices << newVertex;
+	vertices.push_back(newVertex);
 	return vertices.size() - 1;
 }
 
@@ -94,7 +94,9 @@ void IndexedMesh::addTriangle(
 		}
 	}
 
-	indexes << i0 << i2 << i1;
+	indexes.push_back(i0);
+	indexes.push_back(i1);
+	indexes.push_back(i2);
 }
 
 
@@ -113,9 +115,18 @@ void IndexedMesh::addTriangle(
 }
 
 Sokar3D::StaticMesh *IndexedMesh::toStaticMash() const {
-	auto mesh = new Sokar3D::StaticMesh();
+	auto newMesh = new Sokar3D::StaticMesh();
 
-	return mesh;
+	auto iter = indexes.begin();
+	while (iter != indexes.end()) {
+		newMesh->addTriangle(
+				vertices[*iter++],
+				vertices[*iter++],
+				vertices[*iter++]
+		);
+	}
+
+	return newMesh;
 }
 
 //region Converters
@@ -148,7 +159,6 @@ Sokar3D::StaticMesh *IndexedMesh::toStaticMash() const {
 //
 //	auto newMesh = new IndexedIndexedMesh();
 //
-//	auto iter = vertices.begin();
 //
 //	while (iter != vertices.end()) {
 //		newMesh->addTriangle(*iter++, *iter++, *iter++);

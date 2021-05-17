@@ -75,4 +75,9 @@ namespace SokarAlg {
 	class MakimaVertexInterpolator;
 
 	class SplineVertexInterpolator;
+
+	// others
+
+	template<typename Unit = float>
+	struct Range;
 }

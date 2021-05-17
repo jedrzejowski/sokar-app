@@ -17,8 +17,8 @@ namespace SokarAlg {
 		using Vertex = glm::vec3;
 
 	protected:
-		QVector<Vertex> vertices;
-		QVector<quint32> indexes;
+		std::vector<Vertex> vertices;
+		std::vector<quint32> indexes;
 
 	public:
 
@@ -32,7 +32,7 @@ namespace SokarAlg {
 		const quint8 *verticesData() const;
 
 		[[nodiscard]]
-		const QVector<Vertex> &getVertices() const;
+		const std::vector<Vertex> &getVertices() const;
 
 		[[nodiscard]]
 		qsizetype indexesSizeInBytes() const;
@@ -44,7 +44,7 @@ namespace SokarAlg {
 		qsizetype indexCount() const;
 
 		[[nodiscard]]
-		const QVector<quint32> &getIndexes() const;
+		const std::vector<quint32> &getIndexes() const;
 
 		[[nodiscard]]
 		quint32 addVertex(const Vertex &v, bool checkDup = true);

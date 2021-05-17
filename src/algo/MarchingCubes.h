@@ -9,12 +9,13 @@
 #include "./Volume/VirtualVolume.h"
 #include "./VolSegmAlg.h"
 #include "../3d/StaticMesh.hpp"
+#include "./Range.h"
 
 namespace SokarAlg {
 
 	class MarchingCubes : public VolSegmAlg {
 
-		float isoLevel = 0.5;
+		Range<float> isoLevel ;
 		glm::i32vec3 cubeSize = glm::i32vec3(1.f);
 		quint32 triangleIndex = 0;
 
@@ -24,9 +25,10 @@ namespace SokarAlg {
 	public:
 
 		[[nodiscard]]
-		float getIsoLevel() const;
-		void setIsoLevel(float isoLevel);
+		const Range<float>& getIsoLevel() const;
+		void setIsoLevel(const Range<float>& range);
 
+		[[nodiscard]]
 		const glm::i32vec3 &getCubeSize() const;
 		void setCubeSize(const glm::i32vec3 &cubeSize);
 

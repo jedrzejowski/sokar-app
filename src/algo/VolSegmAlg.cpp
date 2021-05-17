@@ -3,16 +3,17 @@
 //
 
 #include "VolSegmAlg.h"
+#include "./IndexedMesh.h"
 
 using namespace SokarAlg;
 
 QFuture<void> VolSegmAlg::exec() {
 
-	if (staticMesh != nullptr) {
-		delete staticMesh;
+	if (mesh != nullptr) {
+		delete mesh;
 	}
 
-	staticMesh = new Sokar3D::StaticMesh();
+	mesh = new IndexedMesh();
 
 	return execAlg();
 }
@@ -25,18 +26,10 @@ void VolSegmAlg::setVirtualVolume(const VirtualVolume *vv) {
 	virtualVolume = vv;
 }
 
-Sokar3D::StaticMesh *VolSegmAlg::dumpStaticMesh() {
-	auto mesh = staticMesh;
-	staticMesh = nullptr;
-	return mesh;
+void VolSegmAlg::addTriangle(const Triangle &tri) {
+	mesh->addTriangle(tri.vertex0, tri.vertex1, tri.vertex2);
 }
 
-void VolSegmAlg::addTriangle(const Triangle &tri) {
-	auto normal = glm::triangleNormal(tri.vertex0, tri.vertex1, tri.vertex2) * -1.f;
-
-	staticMesh->addTriangle(
-			{tri.vertex0, normal},
-			{tri.vertex1, normal},
-			{tri.vertex2, normal}
-	);
+const IndexedMesh *VolSegmAlg::getMesh() const {
+	return mesh;
 }

@@ -16,19 +16,20 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="dodanie nowych interpolacji">
-      <change afterPath="$PROJECT_DIR$/src/algo/IndexedMesh.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/IndexedMesh.h" afterDir="false" />
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="kommit kotnrolny">
+      <change afterPath="$PROJECT_DIR$/src/algo/Range.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/_def.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/IndexedMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/IndexedMesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/IndexedMesh.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/_def.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
     </list>
@@ -584,14 +585,7 @@
       <workItem from="1620859403333" duration="633000" />
       <workItem from="1621102268010" duration="599000" />
       <workItem from="1621167563762" duration="17343000" />
-      <workItem from="1621249542293" duration="16260000" />
-    </task>
-    <task id="LOCAL-00003" summary="Dodanie Unsuported">
-      <created>1542664928100</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1542664928100</updated>
+      <workItem from="1621249542293" duration="21711000" />
     </task>
     <task id="LOCAL-00004" summary="Coś">
       <created>1542733017283</created>
@@ -929,7 +923,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621267580228</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="kommit kotnrolny">
+      <created>1621286580189</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1621286580189</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1015,7 +1016,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="DataConventer: rozpoczęcie" />
     <MESSAGE value="Prace dorywcze" />
     <MESSAGE value="Dodanie wielu rzeczy z ostatnich dwóch dni" />
     <MESSAGE value="Rozpoczęcie Doca" />
@@ -1040,7 +1040,8 @@
     <MESSAGE value="wstępne dodanie interpolacji wielomianowej" />
     <MESSAGE value="prace wre" />
     <MESSAGE value="dodanie nowych interpolacji" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodanie nowych interpolacji" />
+    <MESSAGE value="kommit kotnrolny" />
+    <option name="LAST_COMMIT_MESSAGE" value="kommit kotnrolny" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">
