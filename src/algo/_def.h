@@ -36,6 +36,8 @@ namespace SokarAlg {
 
 	class MarchingCubes;
 
+	class IndexedMesh;
+
 	// MeshSimplificator
 
 	class MeshSimplificator;

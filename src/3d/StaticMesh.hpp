@@ -36,42 +36,5 @@ namespace Sokar3D {
 		[[nodiscard]]
 		const QVector<MeshVertex> &getVertices() const;
 
-		[[nodiscard]]
-		virtual StaticMesh *toStaticMash() const;
-
-		[[nodiscard]]
-		virtual IndexedStaticMesh *toIndexedStaticMesh() const;
-	};
-
-	class IndexedStaticMesh : public StaticMesh {
-	Q_OBJECT
-
-	protected:
-		QVector<quint32> indexes;
-
-	public:
-		void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2) override;
-		void addTriangle(quint32 i0, quint32 v1, quint32 v2, bool checkDuplicates = true);
-
-		[[nodiscard]]
-		qsizetype indexesSizeInBytes() const;
-
-		[[nodiscard]]
-		const quint8 *indexData() const;
-
-		[[nodiscard]]
-		qsizetype indexCount() const;
-
-		[[nodiscard]]
-		StaticMesh *toStaticMash() const override;
-
-		[[nodiscard]]
-		const QVector<quint32> &getIndexes() const;
-
-		[[nodiscard]]
-		IndexedStaticMesh *toIndexedStaticMesh() const override;
-
-		[[nodiscard]]
-		quint32 addVertex(const MeshVertex &v);
 	};
 }

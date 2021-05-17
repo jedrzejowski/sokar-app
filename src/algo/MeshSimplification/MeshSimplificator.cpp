@@ -7,7 +7,7 @@
 
 using namespace SokarAlg;
 
-MeshSimplificator::Extrema MeshSimplificator::findExtrema(const Sokar3D::IndexedStaticMesh *mesh) {
+MeshSimplificator::Extrema MeshSimplificator::findExtrema(const IndexedMesh *mesh) {
 	Extrema extrema{};
 
 	extrema.max.x = +std::numeric_limits<float>::infinity();
@@ -18,12 +18,12 @@ MeshSimplificator::Extrema MeshSimplificator::findExtrema(const Sokar3D::Indexed
 	extrema.min.z = -std::numeric_limits<float>::infinity();
 
 	for (auto vert : mesh->getVertices()) {
-		extrema.max.x = std::max(vert.pos.x, extrema.max.x);
-		extrema.max.y = std::max(vert.pos.y, extrema.max.y);
-		extrema.max.z = std::max(vert.pos.z, extrema.max.z);
-		extrema.min.x = std::min(vert.pos.x, extrema.min.x);
-		extrema.min.y = std::min(vert.pos.y, extrema.min.y);
-		extrema.min.z = std::min(vert.pos.z, extrema.min.z);
+		extrema.max.x = std::max(vert.x, extrema.max.x);
+		extrema.max.y = std::max(vert.y, extrema.max.y);
+		extrema.max.z = std::max(vert.z, extrema.max.z);
+		extrema.min.x = std::min(vert.x, extrema.min.x);
+		extrema.min.y = std::min(vert.y, extrema.min.y);
+		extrema.min.z = std::min(vert.z, extrema.min.z);
 	}
 
 	return extrema;

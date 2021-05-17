@@ -13,8 +13,7 @@ namespace SokarAlg {
 		glm::vec3 clusterSize;
 		glm::vec3 clusterOffset;
 
-	public:
-		QFuture<Sokar3D::StaticMesh *> simplify(const Sokar3D::IndexedStaticMesh *mesh) override;
+		IndexedMesh *exec(const IndexedMesh *mesh) override;
 	};
 }
 

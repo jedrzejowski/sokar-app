@@ -11,7 +11,6 @@
 using namespace Sokar3D;
 
 MeshPipeline::MeshPipeline(StaticMesh *mesh) : staticMesh(mesh) {
-	indexedStaticMesh = qobject_cast<IndexedStaticMesh *>(mesh);
 	//	backgroundMaterial.model.translate(0, -5, 0);
 }
 
@@ -280,7 +279,8 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 	args.vkDeviceFunctions->vkGetBufferMemoryRequirements(args.vkDevice, vertexBuf, &vertexMemReq);
 
 	// index buffer
-	bufInfo.size = indexedStaticMesh != nullptr ? indexedStaticMesh->indexesSizeInBytes() : 0;
+//	bufInfo.size = indexedStaticMesh != nullptr ? indexedStaticMesh->indexesSizeInBytes() : 0;
+	bufInfo.size = 0;
 	bufInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
 	err = args.vkDeviceFunctions->vkCreateBuffer(args.vkDevice, &bufInfo, nullptr, &indexBuf);
 	if (err != VK_SUCCESS)
@@ -304,7 +304,7 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 	memAllocInfo.pNext = nullptr;
 	memAllocInfo.allocationSize =
 			(VertUniformBufferObject::size() + FragUniformBufferObject::size()) * concurrentFrameCount +
-			(indexedStaticMesh != nullptr ? indexedStaticMesh->indexesSizeInBytes() : 0) +
+			0 + // (indexedStaticMesh != nullptr ? indexedStaticMesh->indexesSizeInBytes() : 0) +
 			static_cast<VkDeviceSize>(staticMesh->verticesSizeInBytes());
 	memAllocInfo.memoryTypeIndex = args.vkWidget->hostVisibleMemoryIndex();
 
@@ -336,9 +336,9 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 	if (err != VK_SUCCESS)
 		qFatal("Failed to map memory: %d", err);
 	memcpy(p, staticMesh->verticesData(), staticMesh->verticesSizeInBytes());
-	if (indexedStaticMesh) {
-		memcpy(p + indexMemOffset, indexedStaticMesh->indexData(), indexedStaticMesh->indexesSizeInBytes());
-	}
+//	if (indexedStaticMesh) {
+//		memcpy(p + indexMemOffset, indexedStaticMesh->indexData(), indexedStaticMesh->indexesSizeInBytes());
+//	}
 	args.vkDeviceFunctions->vkUnmapMemory(args.vkDevice, bufMem);
 
 	// deskryptry
@@ -388,9 +388,9 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 
 	VkDeviceSize vbOffset = 0, ibOffset = 0;
 	args.vkDeviceFunctions->vkCmdBindVertexBuffers(cb, 0, 1, &vertexBuf, &vbOffset);
-	if (indexedStaticMesh) {
-		args.vkDeviceFunctions->vkCmdBindIndexBuffer(cb, indexBuf, ibOffset, VK_INDEX_TYPE_UINT32);
-	}
+//	if (indexedStaticMesh) {
+//		args.vkDeviceFunctions->vkCmdBindIndexBuffer(cb, indexBuf, ibOffset, VK_INDEX_TYPE_UINT32);
+//	}
 
 	uint32_t frameUniOffset =
 			args.vkWidget->currentFrame() * (VertUniformBufferObject::size() + FragUniformBufferObject::size());
@@ -412,11 +412,11 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 	memcpy(p + VertUniformBufferObject::size(), &fragUniformBufferObject, FragUniformBufferObject::size());
 	args.vkDeviceFunctions->vkUnmapMemory(args.vkDevice, bufMem);
 
-	if (indexedStaticMesh) {
-		args.vkDeviceFunctions->vkCmdDrawIndexed(cb, indexedStaticMesh->indexCount(), 1, 0, 0, 0);
-	} else {
+//	if (indexedStaticMesh) {
+//		args.vkDeviceFunctions->vkCmdDrawIndexed(cb, indexedStaticMesh->indexCount(), 1, 0, 0, 0);
+//	} else {
 		args.vkDeviceFunctions->vkCmdDraw(cb, staticMesh->verticesCount(), 1, 0, 0);
-	}
+//	}
 }
 
 

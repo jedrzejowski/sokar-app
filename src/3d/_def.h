@@ -30,8 +30,6 @@ namespace Sokar3D {
 
 	class StaticMesh;
 
-	class IndexedStaticMesh;
-
 	class VulkanRenderer;
 
 	class Shader;
@@ -39,8 +37,6 @@ namespace Sokar3D {
 	struct ShaderData;
 
 	class VulkanWidget;
-
-	class TestWindow;
 
 	class PipelineWrapper;
 

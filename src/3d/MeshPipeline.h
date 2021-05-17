@@ -35,7 +35,6 @@ namespace Sokar3D {
 
 	class MeshPipeline : public PipelineWrapper {
 		StaticMesh *staticMesh;
-		IndexedStaticMesh *indexedStaticMesh;
 		Shader vertexShader;
 		Shader fragmentShader;
 		VkBuffer vertexBuf = VK_NULL_HANDLE;
