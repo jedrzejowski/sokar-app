@@ -17,21 +17,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="kommit kotnrolny">
-      <change afterPath="$PROJECT_DIR$/src/algo/Range.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarException.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipeline.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipeline.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipeline.ui" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/Window.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/Window.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/_def.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/algo/Array3.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/algo/Array3.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/algo/SegmentationPipeline.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/algo/SegmentationPipeline.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/Jsonable.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/Jsonable.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d/StaticMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/IndexedMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/IndexedMesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/IndexedMesh.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolumeSegmentator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolumeSegmentator.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/_def.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,7 +327,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+    <property name="settings.editor.selected.configurable" value="fileTemplates" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="typescript-compiler-editor-notification" value="false" />
   </component>
@@ -586,6 +596,9 @@
       <workItem from="1621102268010" duration="599000" />
       <workItem from="1621167563762" duration="17343000" />
       <workItem from="1621249542293" duration="21711000" />
+      <workItem from="1621330172974" duration="11552000" />
+      <workItem from="1621456818368" duration="3408000" />
+      <workItem from="1621464559062" duration="4022000" />
     </task>
     <task id="LOCAL-00004" summary="Coś">
       <created>1542733017283</created>

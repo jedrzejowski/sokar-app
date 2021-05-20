@@ -307,8 +307,6 @@ const qint32 triTable[256][16] = {
 
 QFuture<void> MarchingCubes::execAlg() {
 	return QtConcurrent::run([&]() {
-		triangleIndex = 0;
-
 
 		auto size = virtualVolume->getSize() - cubeSize;
 		auto cubes = size / cubeSize;

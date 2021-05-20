@@ -7,17 +7,20 @@
 #include "./_def.h"
 #include "./Triangle.h"
 #include "./Volume/VirtualVolume.h"
-#include "./VolSegmAlg.h"
+#include "./VolumeSegmentator.hpp"
 #include "../3d/StaticMesh.hpp"
 #include "./Range.h"
 
 namespace SokarAlg {
 
-	class MarchingCubes : public VolSegmAlg {
+	class MarchingCubes : public VolumeSegmentator {
+	Q_OBJECT
 
-		Range<float> isoLevel ;
+		Q_PROPERTY(Priority priority READ priority WRITE setPriority NOTIFY priorityChanged)
+
+
+		Range<float> isoLevel;
 		glm::i32vec3 cubeSize = glm::i32vec3(1.f);
-		quint32 triangleIndex = 0;
 
 	protected:
 		QFuture<void> execAlg() override;
@@ -25,8 +28,8 @@ namespace SokarAlg {
 	public:
 
 		[[nodiscard]]
-		const Range<float>& getIsoLevel() const;
-		void setIsoLevel(const Range<float>& range);
+		const Range<float> &getIsoLevel() const;
+		void setIsoLevel(const Range<float> &range);
 
 		[[nodiscard]]
 		const glm::i32vec3 &getCubeSize() const;

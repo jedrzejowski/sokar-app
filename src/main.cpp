@@ -4,6 +4,7 @@
 
 #include <QGuiApplication>
 #include <win/mainwindow.h>
+#include <SokarUi/SegmentationPipeline.hpp>
 #include "./algo/test/cube.h"
 #include "sokar_glm.h"
 
@@ -19,10 +20,13 @@ int main(int argc, char *argv[]) {
 
 	Sokar::qSettings = new QSettings();
 
-	Sokar::MainWindow w;
-	w.show();
+//	Sokar::MainWindow w;
+//	w.show();
 
 //	sokarCubeTest();
+
+	auto qq = new SokarUi::SegmentationPipeline();
+	qq->show();
 
 	return app.exec();
 }

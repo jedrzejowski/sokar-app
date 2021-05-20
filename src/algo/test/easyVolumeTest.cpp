@@ -10,6 +10,7 @@
 #include "../../3d/MeshPipeline.h"
 #include "../../3d/CenterCamera.h"
 #include "../../3d/VulkanRenderer.h"
+#include "../MeshSimplification/VertexClustering.h"
 #include "../MarchingCubes.h"
 #include "../Volume/VolumeEnv.h"
 #include "../Volume/DicomVolume.h"
@@ -28,7 +29,7 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 //	vv->setInterpolator(new SokarAlg::AkimaVolumeInterpolator());
 //	vv->setInterpolator(new SokarAlg::CubicVolumeInterpolator(false));
 //	vv->setInterpolator(new SokarAlg::CubicVolumeInterpolator(true));
-	mc->setIsoLevel({100.f, 115.f});
+	mc->setIsoLevel({100.f, 200.f});
 
 	auto future = mc->exec();
 
@@ -36,8 +37,12 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 
 	QObject::connect(watcher, &QFutureWatcherBase::finished, [mc, vv]() {
 		qDebug() << "here";
-		auto mesh = mc->getMesh()->toStaticMash();
+		auto mesh = mc->getMesh();
 
+//		auto simplifier = new SokarAlg::VertexClustering({0, 0, 0}, {10, 10, 10});
+//		auto f2 = simplifier->simplify(mesh);
+//		f2.waitForFinished();
+//		mesh = f2.result();
 
 		auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
 		auto renderer = ret.renderer;
@@ -55,7 +60,7 @@ void easyVolumeTest(SokarAlg::DicomVolume *vv) {
 //		qDebug() << mesh->verticesCount();
 //		qDebug() << mesh2->indexCount() << mesh2->verticesCount();
 
-		auto pipeline = new Sokar3D::MeshPipeline(mesh);
+		auto pipeline = new Sokar3D::MeshPipeline(mesh->toStaticMash());
 		renderer->addPipelineWrapper(pipeline);
 	});
 

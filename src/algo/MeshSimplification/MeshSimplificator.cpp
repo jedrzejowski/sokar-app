@@ -2,6 +2,7 @@
 // Created by adam on 13.05.2021.
 //
 
+#include <QtConcurrent/QtConcurrentRun>
 #include "./MeshSimplificator.h"
 #include "3d/StaticMesh.hpp"
 
@@ -17,7 +18,7 @@ MeshSimplificator::Extrema MeshSimplificator::findExtrema(const IndexedMesh *mes
 	extrema.min.y = -std::numeric_limits<float>::infinity();
 	extrema.min.z = -std::numeric_limits<float>::infinity();
 
-	for (auto vert : mesh->getVertices()) {
+	for (const auto& vert : mesh->getVertices()) {
 		extrema.max.x = std::max(vert.x, extrema.max.x);
 		extrema.max.y = std::max(vert.y, extrema.max.y);
 		extrema.max.z = std::max(vert.z, extrema.max.z);
@@ -27,4 +28,10 @@ MeshSimplificator::Extrema MeshSimplificator::findExtrema(const IndexedMesh *mes
 	}
 
 	return extrema;
+}
+
+QFuture<IndexedMesh *> MeshSimplificator::simplify(const IndexedMesh *mesh) {
+	return QtConcurrent::run([&]() {
+		return this->exec(mesh);
+	});
 }

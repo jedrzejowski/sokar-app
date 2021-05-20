@@ -80,4 +80,6 @@ namespace SokarAlg {
 
 	template<typename Unit = float>
 	struct Range;
+
+	class SegmentationPipeline;
 }

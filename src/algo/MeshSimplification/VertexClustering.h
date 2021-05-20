@@ -17,6 +17,7 @@ namespace SokarAlg {
 
 	public:
 		VertexClustering(const glm::vec3 &clusterSize, const glm::vec3 &clusterOffset);
+
 		const glm::vec3 &getClusterSize() const;
 		void setClusterSize(const glm::vec3 &clusterSize);
 		const glm::vec3 &getClusterOffset() const;

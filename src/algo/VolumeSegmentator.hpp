@@ -11,7 +11,8 @@
 
 namespace SokarAlg {
 
-	class VolSegmAlg {
+	class VolumeSegmentator : public QObject {
+	Q_OBJECT
 	protected:
 
 		const VirtualVolume *virtualVolume = nullptr;
