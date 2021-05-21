@@ -13,9 +13,9 @@ namespace Sokar3D {
 
 	template<class T>
 	struct VulkanWidgetReturn {
-		QWidget *wrapper;
-		VulkanWidget *window;
-		T *renderer;
+		QWidget *widget;
+		VulkanWidget *vulkanWidget;
+		T *vulkanRenderer;
 	};
 
 	class VulkanWidget : public QVulkanWindow {
@@ -29,24 +29,20 @@ namespace Sokar3D {
 		~VulkanWidget() override;
 		QVulkanWindowRenderer *createRenderer() override;
 
-
 		bool isDebugEnabled() const { return true; }
 
 		template<class T>
 		static VulkanWidgetReturn<T> New(QVulkanInstance *inst = getVulkanInstance()) {
 
-			auto *window = new VulkanWidget();
-			window->setVulkanInstance(inst);
-			auto renderer = new T(window);
-			window->renderer = renderer;
+			auto *widget = new VulkanWidget();
+			widget->setVulkanInstance(inst);
+			auto renderer = new T(widget);
+			widget->renderer = renderer;
 
-			QWidget *wrapper = QWidget::createWindowContainer(window);
+			QWidget *wrapper = QWidget::createWindowContainer(widget);
 			wrapper->setFocusPolicy(Qt::StrongFocus);
 
-			window->resize(1024, 768);
-			wrapper->show();
-
-			return {wrapper, window, renderer};
+			return {wrapper, widget, renderer};
 		}
 	};
 }

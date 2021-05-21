@@ -321,6 +321,16 @@
         <source>MainWindow</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationWindow.ui" line="54"/>
+        <source>Segmentation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationWindow.ui" line="67"/>
+        <source>+</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>Sokar::DataConverter</name>

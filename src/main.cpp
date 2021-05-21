@@ -3,9 +3,11 @@
 
 #include <QGuiApplication>
 #include <win/mainwindow.h>
-#include <SokarUi/SegmentationPipelineEditor.hpp>
+#include <SokarUi/SegmentationWindow.hpp>
 
-QSettings *Sokar::qSettings;
+namespace Sokar {
+	QSettings *qSettings;
+}
 
 int main(int argc, char *argv[]) {
 
@@ -19,8 +21,6 @@ int main(int argc, char *argv[]) {
 
 	Sokar::MainWindow w;
 	w.show();
-
-//	sokarCubeTest();
 
 	return app.exec();
 }

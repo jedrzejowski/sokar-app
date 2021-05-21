@@ -22,7 +22,7 @@ void DataConverter::setFile(const gdcm::File &file) {
 }
 
 
-QString DataConverter::toAgeString(const gdcm::Tag &tag) {
+QString DataConverter::toAgeString(const gdcm::Tag &tag) const {
 	/**
 	 * A string of characters with one of the following formats -- nnnD, nnnW, nnnM, nnnY;
 	 * where nnn shall contain the number of days for D, weeks for W, months for M, or years for Y.
@@ -53,7 +53,7 @@ QString DataConverter::toAgeString(const gdcm::Tag &tag) {
 	return tr("%1 %2").arg(temp, unitName);
 }
 
-QDate DataConverter::toDate(const gdcm::Tag &tag) {
+QDate DataConverter::toDate(const gdcm::Tag &tag) const {
 	/**
 	 * A string of characters of the format YYYYMMDD;
 	 * where YYYY shall contain year,
@@ -84,7 +84,7 @@ QDate DataConverter::toDate(const gdcm::Tag &tag) {
 	}
 }
 
-QVector<qreal> DataConverter::toDecimalString(const gdcm::Tag &tag) {
+QVector<qreal> DataConverter::toDecimalString(const gdcm::Tag &tag) const {
 	/**
 	 * A string of characters representing either a fixed point number or a floating point number.
 	 * A fixed point number shall contain only the characters 0-9 with an optional leading "+" or "-"
@@ -105,15 +105,15 @@ QVector<qreal> DataConverter::toDecimalString(const gdcm::Tag &tag) {
 	return vec;
 }
 
-qint16 DataConverter::toShort(const gdcm::Tag &tag) {
+qint16 DataConverter::toShort(const gdcm::Tag &tag) const {
 	return *((qint16 *) dataset->GetDataElement(tag).GetByteValue()->GetPointer());
 }
 
-quint16 DataConverter::toUShort(const gdcm::Tag &tag) {
+quint16 DataConverter::toUShort(const gdcm::Tag &tag) const {
 	return *((quint16 *) dataset->GetDataElement(tag).GetByteValue()->GetPointer());
 }
 
-gdcm::Tag DataConverter::toAttributeTag(const gdcm::Tag &tag) {
+gdcm::Tag DataConverter::toAttributeTag(const gdcm::Tag &tag) const {
 	quint16 *group, *element;
 
 	auto &elem = dataset->GetDataElement(tag);
@@ -124,7 +124,7 @@ gdcm::Tag DataConverter::toAttributeTag(const gdcm::Tag &tag) {
 	return gdcm::Tag(*group, *element);
 }
 
-QString DataConverter::toPersonName(const gdcm::Tag &tag) {
+QString DataConverter::toPersonName(const gdcm::Tag &tag) const {
 	/*
 	 *       0           1            2        3      4
 	 * [family name^given names^middle name^prefix^suffixes]
@@ -154,6 +154,6 @@ QString DataConverter::toPersonName(const gdcm::Tag &tag) {
 	return full.join(' ');
 }
 
-qint32 DataConverter::toIntegerString(const gdcm::Tag &tag) {
+qint32 DataConverter::toIntegerString(const gdcm::Tag &tag) const {
 	return toString(tag).toInt();
 }

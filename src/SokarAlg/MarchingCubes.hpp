@@ -23,7 +23,7 @@ namespace SokarAlg {
 		glm::i32vec3 cubeSize = glm::i32vec3(1.f);
 
 	protected:
-		QFuture<void> execAlg() override;
+		void execAlg() override;
 
 	public:
 

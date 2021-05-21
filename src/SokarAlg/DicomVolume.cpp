@@ -17,20 +17,15 @@ void RawDicomVolume::setSceneSet(const Sokar::DicomSceneSet *newSceneSet) {
 	sceneSet = newSceneSet;
 
 	dataConverter.setFile(sceneSet->getScenesVector()[0]->getGdcmFile());
-
-	updateModel();
 }
 
-const glm::vec3 &RawDicomVolume::getWokselSize() const {
-	return wokselSize;
-}
+glm::vec3 RawDicomVolume::getWokselSize() const {
 
-void RawDicomVolume::updateModel() {
 
 	const static gdcm::Tag TagPixelSpacing(0x0028, 0x0030);
 	const static gdcm::Tag TagSliceThickness(0x0018, 0x0050);
 
-	wokselSize = glm::vec3(1);
+	glm::vec3 wokselSize = glm::vec3(1);
 
 	if (dataConverter.hasTagWithData(TagPixelSpacing)) {
 
@@ -54,13 +49,21 @@ void RawDicomVolume::updateModel() {
 		}
 	}
 
+	return wokselSize;
+}
+
+glm::i32vec3 RawDicomVolume::getSize() const {
 	const auto &sceneVec = sceneSet->getScenesVector();
 
-	size = glm::i32vec3(
+	return glm::i32vec3(
 			sceneVec[0]->getImgDimX(),
 			sceneVec[0]->getImgDimY(),
 			sceneVec.size()
 	);
+}
+
+float RawDicomVolume::getValue(const glm::i32vec3 &position) const {
+	return glm::length(sceneSet->getScenesVector()[position.z]->getWokselValue(position.x, position.y));;
 }
 
 //endregion
@@ -99,5 +102,9 @@ void DicomVolume::update() {
 	setSpaceTranslator([wokselSize](auto &position) {
 		return position / wokselSize;
 	});
+}
+
+glm::i32vec3 DicomVolume::getSize() const {
+	return glm::vec3(rawDicomVolume->getSize()) * rawDicomVolume->getWokselSize();
 }
 

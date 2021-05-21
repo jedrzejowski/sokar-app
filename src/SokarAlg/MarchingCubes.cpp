@@ -305,23 +305,21 @@ const qint32 triTable[256][16] = {
 
 //endregion
 
-QFuture<void> MarchingCubes::execAlg() {
-	return QtConcurrent::run([&]() {
+void MarchingCubes::execAlg() {
 
-		auto size = volume->getSize() - cubeSize;
-		auto cubes = size / cubeSize;
+	auto size = volume->getSize() - cubeSize;
+	auto cubes = size / cubeSize;
 
-		qDebug() << "size=" << size.x << ";" << size.y << ";" << size.z;
+	qDebug() << "size=" << size.x << ";" << size.y << ";" << size.z;
 
-		for (float x = 0; x < size.x - cubeSize.x; x += cubeSize.x) {
-			for (float y = 0; y < size.y - cubeSize.y; y += cubeSize.y) {
-				for (float z = 0; z < size.z - cubeSize.z; z += cubeSize.z) {
+	for (float x = 0; x < size.x - cubeSize.x; x += cubeSize.x) {
+		for (float y = 0; y < size.y - cubeSize.y; y += cubeSize.y) {
+			for (float z = 0; z < size.z - cubeSize.z; z += cubeSize.z) {
 
-					marchCube(getCube(glm::i32vec3(x, y, z), cubeSize));
-				}
+				marchCube(getCube(glm::i32vec3(x, y, z), cubeSize));
 			}
 		}
-	});
+	}
 }
 
 

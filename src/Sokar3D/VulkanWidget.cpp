@@ -19,7 +19,7 @@ QVulkanWindowRenderer *VulkanWidget::createRenderer() {
 }
 
 bool VulkanWidget::event(QEvent *event) {
-	if (renderer->uiEvent(event)) {
+	if (renderer != nullptr && renderer->uiEvent(event)) {
 		return true;
 	}
 

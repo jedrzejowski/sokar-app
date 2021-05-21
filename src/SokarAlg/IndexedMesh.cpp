@@ -113,7 +113,7 @@ void IndexedMesh::addTriangle(
 	addTriangle(i0, i1, i2, checkDup);
 }
 
-Sokar3D::StaticMesh *IndexedMesh::toStaticMash() const {
+QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMash() const {
 	auto newMesh = new Sokar3D::StaticMesh();
 
 	auto iter = indexes.begin();
@@ -125,7 +125,7 @@ Sokar3D::StaticMesh *IndexedMesh::toStaticMash() const {
 		);
 	}
 
-	return newMesh;
+	return QSharedPointer<Sokar3D::StaticMesh>(newMesh);
 }
 
 //region Converters

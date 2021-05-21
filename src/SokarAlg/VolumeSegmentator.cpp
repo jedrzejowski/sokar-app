@@ -2,27 +2,39 @@
 // Created by adam on 03.05.2021.
 //
 
+#include <QtConcurrent/QtConcurrentRun>
 #include "VolumeSegmentator.hpp"
 #include "./IndexedMesh.hpp"
 
 using namespace SokarAlg;
 
-QFuture<void> VolumeSegmentator::exec() {
+void VolumeSegmentator::execBefore() {
 
 	if (mesh != nullptr) {
-		delete mesh;
+		mesh.clear();
 	}
 
-	mesh = new IndexedMesh();
-
-	return execAlg();
+	mesh = QSharedPointer<IndexedMesh>::create();
 }
 
-const Volume *VolumeSegmentator::getVolume() const {
+QFuture<void> VolumeSegmentator::execAsync() {
+
+	execBefore();
+	return QtConcurrent::run([&]() {
+		execAlg();
+	});
+}
+
+void VolumeSegmentator::execSync() {
+	execBefore();
+	execAlg();
+}
+
+const QSharedPointer<const Volume> &VolumeSegmentator::getVolume() const {
 	return volume;
 }
 
-void VolumeSegmentator::setVolume(const Volume *vv) {
+void VolumeSegmentator::setVolume(const QSharedPointer<const Volume> &vv) {
 	volume = vv;
 }
 
@@ -30,6 +42,6 @@ void VolumeSegmentator::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, co
 	mesh->addTriangle(v0, v1, v2);
 }
 
-const IndexedMesh *VolumeSegmentator::getMesh() const {
+const QSharedPointer<IndexedMesh> &VolumeSegmentator::getMesh() const {
 	return mesh;
 }

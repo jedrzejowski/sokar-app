@@ -13,23 +13,26 @@ namespace SokarAlg {
 	class VolumeSegmentator {
 	protected:
 
-		const Volume *volume = nullptr;
-		IndexedMesh *mesh = nullptr;
+		QSharedPointer<const Volume> volume;
+		QSharedPointer<IndexedMesh> mesh = nullptr;
 
-		virtual QFuture<void> execAlg() = 0;
+		virtual void execAlg() = 0;
+
+		virtual void execBefore();
 
 	public:
-		QFuture<void> exec();
+		QFuture<void> execAsync();
+		void execSync();
 
 		[[nodiscard]]
-		const Volume *getVolume() const;
+		const QSharedPointer<const Volume> &getVolume() const;
 
-		void setVolume(const Volume *virtualVolume);
+		void setVolume(const QSharedPointer<const Volume> &virtualVolume);
 
 		void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2);
 
 		[[nodiscard]]
-		const IndexedMesh *getMesh() const;
+		const QSharedPointer<IndexedMesh> &getMesh() const;
 	};
 }
 

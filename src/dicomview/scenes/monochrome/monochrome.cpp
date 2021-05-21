@@ -420,7 +420,7 @@ void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool stat
 
 		auto window = new SokarUi::SegmentationWindow();
 
-		auto volume = new SokarAlg::RawDicomVolume();
+		auto volume = QSharedPointer<SokarAlg::RawDicomVolume>::create();
 		volume->setSceneSet(getDicomView()->getDicomSceneSet());
 
 		window->setRawDicomVolume(volume);

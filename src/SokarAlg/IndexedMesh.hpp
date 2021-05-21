@@ -52,7 +52,7 @@ namespace SokarAlg {
 		void addTriangle(quint32 i0, quint32 v1, quint32 v2, bool checkDuplicates = true);
 
 		[[nodiscard]]
-		Sokar3D::StaticMesh *toStaticMash() const;
+		QSharedPointer<Sokar3D::StaticMesh> toStaticMash() const;
 
 	};
 }

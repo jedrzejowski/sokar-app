@@ -17,9 +17,6 @@ namespace SokarAlg {
 		const Sokar::DicomSceneSet *sceneSet = nullptr;
 		Sokar::DataConverter dataConverter;
 
-		glm::i32vec3 size;
-		glm::vec3 wokselSize;
-
 	public:
 
 		[[nodiscard]]
@@ -28,16 +25,17 @@ namespace SokarAlg {
 		void setSceneSet(const Sokar::DicomSceneSet *sceneSet);
 
 		[[nodiscard]]
-		const glm::vec3 &getWokselSize() const;
+		glm::vec3 getWokselSize() const;
 
+		[[nodiscard]]
+		glm::i32vec3 getSize() const override;
 
-	private:
-
-		void updateModel();
+		[[nodiscard]]
+		float getValue(const glm::i32vec3 &position) const override;
 	};
 
 	class DicomVolume : public InterpolatedVolume {
-		QSharedPointer<const RawDicomVolume> rawDicomVolume = nullptr;
+		QSharedPointer<const RawDicomVolume> rawDicomVolume;
 
 		float cubesPerMM = 1.f;
 

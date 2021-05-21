@@ -22,13 +22,19 @@ namespace SokarUi {
 		Ui::SegmentationWindow *ui;
 		Sokar3D::VulkanWidget *vulkanWidget;
 		Sokar3D::VulkanRenderer *vulkanRenderer;
-		SegmentationPipelineEditor* pipelineEditor;
+		SegmentationPipelineEditor *pipelineEditor;
+		QSharedPointer<SokarAlg::SegmentationPipeline> pipeline;
+
 	public:
 		explicit SegmentationWindow(QWidget *parent = nullptr);
 
 		~SegmentationWindow() override;
 
 		void setRawDicomVolume(const QSharedPointer<const SokarAlg::RawDicomVolume> &rawDicomVolume);
+
+	private slots:
+		void startSegmentation(bool append = false);
+		void endSegmentation(QSharedPointer<const Sokar3D::StaticMesh> mesh);
 	};
 }
 
