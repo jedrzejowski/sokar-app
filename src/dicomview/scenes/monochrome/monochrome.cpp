@@ -1,10 +1,7 @@
 #include <gdcmGlobal.h>
 #include <gdcmTag.h>
 #include <gdcmImageHelper.h>
-#include <algo/MarchingCubes.h>
-
-#include <3d/VulkanWidget.h>
-#include <algo/test/easyVolumeTest.h>
+#include <SokarUi/SegmentationWindow.hpp>
 
 #include "sokar/speedtest.h"
 #include "sokar/gdcmSokar.h"
@@ -16,7 +13,6 @@
 #include "windowing/windowintstatic.h"
 
 #include "QFutureWatcher"
-#include "algo/Volume/DicomVolume.h"
 
 using namespace Sokar;
 
@@ -421,10 +417,19 @@ void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool stat
 	DicomScene::toolBarActionSlot(action, state);
 
 	if (action == DicomToolBar::Segmentation) {
-		auto vv = new SokarAlg::DicomVolume();
-		vv->setSceneSet(getDicomView()->getDicomSceneSet());
 
-		easyVolumeTest(vv);
+		auto window = new SokarUi::SegmentationWindow();
+
+		auto volume = new SokarAlg::RawDicomVolume();
+		volume->setSceneSet(getDicomView()->getDicomSceneSet());
+
+		window->setRawDicomVolume(volume);
+
+		window->show();
+
+//		SegmentationPipeline
+
+//		easyVolumeTest(vv);
 	}
 }
 

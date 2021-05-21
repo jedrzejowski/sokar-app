@@ -17,30 +17,95 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="kommit kotnrolny">
-      <change afterPath="$PROJECT_DIR$/src/SokarException.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipeline.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipeline.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipeline.ui" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/Window.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/Window.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/_def.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/Array3.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/Array3.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/SegmentationPipeline.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/algo/SegmentationPipeline.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/Jsonable.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/lib/Jsonable.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/InterpolatedVolume.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/InterpolatedVolume.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/test/easyVolumeTest.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MarchingCubes.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolumeSegmentator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/VolSegmAlg.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/VolumeSegmentator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/_def.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/Camera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Camera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/Camera.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Camera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/CenterCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CenterCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/CenterCamera.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CenterCamera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/GameCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/GameCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/GameCamera.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/GameCamera.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshPipeline.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshVertex.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/MeshVertex.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/MeshVertex.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/MeshVertex.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/PipelineWrapper.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/PipelineWrapper.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/Shader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Shader.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/Shader.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Shader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SimpleLight.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/SimpleLight.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SimpleLight.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/SimpleLight.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SimpleLight.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/SimpleLight.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SolidMaterial.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/SolidMaterial.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SolidMaterial.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/SolidMaterial.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/SolidMaterial.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/SolidMaterial.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.frag" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/StaticMesh.vert" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.vert" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/VulkanRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/VulkanRenderer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/VulkanWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/VulkanWidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanWidget.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/_def.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Sokar3D.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Sokar3D.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d/vulkan_test.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/vulkan_test.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipeline.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SokarUi.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Array3.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Array3.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Array3.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Array3.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Cube.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Cube.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/DicomVolumeInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/DicomVolumeInterpolator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/IndexedMesh.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MarchingCubes.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/EdgeContraction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeContraction.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/EdgeContraction.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeContraction.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/MeshSimplificator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexClustering.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexDecimation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexDecimation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/MeshSimplification/VertexDecimation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexDecimation.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Range.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Range.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Triangle.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Triangle.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VertexInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VertexInterpolator.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexInterpolator.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/DicomVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/ExampleVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/ExampleVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/ExampleVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/ExampleVolume.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/VirtualVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/VirtualVolume.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/VolumeEnv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeEnv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/Volume/VolumeEnv.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeEnv.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VolumeSegmentator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/VolumeSegmentator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/gte/Array3.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/gte/Array3.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/gte/IntpAkimaUniform3.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/gte/IntpAkimaUniform3.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/test/cube.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/test/easyVolumeTest.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algo/test/easyVolumeTest.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/monochrome.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/lib/_def.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/lib/Sokar3D.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -324,7 +389,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/CMakeLists.txt" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/SokarUi" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="fileTemplates" />
@@ -333,18 +398,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/SokarUi" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/3d" />
       <recent name="$PROJECT_DIR$/src/algo/test" />
       <recent name="$PROJECT_DIR$/src/algo" />
-      <recent name="$PROJECT_DIR$/res/vk-shader" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/SokarAlg" />
+      <recent name="$PROJECT_DIR$/src/algo" />
       <recent name="$PROJECT_DIR$/src/algo/volume" />
       <recent name="$PROJECT_DIR$/src/algo/mesh-simplification" />
       <recent name="$PROJECT_DIR$/res" />
-      <recent name="$PROJECT_DIR$/src/dicomview/scenes/indicators" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.sokar">
@@ -598,14 +663,9 @@
       <workItem from="1621249542293" duration="21711000" />
       <workItem from="1621330172974" duration="11552000" />
       <workItem from="1621456818368" duration="3408000" />
-      <workItem from="1621464559062" duration="4022000" />
-    </task>
-    <task id="LOCAL-00004" summary="Coś">
-      <created>1542733017283</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1542733017283</updated>
+      <workItem from="1621464559062" duration="4038000" />
+      <workItem from="1621501574094" duration="5282000" />
+      <workItem from="1621544916021" duration="9322000" />
     </task>
     <task id="LOCAL-00005" summary="W cholere zmian">
       <created>1543021313474</created>
@@ -943,7 +1003,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621286580189</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="kommit kotnrolny">
+      <created>1621470046729</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1621470046729</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
