@@ -5,7 +5,7 @@
 #pragma once
 
 #include "./Sokar3D.hpp"
-#include "./Camera.h"
+#include "./Camera.hpp"
 
 namespace Sokar3D {
 	class CenterCamera : public Camera {

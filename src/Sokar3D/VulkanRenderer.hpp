@@ -6,10 +6,10 @@
 
 #include "./Sokar3D.hpp"
 #include "./VulkanWidget.hpp"
-#include "./Shader.h"
+#include "./VulkanShader.hpp"
 #include "./StaticMesh.hpp"
-#include "./Camera.h"
-#include "./PipelineWrapper.h"
+#include "./Camera.hpp"
+#include "./PipelineWrapper.hpp"
 
 namespace Sokar3D {
 	class VulkanRenderer : public QVulkanWindowRenderer {
@@ -22,6 +22,7 @@ namespace Sokar3D {
 
 		QFutureWatcher<void> frameWatcher;
 		QFuture<void> initResourceFuture;
+
 		Camera *camera = nullptr;
 		glm::vec3 m_lightPos;
 		glm::mat4 projectionMatrix;

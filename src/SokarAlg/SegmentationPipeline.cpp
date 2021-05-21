@@ -6,19 +6,22 @@
 #include "SegmentationPipeline.hpp"
 #include "MarchingCubes.hpp"
 #include "IndexedMesh.hpp"
+#include "ExampleVolume.hpp"
 
 QFuture<QSharedPointer<Sokar3D::StaticMesh>> SokarAlg::SegmentationPipeline::executePipeline() {
 	return QtConcurrent::run([&]() -> QSharedPointer<Sokar3D::StaticMesh> {
 
 		auto interpolator = QSharedPointer<SokarAlg::LinearValueInterpolator>(new SokarAlg::LinearValueInterpolator());
 
-		auto dicomVolume =  QSharedPointer<SokarAlg::DicomVolume>::create();
+		auto dicomVolume = QSharedPointer<SokarAlg::DicomVolume>::create();
 		dicomVolume->setRawDicomVolume(rawDicomVolume);
 		dicomVolume->setCubesPerMM(0.25f);
 		dicomVolume->setInterpolator(interpolator);
 
+		auto vol = QSharedPointer<Volume>(ExampleVolume::Sphere(20, 8));
+
 		auto mc = new SokarAlg::MarchingCubes();
-		mc->setVolume(dicomVolume);
+		mc->setVolume(vol);
 //	vv->setInterpolator(new SokarAlg::NearestVolumeInterpolator());
 //		vv->setInterpolator(new SokarAlg::LinearValueInterpolator());
 //	vv->setInterpolator(new SokarAlg::PolynomialVolumeInterpolator1());
@@ -26,9 +29,11 @@ QFuture<QSharedPointer<Sokar3D::StaticMesh>> SokarAlg::SegmentationPipeline::exe
 //	vv->setInterpolator(new SokarAlg::AkimaVolumeInterpolator());
 //	vv->setInterpolator(new SokarAlg::CubicVolumeInterpolator(false));
 //	vv->setInterpolator(new SokarAlg::CubicVolumeInterpolator(true));
-		mc->setIsoLevel({100.f, 20000.f});
+		mc->setIsoLevel({0.5f, 20000.f});
 
+		qDebug() << "start";
 		mc->execSync();
+		qDebug() << "end";
 
 		auto mesh = mc->getMesh();
 

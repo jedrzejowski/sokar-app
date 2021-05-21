@@ -6,7 +6,7 @@
 
 #include "./Sokar3D.hpp"
 #include "./StaticMesh.hpp"
-#include "./Shader.h"
+#include "./VulkanShader.hpp"
 
 namespace Sokar3D {
 
@@ -24,16 +24,18 @@ namespace Sokar3D {
 	protected:
 		VkPipelineLayout vkPipelineLayout = VK_NULL_HANDLE;
 		VkPipeline vkPipeline = VK_NULL_HANDLE;
+		QMutex stateChangeMutex;
 
 	public:
 		PipelineWrapper();
 		virtual ~PipelineWrapper();
 
 		virtual void initResources(const VkPipelineMetaArgs &args) = 0;
-		virtual void createVkPipeline(const VkPipelineMetaArgs &args) = 0;
 		virtual void ensureBuffers(const VkPipelineMetaArgs &args) = 0;
 		virtual void buildDrawCalls(const VkPipelineMetaArgs &args) = 0;
 		virtual void releaseResources(const VkPipelineMetaArgs &args) = 0;
+
+//		virtual bool isNeedResourcesInit(const VkPipelineMetaArgs &args) = 0;
 	};
 }
 

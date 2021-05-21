@@ -5,7 +5,7 @@
 #pragma once
 
 #include "./Sokar3D.hpp"
-#include "./PipelineWrapper.h"
+#include "./PipelineWrapper.hpp"
 #include "./SimpleLight.hpp"
 #include "./SolidMaterial.hpp"
 
@@ -35,8 +35,8 @@ namespace Sokar3D {
 
 	class MeshPipeline : public PipelineWrapper {
 		QSharedPointer<const StaticMesh> staticMesh;
-		Shader vertexShader;
-		Shader fragmentShader;
+		VulkanShader vertexShader;
+		VulkanShader fragmentShader;
 		VkBuffer vertexBuf = VK_NULL_HANDLE;
 		VkBuffer indexBuf = VK_NULL_HANDLE;
 		VkBuffer uniformBuf = VK_NULL_HANDLE;
@@ -56,7 +56,6 @@ namespace Sokar3D {
 		explicit MeshPipeline(const QSharedPointer<const StaticMesh>& mesh);
 
 		void initResources(const VkPipelineMetaArgs &args) override;
-		void createVkPipeline(const VkPipelineMetaArgs &args) override;
 		void ensureBuffers(const VkPipelineMetaArgs &args) override;
 		void buildDrawCalls(const VkPipelineMetaArgs &args) override;
 		void releaseResources(const VkPipelineMetaArgs &args) override;

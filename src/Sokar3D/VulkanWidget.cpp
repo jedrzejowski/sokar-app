@@ -3,7 +3,7 @@
 //
 
 #include "./VulkanWidget.hpp"
-#include "./VulkanRenderer.h"
+#include "./VulkanRenderer.hpp"
 #include <QMouseEvent>
 
 using namespace Sokar3D;

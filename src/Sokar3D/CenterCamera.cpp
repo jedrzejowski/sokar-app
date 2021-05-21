@@ -2,7 +2,7 @@
 // Created by adam on 18.04.2021.
 //
 
-#include "./CenterCamera.h"
+#include "./CenterCamera.hpp"
 #include <QMouseEvent>
 
 using namespace Sokar3D;

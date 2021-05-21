@@ -6,28 +6,13 @@
 #include "../lib/concat_array.h"
 #include "./MeshPipeline.hpp"
 #include "./VulkanWidget.hpp"
-#include "./Camera.h"
+#include "./Camera.hpp"
 
 using namespace Sokar3D;
 
 MeshPipeline::MeshPipeline(
 		const QSharedPointer<const StaticMesh> &mesh
 ) : staticMesh(mesh) {
-
-	//	backgroundMaterial.model.translate(0, -5, 0);
-}
-
-void MeshPipeline::initResources(const VkPipelineMetaArgs &args) {
-
-	const VkPhysicalDeviceLimits *pdevLimits = &args.vkWidget->physicalDeviceProperties()->limits;
-	const VkDeviceSize uniAlign = pdevLimits->minUniformBufferOffsetAlignment;
-
-//	uniformBufferObjectSize = makeBuffSizeAligned(sizeof(UniformBufferObject), uniAlign);
-
-	if (!vertexShader.isValid())
-		vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/Sokar3D/StaticMesh.vert"));
-	if (!fragmentShader.isValid())
-		fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/Sokar3D/StaticMesh.frag"));
 }
 
 void MeshPipeline::releaseResources(const VkPipelineMetaArgs &args) {
@@ -78,22 +63,35 @@ void MeshPipeline::releaseResources(const VkPipelineMetaArgs &args) {
 		bufMem = VK_NULL_HANDLE;
 	}
 
-
 	if (vertexShader.isValid()) {
 		args.vkDeviceFunctions->vkDestroyShaderModule(
-				args.vkDevice, vertexShader.data()->shaderModule, nullptr);
+				args.vkDevice, vertexShader.getShaderModule(), nullptr);
 		vertexShader.reset();
 	}
 
 	if (fragmentShader.isValid()) {
 		args.vkDeviceFunctions->vkDestroyShaderModule(
-				args.vkDevice, fragmentShader.data()->shaderModule, nullptr);
+				args.vkDevice, fragmentShader.getShaderModule(), nullptr);
 		fragmentShader.reset();
 	}
 }
 
-void MeshPipeline::createVkPipeline(const VkPipelineMetaArgs &args) {
+void MeshPipeline::initResources(const VkPipelineMetaArgs &args) {
+	if (vkPipeline) {
+		return;
+	}
+
 	VkResult err;
+
+	const VkPhysicalDeviceLimits *pdevLimits = &args.vkWidget->physicalDeviceProperties()->limits;
+	const VkDeviceSize uniAlign = pdevLimits->minUniformBufferOffsetAlignment;
+
+	if (!vertexShader.isValid()) {
+		vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/Sokar3D/StaticMesh.vert"));
+	}
+	if (!fragmentShader.isValid()) {
+		fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/Sokar3D/StaticMesh.frag"));
+	}
 
 	std::vector<VkVertexInputBindingDescription> vertexBindingDesc = {
 			{
@@ -180,7 +178,7 @@ void MeshPipeline::createVkPipeline(const VkPipelineMetaArgs &args) {
 					nullptr,
 					0,
 					VK_SHADER_STAGE_VERTEX_BIT,
-					vertexShader.data()->shaderModule,
+					vertexShader.getShaderModule(),
 					"main",
 					nullptr
 			},
@@ -189,7 +187,7 @@ void MeshPipeline::createVkPipeline(const VkPipelineMetaArgs &args) {
 					nullptr,
 					0,
 					VK_SHADER_STAGE_FRAGMENT_BIT,
-					fragmentShader.data()->shaderModule,
+					fragmentShader.getShaderModule(),
 					"main",
 					nullptr
 			}
@@ -257,9 +255,12 @@ void MeshPipeline::createVkPipeline(const VkPipelineMetaArgs &args) {
 }
 
 void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
+	initResources(args);
+
 	if (vertexBuf) {
 		return;
 	}
+
 	qDebug("buffersDone: ensureBuffers");
 
 	const int concurrentFrameCount = args.vkWidget->concurrentFrameCount();
@@ -370,6 +371,12 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
 }
 
 void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
+	// if pipeline is still not exists
+	if (!vkPipeline) {
+		return;
+	}
+
+
 	VkCommandBuffer cb = args.vkWidget->currentCommandBuffer();
 	VkResult err;
 

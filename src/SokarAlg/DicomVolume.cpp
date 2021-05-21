@@ -85,6 +85,7 @@ const QSharedPointer<const RawDicomVolume> &DicomVolume::getRawDicomVolume() con
 
 void DicomVolume::setRawDicomVolume(const QSharedPointer<const RawDicomVolume> &newRawDicomVolume) {
 	rawDicomVolume = newRawDicomVolume;
+	setVolume(rawDicomVolume);
 	update();
 }
 

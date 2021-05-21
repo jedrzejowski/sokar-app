@@ -32,7 +32,7 @@ namespace Sokar3D {
 
 	class VulkanRenderer;
 
-	class Shader;
+	class VulkanShader;
 
 	struct ShaderData;
 

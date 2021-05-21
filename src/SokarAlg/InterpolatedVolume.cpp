@@ -47,7 +47,8 @@ void InterpolatedVolume::setVolume(const QSharedPointer<const Volume> &newVolume
 
 
 float InterpolatedVolume::getValue(const glm::i32vec3 &position) const {
-	return volume->getValue(spaceTranslator(position));
+
+	return interpolator->interpolate(spaceTranslator(position));
 }
 
 void InterpolatedVolume::update() {

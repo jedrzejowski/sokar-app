@@ -2,14 +2,14 @@
 // Created by adam on 29.03.2021.
 //
 
-#include "./VulkanRenderer.h"
+#include "./VulkanRenderer.hpp"
 #include "qrandom.h"
 #include <QVulkanFunctions>
 #include <QtConcurrent/QtConcurrentRun>
 #include <QTime>
 #include <QMouseEvent>
 #include "../lib/concat_array.h"
-#include "./PipelineWrapper.h"
+#include "./PipelineWrapper.hpp"
 
 using namespace Sokar3D;
 
@@ -76,10 +76,6 @@ void VulkanRenderer::initResources() {
 		for (auto pw : pipelineWrappers) {
 			pw->initResources(args);
 		}
-
-		for (auto pw : pipelineWrappers) {
-			pw->createVkPipeline(args);
-		}
 	});
 }
 
@@ -95,7 +91,6 @@ void VulkanRenderer::initSwapChainResources() {
 
 void VulkanRenderer::releaseSwapChainResources() {
 	qDebug("releaseSwapChainResources");
-
 
 	// tutaj oczekujemy na zakończenie
 
@@ -187,16 +182,7 @@ void VulkanRenderer::ensureBuffers() {
 void VulkanRenderer::buildDrawCalls() {
 //	qDebug() << "buildDrawCalls";
 
-	VkDevice vkDevice = vkWidget->device();
-
-	VkPipelineMetaArgs args{};
-	args.vkInstance = VK_NULL_HANDLE;
-	args.vkDevice = vkDevice;
-	args.vkWidget = vkWidget;
-	args.vkDeviceFunctions = vkDeviceFunctions;
-	args.vkPipelineCache = vkPipelineCache;
-	args.projectionMatrix = projectionMatrix;
-	args.camera = camera;
+	auto args = getMetaArgs();
 
 	for (auto pw : pipelineWrappers) {
 		pw->buildDrawCalls(args);
@@ -221,7 +207,7 @@ VkPipelineMetaArgs VulkanRenderer::getMetaArgs() {
 
 	VkPipelineMetaArgs args{};
 
-	args.vkInstance = VK_NULL_HANDLE;
+	args.vkInstance = vkWidget->vulkanInstance();
 	args.vkDevice = vkDevice;
 	args.vkWidget = vkWidget;
 	args.vkDeviceFunctions = vkDeviceFunctions;

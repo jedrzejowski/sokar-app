@@ -2,7 +2,7 @@
 // Created by adam on 18.04.2021.
 //
 
-#include "GameCamera.h"
+#include "GameCamera.hpp"
 
 using namespace Sokar3D;
 

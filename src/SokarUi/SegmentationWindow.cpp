@@ -7,7 +7,7 @@
 #include "ui_SegmentationWindow.h"
 #include "SegmentationPipelineEditor.hpp"
 #include "SokarAlg/SegmentationPipeline.hpp"
-#include "Sokar3D/CenterCamera.h"
+#include "Sokar3D/CenterCamera.hpp"
 #include "Sokar3D/MeshPipeline.hpp"
 
 using namespace SokarUi;
@@ -41,19 +41,26 @@ void SegmentationWindow::setRawDicomVolume(const QSharedPointer<const SokarAlg::
 
 void SegmentationWindow::startSegmentation(bool append) {
 
+	QProgressDialog progress("Copying files...", "Abort Copy", 0, 10, this);
+	progress.setWindowModality(Qt::WindowModal);
+	progress.show();
+
+
 	pipeline = QSharedPointer<SokarAlg::SegmentationPipeline>::create();
 	pipeline->rawDicomVolume = rawDicomVolume;
 
 	auto future = pipeline->executePipeline();
 
 	auto watcher = new QFutureWatcher<QSharedPointer<Sokar3D::StaticMesh>>();
+	qDebug() << watcher;
 
-	QObject::connect(watcher, &QFutureWatcherBase::finished, [&]() {
+	QObject::connect(watcher, &QFutureWatcherBase::finished, [watcher, this]() {
 		qDebug() << "here";
-
+		qDebug() << watcher;
 		auto mesh = watcher->result();
 
 		auto vvSize = rawDicomVolume->getSize();
+		vvSize = glm::vec3(20.f);
 
 		auto camera = new Sokar3D::CenterCamera(
 				glm::vec3(vvSize) * 0.5f,

@@ -3,7 +3,7 @@
 //
 
 #include "StaticMesh.hpp"
-#include "./MeshVertex.h"
+#include "./MeshVertex.hpp"
 #include <QtConcurrent/QtConcurrentRun>
 #include <QFile>
 

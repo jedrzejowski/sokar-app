@@ -2,7 +2,7 @@
 // Created by adam on 11.04.2021.
 //
 
-#include "PipelineWrapper.h"
+#include "PipelineWrapper.hpp"
 
 using namespace Sokar3D;
 

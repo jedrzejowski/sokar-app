@@ -11,32 +11,19 @@
 
 namespace Sokar3D {
 
-	struct ShaderData {
-
-		[[nodiscard]]
-		inline bool isValid() const {
-			return shaderModule != VK_NULL_HANDLE;
-		}
-
+	class VulkanShader {
 		VkShaderModule shaderModule = VK_NULL_HANDLE;
-	};
 
-	class Shader {
 	public:
 		void load(QVulkanInstance *inst, VkDevice dev, const QString &fn);
 
-		ShaderData *data();
-
 		[[nodiscard]]
 		inline bool isValid() {
-			return data()->isValid();
+			return shaderModule != VK_NULL_HANDLE;
 		}
 
 		void reset();
 
-	private:
-		bool m_maybeRunning = false;
-		QFuture<ShaderData> m_future;
-		ShaderData m_data;
+		VkShaderModule_T *getShaderModule() const;
 	};
 }

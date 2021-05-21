@@ -6,7 +6,7 @@
 
 #include <QMainWindow>
 #include "SokarUi.hpp"
-#include <Sokar3D/VulkanRenderer.h>
+#include <Sokar3D/VulkanRenderer.hpp>
 #include <Sokar3D/VulkanWidget.hpp>
 #include <SokarAlg/DicomVolume.hpp>
 

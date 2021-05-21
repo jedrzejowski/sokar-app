@@ -2,7 +2,7 @@
 // Created by adam on 29.03.2021.
 //
 
-#include "./MeshVertex.h"
+#include "./MeshVertex.hpp"
 
 using namespace Sokar3D;
 

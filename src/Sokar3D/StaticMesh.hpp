@@ -7,7 +7,7 @@
 #include <QString>
 #include <QFuture>
 #include "./Sokar3D.hpp"
-#include "./MeshVertex.h"
+#include "./MeshVertex.hpp"
 
 namespace Sokar3D {
 
