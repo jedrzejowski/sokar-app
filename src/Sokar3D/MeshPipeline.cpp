@@ -3,10 +3,10 @@
 //
 
 #include <QVulkanDeviceFunctions>
-#include "../lib/concat_array.h"
-#include "./MeshPipeline.hpp"
-#include "./VulkanWidget.hpp"
-#include "./Camera.hpp"
+#include "SokarLib/concat_array.h"
+#include "MeshPipeline.hpp"
+#include "VulkanWidget.hpp"
+#include "Camera.hpp"
 
 using namespace Sokar3D;
 

@@ -14,7 +14,7 @@ void VolumeSegmentator::execBefore() {
 		mesh.clear();
 	}
 
-	mesh = QSharedPointer<IndexedMesh>::create();
+	mesh = QSharedPointer<MeshType>::create();
 }
 
 QFuture<void> VolumeSegmentator::execAsync() {
@@ -42,6 +42,6 @@ void VolumeSegmentator::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, co
 	mesh->addTriangle(v0, v1, v2);
 }
 
-const QSharedPointer<IndexedMesh> &VolumeSegmentator::getMesh() const {
+const QSharedPointer<VolumeSegmentator::MeshType> &VolumeSegmentator::getMesh() const {
 	return mesh;
 }

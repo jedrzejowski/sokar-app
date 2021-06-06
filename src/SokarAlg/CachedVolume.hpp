@@ -4,9 +4,29 @@
 
 #pragma once
 
+#include "SokarAlg.hpp"
+#include "Volume.hpp"
+#include "Array3.hpp"
 
-class CachedVolume {
-};
+namespace SokarAlg {
 
+	class CachedVolume : public Volume {
+		QSharedPointer<const Volume> volume = nullptr;
+		Array3<float> cache;
+	public:
+		explicit CachedVolume();
+		virtual ~CachedVolume();
 
+		void rebuildCache();
+
+		[[nodiscard]]
+		const QSharedPointer<const Volume> &getVolume() const;
+		void setVolume(const QSharedPointer<const Volume> &volume, bool rebuild = true);
+
+		[[nodiscard]]
+		glm::i32vec3 getSize() const override;
+		[[nodiscard]]
+		float getValue(const glm::i32vec3 &position) const override;
+	};
+}
 

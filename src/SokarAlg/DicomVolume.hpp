@@ -38,6 +38,7 @@ namespace SokarAlg {
 		QSharedPointer<const RawDicomVolume> rawDicomVolume;
 
 		float cubesPerMM = 1.f;
+		glm::vec3 wokselSize = glm::vec3(1.f);
 
 	public:
 

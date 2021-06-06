@@ -8,7 +8,7 @@
 #include <QtConcurrent/QtConcurrentRun>
 #include <QTime>
 #include <QMouseEvent>
-#include "../lib/concat_array.h"
+#include "SokarLib/concat_array.h"
 #include "./PipelineWrapper.hpp"
 
 using namespace Sokar3D;

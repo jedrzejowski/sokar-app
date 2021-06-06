@@ -4,19 +4,24 @@
 
 #pragma once
 
+#include <chrono>
 #include <QtGlobal>
-#include "../sokar_glm.h"
+#include "../SokarGlm.hpp"
 
 namespace SokarAlg {
 
-	static const float EPS = 0.00001f;
+	using TimePoint = std::chrono::time_point<std::chrono::high_resolution_clock>;
+
+	inline TimePoint makeTimePoint(){
+		return std::chrono::high_resolution_clock::now();
+	}
 
 	inline bool isZero(float num) {
-		return num < EPS;
+		return num < SokarGlm::EPS;
 	}
 
 	inline bool areSame(float num1, float num2) {
-		return std::abs(num1 - num2) < EPS;
+		return std::abs(num1 - num2) < SokarGlm::EPS;
 	}
 
 	template<typename T>
@@ -84,6 +89,8 @@ namespace SokarAlg {
 	struct Range;
 
 	class SegmentationPipeline;
+
+	struct SegmentationResult;
 
 	void forI32space(
 			const glm::i32vec3 &from,

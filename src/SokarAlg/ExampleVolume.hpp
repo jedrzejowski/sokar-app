@@ -11,24 +11,18 @@ namespace SokarAlg {
 
 
 	class ExampleVolume : public Volume {
-		using FunctionIn3D = std::function<float(const glm::vec3& position)>;
-
-		glm::i32vec3 mySize;
-		FunctionIn3D myFunction;
-
+		glm::i32vec3 size;
 	public:
-
-		ExampleVolume(const glm::i32vec3 &mySize, FunctionIn3D myFunction);
 
 		[[nodiscard]]
 		glm::i32vec3 getSize() const override;
 
-		[[nodiscard]]
-		float getValue(const glm::i32vec3& position) const override;
+		static QSharedPointer<const ExampleVolume>
+		Sphere(qint32 volSize, float radius, float inVal = 1.f, float outVal = 0.f);
 
-		static ExampleVolume *Sphere(qint32 volSize, float radius, float inVal = 1.f, float outVal = 0.f);
-		static ExampleVolume *Cube(glm::i32vec3 volSize, glm::vec3 cubeSize, float inVal = 1.f, float outVal = 0.f,
-								   glm::mat4 transform = glm::mat4(0.f));
+		static QSharedPointer<const ExampleVolume>
+		Cube(glm::i32vec3 volSize, glm::vec3 cubeSize, float inVal = 1.f, float outVal = 0.f,
+			 glm::mat4 transform = glm::mat4(0.f));
 	};
 }
 

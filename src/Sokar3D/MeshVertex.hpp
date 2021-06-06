@@ -20,7 +20,7 @@ namespace Sokar3D {
 
 		static std::vector<VkVertexInputAttributeDescription> getAttributeDescriptions();
 
-		static bool areEquals(const MeshVertex &v1, const MeshVertex &v2, float esp = EPS);
+		static bool areEquals(const MeshVertex &v1, const MeshVertex &v2, float esp = SokarGlm::EPS);
 	};
 }
 

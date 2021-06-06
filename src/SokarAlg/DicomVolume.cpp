@@ -25,7 +25,7 @@ glm::vec3 RawDicomVolume::getWokselSize() const {
 	const static gdcm::Tag TagPixelSpacing(0x0028, 0x0030);
 	const static gdcm::Tag TagSliceThickness(0x0018, 0x0050);
 
-	glm::vec3 wokselSize = glm::vec3(1);
+	auto wokselSize = glm::vec3(1);
 
 	if (dataConverter.hasTagWithData(TagPixelSpacing)) {
 
@@ -63,7 +63,7 @@ glm::i32vec3 RawDicomVolume::getSize() const {
 }
 
 float RawDicomVolume::getValue(const glm::i32vec3 &position) const {
-	return glm::length(sceneSet->getScenesVector()[position.z]->getWokselValue(position.x, position.y));;
+	return glm::length(sceneSet->getScenesVector()[position.z]->getWokselValue(position.x, position.y));
 }
 
 //endregion
@@ -93,19 +93,19 @@ void DicomVolume::setRawDicomVolume(const QSharedPointer<const RawDicomVolume> &
 
 
 void DicomVolume::update() {
-	auto wokselSize = glm::vec3(1.f);
+	wokselSize = glm::vec3(1.f);
 	if (rawDicomVolume != nullptr) {
 		wokselSize = rawDicomVolume->getWokselSize();
 	}
 
 	wokselSize = wokselSize / cubesPerMM;
 
-	setSpaceTranslator([wokselSize](auto &position) {
-		return position / wokselSize;
+	setSpaceTranslator([this](auto &position) {
+		return position / this->wokselSize;
 	});
 }
 
 glm::i32vec3 DicomVolume::getSize() const {
-	return glm::vec3(rawDicomVolume->getSize()) * rawDicomVolume->getWokselSize();
+	return glm::vec3(rawDicomVolume->getSize()) * wokselSize;
 }
 

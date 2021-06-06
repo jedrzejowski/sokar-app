@@ -11,11 +11,11 @@ void SokarAlg::forI32space(
 		const std::function<void(const glm::i32vec3 &pos)> &functor
 ) {
 	glm::i32vec3 pos = from;
-	for (pos.x = from.x; pos.x <= to.x; ++(pos.x)) {
+	for (pos.x = from.x; pos.x < to.x; ++(pos.x)) {
 
-		for (pos.y = from.y; pos.y <= to.y; ++(pos.y)) {
+		for (pos.y = from.y; pos.y < to.y; ++(pos.y)) {
 
-			for (pos.z = from.z; pos.z <= to.z; ++(pos.z)) {
+			for (pos.z = from.z; pos.z < to.z; ++(pos.z)) {
 
 				functor(pos);
 			}

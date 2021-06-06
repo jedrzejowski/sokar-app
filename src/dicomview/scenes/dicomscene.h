@@ -14,7 +14,7 @@
 #include "dicomview/toolbar.h"
 
 #include "sokar/pixel.h"
-#include "sokar_glm.h"
+#include "SokarGlm.hpp"
 #include "sokar/exception.h"
 #include "scene.h"
 #include "params.h"

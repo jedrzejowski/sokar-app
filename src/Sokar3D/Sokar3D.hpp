@@ -6,15 +6,13 @@
 #include <QVector3D>
 #include <QVector2D>
 
-#include "../sokar_glm.h"
+#include "../SokarGlm.hpp"
 
 
 namespace Sokar3D {
 
 //	typedef glm::vec3 vec3;
 //	typedef glm::vec2 vec2;
-
-	static const float EPS = 0.00001f;
 
 	struct MeshVertex;
 

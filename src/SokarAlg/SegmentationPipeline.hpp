@@ -10,6 +10,19 @@
 
 namespace SokarAlg {
 
+	struct SegmentationResult{
+		QSharedPointer<Sokar3D::StaticMesh> mesh;
+		TimePoint timeStarted;
+		TimePoint timePreCache;
+		TimePoint timePostCache;
+		TimePoint timePreMarching;
+		TimePoint timePostMarching;
+		TimePoint timeEnded;
+
+		glm::vec3 proposeCameraCenter;
+		float proposeCameraDistance;
+	};
+
 	class SegmentationPipeline : public QObject {
 	Q_OBJECT
 	public:
@@ -26,13 +39,15 @@ namespace SokarAlg {
 	private:
 		bool running = false;
 		Stage stage;
+		bool usingCache = true;
 	public:
 
-		QFuture<QSharedPointer<Sokar3D::StaticMesh>> executePipeline();
+		QFuture<SegmentationResult> executePipeline();
 
 	signals:
-		void updateProgress(Stage state,);
+		void updateProgress();
 
+	public:
 		QSharedPointer<const RawDicomVolume> rawDicomVolume;
 		QSharedPointer<VolumeInterpolator> volumeInterpolator;
 		QSharedPointer<VolumeSegmentator> volumeSegmentator;

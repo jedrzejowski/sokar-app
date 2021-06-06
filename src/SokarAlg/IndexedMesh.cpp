@@ -50,10 +50,7 @@ quint32 IndexedMesh::addVertex(const Vertex &newVertex, bool checkDup) {
 	if (checkDup) {
 
 		auto itr = std::find_if(vertices.begin(), vertices.end(), [&](const auto &vertex) {
-			return std::abs(vertex.x - newVertex.x) < EPS &&
-				   std::abs(vertex.y - newVertex.y) < EPS &&
-				   std::abs(vertex.z - newVertex.z) < EPS &&
-				   glm::distance(newVertex, vertex) < EPS;
+			return SokarGlm::fastInDistance(vertex, newVertex);
 		});
 
 		if (itr != vertices.end()) {

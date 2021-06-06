@@ -13,6 +13,14 @@
 
 #include <QDebug>
 
+namespace SokarGlm {
+
+	static const float EPS = 0.00001f;
+
+	[[nodiscard]]
+	bool fastInDistance(const glm::vec3 &v1, const glm::vec3 &v2, float distance = EPS);
+}
+
 template<int L, typename T, glm::qualifier Q>
 inline QDebug operator<<(QDebug dbg, const glm::vec<L, T, Q> &vec) {
 	return dbg << glm::to_string(vec).c_str();

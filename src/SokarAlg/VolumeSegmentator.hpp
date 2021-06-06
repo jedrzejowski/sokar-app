@@ -11,10 +11,13 @@
 namespace SokarAlg {
 
 	class VolumeSegmentator {
+//		using MeshType = IndexedMesh;
+		using MeshType = Sokar3D::StaticMesh;
 	protected:
 
+
 		QSharedPointer<const Volume> volume;
-		QSharedPointer<IndexedMesh> mesh = nullptr;
+		QSharedPointer<MeshType> mesh = nullptr;
 
 		virtual void execAlg() = 0;
 
@@ -32,7 +35,7 @@ namespace SokarAlg {
 		void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2);
 
 		[[nodiscard]]
-		const QSharedPointer<IndexedMesh> &getMesh() const;
+		const QSharedPointer<MeshType> &getMesh() const;
 	};
 }
 

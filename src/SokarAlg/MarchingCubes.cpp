@@ -308,18 +308,17 @@ const qint32 triTable[256][16] = {
 void MarchingCubes::execAlg() {
 
 	auto size = volume->getSize() - cubeSize;
-	auto cubes = size / cubeSize;
+	QElapsedTimer timer;
+	timer.start();
 
 	qDebug() << "size=" << size.x << ";" << size.y << ";" << size.z;
 
-	for (float x = 0; x < size.x - cubeSize.x; x += cubeSize.x) {
-		for (float y = 0; y < size.y - cubeSize.y; y += cubeSize.y) {
-			for (float z = 0; z < size.z - cubeSize.z; z += cubeSize.z) {
+	forI32space({0, 0, 0}, size, [this](const auto &pos) {
+		marchCube(getCube(pos, cubeSize));
+	});
 
-				marchCube(getCube(glm::i32vec3(x, y, z), cubeSize));
-			}
-		}
-	}
+
+	qDebug() << "The slow operation took" << timer.elapsed() << "milliseconds";
 }
 
 
@@ -360,7 +359,6 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 
 	quint32 cubeindex = 0;
 	std::vector<glm::vec3> vertlist(12);
-
 
 	if (isoLevel.distance(cube.value[0]) > 0) cubeindex |= 1;
 	if (isoLevel.distance(cube.value[1]) > 0) cubeindex |= 2;
@@ -406,8 +404,8 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 
 		addTriangle(
 				vertlist[triTable[cubeindex][i]],
-				vertlist[triTable[cubeindex][i + 1]],
-				vertlist[triTable[cubeindex][i + 2]]
+				vertlist[triTable[cubeindex][i + 2]],
+				vertlist[triTable[cubeindex][i + 1]]
 		);
 	}
 

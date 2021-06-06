@@ -5,7 +5,6 @@
 #include <QtConcurrent/QtConcurrentRun>
 #include "SegmentationWindow.hpp"
 #include "ui_SegmentationWindow.h"
-#include "SegmentationPipelineEditor.hpp"
 #include "SokarAlg/SegmentationPipeline.hpp"
 #include "Sokar3D/CenterCamera.hpp"
 #include "Sokar3D/MeshPipeline.hpp"
@@ -41,9 +40,9 @@ void SegmentationWindow::setRawDicomVolume(const QSharedPointer<const SokarAlg::
 
 void SegmentationWindow::startSegmentation(bool append) {
 
-	QProgressDialog progress("Copying files...", "Abort Copy", 0, 10, this);
-	progress.setWindowModality(Qt::WindowModal);
-	progress.show();
+//	QProgressDialog progress("Copying files...", "Abort Copy", 0, 10, this);
+//	progress.setWindowModality(Qt::WindowModal);
+//	progress.show();
 
 
 	pipeline = QSharedPointer<SokarAlg::SegmentationPipeline>::create();
@@ -51,20 +50,17 @@ void SegmentationWindow::startSegmentation(bool append) {
 
 	auto future = pipeline->executePipeline();
 
-	auto watcher = new QFutureWatcher<QSharedPointer<Sokar3D::StaticMesh>>();
+	auto watcher = new QFutureWatcher<SokarAlg::SegmentationResult>();
 	qDebug() << watcher;
 
 	QObject::connect(watcher, &QFutureWatcherBase::finished, [watcher, this]() {
 		qDebug() << "here";
 		qDebug() << watcher;
-		auto mesh = watcher->result();
-
-		auto vvSize = rawDicomVolume->getSize();
-		vvSize = glm::vec3(20.f);
+		auto result = watcher->result();
 
 		auto camera = new Sokar3D::CenterCamera(
-				glm::vec3(vvSize) * 0.5f,
-				std::max(std::max(vvSize.x, vvSize.y), vvSize.z) * 2.f
+				result.proposeCameraCenter,
+				result.proposeCameraDistance
 		);
 		vulkanRenderer->setCamera(camera);
 
@@ -73,7 +69,7 @@ void SegmentationWindow::startSegmentation(bool append) {
 //		qDebug() << mesh->verticesCount();
 //		qDebug() << mesh2->indexCount() << mesh2->verticesCount();
 
-		auto pipeline = new Sokar3D::MeshPipeline(mesh);
+		auto pipeline = new Sokar3D::MeshPipeline(result.mesh);
 		vulkanRenderer->addPipelineWrapper(pipeline);
 	});
 
