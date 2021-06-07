@@ -27,7 +27,7 @@ namespace Sokar3D {
 		glm::vec3 m_lightPos;
 		glm::mat4 projectionMatrix;
 
-		bool framePending;
+		bool framePending = false;
 
 		void buildFrame();
 		void ensureBuffers();

@@ -33,7 +33,7 @@ namespace SokarAlg {
 		float interpolate(const glm::vec3 &position) const override;
 	};
 
-	class LinearValueInterpolator : public VolumeInterpolator {
+	class LinearVolumeInterpolator : public VolumeInterpolator {
 	public:
 		[[nodiscard]]
 		float interpolate(const glm::vec3 &position) const override;
@@ -52,7 +52,7 @@ namespace SokarAlg {
 		float interpolate(const glm::vec3 &position) const override;
 	};
 
-	class PolynomialValueInterpolator2 : public PolynomialVolumeInterpolator1 {
+	class PolynomialVolumeInterpolator2 : public PolynomialVolumeInterpolator1 {
 	public:
 
 		[[nodiscard]]
@@ -75,7 +75,7 @@ namespace SokarAlg {
 	private:
 		std::array<std::array<float, 4>, 4> blend;
 	public:
-		explicit CubicVolumeInterpolator(bool catmullRom);
+		explicit CubicVolumeInterpolator(bool catmullRom = false);
 		float interpolate(const glm::vec3 &position) const override;
 	};
 

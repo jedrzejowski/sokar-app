@@ -16,17 +16,17 @@ namespace Ui {
 
 namespace SokarUi {
 
-	struct SegmentationPipelineData {
-	};
-
 	class SegmentationPipelineEditor : public QWidget {
 	Q_OBJECT
 		Ui::SokarSegmentationPipelineEditor *ui;
+		QSharedPointer<SokarAlg::SegmentationPipeline> pipeline;
 
 		void setupUi();
 
 	public:
 		explicit SegmentationPipelineEditor(QWidget *parent = nullptr);
-		virtual ~SegmentationPipelineEditor();
+		~SegmentationPipelineEditor() override;
+
+		const QSharedPointer<SokarAlg::SegmentationPipeline> &getPipeline() const;
 	};
 }

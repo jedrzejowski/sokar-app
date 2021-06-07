@@ -45,3 +45,19 @@ void VolumeSegmentator::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, co
 const QSharedPointer<VolumeSegmentator::MeshType> &VolumeSegmentator::getMesh() const {
 	return mesh;
 }
+
+float VolumeSegmentator::getIsoLevel() const {
+	return isoLevel;
+}
+
+void VolumeSegmentator::setIsoLevel(float isoLevel) {
+	VolumeSegmentator::isoLevel = isoLevel;
+}
+
+VolumeSegmentator::Compare VolumeSegmentator::getIsoCompare() const {
+	return isoCompare;
+}
+
+void VolumeSegmentator::setIsoCompare(VolumeSegmentator::Compare isoCompare) {
+	VolumeSegmentator::isoCompare = isoCompare;
+}

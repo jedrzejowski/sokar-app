@@ -7,10 +7,12 @@
 #include "SokarAlg.hpp"
 #include "VolumeSegmentator.hpp"
 #include "DicomVolume.hpp"
+#include "DicomVolume.hpp"
+#include "SokarUi/SegmentationPipelineEditor.hpp"
 
 namespace SokarAlg {
 
-	struct SegmentationResult{
+	struct SegmentationResult {
 		QSharedPointer<Sokar3D::StaticMesh> mesh;
 		TimePoint timeStarted;
 		TimePoint timePreCache;
@@ -25,7 +27,10 @@ namespace SokarAlg {
 
 	class SegmentationPipeline : public QObject {
 	Q_OBJECT
+		friend SokarUi::SegmentationPipelineEditor;
 	public:
+
+		SegmentationPipeline();
 
 		enum Stage {
 			INTERPOLATION,
@@ -33,25 +38,25 @@ namespace SokarAlg {
 			MESH_SIMPLIFICATION
 		};
 
-		std::atomic<int> stepsDone = 0;
-		std::atomic<int> allSteps = 0;
+		QAtomicInt stepsDone = 0;
+		QAtomicInt allSteps = 0;
 
 	private:
 		bool running = false;
 		Stage stage;
 		bool usingCache = true;
-	public:
 
-		QFuture<SegmentationResult> executePipeline();
+		float cubesPerMm;
+		QColor color = QColor("#BF4024");
+		QSharedPointer<const RawDicomVolume> rawDicomVolume = nullptr;
+		QSharedPointer<VolumeInterpolator> volumeInterpolator = nullptr;
+		QSharedPointer<VolumeSegmentator> volumeSegmentator = nullptr;
+		QSharedPointer<MeshSimplificator> meshSimplificator = nullptr;
+
+		QFuture<QSharedPointer<const SegmentationResult>> executePipeline();
 
 	signals:
 		void updateProgress();
-
-	public:
-		QSharedPointer<const RawDicomVolume> rawDicomVolume;
-		QSharedPointer<VolumeInterpolator> volumeInterpolator;
-		QSharedPointer<VolumeSegmentator> volumeSegmentator;
-		QSharedPointer<MeshSimplificator> meshSimplificator;
 	};
 }
 

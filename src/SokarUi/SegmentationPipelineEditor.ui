@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>490</width>
-    <height>711</height>
+    <height>759</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,11 +19,48 @@
      <property name="title">
       <string>Interpolacja</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
-      <item>
+     <layout class="QGridLayout" name="gridLayout_4">
+      <item row="4" column="1">
+       <widget class="QSpinBox" name="interpolationSizeZ"/>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Wielkość Y</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label_6">
+        <property name="text">
+         <string>Wielkość Z</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>Bok woksela [mm]</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QSpinBox" name="interpolationSizeY"/>
+      </item>
+      <item row="2" column="1">
+       <widget class="QSpinBox" name="interpolationSizeX"/>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Wielkość X</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="2">
        <widget class="QComboBox" name="interpolationCombo">
         <property name="currentIndex">
-         <number>-1</number>
+         <number>0</number>
         </property>
         <item>
          <property name="text">
@@ -47,11 +84,6 @@
         </item>
         <item>
          <property name="text">
-          <string>Akima</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
           <string>Sześciennna</string>
          </property>
         </item>
@@ -62,39 +94,12 @@
         </item>
        </widget>
       </item>
-      <item>
-       <layout class="QGridLayout" name="gridLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="label_4">
-          <property name="text">
-           <string>Wielkość X</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_6">
-          <property name="text">
-           <string>Wielkość Z</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_5">
-          <property name="text">
-           <string>Wielkość Y</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="interpolationSizeZ"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="interpolationSizeY"/>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="interpolationSizeX"/>
-        </item>
-       </layout>
+      <item row="0" column="1">
+       <widget class="QDoubleSpinBox" name="wokselSize">
+        <property name="value">
+         <double>1.000000000000000</double>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -104,11 +109,49 @@
      <property name="title">
       <string>Segmentacja</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_3">
-      <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Wartość dolna</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Pamięć podręczna</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="treshhol"/>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="useCache">
+        <item>
+         <property name="text">
+          <string>Tak</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Nie</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Wartość górna</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
        <widget class="QComboBox" name="segmentationComboBox">
         <property name="currentIndex">
-         <number>-1</number>
+         <number>0</number>
         </property>
         <item>
          <property name="text">
@@ -122,39 +165,8 @@
         </item>
        </widget>
       </item>
-      <item>
-       <layout class="QGridLayout" name="marchingBox">
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="text">
-           <string>Wartość górna</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0">
-         <widget class="QLabel" name="label_3">
-          <property name="text">
-           <string>Wartość dolna</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="0">
-         <widget class="QLabel" name="label">
-          <property name="text">
-           <string>Rozmiar figury [mm]</string>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1">
-         <widget class="QLineEdit" name="lineEdit"/>
-        </item>
-        <item row="1" column="1">
-         <widget class="QLineEdit" name="lineEdit_2"/>
-        </item>
-        <item row="2" column="1">
-         <widget class="QLineEdit" name="lineEdit_3"/>
-        </item>
-       </layout>
+      <item row="3" column="1">
+       <widget class="QDoubleSpinBox" name="treshholdDown"/>
       </item>
      </layout>
     </widget>
@@ -167,6 +179,29 @@
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
        <widget class="QComboBox" name="comboBox_4"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox_3">
+     <property name="title">
+      <string>Wygląd</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Kolor</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QPushButton" name="colorPushButton">
+        <property name="text">
+         <string>PushButton</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

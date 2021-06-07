@@ -61,7 +61,7 @@ namespace SokarAlg {
 
 	class NearestVolumeInterpolator;
 
-	class LinearValueInterpolator;
+	class LinearVolumeInterpolator;
 
 	class CubicVolumeInterpolator;
 

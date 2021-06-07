@@ -5,6 +5,7 @@
 #pragma once
 
 #include <QtCore>
+#include <QWidget>
 #include <QObject>
 
 namespace SokarUi{

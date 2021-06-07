@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <string>
+
 class SokarException : std::exception {
 private:
 	std::string msg;
@@ -17,11 +19,11 @@ public:
 			where(where), file(file), line(line), msg(msg) {
 	};
 
-	ZprException(const char *file, int line, const char *where, const char *msg) :
+	SokarException(const char *file, int line, const char *where, const char *msg) :
 			where(where), file(file), line(line), msg(msg) {
 	};
 
-	ZprException(const char *file, int line, const char *where, char *msg) :
+	SokarException(const char *file, int line, const char *where, char *msg) :
 			where(where), file(file), line(line), msg(msg) {
 	};
 
@@ -39,4 +41,4 @@ public:
 };
 
 
-#define sokarException(where, what) ZprException(__FILE__, __LINE__, where, what)
+#define sokarException(where, what) SokarException(__FILE__, __LINE__, where, what)

@@ -323,18 +323,13 @@ void MarchingCubes::execAlg() {
 
 
 glm::vec3 vertexInterp(
-		const Range<float> range,
+		float isoLevel,
 		const glm::u32vec3 &p1,
 		const glm::u32vec3 &p2,
 		float valp1, float valp2
 ) {
-	float mu, isoLevel = range.from;
+	float mu;
 	glm::vec3 p;
-
-	if ((valp1 < range.to && range.to < valp2) ||
-		(valp1 > range.to && range.to > valp2)) {
-		isoLevel = range.to;
-	}
 
 	if (areSame(isoLevel, valp1)) {
 		return p1;
@@ -360,14 +355,30 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 	quint32 cubeindex = 0;
 	std::vector<glm::vec3> vertlist(12);
 
-	if (isoLevel.distance(cube.value[0]) > 0) cubeindex |= 1;
-	if (isoLevel.distance(cube.value[1]) > 0) cubeindex |= 2;
-	if (isoLevel.distance(cube.value[2]) > 0) cubeindex |= 4;
-	if (isoLevel.distance(cube.value[3]) > 0) cubeindex |= 8;
-	if (isoLevel.distance(cube.value[4]) > 0) cubeindex |= 16;
-	if (isoLevel.distance(cube.value[5]) > 0) cubeindex |= 32;
-	if (isoLevel.distance(cube.value[6]) > 0) cubeindex |= 64;
-	if (isoLevel.distance(cube.value[7]) > 0) cubeindex |= 128;
+	switch (isoCompare) {
+
+		case VolumeSegmentator::LessThen:
+			if (isoLevel < cube.value[0]) cubeindex |= 1;
+			if (isoLevel < cube.value[1]) cubeindex |= 2;
+			if (isoLevel < cube.value[2]) cubeindex |= 4;
+			if (isoLevel < cube.value[3]) cubeindex |= 8;
+			if (isoLevel < cube.value[4]) cubeindex |= 16;
+			if (isoLevel < cube.value[5]) cubeindex |= 32;
+			if (isoLevel < cube.value[6]) cubeindex |= 64;
+			if (isoLevel < cube.value[7]) cubeindex |= 128;
+			break;
+
+		case VolumeSegmentator::MoreThen:
+			if (isoLevel > cube.value[0]) cubeindex |= 1;
+			if (isoLevel > cube.value[1]) cubeindex |= 2;
+			if (isoLevel > cube.value[2]) cubeindex |= 4;
+			if (isoLevel > cube.value[3]) cubeindex |= 8;
+			if (isoLevel > cube.value[4]) cubeindex |= 16;
+			if (isoLevel > cube.value[5]) cubeindex |= 32;
+			if (isoLevel > cube.value[6]) cubeindex |= 64;
+			if (isoLevel > cube.value[7]) cubeindex |= 128;
+			break;
+	}
 
 	if (edgeTable[cubeindex] == 0)
 		return 0;
@@ -411,15 +422,6 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 
 
 	return triangleCount;
-}
-
-
-const Range<float> &MarchingCubes::getIsoLevel() const {
-	return isoLevel;
-}
-
-void MarchingCubes::setIsoLevel(const Range<float> &lvl) {
-	isoLevel = lvl;
 }
 
 const glm::i32vec3 &MarchingCubes::getCubeSize() const {

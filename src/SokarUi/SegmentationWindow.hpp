@@ -23,7 +23,6 @@ namespace SokarUi {
 		Sokar3D::VulkanWidget *vulkanWidget;
 		Sokar3D::VulkanRenderer *vulkanRenderer;
 		SegmentationPipelineEditor *pipelineEditor;
-		QSharedPointer<SokarAlg::SegmentationPipeline> pipeline;
 
 	public:
 		explicit SegmentationWindow(QWidget *parent = nullptr);

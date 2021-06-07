@@ -44,36 +44,30 @@ void SegmentationWindow::startSegmentation(bool append) {
 //	progress.setWindowModality(Qt::WindowModal);
 //	progress.show();
 
-
-	pipeline = QSharedPointer<SokarAlg::SegmentationPipeline>::create();
-	pipeline->rawDicomVolume = rawDicomVolume;
-
-	auto future = pipeline->executePipeline();
-
-	auto watcher = new QFutureWatcher<SokarAlg::SegmentationResult>();
-	qDebug() << watcher;
-
-	QObject::connect(watcher, &QFutureWatcherBase::finished, [watcher, this]() {
-		qDebug() << "here";
-		qDebug() << watcher;
-		auto result = watcher->result();
-
-		auto camera = new Sokar3D::CenterCamera(
-				result.proposeCameraCenter,
-				result.proposeCameraDistance
-		);
-		vulkanRenderer->setCamera(camera);
-
-//		auto mesh2 = mesh->toIndexedStaticMesh();
-
-//		qDebug() << mesh->verticesCount();
-//		qDebug() << mesh2->indexCount() << mesh2->verticesCount();
-
-		auto pipeline = new Sokar3D::MeshPipeline(result.mesh);
-		vulkanRenderer->addPipelineWrapper(pipeline);
-	});
-
-	watcher->setFuture(future);
+//	pipeline = QSharedPointer<SokarAlg::SegmentationPipeline>::create();
+//	pipeline->rawDicomVolume = rawDicomVolume;
+//
+//	auto future = pipeline->executePipeline();
+//
+//	auto watcher = new QFutureWatcher<SokarAlg::SegmentationResult>();
+//	qDebug() << watcher;
+//
+//	QObject::connect(watcher, &QFutureWatcherBase::finished, [watcher, this]() {
+//		qDebug() << "here";
+//		qDebug() << watcher;
+//		auto result = watcher->result();
+//
+//		auto camera = new Sokar3D::CenterCamera(
+//				result.proposeCameraCenter,
+//				result.proposeCameraDistance
+//		);
+//		vulkanRenderer->setCamera(camera);
+//
+//		auto pipeline = new Sokar3D::MeshPipeline(result.mesh);
+//		vulkanRenderer->addPipelineWrapper(pipeline);
+//	});
+//
+//	watcher->setFuture(future);
 }
 
 void SegmentationWindow::endSegmentation(QSharedPointer<const Sokar3D::StaticMesh> mesh) {

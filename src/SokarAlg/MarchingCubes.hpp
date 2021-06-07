@@ -8,7 +8,7 @@
 #include "Volume.hpp"
 #include "VolumeSegmentator.hpp"
 #include "Sokar3D/StaticMesh.hpp"
-#include "Range.h"
+#include "Range.hpp"
 
 namespace SokarAlg {
 
@@ -19,17 +19,12 @@ namespace SokarAlg {
 			float value[8];
 		};
 
-		Range<float> isoLevel;
 		glm::i32vec3 cubeSize = glm::i32vec3(1.f);
 
 	protected:
 		void execAlg() override;
 
 	public:
-
-		[[nodiscard]]
-		const Range<float> &getIsoLevel() const;
-		void setIsoLevel(const Range<float> &range);
 
 		[[nodiscard]]
 		const glm::i32vec3 &getCubeSize() const;

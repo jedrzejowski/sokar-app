@@ -8,6 +8,7 @@
 using namespace SokarAlg;
 
 VolumeInterpolator::~VolumeInterpolator() {
+	qDebug() << "~VolumeInterpolator()";
 }
 
 const QSharedPointer<const Volume> &VolumeInterpolator::getVolume() const {
@@ -32,7 +33,7 @@ float NearestVolumeInterpolator::interpolate(const glm::vec3 &position) const {
 							});
 }
 
-float LinearValueInterpolator::interpolate(const glm::vec3 &position) const {
+float LinearVolumeInterpolator::interpolate(const glm::vec3 &position) const {
 
 	// https://stackoverflow.com/questions/3300290/cast-to-int-vs-floor
 	glm::i32vec3 i32pos = position;
@@ -109,7 +110,7 @@ float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
 	return u;
 }
 
-float PolynomialValueInterpolator2::interpolate(const glm::vec3 &pos) const {
+float PolynomialVolumeInterpolator2::interpolate(const glm::vec3 &pos) const {
 	// rozwiązanie analityczne
 	// https://math.stackexchange.com/a/2099510
 
