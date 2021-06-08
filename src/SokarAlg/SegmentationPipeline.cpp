@@ -13,6 +13,7 @@ using namespace SokarAlg;
 
 SegmentationPipeline::SegmentationPipeline()
 		: QObject(nullptr),
+		  dicomVolume(QSharedPointer<DicomVolume>::create()),
 		  volumeInterpolator(QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create()),
 		  volumeSegmentator(QSharedPointer<SokarAlg::MarchingCubes>::create()) {
 }
@@ -23,13 +24,14 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 		auto result = QSharedPointer<SegmentationResult>::create();
 		result->timeStarted = makeTimePoint();
 
+		// volume
 
-		auto dicomVolume = QSharedPointer<DicomVolume>::create();
 		dicomVolume->setRawDicomVolume(rawDicomVolume);
-		dicomVolume->setCubesPerMM(cubesPerMm);
 		dicomVolume->setInterpolator(volumeInterpolator);
 
 		volume = dicomVolume;
+
+		//endregion
 
 		//region caching
 
@@ -44,11 +46,11 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 
 		//endregion
 
-//		mc->setIsoLevel({0.5f, 20000.f});
 
 		//region marching
 		qDebug() << "marching ...";
 
+		volumeSegmentator->setIsoLevel({0.5f, 20000.f});
 		volumeSegmentator->setVolume(volume);
 		volumeSegmentator->execSync();
 
@@ -77,4 +79,52 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 
 		return result;
 	});
+}
+
+const QColor &SegmentationPipeline::getColor() const {
+	return color;
+}
+
+void SegmentationPipeline::setColor(const QColor &newColor) {
+	color = newColor;
+}
+
+const QSharedPointer<const RawDicomVolume> &SegmentationPipeline::getRawDicomVolume() const {
+	return rawDicomVolume;
+}
+
+void SegmentationPipeline::setRawDicomVolume(const QSharedPointer<const RawDicomVolume> &newRawDicomVolume) {
+	rawDicomVolume = newRawDicomVolume;
+}
+
+const QSharedPointer<DicomVolume> &SegmentationPipeline::getDicomVolume() const {
+	return dicomVolume;
+}
+
+void SegmentationPipeline::setDicomVolume(const QSharedPointer<DicomVolume> &newDicomVolume) {
+	dicomVolume = newDicomVolume;
+}
+
+const QSharedPointer<VolumeInterpolator> &SegmentationPipeline::getVolumeInterpolator() const {
+	return volumeInterpolator;
+}
+
+void SegmentationPipeline::setVolumeInterpolator(const QSharedPointer<VolumeInterpolator> &newVolumeInterpolator) {
+	volumeInterpolator = newVolumeInterpolator;
+}
+
+const QSharedPointer<VolumeSegmentator> &SegmentationPipeline::getVolumeSegmentator() const {
+	return volumeSegmentator;
+}
+
+void SegmentationPipeline::setVolumeSegmentator(const QSharedPointer<VolumeSegmentator> &newVolumeSegmentator) {
+	volumeSegmentator = newVolumeSegmentator;
+}
+
+const QSharedPointer<MeshSimplificator> &SegmentationPipeline::getMeshSimplificator() const {
+	return meshSimplificator;
+}
+
+void SegmentationPipeline::setMeshSimplificator(const QSharedPointer<MeshSimplificator> &newMeshSimplificator) {
+	meshSimplificator = newMeshSimplificator;
 }

@@ -46,18 +46,10 @@ const QSharedPointer<VolumeSegmentator::MeshType> &VolumeSegmentator::getMesh() 
 	return mesh;
 }
 
-float VolumeSegmentator::getIsoLevel() const {
+Range<float> VolumeSegmentator::getIsoLevel() const {
 	return isoLevel;
 }
 
-void VolumeSegmentator::setIsoLevel(float isoLevel) {
-	VolumeSegmentator::isoLevel = isoLevel;
-}
-
-VolumeSegmentator::Compare VolumeSegmentator::getIsoCompare() const {
-	return isoCompare;
-}
-
-void VolumeSegmentator::setIsoCompare(VolumeSegmentator::Compare isoCompare) {
-	VolumeSegmentator::isoCompare = isoCompare;
+void VolumeSegmentator::setIsoLevel(Range<float> newIsoLevel) {
+	isoLevel = newIsoLevel;
 }

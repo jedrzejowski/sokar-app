@@ -43,7 +43,7 @@ void SegmentationPipelineEditor::setupUi() {
 			ui->wokselSize,
 			qOverload<double>(&QDoubleSpinBox::valueChanged),
 			[=](double value) {
-				pipeline->cubesPerMm = 1.f / float(value);
+				pipeline->dicomVolume->setCubesPerMM(1.f / float(value));
 			});
 
 	QObject::connect(

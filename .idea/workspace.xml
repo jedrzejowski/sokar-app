@@ -17,30 +17,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="kommit kotnrolny">
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Range.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Range.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarException.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarException.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SokarUi.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SokarUi.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -395,9 +381,9 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="sokar">
@@ -606,14 +592,8 @@
       <workItem from="1621946353431" duration="1896000" />
       <workItem from="1622057489505" duration="38000" />
       <workItem from="1623008452707" duration="10631000" />
-      <workItem from="1623065203617" duration="12686000" />
-    </task>
-    <task id="LOCAL-00007" summary="CMAKE: przerobienie wszystkiego">
-      <created>1543445928649</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1543445928649</updated>
+      <workItem from="1623065203617" duration="12705000" />
+      <workItem from="1623146363260" duration="2400000" />
     </task>
     <task id="LOCAL-00008" summary="Przeglądarka zaczeła wyglądać jako tako">
       <created>1543624554551</created>
@@ -951,7 +931,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621617867950</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="kommit kotnrolny">
+      <created>1623106963411</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1623106963411</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1020,6 +1007,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

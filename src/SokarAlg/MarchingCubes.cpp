@@ -323,13 +323,17 @@ void MarchingCubes::execAlg() {
 
 
 glm::vec3 vertexInterp(
-		float isoLevel,
+		const Range<float> &range,
 		const glm::u32vec3 &p1,
 		const glm::u32vec3 &p2,
 		float valp1, float valp2
 ) {
-	float mu;
+	float mu, isoLevel = range.from;
 	glm::vec3 p;
+
+	if (valp1 > range.to || valp2 > range.to {
+		isoLevel = range.to;
+	};
 
 	if (areSame(isoLevel, valp1)) {
 		return p1;
@@ -355,30 +359,15 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 	quint32 cubeindex = 0;
 	std::vector<glm::vec3> vertlist(12);
 
-	switch (isoCompare) {
 
-		case VolumeSegmentator::LessThen:
-			if (isoLevel < cube.value[0]) cubeindex |= 1;
-			if (isoLevel < cube.value[1]) cubeindex |= 2;
-			if (isoLevel < cube.value[2]) cubeindex |= 4;
-			if (isoLevel < cube.value[3]) cubeindex |= 8;
-			if (isoLevel < cube.value[4]) cubeindex |= 16;
-			if (isoLevel < cube.value[5]) cubeindex |= 32;
-			if (isoLevel < cube.value[6]) cubeindex |= 64;
-			if (isoLevel < cube.value[7]) cubeindex |= 128;
-			break;
-
-		case VolumeSegmentator::MoreThen:
-			if (isoLevel > cube.value[0]) cubeindex |= 1;
-			if (isoLevel > cube.value[1]) cubeindex |= 2;
-			if (isoLevel > cube.value[2]) cubeindex |= 4;
-			if (isoLevel > cube.value[3]) cubeindex |= 8;
-			if (isoLevel > cube.value[4]) cubeindex |= 16;
-			if (isoLevel > cube.value[5]) cubeindex |= 32;
-			if (isoLevel > cube.value[6]) cubeindex |= 64;
-			if (isoLevel > cube.value[7]) cubeindex |= 128;
-			break;
-	}
+	if (!isoLevel.isOn(cube.value[0])) cubeindex |= 1;
+	if (!isoLevel.isOn(cube.value[1])) cubeindex |= 2;
+	if (!isoLevel.isOn(cube.value[2])) cubeindex |= 4;
+	if (!isoLevel.isOn(cube.value[3])) cubeindex |= 8;
+	if (!isoLevel.isOn(cube.value[4])) cubeindex |= 16;
+	if (!isoLevel.isOn(cube.value[5])) cubeindex |= 32;
+	if (!isoLevel.isOn(cube.value[6])) cubeindex |= 64;
+	if (!isoLevel.isOn(cube.value[7])) cubeindex |= 128;
 
 	if (edgeTable[cubeindex] == 0)
 		return 0;

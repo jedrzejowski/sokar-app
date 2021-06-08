@@ -6,6 +6,7 @@
 
 #include "./SokarAlg.hpp"
 #include "Volume.hpp"
+#include "Range.hpp"
 #include "Sokar3D/StaticMesh.hpp"
 
 namespace SokarAlg {
@@ -13,17 +14,11 @@ namespace SokarAlg {
 	class VolumeSegmentator {
 //		using MeshType = IndexedMesh;
 		using MeshType = Sokar3D::StaticMesh;
-	public:
-		enum Compare {
-			LessThen,
-			MoreThen,
-		};
 	protected:
 
 		QSharedPointer<const Volume> volume;
 		QSharedPointer<MeshType> mesh = nullptr;
-		float isoLevel = 0.5f;
-		Compare isoCompare = LessThen;
+		Range<float> isoLevel = {0.5f, 1.f};
 
 		virtual void execAlg() = 0;
 
@@ -34,11 +29,9 @@ namespace SokarAlg {
 		void execSync();
 
 		[[nodiscard]]
-		float getIsoLevel() const;
-		void setIsoLevel(float isoLevel);
+		Range<float> getIsoLevel() const;
+		void setIsoLevel(Range<float> isoLevel);
 
-		Compare getIsoCompare() const;
-		void setIsoCompare(Compare isoCompare);
 
 		[[nodiscard]]
 		const QSharedPointer<const Volume> &getVolume() const;
