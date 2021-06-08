@@ -25,7 +25,6 @@ enum Methods {
 
 SegmentationPipelineEditor::SegmentationPipelineEditor(QWidget *parent)
 		: QWidget(parent),
-		  pipeline(QSharedPointer<SokarAlg::SegmentationPipeline>::create()),
 		  ui(new Ui::SokarSegmentationPipelineEditor) {
 
 	setupUi();
@@ -38,86 +37,87 @@ SegmentationPipelineEditor::~SegmentationPipelineEditor() {
 void SegmentationPipelineEditor::setupUi() {
 	ui->setupUi(this);
 
-
-	QObject::connect(
-			ui->wokselSize,
-			qOverload<double>(&QDoubleSpinBox::valueChanged),
-			[=](double value) {
-				pipeline->dicomVolume->setCubesPerMM(1.f / float(value));
-			});
-
-	QObject::connect(
-			ui->interpolationCombo,
-			qOverload<int>(&QComboBox::currentIndexChanged),
-			[=](auto index) {
-
-				switch (index) {
-
-					case Methods::Nearest:
-						pipeline->volumeInterpolator = QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create();
-						break;
-
-					case Methods::Linear:
-						pipeline->volumeInterpolator = QSharedPointer<SokarAlg::LinearVolumeInterpolator>::create();
-						break;
-
-					case Methods::Poly1:
-						pipeline->volumeInterpolator = QSharedPointer<SokarAlg::PolynomialVolumeInterpolator1>::create();
-						break;
-
-					case Methods::Poly2:
-						pipeline->volumeInterpolator = QSharedPointer<SokarAlg::PolynomialVolumeInterpolator2>::create();
-						break;
-
-					case Methods::Cubic:
-						pipeline->volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create();
-						break;
-
-					case Methods::CalumRom:
-						pipeline->volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create(true);
-						break;
-
-					default:
-						throw sokarException("SegmentationPipelineEditor", "unknown index");
-				}
-			});
-
-	QObject::connect(
-			ui->segmentationComboBox,
-			qOverload<int>(&QComboBox::currentIndexChanged),
-			[=](auto index) {
-				switch (index) {
-
-					case Methods::MarchingCubes:
-						pipeline->volumeSegmentator = QSharedPointer<SokarAlg::MarchingCubes>::create();
-						break;
-
-					case Methods::MarchingTetra:
-						pipeline->volumeSegmentator = QSharedPointer<SokarAlg::MarchingCubes>::create();
-						break;
-
-					default:
-						throw sokarException("SegmentationPipelineEditor", "unknown index");
-				}
-			});
-
-	QObject::connect(
-			ui->useCache,
-			qOverload<int>(&QComboBox::currentIndexChanged),
-			[=](auto index) {
-				pipeline->usingCache = index == 0;
-			});
-
-	ui->colorPushButton->setText(pipeline->color.name());
+	ui->colorPushButton->setText(meshColor.name());
 	QObject::connect(
 			ui->colorPushButton,
 			&QPushButton::clicked,
-			[=]() {
-				pipeline->color = QColorDialog::getColor(pipeline->color, this, "Wybierz kolor");
-				ui->colorPushButton->setText(pipeline->color.name());
+			[this]() {
+				meshColor = QColorDialog::getColor(meshColor, this, "Wybierz kolor");
+				ui->colorPushButton->setText(meshColor.name());
 			});
 }
 
-const QSharedPointer<SokarAlg::SegmentationPipeline> &SegmentationPipelineEditor::getPipeline() const {
+QSharedPointer<SokarAlg::SegmentationPipeline> SegmentationPipelineEditor::makePipeline() const {
+	auto pipeline = QSharedPointer<SokarAlg::SegmentationPipeline>::create();
+
+	//region interpolation
+
+
+	QSharedPointer<SokarAlg::VolumeInterpolator> volumeInterpolator = nullptr;
+
+	switch (ui->interpolationCombo->currentIndex()) {
+
+		case Methods::Nearest:
+			volumeInterpolator = QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create();
+			break;
+
+		case Methods::Linear:
+			volumeInterpolator = QSharedPointer<SokarAlg::LinearVolumeInterpolator>::create();
+			break;
+
+		case Methods::Poly1:
+			volumeInterpolator = QSharedPointer<SokarAlg::PolynomialVolumeInterpolator1>::create();
+			break;
+
+		case Methods::Poly2:
+			volumeInterpolator = QSharedPointer<SokarAlg::PolynomialVolumeInterpolator2>::create();
+			break;
+
+		case Methods::Cubic:
+			volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create();
+			break;
+
+		case Methods::CalumRom:
+			volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create(true);
+			break;
+	}
+
+	pipeline->setVolumeInterpolator(volumeInterpolator);
+
+	pipeline->getDicomVolume()->setCubesPerMM(1.f / float(ui->interpolationWokselSize->value()));
+	pipeline->setUseInterpolationCache(ui->cacheInterpolation->isChecked() == 0);
+
+	//endregion
+
+	//region segementation
+
+
+	QSharedPointer<SokarAlg::VolumeSegmentator> volumeSegmentator = nullptr;
+
+	switch (ui->segmentationAlgorithm->currentIndex()) {
+
+		case Methods::MarchingCubes:
+			volumeSegmentator = QSharedPointer<SokarAlg::MarchingCubes>::create();
+			break;
+
+		case Methods::MarchingTetra:
+			volumeSegmentator = QSharedPointer<SokarAlg::MarchingCubes>::create();
+			break;
+	}
+
+	volumeSegmentator->setIsoLevel({
+										   static_cast<float>(ui->segmentationTresholdUp->value()),
+										   static_cast<float>(ui->segmentationTresholdDown->value()),
+								   });
+	pipeline->setVolumeSegmentator(volumeSegmentator);
+
+	//endergion
+
+	//region desgin
+
+	pipeline->setColor(meshColor);
+
+	//endregion
+
 	return pipeline;
 }

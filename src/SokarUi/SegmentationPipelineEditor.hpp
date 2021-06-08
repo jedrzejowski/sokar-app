@@ -19,14 +19,14 @@ namespace SokarUi {
 	class SegmentationPipelineEditor : public QWidget {
 	Q_OBJECT
 		Ui::SokarSegmentationPipelineEditor *ui;
-		QSharedPointer<SokarAlg::SegmentationPipeline> pipeline;
-
+		QColor meshColor = QColor("#BF4024");
 		void setupUi();
 
 	public:
 		explicit SegmentationPipelineEditor(QWidget *parent = nullptr);
 		~SegmentationPipelineEditor() override;
 
-		const QSharedPointer<SokarAlg::SegmentationPipeline> &getPipeline() const;
+		[[nodiscard]]
+		QSharedPointer<SokarAlg::SegmentationPipeline> makePipeline() const;
 	};
 }

@@ -52,6 +52,8 @@ namespace Sokar3D {
 		VertUniformBufferObject vertUniformBufferObject;
 		FragUniformBufferObject fragUniformBufferObject;
 
+		QColor meshColor;
+
 	public:
 		explicit MeshPipeline(const QSharedPointer<const StaticMesh>& mesh);
 
@@ -61,6 +63,9 @@ namespace Sokar3D {
 		void releaseResources(const VkPipelineMetaArgs &args) override;
 
 		void setModelMatrix(const glm::mat4 &model);
+
+		const SolidMaterial &getMeshMaterial() const;
+		void setMeshMaterial(const SolidMaterial &material);
 	};
 }
 

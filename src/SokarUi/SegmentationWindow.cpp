@@ -8,6 +8,7 @@
 #include "SokarAlg/SegmentationPipeline.hpp"
 #include "Sokar3D/CenterCamera.hpp"
 #include "Sokar3D/MeshPipeline.hpp"
+#include "SegmentationResultWidget.hpp"
 
 using namespace SokarUi;
 
@@ -26,8 +27,10 @@ SegmentationWindow::SegmentationWindow(QWidget *parent)
 	ui->mainSplitter->insertWidget(0, ret.widget);
 	ui->vulkanPlacehodler->hide();
 
-	QObject::connect(ui->execSegementation, &QPushButton::clicked, [=]() { startSegmentation(); });
-	QObject::connect(ui->execSegementation2, &QPushButton::clicked, [=]() { startSegmentation(true); });
+	QObject::connect(ui->execSegementation, &QPushButton::clicked, [this]() { startSegmentation(); });
+	QObject::connect(ui->execSegementation2, &QPushButton::clicked, [this]() { startSegmentation(true); });
+
+	pipelineEditor = ui->pipelineEditor;
 }
 
 SegmentationWindow::~SegmentationWindow() {
@@ -40,9 +43,27 @@ void SegmentationWindow::setRawDicomVolume(const QSharedPointer<const SokarAlg::
 
 void SegmentationWindow::startSegmentation(bool append) {
 
-//	QProgressDialog progress("Copying files...", "Abort Copy", 0, 10, this);
-//	progress.setWindowModality(Qt::WindowModal);
-//	progress.show();
+	auto progressDialog = new QProgressDialog(this);
+	progressDialog->setAttribute(Qt::WA_DeleteOnClose);
+	progressDialog->setWindowTitle("Segmentowanie");
+	progressDialog->setModal(true);
+	progressDialog->setCancelButton(nullptr);
+	progressDialog->show();
+
+	QtConcurrent::run([this, progressDialog]() {
+
+		auto segmentationPipeline = pipelineEditor->makePipeline();
+		segmentationPipeline->setRawDicomVolume(rawDicomVolume);
+
+		auto future = segmentationPipeline->executePipeline();
+		future.waitForFinished();
+
+		auto result = future.result();
+
+		emit endSegmentation(result);
+
+		progressDialog->close();
+	});
 
 //	pipeline = QSharedPointer<SokarAlg::SegmentationPipeline>::create();
 //	pipeline->rawDicomVolume = rawDicomVolume;
@@ -70,5 +91,29 @@ void SegmentationWindow::startSegmentation(bool append) {
 //	watcher->setFuture(future);
 }
 
-void SegmentationWindow::endSegmentation(QSharedPointer<const Sokar3D::StaticMesh> mesh) {
+void SegmentationWindow::endSegmentation(QSharedPointer<const SokarAlg::SegmentationResult> result) {
+
+	auto camera = new Sokar3D::CenterCamera(
+			result->proposeCameraCenter,
+			result->proposeCameraDistance
+	);
+	vulkanRenderer->setCamera(camera);
+
+	auto graphicPipeline = new Sokar3D::MeshPipeline(result->mesh);
+
+	Sokar3D::SolidMaterial material{};
+	material.shininess = 64.0f;
+	material.specular = glm::vec3(0.5f, 0.5f, 0.5f);
+	material.color = glm::vec3(
+			result->meshColor.redF(),
+			result->meshColor.greenF(),
+			result->meshColor.blueF()
+	);
+	graphicPipeline->setMeshMaterial(material);
+
+//	auto resultWidget = new SegmentationResultWidget(result);
+//
+//	ui->resultLayout->addWidget(resultWidget);
+
+	vulkanRenderer->addPipelineWrapper(graphicPipeline);
 }

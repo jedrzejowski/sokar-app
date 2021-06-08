@@ -20,6 +20,8 @@ SegmentationPipeline::SegmentationPipeline()
 
 QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executePipeline() {
 	return QtConcurrent::run([&]() -> QSharedPointer<const SegmentationResult> {
+		QMutexLocker lock(&stateMutex);
+
 		QSharedPointer<const Volume> volume;
 		auto result = QSharedPointer<SegmentationResult>::create();
 		result->timeStarted = makeTimePoint();
@@ -29,6 +31,7 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 		dicomVolume->setRawDicomVolume(rawDicomVolume);
 		dicomVolume->setInterpolator(volumeInterpolator);
 
+//		volume = ExampleVolume::Sphere(100,40);
 		volume = dicomVolume;
 
 		//endregion
@@ -36,7 +39,7 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 		//region caching
 
 		result->timePreCache = makeTimePoint();
-		if (usingCache) {
+		if (useInterpolationCache) {
 			qDebug() << "caching ...";
 			auto cachedVolume = QSharedPointer<CachedVolume>::create();
 			cachedVolume->setVolume(volume, true);
@@ -50,7 +53,6 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 		//region marching
 		qDebug() << "marching ...";
 
-		volumeSegmentator->setIsoLevel({0.5f, 20000.f});
 		volumeSegmentator->setVolume(volume);
 		volumeSegmentator->execSync();
 
@@ -71,6 +73,7 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 
 //		result.mesh = mesh->toStaticMash();
 		result->mesh = mesh;
+		result->meshColor = meshColor;
 
 		result->timeEnded = makeTimePoint();
 
@@ -82,11 +85,11 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 }
 
 const QColor &SegmentationPipeline::getColor() const {
-	return color;
+	return meshColor;
 }
 
 void SegmentationPipeline::setColor(const QColor &newColor) {
-	color = newColor;
+	meshColor = newColor;
 }
 
 const QSharedPointer<const RawDicomVolume> &SegmentationPipeline::getRawDicomVolume() const {
@@ -127,4 +130,12 @@ const QSharedPointer<MeshSimplificator> &SegmentationPipeline::getMeshSimplifica
 
 void SegmentationPipeline::setMeshSimplificator(const QSharedPointer<MeshSimplificator> &newMeshSimplificator) {
 	meshSimplificator = newMeshSimplificator;
+}
+
+bool SegmentationPipeline::isUseInterpolationCache() const {
+	return useInterpolationCache;
+}
+
+void SegmentationPipeline::setUseInterpolationCache(bool newUsingCache) {
+	useInterpolationCache = newUsingCache;
 }

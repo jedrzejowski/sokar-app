@@ -1,9 +1,11 @@
+#include <SokarMacro.hpp>
 #include "dataconventer.h"
 #include "exception.h"
 
 using namespace Sokar;
 
 DataConverter::DataConverter() {
+	sokarTrace();
 }
 
 DataConverter::DataConverter(const gdcm::File &file) {
@@ -11,7 +13,7 @@ DataConverter::DataConverter(const gdcm::File &file) {
 }
 
 DataConverter::~DataConverter() {
-	qDebug("~DataConverter()");
+	sokarTrace();
 }
 
 

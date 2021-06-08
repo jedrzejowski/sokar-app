@@ -331,9 +331,9 @@ glm::vec3 vertexInterp(
 	float mu, isoLevel = range.from;
 	glm::vec3 p;
 
-	if (valp1 > range.to || valp2 > range.to {
-		isoLevel = range.to;
-	};
+//	if (valp1 > range.to || valp2 > range.to) {
+//		isoLevel = range.to;
+//	};
 
 	if (areSame(isoLevel, valp1)) {
 		return p1;

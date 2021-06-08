@@ -3,7 +3,6 @@
 //
 
 #include <QVulkanDeviceFunctions>
-#include "SokarLib/concat_array.h"
 #include "MeshPipeline.hpp"
 #include "VulkanWidget.hpp"
 #include "Camera.hpp"
@@ -390,10 +389,6 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 	fragUniformBufferObject.light.diffuse = glm::vec3(0.5f);
 	fragUniformBufferObject.light.specular = glm::vec3(1.0f);
 
-	fragUniformBufferObject.material.shininess = 64.0f;
-	fragUniformBufferObject.material.specular = glm::vec3(0.5f, 0.5f, 0.5f);
-	fragUniformBufferObject.material.color = glm::vec3(0.0f, 1.f, 0.f);
-
 	args.vkDeviceFunctions->vkCmdBindPipeline(cb, VK_PIPELINE_BIND_POINT_GRAPHICS, vkPipeline);
 
 	VkDeviceSize vbOffset = 0, ibOffset = 0;
@@ -432,4 +427,12 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
 
 void MeshPipeline::setModelMatrix(const glm::mat4 &model) {
 	vertUniformBufferObject.model = model;
+}
+
+const SolidMaterial &MeshPipeline::getMeshMaterial() const {
+	return fragUniformBufferObject.material;
+}
+
+void MeshPipeline::setMeshMaterial(const SolidMaterial &material) {
+	fragUniformBufferObject.material = material;
 }

@@ -33,7 +33,7 @@ namespace SokarUi {
 
 	private slots:
 		void startSegmentation(bool append = false);
-		void endSegmentation(QSharedPointer<const Sokar3D::StaticMesh> mesh);
+		void endSegmentation(QSharedPointer<const SokarAlg::SegmentationResult> mesh);
 	};
 }
 

@@ -14,4 +14,6 @@ namespace SokarUi{
 	class SegmentationWindow;
 
 	class SegmentationPipelineEditor;
+
+	class Vec3Input;
 }

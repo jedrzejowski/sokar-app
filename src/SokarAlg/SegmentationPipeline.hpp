@@ -14,6 +14,8 @@ namespace SokarAlg {
 
 	struct SegmentationResult {
 		QSharedPointer<Sokar3D::StaticMesh> mesh;
+		QColor meshColor;
+
 		TimePoint timeStarted;
 		TimePoint timePreCache;
 		TimePoint timePostCache;
@@ -23,6 +25,7 @@ namespace SokarAlg {
 
 		glm::vec3 proposeCameraCenter;
 		float proposeCameraDistance;
+
 	};
 
 	class SegmentationPipeline : public QObject {
@@ -35,26 +38,22 @@ namespace SokarAlg {
 		};
 
 	private:
-		bool running = false;
-		Stage stage;
-		bool usingCache = true;
+		QMutex stateMutex;
 
-		QAtomicInt stepsDone = 0;
-		QAtomicInt allSteps = 0;
-
-		QColor color = QColor("#BF4024");
+		bool useInterpolationCache = true;
+		QColor meshColor = QColor("#BF4024");
 		QSharedPointer<const RawDicomVolume> rawDicomVolume = nullptr;
 		QSharedPointer<DicomVolume> dicomVolume = nullptr;
 		QSharedPointer<VolumeInterpolator> volumeInterpolator = nullptr;
 		QSharedPointer<VolumeSegmentator> volumeSegmentator = nullptr;
 		QSharedPointer<MeshSimplificator> meshSimplificator = nullptr;
 
-		QFuture<QSharedPointer<const SegmentationResult>> executePipeline();
-
 	public:
 
 		SegmentationPipeline();
 
+		bool isUseInterpolationCache() const;
+		void setUseInterpolationCache(bool useCache);
 		const QColor &getColor() const;
 		void setColor(const QColor &color);
 		const QSharedPointer<const RawDicomVolume> &getRawDicomVolume() const;
@@ -68,8 +67,10 @@ namespace SokarAlg {
 		const QSharedPointer<MeshSimplificator> &getMeshSimplificator() const;
 		void setMeshSimplificator(const QSharedPointer<MeshSimplificator> &meshSimplificator);
 
+		QFuture<QSharedPointer<const SegmentationResult>> executePipeline();
+
 	signals:
-		void updateProgress();
+		void updateProgress(Stage stage, float progress);
 	};
 }
 

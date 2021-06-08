@@ -8,11 +8,12 @@
 using namespace SokarUi;
 
 SegmentationResultWidget::SegmentationResultWidget(
-		QWidget *parent,
-		const QSharedPointer<const SokarAlg::SegmentationResult> &result
+		const QSharedPointer<const SokarAlg::SegmentationResult> &result,
+		QWidget *parent
 ) : QWidget(parent),
 	result(result),
 	ui(new Ui::SegmentationResultWidget) {
+	ui->setupUi(this);
 }
 
 SokarUi::SegmentationResultWidget::~SegmentationResultWidget() {

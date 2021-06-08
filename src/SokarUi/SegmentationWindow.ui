@@ -31,7 +31,7 @@
           <property name="currentIndex">
            <number>1</number>
           </property>
-          <widget class="QScrollArea" name="scrollArea1">
+          <widget class="QScrollArea" name="segmentationTab">
            <property name="styleSheet">
             <string notr="true">QTabBar::tab {
                                                     background: transparent;
@@ -69,11 +69,11 @@
              </rect>
             </property>
             <property name="autoFillBackground">
-             <bool>false</bool>
+             <bool>true</bool>
             </property>
            </widget>
           </widget>
-          <widget class="QScrollArea" name="scrollArea2">
+          <widget class="QScrollArea" name="resultTab">
            <property name="styleSheet">
             <string notr="true"/>
            </property>
@@ -95,7 +95,7 @@
            <attribute name="title">
             <string>Wyniki</string>
            </attribute>
-           <widget class="QWidget" name="scrollAreaWidgetContents">
+           <widget class="QWidget" name="resultContent">
             <property name="geometry">
              <rect>
               <x>0</x>
@@ -104,6 +104,7 @@
               <height>392</height>
              </rect>
             </property>
+            <layout class="QVBoxLayout" name="resultLayout"/>
            </widget>
           </widget>
          </widget>
