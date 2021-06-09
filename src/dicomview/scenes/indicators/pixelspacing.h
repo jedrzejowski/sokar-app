@@ -14,7 +14,7 @@ namespace Sokar {
 		void update();
 	public:
 
-		LineIndicator(DataConverter &dataConverter);
+		LineIndicator(SokarDicom::DataConverter &dataConverter);
 
 		void setText(QString str);
 		qreal getPxLength() const;
@@ -37,7 +37,7 @@ namespace Sokar {
 		LineIndicator xLine, yLine;
 
 	public:
-		explicit PixelSpacingIndicator(DataConverter& dataConverter);
+		explicit PixelSpacingIndicator(SokarDicom::DataConverter& dataConverter);
 
 		//region Getter & Setters
 

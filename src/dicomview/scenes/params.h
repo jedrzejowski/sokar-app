@@ -13,6 +13,6 @@ namespace Sokar {
 		DicomSceneSet *dicomSceneSet;
 		const gdcm::ImageReader *imageReader;
 		std::vector<char> *imageBuffer;
-		DataConverter *dataConverter;
+		SokarDicom::DataConverter *dataConverter;
 	};
 }

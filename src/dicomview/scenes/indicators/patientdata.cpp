@@ -1,11 +1,11 @@
 #include <gdcmStringFilter.h>
-#include "sokar/dataconventer.h"
+#include "src/SokarDicom/DataConventer.hpp"
 #include "sokar/qt.h"
 #include "patientdata.h"
 
 using namespace Sokar;
 
-PatientDataIndicator::PatientDataIndicator(DataConverter &dataConverter) : SceneIndicator(dataConverter) {
+PatientDataIndicator::PatientDataIndicator(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
 
 	text = newText();
 	addToGroup(text);

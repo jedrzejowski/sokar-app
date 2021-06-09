@@ -2,7 +2,7 @@
 
 using namespace Sokar;
 
-SceneIndicator::SceneIndicator(DataConverter &dataConverter) :
+SceneIndicator::SceneIndicator(SokarDicom::DataConverter &dataConverter) :
 		defaultColor(255, 255, 255),
 		defaultPen(defaultColor),
 		dataConverter(dataConverter) {

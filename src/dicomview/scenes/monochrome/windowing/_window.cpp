@@ -4,7 +4,7 @@
 using namespace Sokar;
 using namespace Sokar::Monochrome;
 
-Window::Window(DataConverter &dataConverter) : SceneIndicator(dataConverter) {}
+Window::Window(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {}
 
 QMenu *Window::getMenu() {
 	if (toolbarMenu.isEmpty()) genMenu();

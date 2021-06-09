@@ -127,10 +127,34 @@
       <string>Segmentacja</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_3">
+      <item row="5" column="1">
+       <widget class="QCheckBox" name="regionGrowthCheck">
         <property name="text">
-         <string>Wartość dolna</string>
+         <string notr="true"/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QComboBox" name="segmentationAlgorithm">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <item>
+         <property name="text">
+          <string>Maszerujące sześciany</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Maszerujące czworościany</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>Rozrost obszaru</string>
         </property>
        </widget>
       </item>
@@ -168,30 +192,6 @@
         </item>
        </widget>
       </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Wartość górna</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="2">
-       <widget class="QComboBox" name="segmentationAlgorithm">
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <item>
-         <property name="text">
-          <string>Maszerujące sześciany</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Maszerujące czworościany</string>
-         </property>
-        </item>
-       </widget>
-      </item>
       <item row="3" column="1">
        <widget class="QDoubleSpinBox" name="segmentationTresholdDown">
         <property name="minimum">
@@ -205,31 +205,22 @@
         </property>
        </widget>
       </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_5">
-     <property name="title">
-      <string>Segmentacja z rozrostem</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_3">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_11">
-        <property name="text">
-         <string>TextLabel</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QCheckBox" name="checkBox">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
-       <widget class="SokarUi::Vec3Input" name="widget" native="true"/>
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Wartość górna</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Wartość dolna</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0" colspan="2">
+       <widget class="SokarUi::Vec3Input" name="regionGrowthVec" native="true"/>
       </item>
      </layout>
     </widget>
@@ -291,7 +282,8 @@
            <string notr="true"/>
           </property>
           <property name="icon">
-           <iconset theme="reload"/>
+           <iconset theme="reload">
+            <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
         </item>

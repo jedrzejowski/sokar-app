@@ -10,7 +10,7 @@ namespace Sokar {
 		QGraphicsTextItem *text;
 
 	public:
-		explicit ModalityIndicator(DataConverter &dataConverter);
+		explicit ModalityIndicator(SokarDicom::DataConverter &dataConverter);
 		void reposition() override;
 		bool isAlive() override;
 	private:

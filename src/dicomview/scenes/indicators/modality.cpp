@@ -3,7 +3,7 @@
 using namespace Sokar;
 
 
-ModalityIndicator::ModalityIndicator(DataConverter &dataConverter)
+ModalityIndicator::ModalityIndicator(SokarDicom::DataConverter &dataConverter)
 		: SceneIndicator(dataConverter) {
 
 	genText();

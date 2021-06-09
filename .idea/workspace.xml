@@ -17,13 +17,51 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="kommit kotnrolny">
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarDicom/SokarDicom.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarGdcm.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarMacro.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarMacro.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Volume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeMask.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarDicom/File.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeMask.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarDicom/File.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarException.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarException.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/dicomscene.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/_base.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/hospitaldata.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/imgorientation.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/modality.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/patientdata.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/indicators/pixelspacing.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/_window.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintdynamic.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintdynamic.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintstatic.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/monochrome/windowing/windowintstatic.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/params.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/params.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/sets/_sceneset.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/sets/_sceneset.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/sets/fileset.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/sets/fileset.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/dicomview/scenes/sets/frameset.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokar/dataconventer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarDicom/DataConventer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sokar/dataconventer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarDicom/DataConventer.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -322,11 +360,11 @@
       <recent name="$PROJECT_DIR$/src/algo" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/SokarDicom" />
       <recent name="$PROJECT_DIR$/src/SokarAlg" />
       <recent name="$PROJECT_DIR$/src/algo" />
       <recent name="$PROJECT_DIR$/src/algo/volume" />
       <recent name="$PROJECT_DIR$/src/algo/mesh-simplification" />
-      <recent name="$PROJECT_DIR$/res" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.sokar">
@@ -593,14 +631,7 @@
       <workItem from="1623146363260" duration="2400000" />
       <workItem from="1623174073588" duration="2545000" />
       <workItem from="1623186601462" duration="8266000" />
-      <workItem from="1623244673449" duration="12396000" />
-    </task>
-    <task id="LOCAL-00010" summary="Naprwienie błędu z INTami">
-      <created>1543685823602</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1543685823602</updated>
+      <workItem from="1623244673449" duration="23407000" />
     </task>
     <task id="LOCAL-00011" summary="Dodanie Palety">
       <created>1543701500628</created>
@@ -938,7 +969,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623261537547</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="kommit kotnrolny">
+      <created>1623263011217</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1623263011217</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

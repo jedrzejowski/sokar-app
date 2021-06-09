@@ -16,7 +16,7 @@ struct {
 			Posterior = QVector4D(0, +1, 0, 1);
 } PatientPoint;
 
-ImageOrientationIndicator::ImageOrientationIndicator(DataConverter &dataConverter) : SceneIndicator(dataConverter) {
+ImageOrientationIndicator::ImageOrientationIndicator(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
 	leftText = new QGraphicsTextItem();
 	leftText->setDefaultTextColor(defaultColor);
 	leftText->hide();

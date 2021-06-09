@@ -8,7 +8,7 @@ namespace Sokar::Monochrome {
 		Pixel background, foreground;
 	public:
 
-		WindowIntDynamic(DataConverter &dataConverter) : WindowInt(dataConverter) {}
+		WindowIntDynamic(SokarDicom::DataConverter &dataConverter) : WindowInt(dataConverter) {}
 
 		Type type() override {
 			return IntDynamic;

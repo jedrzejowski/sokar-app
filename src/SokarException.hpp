@@ -5,6 +5,8 @@
 #pragma once
 
 #include <string>
+#include <QString>
+#include <utility>
 
 class SokarException : std::exception {
 private:
@@ -15,8 +17,12 @@ private:
 
 public:
 
-	SokarException(const char *file, int line, const char *where, std::string &msg) :
-			where(where), file(file), line(line), msg(msg) {
+	SokarException(const char *file, int line, const char *where, const QString &msg) :
+			where(where), file(file), line(line), msg(msg.toStdString()) {
+	};
+
+	SokarException(const char *file, int line, const char *where, std::string msg) :
+			where(where), file(file), line(line), msg(std::move(msg)) {
 	};
 
 	SokarException(const char *file, int line, const char *where, const char *msg) :
@@ -41,4 +47,4 @@ public:
 };
 
 
-#define sokarException(where, what) SokarException(__FILE__, __LINE__, where, what)
+#define sokarException(what) SokarException(__FILE__, __LINE__, __PRETTY_FUNCTION__, what)

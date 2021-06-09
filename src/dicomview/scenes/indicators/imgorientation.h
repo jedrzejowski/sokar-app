@@ -17,7 +17,7 @@ namespace Sokar {
 		void initData();
 	public:
 
-		ImageOrientationIndicator(DataConverter &dataConverter);
+		ImageOrientationIndicator(SokarDicom::DataConverter &dataConverter);
 
 		void setRotateTransform(const QTransform &rotateTransform);
 

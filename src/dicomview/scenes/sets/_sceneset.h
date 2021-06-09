@@ -5,7 +5,7 @@
 #include "_classdef.h"
 #include "../../dataset.h"
 #include "../dicomscene.h"
-#include "sokar/dataconventer.h"
+#include "src/SokarDicom/DataConventer.hpp"
 #include "sceneseq.h"
 
 namespace Sokar {

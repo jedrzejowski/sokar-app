@@ -33,7 +33,7 @@ namespace Sokar::Monochrome {
 
 	public:
 
-		explicit WindowInt(DataConverter &dataConverter);
+		explicit WindowInt(SokarDicom::DataConverter &dataConverter);
 
 		//region Getters & Setters
 

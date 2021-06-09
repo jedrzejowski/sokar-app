@@ -11,7 +11,7 @@ namespace Sokar::Monochrome {
 		quint64 arraySize = 0;
 	public:
 
-		WindowIntStatic(DataConverter &dataConverter) : WindowInt(dataConverter) {}
+		WindowIntStatic(SokarDicom::DataConverter &dataConverter) : WindowInt(dataConverter) {}
 
 
 		Type type() override {

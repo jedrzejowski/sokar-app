@@ -6,7 +6,7 @@ QVector<DicomFileSet *> DicomFileSet::create(DicomReaderVec &vec, QObject* paren
 	static gdcm::Tag TagSeriesInstanceUID(0x0020, 0x000E);
 
 	QHash<QString, DicomReaderVec> hash;
-	DataConverter converter;
+	SokarDicom::DataConverter converter;
 
 	for (auto &imgReader: vec) {
 
@@ -31,7 +31,7 @@ QVector<DicomFileSet *> DicomFileSet::create(DicomReaderVec &vec, QObject* paren
 
 DicomFileSet::DicomFileSet(DicomReaderVec &vec, QObject *parent) : DicomSceneSet(parent) {
 
-	DataConverter converter;
+	SokarDicom::DataConverter converter;
 
 	std::sort(vec.begin(), vec.end(), [&](const gdcm::ImageReader *&a, const gdcm::ImageReader *&b) {
 		static gdcm::Tag TagInstanceNumber(0x0020, 0x0013);

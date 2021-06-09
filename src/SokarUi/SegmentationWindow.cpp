@@ -97,6 +97,8 @@ void SegmentationWindow::endSegmentation(QSharedPointer<const SokarAlg::Segmenta
 	// wsadż na przedostatnią pozycję
 	ui->resultLayout->insertWidget(ui->resultLayout->count() - 1, resultWidget);
 
+	ui->tabWidget->setCurrentWidget(ui->resultTab);
+
 	vulkanRenderer->addPipeline(graphicPipeline);
 
 	QObject::connect(resultWidget, &SegmentationResultWidget::deleteResult, [this, graphicPipeline, resultWidget](){

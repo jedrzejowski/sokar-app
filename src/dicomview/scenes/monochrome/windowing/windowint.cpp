@@ -8,7 +8,7 @@
 
 using namespace Sokar;
 
-Monochrome::WindowInt::WindowInt(DataConverter &dataConverter) : Window(dataConverter) {
+Monochrome::WindowInt::WindowInt(SokarDicom::DataConverter &dataConverter) : Window(dataConverter) {
 
 	text = new QGraphicsTextItem();
 	text->setDefaultTextColor(defaultColor);

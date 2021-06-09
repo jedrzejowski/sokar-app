@@ -6,25 +6,8 @@
 
 using namespace SokarAlg;
 
-CachedVolume::CachedVolume() {
-}
 
-CachedVolume::~CachedVolume() {
-}
-
-const QSharedPointer<const Volume> &CachedVolume::getVolume() const {
-	return volume;
-}
-
-void CachedVolume::setVolume(const QSharedPointer<const Volume> &newVolume, bool rebuild) {
-	CachedVolume::volume = newVolume;
-
-	if (rebuild) {
-		rebuildCache();
-	}
-}
-
-void CachedVolume::rebuildCache() {
+void CachedVolume::volumeChanged() {
 	size = volume->getSize();
 	cache.resize(size);
 

@@ -27,11 +27,13 @@ namespace SokarAlg {
 	template<typename T>
 	class Array3;
 
+	class VolSegmAlgorithm;
+
+	//region Volume
+
 	class Volume;
 
-	class wVolumeEnv;
-
-	class VolSegmAlgorithm;
+	class VolumeEnv;
 
 	class DicomVolume;
 
@@ -40,6 +42,10 @@ namespace SokarAlg {
 	class CachedVolume;
 
 	class ExampleVolume;
+
+	class RegionGrowthVolume;
+
+	//endregion
 
 	class MarchingCubes;
 

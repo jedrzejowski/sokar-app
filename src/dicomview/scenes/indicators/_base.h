@@ -5,7 +5,7 @@
 
 #include "_classdef.h"
 #include "../scene.h"
-#include "sokar/dataconventer.h"
+#include "SokarDicom/DataConventer.hpp"
 
 namespace Sokar {
 
@@ -17,7 +17,7 @@ namespace Sokar {
 	protected:
 		QColor defaultColor;
 		QPen defaultPen;
-		DataConverter &dataConverter;
+		SokarDicom::DataConverter &dataConverter;
 
 		QGraphicsLineItem *newLine(qreal x1, qreal y1, qreal x2, qreal y2);
 		QGraphicsTextItem *newText(const QString &string = "");
@@ -25,7 +25,7 @@ namespace Sokar {
 		static QString wrapAsHtml(QStringList lines, bool right = false);
 
 	public:
-		SceneIndicator(DataConverter &dataConverter);
+		SceneIndicator(SokarDicom::DataConverter &dataConverter);
 
 		virtual void reposition() = 0;
 

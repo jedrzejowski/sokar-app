@@ -10,7 +10,7 @@ namespace Sokar {
 		QGraphicsTextItem* text;
 		void initData();
 	public:
-		explicit HospitalDataIndicator(DataConverter &dataConverter);
+		explicit HospitalDataIndicator(SokarDicom::DataConverter &dataConverter);
 		void reposition() override;
 		bool isAlive() override;
 	};

@@ -1,8 +1,9 @@
 #include <SokarMacro.hpp>
-#include "dataconventer.h"
-#include "exception.h"
+#include <SokarException.hpp>
+#include "DataConventer.hpp"
+#include "sokar/exception.h"
 
-using namespace Sokar;
+using namespace SokarDicom;
 
 DataConverter::DataConverter() {
 	sokarTrace();
@@ -33,7 +34,7 @@ QString DataConverter::toAgeString(const gdcm::Tag &tag) const {
 
 	auto temp = toString(tag);
 
-	if (temp.length() != 4) throw DicomTagParseError(tag);
+	if (temp.length() != 4) throw sokarException("dicom tag parse rrror");
 
 	auto unitChar = temp[3];
 	QString unitName;
@@ -47,10 +48,10 @@ QString DataConverter::toAgeString(const gdcm::Tag &tag) const {
 	else if (unitChar == "D")
 		unitName = tr("days");
 	else
-		throw DicomTagParseError(tag);
+		throw sokarException("dicom tag parse rrror");
 
 	// Usunięcie zer
-	temp = QString::number(temp.left(3).toInt());
+	temp = QString::number(temp.leftRef(3).toInt());
 
 	return tr("%1 %2").arg(temp, unitName);
 }
@@ -82,7 +83,7 @@ QDate DataConverter::toDate(const gdcm::Tag &tag) const {
 			return QDate::fromString(str, "yyyy.MM.dd");
 
 		default:
-			throw DicomTagParseError(tag);
+			throw sokarException("dicom tag parse rrror");
 	}
 }
 
@@ -101,7 +102,7 @@ QVector<qreal> DataConverter::toDecimalString(const gdcm::Tag &tag) const {
 	for (auto &str : toStringList(tag)) {
 		vec << str.toDouble(&ok);
 
-		if (!ok) throw DicomTagParseError(tag);
+		if (!ok) throw sokarException("dicom tag parse rrror");
 	}
 
 	return vec;

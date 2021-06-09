@@ -38,7 +38,7 @@ namespace Sokar {
 		const gdcm::Image &gdcmImage;
 		const gdcm::File &gdcmFile;
 		const gdcm::DataSet &gdcmDataSet;
-		DataConverter &dataConverter;
+		SokarDicom::DataConverter &dataConverter;
 
 		std::vector<char> originBuffer;
 		std::vector<Pixel> targetBuffer;

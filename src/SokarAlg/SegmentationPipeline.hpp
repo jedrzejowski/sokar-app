@@ -43,6 +43,9 @@ namespace SokarAlg {
 		bool useEmptyEnv = true;
 		QColor meshColor = QColor("#BF4024");
 
+		bool useRegionGrowth = false;
+		glm::i32vec3 regionGrowthStartPoint;
+
 		QSharedPointer<const RawDicomVolume> rawDicomVolume = nullptr;
 		QSharedPointer<DicomVolume> dicomVolume = nullptr;
 		QSharedPointer<VolumeInterpolator> volumeInterpolator = nullptr;
@@ -69,6 +72,10 @@ namespace SokarAlg {
 		void setMeshSimplificator(const QSharedPointer<MeshSimplificator> &meshSimplificator);
 		bool isUseEmptyEnv() const;
 		void setUseEmptyEnv(bool useEmptyEnv);
+		bool isUseRegionGrowth() const;
+		void setUseRegionGrowth(bool useRegionGrowth);
+		const glm::i32vec3 &getGrowthStartPoint() const;
+		void setGrowthStartPoint(const glm::i32vec3 &growthStartPoint);
 
 		QFuture<QSharedPointer<const SegmentationResult>> executePipeline();
 

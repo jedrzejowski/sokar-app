@@ -10,19 +10,16 @@
 
 namespace SokarAlg {
 
-	class CachedVolume : public Volume {
-		QSharedPointer<const Volume> volume = nullptr;
+	class CachedVolume : public VolumeDecorator {
+
 		glm::i32vec3 size = glm::i32vec3(0);
 		Array3<float> cache;
+
+	protected:
+
+		void volumeChanged() override;
+
 	public:
-		explicit CachedVolume();
-		virtual ~CachedVolume();
-
-		void rebuildCache();
-
-		[[nodiscard]]
-		const QSharedPointer<const Volume> &getVolume() const;
-		void setVolume(const QSharedPointer<const Volume> &volume, bool rebuild = true);
 
 		[[nodiscard]]
 		glm::i32vec3 getSize() const override;

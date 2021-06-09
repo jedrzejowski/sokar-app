@@ -8,6 +8,7 @@
 #include "ExampleVolume.hpp"
 #include "CachedVolume.hpp"
 #include "VolumeEnv.hpp"
+#include "RegionGrowthVolume.hpp"
 
 using namespace SokarAlg;
 
@@ -42,6 +43,15 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 			volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
 		}
 
+		if(useRegionGrowth){
+			auto regionGrowth = QSharedPointer<RegionGrowthVolume>::create();
+			regionGrowth->setVolume(volume);
+			regionGrowth->setIsoLevel(volumeSegmentator->getIsoLevel());
+			regionGrowth->setStartPoint(regionGrowthStartPoint);
+
+			volume = regionGrowth;
+		}
+
 		//endregion
 
 		//region caching
@@ -50,7 +60,7 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 		if (useInterpolationCache) {
 			qDebug() << "caching ...";
 			auto cachedVolume = QSharedPointer<CachedVolume>::create();
-			cachedVolume->setVolume(volume, true);
+			cachedVolume->setVolume(volume);
 			volume = cachedVolume;
 		}
 		result->timePostCache = makeTimePoint();
@@ -142,4 +152,20 @@ bool SegmentationPipeline::isUseEmptyEnv() const {
 
 void SegmentationPipeline::setUseEmptyEnv(bool useEmptyEnv) {
 	SegmentationPipeline::useEmptyEnv = useEmptyEnv;
+}
+
+bool SegmentationPipeline::isUseRegionGrowth() const {
+	return useRegionGrowth;
+}
+
+void SegmentationPipeline::setUseRegionGrowth(bool useRegionGrowth) {
+	SegmentationPipeline::useRegionGrowth = useRegionGrowth;
+}
+
+const glm::i32vec3 &SegmentationPipeline::getGrowthStartPoint() const {
+	return regionGrowthStartPoint;
+}
+
+void SegmentationPipeline::setGrowthStartPoint(const glm::i32vec3 &growthStartPoint) {
+	SegmentationPipeline::regionGrowthStartPoint = growthStartPoint;
 }

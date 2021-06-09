@@ -15,7 +15,7 @@ namespace SokarAlg {
 	class RawDicomVolume : public Volume {
 
 		const Sokar::DicomSceneSet *sceneSet = nullptr;
-		Sokar::DataConverter dataConverter;
+		SokarDicom::DataConverter dataConverter;
 
 	public:
 

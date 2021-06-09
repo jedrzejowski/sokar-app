@@ -2,7 +2,7 @@
 
 using namespace Sokar;
 
-HospitalDataIndicator::HospitalDataIndicator(DataConverter &dataConverter) : SceneIndicator(dataConverter) {
+HospitalDataIndicator::HospitalDataIndicator(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
 
 	text = newText();
 	addToGroup(text);

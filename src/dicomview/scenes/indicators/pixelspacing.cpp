@@ -6,7 +6,7 @@ using namespace Sokar;
 
 //region LineIndicator
 
-LineIndicator::LineIndicator(DataConverter &dataConverter) :
+LineIndicator::LineIndicator(SokarDicom::DataConverter &dataConverter) :
 		SceneIndicator(dataConverter),
 		pen(QColor(255, 255, 255)) {
 
@@ -72,7 +72,7 @@ bool LineIndicator::isAlive() {
 
 //endregion
 
-PixelSpacingIndicator::PixelSpacingIndicator(DataConverter &dataConverter) :
+PixelSpacingIndicator::PixelSpacingIndicator(SokarDicom::DataConverter &dataConverter) :
 		SceneIndicator(dataConverter),
 		xLine(dataConverter),
 		yLine(dataConverter) {
