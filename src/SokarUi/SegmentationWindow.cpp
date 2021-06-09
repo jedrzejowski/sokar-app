@@ -99,7 +99,8 @@ void SegmentationWindow::endSegmentation(QSharedPointer<const SokarAlg::Segmenta
 
 	vulkanRenderer->addPipeline(graphicPipeline);
 
-	QObject::connect(resultWidget, &SegmentationResultWidget::deleteResult, [this, graphicPipeline](){
+	QObject::connect(resultWidget, &SegmentationResultWidget::deleteResult, [this, graphicPipeline, resultWidget](){
 		vulkanRenderer->removePipeline(graphicPipeline);
+		delete resultWidget;
 	});
 }

@@ -104,6 +104,7 @@ void VulkanRenderer::releaseSwapChainResources() {
 
 void VulkanRenderer::releaseResources() {
 	initResourceFuture.waitForFinished();
+	releaseResourcesFuture.waitForFinished();
 
 	qDebug("releaseResources");
 	VkDevice vkDevice = vkWidget->device();
@@ -117,6 +118,14 @@ void VulkanRenderer::releaseResources() {
 	for (auto pw : pipelineWrappers.current) {
 		pw->releaseResources(args);
 	}
+
+	for (auto pw : pipelineWrappers.toRemove) {
+		pw->releaseResources(args);
+	}
+
+	for (auto pw : pipelineWrappers.toRelease) {
+		pw->releaseResources(args);
+	}
 }
 
 void VulkanRenderer::startNextFrame() {
@@ -128,22 +137,29 @@ void VulkanRenderer::startNextFrame() {
 	QMutexLocker locker(&pipelinesMutex);
 	auto meta = getMetaArgs();
 
-	if (!pipelineWrappers.toAdd.isEmpty() ||
-		!pipelineWrappers.toRemove.isEmpty()) {
 
-		frameWatcher.future().waitForFinished();
-		while (!pipelineWrappers.toAdd.isEmpty()) {
-			auto pipeline = pipelineWrappers.toAdd.takeFirst();
-			pipeline->initResources(meta);
-			pipelineWrappers.current.append(pipeline);
-		}
-
-		while (!pipelineWrappers.toRemove.isEmpty()) {
-			auto pipeline = pipelineWrappers.toRemove.takeFirst();
-			pipeline->releaseResources(meta);
-			pipelineWrappers.current.removeOne(pipeline);
-		}
+	while (!pipelineWrappers.toAdd.isEmpty()) {
+		auto pipeline = pipelineWrappers.toAdd.takeFirst();
+		pipeline->initResources(meta);
+		pipelineWrappers.current.append(pipeline);
 	}
+
+	while (!releaseResourcesFuture.isRunning() && !pipelineWrappers.toRelease.isEmpty()) {
+		auto pipeline = pipelineWrappers.toRelease.takeFirst();
+		pipelineWrappers.toRelease.removeOne(pipeline);
+
+		releaseResourcesFuture = QtConcurrent::run([meta, pipeline]() {
+			pipeline->releaseResources(meta);
+			delete pipeline;
+		});
+	}
+
+	while (!pipelineWrappers.toRemove.isEmpty()) {
+		auto pipeline = pipelineWrappers.toRemove.takeFirst();
+		pipelineWrappers.current.removeOne(pipeline);
+		pipelineWrappers.toRelease.append(pipeline);
+	}
+
 
 	// tworzymy kopię
 	auto pipelines = new Pipelines(pipelineWrappers.current);

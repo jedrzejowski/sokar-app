@@ -8,4 +8,4 @@
 
 // https://en.cppreference.com/w/cpp/utility/source_location
 
-#define sokarTrace() std::cout << __PRETTY_FUNCTION__ << std::endl
+#define sokarTrace() std::cerr << __PRETTY_FUNCTION__ << std::endl

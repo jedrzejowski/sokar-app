@@ -20,7 +20,7 @@ namespace Sokar3D {
 		Camera *camera;
 	};
 
-	class PipelineWrapper {
+	class PipelineWrapper : public QObject {
 	protected:
 		VkPipelineLayout vkPipelineLayout = VK_NULL_HANDLE;
 		VkPipeline vkPipeline = VK_NULL_HANDLE;

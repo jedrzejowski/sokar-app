@@ -19,6 +19,7 @@ namespace Sokar3D {
 			Pipelines toAdd;
 			Pipelines current;
 			Pipelines toRemove;
+			Pipelines toRelease;
 		} pipelineWrappers;
 
 		QMutex pipelinesMutex;
@@ -29,6 +30,7 @@ namespace Sokar3D {
 
 		QFutureWatcher<void> frameWatcher;
 		QFuture<void> initResourceFuture;
+		QFuture<void> releaseResourcesFuture;
 
 		Camera *camera = nullptr;
 		glm::vec3 m_lightPos;
