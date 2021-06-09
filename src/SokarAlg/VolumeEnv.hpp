@@ -8,18 +8,20 @@
 #include "Volume.hpp"
 
 namespace SokarAlg {
+
 	class VolumeEnv : public Volume {
 
-		const Volume *child;
+		QSharedPointer<const Volume> child;
 		glm::i32vec3 envSize;
 		float envValue;
 
 	public:
-		explicit VolumeEnv(Volume *child, const glm::i32vec3& size, float envValue);
+		explicit VolumeEnv(const QSharedPointer<const Volume> &child, float envValue);
 
 		[[nodiscard]]
 		glm::i32vec3 getSize() const override;
-		float getValue(const glm::i32vec3& position) const override;
+		[[nodiscard]]
+		float getValue(const glm::i32vec3 &position) const override;
 	};
 }
 

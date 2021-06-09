@@ -322,17 +322,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="20"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="27"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="34"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="48"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="55"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="26"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="33"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="61"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="68"/>
+        <source>###</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="40"/>
+        <source>Rozrost</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="47"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="89"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="41"/>
-        <source>PushButton</source>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="54"/>
+        <source>Upraszcanie siatki</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="75"/>
+        <source>Segmentacja</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="82"/>
+        <source>Interplacja</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="96"/>
+        <source>Wynik #</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -349,17 +374,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationWindow.ui" line="96"/>
+        <location filename="../../src/SokarUi/SegmentationWindow.ui" line="99"/>
         <source>Wyniki</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationWindow.ui" line="123"/>
+        <location filename="../../src/SokarUi/SegmentationWindow.ui" line="140"/>
         <source>Segmentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationWindow.ui" line="136"/>
+        <location filename="../../src/SokarUi/SegmentationWindow.ui" line="153"/>
         <source>+</source>
         <translation type="unfinished"></translation>
     </message>
@@ -828,8 +853,13 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="265"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="284"/>
         <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="265"/>
+        <source>Osadz w pustej przestrzeni</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

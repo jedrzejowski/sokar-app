@@ -12,16 +12,19 @@ namespace Ui {
 }
 
 namespace SokarUi {
-	class SegmentationResultWidget : public QWidget {
+	class SegmentationResultWidget : public QFrame {
+	Q_OBJECT
 		Ui::SegmentationResultWidget *ui;
 		const QSharedPointer<const SokarAlg::SegmentationResult> result;
 	public:
-		SegmentationResultWidget(
+
+		explicit SegmentationResultWidget(
 				const QSharedPointer<const SokarAlg::SegmentationResult> &result,
 				QWidget *parent = nullptr);
-		virtual ~SegmentationResultWidget();
+		~SegmentationResultWidget() override;
+
 	signals:
-		void clearResult();
+		void deleteResult();
 	};
 }
 

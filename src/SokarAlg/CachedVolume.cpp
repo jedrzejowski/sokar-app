@@ -25,7 +25,7 @@ void CachedVolume::setVolume(const QSharedPointer<const Volume> &newVolume, bool
 }
 
 void CachedVolume::rebuildCache() {
-	auto size = volume->getSize();
+	size = volume->getSize();
 	cache.resize(size);
 
 	forI32space({0, 0, 0}, size, [this](const auto &position) {
@@ -35,7 +35,7 @@ void CachedVolume::rebuildCache() {
 }
 
 glm::i32vec3 CachedVolume::getSize() const {
-	return volume->getSize();
+	return size;
 }
 
 float CachedVolume::getValue(const glm::i32vec3 &position) const {

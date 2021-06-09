@@ -25,10 +25,9 @@ namespace SokarAlg {
 
 		glm::vec3 proposeCameraCenter;
 		float proposeCameraDistance;
-
 	};
 
-	class SegmentationPipeline : public QObject {
+	class SegmentationPipeline : public QObject, public QEnableSharedFromThis<SegmentationPipeline> {
 	Q_OBJECT
 
 		enum Stage {
@@ -41,7 +40,9 @@ namespace SokarAlg {
 		QMutex stateMutex;
 
 		bool useInterpolationCache = true;
+		bool useEmptyEnv = true;
 		QColor meshColor = QColor("#BF4024");
+
 		QSharedPointer<const RawDicomVolume> rawDicomVolume = nullptr;
 		QSharedPointer<DicomVolume> dicomVolume = nullptr;
 		QSharedPointer<VolumeInterpolator> volumeInterpolator = nullptr;
@@ -66,11 +67,13 @@ namespace SokarAlg {
 		void setVolumeSegmentator(const QSharedPointer<VolumeSegmentator> &volumeSegmentator);
 		const QSharedPointer<MeshSimplificator> &getMeshSimplificator() const;
 		void setMeshSimplificator(const QSharedPointer<MeshSimplificator> &meshSimplificator);
+		bool isUseEmptyEnv() const;
+		void setUseEmptyEnv(bool useEmptyEnv);
 
 		QFuture<QSharedPointer<const SegmentationResult>> executePipeline();
 
 	signals:
-		void updateProgress(Stage stage, float progress);
+		void updateProgress(SokarAlg::SegmentationPipeline::Stage stage, float progress);
 	};
 }
 

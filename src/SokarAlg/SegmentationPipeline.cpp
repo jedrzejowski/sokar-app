@@ -7,6 +7,7 @@
 #include "MarchingCubes.hpp"
 #include "ExampleVolume.hpp"
 #include "CachedVolume.hpp"
+#include "VolumeEnv.hpp"
 
 using namespace SokarAlg;
 
@@ -19,7 +20,10 @@ SegmentationPipeline::SegmentationPipeline()
 }
 
 QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executePipeline() {
-	return QtConcurrent::run([&]() -> QSharedPointer<const SegmentationResult> {
+	// aby obiekt sam się nie rozwalił
+	auto self = sharedFromThis();
+
+	return QtConcurrent::run([self, this]() -> QSharedPointer<const SegmentationResult> {
 		QMutexLocker lock(&stateMutex);
 
 		QSharedPointer<const Volume> volume;
@@ -33,6 +37,10 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 
 //		volume = ExampleVolume::Sphere(100,40);
 		volume = dicomVolume;
+
+		if (useEmptyEnv) {
+			volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
+		}
 
 		//endregion
 
@@ -60,18 +68,6 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 
 		auto mesh = volumeSegmentator->getMesh();
 
-//		auto simplifier = new SokarAlg::VertexClustering({0, 0, 0}, {10, 10, 10});
-//		auto f2 = simplifier->simplify(mesh);
-//		f2.waitForFinished();
-//		mesh = f2.result();
-
-
-//		auto mesh2 = mesh->toIndexedStaticMesh();
-
-//		qDebug() << mesh->verticesCount();
-//		qDebug() << mesh2->indexCount() << mesh2->verticesCount();
-
-//		result.mesh = mesh->toStaticMash();
 		result->mesh = mesh;
 		result->meshColor = meshColor;
 
@@ -138,4 +134,12 @@ bool SegmentationPipeline::isUseInterpolationCache() const {
 
 void SegmentationPipeline::setUseInterpolationCache(bool newUsingCache) {
 	useInterpolationCache = newUsingCache;
+}
+
+bool SegmentationPipeline::isUseEmptyEnv() const {
+	return useEmptyEnv;
+}
+
+void SegmentationPipeline::setUseEmptyEnv(bool useEmptyEnv) {
+	SegmentationPipeline::useEmptyEnv = useEmptyEnv;
 }

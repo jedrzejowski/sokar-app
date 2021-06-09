@@ -73,7 +73,7 @@ void VulkanRenderer::initResources() {
 
 	initResourceFuture = QtConcurrent::run([&, args] {
 
-		for (auto pw : pipelineWrappers) {
+		for (auto pw : pipelineWrappers.current) {
 			pw->initResources(args);
 		}
 	});
@@ -114,7 +114,7 @@ void VulkanRenderer::releaseResources() {
 		vkPipelineCache = VK_NULL_HANDLE;
 	}
 
-	for (auto pw : pipelineWrappers) {
+	for (auto pw : pipelineWrappers.current) {
 		pw->releaseResources(args);
 	}
 }
@@ -124,12 +124,37 @@ void VulkanRenderer::startNextFrame() {
 
 	Q_ASSERT(!framePending);
 	framePending = true;
-	QFuture<void> future = QtConcurrent::run(this, &VulkanRenderer::buildFrame);
+
+	QMutexLocker locker(&pipelinesMutex);
+	auto meta = getMetaArgs();
+
+	if (!pipelineWrappers.toAdd.isEmpty() ||
+		!pipelineWrappers.toRemove.isEmpty()) {
+
+		frameWatcher.future().waitForFinished();
+		while (!pipelineWrappers.toAdd.isEmpty()) {
+			auto pipeline = pipelineWrappers.toAdd.takeFirst();
+			pipeline->initResources(meta);
+			pipelineWrappers.current.append(pipeline);
+		}
+
+		while (!pipelineWrappers.toRemove.isEmpty()) {
+			auto pipeline = pipelineWrappers.toRemove.takeFirst();
+			pipeline->releaseResources(meta);
+			pipelineWrappers.current.removeOne(pipeline);
+		}
+	}
+
+	// tworzymy kopię
+	auto pipelines = new Pipelines(pipelineWrappers.current);
+
+	QFuture<void> future = QtConcurrent::run(this, &VulkanRenderer::buildFrame, pipelines);
 	frameWatcher.setFuture(future);
 }
 
-void VulkanRenderer::buildFrame() {
-	ensureBuffers();
+void VulkanRenderer::buildFrame(Pipelines *pipelines) {
+
+	ensureBuffers(pipelines);
 	initResourceFuture.waitForFinished();
 
 	VkCommandBuffer cb = vkWidget->currentCommandBuffer();
@@ -166,32 +191,26 @@ void VulkanRenderer::buildFrame() {
 	};
 	vkDeviceFunctions->vkCmdSetScissor(cb, 0, 1, &scissor);
 
-	buildDrawCalls();
+	buildDrawCalls(pipelines);
 
 	vkDeviceFunctions->vkCmdEndRenderPass(cmdBuf);
 }
 
-void VulkanRenderer::ensureBuffers() {
+void VulkanRenderer::ensureBuffers(const Pipelines *pipelines) {
 	auto args = getMetaArgs();
 
-	for (auto pw : pipelineWrappers) {
+	for (auto pw : *pipelines) {
 		pw->ensureBuffers(args);
 	}
 }
 
-void VulkanRenderer::buildDrawCalls() {
-//	qDebug() << "buildDrawCalls";
+void VulkanRenderer::buildDrawCalls(const Pipelines *pipelines) {
 
 	auto args = getMetaArgs();
 
-	for (auto pw : pipelineWrappers) {
+	for (auto pw : *pipelines) {
 		pw->buildDrawCalls(args);
 	}
-}
-
-void VulkanRenderer::addPipelineWrapper(PipelineWrapper *pw) {
-	qDebug() << "addPipelineWrapper";
-	pipelineWrappers << pw;
 }
 
 Camera *VulkanRenderer::getCamera() const {
@@ -217,6 +236,17 @@ VkPipelineMetaArgs VulkanRenderer::getMetaArgs() {
 
 	return args;
 }
+
+void VulkanRenderer::addPipeline(PipelineWrapper *pw) {
+	QMutexLocker locker(&pipelinesMutex);
+	pipelineWrappers.toAdd << pw;
+}
+
+void VulkanRenderer::removePipeline(PipelineWrapper *pw) {
+	QMutexLocker locker(&pipelinesMutex);
+	pipelineWrappers.toRemove << pw;
+}
+
 //region Ui Events
 
 bool VulkanRenderer::uiEvent(QEvent *event) {
@@ -227,5 +257,6 @@ bool VulkanRenderer::uiEvent(QEvent *event) {
 
 	return false;
 }
+
 
 //endregion

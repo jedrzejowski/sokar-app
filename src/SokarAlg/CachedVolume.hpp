@@ -12,6 +12,7 @@ namespace SokarAlg {
 
 	class CachedVolume : public Volume {
 		QSharedPointer<const Volume> volume = nullptr;
+		glm::i32vec3 size = glm::i32vec3(0);
 		Array3<float> cache;
 	public:
 		explicit CachedVolume();

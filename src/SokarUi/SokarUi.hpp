@@ -5,6 +5,7 @@
 #pragma once
 
 #include <QtCore>
+#include <QtGui>
 #include <QWidget>
 #include <QObject>
 

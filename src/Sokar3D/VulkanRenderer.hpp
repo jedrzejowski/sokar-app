@@ -14,7 +14,14 @@
 namespace Sokar3D {
 	class VulkanRenderer : public QVulkanWindowRenderer {
 
-		QVector<PipelineWrapper *> pipelineWrappers;
+		using Pipelines = QVector<PipelineWrapper *>;
+		struct {
+			Pipelines toAdd;
+			Pipelines current;
+			Pipelines toRemove;
+		} pipelineWrappers;
+
+		QMutex pipelinesMutex;
 
 		VulkanWidget *vkWidget;
 		QVulkanDeviceFunctions *vkDeviceFunctions;
@@ -29,9 +36,9 @@ namespace Sokar3D {
 
 		bool framePending = false;
 
-		void buildFrame();
-		void ensureBuffers();
-		void buildDrawCalls();
+		void buildFrame(Pipelines *pipelines);
+		void ensureBuffers(const Pipelines *pipelines);
+		void buildDrawCalls(const Pipelines *pipelines);
 		VkPipelineMetaArgs getMetaArgs();
 
 	public:
@@ -44,7 +51,8 @@ namespace Sokar3D {
 		void releaseResources() override;
 		void startNextFrame() override;
 
-		void addPipelineWrapper(PipelineWrapper *pw);
+		void addPipeline(PipelineWrapper *pw);
+		void removePipeline(PipelineWrapper *pw);
 
 		Camera *getCamera() const;
 		void setCamera(Camera *camera);

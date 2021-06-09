@@ -29,7 +29,7 @@ namespace SokarAlg {
 
 	class Volume;
 
-	class VolumeEnv;
+	class wVolumeEnv;
 
 	class VolSegmAlgorithm;
 

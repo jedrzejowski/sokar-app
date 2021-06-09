@@ -37,14 +37,17 @@ SegmentationPipelineEditor::~SegmentationPipelineEditor() {
 void SegmentationPipelineEditor::setupUi() {
 	ui->setupUi(this);
 
-	ui->colorPushButton->setText(meshColor.name());
+	setMeshColor(meshColor);
 	QObject::connect(
-			ui->colorPushButton,
+			ui->pickColorButton,
 			&QPushButton::clicked,
 			[this]() {
-				meshColor = QColorDialog::getColor(meshColor, this, "Wybierz kolor");
-				ui->colorPushButton->setText(meshColor.name());
+				setMeshColor(QColorDialog::getColor(meshColor, this, "Wybierz kolor"));
 			});
+	QObject::connect(
+			ui->randomColorButton,
+			&QPushButton::clicked,
+			[this]() { randomizeMeshColor(); });
 }
 
 QSharedPointer<SokarAlg::SegmentationPipeline> SegmentationPipelineEditor::makePipeline() const {
@@ -84,7 +87,7 @@ QSharedPointer<SokarAlg::SegmentationPipeline> SegmentationPipelineEditor::makeP
 
 	pipeline->setVolumeInterpolator(volumeInterpolator);
 
-	pipeline->getDicomVolume()->setCubesPerMM(1.f / float(ui->interpolationWokselSize->value()));
+	pipeline->getDicomVolume()->setCubesPerMM(float(ui->interpolationWokselSize->value()));
 	pipeline->setUseInterpolationCache(ui->cacheInterpolation->isChecked() == 0);
 
 	//endregion
@@ -105,6 +108,8 @@ QSharedPointer<SokarAlg::SegmentationPipeline> SegmentationPipelineEditor::makeP
 			break;
 	}
 
+	qDebug() << volumeSegmentator << ui->segmentationAlgorithm->currentIndex();
+
 	volumeSegmentator->setIsoLevel({
 										   static_cast<float>(ui->segmentationTresholdUp->value()),
 										   static_cast<float>(ui->segmentationTresholdDown->value()),
@@ -116,8 +121,25 @@ QSharedPointer<SokarAlg::SegmentationPipeline> SegmentationPipelineEditor::makeP
 	//region desgin
 
 	pipeline->setColor(meshColor);
+	pipeline->setUseEmptyEnv(ui->emptyEnv->isChecked());
 
 	//endregion
 
 	return pipeline;
+}
+
+void SegmentationPipelineEditor::randomizeMeshColor() {
+	static auto generator = QRandomGenerator();
+	auto color = QColor();
+	color.setHslF(
+			generator.generateDouble(),
+			0.5,
+			0.5
+	);
+	setMeshColor(color);
+}
+
+void SegmentationPipelineEditor::setMeshColor(const QColor &color) {
+	meshColor = color;
+	ui->pickColorButton->setText(meshColor.name());
 }

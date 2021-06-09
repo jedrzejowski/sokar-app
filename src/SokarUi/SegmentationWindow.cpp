@@ -43,55 +43,35 @@ void SegmentationWindow::setRawDicomVolume(const QSharedPointer<const SokarAlg::
 
 void SegmentationWindow::startSegmentation(bool append) {
 
-	auto progressDialog = new QProgressDialog(this);
+	progressDialog = new QProgressDialog(this);
 	progressDialog->setAttribute(Qt::WA_DeleteOnClose);
 	progressDialog->setWindowTitle("Segmentowanie");
 	progressDialog->setModal(true);
 	progressDialog->setCancelButton(nullptr);
 	progressDialog->show();
 
-	QtConcurrent::run([this, progressDialog]() {
 
-		auto segmentationPipeline = pipelineEditor->makePipeline();
-		segmentationPipeline->setRawDicomVolume(rawDicomVolume);
+	auto segmentationPipeline = pipelineEditor->makePipeline();
+	segmentationPipeline->setRawDicomVolume(rawDicomVolume);
 
-		auto future = segmentationPipeline->executePipeline();
-		future.waitForFinished();
+	auto future = segmentationPipeline->executePipeline();
 
-		auto result = future.result();
+	auto watcher = new QFutureWatcher<QSharedPointer<const SokarAlg::SegmentationResult>>();
 
-		emit endSegmentation(result);
-
-		progressDialog->close();
+	QObject::connect(watcher, &QFutureWatcherBase::finished, [=, this]() {
+		emit endSegmentation(future.result());
+		watcher->deleteLater();
 	});
 
-//	pipeline = QSharedPointer<SokarAlg::SegmentationPipeline>::create();
-//	pipeline->rawDicomVolume = rawDicomVolume;
-//
-//	auto future = pipeline->executePipeline();
-//
-//	auto watcher = new QFutureWatcher<SokarAlg::SegmentationResult>();
-//	qDebug() << watcher;
-//
-//	QObject::connect(watcher, &QFutureWatcherBase::finished, [watcher, this]() {
-//		qDebug() << "here";
-//		qDebug() << watcher;
-//		auto result = watcher->result();
-//
-//		auto camera = new Sokar3D::CenterCamera(
-//				result.proposeCameraCenter,
-//				result.proposeCameraDistance
-//		);
-//		vulkanRenderer->setCamera(camera);
-//
-//		auto pipeline = new Sokar3D::MeshPipeline(result.mesh);
-//		vulkanRenderer->addPipelineWrapper(pipeline);
-//	});
-//
-//	watcher->setFuture(future);
+	watcher->setFuture(future);
+
+	pipelineEditor->randomizeMeshColor();
 }
 
 void SegmentationWindow::endSegmentation(QSharedPointer<const SokarAlg::SegmentationResult> result) {
+
+	progressDialog->close();
+	progressDialog = nullptr;
 
 	auto camera = new Sokar3D::CenterCamera(
 			result->proposeCameraCenter,
@@ -111,9 +91,15 @@ void SegmentationWindow::endSegmentation(QSharedPointer<const SokarAlg::Segmenta
 	);
 	graphicPipeline->setMeshMaterial(material);
 
-//	auto resultWidget = new SegmentationResultWidget(result);
-//
-//	ui->resultLayout->addWidget(resultWidget);
+	auto resultWidget = new SegmentationResultWidget(result);
+	resultWidget->moveToThread(this->thread());
 
-	vulkanRenderer->addPipelineWrapper(graphicPipeline);
+	// wsadż na przedostatnią pozycję
+	ui->resultLayout->insertWidget(ui->resultLayout->count() - 1, resultWidget);
+
+	vulkanRenderer->addPipeline(graphicPipeline);
+
+	QObject::connect(resultWidget, &SegmentationResultWidget::deleteResult, [this, graphicPipeline](){
+		vulkanRenderer->removePipeline(graphicPipeline);
+	});
 }

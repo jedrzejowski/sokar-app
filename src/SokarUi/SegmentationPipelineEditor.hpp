@@ -28,5 +28,8 @@ namespace SokarUi {
 
 		[[nodiscard]]
 		QSharedPointer<SokarAlg::SegmentationPipeline> makePipeline() const;
+
+		void randomizeMeshColor();
+		void setMeshColor(const QColor& color);
 	};
 }

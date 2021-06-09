@@ -18,6 +18,7 @@ namespace SokarUi {
 
 	class SegmentationWindow : public QMainWindow {
 	Q_OBJECT
+		QProgressDialog *progressDialog;
 		QSharedPointer<const SokarAlg::RawDicomVolume> rawDicomVolume;
 		Ui::SegmentationWindow *ui;
 		Sokar3D::VulkanWidget *vulkanWidget;

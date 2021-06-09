@@ -10,7 +10,7 @@ SceneAvatar::SceneAvatar(DicomScene *scene) :
 	setAutoFillBackground(true);
 
 	qPalette = QWidget::palette();
-	qPalette.setBrush(QPalette::Background, scene->getIcon());
+	qPalette.setBrush(QPalette::Window, scene->getIcon());
 	QWidget::setPalette(qPalette);
 
 }
@@ -19,7 +19,7 @@ void SceneAvatar::updateSize(int width) {
 
 	auto icon = scene->getIcon().scaledToWidth(width);
 
-	qPalette.setBrush(QPalette::Background, icon);
+	qPalette.setBrush(QPalette::Window, icon);
 	QWidget::setPalette(qPalette);
 
 	setFixedSize(icon.width(), icon.height());
