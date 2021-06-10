@@ -125,6 +125,27 @@ QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMash() const {
 	return QSharedPointer<Sokar3D::StaticMesh>(newMesh);
 }
 
+QFuture<IndexedMeshPtr> IndexedMesh::fromStaticMash(const Sokar3D::StaticMeshPtr &staticMesh) {
+	return QtConcurrent::run([staticMesh]() -> IndexedMeshPtr {
+		auto indexedMesh = IndexedMeshPtr::create();
+
+		const auto& vertices = staticMesh->getVertices();
+
+		auto iter = vertices.begin();
+
+		while (iter != vertices.end()) {
+			indexedMesh->addTriangle(
+					(iter++)->pos,
+					(iter++)->pos,
+					(iter++)->pos
+			);
+		}
+
+		return indexedMesh;
+	});
+}
+
+
 //region Converters
 
 //IndexedMesh *IndexedMesh::toStaticMash() const {

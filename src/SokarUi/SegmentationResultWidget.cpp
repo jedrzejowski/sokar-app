@@ -16,8 +16,13 @@ SegmentationResultWidget::SegmentationResultWidget(
 	ui->setupUi(this);
 
 	QObject::connect(ui->deleteButton, &QPushButton::clicked, [this]() { emit deleteResult(); });
+	QObject::connect(ui->saveButton, &QPushButton::clicked, this, &SegmentationResultWidget::saveToObjFile);
 }
 
 SokarUi::SegmentationResultWidget::~SegmentationResultWidget() {
 	delete ui;
+}
+
+void SegmentationResultWidget::saveToObjFile() {
+	qDebug() << "saving";
 }

@@ -7,7 +7,7 @@
 using namespace SokarAlg;
 
 VolumeEnv::VolumeEnv(const QSharedPointer<const Volume> &child, float envValue)
-		: envSize(1,1,1), child(child), envValue(envValue) {
+		: envSize(1, 1, 1), child(child), envValue(envValue) {
 }
 
 glm::i32vec3 VolumeEnv::getSize() const {
@@ -18,14 +18,9 @@ float VolumeEnv::getValue(const glm::i32vec3 &position) const {
 	auto pos = position - envSize;
 	auto size = child->getSize();
 
-	if (
-			position.x >= 0 &&
-			position.y >= 0 &&
-			position.z >= 0 &&
-			position.x < size.x &&
-			position.y < size.y &&
-			position.z < size.z
-			) {
+	if (0 <= pos.x && pos.x < size.x &&
+		0 <= pos.y && pos.y < size.x &&
+		0 <= pos.z && pos.z < size.z) {
 		return child->getValue(pos);
 	}
 

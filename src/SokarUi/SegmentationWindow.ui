@@ -20,11 +20,24 @@
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
       </property>
-      <widget class="QWidget" name="vulkanPlacehodler" native="true"/>
+      <widget class="QWidget" name="vulkanPlacehodler" native="true">
+       <property name="baseSize">
+        <size>
+         <width>1000</width>
+         <height>0</height>
+        </size>
+       </property>
+      </widget>
       <widget class="QWidget" name="verticalLayoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QTabWidget" name="tabWidget">
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>0</height>
+           </size>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -64,7 +77,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>557</width>
+              <width>681</width>
               <height>392</height>
              </rect>
             </property>
@@ -86,6 +99,9 @@
            <property name="lineWidth">
             <number>0</number>
            </property>
+           <property name="verticalScrollBarPolicy">
+            <enum>Qt::ScrollBarAlwaysOn</enum>
+           </property>
            <property name="horizontalScrollBarPolicy">
             <enum>Qt::ScrollBarAlwaysOff</enum>
            </property>
@@ -103,7 +119,7 @@
              <rect>
               <x>0</x>
               <y>0</y>
-              <width>557</width>
+              <width>667</width>
               <height>392</height>
              </rect>
             </property>

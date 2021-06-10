@@ -23,6 +23,9 @@ namespace SokarUi {
 				QWidget *parent = nullptr);
 		~SegmentationResultWidget() override;
 
+	public slots:
+		void saveToObjFile();
+
 	signals:
 		void deleteResult();
 	};

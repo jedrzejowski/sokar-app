@@ -12,7 +12,7 @@ namespace SokarAlg {
 
 	using TimePoint = std::chrono::time_point<std::chrono::high_resolution_clock>;
 
-	inline TimePoint makeTimePoint(){
+	inline TimePoint makeTimePoint() {
 		return std::chrono::high_resolution_clock::now();
 	}
 
@@ -50,6 +50,8 @@ namespace SokarAlg {
 	class MarchingCubes;
 
 	class IndexedMesh;
+
+	using IndexedMeshPtr = QSharedPointer<IndexedMesh>;
 
 	// MeshSimplificator
 

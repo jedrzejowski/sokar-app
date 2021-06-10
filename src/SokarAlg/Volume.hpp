@@ -13,6 +13,9 @@ namespace SokarAlg {
 	class Volume {
 	public:
 
+		Volume();
+		~Volume();
+
 		[[nodiscard]]
 		virtual glm::i32vec3 getSize() const = 0;
 
@@ -24,6 +27,9 @@ namespace SokarAlg {
 
 		[[nodiscard]]
 		glm::i32vec3 clamp(const glm::i32vec3 &size) const;
+
+		[[nodiscard]]
+		bool isInVolume(const glm::i32vec3 &position) const;
 	};
 
 	class VolumeDecorator : public Volume {

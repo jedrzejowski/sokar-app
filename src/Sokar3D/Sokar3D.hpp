@@ -28,6 +28,8 @@ namespace Sokar3D {
 
 	class StaticMesh;
 
+	using StaticMeshPtr = QSharedPointer<StaticMesh>;
+
 	class VulkanRenderer;
 
 	class VulkanShader;

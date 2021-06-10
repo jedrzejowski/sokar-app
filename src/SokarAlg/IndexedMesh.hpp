@@ -7,7 +7,7 @@
 #include <QString>
 #include <QFuture>
 #include "Sokar3D/StaticMesh.hpp"
-#include "./SokarAlg.hpp"
+#include "SokarAlg.hpp"
 
 namespace SokarAlg {
 
@@ -53,6 +53,9 @@ namespace SokarAlg {
 
 		[[nodiscard]]
 		QSharedPointer<Sokar3D::StaticMesh> toStaticMash() const;
+
+		[[nodiscard]]
+		static QFuture<IndexedMeshPtr> fromStaticMash(const Sokar3D::StaticMeshPtr& mesh);
 
 	};
 }

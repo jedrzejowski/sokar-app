@@ -1,3 +1,4 @@
+#include "SokarMacro.hpp"
 #include "frameset.h"
 
 #include "../exception/exception.h"
@@ -14,12 +15,13 @@ DicomFrameSet::DicomFrameSet(const gdcm::ImageReader *reader, QObject *parent) :
 		gdcmDataSet(gdcmFile.GetDataSet()),
 		gdcmImage(reader->GetImage()),
 		dataConverter(imageReader->GetFile()) {
+	sokarTrace();
 
 	initScenes();
 }
 
 DicomFrameSet::~DicomFrameSet() {
-	qDebug() << "~DicomFrameSet()";
+	sokarTrace();
 
 	delete imageReader;
 }

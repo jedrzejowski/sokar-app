@@ -2,6 +2,7 @@
 // Created by adam on 09.06.2021.
 //
 
+#include "SokarMacro.hpp"
 #include "RegionGrowthVolume.hpp"
 
 using namespace SokarAlg;
@@ -15,77 +16,82 @@ const glm::i32vec3 &RegionGrowthVolume::getStartPoint() const {
 	return startPoint;
 }
 
-void RegionGrowthVolume::setStartPoint(const glm::i32vec3 &startPoint) {
-	RegionGrowthVolume::startPoint = startPoint;
+void RegionGrowthVolume::setStartPoint(const glm::i32vec3 &newStartPoint) {
+	startPoint = newStartPoint;
 }
 
 float RegionGrowthVolume::getMaskValue() const {
 	return maskValue;
 }
 
-void RegionGrowthVolume::setMaskValue(float maskValue) {
-	RegionGrowthVolume::maskValue = maskValue;
+void RegionGrowthVolume::setMaskValue(float newMaskValue) {
+	maskValue = newMaskValue;
 }
 
 const Range<float> &RegionGrowthVolume::getIsoLevel() const {
 	return isoLevel;
 }
 
-void RegionGrowthVolume::setIsoLevel(const Range<float> &isoLevel) {
-	RegionGrowthVolume::isoLevel = isoLevel;
+void RegionGrowthVolume::setIsoLevel(const Range<float> &newIsoLevel) {
+	isoLevel = newIsoLevel;
 }
 
 float RegionGrowthVolume::getValue(const glm::i32vec3 &position) const {
-	return (mask(position) & VISITED) && VolumeDecorator::getValue(position);
+
+	if (isVisited(position)) {
+		return VolumeDecorator::getValue(position);
+	}
+
+	return maskValue;
 }
 
 void RegionGrowthVolume::regrowth() {
+	glm::i32vec3 next, current;
 
 	QQueue<glm::i32vec3> queue;
 	mask.resize(getSize(), 0);
 
+	static const glm::i32vec3 D1 = glm::i32vec3(1, 0, 0);
+	static const glm::i32vec3 D2 = glm::i32vec3(-1, 0, 0);
+	static const glm::i32vec3 D3 = glm::i32vec3(0, 1, 0);
+	static const glm::i32vec3 D4 = glm::i32vec3(0, -1, 0);
+	static const glm::i32vec3 D5 = glm::i32vec3(0, 0, 1);
+	static const glm::i32vec3 D6 = glm::i32vec3(0, 0, -1);
+
 	queue << startPoint;
+	qDebug() << "startPoint" << startPoint;
+
+	auto stepNext = [&](const glm::i32vec3 &direction) {
+		next = current + glm::i32vec3(1, 0, 0);
+
+		if (isInVolume(next) && !isVisited(next)) {
+			queue << next;
+		}
+	};
 
 	while (!queue.isEmpty()) {
 
-		auto position = queue.dequeue();
 
-		mask(position) = mask(position) & VISITED;
+		current = queue.dequeue();
+		qDebug() << "iter" << current;
 
-		if (isoLevel.isOn(getValue(position))) {
-			mask(position) = mask(position) & PASSES;
+		mask(current) = mask(current) & VISITED;
+
+		if (isoLevel.isOn(getValue(current))) {
+			mask(current) = mask(current) & PASSES;
+		} else {
+			continue;
 		}
 
-		glm::i32vec3 next;
-
-		next = position + glm::i32vec3(1, 0, 0);
-		if (!(mask(next) & VISITED)) {
-			queue << next;
-		}
-
-		next = position + glm::i32vec3(-1, 0, 0);
-		if (!(mask(next) & VISITED)) {
-			queue << next;
-		}
-
-		next = position + glm::i32vec3(0, 1, 0);
-		if (!(mask(next) & VISITED)) {
-			queue << next;
-		}
-
-		next = position + glm::i32vec3(0, -1, 0);
-		if (!(mask(next) & VISITED)) {
-			queue << next;
-		}
-
-		next = position + glm::i32vec3(0, 0, 1);
-		if (!(mask(next) & VISITED)) {
-			queue << next;
-		}
-
-		next = position + glm::i32vec3(0, 0, -1);
-		if (!(mask(next) & VISITED)) {
-			queue << next;
-		}
+		stepNext(D1);
+		stepNext(D2);
+		stepNext(D3);
+		stepNext(D4);
+		stepNext(D5);
+		stepNext(D6);
 	}
+}
+
+bool RegionGrowthVolume::isVisited(const glm::i32vec3 &position) const {
+	return mask(position) & VISITED;
 }

@@ -19,7 +19,7 @@
   <property name="frameShadow">
    <enum>QFrame::Plain</enum>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,1,0">
+  <layout class="QGridLayout" name="gridLayout_2" columnstretch="1,1">
    <item row="4" column="1">
     <widget class="QLabel" name="label_9">
      <property name="text">
@@ -113,12 +113,12 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="editButton">
+      <widget class="QPushButton" name="saveButton">
        <property name="text">
         <string notr="true"/>
        </property>
        <property name="icon">
-        <iconset theme="edit"/>
+        <iconset theme="document-save"/>
        </property>
       </widget>
      </item>
@@ -128,7 +128,8 @@
         <string notr="true"/>
        </property>
        <property name="icon">
-        <iconset theme="edit-delete"/>
+        <iconset theme="edit-delete">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>

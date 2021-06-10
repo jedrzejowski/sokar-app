@@ -116,6 +116,11 @@ QSharedPointer<SokarAlg::SegmentationPipeline> SegmentationPipelineEditor::makeP
 								   });
 	pipeline->setVolumeSegmentator(volumeSegmentator);
 
+	pipeline->setUseRegionGrowth(ui->regionGrowthCheck->isChecked());
+	auto growStartPoint = ui->regionGrowthVec->getValue() / float(ui->interpolationWokselSize->value());
+	qDebug() << growStartPoint;
+	pipeline->setGrowthStartPoint(growStartPoint);
+
 	//endergion
 
 	//region desgin

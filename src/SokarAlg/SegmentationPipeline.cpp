@@ -39,19 +39,6 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 //		volume = ExampleVolume::Sphere(100,40);
 		volume = dicomVolume;
 
-		if (useEmptyEnv) {
-			volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
-		}
-
-		if(useRegionGrowth){
-			auto regionGrowth = QSharedPointer<RegionGrowthVolume>::create();
-			regionGrowth->setVolume(volume);
-			regionGrowth->setIsoLevel(volumeSegmentator->getIsoLevel());
-			regionGrowth->setStartPoint(regionGrowthStartPoint);
-
-			volume = regionGrowth;
-		}
-
 		//endregion
 
 		//region caching
@@ -66,6 +53,23 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 		result->timePostCache = makeTimePoint();
 
 		//endregion
+
+
+		if (useRegionGrowth) {
+			auto regionGrowth = QSharedPointer<RegionGrowthVolume>::create();
+			regionGrowth->setVolume(volume);
+			regionGrowth->setIsoLevel(volumeSegmentator->getIsoLevel());
+			regionGrowth->setStartPoint(regionGrowthStartPoint);
+
+			volume = regionGrowth;
+
+			regionGrowth->regrowth();
+		}
+
+
+		if (useEmptyEnv) {
+			volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
+		}
 
 
 		//region marching
