@@ -859,6 +859,24 @@
     </message>
 </context>
 <context>
+    <name>SokarUi::SegmentationResultWidget</name>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="31"/>
+        <source>Save Wavefront OBJ</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="32"/>
+        <source>Wavefront (*.obj);;All Files (*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="45"/>
+        <source>Unable to open file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Vec3Input</name>
     <message>
         <location filename="../../src/SokarUi/Vec3Input.ui" line="14"/>

@@ -24,7 +24,7 @@ namespace SokarUi {
 		~SegmentationResultWidget() override;
 
 	public slots:
-		void saveToObjFile();
+		void saveToWavefrontObjFile();
 
 	signals:
 		void deleteResult();

@@ -111,7 +111,7 @@ void IndexedMesh::addTriangle(
 }
 
 QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMash() const {
-	auto newMesh = new Sokar3D::StaticMesh();
+	auto newMesh = Sokar3D::StaticMesh::New();
 
 	auto iter = indexes.begin();
 	while (iter != indexes.end()) {
@@ -122,7 +122,7 @@ QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMash() const {
 		);
 	}
 
-	return QSharedPointer<Sokar3D::StaticMesh>(newMesh);
+	return newMesh;
 }
 
 QFuture<IndexedMeshPtr> IndexedMesh::fromStaticMash(const Sokar3D::StaticMeshPtr &staticMesh) {

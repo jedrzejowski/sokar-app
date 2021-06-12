@@ -14,7 +14,7 @@ void VolumeSegmentator::execBefore() {
 		mesh.clear();
 	}
 
-	mesh = QSharedPointer<MeshType>::create();
+	mesh = MeshType::New();
 }
 
 QFuture<void> VolumeSegmentator::execAsync() {

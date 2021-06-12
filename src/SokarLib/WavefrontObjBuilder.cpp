@@ -61,20 +61,17 @@ Size WavefrontObjBuilder::addFaceVN(
 		const Size &v3, const Size &n3
 ) {
 	faces << "f" << space
-		  << v1 << slash << << n1 << space
-		  << v1 << slash << << n2 << space
-		  << v1 << slash << << n3 << endl;
+		  << v1 << slash << n1 << space
+		  << v1 << slash << n2 << space
+		  << v1 << slash << n3 << endl;
 	return ++facesI;
 }
 
-QByteArray WavefrontObjBuilder::dump2byteArray()const {
-	auto array = QByteArray();
+void WavefrontObjBuilder::dump2stream(QTextStream &stream) const {
 
-	array.push_back(vertices.str().c_str());
-	array.push_back(texture.str().c_str());
-	array.push_back(normals.str().c_str());
-	array.push_back(faces.str().c_str());
-
-	return array;
+	stream << vertices.str().c_str();
+	stream << texture.str().c_str();
+	stream << normals.str().c_str();
+	stream << faces.str().c_str();
 }
 

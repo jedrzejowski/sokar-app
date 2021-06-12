@@ -6,6 +6,7 @@
 
 #include <QString>
 #include <QFuture>
+#include <SokarLib/WavefrontObjBuilder.hpp>
 #include "./Sokar3D.hpp"
 #include "./MeshVertex.hpp"
 
@@ -39,7 +40,6 @@ namespace Sokar3D {
 		[[nodiscard]]
 		const QVector<MeshVertex> &getVertices() const;
 
-		[[nodiscard]]
-		QFuture<QString> makeObjFile() const;
+		void dump2wavefront(SokarLib::WavefrontObjBuilder& builder) const;
 	};
 }

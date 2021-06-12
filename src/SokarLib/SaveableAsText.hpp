@@ -6,14 +6,13 @@
 
 #include <QString>
 #include <QFile>
-#include <QByteArray>
+#include <QTextStream>
 
 namespace SokarLib {
-	class Saveable {
+	class SaveableAsText {
 	public:
-		QString saveWithGui() const;
 		void save2file(QFile &file) const;
-		virtual QByteArray dump2byteArray() const = 0;
+		virtual void dump2stream(QTextStream &stream) const = 0;
 	};
 }
 

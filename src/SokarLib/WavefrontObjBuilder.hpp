@@ -9,10 +9,10 @@
 #include <sstream>
 #include <QFile>
 #include "SokarGlm.hpp"
-#include "Saveable.h"
+#include "SaveableAsText.hpp"
 
 namespace SokarLib {
-	class WavefrontObjBuilder : public SokarLib::Saveable {
+	class WavefrontObjBuilder : public SokarLib::SaveableAsText {
 	public:
 		using Size = qint32;
 	private:
@@ -61,7 +61,7 @@ namespace SokarLib {
 				const Size &v3, const Size &n3
 		);
 
-		QByteArray dump2byteArray() const override;
+		void dump2stream(QTextStream &stream) const override;
 	};
 }
 

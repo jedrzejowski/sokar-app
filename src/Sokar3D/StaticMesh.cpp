@@ -13,7 +13,7 @@ StaticMesh::StaticMesh() {
 }
 
 StaticMeshPtr StaticMesh::New() {
-	return StaticMeshPtr::create();
+	return StaticMeshPtr(new StaticMesh);
 }
 
 const quint8 *StaticMesh::verticesData() const {
@@ -179,12 +179,19 @@ StaticMesh *StaticMesh::createCubeMesh() {
 	return mesh;
 }
 
-QFuture<QString> StaticMesh::makeObjFile() const {
-	auto self = sharedFromThis();
-	return QtConcurrent::run([self]() -> QString {
-		// https://en.wikipedia.org/wiki/Wavefront_.obj_file
-		std::stringstream v, f
+void StaticMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
+	auto iter = vertices.begin();
 
-		return QString::fromStdString(ss.str());
-	});
+	while (iter != vertices.end()) {
+
+		auto &v1 = (iter++)->pos;
+		auto &v2 = (iter++)->pos;
+		auto &v3 = (iter++)->pos;
+
+		auto v1i = builder.addVertex(v1);
+		auto v2i = builder.addVertex(v2);
+		auto v3i = builder.addVertex(v3);
+
+		builder.addFaceV(v1i, v2i, v3i);
+	}
 }
