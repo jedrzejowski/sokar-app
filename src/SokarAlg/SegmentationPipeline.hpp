@@ -13,7 +13,8 @@
 namespace SokarAlg {
 
 	struct SegmentationResult {
-		QSharedPointer<Sokar3D::StaticMesh> mesh;
+		Sokar3D::StaticMeshPtr mesh = nullptr;
+		SokarAlg::IndexedMeshPtr indexedMesh = nullptr;
 		QColor meshColor;
 
 		TimePoint timeStarted;

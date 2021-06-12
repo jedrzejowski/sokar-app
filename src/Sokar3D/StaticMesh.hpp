@@ -11,14 +11,16 @@
 
 namespace Sokar3D {
 
-
-	class StaticMesh : public QObject {
-	Q_OBJECT
+	class StaticMesh : public QEnableSharedFromThis<StaticMesh> {
 
 	protected:
 		QVector<MeshVertex> vertices;
 
+		StaticMesh();
+
 	public:
+
+		static StaticMeshPtr New();
 
 		void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2);
 		void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2);
@@ -37,5 +39,7 @@ namespace Sokar3D {
 		[[nodiscard]]
 		const QVector<MeshVertex> &getVertices() const;
 
+		[[nodiscard]]
+		QFuture<QString> makeObjFile() const;
 	};
 }

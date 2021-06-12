@@ -52,6 +52,7 @@ namespace SokarAlg {
 	class IndexedMesh;
 
 	using IndexedMeshPtr = QSharedPointer<IndexedMesh>;
+	using IndexedMeshWPtr = QWeakPointer<IndexedMesh>;
 
 	// MeshSimplificator
 

@@ -9,6 +9,13 @@
 
 using namespace Sokar3D;
 
+StaticMesh::StaticMesh() {
+}
+
+StaticMeshPtr StaticMesh::New() {
+	return StaticMeshPtr::create();
+}
+
 const quint8 *StaticMesh::verticesData() const {
 	return reinterpret_cast<const quint8 *>(vertices.data());
 }
@@ -170,4 +177,14 @@ StaticMesh *StaticMesh::createCubeMesh() {
 
 
 	return mesh;
+}
+
+QFuture<QString> StaticMesh::makeObjFile() const {
+	auto self = sharedFromThis();
+	return QtConcurrent::run([self]() -> QString {
+		// https://en.wikipedia.org/wiki/Wavefront_.obj_file
+		std::stringstream v, f
+
+		return QString::fromStdString(ss.str());
+	});
 }
