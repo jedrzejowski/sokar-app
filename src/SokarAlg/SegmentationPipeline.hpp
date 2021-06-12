@@ -13,16 +13,36 @@
 namespace SokarAlg {
 
 	struct SegmentationResult {
-		Sokar3D::StaticMeshPtr mesh = nullptr;
-		SokarAlg::IndexedMeshPtr indexedMesh = nullptr;
+		Sokar3D::StaticMeshPtr originalMesh = nullptr;
+		SokarAlg::IndexedMeshPtr simplifiedMesh = nullptr;
+		Sokar3D::StaticMeshPtr finalMesh = nullptr;
 		QColor meshColor;
 
-		TimePoint timeStarted;
-		TimePoint timePreCache;
-		TimePoint timePostCache;
-		TimePoint timePreMarching;
-		TimePoint timePostMarching;
-		TimePoint timeEnded;
+		struct {
+			bool was = false;
+			TimePoint timeStart;
+			TimePoint timeEnd;
+		} interpolationCache;
+
+		struct {
+			bool was = false;
+			TimePoint timeStart;
+			TimePoint timeEnd;
+		} regionGrowth;
+
+		struct {
+			TimePoint timeStart;
+			TimePoint timeEnd;
+		} segmentation;
+
+		struct {
+			bool was = false;
+			TimePoint timeStart;
+			TimePoint timeEnd;
+		} simplification;
+
+		TimePoint timeStart;
+		TimePoint timeEnd;
 
 		glm::vec3 proposeCameraCenter;
 		float proposeCameraDistance;
@@ -30,12 +50,6 @@ namespace SokarAlg {
 
 	class SegmentationPipeline : public QObject, public QEnableSharedFromThis<SegmentationPipeline> {
 	Q_OBJECT
-
-		enum Stage {
-			INTERPOLATION,
-			MARCHING,
-			MESH_SIMPLIFICATION
-		};
 
 	private:
 		QMutex stateMutex;
@@ -51,11 +65,13 @@ namespace SokarAlg {
 		QSharedPointer<DicomVolume> dicomVolume = nullptr;
 		QSharedPointer<VolumeInterpolator> volumeInterpolator = nullptr;
 		QSharedPointer<VolumeSegmentator> volumeSegmentator = nullptr;
-		QSharedPointer<MeshSimplificator> meshSimplificator = nullptr;
+		MeshSimplificatorPtr meshSimplificator = nullptr;
+
+		SegmentationPipeline();
 
 	public:
 
-		SegmentationPipeline();
+		static SegmentationPipelinePtr New();
 
 		bool isUseInterpolationCache() const;
 		void setUseInterpolationCache(bool useCache);
@@ -70,7 +86,7 @@ namespace SokarAlg {
 		const QSharedPointer<VolumeSegmentator> &getVolumeSegmentator() const;
 		void setVolumeSegmentator(const QSharedPointer<VolumeSegmentator> &volumeSegmentator);
 		const QSharedPointer<MeshSimplificator> &getMeshSimplificator() const;
-		void setMeshSimplificator(const QSharedPointer<MeshSimplificator> &meshSimplificator);
+		void setMeshSimplificator(const MeshSimplificatorPtr &meshSimplificator);
 		bool isUseEmptyEnv() const;
 		void setUseEmptyEnv(bool useEmptyEnv);
 		bool isUseRegionGrowth() const;
@@ -78,10 +94,10 @@ namespace SokarAlg {
 		const glm::i32vec3 &getGrowthStartPoint() const;
 		void setGrowthStartPoint(const glm::i32vec3 &growthStartPoint);
 
-		QFuture<QSharedPointer<const SegmentationResult>> executePipeline();
+		QFuture<SegmentationResultCPtr> executePipeline();
 
 	signals:
-		void updateProgress(SokarAlg::SegmentationPipeline::Stage stage, float progress);
+		void updateProgress(QString title, float progress);
 	};
 }
 

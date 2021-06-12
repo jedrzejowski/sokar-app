@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>759</height>
+    <height>761</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -238,7 +238,46 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
-       <widget class="QComboBox" name="comboBox_4"/>
+       <widget class="QComboBox" name="simplificationAlgorithm">
+        <item>
+         <property name="text">
+          <string>Brak</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Klasteryzacja wierzchołków</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="vertexClustering" native="true">
+        <layout class="QGridLayout" name="vertexClusteringLayout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Wielkość klastra [mm]</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="SokarUi::Vec3Input" name="vertexClusteringSize" native="true"/>
+         </item>
+        </layout>
+       </widget>
       </item>
      </layout>
     </widget>
@@ -249,27 +288,10 @@
       <string>Wygląd</string>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Kolor</string>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_9">
         <property name="text">
          <string>Osadz w pustej przestrzeni</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="emptyEnv">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -294,6 +316,23 @@
          </widget>
         </item>
        </layout>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="emptyEnv">
+        <property name="text">
+         <string notr="true"/>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Kolor</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

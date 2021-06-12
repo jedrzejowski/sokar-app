@@ -27,9 +27,14 @@ namespace SokarUi {
 		~SegmentationPipelineEditor() override;
 
 		[[nodiscard]]
-		QSharedPointer<SokarAlg::SegmentationPipeline> makePipeline() const;
+		SokarAlg::SegmentationPipelinePtr makePipeline() const;
 
+		void setMeshColor(const QColor &color);
+
+	public slots:
 		void randomizeMeshColor();
-		void setMeshColor(const QColor& color);
+
+	private	slots:
+		void simplificationAlgorithmComboBoxIndexChanged(int i);
 	};
 }

@@ -45,20 +45,26 @@ void SegmentationWindow::startSegmentation(bool append) {
 
 	progressDialog = new QProgressDialog(this);
 	progressDialog->setAttribute(Qt::WA_DeleteOnClose);
-	progressDialog->setWindowTitle("Segmentowanie");
+	progressDialog->setWindowTitle(tr("Liczę..."));
 	progressDialog->setModal(true);
 	progressDialog->setCancelButton(nullptr);
 	progressDialog->show();
 
-
 	auto segmentationPipeline = pipelineEditor->makePipeline();
 	segmentationPipeline->setRawDicomVolume(rawDicomVolume);
+
+	auto dialogUpdateConnection = QObject::connect(
+			segmentationPipeline.get(), &SokarAlg::SegmentationPipeline::updateProgress,
+			[this](const QString& label, float progress) {
+				progressDialog->setLabelText(label);
+			});
 
 	auto future = segmentationPipeline->executePipeline();
 
 	auto watcher = new QFutureWatcher<QSharedPointer<const SokarAlg::SegmentationResult>>();
 
 	QObject::connect(watcher, &QFutureWatcherBase::finished, [=, this]() {
+		disconnect(dialogUpdateConnection);
 		emit endSegmentation(future.result());
 		watcher->deleteLater();
 	});
@@ -79,7 +85,7 @@ void SegmentationWindow::endSegmentation(QSharedPointer<const SokarAlg::Segmenta
 	);
 	vulkanRenderer->setCamera(camera);
 
-	auto graphicPipeline = new Sokar3D::MeshPipeline(result->mesh);
+	auto graphicPipeline = new Sokar3D::MeshPipeline(result->finalMesh);
 
 	Sokar3D::SolidMaterial material{};
 	material.shininess = 64.0f;
@@ -101,7 +107,7 @@ void SegmentationWindow::endSegmentation(QSharedPointer<const SokarAlg::Segmenta
 
 	vulkanRenderer->addPipeline(graphicPipeline);
 
-	QObject::connect(resultWidget, &SegmentationResultWidget::deleteResult, [this, graphicPipeline, resultWidget](){
+	QObject::connect(resultWidget, &SegmentationResultWidget::deleteResult, [this, graphicPipeline, resultWidget]() {
 		vulkanRenderer->removePipeline(graphicPipeline);
 		delete resultWidget;
 	});

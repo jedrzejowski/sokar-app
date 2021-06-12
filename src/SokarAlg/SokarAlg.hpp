@@ -6,7 +6,8 @@
 
 #include <chrono>
 #include <QtGlobal>
-#include "../SokarGlm.hpp"
+#include <SokarMacro.hpp>
+#include <SokarGlm.hpp>
 
 namespace SokarAlg {
 
@@ -27,7 +28,9 @@ namespace SokarAlg {
 	template<typename T>
 	class Array3;
 
-	class VolSegmAlgorithm;
+	template<typename Output>
+	class Algorithm;
+
 
 	//region Volume
 
@@ -45,38 +48,37 @@ namespace SokarAlg {
 
 	class RegionGrowthVolume;
 
-	//endregion
+	// VolSegmAlgorithm
 
-	class MarchingCubes;
+	declareSharedClass(VolSegmAlgorithm)
 
-	class IndexedMesh;
+	declareSharedClass(MarchingCubes)
 
-	using IndexedMeshPtr = QSharedPointer<IndexedMesh>;
-	using IndexedMeshWPtr = QWeakPointer<IndexedMesh>;
+	declareSharedClass(IndexedMesh)
 
 	// MeshSimplificator
 
-	class MeshSimplificator;
+	declareSharedClass(MeshSimplificator)
 
-	class VertexClustering;
+	declareSharedClass(VertexClustering)
 
-	class EdgeContraction;
+	declareSharedClass(EdgeContraction)
 
-	class VertexDecimation;
+	declareSharedClass(VertexDecimation)
 
 	// VolumeInterpolator
 
-	class VolumeInterpolator;
+	declareSharedClass(VolumeInterpolator)
 
-	class NearestVolumeInterpolator;
+	declareSharedClass(NearestVolumeInterpolator)
 
-	class LinearVolumeInterpolator;
+	declareSharedClass(LinearVolumeInterpolator)
 
-	class CubicVolumeInterpolator;
+	declareSharedClass(CubicVolumeInterpolator)
 
-	class MakimaValueInterpolator;
+	declareSharedClass(MakimaValueInterpolator)
 
-	class SplineValueInterpolator;
+	declareSharedClass(SplineValueInterpolator)
 
 	// VertexInterpolator
 
@@ -97,9 +99,9 @@ namespace SokarAlg {
 	template<typename Unit = float>
 	struct Range;
 
-	class SegmentationPipeline;
+	declareSharedClass(SegmentationPipeline)
 
-	struct SegmentationResult;
+	declareSharedClass(SegmentationResult)
 
 	void forI32space(
 			const glm::i32vec3 &from,

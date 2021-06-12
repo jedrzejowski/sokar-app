@@ -313,6 +313,26 @@
         <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="53"/>
+        <source>Kaszowanie interpolacji</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="67"/>
+        <source>Rozrost obszarów</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="86"/>
+        <source>Maszerowanie</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="103"/>
+        <source>Upraszczanie siatki</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SegmentationResultWidget</name>
@@ -838,22 +858,37 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="244"/>
+        <source>Brak</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="249"/>
+        <source>Klasteryzacja wierzchołków</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="272"/>
+        <source>Wielkość klastra [mm]</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="288"/>
         <source>Wygląd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="255"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="333"/>
         <source>Kolor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="281"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="303"/>
         <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="262"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="294"/>
         <source>Osadz w pustej przestrzeni</source>
         <translation type="unfinished"></translation>
     </message>
@@ -873,6 +908,14 @@
     <message>
         <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="45"/>
         <source>Unable to open file</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SokarUi::SegmentationWindow</name>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationWindow.cpp" line="48"/>
+        <source>Liczę...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

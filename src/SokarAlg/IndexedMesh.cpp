@@ -8,6 +8,12 @@
 
 using namespace SokarAlg;
 
+IndexedMesh::IndexedMesh() {}
+
+IndexedMeshPtr IndexedMesh::New() {
+	return IndexedMeshPtr(new IndexedMesh);
+}
+
 //region getter & setters&
 
 qsizetype IndexedMesh::verticesSizeInBytes() const {
@@ -110,7 +116,7 @@ void IndexedMesh::addTriangle(
 	addTriangle(i0, i1, i2, checkDup);
 }
 
-QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMash() const {
+QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMesh() const {
 	auto newMesh = Sokar3D::StaticMesh::New();
 
 	auto iter = indexes.begin();
@@ -127,7 +133,7 @@ QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMash() const {
 
 QFuture<IndexedMeshPtr> IndexedMesh::fromStaticMash(const Sokar3D::StaticMeshPtr &staticMesh) {
 	return QtConcurrent::run([staticMesh]() -> IndexedMeshPtr {
-		auto indexedMesh = IndexedMeshPtr::create();
+		auto indexedMesh = IndexedMesh::New();
 
 		const auto& vertices = staticMesh->getVertices();
 
@@ -144,6 +150,7 @@ QFuture<IndexedMeshPtr> IndexedMesh::fromStaticMash(const Sokar3D::StaticMeshPtr
 		return indexedMesh;
 	});
 }
+
 
 
 //region Converters

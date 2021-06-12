@@ -36,7 +36,7 @@ void SegmentationResultWidget::saveToWavefrontObjFile() {
 			[
 					this,
 					fileName,
-					mesh = result->mesh
+					mesh = result->originalMesh
 			]() {
 				QFile file(fileName);
 

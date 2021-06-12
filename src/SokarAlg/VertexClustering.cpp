@@ -7,18 +7,19 @@
 
 using namespace SokarAlg;
 
-VertexClustering::VertexClustering(
-		const glm::vec3 &clusterSize,
-		const glm::vec3 &clusterOffset
-) : clusterSize(clusterSize),
-	clusterOffset(clusterOffset) {
+VertexClustering::VertexClustering() {
 }
 
-IndexedMesh *VertexClustering::exec(const IndexedMesh *mesh) {
+VertexClusteringPtr VertexClustering::New() {
+	return SokarAlg::VertexClusteringPtr(new VertexClustering);
+}
 
-	auto extrema = findExtrema(mesh);
+IndexedMeshPtr VertexClustering::exec() {
+	auto newMesh = IndexedMesh::New();
 
-	auto newMesh = new IndexedMesh();
+	auto extrema = findExtrema();
+
+	qDebug() << "KLASTERYZUJEMY";
 
 //	Array3<std::vector<qsizetype>> buckets(extrema.max.x, extrema.max.y, extrema.max.z);
 //	std::vector<qsizetype> vertexMap(mesh->verticesCount());

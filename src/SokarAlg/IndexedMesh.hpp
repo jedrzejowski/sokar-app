@@ -12,14 +12,18 @@
 namespace SokarAlg {
 
 
-	class IndexedMesh{
+	class IndexedMesh {
 		using Vertex = glm::vec3;
 
 	protected:
 		QVector<Vertex> vertices;
 		QVector<quint32> indexes;
 
+		IndexedMesh();
+
 	public:
+
+		static IndexedMeshPtr New();
 
 		[[nodiscard]]
 		qsizetype verticesSizeInBytes() const;
@@ -52,10 +56,9 @@ namespace SokarAlg {
 		void addTriangle(quint32 i0, quint32 v1, quint32 v2, bool checkDuplicates = true);
 
 		[[nodiscard]]
-		QSharedPointer<Sokar3D::StaticMesh> toStaticMash() const;
+		QSharedPointer<Sokar3D::StaticMesh> toStaticMesh() const;
 
 		[[nodiscard]]
-		static QFuture<IndexedMeshPtr> fromStaticMash(const Sokar3D::StaticMeshPtr& mesh);
-
+		static QFuture<IndexedMeshPtr> fromStaticMash(const Sokar3D::StaticMeshPtr &mesh);
 	};
 }

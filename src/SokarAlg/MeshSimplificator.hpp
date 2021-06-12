@@ -8,21 +8,25 @@
 #include "Sokar3D/StaticMesh.hpp"
 #include "SokarAlg.hpp"
 #include "IndexedMesh.hpp"
+#include "Algorithm.hpp"
 
 namespace SokarAlg {
-	class MeshSimplificator {
 
-
-		virtual IndexedMesh *exec(const IndexedMesh *mesh) = 0;
+	class MeshSimplificator : public Algorithm<IndexedMeshPtr> {
+	protected:
+		IndexedMeshPtr mesh;
 	public:
-		QFuture<IndexedMesh *> simplify(const IndexedMesh *mesh);
 
 		struct Extrema {
 			glm::vec3 min;
 			glm::vec3 max;
 		};
 
-		Extrema findExtrema(const IndexedMesh *mesh);
+		[[nodiscard]]
+		Extrema findExtrema();
+
+		const IndexedMeshPtr &getMesh() const;
+		void setMesh(const IndexedMeshPtr &mesh);
 	};
 }
 

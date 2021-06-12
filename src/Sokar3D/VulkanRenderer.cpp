@@ -74,6 +74,7 @@ void VulkanRenderer::initResources() {
 	initResourceFuture = QtConcurrent::run([&, args] {
 
 		for (auto pw : pipelineWrappers.current) {
+			QMutexLocker locker(&pipelinesMutex);
 			pw->initResources(args);
 		}
 	});
@@ -106,6 +107,8 @@ void VulkanRenderer::releaseResources() {
 	initResourceFuture.waitForFinished();
 	releaseResourcesFuture.waitForFinished();
 
+	QMutexLocker locker(&pipelinesMutex);
+
 	qDebug("releaseResources");
 	VkDevice vkDevice = vkWidget->device();
 	auto args = getMetaArgs();
@@ -119,13 +122,18 @@ void VulkanRenderer::releaseResources() {
 		pw->releaseResources(args);
 	}
 
+	pipelineWrappers.current << pipelineWrappers.toAdd;
+	pipelineWrappers.toAdd.clear();
+
 	for (auto pw : pipelineWrappers.toRemove) {
 		pw->releaseResources(args);
 	}
+	pipelineWrappers.toRemove.clear();
 
 	for (auto pw : pipelineWrappers.toRelease) {
 		pw->releaseResources(args);
 	}
+	pipelineWrappers.toRemove.clear();
 }
 
 void VulkanRenderer::startNextFrame() {

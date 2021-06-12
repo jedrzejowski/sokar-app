@@ -9,6 +9,7 @@
 #include "CachedVolume.hpp"
 #include "VolumeEnv.hpp"
 #include "RegionGrowthVolume.hpp"
+#include "MeshSimplificator.hpp"
 
 using namespace SokarAlg;
 
@@ -20,7 +21,11 @@ SegmentationPipeline::SegmentationPipeline()
 		  volumeSegmentator(QSharedPointer<SokarAlg::MarchingCubes>::create()) {
 }
 
-QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executePipeline() {
+SegmentationPipelinePtr SegmentationPipeline::New() {
+	return SegmentationPipelinePtr(new SegmentationPipeline);
+}
+
+QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 	// aby obiekt sam się nie rozwalił
 	auto self = sharedFromThis();
 
@@ -29,7 +34,8 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 
 		QSharedPointer<const Volume> volume;
 		auto result = QSharedPointer<SegmentationResult>::create();
-		result->timeStarted = makeTimePoint();
+
+		result->timeStart = makeTimePoint();
 
 		// volume
 
@@ -41,52 +47,76 @@ QFuture<QSharedPointer<const SegmentationResult>> SegmentationPipeline::executeP
 
 		//endregion
 
-		//region caching
-
-		result->timePreCache = makeTimePoint();
 		if (useInterpolationCache) {
-			qDebug() << "caching ...";
+			result->interpolationCache.was = true;
+
+			emit updateProgress(QObject::tr("Kaszowanie interpolacji"), 0.f);
+
 			auto cachedVolume = QSharedPointer<CachedVolume>::create();
 			cachedVolume->setVolume(volume);
 			volume = cachedVolume;
+
+			result->interpolationCache.timeStart = makeTimePoint();
+			cachedVolume->refreshCache();
+			result->interpolationCache.timeEnd = makeTimePoint();
 		}
-		result->timePostCache = makeTimePoint();
-
-		//endregion
-
 
 		if (useRegionGrowth) {
+			result->regionGrowth.was = true;
+
+			emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
+
 			auto regionGrowth = QSharedPointer<RegionGrowthVolume>::create();
 			regionGrowth->setVolume(volume);
 			regionGrowth->setIsoLevel(volumeSegmentator->getIsoLevel());
 			regionGrowth->setStartPoint(regionGrowthStartPoint);
-
 			volume = regionGrowth;
 
+			result->regionGrowth.timeStart = makeTimePoint();
 			regionGrowth->regrowth();
+			result->regionGrowth.timeEnd = makeTimePoint();
 		}
-
 
 		if (useEmptyEnv) {
 			volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
 		}
 
+		//region segmentation
 
-		//region marching
-		qDebug() << "marching ...";
+		emit updateProgress(QObject::tr("Maszerowanie"), 0.f);
 
 		volumeSegmentator->setVolume(volume);
+
+		result->segmentation.timeStart = makeTimePoint();
 		volumeSegmentator->execSync();
+		result->segmentation.timeEnd = makeTimePoint();
+
+		result->originalMesh = volumeSegmentator->getMesh();
+		result->finalMesh = volumeSegmentator->getMesh();
 
 		//endregion
 
-		auto mesh = volumeSegmentator->getMesh();
+		//region mesh simplification
 
-		result->mesh = mesh;
+		if (meshSimplificator != nullptr) {
+
+			emit updateProgress(QObject::tr("Upraszczanie siatki"), 0.f);
+
+			meshSimplificator->setMesh(IndexedMesh::fromStaticMash(result->originalMesh));
+
+			result->simplification.timeStart = makeTimePoint();
+			meshSimplificator->execSync();
+			result->simplification.timeEnd = makeTimePoint();
+
+			result->simplifiedMesh = meshSimplificator->getMesh();
+			result->finalMesh = result->simplifiedMesh->toStaticMesh();
+		}
+
+		//endregion
+
+		result->timeEnd = makeTimePoint();
+
 		result->meshColor = meshColor;
-
-		result->timeEnded = makeTimePoint();
-
 		result->proposeCameraCenter = glm::vec3(volume->getSize()) / 2.f;
 		result->proposeCameraDistance = glm::length(result->proposeCameraCenter) * 2;
 

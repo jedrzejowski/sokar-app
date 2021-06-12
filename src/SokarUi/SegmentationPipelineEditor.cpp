@@ -3,6 +3,7 @@
 //
 
 #include <SokarException.hpp>
+#include <SokarAlg/VertexClustering.hpp>
 #include "SegmentationPipelineEditor.hpp"
 #include "ui_SegmentationPipelineEditor.h"
 #include "SokarAlg/SegmentationPipeline.hpp"
@@ -44,14 +45,29 @@ void SegmentationPipelineEditor::setupUi() {
 			[this]() {
 				setMeshColor(QColorDialog::getColor(meshColor, this, "Wybierz kolor"));
 			});
+
 	QObject::connect(
-			ui->randomColorButton,
-			&QPushButton::clicked,
-			[this]() { randomizeMeshColor(); });
+			ui->randomColorButton, &QPushButton::clicked,
+			this, &SegmentationPipelineEditor::randomizeMeshColor);
+
+	simplificationAlgorithmComboBoxIndexChanged(ui->simplificationAlgorithm->currentIndex());
+	QObject::connect(
+			ui->simplificationAlgorithm, qOverload<int>(&QComboBox::currentIndexChanged),
+			this, &SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged);
 }
 
-QSharedPointer<SokarAlg::SegmentationPipeline> SegmentationPipelineEditor::makePipeline() const {
-	auto pipeline = QSharedPointer<SokarAlg::SegmentationPipeline>::create();
+void SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged(int i) {
+	ui->vertexClustering->setHidden(true);
+
+	switch (i) {
+		case 1:
+			ui->vertexClustering->setHidden(false);
+			break;
+	}
+}
+
+SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() const {
+	auto pipeline = SokarAlg::SegmentationPipeline::New();
 
 	//region interpolation
 
@@ -92,7 +108,7 @@ QSharedPointer<SokarAlg::SegmentationPipeline> SegmentationPipelineEditor::makeP
 
 	//endregion
 
-	//region segementation
+	//region segmentation
 
 
 	QSharedPointer<SokarAlg::VolumeSegmentator> volumeSegmentator = nullptr;
@@ -123,7 +139,22 @@ QSharedPointer<SokarAlg::SegmentationPipeline> SegmentationPipelineEditor::makeP
 
 	//endergion
 
-	//region desgin
+
+	//region simplification
+
+	switch (ui->simplificationAlgorithm->currentIndex()) {
+		case 1: {
+			auto vertexClustering = SokarAlg::VertexClustering::New();
+			vertexClustering->setClusterSize(ui->vertexClusteringSize->getValue());
+			pipeline->setMeshSimplificator(vertexClustering);
+			break;
+		}
+	}
+
+	//endregion
+
+
+	//region design
 
 	pipeline->setColor(meshColor);
 	pipeline->setUseEmptyEnv(ui->emptyEnv->isChecked());

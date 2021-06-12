@@ -13,17 +13,20 @@ namespace Sokar3D {
 
 	class VulkanShader {
 		VkShaderModule shaderModule = VK_NULL_HANDLE;
+		QVulkanInstance *vkQInst = nullptr;
+		VkDevice vkDevice = VK_NULL_HANDLE;
 
 	public:
-		void load(QVulkanInstance *inst, VkDevice dev, const QString &fn);
+		void load(QVulkanInstance *vkQInst, VkDevice vkDevice, const QString &fn);
 
 		[[nodiscard]]
 		inline bool isValid() {
 			return shaderModule != VK_NULL_HANDLE;
 		}
 
-		void reset();
+		void release();
 
+		[[nodiscard]]
 		VkShaderModule_T *getShaderModule() const;
 	};
 }

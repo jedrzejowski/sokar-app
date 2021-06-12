@@ -25,6 +25,8 @@ namespace SokarAlg {
 		glm::i32vec3 getSize() const override;
 		[[nodiscard]]
 		float getValue(const glm::i32vec3 &position) const override;
+
+		void refreshCache();
 	};
 }
 

@@ -63,15 +63,11 @@ void MeshPipeline::releaseResources(const VkPipelineMetaArgs &args) {
 	}
 
 	if (vertexShader.isValid()) {
-		args.vkDeviceFunctions->vkDestroyShaderModule(
-				args.vkDevice, vertexShader.getShaderModule(), nullptr);
-		vertexShader.reset();
+		vertexShader.release();
 	}
 
 	if (fragmentShader.isValid()) {
-		args.vkDeviceFunctions->vkDestroyShaderModule(
-				args.vkDevice, fragmentShader.getShaderModule(), nullptr);
-		fragmentShader.reset();
+		fragmentShader.release();
 	}
 }
 

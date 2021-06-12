@@ -10,16 +10,21 @@
 namespace SokarAlg {
 
 	class VertexClustering : public MeshSimplificator {
+	private:
 		glm::vec3 clusterSize;
 		glm::vec3 clusterOffset;
 
-		IndexedMesh *exec(const IndexedMesh *mesh) override;
+		IndexedMeshPtr exec() override;
 
+		VertexClustering();
 	public:
-		VertexClustering(const glm::vec3 &clusterSize, const glm::vec3 &clusterOffset);
+		static VertexClusteringPtr New();
 
+		[[nodiscard]]
 		const glm::vec3 &getClusterSize() const;
 		void setClusterSize(const glm::vec3 &clusterSize);
+
+		[[nodiscard]]
 		const glm::vec3 &getClusterOffset() const;
 		void setClusterOffset(const glm::vec3 &clusterOffset);
 	};

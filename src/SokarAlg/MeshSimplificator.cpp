@@ -7,7 +7,7 @@
 
 using namespace SokarAlg;
 
-MeshSimplificator::Extrema MeshSimplificator::findExtrema(const IndexedMesh *mesh) {
+MeshSimplificator::Extrema MeshSimplificator::findExtrema() {
 	Extrema extrema{};
 
 	extrema.max.x = +std::numeric_limits<float>::infinity();
@@ -29,8 +29,10 @@ MeshSimplificator::Extrema MeshSimplificator::findExtrema(const IndexedMesh *mes
 	return extrema;
 }
 
-QFuture<IndexedMesh *> MeshSimplificator::simplify(const IndexedMesh *mesh) {
-	return QtConcurrent::run([&]() {
-		return this->exec(mesh);
-	});
+const IndexedMeshPtr &MeshSimplificator::getMesh() const {
+	return mesh;
+}
+
+void MeshSimplificator::setMesh(const IndexedMeshPtr &newMesh) {
+	mesh = newMesh;
 }
