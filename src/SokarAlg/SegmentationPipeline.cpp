@@ -93,6 +93,10 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
 		result->originalMesh = volumeSegmentator->getMesh();
 		result->finalMesh = volumeSegmentator->getMesh();
+		result->segmentation.description = QString("%1\nczas %2").arg(
+				volumeSegmentator->toDisplay(),
+				timeRangeString(result->segmentation.timeStart, result->segmentation.timeEnd)
+		);
 
 		//endregion
 

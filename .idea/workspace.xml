@@ -17,17 +17,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="commit kontorlny">
-      <change afterPath="$PROJECT_DIR$/src/SokarLib/Displayable.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarLib/Displayable.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -602,14 +604,7 @@
       <workItem from="1623367629280" duration="21000" />
       <workItem from="1623489610349" duration="4812000" />
       <workItem from="1623506763341" duration="17327000" />
-      <workItem from="1623585561236" duration="14724000" />
-    </task>
-    <task id="LOCAL-00019" summary="Dodanie wyświetlania danych o szpitalu">
-      <created>1544448164224</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1544448164224</updated>
+      <workItem from="1623585561236" duration="20574000" />
     </task>
     <task id="LOCAL-00020" summary="Dodanie DicomTabs">
       <created>1544543336106</created>
@@ -947,7 +942,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623605479308</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="commit kontorlny">
+      <created>1623608037328</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1623608037328</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

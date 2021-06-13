@@ -18,6 +18,7 @@ SegmentationResultWidget::SegmentationResultWidget(
 
 	QObject::connect(ui->deleteButton, &QPushButton::clicked, [this]() { emit deleteResult(); });
 	QObject::connect(ui->saveButton, &QPushButton::clicked, this, &SegmentationResultWidget::saveToWavefrontObjFile);
+	QObject::connect(ui->hideButton, &QPushButton::clicked, [this](bool checked) { emit toggleMesh(checked); });
 
 	auto pal = QPalette();
 	pal.setColor(QPalette::Window, result->meshColor);

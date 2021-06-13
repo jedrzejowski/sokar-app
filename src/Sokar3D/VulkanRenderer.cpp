@@ -234,6 +234,10 @@ void VulkanRenderer::buildDrawCalls(const Pipelines *pipelines) {
 	auto args = getMetaArgs();
 
 	for (auto pw : *pipelines) {
+		if (pw->isHidden()) {
+			continue;
+		}
+
 		pw->buildDrawCalls(args);
 	}
 }

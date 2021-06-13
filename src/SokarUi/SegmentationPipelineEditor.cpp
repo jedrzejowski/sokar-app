@@ -128,8 +128,6 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
 			break;
 	}
 
-	qDebug() << volumeSegmentator << ui->segmentationAlgorithm->currentIndex();
-
 	volumeSegmentator->setIsoLevel({
 										   static_cast<float>(ui->segmentationTresholdUp->value()),
 										   static_cast<float>(ui->segmentationTresholdDown->value()),
@@ -138,7 +136,6 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
 
 	pipeline->setUseRegionGrowth(ui->regionGrowthCheck->isChecked());
 	auto growStartPoint = ui->regionGrowthVec->getValue() / float(ui->interpolationWokselSize->value());
-	qDebug() << growStartPoint;
 	pipeline->setGrowthStartPoint(growStartPoint);
 
 	//endergion

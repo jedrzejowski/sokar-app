@@ -28,6 +28,7 @@ namespace SokarUi {
 
 	signals:
 		void deleteResult();
+		void toggleMesh(bool hidden);
 	};
 }
 

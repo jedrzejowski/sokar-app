@@ -21,6 +21,8 @@ namespace Sokar3D {
 	};
 
 	class PipelineWrapper : public QObject {
+		bool hidden = false;
+
 	protected:
 		VkPipelineLayout vkPipelineLayout = VK_NULL_HANDLE;
 		VkPipeline vkPipeline = VK_NULL_HANDLE;
@@ -34,6 +36,10 @@ namespace Sokar3D {
 		virtual void ensureBuffers(const VkPipelineMetaArgs &args) = 0;
 		virtual void buildDrawCalls(const VkPipelineMetaArgs &args) = 0;
 		virtual void releaseResources(const VkPipelineMetaArgs &args) = 0;
+
+		[[nodiscard]]
+		bool isHidden() const;
+		void setHidden(bool hidden);
 
 //		virtual bool isNeedResourcesInit(const VkPipelineMetaArgs &args) = 0;
 	};

@@ -15,3 +15,11 @@ PipelineWrapper::PipelineWrapper() {
 PipelineWrapper::~PipelineWrapper() {
 	sokarTrace();
 }
+
+bool PipelineWrapper::isHidden() const {
+	return hidden;
+}
+
+void PipelineWrapper::setHidden(bool hidden) {
+	PipelineWrapper::hidden = hidden;
+}

@@ -329,7 +329,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="103"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="107"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
@@ -342,42 +342,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="33"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="47"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="68"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="91"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="135"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="142"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="36"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="56"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="86"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="118"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="178"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="188"/>
         <source>###</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="156"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="208"/>
         <source>Podsumowanie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="75"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="96"/>
         <source>Rozrost</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="82"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="106"/>
         <source>Cache</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="61"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="76"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="149"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="198"/>
         <source>Upraszcanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="54"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="66"/>
         <source>Segmentacja</source>
         <translation type="unfinished"></translation>
     </message>
@@ -387,7 +387,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="40"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="46"/>
         <source>Wynik #</source>
         <translation type="unfinished"></translation>
     </message>
@@ -396,7 +396,7 @@
     <name>SegmentationWindow</name>
     <message>
         <location filename="../../src/SokarUi/SegmentationWindow.ui" line="14"/>
-        <source>MainWindow</source>
+        <source>Sokar - Segmentation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -907,17 +907,17 @@
 <context>
     <name>SokarUi::SegmentationResultWidget</name>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="45"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="46"/>
         <source>Save Wavefront OBJ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="46"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="47"/>
         <source>Wavefront (*.obj);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="59"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="60"/>
         <source>Unable to open file</source>
         <translation type="unfinished"></translation>
     </message>

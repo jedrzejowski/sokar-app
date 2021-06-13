@@ -455,9 +455,10 @@ MarchingCubes::Cube MarchingCubes::getCube(const glm::i32vec3 &position, const g
 }
 
 QString MarchingCubes::toDisplay() {
-	return QString("%1\nwielkość sześcianu = ").arg(
-			"Maszyerujące sześciany",
-			glm::to_string(cubeSize).c_str()
+	return QString("%1\npróg = [%2, %3]").arg(
+			"maszerujące sześciany",
+			QString::number(isoLevel.from, 'f', 2),
+			QString::number(isoLevel.to, 'f', 2)
 	);
 }
 

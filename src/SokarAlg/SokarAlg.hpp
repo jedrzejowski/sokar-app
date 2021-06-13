@@ -17,6 +17,10 @@ namespace SokarAlg {
 		return std::chrono::high_resolution_clock::now();
 	}
 
+	inline QString timeRangeString(const TimePoint &start, const TimePoint &end) {
+		return QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) + " [ms]";
+	}
+
 	inline bool isZero(float num) {
 		return num < SokarGlm::EPS;
 	}
