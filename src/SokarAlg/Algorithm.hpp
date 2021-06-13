@@ -18,9 +18,10 @@ namespace SokarAlg {
 		virtual Output exec() = 0;
 
 	public:
-
+		[[nodiscard]]
 		Output execSync();
 
+		[[nodiscard]]
 		QFuture<Output> execAsync();
 	};
 

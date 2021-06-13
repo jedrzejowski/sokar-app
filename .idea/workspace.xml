@@ -16,11 +16,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="kommit kontorlny">
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="przerobienie static mesha">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Algorithm.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Algorithm.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarGlm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarGlm.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarGlm.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarGlm.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/Vec3Input.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/Vec3Input.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/Vec3Input.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/Vec3Input.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -590,14 +596,7 @@
       <workItem from="1623367629280" duration="21000" />
       <workItem from="1623489610349" duration="4812000" />
       <workItem from="1623506763341" duration="17327000" />
-      <workItem from="1623585561236" duration="7156000" />
-    </task>
-    <task id="LOCAL-00017" summary="PixelIndicator: zrobiony">
-      <created>1544133913733</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1544133913733</updated>
+      <workItem from="1623585561236" duration="12225000" />
     </task>
     <task id="LOCAL-00018" summary="Prace nad PatientDataIndicator">
       <created>1544198997793</created>
@@ -935,7 +934,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623593039889</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="przerobienie static mesha">
+      <created>1623595475971</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1623595475971</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1031,7 +1037,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="Nowe sekwencyjne obrazowanie" />
     <MESSAGE value="Poprwki małych błędów" />
     <MESSAGE value="Prace nad moviemodem" />
     <MESSAGE value="Prace nad MovieBarem" />
@@ -1056,7 +1061,8 @@
     <MESSAGE value="usunięcie pustych plików" />
     <MESSAGE value="duzo zmian, lubie placki" />
     <MESSAGE value="kommit kontorlny" />
-    <option name="LAST_COMMIT_MESSAGE" value="kommit kontorlny" />
+    <MESSAGE value="przerobienie static mesha" />
+    <option name="LAST_COMMIT_MESSAGE" value="przerobienie static mesha" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">

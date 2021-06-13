@@ -105,10 +105,10 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 			meshSimplificator->setMesh(IndexedMesh::fromStaticMash(result->originalMesh));
 
 			result->simplification.timeStart = makeTimePoint();
-			meshSimplificator->execSync();
+			result->simplifiedMesh = meshSimplificator->execSync();
 			result->simplification.timeEnd = makeTimePoint();
 
-			result->simplifiedMesh = meshSimplificator->getMesh();
+			qDebug() << result->simplifiedMesh;
 			result->finalMesh = result->simplifiedMesh->toStaticMesh();
 		}
 

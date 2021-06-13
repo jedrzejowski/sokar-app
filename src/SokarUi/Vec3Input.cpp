@@ -37,6 +37,25 @@ void Vec3Input::setValue(const glm::vec3 &vector) {
 	haltEmtChange = false;
 }
 
+void Vec3Input::setMinimum(const glm::vec3 &vector) {
+	ui->xBox->setMinimum(vector.x);
+	ui->yBox->setMinimum(vector.y);
+	ui->zBox->setMinimum(vector.z);
+}
+
+void Vec3Input::setMaximum(const glm::vec3 &vector) {
+	ui->xBox->setMaximum(vector.x);
+	ui->yBox->setMaximum(vector.y);
+	ui->zBox->setMaximum(vector.z);
+}
+
+void Vec3Input::setMinimum(float value) {
+	setMinimum({value, value, value});
+}
+
+void Vec3Input::setMaximum(float value) {
+	setMaximum({value, value, value});
+}
 
 void Vec3Input::emitChange() {
 	if (haltEmtChange) return;

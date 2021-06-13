@@ -54,6 +54,10 @@ void SegmentationPipelineEditor::setupUi() {
 	QObject::connect(
 			ui->simplificationAlgorithm, qOverload<int>(&QComboBox::currentIndexChanged),
 			this, &SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged);
+
+	ui->vertexClusteringSize->setValue({10.f, 10.f, 10.f});
+	ui->vertexClusteringSize->setMinimum(0.01f);
+	ui->vertexClusteringSize->setMaximum(65536.f);
 }
 
 void SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged(int i) {

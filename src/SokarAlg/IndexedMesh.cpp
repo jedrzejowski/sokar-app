@@ -66,7 +66,7 @@ Size IndexedMesh::addVertex(const Vertex &newVertex, bool checkDup) {
 		}
 	}
 
-	vertices.push_back(newVertex);
+	vertices << newVertex;
 	return vertices.size() - 1;
 }
 
@@ -131,11 +131,7 @@ QFuture<IndexedMeshPtr> IndexedMesh::fromStaticMash(const Sokar3D::StaticMeshPtr
 		auto indexedMesh = IndexedMesh::New();
 
 		for (const auto &face : staticMesh->getFaces()) {
-			indexedMesh->addTriangle(
-					face.v1.pos,
-					face.v2.pos,
-					face.v3.pos
-			);
+			indexedMesh->addTriangle(face.v1.pos, face.v2.pos, face.v3.pos, false);
 		}
 
 		return indexedMesh;

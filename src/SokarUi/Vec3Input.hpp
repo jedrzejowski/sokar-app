@@ -22,10 +22,16 @@ namespace SokarUi {
 
 		[[nodiscard]]
 		glm::vec3 getValue() const;
-		void setValue(const glm::vec3 &value);
 
 	signals:
 		void valueChanged(glm::vec3 vec3);
+
+	public slots:
+		void setValue(const glm::vec3 &value);
+		void setMinimum(const glm::vec3& value);
+		void setMaximum(const glm::vec3& value);
+		void setMinimum(float value);
+		void setMaximum(float value);
 
 	private:
 		void emitChange();
