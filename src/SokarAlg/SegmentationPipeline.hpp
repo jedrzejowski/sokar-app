@@ -19,30 +19,39 @@ namespace SokarAlg {
 		QColor meshColor;
 
 		struct {
+			QString description;
+		} interpolation;
+
+		struct {
 			bool was = false;
 			TimePoint timeStart;
 			TimePoint timeEnd;
+			QString description;
 		} interpolationCache;
 
 		struct {
 			bool was = false;
 			TimePoint timeStart;
 			TimePoint timeEnd;
+			QString description;
 		} regionGrowth;
 
 		struct {
 			TimePoint timeStart;
 			TimePoint timeEnd;
+			QString description;
 		} segmentation;
 
 		struct {
 			bool was = false;
 			TimePoint timeStart;
 			TimePoint timeEnd;
+			QString description;
 		} simplification;
 
 		TimePoint timeStart;
 		TimePoint timeEnd;
+		QString description;
 
 		glm::vec3 proposeCameraCenter;
 		float proposeCameraDistance;

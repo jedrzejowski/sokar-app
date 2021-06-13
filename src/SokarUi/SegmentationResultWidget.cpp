@@ -9,7 +9,7 @@
 using namespace SokarUi;
 
 SegmentationResultWidget::SegmentationResultWidget(
-		const QSharedPointer<const SokarAlg::SegmentationResult> &result,
+		const SokarAlg::SegmentationResultCPtr &result,
 		QWidget *parent
 ) : QFrame(parent),
 	result(result),
@@ -18,6 +18,20 @@ SegmentationResultWidget::SegmentationResultWidget(
 
 	QObject::connect(ui->deleteButton, &QPushButton::clicked, [this]() { emit deleteResult(); });
 	QObject::connect(ui->saveButton, &QPushButton::clicked, this, &SegmentationResultWidget::saveToWavefrontObjFile);
+
+	auto pal = QPalette();
+	pal.setColor(QPalette::Window, result->meshColor);
+	ui->colorPreview->setAutoFillBackground(true);
+	ui->colorPreview->setPalette(pal);
+
+	ui->colorName->setText(result->meshColor.name());
+
+	ui->segmentationResult->setText(result->segmentation.description);
+	ui->interpolationResult->setText(result->interpolation.description);
+	ui->cacheResult->setText(result->interpolationCache.description);
+	ui->regionGrowthResult->setText(result->regionGrowth.description);
+	ui->meshSimplificationLabel->setText(result->simplification.description);
+	ui->sumLabel->setText(result->description);
 }
 
 SokarUi::SegmentationResultWidget::~SegmentationResultWidget() {

@@ -29,6 +29,8 @@ namespace SokarAlg {
 		[[nodiscard]]
 		const glm::i32vec3 &getCubeSize() const;
 		void setCubeSize(const glm::i32vec3 &cubeSize);
+		QString toDisplay() override;
+
 
 	private:
 

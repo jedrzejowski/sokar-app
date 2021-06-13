@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <SokarLib/Displayable.hpp>
 #include "./SokarAlg.hpp"
 #include "Volume.hpp"
 #include "Range.hpp"
@@ -11,7 +12,7 @@
 
 namespace SokarAlg {
 
-	class VolumeSegmentator {
+	class VolumeSegmentator : public SokarLib::Displayable {
 //		using MeshType = IndexedMesh;
 		using MeshType = Sokar3D::StaticMesh;
 	protected:
