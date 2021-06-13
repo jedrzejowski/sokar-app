@@ -13,6 +13,8 @@
 namespace Sokar3D {
 
 	class StaticMesh : public QEnableSharedFromThis<StaticMesh> {
+	public:
+		using Size = int;
 
 	protected:
 		QVector<MeshVertex> vertices;

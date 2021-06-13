@@ -5,6 +5,7 @@
 #include <QVulkanWindowRenderer>
 #include <QVector3D>
 #include <QVector2D>
+#include <SokarMacro.hpp>
 
 #include "../SokarGlm.hpp"
 
@@ -26,15 +27,11 @@ namespace Sokar3D {
 
 	struct SolidMaterial;
 
-	class StaticMesh;
-
-	using StaticMeshPtr = QSharedPointer<StaticMesh>;
+	declareSharedClass(StaticMesh)
 
 	class VulkanRenderer;
 
 	class VulkanShader;
-
-	struct ShaderData;
 
 	class VulkanWidget;
 

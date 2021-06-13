@@ -72,8 +72,9 @@ void VulkanRenderer::initResources() {
 	args.camera = camera;
 
 	initResourceFuture = QtConcurrent::run([&, args] {
+		auto copy = QVector(pipelineWrappers.current);
 
-		for (auto pw : pipelineWrappers.current) {
+		for (auto pw : copy) {
 			QMutexLocker locker(&pipelinesMutex);
 			pw->initResources(args);
 		}

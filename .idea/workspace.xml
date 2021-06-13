@@ -16,32 +16,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="usunięcie pustych plików">
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/Algorithm.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/Algorithm.hpp" afterDir="false" />
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="duzo zmian, lubie placki">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/Sokar3D.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Sokar3D.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanShader.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanShader.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanShader.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanShader.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SokarAlg.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarMacro.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarMacro.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarGlm.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarGlm.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +310,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/lib/obj_loader" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="fileTemplates" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="typescript-compiler-editor-notification" value="false" />
   </component>
@@ -395,11 +378,6 @@
         <work-dir>$USER_HOME$</work-dir>
       </texify-makeindex>
       <method v="2" />
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
     </configuration>
     <configuration name="sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="sokar">
       <method v="2">
@@ -615,14 +593,8 @@
       <workItem from="1623321215610" duration="11475000" />
       <workItem from="1623367629280" duration="21000" />
       <workItem from="1623489610349" duration="4812000" />
-      <workItem from="1623506763341" duration="16959000" />
-    </task>
-    <task id="LOCAL-00015" summary="Dodanie Wątków do monochroma">
-      <created>1544011589751</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1544011589751</updated>
+      <workItem from="1623506763341" duration="17327000" />
+      <workItem from="1623585561236" duration="5356000" />
     </task>
     <task id="LOCAL-00016" summary="Zmiana Monochromu">
       <created>1544013752953</created>
@@ -960,7 +932,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623522908412</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="duzo zmian, lubie placki">
+      <created>1623536250004</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1623536250004</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1056,7 +1035,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="Dodanie wielu rzeczy z ostatnich dwóch dni" />
     <MESSAGE value="Rozpoczęcie Doca" />
     <MESSAGE value="Nowe sekwencyjne obrazowanie" />
     <MESSAGE value="Poprwki małych błędów" />
@@ -1081,7 +1059,8 @@
     <MESSAGE value="dodanie nowych interpolacji" />
     <MESSAGE value="kommit kotnrolny" />
     <MESSAGE value="usunięcie pustych plików" />
-    <option name="LAST_COMMIT_MESSAGE" value="usunięcie pustych plików" />
+    <MESSAGE value="duzo zmian, lubie placki" />
+    <option name="LAST_COMMIT_MESSAGE" value="duzo zmian, lubie placki" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">

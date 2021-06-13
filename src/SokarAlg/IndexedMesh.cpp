@@ -7,8 +7,10 @@
 #include <QFile>
 
 using namespace SokarAlg;
+using Face = IndexedMesh::Face;
+using Size = IndexedMesh::Size;
 
-IndexedMesh::IndexedMesh() {}
+IndexedMesh::IndexedMesh() = default;
 
 IndexedMeshPtr IndexedMesh::New() {
 	return IndexedMeshPtr(new IndexedMesh);
@@ -16,11 +18,11 @@ IndexedMeshPtr IndexedMesh::New() {
 
 //region getter & setters&
 
-qsizetype IndexedMesh::verticesSizeInBytes() const {
-	return vertices.size() * sizeof(Vertex);
+Size IndexedMesh::verticesSizeInBytes() const {
+	return vertices.size() * static_cast<Size>(sizeof(Vertex));
 }
 
-qsizetype IndexedMesh::verticesCount() const {
+Size IndexedMesh::verticesCount() const {
 	return vertices.size();
 }
 
@@ -32,26 +34,26 @@ const QVector<IndexedMesh::Vertex> &IndexedMesh::getVertices() const {
 	return vertices;
 }
 
-qsizetype IndexedMesh::indexCount() const {
-	return indexes.size();
+int IndexedMesh::faceCount() const {
+	return faces.size();
 }
 
-const QVector<quint32> &IndexedMesh::getIndexes() const {
-	return indexes;
+const QVector<Face> &IndexedMesh::getFaces() const {
+	return faces;
 }
 
 const quint8 *IndexedMesh::indexData() const {
-	return reinterpret_cast<const quint8 *>(indexes.data());
+	return reinterpret_cast<const quint8 *>(faces.data());
 }
 
-qsizetype IndexedMesh::indexesSizeInBytes() const {
-	return indexes.size() * sizeof(quint32);
+Size IndexedMesh::facesSizeInBytes() const {
+	return faces.size() * static_cast<Size>(sizeof(Face));
 }
 
 //endregion
 
 
-quint32 IndexedMesh::addVertex(const Vertex &newVertex, bool checkDup) {
+Size IndexedMesh::addVertex(const Vertex &newVertex, bool checkDup) {
 
 	if (checkDup) {
 
@@ -69,36 +71,30 @@ quint32 IndexedMesh::addVertex(const Vertex &newVertex, bool checkDup) {
 }
 
 void IndexedMesh::addTriangle(
-		quint32 i0,
-		quint32 i1,
-		quint32 i2,
+		Size i0,
+		Size i1,
+		Size i2,
 		bool checkDup
 ) {
+	auto newFace = Face{i0, i1, i2};
 
-	if (i0 == i1 || i1 == i2 || i0 == i2) {
+	if (newFace.isDummy()) {
 		return;
 	}
 
 	if (checkDup) {
 
-		auto iter = indexes.begin();
-		while (iter != indexes.end()) {
-			auto n0 = *iter++;
-			auto n1 = *iter++;
-			auto n2 = *iter++;
+		auto iter = faces.begin();
+		while (iter != faces.end()) {
 
-			if (n0 == i0 && n1 == i1 && n2 == i2 ||
-				n0 == i1 && n1 == i2 && n2 == i0 ||
-				n0 == i2 && n1 == i0 && n2 == i1) {
+			if (iter->operator==(newFace)) {
 
 				return;
 			}
 		}
 	}
 
-	indexes.push_back(i0);
-	indexes.push_back(i1);
-	indexes.push_back(i2);
+	faces << newFace;
 }
 
 
@@ -119,12 +115,11 @@ void IndexedMesh::addTriangle(
 QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMesh() const {
 	auto newMesh = Sokar3D::StaticMesh::New();
 
-	auto iter = indexes.begin();
-	while (iter != indexes.end()) {
+	for (const auto &face : faces) {
 		newMesh->addTriangle(
-				vertices[*iter++],
-				vertices[*iter++],
-				vertices[*iter++]
+				vertices[face.i1],
+				vertices[face.i2],
+				vertices[face.i3]
 		);
 	}
 
@@ -135,7 +130,7 @@ QFuture<IndexedMeshPtr> IndexedMesh::fromStaticMash(const Sokar3D::StaticMeshPtr
 	return QtConcurrent::run([staticMesh]() -> IndexedMeshPtr {
 		auto indexedMesh = IndexedMesh::New();
 
-		const auto& vertices = staticMesh->getVertices();
+		const auto &vertices = staticMesh->getVertices();
 
 		auto iter = vertices.begin();
 

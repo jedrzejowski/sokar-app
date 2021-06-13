@@ -30,3 +30,9 @@ template<int L, int R, typename T, glm::qualifier Q>
 inline QDebug operator<<(QDebug dbg, const glm::mat<L, R, T, Q> &mat) {
 	return dbg << glm::to_string(mat).c_str();
 }
+
+template<typename T>
+inline bool operator<(const glm::vec<3, T, glm::defaultp> &vecL, const glm::vec<3, T, glm::defaultp> &vecR) {
+	return vecL.x < vecR.x && vecL.y < vecR.y && vecL.z < vecR.z;
+}
+

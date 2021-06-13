@@ -4,6 +4,8 @@
 
 #include "./VertexClustering.hpp"
 #include "Array3.hpp"
+#include <QMap>
+#include <QtMath>
 
 using namespace SokarAlg;
 
@@ -18,27 +20,47 @@ IndexedMeshPtr VertexClustering::exec() {
 	auto newMesh = IndexedMesh::New();
 
 	auto extrema = findExtrema();
+	auto old_vertices = mesh->getVertices();
 
 	qDebug() << "KLASTERYZUJEMY";
 
-//	Array3<std::vector<qsizetype>> buckets(extrema.max.x, extrema.max.y, extrema.max.z);
-//	std::vector<qsizetype> vertexMap(mesh->verticesCount());
-//
-//	for (auto iter = mesh->getVertices().begin(); iter != mesh->getVertices().end(); ++iter) {
-//		auto index = iter - mesh->getVertices().begin();
-//
-//		auto clusterFI = (*iter - clusterOffset) / clusterSize;
-//		auto clusterI = glm::i32vec3({
-//											 std::floor(clusterFI.x),
-//											 std::floor(clusterFI.y),
-//											 std::floor(clusterFI.z)
-//									 });
-//
-//		buckets(clusterI.x, clusterI.y, clusterI.z).push_back(index);
-//	}
-//
-//	for (auto iter = mesh->getVertices().begin(); iter != mesh->getVertices().end(); ++iter) {
-//	}
+	auto buckets = QMap<glm::i32vec3, QVector<IndexedMesh::Size>>();
+	auto vertex2vertex = QVector<IndexedMesh::Size>(mesh->getVertices().size(), -1);
+
+	auto iter_end = old_vertices.end();
+	auto iter_begin = old_vertices.begin();
+	for (auto iter = iter_begin; iter != iter_end; ++iter) {
+		auto index = iter - old_vertices.begin();
+		auto &vertex = *iter;
+
+		auto clusterFI = (vertex - clusterOffset) / clusterSize;
+		auto clusterI = glm::i32vec3({
+											 qFloor(clusterFI.x),
+											 qFloor(clusterFI.y),
+											 qFloor(clusterFI.z)
+									 });
+
+		buckets[clusterI] << index;
+	}
+
+	for (auto iter = buckets.begin(); iter != buckets.end(); ++iter) {
+		const auto &bucket_location = iter.key();
+		const auto &bucket_indexes = iter.value();
+
+		auto final_vertex = glm::vec3(0.f, 0.f, 0.f);
+		for (const auto &index : bucket_indexes) {
+			final_vertex += old_vertices[index];
+		}
+		final_vertex /= bucket_indexes.size();
+
+		auto newIndex = newMesh->addVertex(final_vertex, false);
+
+		for (const auto &index : bucket_indexes) {
+			vertex2vertex[index] = newIndex;
+		}
+	}
+
+
 
 //	auto extrema = findExtrema(mesh);
 //
