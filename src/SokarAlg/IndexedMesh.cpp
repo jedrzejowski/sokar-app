@@ -130,15 +130,11 @@ QFuture<IndexedMeshPtr> IndexedMesh::fromStaticMash(const Sokar3D::StaticMeshPtr
 	return QtConcurrent::run([staticMesh]() -> IndexedMeshPtr {
 		auto indexedMesh = IndexedMesh::New();
 
-		const auto &vertices = staticMesh->getVertices();
-
-		auto iter = vertices.begin();
-
-		while (iter != vertices.end()) {
+		for (const auto &face : staticMesh->getFaces()) {
 			indexedMesh->addTriangle(
-					(iter++)->pos,
-					(iter++)->pos,
-					(iter++)->pos
+					face.v1.pos,
+					face.v2.pos,
+					face.v3.pos
 			);
 		}
 

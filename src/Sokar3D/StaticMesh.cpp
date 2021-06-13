@@ -8,6 +8,8 @@
 #include <QFile>
 
 using namespace Sokar3D;
+using Size = StaticMesh::Size;
+using Face = StaticMesh::Face;
 
 StaticMesh::StaticMesh() {
 }
@@ -17,16 +19,16 @@ StaticMeshPtr StaticMesh::New() {
 }
 
 const quint8 *StaticMesh::verticesData() const {
-	return reinterpret_cast<const quint8 *>(vertices.data());
+	return reinterpret_cast<const quint8 *>(faces.data());
 }
 
 
 void StaticMesh::addTriangle(
-		const MeshVertex &v0,
 		const MeshVertex &v1,
-		const MeshVertex &v2
+		const MeshVertex &v2,
+		const MeshVertex &v3
 ) {
-	vertices << v0 << v1 << v2;
+	faces << Face{v1, v2, v3};
 }
 
 
@@ -44,16 +46,16 @@ void StaticMesh::addTriangle(
 	);
 }
 
-qsizetype StaticMesh::verticesSizeInBytes() const {
-	return vertices.size() * sizeof(MeshVertex);
+Size StaticMesh::verticesSizeInBytes() const {
+	return faces.size() * sizeof(Face);
 }
 
-qsizetype StaticMesh::verticesCount() const {
-	return vertices.size();
+Size StaticMesh::verticesCount() const {
+	return faces.size() * 3;
 }
 
-const QVector<MeshVertex> &StaticMesh::getVertices() const {
-	return vertices;
+const QVector<Face> &StaticMesh::getFaces() const {
+	return faces;
 }
 
 
@@ -180,17 +182,12 @@ StaticMesh *StaticMesh::createCubeMesh() {
 }
 
 void StaticMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
-	auto iter = vertices.begin();
 
-	while (iter != vertices.end()) {
+	for (const auto &face : faces) {
 
-		auto &v1 = (iter++)->pos;
-		auto &v2 = (iter++)->pos;
-		auto &v3 = (iter++)->pos;
-
-		auto v1i = builder.addVertex(v1);
-		auto v2i = builder.addVertex(v2);
-		auto v3i = builder.addVertex(v3);
+		auto v1i = builder.addVertex(face.v1.pos);
+		auto v2i = builder.addVertex(face.v2.pos);
+		auto v3i = builder.addVertex(face.v3.pos);
 
 		builder.addFaceV(v1i, v2i, v3i);
 	}

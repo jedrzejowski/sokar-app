@@ -16,15 +16,11 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="duzo zmian, lubie placki">
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="kommit kontorlny">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/Sokar3D.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Sokar3D.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarGlm.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarGlm.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -594,14 +590,7 @@
       <workItem from="1623367629280" duration="21000" />
       <workItem from="1623489610349" duration="4812000" />
       <workItem from="1623506763341" duration="17327000" />
-      <workItem from="1623585561236" duration="5356000" />
-    </task>
-    <task id="LOCAL-00016" summary="Zmiana Monochromu">
-      <created>1544013752953</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1544013752953</updated>
+      <workItem from="1623585561236" duration="7156000" />
     </task>
     <task id="LOCAL-00017" summary="PixelIndicator: zrobiony">
       <created>1544133913733</created>
@@ -939,7 +928,14 @@
       <option name="project" value="LOCAL" />
       <updated>1623536250004</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="kommit kontorlny">
+      <created>1623593039888</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1623593039889</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1035,7 +1031,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="Rozpoczęcie Doca" />
     <MESSAGE value="Nowe sekwencyjne obrazowanie" />
     <MESSAGE value="Poprwki małych błędów" />
     <MESSAGE value="Prace nad moviemodem" />
@@ -1060,7 +1055,8 @@
     <MESSAGE value="kommit kotnrolny" />
     <MESSAGE value="usunięcie pustych plików" />
     <MESSAGE value="duzo zmian, lubie placki" />
-    <option name="LAST_COMMIT_MESSAGE" value="duzo zmian, lubie placki" />
+    <MESSAGE value="kommit kontorlny" />
+    <option name="LAST_COMMIT_MESSAGE" value="kommit kontorlny" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">

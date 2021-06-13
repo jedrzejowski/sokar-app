@@ -14,10 +14,15 @@ namespace Sokar3D {
 
 	class StaticMesh : public QEnableSharedFromThis<StaticMesh> {
 	public:
+		using Vertex = MeshVertex;
 		using Size = int;
 
+		struct Face {
+			Vertex v1, v2, v3;
+		};
+
 	protected:
-		QVector<MeshVertex> vertices;
+		QVector<Face> faces;
 
 		StaticMesh();
 
@@ -31,17 +36,17 @@ namespace Sokar3D {
 		static StaticMesh *createCubeMesh();
 
 		[[nodiscard]]
-		qsizetype verticesSizeInBytes() const;
+		Size verticesSizeInBytes() const;
 
 		[[nodiscard]]
-		qsizetype verticesCount() const;
+		Size verticesCount() const;
 
 		[[nodiscard]]
 		const quint8 *verticesData() const;
 
 		[[nodiscard]]
-		const QVector<MeshVertex> &getVertices() const;
+		const QVector<Face> &getFaces() const;
 
-		void dump2wavefront(SokarLib::WavefrontObjBuilder& builder) const;
+		void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const;
 	};
 }
