@@ -108,7 +108,7 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
 	pipeline->setVolumeInterpolator(volumeInterpolator);
 
 	pipeline->getDicomVolume()->setCubesPerMM(float(ui->interpolationWokselSize->value()));
-	pipeline->setUseInterpolationCache(ui->cacheInterpolation->isChecked() == 0);
+	pipeline->setUseInterpolationCache(ui->cacheInterpolation->isChecked());
 
 	//endregion
 

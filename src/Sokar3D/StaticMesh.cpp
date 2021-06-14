@@ -47,15 +47,31 @@ void StaticMesh::addTriangle(
 }
 
 Size StaticMesh::verticesSizeInBytes() const {
-	return faces.size() * sizeof(Face);
+	return facesCount() * sizeof(Face);
 }
 
 Size StaticMesh::verticesCount() const {
-	return faces.size() * 3;
+	return facesCount() * 3;
 }
 
 const QVector<Face> &StaticMesh::getFaces() const {
 	return faces;
+}
+
+void StaticMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
+
+	for (const auto &face : faces) {
+
+		auto v1i = builder.addVertex(face.v1.pos);
+		auto v2i = builder.addVertex(face.v2.pos);
+		auto v3i = builder.addVertex(face.v3.pos);
+
+		builder.addFaceV(v1i, v2i, v3i);
+	}
+}
+
+Size StaticMesh::facesCount() const {
+	return faces.size();
 }
 
 
@@ -181,14 +197,3 @@ StaticMesh *StaticMesh::createCubeMesh() {
 	return mesh;
 }
 
-void StaticMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
-
-	for (const auto &face : faces) {
-
-		auto v1i = builder.addVertex(face.v1.pos);
-		auto v2i = builder.addVertex(face.v2.pos);
-		auto v3i = builder.addVertex(face.v3.pos);
-
-		builder.addFaceV(v1i, v2i, v3i);
-	}
-}

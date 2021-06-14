@@ -61,6 +61,10 @@ float NearestVolumeInterpolator::interpolate(const glm::vec3 &position) const {
 							});
 }
 
+QString NearestVolumeInterpolator::toDisplay() {
+	return "interpolacja do najbliższej wartości";
+}
+
 float LinearVolumeInterpolator::interpolate(const glm::vec3 &position) const {
 
 	// https://stackoverflow.com/questions/3300290/cast-to-int-vs-floor
@@ -116,6 +120,7 @@ glm::vec3 LinearVolumeInterpolator::inverseInterpolate(
 
 	return p;
 }
+
 
 float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
 	// rozwiązanie analityczne
@@ -205,6 +210,12 @@ float PolynomialVolumeInterpolator2::interpolate(const glm::vec3 &pos) const {
 	});
 }
 
+QString PolynomialVolumeInterpolator2::toDisplay() {
+	return QString("%1").arg(
+			"interpolacja wielomianowa (C++11)"
+	);
+}
+
 void AkimaVolumeInterpolator::dicomVolumeChanged() {
 
 //	if (externInterpolator) {
@@ -233,6 +244,8 @@ float AkimaVolumeInterpolator::interpolate(const glm::vec3 &position) const {
 
 
 CubicVolumeInterpolator::CubicVolumeInterpolator(bool catmullRom) {
+	this->catmullRom = catmullRom;
+
 	if (catmullRom) {
 		blend[0][0] = 0.f;
 		blend[0][1] = -0.5f;
@@ -340,3 +353,23 @@ void PolynomialVolumeInterpolator1::setSize(const glm::i32vec3 &newSize) {
 }
 
 //endregion
+
+QString LinearVolumeInterpolator::toDisplay() {
+	return QString("%1").arg(
+			"interpolacja liniowa"
+	);
+}
+
+QString PolynomialVolumeInterpolator1::toDisplay() {
+	return QString("%1").arg(
+			"interpolacja wielomianowa"
+	);
+}
+
+
+QString CubicVolumeInterpolator::toDisplay() {
+	return QString("%1").arg(
+			"interpolacja sześcienna"
+	) + (catmullRom ? "z Catmull Rom" : "");
+}
+

@@ -59,6 +59,12 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 			result->interpolationCache.timeStart = makeTimePoint();
 			cachedVolume->refreshCache();
 			result->interpolationCache.timeEnd = makeTimePoint();
+
+			result->interpolationCache.description = QString("czas kaszowania %1").arg(
+					timeRangeString(result->interpolationCache.timeStart, result->interpolationCache.timeEnd)
+			);
+		} else {
+			result->interpolationCache.description = QString("nie");
 		}
 
 		if (useRegionGrowth) {
@@ -75,7 +81,14 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 			result->regionGrowth.timeStart = makeTimePoint();
 			regionGrowth->regrowth();
 			result->regionGrowth.timeEnd = makeTimePoint();
+
+			result->regionGrowth.description = QString("z punktu %1").arg(
+				glm::to_string(regionGrowthStartPoint).c_str()
+			);
+		} else {
+			result->regionGrowth.description = QString("nie");
 		}
+
 
 		if (useEmptyEnv) {
 			volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
@@ -86,7 +99,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 		emit updateProgress(QObject::tr("Maszerowanie"), 0.f);
 
 		volumeSegmentator->setVolume(volume);
-		volumeSegmentator->setVolumeInterpolator(volumeInterpolator);
+//		volumeSegmentator->setVolumeInterpolator(volumeInterpolator);
 
 		result->segmentation.timeStart = makeTimePoint();
 		result->finalMesh = result->originalMesh = volumeSegmentator->execSync();
@@ -96,7 +109,6 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 				volumeSegmentator->toDisplay(),
 				timeRangeString(result->segmentation.timeStart, result->segmentation.timeEnd)
 		);
-
 		//endregion
 
 		//region mesh simplification
@@ -113,11 +125,17 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
 			qDebug() << result->simplifiedMesh;
 			result->finalMesh = result->simplifiedMesh->toStaticMesh();
+		} else {
+			result->simplification.description = QString("nie");
 		}
 
 		//endregion
 
 		result->timeEnd = makeTimePoint();
+
+		result->description = QString("czas wykonania %1").arg(
+				timeRangeString(result->timeStart, result->timeEnd)
+		);
 
 		result->meshColor = meshColor;
 		result->proposeCameraCenter = glm::vec3(volume->getSize()) / 2.f;

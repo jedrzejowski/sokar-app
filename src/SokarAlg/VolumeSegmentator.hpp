@@ -13,7 +13,7 @@
 
 namespace SokarAlg {
 
-	class VolumeSegmentator : public SokarLib::Displayable, public Algorithm<Sokar3D::StaticMeshPtr> {
+	class VolumeSegmentator : public Algorithm<Sokar3D::StaticMeshPtr> {
 //		using MeshType = IndexedMesh;
 		using MeshType = Sokar3D::StaticMesh;
 	protected:

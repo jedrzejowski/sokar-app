@@ -42,6 +42,9 @@ namespace Sokar3D {
 		Size verticesCount() const;
 
 		[[nodiscard]]
+		Size facesCount() const;
+
+		[[nodiscard]]
 		const quint8 *verticesData() const;
 
 		[[nodiscard]]

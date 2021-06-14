@@ -88,3 +88,9 @@ const glm::vec3 &VertexClustering::getClusterOffset() const {
 void VertexClustering::setClusterOffset(const glm::vec3 &newClusterOffset) {
 	clusterOffset = newClusterOffset;
 }
+
+QString VertexClustering::toDisplay() {
+	return QString("%1").arg(
+			"klasteryzacja wierzchołków"
+	);
+}

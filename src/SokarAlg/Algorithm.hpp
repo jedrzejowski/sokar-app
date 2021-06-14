@@ -8,11 +8,12 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QSharedPointer>
 #include "SokarAlg.hpp"
+#include "SokarLib/Displayable.hpp"
 
 namespace SokarAlg {
 
 	template<typename Output>
-	class Algorithm : public QEnableSharedFromThis<Algorithm<Output>> {
+	class Algorithm : public QEnableSharedFromThis<Algorithm<Output>>, public SokarLib::Displayable {
 	protected:
 
 		virtual void execBefore() {};

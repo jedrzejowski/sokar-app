@@ -399,7 +399,7 @@ quint32 MarchingCubes::marchCube(Cube cube) {
 
 	for (quint32 i = 0; triTable[cubeindex][i] != -1; i += 3) {
 		++triangleCount;
-
+		qDebug() << "adding triangle";
 		addTriangle(
 				vertlist[triTable[cubeindex][i]],
 				vertlist[triTable[cubeindex][i + 2]],

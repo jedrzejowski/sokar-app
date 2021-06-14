@@ -4,13 +4,14 @@
 
 #pragma once
 
+#include <SokarLib/Displayable.hpp>
 #include "./gte/Array3.h"
 #include "./gte/IntpAkimaUniform3.h"
 #include "./SokarAlg.hpp"
 
 namespace SokarAlg {
 
-	class VolumeInterpolator {
+	class VolumeInterpolator : public SokarLib::Displayable {
 	protected:
 		VolumeCPtr vv = nullptr;
 
@@ -35,6 +36,8 @@ namespace SokarAlg {
 	public:
 		[[nodiscard]]
 		float interpolate(const glm::vec3 &position) const override;
+
+		QString toDisplay() override;
 	};
 
 	class LinearVolumeInterpolator : public VolumeInterpolator {
@@ -42,8 +45,11 @@ namespace SokarAlg {
 		[[nodiscard]]
 		float interpolate(const glm::vec3 &position) const override;
 
-		glm::vec3
-		inverseInterpolate(float desireValue, const glm::i32vec3 &A, const glm::i32vec3 &B, int samples) const override;
+		[[nodiscard]]
+		glm::vec3 inverseInterpolate(
+				float desireValue, const glm::i32vec3 &A, const glm::i32vec3 &B, int samples) const override;
+
+		QString toDisplay() override;
 	};
 
 	class PolynomialVolumeInterpolator1 : public VolumeInterpolator {
@@ -57,6 +63,8 @@ namespace SokarAlg {
 
 		[[nodiscard]]
 		float interpolate(const glm::vec3 &position) const override;
+
+		QString toDisplay() override;
 	};
 
 	class PolynomialVolumeInterpolator2 : public PolynomialVolumeInterpolator1 {
@@ -64,6 +72,8 @@ namespace SokarAlg {
 
 		[[nodiscard]]
 		float interpolate(const glm::vec3 &position) const override;
+
+		QString toDisplay() override;
 	};
 
 	class AkimaVolumeInterpolator : public VolumeInterpolator {
@@ -80,10 +90,12 @@ namespace SokarAlg {
 
 	class CubicVolumeInterpolator : public VolumeInterpolator {
 	private:
+		bool catmullRom;
 		std::array<std::array<float, 4>, 4> blend;
 	public:
 		explicit CubicVolumeInterpolator(bool catmullRom = false);
 		float interpolate(const glm::vec3 &position) const override;
+		QString toDisplay() override;
 	};
 
 	//https://www.mathworks.com/help/matlab/ref/interp3.html

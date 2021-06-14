@@ -319,17 +319,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="67"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="73"/>
         <source>Rozrost obszarów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="86"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="99"/>
         <source>Maszerowanie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="106"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="118"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>

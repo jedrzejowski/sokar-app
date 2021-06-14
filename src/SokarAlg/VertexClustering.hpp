@@ -27,6 +27,8 @@ namespace SokarAlg {
 		[[nodiscard]]
 		const glm::vec3 &getClusterOffset() const;
 		void setClusterOffset(const glm::vec3 &clusterOffset);
+
+		QString toDisplay() override;
 	};
 }
 
