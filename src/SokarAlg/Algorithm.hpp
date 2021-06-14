@@ -15,7 +15,9 @@ namespace SokarAlg {
 	class Algorithm : public QEnableSharedFromThis<Algorithm<Output>> {
 	protected:
 
+		virtual void execBefore() {};
 		virtual Output exec() = 0;
+		virtual void execAfter() {};
 
 	public:
 		[[nodiscard]]
@@ -27,7 +29,10 @@ namespace SokarAlg {
 
 	template<typename Output>
 	Output Algorithm<Output>::execSync() {
-		return exec();
+		execBefore();
+		auto output = exec();
+		execAfter();
+		return output;
 	}
 
 	template<typename Output>

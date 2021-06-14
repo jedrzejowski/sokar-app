@@ -86,13 +86,12 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 		emit updateProgress(QObject::tr("Maszerowanie"), 0.f);
 
 		volumeSegmentator->setVolume(volume);
+		volumeSegmentator->setVolumeInterpolator(volumeInterpolator);
 
 		result->segmentation.timeStart = makeTimePoint();
-		volumeSegmentator->execSync();
+		result->finalMesh = result->originalMesh = volumeSegmentator->execSync();
 		result->segmentation.timeEnd = makeTimePoint();
 
-		result->originalMesh = volumeSegmentator->getMesh();
-		result->finalMesh = volumeSegmentator->getMesh();
 		result->segmentation.description = QString("%1\nczas %2").arg(
 				volumeSegmentator->toDisplay(),
 				timeRangeString(result->segmentation.timeStart, result->segmentation.timeEnd)

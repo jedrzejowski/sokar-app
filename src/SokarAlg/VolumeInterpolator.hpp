@@ -12,7 +12,7 @@ namespace SokarAlg {
 
 	class VolumeInterpolator {
 	protected:
-		QSharedPointer<const Volume> vv = nullptr;
+		VolumeCPtr vv = nullptr;
 
 		virtual void dicomVolumeChanged();
 
@@ -25,6 +25,10 @@ namespace SokarAlg {
 
 		[[nodiscard]]
 		virtual float interpolate(const glm::vec3 &position) const = 0;
+
+		[[nodiscard]]
+		virtual glm::vec3 inverseInterpolate(
+				float desireValue, const glm::i32vec3 &A, const glm::i32vec3 &B, int samples = 1) const;
 	};
 
 	class NearestVolumeInterpolator : public VolumeInterpolator {
@@ -37,6 +41,9 @@ namespace SokarAlg {
 	public:
 		[[nodiscard]]
 		float interpolate(const glm::vec3 &position) const override;
+
+		glm::vec3
+		inverseInterpolate(float desireValue, const glm::i32vec3 &A, const glm::i32vec3 &B, int samples) const override;
 	};
 
 	class PolynomialVolumeInterpolator1 : public VolumeInterpolator {

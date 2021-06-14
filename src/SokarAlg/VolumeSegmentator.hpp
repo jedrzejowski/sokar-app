@@ -9,34 +9,34 @@
 #include "Volume.hpp"
 #include "Range.hpp"
 #include "Sokar3D/StaticMesh.hpp"
+#include "Algorithm.hpp"
 
 namespace SokarAlg {
 
-	class VolumeSegmentator : public SokarLib::Displayable {
+	class VolumeSegmentator : public SokarLib::Displayable, public Algorithm<Sokar3D::StaticMeshPtr> {
 //		using MeshType = IndexedMesh;
 		using MeshType = Sokar3D::StaticMesh;
 	protected:
 
-		QSharedPointer<const Volume> volume;
-		QSharedPointer<MeshType> mesh = nullptr;
+		VolumeInterpolatorPtr volumeInterpolator;
+		VolumeCPtr volume;
+		Sokar3D::StaticMeshPtr mesh;
 		Range<float> isoLevel = {0.5f, 1.f};
 
-		virtual void execAlg() = 0;
-
-		virtual void execBefore();
+		void execBefore() override;
 
 	public:
-		QFuture<void> execAsync();
-		void execSync();
-
 		[[nodiscard]]
 		Range<float> getIsoLevel() const;
 		void setIsoLevel(Range<float> isoLevel);
 
+		[[nodiscard]]
+		const VolumeInterpolatorPtr &getVolumeInterpolator() const;
+		void setVolumeInterpolator(const VolumeInterpolatorPtr &volumeInterpolator);
 
 		[[nodiscard]]
 		const QSharedPointer<const Volume> &getVolume() const;
-		void setVolume(const QSharedPointer<const Volume> &virtualVolume);
+		void setVolume(const VolumeCPtr &virtualVolume);
 
 		void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2);
 

@@ -38,19 +38,19 @@ namespace SokarAlg {
 
 	//region Volume
 
-	class Volume;
+	declareSharedClass(Volume)
 
-	class VolumeEnv;
+	declareSharedClass(VolumeEnv)
 
-	class DicomVolume;
+	declareSharedClass(DicomVolume)
 
-	class InterpolatedVolume;
+	declareSharedClass(InterpolatedVolume)
 
-	class CachedVolume;
+	declareSharedClass(CachedVolume)
 
-	class ExampleVolume;
+	declareSharedClass(ExampleVolume)
 
-	class RegionGrowthVolume;
+	declareSharedClass(RegionGrowthVolume)
 
 	// VolSegmAlgorithm
 

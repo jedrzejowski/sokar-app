@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "./SokarAlg.hpp"
+#include "SokarAlg.hpp"
 #include "Volume.hpp"
 #include "VolumeSegmentator.hpp"
 #include "Sokar3D/StaticMesh.hpp"
@@ -22,15 +22,16 @@ namespace SokarAlg {
 		glm::i32vec3 cubeSize = glm::i32vec3(1.f);
 
 	protected:
-		void execAlg() override;
+
+		Sokar3D::StaticMeshPtr exec() override;
 
 	public:
+
+		QString toDisplay() override;
 
 		[[nodiscard]]
 		const glm::i32vec3 &getCubeSize() const;
 		void setCubeSize(const glm::i32vec3 &cubeSize);
-		QString toDisplay() override;
-
 
 	private:
 

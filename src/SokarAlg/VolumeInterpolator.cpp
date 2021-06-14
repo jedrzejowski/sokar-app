@@ -2,6 +2,7 @@
 // Created by adam on 08.05.2021.
 //
 
+#include <SokarException.hpp>
 #include "./VolumeInterpolator.hpp"
 #include "DicomVolume.hpp"
 
@@ -22,6 +23,33 @@ void VolumeInterpolator::setVolume(const QSharedPointer<const Volume> &newVV) {
 }
 
 void VolumeInterpolator::dicomVolumeChanged() {
+}
+
+glm::vec3 VolumeInterpolator::inverseInterpolate(
+		float desireValue, const glm::i32vec3 &A, const glm::i32vec3 &B, int samples) const {
+//	throw sokarException("not implemented");
+	// TODO usunąć
+	float mu, a = vv->getValue(A), b = vv->getValue(B);
+	glm::vec3 p;
+
+	if (areSame(desireValue, a)) {
+		return A;
+	}
+
+	if (areSame(desireValue, b)) {
+		return B;
+	}
+
+	if (areSame(a, b)) {
+		return A;
+	}
+
+	mu = (desireValue - a) / (b - a);
+	p.x = float(A.x) + mu * (float(B.x) - float(A.x));
+	p.y = float(A.y) + mu * (float(B.y) - float(A.y));
+	p.z = float(A.z) + mu * (float(B.z) - float(A.z));
+
+	return p;
 }
 
 
@@ -62,6 +90,31 @@ float LinearVolumeInterpolator::interpolate(const glm::vec3 &position) const {
 	auto c1 = c01 * (1 - yd) + c11 * yd;
 
 	return c0 * (1 - zd) + c1 * zd;
+}
+
+glm::vec3 LinearVolumeInterpolator::inverseInterpolate(
+		float desireValue, const glm::i32vec3 &A, const glm::i32vec3 &B, int samples) const {
+	float mu, a = vv->getValue(A), b = vv->getValue(B);
+	glm::vec3 p;
+
+	if (areSame(desireValue, a)) {
+		return A;
+	}
+
+	if (areSame(desireValue, b)) {
+		return B;
+	}
+
+	if (areSame(a, b)) {
+		return A;
+	}
+
+	mu = (desireValue - a) / (b - a);
+	p.x = float(A.x) + mu * (float(B.x) - float(A.x));
+	p.y = float(A.y) + mu * (float(B.y) - float(A.y));
+	p.z = float(A.z) + mu * (float(B.z) - float(A.z));
+
+	return p;
 }
 
 float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
@@ -134,11 +187,9 @@ float PolynomialVolumeInterpolator2::interpolate(const glm::vec3 &pos) const {
 				std::accumulate(space->begin(), space->end(), 1.f, [&](float value, const auto &i32pos_k) {
 					glm::vec3 pos_k = i32pos_k;
 
-					if (
-							areSame(pos_i.x, pos_k.x) ||
-							areSame(pos_i.y, pos_k.y) ||
-							areSame(pos_i.z, pos_k.z)
-							) {
+					if (areSame(pos_i.x, pos_k.x) ||
+						areSame(pos_i.y, pos_k.y) ||
+						areSame(pos_i.z, pos_k.z)) {
 						return 1.f;
 					}
 
