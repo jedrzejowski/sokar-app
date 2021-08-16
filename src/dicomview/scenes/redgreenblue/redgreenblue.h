@@ -2,6 +2,7 @@
 
 #include <QtCore>
 #include <QtWidgets>
+#include "SokarScene/SceneParams.hpp"
 
 #include "../dicomscene.h"
 
@@ -11,7 +12,7 @@ namespace Sokar::RedGreenBlue {
 	Q_OBJECT
 
 	public:
-		explicit Scene(SceneParams &sceneParams);
+		explicit Scene(SokarScene::SceneParams &sceneParams);
 	protected:
 		bool generatePixmap() override;
 	public:

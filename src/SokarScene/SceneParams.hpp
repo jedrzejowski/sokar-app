@@ -1,16 +1,17 @@
 #pragma once
 
-#include <gdcmImageReader.h>
-
 #include <QtCore>
 
-#include "_classdef.h"
+#include "SokarGdcm.hpp"
+#include "SokarScene.hpp"
+#include "SokarDicom/DataConventer.hpp"
+#include "dicomview/scenes/sets/_sceneset.h"
 
-namespace Sokar {
+namespace SokarScene {
 	struct SceneParams {
 		ushort frame = 0;
 		quint64 imgSize = 0;
-		DicomSceneSet *dicomSceneSet;
+		Sokar::DicomSceneSet *dicomSceneSet;
 		const gdcm::ImageReader *imageReader;
 		std::vector<char> *imageBuffer;
 		SokarDicom::DataConverter *dataConverter;

@@ -2,61 +2,63 @@
 
 #include <QtCore>
 
-#include "../dicomscene.h"
 
 namespace Sokar {
 
-	class Step : public QObject {
-	Q_OBJECT
-	public:
-		DicomScene *scene;
-		quint64 time;
+    class DicomScene;
 
-		Step(DicomScene *scene, quint64 time) : scene(scene), time(time) {}
+    class Step : public QObject {
+    Q_OBJECT
+    public:
+        DicomScene *scene;
+        quint64 time;
 
-		inline bool operator==(const Step &step) {
-			return this == &step;
-		}
-	};
+        Step(DicomScene *scene, quint64 time) : scene(scene), time(time) {}
 
-	class SceneSequence : public QObject {
-	Q_OBJECT
-	private:
-		QVector<const Step *> steps;
-		int index = -1;
-		int direction = 1;
+        inline bool operator==(const Step &step) {
 
-		bool sweeping = false;
+            return this == &step;
+        }
+    };
 
-	public:
-		explicit SceneSequence(QObject *parent = nullptr);
+    class SceneSequence : public QObject {
+    Q_OBJECT
+    private:
+        QVector<const Step *> steps;
+        int index = -1;
+        int direction = 1;
 
-		inline int size() const { return steps.size(); }
+        bool sweeping = false;
 
-		inline int currentIndex() { return index; }
+    public:
+        explicit SceneSequence(QObject *parent = nullptr);
 
-		inline bool isSweeping() const { return sweeping; }
+        inline int size() const { return steps.size(); }
 
-		inline int getDirection() const { return direction; }
+        inline int currentIndex() { return index; }
 
-		int indexOf(const Step *step);
+        inline bool isSweeping() const { return sweeping; }
 
-		void setSweeping(bool sweeping);
+        inline int getDirection() const { return direction; }
 
-		void reset();
+        int indexOf(const Step *step);
 
-		SceneSequence &operator<<(Step *step);
+        void setSweeping(bool sweeping);
 
-		SceneSequence &operator<<(SceneSequence *sceneSequence);
+        void reset();
 
-		inline const Step *operator[](int index) { return steps[index]; }
+        SceneSequence &operator<<(Step *step);
 
-	public slots:
-		const Step *step();
-		const Step *stepForward();
-		const Step *stepBackward();
+        SceneSequence &operator<<(SceneSequence *sceneSequence);
 
-	signals:
-		void steped(const Step *step);
-	};
+        inline const Step *operator[](int index) { return steps[index]; }
+
+    public slots:
+        const Step *step();
+        const Step *stepForward();
+        const Step *stepBackward();
+
+    signals:
+        void steped(const Step *step);
+    };
 }

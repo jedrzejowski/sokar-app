@@ -7,7 +7,7 @@
 #include <QVector2D>
 #include <SokarMacro.hpp>
 
-#include "../SokarGlm.hpp"
+#include "SokarGlm.hpp"
 
 
 namespace Sokar3D {

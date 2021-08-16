@@ -151,57 +151,57 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="152"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="152"/>
         <source>A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="155"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="155"/>
         <source>P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="158"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="158"/>
         <source>L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="161"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="161"/>
         <source>R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="164"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="164"/>
         <source>H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/imgorientation.cpp" line="167"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="167"/>
         <source>F</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="42"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="42"/>
         <source> ♂</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="44"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="44"/>
         <source> ♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="48"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="48"/>
         <source>&lt;b&gt;%1&lt;/b&gt;%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="61"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="61"/>
         <source>born %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/patientdata.cpp" line="66"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="66"/>
         <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -232,84 +232,84 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="22"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="22"/>
         <source>&lt;unit&gt;mm&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="26"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="26"/>
         <source>Modality: &lt;value&gt;%1&lt;/value&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="29"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="29"/>
         <source>Series: &lt;value&gt;%1&lt;/value&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="32"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="32"/>
         <source>Instance number: &lt;value&gt;%1&lt;/value&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="79"/>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="122"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="80"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="123"/>
         <source>KVP: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;kV&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="82"/>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="119"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="83"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="120"/>
         <source>Exposure time: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;ms&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="85"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="86"/>
         <source>Exposure: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;mAs&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="99"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="100"/>
         <source>Repetition time: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;ms&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="102"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="103"/>
         <source>Echo time: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;ms&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="105"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="106"/>
         <source>Magnetic field: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;T&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="108"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="109"/>
         <source>SAR: &lt;value&gt;%1&lt;/value&gt;&lt;unit&gt;W/kg&lt;/unit&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="36"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="36"/>
         <source>Slice thick: &lt;value&gt;%1&lt;/value&gt;%3, loc.: &lt;value&gt;%2&lt;/value&gt;%3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="41"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="41"/>
         <source>Slice thickness: &lt;value&gt;%1&lt;/value&gt;%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/modality.cpp" line="44"/>
+        <location filename="../../src/SokarScene/Modality.cpp" line="44"/>
         <source>Slice location: &lt;value&gt;%1&lt;/value&gt;%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/_base.cpp" line="112"/>
+        <location filename="../../src/SokarScene/SceneIndicator.cpp" line="112"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;style&gt;body{font-size:medium;background-color:rgba(0,0,0,0.5);}unit{font-style:italic;font-size:small;}value{font-weight:500;}div{white-space: nowrap;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/indicators/hospitaldata.cpp" line="38"/>
+        <location filename="../../src/SokarScene/HospitalData.cpp" line="38"/>
         <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>

@@ -1,8 +1,8 @@
 #include <QtWidgets>
 #include "sokar/exception.h"
-#include "pixelspacing.h"
+#include "PixelSpacing.hpp"
 
-using namespace Sokar;
+using namespace SokarScene;
 
 //region LineIndicator
 
@@ -72,7 +72,7 @@ bool LineIndicator::isAlive() {
 
 //endregion
 
-PixelSpacingIndicator::PixelSpacingIndicator(SokarDicom::DataConverter &dataConverter) :
+PixelSpacing::PixelSpacing(SokarDicom::DataConverter &dataConverter) :
 		SceneIndicator(dataConverter),
 		xLine(dataConverter),
 		yLine(dataConverter) {
@@ -84,39 +84,39 @@ PixelSpacingIndicator::PixelSpacingIndicator(SokarDicom::DataConverter &dataConv
 	addToGroup(&yLine);
 }
 
-qreal PixelSpacingIndicator::getXSpacing() const {
+qreal PixelSpacing::getXSpacing() const {
 	return xSpacing;
 }
 
-void PixelSpacingIndicator::setXSpacing(qreal xSpacing) {
-	PixelSpacingIndicator::xSpacing = xSpacing;
+void PixelSpacing::setXSpacing(qreal xSpacing) {
+    PixelSpacing::xSpacing = xSpacing;
 }
 
-qreal PixelSpacingIndicator::getYSpacing() const {
+qreal PixelSpacing::getYSpacing() const {
 	return ySpacing;
 }
 
-void PixelSpacingIndicator::setYSpacing(qreal ySpacing) {
-	PixelSpacingIndicator::ySpacing = ySpacing;
+void PixelSpacing::setYSpacing(qreal ySpacing) {
+    PixelSpacing::ySpacing = ySpacing;
 }
 
-qreal PixelSpacingIndicator::getXDim() const {
+qreal PixelSpacing::getXDim() const {
 	return xDim;
 }
 
-void PixelSpacingIndicator::setXDim(qreal xDim) {
-	PixelSpacingIndicator::xDim = xDim;
+void PixelSpacing::setXDim(qreal xDim) {
+    PixelSpacing::xDim = xDim;
 }
 
-qreal PixelSpacingIndicator::getYDim() const {
+qreal PixelSpacing::getYDim() const {
 	return yDim;
 }
 
-void PixelSpacingIndicator::setYDim(qreal yDim) {
-	PixelSpacingIndicator::yDim = yDim;
+void PixelSpacing::setYDim(qreal yDim) {
+    PixelSpacing::yDim = yDim;
 }
 
-void PixelSpacingIndicator::reposition() {
+void PixelSpacing::reposition() {
 
 	updateLines();
 
@@ -129,7 +129,7 @@ void PixelSpacingIndicator::reposition() {
 			(scene()->height() - yLine.getRealHeight()) / 2);
 }
 
-void PixelSpacingIndicator::updateLines() {
+void PixelSpacing::updateLines() {
 	if (xSpacing == 0) {
 		xLine.hide();
 	} else {
@@ -159,19 +159,19 @@ void PixelSpacingIndicator::updateLines() {
 	}
 }
 
-qreal PixelSpacingIndicator::getBottomSpace() {
+qreal PixelSpacing::getBottomSpace() {
 	return xLine.getRealHeight();
 }
 
-qreal PixelSpacingIndicator::getRightSpace() {
+qreal PixelSpacing::getRightSpace() {
 	return yLine.getRealHeight();
 }
 
-bool PixelSpacingIndicator::isAlive() {
+bool PixelSpacing::isAlive() {
 	return true;
 }
 
-void PixelSpacingIndicator::setScaleTransform(const QTransform &scaleTransform) {
+void PixelSpacing::setScaleTransform(const QTransform &scaleTransform) {
 
 	auto xPoint = QPointF(1, 0);
 	auto yPoint = QPointF(0, 1);

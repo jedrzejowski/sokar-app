@@ -3,11 +3,11 @@
 #include <QtCore>
 #include <QtWidgets>
 
-#include "_classdef.h"
-#include "../scene.h"
+#include "SokarScene.hpp"
+#include "Scene.hpp"
 #include "SokarDicom/DataConventer.hpp"
 
-namespace Sokar {
+namespace SokarScene {
 
 	class SceneIndicator : public QGraphicsItemGroup {
 	private:

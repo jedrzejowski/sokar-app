@@ -1,9 +1,12 @@
 #pragma once
 
-#include "_base.h"
+#include <QtWidgets>
+#include "SokarDicom/DataConventer.hpp"
+#include "SokarScene.hpp"
+#include "SceneIndicator.hpp"
 
-namespace Sokar {
-	class ImageOrientationIndicator : public SceneIndicator {
+namespace SokarScene {
+	class ImageOrientation : public SceneIndicator {
 	private:
 		QGraphicsTextItem *topText, *leftText, *rightText, *bottomText;
 
@@ -17,7 +20,7 @@ namespace Sokar {
 		void initData();
 	public:
 
-		ImageOrientationIndicator(SokarDicom::DataConverter &dataConverter);
+	    ImageOrientation(SokarDicom::DataConverter &dataConverter);
 
 		void setRotateTransform(const QTransform &rotateTransform);
 

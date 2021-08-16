@@ -1,8 +1,9 @@
 #pragma once
 
-#include "_base.h"
+#include "SokarScene.hpp"
+#include "SceneIndicator.hpp"
 
-namespace Sokar {
+namespace SokarScene {
 	class LineIndicator : public SceneIndicator {
 	private:
 		QPen pen;
@@ -27,7 +28,7 @@ namespace Sokar {
 
 	};
 
-	class PixelSpacingIndicator : public SceneIndicator {
+	class PixelSpacing : public SceneIndicator {
 	private:
 
 		qreal xSpacing, ySpacing;
@@ -37,7 +38,7 @@ namespace Sokar {
 		LineIndicator xLine, yLine;
 
 	public:
-		explicit PixelSpacingIndicator(SokarDicom::DataConverter& dataConverter);
+	    explicit PixelSpacing(SokarDicom::DataConverter& dataConverter);
 
 		//region Getter & Setters
 

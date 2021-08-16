@@ -16,7 +16,7 @@
 
 using namespace Sokar;
 
-Monochrome::Scene::Scene(SceneParams &sceneParams) : DicomScene(sceneParams) {
+Monochrome::Scene::Scene(SokarScene::SceneParams &sceneParams) : DicomScene(sceneParams) {
 
 	readAttributes();
 

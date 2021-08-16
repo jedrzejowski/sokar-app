@@ -37,7 +37,7 @@ void DicomFrameSet::initScenes() {
 	imageBuffer.resize(gdcmImage.GetBufferLength());
 	gdcmImage.GetBuffer(&imageBuffer[0]);
 
-	auto sceneParams = SceneParams();
+	auto sceneParams = SokarScene::SceneParams();
 	sceneParams.imgSize = gdcmImage.GetBufferLength() / numberOfFrames;
 	sceneParams.dicomSceneSet = this;
 	sceneParams.imageReader = imageReader;

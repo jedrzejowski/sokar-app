@@ -1,16 +1,17 @@
 #pragma once
 
-#include "_base.h"
+#include "SokarScene.hpp"
+#include "SceneIndicator.hpp"
 
-namespace Sokar {
+namespace SokarScene {
 
-	class ModalityIndicator : public SceneIndicator {
+	class Modality : public SceneIndicator {
 	protected:
 		QStringList lines;
 		QGraphicsTextItem *text;
 
 	public:
-		explicit ModalityIndicator(SokarDicom::DataConverter &dataConverter);
+	    explicit Modality(SokarDicom::DataConverter &dataConverter);
 		void reposition() override;
 		bool isAlive() override;
 	private:

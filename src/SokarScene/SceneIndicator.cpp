@@ -1,6 +1,6 @@
-#include "_base.h"
+#include "SceneIndicator.hpp"
 
-using namespace Sokar;
+using namespace SokarScene;
 
 SceneIndicator::SceneIndicator(SokarDicom::DataConverter &dataConverter) :
 		defaultColor(255, 255, 255),

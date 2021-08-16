@@ -4,7 +4,7 @@
 
 using namespace Sokar;
 
-RedGreenBlue::Scene::Scene(SceneParams &sceneParams) :
+RedGreenBlue::Scene::Scene(SokarScene::SceneParams &sceneParams) :
 		DicomScene(sceneParams) {
 
 	reloadPixmap();

@@ -10,7 +10,7 @@
 
 using namespace Sokar;
 
-DicomScene::DicomScene(SceneParams &sceneParams) :
+DicomScene::DicomScene(SokarScene::SceneParams &sceneParams) :
 		Scene((QObject *) sceneParams.dicomSceneSet),
 		gdcmFile(sceneParams.imageReader->GetFile()),
 		gdcmImage(sceneParams.imageReader->GetImage()),
@@ -186,12 +186,12 @@ void DicomScene::initIndicators() {
 }
 
 void DicomScene::initPatientDataIndicator() {
-	patientDataIndicator = new PatientDataIndicator(dataConverter);
+	patientDataIndicator = new SokarScene::PatientData(dataConverter);
 	addIndicator(patientDataIndicator);
 }
 
 void DicomScene::initHospitalDataIndicator() {
-	hospitalDataIndicator = new HospitalDataIndicator(dataConverter);
+    hospitalDataIndicator = new SokarScene::HospitalData(dataConverter);
 	addIndicator(hospitalDataIndicator);
 }
 
@@ -206,7 +206,7 @@ void DicomScene::initPixelSpacingIndicator() {
 
 	if (!dataConverter.hasTagWithData(TagPixelSpacing)) return;
 
-	pixelSpacingIndicator = new PixelSpacingIndicator(dataConverter);
+	pixelSpacingIndicator = new SokarScene::PixelSpacing(dataConverter);
 	addIndicator(pixelSpacingIndicator);
 
 	auto spacing = dataConverter.toDecimalString(TagPixelSpacing);
@@ -225,7 +225,7 @@ void DicomScene::initPixelSpacingIndicator() {
 
 void DicomScene::initImageOrientationIndicator() {
 
-	imageOrientationIndicator = new ImageOrientationIndicator(dataConverter);
+    imageOrientationIndicator = new SokarScene::ImageOrientation(dataConverter);
 
 	imageOrientationIndicator->setOffsetBottomParent(pixelSpacingIndicator);
 	imageOrientationIndicator->setOffsetRightParent(pixelSpacingIndicator);
@@ -234,7 +234,7 @@ void DicomScene::initImageOrientationIndicator() {
 }
 
 void DicomScene::initModalityIndicator() {
-	modalityIndicator = new ModalityIndicator(dataConverter);
+    modalityIndicator = new SokarScene::Modality(dataConverter);
 	addIndicator(modalityIndicator);
 }
 

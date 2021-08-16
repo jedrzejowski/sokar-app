@@ -17,7 +17,7 @@ namespace Sokar::Monochrome {
 		Window *getCurrentWindow();
 
 	public:
-		explicit Scene(SceneParams &sceneParams);
+		explicit Scene(SokarScene::SceneParams &sceneParams);
 
 		~Scene() override;
 

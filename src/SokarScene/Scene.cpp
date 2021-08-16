@@ -1,10 +1,7 @@
-#include <iostream>
+#include "Scene.hpp"
+#include "SceneIndicator.hpp"
 
-#include <QGraphicsSceneMouseEvent>
-
-#include "scene.h"
-
-using namespace Sokar;
+using namespace SokarScene;
 
 Scene::Scene(QObject *parent) : QGraphicsScene(parent) {
 

@@ -1,9 +1,9 @@
 #include <QTextDocument>
 #include "sokar/gdcmSokar.h"
 
-#include "imgorientation.h"
+#include "ImageOrientation.hpp"
 
-using namespace Sokar;
+using namespace SokarScene;
 
 struct {
 	//http://dicomiseasy.blogspot.com/2013/06/getting-oriented-using-image-plane.html?m=1
@@ -16,7 +16,7 @@ struct {
 			Posterior = QVector4D(0, +1, 0, 1);
 } PatientPoint;
 
-ImageOrientationIndicator::ImageOrientationIndicator(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
+ImageOrientation::ImageOrientation(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
 	leftText = new QGraphicsTextItem();
 	leftText->setDefaultTextColor(defaultColor);
 	leftText->hide();
@@ -41,7 +41,7 @@ ImageOrientationIndicator::ImageOrientationIndicator(SokarDicom::DataConverter &
 		initData();
 }
 
-void ImageOrientationIndicator::initData() {
+void ImageOrientation::initData() {
 	static gdcm::Tag
 			TagImageOrientation(0x0020, 0x0037),
 			TagImagePosition(0x0020, 0x0032);
@@ -92,7 +92,7 @@ void ImageOrientationIndicator::initData() {
 	update();
 }
 
-void ImageOrientationIndicator::reposition() {
+void ImageOrientation::reposition() {
 
 	if (scene() == nullptr)
 		return;
@@ -114,7 +114,7 @@ void ImageOrientationIndicator::reposition() {
 			scene()->height() - bottomText->document()->size().height() - getOffsetBottom());
 }
 
-void ImageOrientationIndicator::setRotateTransform(const QTransform &rotateTransform) {
+void ImageOrientation::setRotateTransform(const QTransform &rotateTransform) {
 	this->rotateTransform = QMatrix4x4(rotateTransform);
 	update();
 }
@@ -135,7 +135,7 @@ bool isNotCenter(const QVector4D &one) {
 	return !(one[0] == 0.0 && one[1] == 0.0);
 }
 
-void ImageOrientationIndicator::update() {
+void ImageOrientation::update() {
 
 	auto anterior = rotateTransform * scenePosition.anterior;
 	auto posterior = rotateTransform * scenePosition.posterior;
@@ -174,7 +174,7 @@ void ImageOrientationIndicator::update() {
 	reposition();
 }
 
-bool ImageOrientationIndicator::isAlive() {
+bool ImageOrientation::isAlive() {
 
 	static gdcm::Tag TagImageOrientationPatient(0x0020, 0x0037);
 

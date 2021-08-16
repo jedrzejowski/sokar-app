@@ -1,8 +1,8 @@
-#include "hospitaldata.h"
+#include "HospitalData.hpp"
 
-using namespace Sokar;
+using namespace SokarScene;
 
-HospitalDataIndicator::HospitalDataIndicator(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
+HospitalData::HospitalData(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
 
 	text = newText();
 	addToGroup(text);
@@ -10,11 +10,11 @@ HospitalDataIndicator::HospitalDataIndicator(SokarDicom::DataConverter &dataConv
 	initData();
 }
 
-void HospitalDataIndicator::reposition() {
+void HospitalData::reposition() {
 	text->setPos(scene()->width() - text->document()->size().width(), 0);
 }
 
-void HospitalDataIndicator::initData() {
+void HospitalData::initData() {
 
 	const static gdcm::Tag
 			TagManufacturer(0x0008, 0x0070),
@@ -50,6 +50,6 @@ void HospitalDataIndicator::initData() {
 	text->adjustSize();
 }
 
-bool HospitalDataIndicator::isAlive() {
+bool HospitalData::isAlive() {
 	return true;
 }

@@ -6,64 +6,65 @@
 
 #include "sokar/pixel.h"
 #include "sokar/palette.h"
-#include "../../indicators/_base.h"
+#include "SokarScene/SceneIndicator.hpp"
 
 
 namespace Sokar::Monochrome {
 
-	class Window : public QObject, public SceneIndicator {
-	Q_OBJECT
-	protected:
-		bool shouldRegen = true;
-		bool inversed = false;
+    class Window : public QObject, public SokarScene::SceneIndicator {
+    Q_OBJECT
+    protected:
+        bool shouldRegen = true;
+        bool inversed = false;
 
-		Palette *palette = nullptr;
+        Palette *palette = nullptr;
 
-		QMenu toolbarMenu;
+        QMenu toolbarMenu;
 
-		std::chrono::high_resolution_clock::time_point lastChange;
+        std::chrono::high_resolution_clock::time_point lastChange;
 
-	public:
+    public:
 
-		explicit Window(SokarDicom::DataConverter &dataConverter);
+        explicit Window(SokarDicom::DataConverter &dataConverter);
 
-		typedef enum {
-			IntDynamic,
-			IntStatic
-		} Type;
+        typedef enum {
+            IntDynamic,
+            IntStatic
+        } Type;
 
-		virtual Type type() = 0;
+        virtual Type type() = 0;
 
-		virtual void mvHorizontal(int v) = 0;
+        virtual void mvHorizontal(int v) = 0;
 
-		virtual void mvVertical(int v) = 0;
+        virtual void mvVertical(int v) = 0;
 
-		virtual const Pixel &getPixel(quint64 value) = 0;
+        virtual const Pixel &getPixel(quint64 value) = 0;
 
-		virtual bool genLUT() = 0;
+        virtual bool genLUT() = 0;
 
-		inline bool isInversed() const { return inversed; }
+        inline bool isInversed() const { return inversed; }
 
-		QMenu *getMenu();
+        QMenu *getMenu();
 
-		void setInversed(bool inversed);
+        void setInversed(bool inversed);
 
-		Palette *getPalette() const { return palette; }
+        Palette *getPalette() const { return palette; }
 
-		void setPalette(Palette *palette);
+        void setPalette(Palette *palette);
 
-		bool isAlive() override;
+        bool isAlive() override;
 
-		inline auto getLastChange() const {
-			return lastChange;
-		}
+        inline auto getLastChange() const {
 
-	protected:
-		virtual void genMenu() = 0;
+            return lastChange;
+        }
 
-		void updateLastChange();
+    protected:
+        virtual void genMenu() = 0;
 
-	signals:
-		void forceRefreshSignal();
-	};
+        void updateLastChange();
+
+    signals:
+        void forceRefreshSignal();
+    };
 }

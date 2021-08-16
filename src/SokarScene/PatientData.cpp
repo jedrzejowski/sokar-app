@@ -1,11 +1,11 @@
 #include <gdcmStringFilter.h>
-#include "src/SokarDicom/DataConventer.hpp"
+#include "SokarDicom/DataConventer.hpp"
 #include "sokar/qt.h"
-#include "patientdata.h"
+#include "PatientData.hpp"
 
-using namespace Sokar;
+using namespace SokarScene;
 
-PatientDataIndicator::PatientDataIndicator(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
+PatientData::PatientData(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
 
 	text = newText();
 	addToGroup(text);
@@ -13,11 +13,11 @@ PatientDataIndicator::PatientDataIndicator(SokarDicom::DataConverter &dataConver
 	initData();
 }
 
-void PatientDataIndicator::reposition() {
+void PatientData::reposition() {
 	text->setPos(0, 0);
 }
 
-void PatientDataIndicator::initData() {
+void PatientData::initData() {
 
 	const static gdcm::Tag
 			TagPatientName(0x0010, 0x0010),
@@ -85,6 +85,6 @@ void PatientDataIndicator::initData() {
 	text->adjustSize();
 }
 
-bool PatientDataIndicator::isAlive() {
+bool PatientData::isAlive() {
 	return true;
 }

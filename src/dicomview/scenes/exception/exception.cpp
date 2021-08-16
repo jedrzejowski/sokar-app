@@ -3,7 +3,7 @@
 
 using namespace Sokar;
 
-ExceptionScene::ExceptionScene(SceneParams &sceneParams, Sokar::Exception &exception) :
+ExceptionScene::ExceptionScene(SokarScene::SceneParams &sceneParams, Sokar::Exception &exception) :
 		DicomScene(sceneParams) {
 
 	msgText = addText("");

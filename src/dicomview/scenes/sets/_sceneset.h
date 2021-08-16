@@ -10,27 +10,27 @@
 
 namespace Sokar {
 
-	typedef QVector<const gdcm::ImageReader *> DicomReaderVec;
-	typedef QVector<DicomScene *> DicomSceneVec;
+    typedef QVector<const gdcm::ImageReader *> DicomReaderVec;
+    typedef QVector<DicomScene *> DicomSceneVec;
 
-	class DicomSceneSet : public QObject {
-	Q_OBJECT
-	protected:
-		QMutex qMutex;
-		DicomSceneVec dicomScenes;
+    class DicomSceneSet : public QObject {
+    Q_OBJECT
+    protected:
+        QMutex qMutex;
+        DicomSceneVec dicomScenes;
 
-		SceneSequence *sceneSequence = nullptr;
+        Sokar::SceneSequence *sceneSequence = nullptr;
 
-	public:
-		explicit DicomSceneSet(QObject *parent = nullptr);
-		~DicomSceneSet() override;
+    public:
+        explicit DicomSceneSet(QObject *parent = nullptr);
+        ~DicomSceneSet() override;
 
-		inline const DicomSceneVec &getScenesVector() const { return dicomScenes; }
+        inline const DicomSceneVec &getScenesVector() const { return dicomScenes; }
 
-		virtual SceneSequence *getSceneSequence() = 0;
+        virtual Sokar::SceneSequence *getSceneSequence() = 0;
 
-		virtual const QString &getTitle() = 0;
+        virtual const QString &getTitle() = 0;
 
-		inline DicomScene *operator[](int index) { return dicomScenes[index]; }
-	};
+        inline DicomScene *operator[](int index) { return dicomScenes[index]; }
+    };
 }

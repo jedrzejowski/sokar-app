@@ -3,6 +3,7 @@
 #include <gdcmImageReader.h>
 
 #include <QtCore>
+#include "SokarScene/SceneParams.hpp"
 
 #include "../dicomscene.h"
 
@@ -15,7 +16,7 @@ namespace Sokar {
 		Sokar::Exception *exception;
 
 	public:
-		explicit ExceptionScene(SceneParams &sceneParams, Sokar::Exception &exception);
+		explicit ExceptionScene(SokarScene::SceneParams &sceneParams, Sokar::Exception &exception);
 
 		~ExceptionScene() override;
 
