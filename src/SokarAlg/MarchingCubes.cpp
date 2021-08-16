@@ -4,7 +4,6 @@
 
 #include "MarchingCubes.hpp"
 #include "VolumeInterpolator.hpp"
-#include <QtConcurrent/QtConcurrentRun>
 
 using namespace SokarAlg;
 
@@ -309,8 +308,7 @@ const qint32 triTable[256][16] = {
 Sokar3D::StaticMeshPtr MarchingCubes::exec() {
 
     auto size = volume->getSize() - cubeSize;
-    QElapsedTimer timer;
-    timer.start();
+    qDebug() << "size" << size;
 
     forI32space({0, 0, 0}, size, [this](const auto &pos) {
         marchCube(getCube(pos, cubeSize));
