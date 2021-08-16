@@ -6,7 +6,7 @@ MovieMode::MovieMode(QObject *parent) {
 
 }
 
-void MovieMode::setOriginScene(DicomScene *orginScene) {
+void MovieMode::setOriginScene(SokarScene::DicomScene *orginScene) {
 	MovieMode::originScene = orginScene;
 }
 

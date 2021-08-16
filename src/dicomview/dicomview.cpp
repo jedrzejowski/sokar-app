@@ -43,8 +43,8 @@ DicomView::~DicomView() {
 	delete dicomSceneSet;
 }
 
-DicomScene *DicomView::getDicomScene() {
-	return (DicomScene *) ui->graphicsView->scene();
+SokarScene::DicomScene *DicomView::getDicomScene() {
+	return (SokarScene::DicomScene *) ui->graphicsView->scene();
 }
 
 void DicomView::setStep(const Step *step) {

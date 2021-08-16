@@ -9,6 +9,8 @@
 #include "scenes/sets/_sceneset.h"
 #include "toolbar.h"
 
+#include "SokarScene.hpp"
+
 namespace Ui {
 	class DicomView;
 }
@@ -30,7 +32,7 @@ namespace Sokar {
 
 		//region Getters
 
-		DicomScene *getDicomScene();
+		SokarScene::DicomScene *getDicomScene();
 		DicomToolBar *getToolBar();
 		FrameChooser *getFrameChooser();
 

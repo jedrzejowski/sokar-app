@@ -16,13 +16,8 @@ namespace Sokar {
 
 	class MovieBar;
 
-	class DicomScene;
-
 	class DicomSceneSet;
 
-	class SceneAvatar;
-
 	class MovieMode;
-
 
 }

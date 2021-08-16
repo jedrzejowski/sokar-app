@@ -2,13 +2,13 @@
 
 #include <QtCore>
 #include <QtWidgets>
-#include "SokarScene/SceneParams.hpp"
 
-#include "../dicomscene.h"
+#include "SokarScene/SceneParams.hpp"
+#include "SokarScene/DicomScene.hpp"
 
 namespace Sokar::RedGreenBlue {
 
-	class Scene : public Sokar::DicomScene {
+	class Scene : public SokarScene::DicomScene {
 	Q_OBJECT
 
 	public:

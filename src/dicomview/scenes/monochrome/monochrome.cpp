@@ -88,7 +88,7 @@ void Monochrome::Scene::readAttributes() {
 		imgWindowInt->setWidth(imgWindowInt->getMaxValue());
 		imgWindowInt->setCenter(imgWindowInt->getMaxValue() / 2);
 
-		connect(imgWindow, &Window::forceRefreshSignal, this, &DicomScene::reloadPixmap);
+		connect(imgWindow, &Window::forceRefreshSignal, this, &SokarScene::DicomScene::reloadPixmap);
 	}
 
 	//Palette
@@ -376,7 +376,7 @@ void Monochrome::Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 		}
 	}
 
-	DicomScene::mouseMoveEvent(event);
+	SokarScene::DicomScene::mouseMoveEvent(event);
 }
 
 void Monochrome::Scene::toolBarAdjust() {
@@ -391,7 +391,7 @@ void Monochrome::Scene::toolBarAdjust() {
 }
 
 bool Monochrome::Scene::acceptMovieMode(Sokar::MovieMode *movieMode) {
-	if (!DicomScene::acceptMovieMode(movieMode))
+	if (!SokarScene::DicomScene::acceptMovieMode(movieMode))
 		return false;
 
 	imgWindow->hide();
@@ -400,7 +400,7 @@ bool Monochrome::Scene::acceptMovieMode(Sokar::MovieMode *movieMode) {
 }
 
 void Monochrome::Scene::disableMovieMode() {
-	DicomScene::disableMovieMode();
+	SokarScene::DicomScene::disableMovieMode();
 
 	imgWindow->show();
 }
@@ -414,7 +414,7 @@ Monochrome::Window *Monochrome::Scene::getCurrentWindow() {
 
 void Monochrome::Scene::toolBarActionSlot(DicomToolBar::Action action, bool state) {
 
-	DicomScene::toolBarActionSlot(action, state);
+	SokarScene::DicomScene::toolBarActionSlot(action, state);
 
 	if (action == DicomToolBar::Segmentation) {
 

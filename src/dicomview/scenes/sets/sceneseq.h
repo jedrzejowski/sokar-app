@@ -1,19 +1,17 @@
 #pragma once
 
 #include <QtCore>
-
+#include "SokarScene.hpp"
 
 namespace Sokar {
-
-    class DicomScene;
 
     class Step : public QObject {
     Q_OBJECT
     public:
-        DicomScene *scene;
+        SokarScene::DicomScene *scene;
         quint64 time;
 
-        Step(DicomScene *scene, quint64 time) : scene(scene), time(time) {}
+        Step(SokarScene::DicomScene *scene, quint64 time) : scene(scene), time(time) {}
 
         inline bool operator==(const Step &step) {
 

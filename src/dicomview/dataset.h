@@ -8,38 +8,40 @@
 
 #include "_classdef.h"
 
-#include "scenes/dicomscene.h"
+#include "SokarScene/DicomScene.hpp"
 
 namespace Sokar {
 
-	class DataSetViewer : public QTreeView {
-	Q_OBJECT
+    class DataSetViewer : public QTreeView {
+    Q_OBJECT
 
-	private:
-		DicomScene *dicomScene;
+    private:
+        SokarScene::DicomScene *dicomScene;
 
-		QStandardItemModel standardModel;
-		QStringList headerLabels;
-		gdcm::StringFilter stringFilter;
+        QStandardItemModel standardModel;
+        QStringList headerLabels;
+        gdcm::StringFilter stringFilter;
 
-	protected:
-		void forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *parent = nullptr);
+    protected:
+        void forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *parent = nullptr);
 
-		void initTree();
+        void initTree();
 
-	public:
-		explicit DataSetViewer(DicomScene *dicomScene, QWidget *parent = nullptr);
-		virtual ~DataSetViewer();
+    public:
+        explicit DataSetViewer(SokarScene::DicomScene *dicomScene, QWidget *parent = nullptr);
+        virtual ~DataSetViewer();
 
-		static DataSetViewer *openAsWindow(DicomScene *scene);
+        static DataSetViewer *openAsWindow(SokarScene::DicomScene *scene);
 
-		inline DicomScene *getDicomScene() {
-			return dicomScene;
-		}
+        inline SokarScene::DicomScene *getDicomScene() {
 
-		inline bool operator==(const DataSetViewer &b) const {
-			return this == &b;
-		}
-	};
+            return dicomScene;
+        }
+
+        inline bool operator==(const DataSetViewer &b) const {
+
+            return this == &b;
+        }
+    };
 
 }

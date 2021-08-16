@@ -70,7 +70,7 @@ bool LumBlueRed::Scene::generatePixmap() {
 }
 
 void LumBlueRed::Scene::toolBarAdjust() {
-	DicomScene::toolBarAdjust();
+	SokarScene::DicomScene::toolBarAdjust();
 	auto *toolBar = getDicomView()->getToolBar();
 
 	toolBar->getActionWindowing()->setDisabled(true);

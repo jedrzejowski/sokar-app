@@ -4,14 +4,14 @@
 
 #include "_classdef.h"
 #include "../../dataset.h"
-#include "../dicomscene.h"
-#include "src/SokarDicom/DataConventer.hpp"
+#include "SokarScene/DicomScene.hpp"
+#include "SokarDicom/DataConventer.hpp"
 #include "sceneseq.h"
 
 namespace Sokar {
 
     typedef QVector<const gdcm::ImageReader *> DicomReaderVec;
-    typedef QVector<DicomScene *> DicomSceneVec;
+    typedef QVector<SokarScene::DicomScene *> DicomSceneVec;
 
     class DicomSceneSet : public QObject {
     Q_OBJECT
@@ -31,6 +31,6 @@ namespace Sokar {
 
         virtual const QString &getTitle() = 0;
 
-        inline DicomScene *operator[](int index) { return dicomScenes[index]; }
+        inline SokarScene::DicomScene *operator[](int index) { return dicomScenes[index]; }
     };
 }

@@ -5,10 +5,10 @@
 #include <QtCore>
 #include "SokarScene/SceneParams.hpp"
 
-#include "../dicomscene.h"
+#include "SokarScene/DicomScene.hpp"
 
 namespace Sokar {
-	class ExceptionScene : public Sokar::DicomScene {
+	class ExceptionScene : public SokarScene::DicomScene {
 	Q_OBJECT
 
 	private:

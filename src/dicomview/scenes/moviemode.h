@@ -3,33 +3,35 @@
 #include <QtCore>
 
 #include "_classdef.h"
-#include "dicomscene.h"
+#include "SokarScene/DicomScene.hpp"
 
 namespace Sokar {
-	class MovieMode : public QObject {
-	Q_OBJECT
-	protected:
-		DicomScene *originScene;
-		bool useSameWindow = false;
-		bool useSameTranform = false;
-	public:
-		MovieMode(QObject *parent = nullptr);
+    class MovieMode : public QObject {
+    Q_OBJECT
+    protected:
+        SokarScene::DicomScene *originScene;
+        bool useSameWindow = false;
+        bool useSameTranform = false;
+    public:
+        MovieMode(QObject *parent = nullptr);
 
-		inline DicomScene *getOriginScene() const { return originScene; }
+        inline SokarScene::DicomScene *getOriginScene() const { return originScene; }
 
-		void setOriginScene(DicomScene *orginScene);
+        void setOriginScene(SokarScene::DicomScene *orginScene);
 
-		bool isUseSameWindow() const {
-			return useSameWindow;
-		}
+        bool isUseSameWindow() const {
 
-		void setUseSameWindow(bool useSameWindow);
+            return useSameWindow;
+        }
 
-		bool isUseSameTranform() const {
-			return useSameTranform;
-		}
+        void setUseSameWindow(bool useSameWindow);
 
-		void setUseSameTranform(bool useSameTranform);
-	};
+        bool isUseSameTranform() const {
+
+            return useSameTranform;
+        }
+
+        void setUseSameTranform(bool useSameTranform);
+    };
 }
 

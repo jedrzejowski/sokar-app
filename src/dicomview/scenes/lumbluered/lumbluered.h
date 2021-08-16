@@ -5,12 +5,12 @@
 
 #include "SokarScene/SceneParams.hpp"
 
-#include "../dicomscene.h"
+#include "SokarScene/DicomScene.hpp"
 #include "../redgreenblue/redgreenblue.h"
 
 namespace Sokar::LumBlueRed {
 
-	class Scene : public DicomScene {
+	class Scene : public SokarScene::DicomScene {
 	Q_OBJECT
 	public:
 	    explicit Scene(SokarScene::SceneParams &sceneParams);

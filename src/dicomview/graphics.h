@@ -4,21 +4,23 @@
 #include <QtWidgets>
 
 #include "_classdef.h"
+#include "SokarScene.hpp"
 
 namespace Sokar {
-	class DicomGraphics : public QGraphicsView {
-	Q_OBJECT
-	public:
-		explicit DicomGraphics(QWidget *parent);
+    class DicomGraphics : public QGraphicsView {
+    Q_OBJECT
+    public:
+        explicit DicomGraphics(QWidget *parent);
 
-	protected:
+    protected:
 
-		void scrollContentsBy(int dx, int dy) override;
+        void scrollContentsBy(int dx, int dy) override;
 
-		DicomScene *getDicomScene() const {
-			return (DicomScene *) scene();
-		}
+        SokarScene::DicomScene *getDicomScene() const {
 
-		void resizeEvent(QResizeEvent *event) override;
-	};
+            return (SokarScene::DicomScene *) scene();
+        }
+
+        void resizeEvent(QResizeEvent *event) override;
+    };
 }

@@ -9,3 +9,9 @@
 #include <gdcmStringFilter.h>
 #include <gdcmReader.h>
 #include <gdcmImageReader.h>
+#include <gdcmDict.h>
+#include <gdcmDicts.h>
+#include <gdcmGlobal.h>
+#include <gdcmTag.h>
+#include <gdcmAttribute.h>
+#include <gdcmPrivateTag.h>

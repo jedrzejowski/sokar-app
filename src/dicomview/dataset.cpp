@@ -1,25 +1,19 @@
 
-#include <gdcmDict.h>
-#include <gdcmDicts.h>
-#include <gdcmGlobal.h>
-#include <gdcmTag.h>
-#include <gdcmAttribute.h>
-#include <gdcmPrivateTag.h>
-
+#include "SokarGdcm.hpp"
 
 #include "dataset.h"
 
 using namespace Sokar;
 
 
-DataSetViewer::DataSetViewer(DicomScene *dicomScene, QWidget *parent)
+DataSetViewer::DataSetViewer(SokarScene::DicomScene *dicomScene, QWidget *parent)
 		: QTreeView(parent),
 		  dicomScene(dicomScene) {
 
 	setModel(&standardModel);
 
 
-	connect(dicomScene, &DicomScene::destroyed, this, &DataSetViewer::close);
+	connect(dicomScene, &SokarScene::DicomScene::destroyed, this, &DataSetViewer::close);
 
 
 	headerLabels << "Tag" << "VL" << "VR" << "Keyword" << "Value";
@@ -105,7 +99,7 @@ void DataSetViewer::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *
 	}
 }
 
-DataSetViewer *DataSetViewer::openAsWindow(DicomScene *scene) {
+DataSetViewer *DataSetViewer::openAsWindow(SokarScene::DicomScene *scene) {
 	auto widget = new DataSetViewer(scene);
 
 	widget->setAttribute(Qt::WA_DeleteOnClose);

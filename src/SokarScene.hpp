@@ -20,4 +20,10 @@ namespace SokarScene {
     class Modality;
 
     class PatientData;
+
+    class Avatar;
+
+    class DicomScene;
+
+    class PixelSpacing;
 }

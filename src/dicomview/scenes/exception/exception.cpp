@@ -4,7 +4,7 @@
 using namespace Sokar;
 
 ExceptionScene::ExceptionScene(SokarScene::SceneParams &sceneParams, Sokar::Exception &exception) :
-		DicomScene(sceneParams) {
+		SokarScene::DicomScene(sceneParams) {
 
 	msgText = addText("");
 	msgText->setDefaultTextColor(QColor("white"));
@@ -55,14 +55,14 @@ bool Sokar::ExceptionScene::generatePixmap() {
 }
 
 void ExceptionScene::reposItems() {
-	DicomScene::reposItems();
+	SokarScene::DicomScene::reposItems();
 
 	msgText->setPos((this->width() - msgText->document()->size().width()) / 2,
 					(this->height() - msgText->document()->size().height()) / 2);
 }
 
 void ExceptionScene::toolBarAdjust() {
-	DicomScene::toolBarAdjust();
+	SokarScene::DicomScene::toolBarAdjust();
 
 	auto *toolBar = getDicomView()->getToolBar();
 

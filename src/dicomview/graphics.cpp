@@ -1,6 +1,6 @@
 #include "graphics.h"
 
-#include "scenes/dicomscene.h"
+#include "src/SokarScene/DicomScene.hpp"
 
 using namespace Sokar;
 

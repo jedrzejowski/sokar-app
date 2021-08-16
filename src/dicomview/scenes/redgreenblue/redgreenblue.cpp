@@ -66,7 +66,7 @@ bool RedGreenBlue::Scene::generatePixmap() {
 }
 
 void RedGreenBlue::Scene::toolBarAdjust() {
-	DicomScene::toolBarAdjust();
+	SokarScene::DicomScene::toolBarAdjust();
 
 	auto *toolBar = getDicomView()->getToolBar();
 

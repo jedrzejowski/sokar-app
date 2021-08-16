@@ -4,9 +4,7 @@
 #include <QtWidgets>
 #include <chrono>
 
-#include <gdcmImage.h>
-#include <gdcmImageReader.h>
-#include <gdcmStringFilter.h>
+#include "SokarGdcm.hpp"
 
 #include "_classdef.h"
 
@@ -16,19 +14,15 @@
 #include "sokar/pixel.h"
 #include "SokarGlm.hpp"
 #include "sokar/exception.h"
-#include "SokarScene/Scene.hpp"
-#include "SokarScene/SceneParams.hpp"
-#include "sceneavatar.h"
-#include "moviemode.h"
 
-#include "src/SokarScene/PatientData.hpp"
-#include "src/SokarScene/PixelSpacing.hpp"
-#include "src/SokarScene/HospitalData.hpp"
-#include "src/SokarScene/ImageOrientation.hpp"
-#include "src/SokarScene/Modality.hpp"
+#include "Scene.hpp"
+#include "SceneParams.hpp"
+#include "Avatar.hpp"
 
-namespace Sokar {
-    class DicomScene : public SokarScene::Scene {
+#include "src/dicomview/scenes/moviemode.h"
+
+namespace SokarScene {
+    class DicomScene : public Scene {
     Q_OBJECT
 
     protected:
@@ -41,7 +35,7 @@ namespace Sokar {
         SokarDicom::DataConverter &dataConverter;
 
         std::vector<char> originBuffer;
-        std::vector<Pixel> targetBuffer;
+        std::vector<Sokar::Pixel> targetBuffer;
         quint32 imgDimX, imgDimY;
 
         QImage qImage;
@@ -51,17 +45,17 @@ namespace Sokar {
 
         QTransform panTransform, scaleTransform, centerTransform, rotateTransform;
 
-        MovieMode *movieMode = nullptr;
+        Sokar::MovieMode *movieMode = nullptr;
 
         //region Indicators
     private:
         void initIndicators();
 
-        SokarScene::PatientData *patientDataIndicator = nullptr;
-        SokarScene::HospitalData *hospitalDataIndicator = nullptr;
-        SokarScene::PixelSpacing *pixelSpacingIndicator = nullptr;
-        SokarScene::ImageOrientation *imageOrientationIndicator = nullptr;
-        SokarScene::Modality *modalityIndicator = nullptr;
+        PatientData *patientDataIndicator = nullptr;
+        HospitalData *hospitalDataIndicator = nullptr;
+        PixelSpacing *pixelSpacingIndicator = nullptr;
+        ImageOrientation *imageOrientationIndicator = nullptr;
+        Modality *modalityIndicator = nullptr;
 
         void initPatientDataIndicator();
         void initPixelSpacingIndicator();
@@ -72,7 +66,7 @@ namespace Sokar {
 
     public:
 
-        explicit DicomScene(SokarScene::SceneParams &sceneParams);
+        explicit DicomScene(::SokarScene::SceneParams &sceneParams);
 
         ~DicomScene() override;
 
@@ -82,13 +76,17 @@ namespace Sokar {
 
         inline const QPixmap *getPixmap() const { return &pixmap; }
 
-        SceneAvatar *getAvatar();
+        Avatar *getAvatar();
 
         const QPixmap &getIcon();
 
-        inline DicomSceneSet *getDicomSceneSet() { return (DicomSceneSet *) this->parent(); }
+        inline Sokar::DicomSceneSet *getDicomSceneSet() {
 
-        DicomView *getDicomView();
+            return (Sokar::DicomSceneSet *)
+                    this->parent();
+        }
+
+        Sokar::DicomView *getDicomView();
 
         inline quint32 getImgDimX() const {
 
@@ -110,7 +108,7 @@ namespace Sokar {
 
         bool isMovieMode();
 
-        virtual bool acceptMovieMode(MovieMode *movieMode);
+        virtual bool acceptMovieMode(Sokar::MovieMode *movieMode);
 
         virtual void disableMovieMode();
 
@@ -126,7 +124,7 @@ namespace Sokar {
 
     public slots:
         void reloadPixmap();
-        virtual void toolBarActionSlot(DicomToolBar::Action action, bool state = false);
+        virtual void toolBarActionSlot(Sokar::DicomToolBar::Action action, bool state = false);
         void reposItems() override;
         void updatePixmapTransformation();
         void prepare();
