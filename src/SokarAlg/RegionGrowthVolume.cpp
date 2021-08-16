@@ -77,7 +77,7 @@ void RegionGrowthVolume::regrowth() {
 
 		mask(current) = mask(current) & VISITED;
 
-		if (isoLevel.isOn(getValue(current))) {
+		if (isoLevel.includes(getValue(current))) {
 			mask(current) = mask(current) & PASSES;
 		} else {
 			continue;

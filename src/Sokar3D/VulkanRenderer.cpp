@@ -82,7 +82,7 @@ void VulkanRenderer::initResources() {
 }
 
 void VulkanRenderer::initSwapChainResources() {
-	qDebug("initSwapChainResources");
+//	qDebug("initSwapChainResources");
 
 	auto proj = vkWidget->clipCorrectionMatrix();
 	const QSize sz = vkWidget->swapChainImageSize();
@@ -92,7 +92,7 @@ void VulkanRenderer::initSwapChainResources() {
 }
 
 void VulkanRenderer::releaseSwapChainResources() {
-	qDebug("releaseSwapChainResources");
+//	qDebug("releaseSwapChainResources");
 
 	// tutaj oczekujemy na zakończenie
 

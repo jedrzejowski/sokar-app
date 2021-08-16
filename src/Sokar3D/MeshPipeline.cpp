@@ -374,7 +374,7 @@ void MeshPipeline::buildDrawCalls(const VkPipelineMetaArgs &args) {
     }
 
     // jeżeli jest niewidoczne
-    if (!visible) {
+    if (not visible) {
         return;
     }
 
