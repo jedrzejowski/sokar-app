@@ -5,25 +5,25 @@
 
 namespace SokarScene {
 
-    class Scene;
+    class Avatar;
 
-    struct SceneParams;
-
-    class SceneIndicator;
-
-    class MousePosition;
-
-    class ImageOrientation;
+    class DicomScene;
 
     class HospitalData;
 
     class Modality;
 
+    class MousePosition;
+
+    class ImageOrientation;
+
     class PatientData;
 
-    class Avatar;
-
-    class DicomScene;
-
     class PixelSpacing;
+
+    class Scene;
+
+    class Indicator;
+
+    struct SceneParams;
 }

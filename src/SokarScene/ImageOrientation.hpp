@@ -3,10 +3,10 @@
 #include <QtWidgets>
 #include "SokarDicom/DataConventer.hpp"
 #include "SokarScene.hpp"
-#include "SceneIndicator.hpp"
+#include "Indicator.hpp"
 
 namespace SokarScene {
-	class ImageOrientation : public SceneIndicator {
+	class ImageOrientation : public Indicator {
 	private:
 		QGraphicsTextItem *topText, *leftText, *rightText, *bottomText;
 

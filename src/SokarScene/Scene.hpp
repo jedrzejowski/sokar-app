@@ -10,7 +10,7 @@ namespace SokarScene {
     class Scene : public QGraphicsScene {
     Q_OBJECT
     private:
-        QVector<SceneIndicator *> indicators;
+        QVector<Indicator *> indicators;
 
     public:
 
@@ -22,15 +22,15 @@ namespace SokarScene {
          * Dodaje @class{SceneIndicator}
          * @param indicator
          */
-        void addIndicator(SceneIndicator *indicator);
+        void addIndicator(Indicator *indicator);
 
-        void removeIndicator(SceneIndicator *indicator);
+        void removeIndicator(Indicator *indicator);
 
         virtual void reposItems();
 
     protected:
 
-        SceneIndicator *findIndicatorByChild(QGraphicsItem *item);
+        Indicator *findIndicatorByChild(QGraphicsItem *item);
 
     };
 }

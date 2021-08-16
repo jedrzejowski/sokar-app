@@ -6,12 +6,12 @@
 
 #include "sokar/pixel.h"
 #include "sokar/palette.h"
-#include "SokarScene/SceneIndicator.hpp"
+#include "SokarScene/Indicator.hpp"
 
 
 namespace Sokar::Monochrome {
 
-    class Window : public QObject, public SokarScene::SceneIndicator {
+    class Window : public QObject, public SokarScene::Indicator {
     Q_OBJECT
     protected:
         bool shouldRegen = true;

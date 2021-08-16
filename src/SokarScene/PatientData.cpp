@@ -5,7 +5,7 @@
 
 using namespace SokarScene;
 
-PatientData::PatientData(SokarDicom::DataConverter &dataConverter) : SceneIndicator(dataConverter) {
+PatientData::PatientData(SokarDicom::DataConverter &dataConverter) : Indicator(dataConverter) {
 
 	text = newText();
 	addToGroup(text);

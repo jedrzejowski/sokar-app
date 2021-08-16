@@ -7,7 +7,7 @@ using namespace SokarScene;
 //region LineIndicator
 
 LineIndicator::LineIndicator(SokarDicom::DataConverter &dataConverter) :
-		SceneIndicator(dataConverter),
+		Indicator(dataConverter),
 		pen(QColor(255, 255, 255)) {
 
 	text = newText();
@@ -73,7 +73,7 @@ bool LineIndicator::isAlive() {
 //endregion
 
 PixelSpacing::PixelSpacing(SokarDicom::DataConverter &dataConverter) :
-		SceneIndicator(dataConverter),
+		Indicator(dataConverter),
 		xLine(dataConverter),
 		yLine(dataConverter) {
 

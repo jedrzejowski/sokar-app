@@ -1,10 +1,10 @@
 #pragma once
 
 #include "SokarScene.hpp"
-#include "SceneIndicator.hpp"
+#include "Indicator.hpp"
 
 namespace SokarScene {
-	class LineIndicator : public SceneIndicator {
+	class LineIndicator : public Indicator {
 	private:
 		QPen pen;
 		qreal pxLength = 0;
@@ -28,7 +28,7 @@ namespace SokarScene {
 
 	};
 
-	class PixelSpacing : public SceneIndicator {
+	class PixelSpacing : public Indicator {
 	private:
 
 		qreal xSpacing, ySpacing;

@@ -1,5 +1,5 @@
 #include "Scene.hpp"
-#include "SceneIndicator.hpp"
+#include "Indicator.hpp"
 
 using namespace SokarScene;
 
@@ -11,12 +11,12 @@ Scene::Scene(QObject *parent) : QGraphicsScene(parent) {
 Scene::~Scene() {
 }
 
-void Scene::addIndicator(SceneIndicator *indicator) {
+void Scene::addIndicator(Indicator *indicator) {
 	indicators << indicator;
 	addItem(indicator);
 }
 
-void Scene::removeIndicator(SceneIndicator *indicator) {
+void Scene::removeIndicator(Indicator *indicator) {
 	for (auto it = indicators.begin(); it != indicators.end(); ++it) {
 		if (indicator != *it) continue;
 
@@ -33,7 +33,7 @@ void Scene::reposItems() {
 	}
 }
 
-SceneIndicator *Scene::findIndicatorByChild(QGraphicsItem *item) {
+Indicator *Scene::findIndicatorByChild(QGraphicsItem *item) {
 	if (item == nullptr) return nullptr;
 
 	for (auto &indi : indicators) {

@@ -151,32 +151,32 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="152"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="157"/>
         <source>A</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="155"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="160"/>
         <source>P</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="158"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="163"/>
         <source>L</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="161"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="166"/>
         <source>R</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="164"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="169"/>
         <source>H</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="167"/>
+        <location filename="../../src/SokarScene/ImageOrientation.cpp" line="172"/>
         <source>F</source>
         <translation type="unfinished"></translation>
     </message>
@@ -304,7 +304,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/SceneIndicator.cpp" line="112"/>
+        <location filename="../../src/SokarScene/Indicator.cpp" line="130"/>
         <source>&lt;html&gt;&lt;head&gt;&lt;style&gt;body{font-size:medium;background-color:rgba(0,0,0,0.5);}unit{font-style:italic;font-size:small;}value{font-weight:500;}div{white-space: nowrap;}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;</source>
         <translation type="unfinished"></translation>
     </message>

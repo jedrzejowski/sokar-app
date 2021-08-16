@@ -4,10 +4,18 @@
 
 #pragma once
 
+#include "SokarScene.hpp"
+#include "Indicator.hpp"
+
 namespace SokarScene {
 
-    class MousePosition {
+    class MousePosition : public Indicator {
 
+    public:
+
+        MousePosition(SokarDicom::DataConverter &dataConverter);
+        void reposition() override;
+        bool isAlive() override;
     };
 
 }

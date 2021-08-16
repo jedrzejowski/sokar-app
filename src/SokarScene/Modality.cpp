@@ -4,7 +4,7 @@ using namespace SokarScene;
 
 
 Modality::Modality(SokarDicom::DataConverter &dataConverter)
-        : SceneIndicator(dataConverter) {
+        : Indicator(dataConverter) {
 
     genText();
     text = newText(wrapAsHtml(lines));

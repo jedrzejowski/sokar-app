@@ -1,11 +1,11 @@
 #pragma once
 
 #include "SokarScene.hpp"
-#include "SceneIndicator.hpp"
+#include "Indicator.hpp"
 
 namespace SokarScene {
 
-	class Modality : public SceneIndicator {
+	class Modality : public Indicator {
 	protected:
 		QStringList lines;
 		QGraphicsTextItem *text;

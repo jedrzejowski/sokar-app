@@ -1,5 +1,5 @@
 #include "SokarScene.hpp"
-#include "SceneIndicator.hpp"
+#include "Indicator.hpp"
 
 #include <gdcmFile.h>
 #include <QGraphicsTextItem>
@@ -7,7 +7,7 @@
 namespace SokarScene {
 
 
-	class HospitalData : public SceneIndicator {
+	class HospitalData : public Indicator {
 	private:
 		QGraphicsTextItem* text;
 		void initData();
