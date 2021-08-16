@@ -925,7 +925,7 @@
 <context>
     <name>SokarUi::SegmentationWindow</name>
     <message>
-        <location filename="../../src/SokarUi/SegmentationWindow.cpp" line="48"/>
+        <location filename="../../src/SokarUi/SegmentationWindow.cpp" line="51"/>
         <source>Liczę...</source>
         <translation type="unfinished"></translation>
     </message>

@@ -13,102 +13,109 @@
 using namespace SokarUi;
 
 SegmentationWindow::SegmentationWindow(QWidget *parent)
-		: QMainWindow(parent),
-		  ui(new Ui::SegmentationWindow) {
-	ui->setupUi(this);
+        : QMainWindow(parent),
+          ui(new Ui::SegmentationWindow) {
 
-	// usuwa okno od razu po zamknięciu
-	// https://stackoverflow.com/questions/15814626/how-to-show-a-window-in-qt-and-deleting-it-as-soon-as-its-closed
-	setAttribute(Qt::WA_DeleteOnClose);
+    ui->setupUi(this);
 
-	auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
-	vulkanWidget = ret.vulkanWidget;
-	vulkanRenderer = ret.vulkanRenderer;
-	ui->mainSplitter->insertWidget(0, ret.widget);
-	ui->vulkanPlacehodler->hide();
+    // usuwa okno od razu po zamknięciu
+    // https://stackoverflow.com/questions/15814626/how-to-show-a-window-in-qt-and-deleting-it-as-soon-as-its-closed
+    setAttribute(Qt::WA_DeleteOnClose);
 
-	QObject::connect(ui->execSegementation, &QPushButton::clicked, [this]() { startSegmentation(); });
-	QObject::connect(ui->execSegementation2, &QPushButton::clicked, [this]() { startSegmentation(true); });
+    auto ret = Sokar3D::VulkanWidget::New<Sokar3D::VulkanRenderer>();
+    vulkanWidget = ret.vulkanWidget;
+    vulkanRenderer = ret.vulkanRenderer;
+    ui->mainSplitter->insertWidget(0, ret.widget);
+    ui->vulkanPlacehodler->hide();
 
-	pipelineEditor = ui->pipelineEditor;
+    QObject::connect(ui->execSegementation, &QPushButton::clicked, [this]() { startSegmentation(); });
+    QObject::connect(ui->execSegementation2, &QPushButton::clicked, [this]() { startSegmentation(true); });
+
+    pipelineEditor = ui->pipelineEditor;
 }
 
 SegmentationWindow::~SegmentationWindow() {
-	delete ui;
+
+    delete ui;
 }
 
 void SegmentationWindow::setRawDicomVolume(const QSharedPointer<const SokarAlg::RawDicomVolume> &newRawDicomVolume) {
-	rawDicomVolume = newRawDicomVolume;
+
+    rawDicomVolume = newRawDicomVolume;
 }
 
 void SegmentationWindow::startSegmentation(bool append) {
 
-	progressDialog = new QProgressDialog(this);
-	progressDialog->setAttribute(Qt::WA_DeleteOnClose);
-	progressDialog->setWindowTitle(tr("Liczę..."));
-	progressDialog->setModal(true);
-	progressDialog->setCancelButton(nullptr);
-	progressDialog->show();
+    progressDialog = new QProgressDialog(this);
+    progressDialog->setAttribute(Qt::WA_DeleteOnClose);
+    progressDialog->setWindowTitle(tr("Liczę..."));
+    progressDialog->setModal(true);
+    progressDialog->setCancelButton(nullptr);
+    progressDialog->show();
 
-	auto segmentationPipeline = pipelineEditor->makePipeline();
-	segmentationPipeline->setRawDicomVolume(rawDicomVolume);
+    auto segmentationPipeline = pipelineEditor->makePipeline();
+    segmentationPipeline->setRawDicomVolume(rawDicomVolume);
 
-	auto dialogUpdateConnection = QObject::connect(
-			segmentationPipeline.get(), &SokarAlg::SegmentationPipeline::updateProgress,
-			[this](const QString& label, float progress) {
-				progressDialog->setLabelText(label);
-			});
+    auto dialogUpdateConnection = QObject::connect(
+            segmentationPipeline.get(), &SokarAlg::SegmentationPipeline::updateProgress,
+            [this](const QString &label, float progress) {
+                progressDialog->setLabelText(label);
+            });
 
-	auto future = segmentationPipeline->executePipeline();
+    auto future = segmentationPipeline->executePipeline();
 
-	auto watcher = new QFutureWatcher<QSharedPointer<const SokarAlg::SegmentationResult>>();
+    auto watcher = new QFutureWatcher<QSharedPointer<const SokarAlg::SegmentationResult>>();
 
-	QObject::connect(watcher, &QFutureWatcherBase::finished, [=, this]() {
-		disconnect(dialogUpdateConnection);
-		emit endSegmentation(future.result());
-		watcher->deleteLater();
-	});
+    QObject::connect(watcher, &QFutureWatcherBase::finished, [=, this]() {
+        disconnect(dialogUpdateConnection);
+        emit endSegmentation(future.result());
+        watcher->deleteLater();
+    });
 
-	watcher->setFuture(future);
+    watcher->setFuture(future);
 
-	pipelineEditor->randomizeMeshColor();
+    pipelineEditor->randomizeMeshColor();
 }
 
 void SegmentationWindow::endSegmentation(QSharedPointer<const SokarAlg::SegmentationResult> result) {
 
-	progressDialog->close();
-	progressDialog = nullptr;
+    progressDialog->close();
+    progressDialog = nullptr;
 
-	auto camera = new Sokar3D::CenterCamera(
-			result->proposeCameraCenter,
-			result->proposeCameraDistance
-	);
-	vulkanRenderer->setCamera(camera);
+    auto camera = new Sokar3D::CenterCamera(
+            result->proposeCameraCenter,
+            result->proposeCameraDistance
+    );
+    vulkanRenderer->setCamera(camera);
 
-	auto graphicPipeline = new Sokar3D::MeshPipeline(result->finalMesh);
+    auto graphicPipeline = new Sokar3D::MeshPipeline(result->finalMesh);
 
-	Sokar3D::SolidMaterial material{};
-	material.shininess = 64.0f;
-	material.specular = glm::vec3(0.5f, 0.5f, 0.5f);
-	material.color = glm::vec3(
-			result->meshColor.redF(),
-			result->meshColor.greenF(),
-			result->meshColor.blueF()
-	);
-	graphicPipeline->setMeshMaterial(material);
+    Sokar3D::SolidMaterial material{};
+    material.shininess = 64.0f;
+    material.specular = glm::vec3(0.5f, 0.5f, 0.5f);
+    material.color = glm::vec3(
+            result->meshColor.redF(),
+            result->meshColor.greenF(),
+            result->meshColor.blueF()
+    );
+    graphicPipeline->setMeshMaterial(material);
 
-	auto resultWidget = new SegmentationResultWidget(result);
-	resultWidget->moveToThread(this->thread());
+    auto resultWidget = new SegmentationResultWidget(result);
+    resultWidget->moveToThread(this->thread());
 
-	// wsadż na przedostatnią pozycję
-	ui->resultLayout->insertWidget(ui->resultLayout->count() - 1, resultWidget);
+    // wsadż na przedostatnią pozycję
+    ui->resultLayout->insertWidget(ui->resultLayout->count() - 1, resultWidget);
 
-	ui->tabWidget->setCurrentWidget(ui->resultTab);
+    ui->tabWidget->setCurrentWidget(ui->resultTab);
 
-	vulkanRenderer->addPipeline(graphicPipeline);
+    vulkanRenderer->addPipeline(graphicPipeline);
 
-	QObject::connect(resultWidget, &SegmentationResultWidget::deleteResult, [this, graphicPipeline, resultWidget]() {
-		vulkanRenderer->removePipeline(graphicPipeline);
-		delete resultWidget;
-	});
+    QObject::connect(resultWidget, &SegmentationResultWidget::deleteResult, [this, graphicPipeline, resultWidget]() {
+        vulkanRenderer->removePipeline(graphicPipeline);
+        delete resultWidget;
+    });
+
+    QObject::connect(resultWidget, &SegmentationResultWidget::toggleMesh, [graphicPipeline](bool toggled) {
+        graphicPipeline->setVisible(not toggled);
+    });
 }
