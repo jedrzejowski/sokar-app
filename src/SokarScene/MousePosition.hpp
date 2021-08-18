@@ -10,12 +10,18 @@
 namespace SokarScene {
 
     class MousePosition : public Indicator {
-
+    private:
+        QGraphicsTextItem *text;
+        QPointF positionScale = QPointF(1.f, 1.f);
+        QString positionUnit;
+        QString zLine;
     public:
 
         MousePosition(SokarDicom::DataConverter &dataConverter);
         void reposition() override;
         bool isAlive() override;
+
+        void sceneMouseMoveEvent(QGraphicsSceneMouseEvent *event, QGraphicsPixmapItem *pixmapItem);
     };
 
 }

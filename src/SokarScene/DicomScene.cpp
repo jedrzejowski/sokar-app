@@ -13,6 +13,7 @@
 #include "SokarScene/HospitalData.hpp"
 #include "SokarScene/ImageOrientation.hpp"
 #include "SokarScene/Modality.hpp"
+#include "SokarScene/MousePosition.hpp"
 
 using namespace SokarScene;
 
@@ -172,6 +173,10 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
         }
     }
 
+    if (mousePositionIndicator) {
+        mousePositionIndicator->sceneMouseMoveEvent(event, pixmapItem);
+    }
+
     QGraphicsScene::mouseMoveEvent(event);
 }
 
@@ -197,6 +202,10 @@ void DicomScene::initIndicators() {
 
     try {
         initImageOrientationIndicator();
+    } catch (Sokar::Exception &) {}
+
+    try {
+        initMousePositionIndicator();
     } catch (Sokar::Exception &) {}
 }
 
@@ -254,6 +263,12 @@ void DicomScene::initModalityIndicator() {
 
     modalityIndicator = new SokarScene::Modality(dataConverter);
     addIndicator(modalityIndicator);
+}
+
+void DicomScene::initMousePositionIndicator() {
+
+    mousePositionIndicator = new SokarScene::MousePosition(dataConverter);
+    addIndicator(mousePositionIndicator);
 }
 
 //endregion
@@ -444,6 +459,6 @@ void DicomScene::attached() {
 
 glm::vec3 DicomScene::getWokselValue(quint32 x, quint32 y) const {
 
-    return glm::vec3();
+    return {};
 }
 

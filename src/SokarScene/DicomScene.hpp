@@ -56,17 +56,19 @@ namespace SokarScene {
         PixelSpacing *pixelSpacingIndicator = nullptr;
         ImageOrientation *imageOrientationIndicator = nullptr;
         Modality *modalityIndicator = nullptr;
+        MousePosition *mousePositionIndicator = nullptr;
 
         void initPatientDataIndicator();
         void initPixelSpacingIndicator();
         void initImageOrientationIndicator();
         void initHospitalDataIndicator();
         void initModalityIndicator();
+        void initMousePositionIndicator();
         //endregion
 
     public:
 
-        explicit DicomScene(::SokarScene::SceneParams &sceneParams);
+        explicit DicomScene(SceneParams &sceneParams);
 
         ~DicomScene() override;
 

@@ -309,7 +309,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/HospitalData.cpp" line="38"/>
+        <location filename="../../src/SokarScene/HospitalData.cpp" line="39"/>
         <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
