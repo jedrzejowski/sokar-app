@@ -16,16 +16,16 @@ VertexClusteringPtr VertexClustering::New() {
 	return SokarAlg::VertexClusteringPtr(new VertexClustering);
 }
 
-IndexedMeshPtr VertexClustering::exec() {
-	auto newMesh = IndexedMesh::New();
+Sokar3D::IndexedMeshPtr VertexClustering::exec() {
+    auto newMesh = Sokar3D::IndexedMesh::New();
 
 	auto extrema = findExtrema();
 	auto old_vertices = mesh->getVertices();
 
 	qDebug() << "KLASTERYZUJEMY" << clusterOffset << clusterSize;
 
-	std::map<glm::i32vec3, QVector<IndexedMesh::Size>> buckets;
-	auto vertex2vertex = QVector<IndexedMesh::Size>(mesh->getVertices().size(), -1);
+	std::map<glm::i32vec3, QVector<Sokar3D::IndexedMesh::Size>> buckets;
+	auto vertex2vertex = QVector<Sokar3D::IndexedMesh::Size>(mesh->getVertices().size(), -1);
 
 	auto iter_end = old_vertices.end();
 	auto iter_begin = old_vertices.begin();

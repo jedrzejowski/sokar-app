@@ -35,7 +35,6 @@ namespace SokarAlg {
 	template<typename Output>
 	class Algorithm;
 
-
 	//region Volume
 
 	declareSharedClass(Volume)
@@ -54,11 +53,10 @@ namespace SokarAlg {
 
 	// VolSegmAlgorithm
 
+
 	declareSharedClass(VolSegmAlgorithm)
 
 	declareSharedClass(MarchingCubes)
-
-	declareSharedClass(IndexedMesh)
 
 	// MeshSimplificator
 

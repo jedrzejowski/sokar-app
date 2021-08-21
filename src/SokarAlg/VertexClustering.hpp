@@ -14,7 +14,7 @@ namespace SokarAlg {
 		glm::vec3 clusterSize;
 		glm::vec3 clusterOffset;
 
-		IndexedMeshPtr exec() override;
+		Sokar3D::IndexedMeshPtr exec() override;
 
 		VertexClustering();
 	public:

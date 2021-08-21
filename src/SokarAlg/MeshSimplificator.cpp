@@ -29,10 +29,10 @@ MeshSimplificator::Extrema MeshSimplificator::findExtrema() {
 	return extrema;
 }
 
-const IndexedMeshPtr &MeshSimplificator::getMesh() const {
+const Sokar3D::IndexedMeshPtr &MeshSimplificator::getMesh() const {
 	return mesh;
 }
 
-void MeshSimplificator::setMesh(const IndexedMeshPtr &newMesh) {
+void MeshSimplificator::setMesh(const Sokar3D::IndexedMeshPtr &newMesh) {
 	mesh = newMesh;
 }

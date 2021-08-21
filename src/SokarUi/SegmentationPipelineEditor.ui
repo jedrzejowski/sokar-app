@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>761</height>
+    <height>840</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -133,10 +133,23 @@
       <string>Segmentacja</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="5" column="1">
-       <widget class="QCheckBox" name="regionGrowthCheck">
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
         <property name="text">
-         <string notr="true"/>
+         <string>Wartość dolna</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QDoubleSpinBox" name="segmentationTresholdUp">
+        <property name="minimum">
+         <double>-65536.000000000000000</double>
+        </property>
+        <property name="maximum">
+         <double>65536.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>100.000000000000000</double>
         </property>
        </widget>
       </item>
@@ -157,13 +170,6 @@
         </item>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_12">
-        <property name="text">
-         <string>Rozrost obszaru</string>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label">
         <property name="text">
@@ -171,8 +177,15 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="1">
-       <widget class="QDoubleSpinBox" name="segmentationTresholdUp">
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_12">
+        <property name="text">
+         <string>Rozrost obszaru</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QDoubleSpinBox" name="segmentationTresholdDown">
         <property name="minimum">
          <double>-65536.000000000000000</double>
         </property>
@@ -180,7 +193,28 @@
          <double>65536.000000000000000</double>
         </property>
         <property name="value">
-         <double>100.000000000000000</double>
+         <double>20000.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>Śiatka trójkątów</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QCheckBox" name="regionGrowthCheck">
+        <property name="text">
+         <string notr="true"/>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Wartość górna</string>
         </property>
        </widget>
       </item>
@@ -198,31 +232,23 @@
         </item>
        </widget>
       </item>
-      <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="segmentationTresholdDown">
-        <property name="minimum">
-         <double>-65536.000000000000000</double>
-        </property>
-        <property name="maximum">
-         <double>65536.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>20000.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Wartość górna</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Wartość dolna</string>
-        </property>
+      <item row="7" column="1">
+       <widget class="QComboBox" name="meshTypeCombo">
+        <item>
+         <property name="text">
+          <string>Lista trójkątów</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Indeksowana</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Maszerująca</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="6" column="0" colspan="2">

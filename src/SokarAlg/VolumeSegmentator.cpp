@@ -5,7 +5,7 @@
 #include <QtConcurrent/QtConcurrentRun>
 #include "VolumeSegmentator.hpp"
 #include "VolumeInterpolator.hpp"
-#include "./IndexedMesh.hpp"
+#include "src/Sokar3D/IndexedMesh.hpp"
 
 using namespace SokarAlg;
 

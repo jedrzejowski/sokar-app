@@ -16,15 +16,23 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="dodanie klasy bazowej Mesh">
+      <change afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sokar3D/Mesh.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarScene/DicomScene.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarScene/DicomScene.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarScene/DicomScene.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarScene/DicomScene.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarScene/HospitalData.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarScene/HospitalData.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarScene/MousePosition.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarScene/MousePosition.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarScene/MousePosition.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarScene/MousePosition.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarScene/PixelSpacing.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarScene/PixelSpacing.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -323,11 +331,11 @@
       <recent name="$PROJECT_DIR$/src/algo/test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Sokar3D" />
       <recent name="$PROJECT_DIR$/src/SokarScene" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/SokarDicom" />
       <recent name="$PROJECT_DIR$/src/SokarAlg" />
-      <recent name="$PROJECT_DIR$/src/algo" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.sokar">
@@ -379,9 +387,9 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="sokar">
@@ -605,14 +613,8 @@
       <workItem from="1628519424389" duration="607000" />
       <workItem from="1629128744885" duration="9271000" />
       <workItem from="1629153013607" duration="3301000" />
-      <workItem from="1629325044646" duration="4805000" />
-    </task>
-    <task id="LOCAL-00029" summary="Prace nad MovieBarem">
-      <created>1545131613894</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1545131613894</updated>
+      <workItem from="1629325044646" duration="4873000" />
+      <workItem from="1629553334180" duration="2590000" />
     </task>
     <task id="LOCAL-00030" summary="Prace nad MovieBarem ukończone, zostało jeszcze okienkowanie w Monochromie">
       <created>1545169259250</created>
@@ -950,7 +952,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629156449238</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="dodanie pokazywania pozycji myszki wsględne współżędnych obrazu">
+      <created>1629330381327</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1629330381327</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1046,7 +1055,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="Prace nad Latexem i troche innego" />
     <MESSAGE value="Prace nad Latexem" />
     <MESSAGE value="Rotacja i skalowanie działają teraz z PixelSpacingIndicator" />
     <MESSAGE value="Poprawki okienkowania v1" />
@@ -1071,7 +1079,8 @@
     <MESSAGE value="poprawne akceptowanie zasięgu" />
     <MESSAGE value="reformat" />
     <MESSAGE value="refactor kodu" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor kodu" />
+    <MESSAGE value="dodanie pokazywania pozycji myszki wsględne współżędnych obrazu" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodanie pokazywania pozycji myszki wsględne współżędnych obrazu" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">

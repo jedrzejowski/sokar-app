@@ -27,7 +27,11 @@ namespace Sokar3D {
 
 	struct SolidMaterial;
 
+	declareSharedClass(Mesh)
+
 	declareSharedClass(StaticMesh)
+
+	declareSharedClass(IndexedMesh)
 
 	class VulkanRenderer;
 

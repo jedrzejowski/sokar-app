@@ -8,48 +8,52 @@
 #include <QFuture>
 #include <SokarLib/WavefrontObjBuilder.hpp>
 #include "./Sokar3D.hpp"
+#include "./Mesh.hpp"
 #include "./MeshVertex.hpp"
 
 namespace Sokar3D {
 
-	class StaticMesh : public QEnableSharedFromThis<StaticMesh> {
-	public:
-		using Vertex = MeshVertex;
-		using Size = int;
+    class StaticMesh : public Mesh, public QEnableSharedFromThis<StaticMesh> {
+    public:
+        using Vertex = MeshVertex;
+        using Size = int;
 
-		struct Face {
-			Vertex v1, v2, v3;
-		};
+        struct Face {
+            Vertex v1, v2, v3;
+        };
 
-	protected:
-		QVector<Face> faces;
+    protected:
+        QVector<Face> faces;
 
-		StaticMesh();
+        StaticMesh();
+        StaticMesh(const StaticMesh &mesh) = delete;
 
-	public:
+    public:
 
-		static StaticMeshPtr New();
+        static StaticMeshPtr New();
 
-		void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2);
-		void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2);
+        void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2);
+        void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2);
 
-		static StaticMesh *createCubeMesh();
+        static StaticMesh *createCubeMesh();
 
-		[[nodiscard]]
-		Size verticesSizeInBytes() const;
+        [[nodiscard]]
+        Size verticesSizeInBytes() const;
 
-		[[nodiscard]]
-		Size verticesCount() const;
+        [[nodiscard]]
+        Size verticesCount() const;
 
-		[[nodiscard]]
-		Size facesCount() const;
+        [[nodiscard]]
+        Size facesCount() const;
 
-		[[nodiscard]]
-		const quint8 *verticesData() const;
+        [[nodiscard]]
+        const quint8 *verticesData() const;
 
-		[[nodiscard]]
-		const QVector<Face> &getFaces() const;
+        [[nodiscard]]
+        const QVector<Face> &getFaces() const;
 
-		void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const;
-	};
+        void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const;
+
+        StaticMeshPtr toStaticMesh() const override;
+    };
 }

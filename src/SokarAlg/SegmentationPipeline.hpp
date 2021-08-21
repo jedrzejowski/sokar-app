@@ -14,7 +14,7 @@ namespace SokarAlg {
 
 	struct SegmentationResult {
 		Sokar3D::StaticMeshPtr originalMesh = nullptr;
-		SokarAlg::IndexedMeshPtr simplifiedMesh = nullptr;
+		Sokar3D::IndexedMeshPtr simplifiedMesh = nullptr;
 		Sokar3D::StaticMeshPtr finalMesh = nullptr;
 		QColor meshColor;
 

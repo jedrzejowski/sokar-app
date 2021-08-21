@@ -7,14 +7,14 @@
 #include <QFuture>
 #include "Sokar3D/StaticMesh.hpp"
 #include "SokarAlg.hpp"
-#include "IndexedMesh.hpp"
+#include "src/Sokar3D/IndexedMesh.hpp"
 #include "Algorithm.hpp"
 
 namespace SokarAlg {
 
-	class MeshSimplificator : public Algorithm<IndexedMeshPtr> {
+class MeshSimplificator : public Algorithm<Sokar3D::IndexedMeshPtr> {
 	protected:
-		IndexedMeshPtr mesh;
+    Sokar3D::IndexedMeshPtr mesh;
 	public:
 
 		struct Extrema {
@@ -25,8 +25,8 @@ namespace SokarAlg {
 		[[nodiscard]]
 		Extrema findExtrema();
 
-		const IndexedMeshPtr &getMesh() const;
-		void setMesh(const IndexedMeshPtr &mesh);
+		const Sokar3D::IndexedMeshPtr &getMesh() const;
+		void setMesh(const Sokar3D::IndexedMeshPtr &mesh);
 	};
 }
 
