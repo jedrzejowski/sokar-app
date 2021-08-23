@@ -22,14 +22,16 @@ namespace Sokar3D {
 
             inline bool isDummy() const {
 
-                return i1 == i2 || i2 == i3 || i1 == i3;
+                return i1 == i2 or i2 == i3 or i1 == i3;
             }
 
             inline bool operator==(const Face &other) const {
 
-                return i1 == other.i1 && i2 == other.i2 && i3 == other.i3 ||
-                       i1 == other.i2 && i2 == other.i3 && i3 == other.i1 ||
-                       i1 == other.i3 && i2 == other.i1 && i3 == other.i2;
+                return (i1 == other.i1 and i2 == other.i2 and i3 == other.i3)
+                       or
+                       (i1 == other.i2 and i2 == other.i3 and i3 == other.i1)
+                       or
+                       (i1 == other.i3 and i2 == other.i1 and i3 == other.i2);
             }
         };
 
@@ -68,6 +70,7 @@ namespace Sokar3D {
         const QVector<Face> &getFaces() const;
 
         Size addVertex(const Vertex &v, bool checkDup = true);
+        void addTriangle(const Vertex &v0, const Vertex &v1, const Vertex &v2) override;
         void addTriangle(const Vertex &v0, const Vertex &v1, const Vertex &v2, bool checkDup = true);
         void addTriangle(Size i0, Size i1, Size i2, bool checkDuplicates = true);
 

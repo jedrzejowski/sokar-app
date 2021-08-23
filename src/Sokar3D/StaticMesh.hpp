@@ -33,7 +33,7 @@ namespace Sokar3D {
         static StaticMeshPtr New();
 
         void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2);
-        void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2);
+        void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2) override;
 
         static StaticMesh *createCubeMesh();
 

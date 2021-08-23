@@ -123,6 +123,16 @@ void IndexedMesh::addTriangle(
     addTriangle(i0, i1, i2, checkDup);
 }
 
+void IndexedMesh::addTriangle(
+        const IndexedMesh::Vertex &v0,
+        const IndexedMesh::Vertex &v1,
+        const IndexedMesh::Vertex &v2
+) {
+
+    addTriangle(v0, v1, v2, true);
+}
+
+
 QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMesh() const {
 
     auto newMesh = Sokar3D::StaticMesh::New();
@@ -150,8 +160,6 @@ QFuture<IndexedMeshPtr> IndexedMesh::fromStaticMash(const Sokar3D::StaticMeshPtr
         return indexedMesh;
     });
 }
-
-
 
 //region Converters
 

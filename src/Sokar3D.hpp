@@ -33,6 +33,8 @@ namespace Sokar3D {
 
     declareSharedClass(IndexedMesh)
 
+    declareSharedClass(CubedIndexedMesh)
+
     class VulkanRenderer;
 
     class VulkanShader;
