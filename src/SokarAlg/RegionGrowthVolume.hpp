@@ -22,11 +22,18 @@ namespace SokarAlg {
         [[nodiscard]]
         bool isVisited(const glm::i32vec3 &position) const;
 
-
     public:
+
+        static RegionGrowthVolumePtr New();
 
         [[nodiscard]]
         float getValue(const glm::i32vec3 &position) const override;
+
+        [[nodiscard]]
+        float getMaskedValue(const glm::i32vec3 &position) const;
+
+        [[nodiscard]]
+        float getUnMaskedValue(const glm::i32vec3 &position) const;
 
         [[nodiscard]]
         const glm::i32vec3 &getStartPoint() const;

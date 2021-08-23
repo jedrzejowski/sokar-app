@@ -12,22 +12,22 @@
 
 namespace SokarAlg {
 
-class MeshSimplificator : public Algorithm<Sokar3D::IndexedMeshPtr> {
-	protected:
-    Sokar3D::IndexedMeshPtr mesh;
-	public:
+    class MeshSimplificator : public Algorithm<Sokar3D::IndexedMeshPtr> {
+    protected:
+        Sokar3D::IndexedMeshPtr mesh;
+    public:
 
-		struct Extrema {
-			glm::vec3 min;
-			glm::vec3 max;
-		};
+        struct Extrema {
+            glm::vec3 min;
+            glm::vec3 max;
+        };
 
-		[[nodiscard]]
-		Extrema findExtrema();
+        [[nodiscard]]
+        Extrema findExtrema();
 
-		const Sokar3D::IndexedMeshPtr &getMesh() const;
-		void setMesh(const Sokar3D::IndexedMeshPtr &mesh);
-	};
+        const Sokar3D::IndexedMeshPtr &getMesh() const;
+        void setMesh(const Sokar3D::IndexedMeshPtr &mesh);
+    };
 }
 
 

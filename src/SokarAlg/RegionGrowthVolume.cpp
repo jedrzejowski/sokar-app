@@ -7,10 +7,14 @@
 
 using namespace SokarAlg;
 
-
 static const quint8 NOT_VISITED = 0;
 static const quint8 VISITED = 1;
-static const quint8 PASSES = 2;
+static const quint8 PASSED = 2;
+
+RegionGrowthVolumePtr RegionGrowthVolume::New() {
+
+    return RegionGrowthVolumePtr(new RegionGrowthVolume);
+}
 
 const glm::i32vec3 &RegionGrowthVolume::getStartPoint() const {
 
@@ -44,11 +48,21 @@ void RegionGrowthVolume::setIsoLevel(const Range<float> &newIsoLevel) {
 
 float RegionGrowthVolume::getValue(const glm::i32vec3 &position) const {
 
+    return getMaskedValue(position);
+}
+
+float RegionGrowthVolume::getMaskedValue(const glm::i32vec3 &position) const {
+
     if (isVisited(position)) {
         return VolumeDecorator::getValue(position);
     }
 
     return maskValue;
+}
+
+float RegionGrowthVolume::getUnMaskedValue(const glm::i32vec3 &position) const {
+
+    return VolumeDecorator::getValue(position);
 }
 
 void RegionGrowthVolume::regrowth() {
@@ -66,27 +80,30 @@ void RegionGrowthVolume::regrowth() {
     static const glm::i32vec3 D6 = glm::i32vec3(0, 0, -1);
 
     queue << startPoint;
-    qDebug() << "startPoint" << startPoint;
 
     auto stepNext = [&](const glm::i32vec3 &direction) {
-        next = current + glm::i32vec3(1, 0, 0);
+        next = current + direction;
 
-        if (isInVolume(next) && !isVisited(next)) {
+        if (not isVisited(next) and isInVolume(next)) {
             queue << next;
         }
     };
 
     while (!queue.isEmpty()) {
 
-
         current = queue.dequeue();
-        qDebug() << "iter" << current;
 
-        mask(current) = mask(current) & VISITED;
+        if (isVisited(current)) {
+            continue;
+        }
 
-        if (isoLevel.includes(getValue(current))) {
-            mask(current) = mask(current) & PASSES;
+        mask(current) = VISITED;
+        qDebug() << "iter" << current << "=" << mask(current) << "queueSize" << queue.size();
+
+        if (isoLevel.distance(getUnMaskedValue(current)) < 0) {
+            mask(current) = PASSED;
         } else {
+            qDebug() << "continue";
             continue;
         }
 
@@ -96,10 +113,11 @@ void RegionGrowthVolume::regrowth() {
         stepNext(D4);
         stepNext(D5);
         stepNext(D6);
+
     }
 }
 
 bool RegionGrowthVolume::isVisited(const glm::i32vec3 &position) const {
 
-    return mask(position) & VISITED;
+    return mask(position) not_eq NOT_VISITED;
 }

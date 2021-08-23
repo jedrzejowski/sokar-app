@@ -73,7 +73,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
             emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
 
-            auto regionGrowth = QSharedPointer<RegionGrowthVolume>::create();
+            auto regionGrowth = RegionGrowthVolume::New();
             regionGrowth->setVolume(volume);
             regionGrowth->setIsoLevel(volumeSegmentator->getIsoLevel());
             regionGrowth->setStartPoint(regionGrowthStartPoint);

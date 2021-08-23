@@ -14,63 +14,73 @@
 
 namespace SokarAlg {
 
-	template<typename T>
-	class Array3 {
-	private:
-		glm::i32vec3 _size;
-		std::vector<T> data;
+    template<typename T>
+    class Array3 {
+    private:
+        glm::i32vec3 _size;
+        std::vector<T> data;
 
-		inline size_t position2index(const glm::i32vec3 &position) const {
-			return (position.x * _size.y + position.y) * _size.z + position.z;
-		}
+        inline size_t position2index(const glm::i32vec3 &position) const {
 
-	public:
+            return (position.x * _size.y + position.y) * _size.z + position.z;
+        }
 
-		Array3(const glm::i32vec3 &size, const T &t = T()) :
-				_size(size), data(size.x * size.y * size.z, t) {}
+    public:
 
-		Array3() : _size(0) {
-		}
+        Array3(const glm::i32vec3 &size, const T &t = T()) :
+                _size(size), data(size.x * size.y * size.z, t) {}
 
-		Array3(const Array3 &other) : _size(other.size) {
-			*this = other;
-		}
+        Array3() : _size(0) {
+        }
 
-		Array3 &operator=(const Array3 &other) {
-			data = other.data;
-			return *this;
-		}
+        Array3(const Array3 &other) : _size(other.size) {
 
-		Array3(Array3 &&other) noexcept: _size(other.size) {
-			*this = std::move(other);
-		}
+            *this = other;
+        }
 
-		Array3 &operator=(Array3 &&other) noexcept {
-			data = std::move(other.data);
-			return *this;
-		}
+        Array3 &operator=(const Array3 &other) {
 
-		[[nodiscard]]
-		inline glm::i32vec3 size() const {
-			return size;
-		}
+            data = other.data;
+            return *this;
+        }
 
-		[[nodiscard]]
-		inline size_t sizeOfData() const {
-			return data.size() * sizeof(T);
-		}
+        Array3(Array3 &&other) noexcept: _size(other.size) {
 
-		T &operator()(const glm::i32vec3 &position) {
-			return data[position2index(position)];
-		}
+            *this = std::move(other);
+        }
 
-		const T &operator()(const glm::i32vec3 &position) const {
-			return data[position2index(position)];
-		}
+        Array3 &operator=(Array3 &&other) noexcept {
 
-		void resize(const glm::i32vec3 &newSize, const T &t = T()) {
-			_size = newSize;
-			data.resize(_size.x * _size.y * _size.z, t);
-		}
-	};
+            data = std::move(other.data);
+            return *this;
+        }
+
+        [[nodiscard]]
+        inline glm::i32vec3 size() const {
+
+            return size;
+        }
+
+        [[nodiscard]]
+        inline size_t sizeOfData() const {
+
+            return data.size() * sizeof(T);
+        }
+
+        T &operator()(const glm::i32vec3 &position) {
+
+            return data[position2index(position)];
+        }
+
+        const T &operator()(const glm::i32vec3 &position) const {
+
+            return data[position2index(position)];
+        }
+
+        void resize(const glm::i32vec3 &newSize, const T &t = T()) {
+
+            _size = newSize;
+            data.resize(_size.x * _size.y * _size.z, t);
+        }
+    };
 }

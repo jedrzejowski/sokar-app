@@ -16,23 +16,16 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="dodanie klasy bazowej Mesh">
-      <change afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Sokar3D/Mesh.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" afterDir="false" />
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/IndexedMesh.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Array3.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Array3.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Volume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -402,11 +395,6 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="vk:color_phong" type="ShConfigurationType">
       <option name="SCRIPT_TEXT" value="" />
       <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
@@ -614,14 +602,9 @@
       <workItem from="1629128744885" duration="9271000" />
       <workItem from="1629153013607" duration="3301000" />
       <workItem from="1629325044646" duration="4873000" />
-      <workItem from="1629553334180" duration="2590000" />
-    </task>
-    <task id="LOCAL-00030" summary="Prace nad MovieBarem ukończone, zostało jeszcze okienkowanie w Monochromie">
-      <created>1545169259250</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1545169259250</updated>
+      <workItem from="1629553334180" duration="3172000" />
+      <workItem from="1629571394824" duration="309000" />
+      <workItem from="1629738921924" duration="4440000" />
     </task>
     <task id="LOCAL-00031" summary="Prace nad Latexem i troche innego">
       <created>1545520797363</created>
@@ -959,7 +942,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629330381327</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="dodanie klasy bazowej Mesh">
+      <created>1629563566550</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1629563566550</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1055,7 +1045,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="Prace nad Latexem" />
     <MESSAGE value="Rotacja i skalowanie działają teraz z PixelSpacingIndicator" />
     <MESSAGE value="Poprawki okienkowania v1" />
     <MESSAGE value="Lepsze typy zmiennych w Monochrome" />
@@ -1080,7 +1069,8 @@
     <MESSAGE value="reformat" />
     <MESSAGE value="refactor kodu" />
     <MESSAGE value="dodanie pokazywania pozycji myszki wsględne współżędnych obrazu" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodanie pokazywania pozycji myszki wsględne współżędnych obrazu" />
+    <MESSAGE value="dodanie klasy bazowej Mesh" />
+    <option name="LAST_COMMIT_MESSAGE" value="dodanie klasy bazowej Mesh" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">

@@ -10,52 +10,53 @@
 namespace SokarAlg {
 
 
-	class Volume {
-	public:
+    class Volume {
+    public:
 
-		Volume();
-		~Volume();
+        Volume();
+        ~Volume();
 
-		[[nodiscard]]
-		virtual glm::i32vec3 getSize() const = 0;
+        [[nodiscard]]
+        virtual glm::i32vec3 getSize() const = 0;
 
-		[[nodiscard]]
-		virtual float getValue(const glm::i32vec3 &position) const = 0;
+        [[nodiscard]]
+        virtual float getValue(const glm::i32vec3 &position) const = 0;
 
-		[[nodiscard]]
-		float getValueSafe(const glm::i32vec3 &position) const;
+        [[nodiscard]]
+        float getValueSafe(const glm::i32vec3 &position) const;
 
-		[[nodiscard]]
-		glm::i32vec3 clamp(const glm::i32vec3 &size) const;
+        [[nodiscard]]
+        glm::i32vec3 clamp(const glm::i32vec3 &size) const;
 
-		[[nodiscard]]
-		bool isInVolume(const glm::i32vec3 &position) const;
-	};
+        [[nodiscard]]
+        bool isInVolume(const glm::i32vec3 &position) const;
+    };
 
-	class VolumeDecorator : public Volume {
+    class VolumeDecorator : public Volume {
 
-	protected:
+    protected:
 
-		QSharedPointer<const Volume> volume = nullptr;
+        QSharedPointer<const Volume> volume = nullptr;
 
-		virtual void volumeChanged();
+        virtual void volumeChanged();
 
-	public:
+    public:
 
-		explicit VolumeDecorator();
-		explicit VolumeDecorator(const QSharedPointer<const Volume>& volume);
-		virtual ~VolumeDecorator();
+        explicit VolumeDecorator();
+        explicit VolumeDecorator(const QSharedPointer<const Volume> &volume);
+        virtual ~VolumeDecorator();
 
-		[[nodiscard]]
-		inline const QSharedPointer<const Volume> &getVolume() const {
-			return volume;
-		}
+        [[nodiscard]]
+        inline const QSharedPointer<const Volume> &getVolume() const {
 
-		void setVolume(const QSharedPointer<const Volume> &volume);
+            return volume;
+        }
 
-		glm::i32vec3 getSize() const override;
-		float getValue(const glm::i32vec3 &position) const override;
-	};
+        void setVolume(const QSharedPointer<const Volume> &volume);
+
+        glm::i32vec3 getSize() const override;
+        float getValue(const glm::i32vec3 &position) const override;
+    };
 }
 
 
