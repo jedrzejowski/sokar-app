@@ -125,25 +125,25 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/moviebar.ui" line="40"/>
-        <location filename="../../src/dicomview/moviebar.ui" line="90"/>
-        <location filename="../../src/dicomview/moviebar.ui" line="100"/>
-        <location filename="../../src/dicomview/moviebar.ui" line="116"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="41"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="92"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="102"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="118"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/moviebar.ui" line="65"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="67"/>
         <source>Slow factor - time between each frame will me multiplied by this value</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/moviebar.ui" line="97"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="99"/>
         <source>Try using same window during movie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/moviebar.ui" line="113"/>
+        <location filename="../../src/dicomview/moviebar.ui" line="115"/>
         <source>Try using same rotate/scale during movie</source>
         <translation type="unfinished"></translation>
     </message>
@@ -181,27 +181,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/PatientData.cpp" line="42"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="43"/>
         <source> ♂</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/PatientData.cpp" line="44"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="45"/>
         <source> ♀</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/PatientData.cpp" line="48"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="49"/>
         <source>&lt;b&gt;%1&lt;/b&gt;%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/PatientData.cpp" line="61"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="62"/>
         <source>born %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarScene/PatientData.cpp" line="66"/>
+        <location filename="../../src/SokarScene/PatientData.cpp" line="67"/>
         <source>%1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -346,13 +346,13 @@
         <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="56"/>
         <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="86"/>
         <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="118"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="178"/>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="188"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="180"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="190"/>
         <source>###</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="208"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="210"/>
         <source>Podsumowanie</source>
         <translation type="unfinished"></translation>
     </message>
@@ -372,7 +372,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="198"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.ui" line="200"/>
         <source>Upraszcanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
@@ -423,17 +423,17 @@
 <context>
     <name>Sokar::DicomFrameSet</name>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="176"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="180"/>
         <source> (%1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="182"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="186"/>
         <source> - %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="183"/>
+        <location filename="../../src/dicomview/scenes/sets/frameset.cpp" line="187"/>
         <source>yyyy-MM-dd</source>
         <translation type="unfinished"></translation>
     </message>
@@ -816,7 +816,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="359"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="360"/>
         <source>Kolor</source>
         <translation type="unfinished"></translation>
     </message>
@@ -927,17 +927,17 @@
 <context>
     <name>SokarUi::SegmentationResultWidget</name>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="46"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="48"/>
         <source>Save Wavefront OBJ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="47"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="49"/>
         <source>Wavefront (*.obj);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="60"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="62"/>
         <source>Unable to open file</source>
         <translation type="unfinished"></translation>
     </message>

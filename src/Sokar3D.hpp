@@ -15,37 +15,38 @@ namespace Sokar3D {
 //	typedef glm::vec3 vec3;
 //	typedef glm::vec2 vec2;
 
-	struct MeshVertex;
+    struct MeshVertex;
 
-	class Camera;
+    class Camera;
 
-	class GameCamera;
+    class GameCamera;
 
-	class CenterCamera;
+    class CenterCamera;
 
-	struct SimpleLight;
+    struct SimpleLight;
 
-	struct SolidMaterial;
+    struct SolidMaterial;
 
-	declareSharedClass(Mesh)
+    declareSharedClass(Mesh)
 
-	declareSharedClass(StaticMesh)
+    declareSharedClass(StaticMesh)
 
-	declareSharedClass(IndexedMesh)
+    declareSharedClass(IndexedMesh)
 
-	class VulkanRenderer;
+    class VulkanRenderer;
 
-	class VulkanShader;
+    class VulkanShader;
 
-	class VulkanWidget;
+    class VulkanWidget;
 
-	class PipelineWrapper;
+    class PipelineWrapper;
 
-	class MeshPipeline;
+    class MeshPipeline;
 
-	QVulkanInstance *getVulkanInstance();
+    QVulkanInstance *getVulkanInstance();
 
-	static inline VkDeviceSize makeBuffSizeAligned(VkDeviceSize v, VkDeviceSize byteAlign) {
-		return (v + byteAlign - 1) & ~(byteAlign - 1);
-	}
+    static inline VkDeviceSize makeBuffSizeAligned(VkDeviceSize v, VkDeviceSize byteAlign) {
+
+        return (v + byteAlign - 1) & ~(byteAlign - 1);
+    }
 }

@@ -8,15 +8,15 @@
 
 namespace Sokar::RedGreenBlue {
 
-	class Scene : public SokarScene::DicomScene {
-	Q_OBJECT
+    class Scene : public SokarScene::DicomScene {
+    Q_OBJECT
 
-	public:
-		explicit Scene(SokarScene::SceneParams &sceneParams);
-	protected:
-		bool generatePixmap() override;
-	public:
-		void toolBarAdjust() override;
-	};
+    public:
+        explicit Scene(SokarScene::SceneParams &sceneParams);
+    protected:
+        bool generatePixmap() override;
+    public:
+        void toolBarAdjust() override;
+    };
 
 }

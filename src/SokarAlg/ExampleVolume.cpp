@@ -9,33 +9,35 @@
 using namespace SokarAlg;
 
 glm::i32vec3 ExampleVolume::getSize() const {
-	return size;
+
+    return size;
 }
 
 QSharedPointer<const ExampleVolume> ExampleVolume::Sphere(qint32 volSize, float radius, float inVal, float outVal) {
 
-	// NOLINTNEXTLINE
-	class SphereVolume : public ExampleVolume {
-	public:
-		glm::vec3 center;
-		float radius;
-		float inVal;
-		float outVal;
+    // NOLINTNEXTLINE
+    class SphereVolume : public ExampleVolume {
+    public:
+        glm::vec3 center;
+        float radius;
+        float inVal;
+        float outVal;
 
-		// NOLINTNEXTLINE
-		float getValue(const glm::i32vec3 &position) const override {
-			return SokarGlm::fastInDistance(glm::vec3(position), center, radius) ? inVal : outVal;
-		}
-	};
+        // NOLINTNEXTLINE
+        float getValue(const glm::i32vec3 &position) const override {
 
-	auto volume = QSharedPointer<SphereVolume>::create();
-	volume->size = glm::i32vec3(volSize, volSize, volSize);
-	volume->center = glm::vec3(volSize / 2, volSize / 2, volSize / 2);
-	volume->inVal = inVal;
-	volume->outVal = outVal;
-	volume->radius = radius;
+            return SokarGlm::fastInDistance(glm::vec3(position), center, radius) ? inVal : outVal;
+        }
+    };
 
-	return volume;
+    auto volume = QSharedPointer<SphereVolume>::create();
+    volume->size = glm::i32vec3(volSize, volSize, volSize);
+    volume->center = glm::vec3(volSize / 2, volSize / 2, volSize / 2);
+    volume->inVal = inVal;
+    volume->outVal = outVal;
+    volume->radius = radius;
+
+    return volume;
 }
 
 //QSharedPointer<const ExampleVolume> ExampleVolume::Cube(

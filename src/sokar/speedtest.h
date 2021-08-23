@@ -7,31 +7,33 @@
 using namespace std::chrono;
 
 namespace Sokar {
-	class SpeedTest {
+    class SpeedTest {
 
-		high_resolution_clock::time_point start = high_resolution_clock::now();
-		QString name;
-		bool closed = false;
+        high_resolution_clock::time_point start = high_resolution_clock::now();
+        QString name;
+        bool closed = false;
 
-	public:
+    public:
 
 
-		SpeedTest(QString name) : name(name), start(high_resolution_clock::now()) {
-		}
+        SpeedTest(QString name) : name(name), start(high_resolution_clock::now()) {
+        }
 
-		~SpeedTest() {
-			close();
-		}
+        ~SpeedTest() {
 
-		void close() {
-			if (closed) return;
+            close();
+        }
 
-			closed = true;
+        void close() {
 
-			auto finish = high_resolution_clock::now();
-			auto duration = duration_cast<microseconds>(finish - start).count();
+            if (closed) return;
 
-			qDebug() << "SpeedTest:" << name << "=" << duration;
-		}
-	};
+            closed = true;
+
+            auto finish = high_resolution_clock::now();
+            auto duration = duration_cast<microseconds>(finish - start).count();
+
+            qDebug() << "SpeedTest:" << name << "=" << duration;
+        }
+    };
 }

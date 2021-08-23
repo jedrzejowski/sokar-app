@@ -11,31 +11,31 @@
 #include <SokarAlg/DicomVolume.hpp>
 
 namespace Ui {
-	class SegmentationWindow;
+    class SegmentationWindow;
 }
 
 namespace SokarUi {
 
-	class SegmentationWindow : public QMainWindow {
-	Q_OBJECT
-		QProgressDialog *progressDialog;
-		QSharedPointer<const SokarAlg::RawDicomVolume> rawDicomVolume;
-		Ui::SegmentationWindow *ui;
-		Sokar3D::VulkanWidget *vulkanWidget;
-		Sokar3D::VulkanRenderer *vulkanRenderer;
-		SegmentationPipelineEditor *pipelineEditor;
+    class SegmentationWindow : public QMainWindow {
+    Q_OBJECT
+        QProgressDialog *progressDialog;
+        QSharedPointer<const SokarAlg::RawDicomVolume> rawDicomVolume;
+        Ui::SegmentationWindow *ui;
+        Sokar3D::VulkanWidget *vulkanWidget;
+        Sokar3D::VulkanRenderer *vulkanRenderer;
+        SegmentationPipelineEditor *pipelineEditor;
 
-	public:
-		explicit SegmentationWindow(QWidget *parent = nullptr);
+    public:
+        explicit SegmentationWindow(QWidget *parent = nullptr);
 
-		~SegmentationWindow() override;
+        ~SegmentationWindow() override;
 
-		void setRawDicomVolume(const QSharedPointer<const SokarAlg::RawDicomVolume> &rawDicomVolume);
+        void setRawDicomVolume(const QSharedPointer<const SokarAlg::RawDicomVolume> &rawDicomVolume);
 
-	private slots:
-		void startSegmentation(bool append = false);
-		void endSegmentation(QSharedPointer<const SokarAlg::SegmentationResult> mesh);
-	};
+    private slots:
+        void startSegmentation(bool append = false);
+        void endSegmentation(QSharedPointer<const SokarAlg::SegmentationResult> mesh);
+    };
 }
 
 

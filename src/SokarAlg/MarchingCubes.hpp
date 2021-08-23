@@ -12,32 +12,32 @@
 
 namespace SokarAlg {
 
-	class MarchingCubes : public VolumeSegmentator {
+    class MarchingCubes : public VolumeSegmentator {
 
-		struct Cube {
-			glm::i32vec3 position[8];
-			float value[8];
-		};
+        struct Cube {
+            glm::i32vec3 position[8];
+            float value[8];
+        };
 
-		glm::i32vec3 cubeSize = glm::i32vec3(1.f);
+        glm::i32vec3 cubeSize = glm::i32vec3(1.f);
 
-	protected:
+    protected:
 
-		Sokar3D::StaticMeshPtr exec() override;
+        Sokar3D::StaticMeshPtr exec() override;
 
-	public:
+    public:
 
-		QString toDisplay() override;
+        QString toDisplay() override;
 
-		[[nodiscard]]
-		const glm::i32vec3 &getCubeSize() const;
-		void setCubeSize(const glm::i32vec3 &cubeSize);
+        [[nodiscard]]
+        const glm::i32vec3 &getCubeSize() const;
+        void setCubeSize(const glm::i32vec3 &cubeSize);
 
-	private:
+    private:
 
-		[[nodiscard]]
-		Cube getCube(const glm::i32vec3 &position, const glm::i32vec3 &size = glm::i32vec3(1)) const;
-		quint32 marchCube(Cube cube);
-	};
+        [[nodiscard]]
+        Cube getCube(const glm::i32vec3 &position, const glm::i32vec3 &size = glm::i32vec3(1)) const;
+        quint32 marchCube(Cube cube);
+    };
 }
 

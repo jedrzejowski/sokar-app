@@ -6,41 +6,43 @@
 
 
 void SokarAlg::forI32space(
-		const glm::i32vec3 &from,
-		const glm::i32vec3 &to,
-		const std::function<void(const glm::i32vec3 &pos)> &functor
+        const glm::i32vec3 &from,
+        const glm::i32vec3 &to,
+        const std::function<void(const glm::i32vec3 &pos)> &functor
 ) {
-	glm::i32vec3 pos = from;
-	for (pos.x = from.x; pos.x < to.x; ++(pos.x)) {
 
-		for (pos.y = from.y; pos.y < to.y; ++(pos.y)) {
+    glm::i32vec3 pos = from;
+    for (pos.x = from.x; pos.x < to.x; ++(pos.x)) {
 
-			for (pos.z = from.z; pos.z < to.z; ++(pos.z)) {
+        for (pos.y = from.y; pos.y < to.y; ++(pos.y)) {
 
-				functor(pos);
-			}
-		}
-	}
+            for (pos.z = from.z; pos.z < to.z; ++(pos.z)) {
+
+                functor(pos);
+            }
+        }
+    }
 }
 
 std::unique_ptr<std::vector<glm::vec3>> SokarAlg::makeI32space(
-		const glm::i32vec3 &from,
-		const glm::i32vec3 &to
+        const glm::i32vec3 &from,
+        const glm::i32vec3 &to
 ) {
-	auto space = std::make_unique<std::vector<glm::vec3>>();
 
-	glm::i32vec3 pos = from;
+    auto space = std::make_unique<std::vector<glm::vec3>>();
 
-	for (pos.x = from.x; pos.x <= to.x; ++(pos.x)) {
+    glm::i32vec3 pos = from;
 
-		for (pos.y = from.y; pos.y <= to.y; ++(pos.y)) {
+    for (pos.x = from.x; pos.x <= to.x; ++(pos.x)) {
 
-			for (pos.z = from.z; pos.z <= to.z; ++(pos.z)) {
+        for (pos.y = from.y; pos.y <= to.y; ++(pos.y)) {
 
-				space->push_back(pos);
-			}
-		}
-	}
+            for (pos.z = from.z; pos.z <= to.z; ++(pos.z)) {
 
-	return space;
+                space->push_back(pos);
+            }
+        }
+    }
+
+    return space;
 }

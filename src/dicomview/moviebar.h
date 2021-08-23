@@ -10,51 +10,51 @@
 
 
 namespace Ui {
-	class MovieBar;
+    class MovieBar;
 }
 
 namespace Sokar {
 
-	/**
-	 * \class MovieBar
-	 * Kontrolka to zarządzania czasem w sekwencjach ramek
-	 */
-	class MovieBar : public QWidget {
-	Q_OBJECT
-	protected:
-		Ui::MovieBar *ui;
+    /**
+     * \class MovieBar
+     * Kontrolka to zarządzania czasem w sekwencjach ramek
+     */
+    class MovieBar : public QWidget {
+    Q_OBJECT
+    protected:
+        Ui::MovieBar *ui;
 
-		QTimer frameTimer;
+        QTimer frameTimer;
 
-		DicomSceneSet *sceneSet = nullptr;
-		SceneSequence *sceneSequence = nullptr;
-		MovieMode *movieMode = nullptr;
-	public:
-		/**
-		 *
-		 * @param parent musi być to \class DicomView
-		 */
-		explicit MovieBar(QWidget *parent = nullptr);
-		~MovieBar() override;
+        DicomSceneSet *sceneSet = nullptr;
+        SceneSequence *sceneSequence = nullptr;
+        MovieMode *movieMode = nullptr;
+    public:
+        /**
+         *
+         * @param parent musi być to \class DicomView
+         */
+        explicit MovieBar(QWidget *parent = nullptr);
+        ~MovieBar() override;
 
-		/**
-		 * Ustawia \class Sokar::DicomSceneSet
-		 * @param sceneSet
-		 */
-		void setSceneSet(DicomSceneSet *sceneSet);
+        /**
+         * Ustawia \class Sokar::DicomSceneSet
+         * @param sceneSet
+         */
+        void setSceneSet(DicomSceneSet *sceneSet);
 
-		void updateUI();
+        void updateUI();
 
-		inline bool isRunning() { return movieMode != nullptr; };
+        inline bool isRunning() { return movieMode != nullptr; };
 
-		inline DicomView *getDicomView() { return (DicomView *) this->parent(); }
+        inline DicomView *getDicomView() { return (DicomView *) this->parent(); }
 
-	public slots:
-		void togglePlaying();
-		void stop();
-		void start();
-		void stepChanged(const Step *step);
-	signals:
-		void setStep(const Step *step);
-	};
+    public slots:
+        void togglePlaying();
+        void stop();
+        void start();
+        void stepChanged(const Step *step);
+    signals:
+        void setStep(const Step *step);
+    };
 }

@@ -4,20 +4,20 @@
 
 namespace Sokar {
 
-	class DicomView;
+    class DicomView;
 
-	class FrameChooser;
+    class FrameChooser;
 
-	class DicomToolBar;
+    class DicomToolBar;
 
-	class DicomGraphics;
+    class DicomGraphics;
 
-	class DataSetViewer;
+    class DataSetViewer;
 
-	class MovieBar;
+    class MovieBar;
 
-	class DicomSceneSet;
+    class DicomSceneSet;
 
-	class MovieMode;
+    class MovieMode;
 
 }

@@ -11,22 +11,23 @@
 
 namespace Sokar3D {
 
-	class VulkanShader {
-		VkShaderModule shaderModule = VK_NULL_HANDLE;
-		QVulkanInstance *vkQInst = nullptr;
-		VkDevice vkDevice = VK_NULL_HANDLE;
+    class VulkanShader {
+        VkShaderModule shaderModule = VK_NULL_HANDLE;
+        QVulkanInstance *vkQInst = nullptr;
+        VkDevice vkDevice = VK_NULL_HANDLE;
 
-	public:
-		void load(QVulkanInstance *vkQInst, VkDevice vkDevice, const QString &fn);
+    public:
+        void load(QVulkanInstance *vkQInst, VkDevice vkDevice, const QString &fn);
 
-		[[nodiscard]]
-		inline bool isValid() {
-			return shaderModule != VK_NULL_HANDLE;
-		}
+        [[nodiscard]]
+        inline bool isValid() {
 
-		void release();
+            return shaderModule != VK_NULL_HANDLE;
+        }
 
-		[[nodiscard]]
-		VkShaderModule_T *getShaderModule() const;
-	};
+        void release();
+
+        [[nodiscard]]
+        VkShaderModule_T *getShaderModule() const;
+    };
 }

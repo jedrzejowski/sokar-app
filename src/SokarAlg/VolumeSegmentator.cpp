@@ -11,51 +11,59 @@ using namespace SokarAlg;
 
 void VolumeSegmentator::execBefore() {
 
-	if (mesh != nullptr) {
-		mesh.clear();
-	}
+    if (mesh != nullptr) {
+        mesh.clear();
+    }
 
-	mesh = MeshType::New();
+    mesh = MeshType::New();
 }
 
 const QSharedPointer<const Volume> &VolumeSegmentator::getVolume() const {
-	return volume;
+
+    return volume;
 }
 
 void VolumeSegmentator::setVolume(const VolumeCPtr &vv) {
-	volume = vv;
 
-	if (!volumeInterpolator.isNull() && !volume.isNull()) {
-		volumeInterpolator->setVolume(volume);
-	}
+    volume = vv;
+
+    if (!volumeInterpolator.isNull() && !volume.isNull()) {
+        volumeInterpolator->setVolume(volume);
+    }
 }
 
 void VolumeSegmentator::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2) {
-	mesh->addTriangle(v0, v1, v2);
+
+    mesh->addTriangle(v0, v1, v2);
 }
 
 const QSharedPointer<VolumeSegmentator::MeshType> &VolumeSegmentator::getMesh() const {
-	return mesh;
+
+    return mesh;
 }
 
 Range<float> VolumeSegmentator::getIsoLevel() const {
-	return isoLevel;
+
+    return isoLevel;
 }
 
 void VolumeSegmentator::setIsoLevel(Range<float> newIsoLevel) {
-	isoLevel = newIsoLevel;
+
+    isoLevel = newIsoLevel;
 }
 
 
 const VolumeInterpolatorPtr &VolumeSegmentator::getVolumeInterpolator() const {
-	return volumeInterpolator;
+
+    return volumeInterpolator;
 }
 
 void VolumeSegmentator::setVolumeInterpolator(const VolumeInterpolatorPtr &newVolumeInterpolator) {
-	volumeInterpolator = newVolumeInterpolator;
 
-	if (!volumeInterpolator.isNull() && !volume.isNull()) {
-		volumeInterpolator->setVolume(volume);
-	}
+    volumeInterpolator = newVolumeInterpolator;
+
+    if (!volumeInterpolator.isNull() && !volume.isNull()) {
+        volumeInterpolator->setVolume(volume);
+    }
 }
 

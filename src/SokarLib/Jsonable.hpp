@@ -8,11 +8,11 @@
 
 namespace SokarLib {
 
-	class Jsonable {
-	public:
-		virtual QJsonObject dumpJson() = 0;
-		virtual void loadJson(const QJsonObject &json) = 0;
-	};
+    class Jsonable {
+    public:
+        virtual QJsonObject dumpJson() = 0;
+        virtual void loadJson(const QJsonObject &json) = 0;
+    };
 }
 
 

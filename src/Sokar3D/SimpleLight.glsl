@@ -1,4 +1,3 @@
-
 struct SimpleLight {
     vec3 position;
     vec3 ambient;

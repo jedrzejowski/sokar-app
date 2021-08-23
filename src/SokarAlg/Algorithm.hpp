@@ -12,38 +12,40 @@
 
 namespace SokarAlg {
 
-	template<typename Output>
-	class Algorithm : public QEnableSharedFromThis<Algorithm<Output>>, public SokarLib::Displayable {
-	protected:
+    template<typename Output>
+    class Algorithm : public QEnableSharedFromThis<Algorithm<Output>>, public SokarLib::Displayable {
+    protected:
 
-		virtual void execBefore() {};
-		virtual Output exec() = 0;
-		virtual void execAfter() {};
+        virtual void execBefore() {};
+        virtual Output exec() = 0;
+        virtual void execAfter() {};
 
-	public:
-		[[nodiscard]]
-		Output execSync();
+    public:
+        [[nodiscard]]
+        Output execSync();
 
-		[[nodiscard]]
-		QFuture<Output> execAsync();
-	};
+        [[nodiscard]]
+        QFuture<Output> execAsync();
+    };
 
-	template<typename Output>
-	Output Algorithm<Output>::execSync() {
-		execBefore();
-		auto output = exec();
-		execAfter();
-		return output;
-	}
+    template<typename Output>
+    Output Algorithm<Output>::execSync() {
 
-	template<typename Output>
-	QFuture<Output> Algorithm<Output>::execAsync() {
-		auto self = this->sharedFromThis();
+        execBefore();
+        auto output = exec();
+        execAfter();
+        return output;
+    }
 
-		return QtConcurrent::run([self]() {
-			return self->execSync();
-		});
-	}
+    template<typename Output>
+    QFuture<Output> Algorithm<Output>::execAsync() {
+
+        auto self = this->sharedFromThis();
+
+        return QtConcurrent::run([self]() {
+            return self->execSync();
+        });
+    }
 }
 
 

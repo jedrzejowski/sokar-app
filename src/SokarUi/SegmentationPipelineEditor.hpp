@@ -11,30 +11,30 @@
 #include <SokarAlg/VolumeSegmentator.hpp>
 
 namespace Ui {
-	class SokarSegmentationPipelineEditor;
+    class SokarSegmentationPipelineEditor;
 }
 
 namespace SokarUi {
 
-	class SegmentationPipelineEditor : public QWidget {
-	Q_OBJECT
-		Ui::SokarSegmentationPipelineEditor *ui;
-		QColor meshColor = QColor("#BF4024");
-		void setupUi();
+    class SegmentationPipelineEditor : public QWidget {
+    Q_OBJECT
+        Ui::SokarSegmentationPipelineEditor *ui;
+        QColor meshColor = QColor("#BF4024");
+        void setupUi();
 
-	public:
-		explicit SegmentationPipelineEditor(QWidget *parent = nullptr);
-		~SegmentationPipelineEditor() override;
+    public:
+        explicit SegmentationPipelineEditor(QWidget *parent = nullptr);
+        ~SegmentationPipelineEditor() override;
 
-		[[nodiscard]]
-		SokarAlg::SegmentationPipelinePtr makePipeline() const;
+        [[nodiscard]]
+        SokarAlg::SegmentationPipelinePtr makePipeline() const;
 
-		void setMeshColor(const QColor &color);
+        void setMeshColor(const QColor &color);
 
-	public slots:
-		void randomizeMeshColor();
+    public slots:
+        void randomizeMeshColor();
 
-	private	slots:
-		void simplificationAlgorithmComboBoxIndexChanged(int i);
-	};
+    private    slots:
+        void simplificationAlgorithmComboBoxIndexChanged(int i);
+    };
 }

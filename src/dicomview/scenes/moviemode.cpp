@@ -7,13 +7,16 @@ MovieMode::MovieMode(QObject *parent) {
 }
 
 void MovieMode::setOriginScene(SokarScene::DicomScene *orginScene) {
-	MovieMode::originScene = orginScene;
+
+    MovieMode::originScene = orginScene;
 }
 
 void MovieMode::setUseSameWindow(bool useSameWindow) {
-	MovieMode::useSameWindow = useSameWindow;
+
+    MovieMode::useSameWindow = useSameWindow;
 }
 
 void MovieMode::setUseSameTranform(bool useSameTranform) {
-	MovieMode::useSameTranform = useSameTranform;
+
+    MovieMode::useSameTranform = useSameTranform;
 }

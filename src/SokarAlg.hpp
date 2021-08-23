@@ -11,108 +11,112 @@
 
 namespace SokarAlg {
 
-	using TimePoint = std::chrono::time_point<std::chrono::high_resolution_clock>;
+    using TimePoint = std::chrono::time_point<std::chrono::high_resolution_clock>;
 
-	inline TimePoint makeTimePoint() {
-		return std::chrono::high_resolution_clock::now();
-	}
+    inline TimePoint makeTimePoint() {
 
-	inline QString timeRangeString(const TimePoint &start, const TimePoint &end) {
-		return QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) + " [ms]";
-	}
+        return std::chrono::high_resolution_clock::now();
+    }
 
-	inline bool isZero(float num) {
-		return num < SokarGlm::EPS;
-	}
+    inline QString timeRangeString(const TimePoint &start, const TimePoint &end) {
 
-	inline bool areSame(float num1, float num2) {
-		return std::abs(num1 - num2) < SokarGlm::EPS;
-	}
+        return QString::number(std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()) + " [ms]";
+    }
 
-	template<typename T>
-	class Array3;
+    inline bool isZero(float num) {
 
-	template<typename Output>
-	class Algorithm;
+        return num < SokarGlm::EPS;
+    }
 
-	//region Volume
+    inline bool areSame(float num1, float num2) {
 
-	declareSharedClass(Volume)
+        return std::abs(num1 - num2) < SokarGlm::EPS;
+    }
 
-	declareSharedClass(VolumeEnv)
+    template<typename T>
+    class Array3;
 
-	declareSharedClass(DicomVolume)
+    template<typename Output>
+    class Algorithm;
 
-	declareSharedClass(InterpolatedVolume)
+    //region Volume
 
-	declareSharedClass(CachedVolume)
+    declareSharedClass(Volume)
 
-	declareSharedClass(ExampleVolume)
+    declareSharedClass(VolumeEnv)
 
-	declareSharedClass(RegionGrowthVolume)
+    declareSharedClass(DicomVolume)
 
-	// VolSegmAlgorithm
+    declareSharedClass(InterpolatedVolume)
+
+    declareSharedClass(CachedVolume)
+
+    declareSharedClass(ExampleVolume)
+
+    declareSharedClass(RegionGrowthVolume)
+
+    // VolSegmAlgorithm
 
 
-	declareSharedClass(VolSegmAlgorithm)
+    declareSharedClass(VolSegmAlgorithm)
 
-	declareSharedClass(MarchingCubes)
+    declareSharedClass(MarchingCubes)
 
-	// MeshSimplificator
+    // MeshSimplificator
 
-	declareSharedClass(MeshSimplificator)
+    declareSharedClass(MeshSimplificator)
 
-	declareSharedClass(VertexClustering)
+    declareSharedClass(VertexClustering)
 
-	declareSharedClass(EdgeContraction)
+    declareSharedClass(EdgeContraction)
 
-	declareSharedClass(VertexDecimation)
+    declareSharedClass(VertexDecimation)
 
-	// VolumeInterpolator
+    // VolumeInterpolator
 
-	declareSharedClass(VolumeInterpolator)
+    declareSharedClass(VolumeInterpolator)
 
-	declareSharedClass(NearestVolumeInterpolator)
+    declareSharedClass(NearestVolumeInterpolator)
 
-	declareSharedClass(LinearVolumeInterpolator)
+    declareSharedClass(LinearVolumeInterpolator)
 
-	declareSharedClass(CubicVolumeInterpolator)
+    declareSharedClass(CubicVolumeInterpolator)
 
-	declareSharedClass(MakimaValueInterpolator)
+    declareSharedClass(MakimaValueInterpolator)
 
-	declareSharedClass(SplineValueInterpolator)
+    declareSharedClass(SplineValueInterpolator)
 
-	// VertexInterpolator
+    // VertexInterpolator
 
-	class VertexInterpolator;
+    class VertexInterpolator;
 
-	class NearestVertexInterpolator;
+    class NearestVertexInterpolator;
 
-	class LinearVertexInterpolator;
+    class LinearVertexInterpolator;
 
-	class CubicVertexInterpolator;
+    class CubicVertexInterpolator;
 
-	class MakimaVertexInterpolator;
+    class MakimaVertexInterpolator;
 
-	class SplineVertexInterpolator;
+    class SplineVertexInterpolator;
 
-	// others
+    // others
 
-	template<typename Unit = float>
-	struct Range;
+    template<typename Unit = float>
+    struct Range;
 
-	declareSharedClass(SegmentationPipeline)
+    declareSharedClass(SegmentationPipeline)
 
-	declareSharedClass(SegmentationResult)
+    declareSharedClass(SegmentationResult)
 
-	void forI32space(
-			const glm::i32vec3 &from,
-			const glm::i32vec3 &to,
-			const std::function<void(const glm::i32vec3 &pos)> &functor
-	);
+    void forI32space(
+            const glm::i32vec3 &from,
+            const glm::i32vec3 &to,
+            const std::function<void(const glm::i32vec3 &pos)> &functor
+    );
 
-	std::unique_ptr<std::vector<glm::vec3>> makeI32space(
-			const glm::i32vec3 &from,
-			const glm::i32vec3 &to
-	);
+    std::unique_ptr<std::vector<glm::vec3>> makeI32space(
+            const glm::i32vec3 &from,
+            const glm::i32vec3 &to
+    );
 }

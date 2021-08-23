@@ -5,22 +5,22 @@
 
 namespace Sokar {
 
-	class DicomFileSet : public DicomSceneSet {
-	Q_OBJECT
-	protected:
-		DicomReaderVec imgReaders;
-		QVector<DicomFrameSet *> frameSets;
-		QString seriesInstanceUID;
+    class DicomFileSet : public DicomSceneSet {
+    Q_OBJECT
+    protected:
+        DicomReaderVec imgReaders;
+        QVector<DicomFrameSet *> frameSets;
+        QString seriesInstanceUID;
 
-		DicomFileSet(DicomReaderVec &vec, QObject *parent = nullptr);
+        DicomFileSet(DicomReaderVec &vec, QObject *parent = nullptr);
 
-	public:
+    public:
 
-		static QVector<DicomFileSet *> create(DicomReaderVec &vec, QObject *parent = nullptr);
+        static QVector<DicomFileSet *> create(DicomReaderVec &vec, QObject *parent = nullptr);
 
-		~DicomFileSet();
+        ~DicomFileSet();
 
-		const QString &getTitle() override;
-		SceneSequence *getSceneSequence() override;
-	};
+        const QString &getTitle() override;
+        SceneSequence *getSceneSequence() override;
+    };
 }

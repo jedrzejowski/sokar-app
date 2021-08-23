@@ -6,94 +6,96 @@
 
 namespace Sokar::Monochrome {
 
-	class WindowInt : public Window {
-	Q_OBJECT
+    class WindowInt : public Window {
+    Q_OBJECT
 
-	private:
-		struct DefaultWindow {
-			qreal center;
-			qreal width;
-			QString name = "";
-		};
+    private:
+        struct DefaultWindow {
+            qreal center;
+            qreal width;
+            QString name = "";
+        };
 
-	protected:
-		QGraphicsTextItem *text;
-		QList<DefaultWindow> defaultWindows;
+    protected:
+        QGraphicsTextItem *text;
+        QList<DefaultWindow> defaultWindows;
 
-		bool hasBackground = false;
+        bool hasBackground = false;
 
-		qreal center, width, backgroundLvl;
-		double rescaleIntercept = 0, rescaleSlope = 1;
+        qreal center, width, backgroundLvl;
+        double rescaleIntercept = 0, rescaleSlope = 1;
 
-		quint64 signedMove = 0;
-		quint64 maxValue = 0;
+        quint64 signedMove = 0;
+        quint64 maxValue = 0;
 
-		double x1, x0;
-		double a, b;
+        double x1, x0;
+        double a, b;
 
-	public:
+    public:
 
-		explicit WindowInt(SokarDicom::DataConverter &dataConverter);
+        explicit WindowInt(SokarDicom::DataConverter &dataConverter);
 
-		//region Getters & Setters
+        //region Getters & Setters
 
-		inline qreal getCenter() const { return center; }
+        inline qreal getCenter() const { return center; }
 
-		void setCenter(qreal center);
+        void setCenter(qreal center);
 
-		inline qreal getWidth() const { return width; }
+        inline qreal getWidth() const { return width; }
 
-		void setWidth(qreal width);
+        void setWidth(qreal width);
 
-		inline double getRescaleIntercept() const { return rescaleIntercept; }
+        inline double getRescaleIntercept() const { return rescaleIntercept; }
 
-		void setRescaleIntercept(double rescaleIntercept);
+        void setRescaleIntercept(double rescaleIntercept);
 
-		inline double getRescaleSlope() const { return rescaleSlope; }
+        inline double getRescaleSlope() const { return rescaleSlope; }
 
-		void setRescaleSlope(double rescaleSlope);
+        void setRescaleSlope(double rescaleSlope);
 
-		inline quint64 getMaxValue() const { return maxValue; }
+        inline quint64 getMaxValue() const { return maxValue; }
 
-		void setMaxValue(quint64 length);
+        void setMaxValue(quint64 length);
 
-		inline bool isSigned() const { return signedMove > 0; }
+        inline bool isSigned() const { return signedMove > 0; }
 
-		void setSigned(bool isSigned);
+        void setSigned(bool isSigned);
 
-		inline qreal getBackgroundLvl() const { return backgroundLvl; }
+        inline qreal getBackgroundLvl() const { return backgroundLvl; }
 
-		void setBackgroundLvl(qreal backgroundLvl);
+        void setBackgroundLvl(qreal backgroundLvl);
 
-		//endregion
+        //endregion
 
-		void pushDefaultValues(qreal center, qreal width, QString name = "");
+        void pushDefaultValues(qreal center, qreal width, QString name = "");
 
 
-		inline void mvHorizontal(int v) override {
-			setWidth(getWidth() + v);
-		}
+        inline void mvHorizontal(int v) override {
 
-		inline void mvVertical(int v) override {
-			setCenter(getCenter() + v);
-		}
+            setWidth(getWidth() + v);
+        }
 
-		bool genLUT() override;
+        inline void mvVertical(int v) override {
 
-		void reposition() override;
+            setCenter(getCenter() + v);
+        }
 
-	private:
-		void regenText();
+        bool genLUT() override;
 
-		void activateDefWin(const DefaultWindow &win);
-	signals:
+        void reposition() override;
 
-		void centerChanged();
+    private:
+        void regenText();
 
-		void widthChanged();
+        void activateDefWin(const DefaultWindow &win);
+    signals:
 
-	protected:
+        void centerChanged();
 
-		void genMenu() override;
-	};
+        void widthChanged();
+
+    protected:
+
+        void genMenu() override;
+    };
 }

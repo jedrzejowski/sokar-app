@@ -34,7 +34,7 @@ vec3 hsv2rgb(vec3 c)
 
 void main()
 {
-//    vec3 my_color = hsv2rgb(vec3(vertColor.x, 1.0f, 1.0f));
+    //    vec3 my_color = hsv2rgb(vec3(vertColor.x, 1.0f, 1.0f));
     vec3 my_color = uniBuf.material.color;
 
     vec3 ambient = uniBuf.light.ambient * my_color;

@@ -6,21 +6,21 @@
 #include <SokarUi/SegmentationWindow.hpp>
 
 namespace Sokar {
-	QSettings *qSettings;
+    QSettings *qSettings;
 }
 
 int main(int argc, char *argv[]) {
 
-	QCoreApplication::setOrganizationName("Gauganian");
-	QCoreApplication::setOrganizationDomain("sokar.gauganian.com");
-	QCoreApplication::setApplicationName("Sokar");
+    QCoreApplication::setOrganizationName("Gauganian");
+    QCoreApplication::setOrganizationDomain("sokar.gauganian.com");
+    QCoreApplication::setApplicationName("Sokar");
 
-	QApplication app(argc, argv);
+    QApplication app(argc, argv);
 
-	Sokar::qSettings = new QSettings();
+    Sokar::qSettings = new QSettings();
 
-	Sokar::MainWindow w;
-	w.show();
+    Sokar::MainWindow w;
+    w.show();
 
-	return app.exec();
+    return app.exec();
 }

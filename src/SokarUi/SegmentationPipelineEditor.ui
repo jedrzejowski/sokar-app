@@ -1,391 +1,392 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SokarSegmentationPipelineEditor</class>
- <widget class="QWidget" name="SokarSegmentationPipelineEditor">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>400</width>
-    <height>840</height>
-   </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>400</width>
-    <height>0</height>
-   </size>
-  </property>
-  <property name="windowTitle">
-   <string>Form</string>
-  </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Interpolacja</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_10">
-        <property name="text">
-         <string>Bok woksela [mm]</string>
+    <class>SokarSegmentationPipelineEditor</class>
+    <widget class="QWidget" name="SokarSegmentationPipelineEditor">
+        <property name="geometry">
+            <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>400</width>
+                <height>840</height>
+            </rect>
         </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Wielkość Y</string>
+        <property name="minimumSize">
+            <size>
+                <width>400</width>
+                <height>0</height>
+            </size>
         </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Wielkość X</string>
+        <property name="windowTitle">
+            <string>Form</string>
         </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QSpinBox" name="interpolationSizeX"/>
-      </item>
-      <item row="3" column="1">
-       <widget class="QSpinBox" name="interpolationSizeY"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QDoubleSpinBox" name="interpolationWokselSize">
-        <property name="value">
-         <double>3.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" colspan="2">
-       <widget class="QComboBox" name="interpolationCombo">
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <item>
-         <property name="text">
-          <string>Najbliższa</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Liniowa</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Wielomianowa</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Wielomioanowa (C++11)</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Sześciennna</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Calum Rom</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QSpinBox" name="interpolationSizeZ"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>Wielkość Z</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QCheckBox" name="cacheInterpolation">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_8">
-        <property name="text">
-         <string>Cache</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Segmentacja</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout">
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Wartość dolna</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1">
-       <widget class="QDoubleSpinBox" name="segmentationTresholdUp">
-        <property name="minimum">
-         <double>-65536.000000000000000</double>
-        </property>
-        <property name="maximum">
-         <double>65536.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>100.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="2">
-       <widget class="QComboBox" name="segmentationAlgorithm">
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <item>
-         <property name="text">
-          <string>Maszerujące sześciany</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Maszerujące czworościany</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Pamięć podręczna</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_12">
-        <property name="text">
-         <string>Rozrost obszaru</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="segmentationTresholdDown">
-        <property name="minimum">
-         <double>-65536.000000000000000</double>
-        </property>
-        <property name="maximum">
-         <double>65536.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>20000.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="label_13">
-        <property name="text">
-         <string>Śiatka trójkątów</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QCheckBox" name="regionGrowthCheck">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_2">
-        <property name="text">
-         <string>Wartość górna</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="1">
-       <widget class="QComboBox" name="useCache">
-        <item>
-         <property name="text">
-          <string>Tak</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Nie</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="7" column="1">
-       <widget class="QComboBox" name="meshTypeCombo">
-        <item>
-         <property name="text">
-          <string>Lista trójkątów</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Indeksowana</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Maszerująca</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item row="6" column="0" colspan="2">
-       <widget class="SokarUi::Vec3Input" name="regionGrowthVec" native="true"/>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_4">
-     <property name="title">
-      <string>Uproszczenia siatki</string>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout_5">
-      <item>
-       <widget class="QComboBox" name="simplificationAlgorithm">
-        <item>
-         <property name="text">
-          <string>Brak</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Klasteryzacja wierzchołków</string>
-         </property>
-        </item>
-       </widget>
-      </item>
-      <item>
-       <widget class="QWidget" name="vertexClustering" native="true">
-        <layout class="QGridLayout" name="vertexClusteringLayout">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>0</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_11">
-           <property name="text">
-            <string>Wielkość klastra [mm]</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="SokarUi::Vec3Input" name="vertexClusteringSize" native="true"/>
-         </item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+            <item>
+                <widget class="QGroupBox" name="groupBox_2">
+                    <property name="title">
+                        <string>Interpolacja</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_4">
+                        <item row="0" column="0">
+                            <widget class="QLabel" name="label_10">
+                                <property name="text">
+                                    <string>Bok woksela [mm]</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="3" column="0">
+                            <widget class="QLabel" name="label_5">
+                                <property name="text">
+                                    <string>Wielkość Y</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="2" column="0">
+                            <widget class="QLabel" name="label_4">
+                                <property name="text">
+                                    <string>Wielkość X</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="2" column="1">
+                            <widget class="QSpinBox" name="interpolationSizeX"/>
+                        </item>
+                        <item row="3" column="1">
+                            <widget class="QSpinBox" name="interpolationSizeY"/>
+                        </item>
+                        <item row="0" column="1">
+                            <widget class="QDoubleSpinBox" name="interpolationWokselSize">
+                                <property name="value">
+                                    <double>3.000000000000000</double>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="1" column="0" colspan="2">
+                            <widget class="QComboBox" name="interpolationCombo">
+                                <property name="currentIndex">
+                                    <number>0</number>
+                                </property>
+                                <item>
+                                    <property name="text">
+                                        <string>Najbliższa</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Liniowa</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Wielomianowa</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Wielomioanowa (C++11)</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Sześciennna</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Calum Rom</string>
+                                    </property>
+                                </item>
+                            </widget>
+                        </item>
+                        <item row="4" column="1">
+                            <widget class="QSpinBox" name="interpolationSizeZ"/>
+                        </item>
+                        <item row="4" column="0">
+                            <widget class="QLabel" name="label_6">
+                                <property name="text">
+                                    <string>Wielkość Z</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="5" column="1">
+                            <widget class="QCheckBox" name="cacheInterpolation">
+                                <property name="text">
+                                    <string notr="true"/>
+                                </property>
+                                <property name="checked">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="5" column="0">
+                            <widget class="QLabel" name="label_8">
+                                <property name="text">
+                                    <string>Cache</string>
+                                </property>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <widget class="QGroupBox" name="groupBox">
+                    <property name="title">
+                        <string>Segmentacja</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout">
+                        <item row="3" column="0">
+                            <widget class="QLabel" name="label_3">
+                                <property name="text">
+                                    <string>Wartość dolna</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="1" column="1">
+                            <widget class="QDoubleSpinBox" name="segmentationTresholdUp">
+                                <property name="minimum">
+                                    <double>-65536.000000000000000</double>
+                                </property>
+                                <property name="maximum">
+                                    <double>65536.000000000000000</double>
+                                </property>
+                                <property name="value">
+                                    <double>100.000000000000000</double>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="0" column="0" colspan="2">
+                            <widget class="QComboBox" name="segmentationAlgorithm">
+                                <property name="currentIndex">
+                                    <number>0</number>
+                                </property>
+                                <item>
+                                    <property name="text">
+                                        <string>Maszerujące sześciany</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Maszerujące czworościany</string>
+                                    </property>
+                                </item>
+                            </widget>
+                        </item>
+                        <item row="4" column="0">
+                            <widget class="QLabel" name="label">
+                                <property name="text">
+                                    <string>Pamięć podręczna</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="5" column="0">
+                            <widget class="QLabel" name="label_12">
+                                <property name="text">
+                                    <string>Rozrost obszaru</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="3" column="1">
+                            <widget class="QDoubleSpinBox" name="segmentationTresholdDown">
+                                <property name="minimum">
+                                    <double>-65536.000000000000000</double>
+                                </property>
+                                <property name="maximum">
+                                    <double>65536.000000000000000</double>
+                                </property>
+                                <property name="value">
+                                    <double>20000.000000000000000</double>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="7" column="0">
+                            <widget class="QLabel" name="label_13">
+                                <property name="text">
+                                    <string>Śiatka trójkątów</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="5" column="1">
+                            <widget class="QCheckBox" name="regionGrowthCheck">
+                                <property name="text">
+                                    <string notr="true"/>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="1" column="0">
+                            <widget class="QLabel" name="label_2">
+                                <property name="text">
+                                    <string>Wartość górna</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="4" column="1">
+                            <widget class="QComboBox" name="useCache">
+                                <item>
+                                    <property name="text">
+                                        <string>Tak</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Nie</string>
+                                    </property>
+                                </item>
+                            </widget>
+                        </item>
+                        <item row="7" column="1">
+                            <widget class="QComboBox" name="meshTypeCombo">
+                                <item>
+                                    <property name="text">
+                                        <string>Lista trójkątów</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Indeksowana</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Maszerująca</string>
+                                    </property>
+                                </item>
+                            </widget>
+                        </item>
+                        <item row="6" column="0" colspan="2">
+                            <widget class="SokarUi::Vec3Input" name="regionGrowthVec" native="true"/>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <widget class="QGroupBox" name="groupBox_4">
+                    <property name="title">
+                        <string>Uproszczenia siatki</string>
+                    </property>
+                    <layout class="QVBoxLayout" name="verticalLayout_5">
+                        <item>
+                            <widget class="QComboBox" name="simplificationAlgorithm">
+                                <item>
+                                    <property name="text">
+                                        <string>Brak</string>
+                                    </property>
+                                </item>
+                                <item>
+                                    <property name="text">
+                                        <string>Klasteryzacja wierzchołków</string>
+                                    </property>
+                                </item>
+                            </widget>
+                        </item>
+                        <item>
+                            <widget class="QWidget" name="vertexClustering" native="true">
+                                <layout class="QGridLayout" name="vertexClusteringLayout">
+                                    <property name="leftMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="topMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="rightMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <property name="bottomMargin">
+                                        <number>0</number>
+                                    </property>
+                                    <item row="0" column="0">
+                                        <widget class="QLabel" name="label_11">
+                                            <property name="text">
+                                                <string>Wielkość klastra [mm]</string>
+                                            </property>
+                                        </widget>
+                                    </item>
+                                    <item row="1" column="0">
+                                        <widget class="SokarUi::Vec3Input" name="vertexClusteringSize" native="true"/>
+                                    </item>
+                                </layout>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <widget class="QGroupBox" name="groupBox_3">
+                    <property name="title">
+                        <string>Wygląd</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_2">
+                        <item row="1" column="0">
+                            <widget class="QLabel" name="label_9">
+                                <property name="text">
+                                    <string>Osadz w pustej przestrzeni</string>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="0" column="1">
+                            <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
+                                <item>
+                                    <widget class="QPushButton" name="pickColorButton">
+                                        <property name="text">
+                                            <string>PushButton</string>
+                                        </property>
+                                    </widget>
+                                </item>
+                                <item>
+                                    <widget class="QPushButton" name="randomColorButton">
+                                        <property name="text">
+                                            <string notr="true"/>
+                                        </property>
+                                        <property name="icon">
+                                            <iconset theme="reload">
+                                                <normaloff>.</normaloff>.
+                                            </iconset>
+                                        </property>
+                                    </widget>
+                                </item>
+                            </layout>
+                        </item>
+                        <item row="1" column="1">
+                            <widget class="QCheckBox" name="emptyEnv">
+                                <property name="text">
+                                    <string notr="true"/>
+                                </property>
+                                <property name="checked">
+                                    <bool>true</bool>
+                                </property>
+                            </widget>
+                        </item>
+                        <item row="0" column="0">
+                            <widget class="QLabel" name="label_7">
+                                <property name="text">
+                                    <string>Kolor</string>
+                                </property>
+                            </widget>
+                        </item>
+                    </layout>
+                </widget>
+            </item>
+            <item>
+                <spacer name="verticalSpacer">
+                    <property name="orientation">
+                        <enum>Qt::Vertical</enum>
+                    </property>
+                    <property name="sizeHint" stdset="0">
+                        <size>
+                            <width>20</width>
+                            <height>40</height>
+                        </size>
+                    </property>
+                </spacer>
+            </item>
         </layout>
-       </widget>
-      </item>
-     </layout>
     </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="groupBox_3">
-     <property name="title">
-      <string>Wygląd</string>
-     </property>
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0">
-       <widget class="QLabel" name="label_9">
-        <property name="text">
-         <string>Osadz w pustej przestrzeni</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
-        <item>
-         <widget class="QPushButton" name="pickColorButton">
-          <property name="text">
-           <string>PushButton</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="randomColorButton">
-          <property name="text">
-           <string notr="true"/>
-          </property>
-          <property name="icon">
-           <iconset theme="reload">
-            <normaloff>.</normaloff>.</iconset>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="1">
-       <widget class="QCheckBox" name="emptyEnv">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Kolor</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item>
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-  </layout>
- </widget>
- <customwidgets>
-  <customwidget>
-   <class>SokarUi::Vec3Input</class>
-   <extends>QWidget</extends>
-   <header>SokarUi/Vec3Input.hpp</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
- <resources/>
- <connections/>
+    <customwidgets>
+        <customwidget>
+            <class>SokarUi::Vec3Input</class>
+            <extends>QWidget</extends>
+            <header>SokarUi/Vec3Input.hpp</header>
+            <container>1</container>
+        </customwidget>
+    </customwidgets>
+    <resources/>
+    <connections/>
 </ui>

@@ -8,12 +8,12 @@
 #include "dicomview/scenes/sets/_sceneset.h"
 
 namespace SokarScene {
-	struct SceneParams {
-		ushort frame = 0;
-		quint64 imgSize = 0;
-		Sokar::DicomSceneSet *dicomSceneSet;
-		const gdcm::ImageReader *imageReader;
-		std::vector<char> *imageBuffer;
-		SokarDicom::DataConverter *dataConverter;
-	};
+    struct SceneParams {
+        ushort frame = 0;
+        quint64 imgSize = 0;
+        Sokar::DicomSceneSet *dicomSceneSet;
+        const gdcm::ImageReader *imageReader;
+        std::vector<char> *imageBuffer;
+        SokarDicom::DataConverter *dataConverter;
+    };
 }

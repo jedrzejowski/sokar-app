@@ -8,27 +8,27 @@
 #include "SokarAlg/SegmentationPipeline.hpp"
 
 namespace Ui {
-	class SegmentationResultWidget;
+    class SegmentationResultWidget;
 }
 
 namespace SokarUi {
-	class SegmentationResultWidget : public QFrame {
-	Q_OBJECT
-		Ui::SegmentationResultWidget *ui;
-		SokarAlg::SegmentationResultCPtr result;
-	public:
+    class SegmentationResultWidget : public QFrame {
+    Q_OBJECT
+        Ui::SegmentationResultWidget *ui;
+        SokarAlg::SegmentationResultCPtr result;
+    public:
 
-		explicit SegmentationResultWidget(
-				const SokarAlg::SegmentationResultCPtr &result,
-				QWidget *parent = nullptr);
-		~SegmentationResultWidget() override;
+        explicit SegmentationResultWidget(
+                const SokarAlg::SegmentationResultCPtr &result,
+                QWidget *parent = nullptr);
+        ~SegmentationResultWidget() override;
 
-	public slots:
-		void saveToWavefrontObjFile();
+    public slots:
+        void saveToWavefrontObjFile();
 
-	signals:
-		void deleteResult();
-		void toggleMesh(bool hidden);
-	};
+    signals:
+        void deleteResult();
+        void toggleMesh(bool hidden);
+    };
 }
 

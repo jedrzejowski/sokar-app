@@ -10,37 +10,45 @@ using namespace SokarAlg;
 //region getters & setters
 
 glm::i32vec3 InterpolatedVolume::getSize() const {
-	return size;
+
+    return size;
 }
 
 void InterpolatedVolume::setSize(const glm::i32vec3 &newSize) {
-	size = newSize;
+
+    size = newSize;
 }
 
 const InterpolatedVolume::SpaceTranslator &InterpolatedVolume::getSpaceTranslator() const {
-	return spaceTranslator;
+
+    return spaceTranslator;
 }
 
 void InterpolatedVolume::setSpaceTranslator(const InterpolatedVolume::SpaceTranslator &newSpaceTranslator) {
-	spaceTranslator = newSpaceTranslator;
+
+    spaceTranslator = newSpaceTranslator;
 }
 
 const QSharedPointer<VolumeInterpolator> &InterpolatedVolume::getInterpolator() const {
-	return interpolator;
+
+    return interpolator;
 }
 
 void InterpolatedVolume::setInterpolator(const QSharedPointer<VolumeInterpolator> &newInterpolator) {
-	interpolator = newInterpolator;
-	update();
+
+    interpolator = newInterpolator;
+    update();
 }
 
 const QSharedPointer<const Volume> &InterpolatedVolume::getVolume() const {
-	return volume;
+
+    return volume;
 }
 
 void InterpolatedVolume::setVolume(const QSharedPointer<const Volume> &newVolume) {
-	volume = newVolume;
-	update();
+
+    volume = newVolume;
+    update();
 }
 
 //endregion
@@ -48,11 +56,12 @@ void InterpolatedVolume::setVolume(const QSharedPointer<const Volume> &newVolume
 
 float InterpolatedVolume::getValue(const glm::i32vec3 &position) const {
 
-	return interpolator->interpolate(spaceTranslator(position));
+    return interpolator->interpolate(spaceTranslator(position));
 }
 
 void InterpolatedVolume::update() {
-	if (interpolator != nullptr && volume != nullptr) {
-		interpolator->setVolume(volume);
-	}
+
+    if (interpolator != nullptr && volume != nullptr) {
+        interpolator->setVolume(volume);
+    }
 }

@@ -4,10 +4,10 @@
 
 namespace Sokar {
 
-	extern QSettings *qSettings;
+    extern QSettings *qSettings;
 
-	namespace Settings {
-		QStringList recentOpen();
-		void bumpRecentOpen(const QString &path);
-	}
+    namespace Settings {
+        QStringList recentOpen();
+        void bumpRecentOpen(const QString &path);
+    }
 }

@@ -9,17 +9,21 @@ using namespace Sokar3D;
 
 
 PipelineWrapper::PipelineWrapper() {
-	sokarTrace();
+
+    sokarTrace();
 }
 
 PipelineWrapper::~PipelineWrapper() {
-	sokarTrace();
+
+    sokarTrace();
 }
 
 bool PipelineWrapper::isHidden() const {
-	return hidden;
+
+    return hidden;
 }
 
 void PipelineWrapper::setHidden(bool hidden) {
-	PipelineWrapper::hidden = hidden;
+
+    PipelineWrapper::hidden = hidden;
 }

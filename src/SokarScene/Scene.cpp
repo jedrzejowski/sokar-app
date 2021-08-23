@@ -5,47 +5,51 @@ using namespace SokarScene;
 
 Scene::Scene(QObject *parent) : QGraphicsScene(parent) {
 
-	setBackgroundBrush(Qt::black);
+    setBackgroundBrush(Qt::black);
 }
 
 Scene::~Scene() {
 }
 
 void Scene::addIndicator(Indicator *indicator) {
-	indicators << indicator;
-	addItem(indicator);
+
+    indicators << indicator;
+    addItem(indicator);
 }
 
 void Scene::removeIndicator(Indicator *indicator) {
-	for (auto it = indicators.begin(); it != indicators.end(); ++it) {
-		if (indicator != *it) continue;
 
-		removeItem(indicator);
-		indicators.erase(it);
+    for (auto it = indicators.begin(); it != indicators.end(); ++it) {
+        if (indicator != *it) continue;
 
-		return;
-	}
+        removeItem(indicator);
+        indicators.erase(it);
+
+        return;
+    }
 }
 
 void Scene::reposItems() {
-	for (auto &indicator: indicators) {
-		indicator->reposition();
-	}
+
+    for (auto &indicator: indicators) {
+        indicator->reposition();
+    }
 }
 
 Indicator *Scene::findIndicatorByChild(QGraphicsItem *item) {
-	if (item == nullptr) return nullptr;
 
-	for (auto &indi : indicators) {
+    if (item == nullptr) return nullptr;
 
-		for (auto &child : indi->childItems()) {
+    for (auto &indi : indicators) {
 
-			if (child == item) {
+        for (auto &child : indi->childItems()) {
 
-				return indi;
-			}
-		}
-	}
+            if (child == item) {
 
-	return nullptr;
+                return indi;
+            }
+        }
+    }
+
+    return nullptr;
 }

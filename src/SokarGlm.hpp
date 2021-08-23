@@ -15,25 +15,28 @@
 
 namespace SokarGlm {
 
-	static const float EPS = 0.00001f;
+    static const float EPS = 0.00001f;
 
-	[[nodiscard]]
-	bool fastInDistance(const glm::vec3 &v1, const glm::vec3 &v2, float distance = EPS);
+    [[nodiscard]]
+    bool fastInDistance(const glm::vec3 &v1, const glm::vec3 &v2, float distance = EPS);
 }
 
 template<int L, typename T, glm::qualifier Q>
 inline QDebug operator<<(QDebug dbg, const glm::vec<L, T, Q> &vec) {
-	return dbg << glm::to_string(vec).c_str();
+
+    return dbg << glm::to_string(vec).c_str();
 }
 
 template<int L, int R, typename T, glm::qualifier Q>
 inline QDebug operator<<(QDebug dbg, const glm::mat<L, R, T, Q> &mat) {
-	return dbg << glm::to_string(mat).c_str();
+
+    return dbg << glm::to_string(mat).c_str();
 }
 
 template<typename T, glm::qualifier Q>
 inline bool operator<(const glm::vec<3, T, Q> &vecL, const glm::vec<3, T, Q> &vecR) {
-	return vecL.x < vecR.x && vecL.y < vecR.y && vecL.z < vecR.z;
+
+    return vecL.x < vecR.x && vecL.y < vecR.y && vecL.z < vecR.z;
 }
 
 

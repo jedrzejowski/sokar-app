@@ -8,11 +8,11 @@
 
 namespace Sokar3D {
 
-	// https://fvcaputo.github.io/2019/02/06/memory-alignment.html
-	struct SolidMaterial {
-		alignas(16) glm::vec3 color;
-		alignas(16) glm::vec3 specular;
-		alignas(4) float shininess;
-	};
+    // https://fvcaputo.github.io/2019/02/06/memory-alignment.html
+    struct SolidMaterial {
+        alignas(16) glm::vec3 color;
+        alignas(16) glm::vec3 specular;
+        alignas(4) float shininess;
+    };
 }
 

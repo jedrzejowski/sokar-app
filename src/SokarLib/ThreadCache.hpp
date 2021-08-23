@@ -5,8 +5,8 @@
 #pragma once
 
 namespace SokarLib {
-	template<typename Cache>
-	class ThreadCache {
+    template<typename Cache>
+    class ThreadCache {
 
-	};
+    };
 }

@@ -8,56 +8,65 @@
 using namespace SokarUi;
 
 Vec3Input::Vec3Input(QWidget *parent)
-		: QWidget(parent),
-		  ui(new Ui::Vec3Input()) {
-	ui->setupUi(this);
+        : QWidget(parent),
+          ui(new Ui::Vec3Input()) {
 
-	QObject::connect(ui->xBox, qOverload<qreal>(&QDoubleSpinBox::valueChanged), [this]() { emitChange(); });
-	QObject::connect(ui->yBox, qOverload<qreal>(&QDoubleSpinBox::valueChanged), [this]() { emitChange(); });
-	QObject::connect(ui->zBox, qOverload<qreal>(&QDoubleSpinBox::valueChanged), [this]() { emitChange(); });
+    ui->setupUi(this);
+
+    QObject::connect(ui->xBox, qOverload<qreal>(&QDoubleSpinBox::valueChanged), [this]() { emitChange(); });
+    QObject::connect(ui->yBox, qOverload<qreal>(&QDoubleSpinBox::valueChanged), [this]() { emitChange(); });
+    QObject::connect(ui->zBox, qOverload<qreal>(&QDoubleSpinBox::valueChanged), [this]() { emitChange(); });
 }
 
 Vec3Input::~Vec3Input() {
-	delete ui;
+
+    delete ui;
 }
 
 glm::vec3 Vec3Input::getValue() const {
-	return glm::vec3(
-			ui->xBox->value(),
-			ui->yBox->value(),
-			ui->zBox->value()
-	);
+
+    return glm::vec3(
+            ui->xBox->value(),
+            ui->yBox->value(),
+            ui->zBox->value()
+    );
 }
 
 void Vec3Input::setValue(const glm::vec3 &vector) {
-	haltEmtChange = true;
-	ui->xBox->setValue(vector.x);
-	ui->yBox->setValue(vector.y);
-	ui->zBox->setValue(vector.z);
-	haltEmtChange = false;
+
+    haltEmtChange = true;
+    ui->xBox->setValue(vector.x);
+    ui->yBox->setValue(vector.y);
+    ui->zBox->setValue(vector.z);
+    haltEmtChange = false;
 }
 
 void Vec3Input::setMinimum(const glm::vec3 &vector) {
-	ui->xBox->setMinimum(vector.x);
-	ui->yBox->setMinimum(vector.y);
-	ui->zBox->setMinimum(vector.z);
+
+    ui->xBox->setMinimum(vector.x);
+    ui->yBox->setMinimum(vector.y);
+    ui->zBox->setMinimum(vector.z);
 }
 
 void Vec3Input::setMaximum(const glm::vec3 &vector) {
-	ui->xBox->setMaximum(vector.x);
-	ui->yBox->setMaximum(vector.y);
-	ui->zBox->setMaximum(vector.z);
+
+    ui->xBox->setMaximum(vector.x);
+    ui->yBox->setMaximum(vector.y);
+    ui->zBox->setMaximum(vector.z);
 }
 
 void Vec3Input::setMinimum(float value) {
-	setMinimum({value, value, value});
+
+    setMinimum({value, value, value});
 }
 
 void Vec3Input::setMaximum(float value) {
-	setMaximum({value, value, value});
+
+    setMaximum({value, value, value});
 }
 
 void Vec3Input::emitChange() {
-	if (haltEmtChange) return;
-	emit valueChanged(getValue());
+
+    if (haltEmtChange) return;
+    emit valueChanged(getValue());
 }

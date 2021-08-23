@@ -10,7 +10,7 @@ namespace Sokar3D {
 
     class Mesh {
     public:
-        
+
         virtual ~Mesh() = default;
 
         virtual StaticMeshPtr toStaticMesh() const = 0;

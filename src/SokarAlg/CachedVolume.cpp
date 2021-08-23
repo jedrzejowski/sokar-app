@@ -7,25 +7,28 @@
 using namespace SokarAlg;
 
 void CachedVolume::volumeChanged() {
-	cache.resize({0, 0, 0});
+
+    cache.resize({0, 0, 0});
 }
 
 glm::i32vec3 CachedVolume::getSize() const {
-	return size;
+
+    return size;
 }
 
 float CachedVolume::getValue(const glm::i32vec3 &position) const {
-	return cache(position);
+
+    return cache(position);
 }
 
 void CachedVolume::refreshCache() {
 
-	size = volume->getSize();
-	cache.resize(size);
+    size = volume->getSize();
+    cache.resize(size);
 
-	forI32space({0, 0, 0}, size, [this](const auto &position) {
-		float value = volume->getValue(position);
-		cache(position) = value;
-	});
+    forI32space({0, 0, 0}, size, [this](const auto &position) {
+        float value = volume->getValue(position);
+        cache(position) = value;
+    });
 }
 

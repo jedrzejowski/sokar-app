@@ -9,180 +9,184 @@
 using namespace Sokar;
 
 DicomFrameSet::DicomFrameSet(const gdcm::ImageReader *reader, QObject *parent) :
-		DicomSceneSet(parent),
-		imageReader(reader),
-		gdcmFile(reader->GetFile()),
-		gdcmDataSet(gdcmFile.GetDataSet()),
-		gdcmImage(reader->GetImage()),
-		dataConverter(imageReader->GetFile()) {
-	sokarTrace();
+        DicomSceneSet(parent),
+        imageReader(reader),
+        gdcmFile(reader->GetFile()),
+        gdcmDataSet(gdcmFile.GetDataSet()),
+        gdcmImage(reader->GetImage()),
+        dataConverter(imageReader->GetFile()) {
 
-	initScenes();
+    sokarTrace();
+
+    initScenes();
 }
 
 DicomFrameSet::~DicomFrameSet() {
-	sokarTrace();
 
-	delete imageReader;
+    sokarTrace();
+
+    delete imageReader;
 }
 
 void DicomFrameSet::initScenes() {
 
-	static gdcm::Tag TagNumberOfFrames(0x0028, 0x0008);
+    static gdcm::Tag TagNumberOfFrames(0x0028, 0x0008);
 
-	if (gdcmDataSet.FindDataElement(TagNumberOfFrames))
-		numberOfFrames = dataConverter.toString(TagNumberOfFrames).toInt();
-	dicomScenes.resize(numberOfFrames);
+    if (gdcmDataSet.FindDataElement(TagNumberOfFrames))
+        numberOfFrames = dataConverter.toString(TagNumberOfFrames).toInt();
+    dicomScenes.resize(numberOfFrames);
 
-	imageBuffer.resize(gdcmImage.GetBufferLength());
-	gdcmImage.GetBuffer(&imageBuffer[0]);
+    imageBuffer.resize(gdcmImage.GetBufferLength());
+    gdcmImage.GetBuffer(&imageBuffer[0]);
 
-	auto sceneParams = SokarScene::SceneParams();
-	sceneParams.imgSize = gdcmImage.GetBufferLength() / numberOfFrames;
-	sceneParams.dicomSceneSet = this;
-	sceneParams.imageReader = imageReader;
-	sceneParams.imageBuffer = &imageBuffer;
-	sceneParams.dataConverter = &dataConverter;
+    auto sceneParams = SokarScene::SceneParams();
+    sceneParams.imgSize = gdcmImage.GetBufferLength() / numberOfFrames;
+    sceneParams.dicomSceneSet = this;
+    sceneParams.imageReader = imageReader;
+    sceneParams.imageBuffer = &imageBuffer;
+    sceneParams.dataConverter = &dataConverter;
 
-	for (auto &scene : dicomScenes) {
+    for (auto &scene : dicomScenes) {
 
-		try {
+        try {
 
-			switch (gdcmImage.GetPhotometricInterpretation()) {
-				case gdcm::PhotometricInterpretation::MONOCHROME1:
-				case gdcm::PhotometricInterpretation::MONOCHROME2:
-					scene = new Sokar::Monochrome::Scene(sceneParams);
-					break;
+            switch (gdcmImage.GetPhotometricInterpretation()) {
+                case gdcm::PhotometricInterpretation::MONOCHROME1:
+                case gdcm::PhotometricInterpretation::MONOCHROME2:
+                    scene = new Sokar::Monochrome::Scene(sceneParams);
+                    break;
 
-				case gdcm::PhotometricInterpretation::RGB:
-					scene = new Sokar::RedGreenBlue::Scene(sceneParams);
-					break;
+                case gdcm::PhotometricInterpretation::RGB:
+                    scene = new Sokar::RedGreenBlue::Scene(sceneParams);
+                    break;
 
-				case gdcm::PhotometricInterpretation::YBR_FULL:
-					scene = new Sokar::LumBlueRed::Scene(sceneParams);
-					break;
+                case gdcm::PhotometricInterpretation::YBR_FULL:
+                    scene = new Sokar::LumBlueRed::Scene(sceneParams);
+                    break;
 
-				default:
-					throw Sokar::ImageTypeNotSupportedException();
-			}
+                default:
+                    throw Sokar::ImageTypeNotSupportedException();
+            }
 
-		} catch (Sokar::Exception &e) {
-			scene = new ExceptionScene(sceneParams, e);
-		}
+        } catch (Sokar::Exception &e) {
+            scene = new ExceptionScene(sceneParams, e);
+        }
 
-		sceneParams.frame++;
-	}
+        sceneParams.frame++;
+    }
 }
 
 SceneSequence *DicomFrameSet::getSceneSequence() {
-	QMutexLocker lock(&qMutex);
 
-	if (sceneSequence != nullptr)
-		return sceneSequence;
+    QMutexLocker lock(&qMutex);
 
-	sceneSequence = new SceneSequence(this);
+    if (sceneSequence != nullptr)
+        return sceneSequence;
 
-	if (numberOfFrames == 1) {
-		*sceneSequence << new Step(dicomScenes[0], quint64(1000 / 12));
-		return sceneSequence;
-	}
+    sceneSequence = new SceneSequence(this);
 
-	static gdcm::Tag
-			TagFrameIncrementPointer(0x0028, 0x0009),
-	/**
-	 * Nominal time (in msec) per individual frame. See Section C.7.6.5.1.1 for further explanation.
-	 * Required if Frame Increment Pointer (0028,0009) points to Frame Time.
-	 */        TagFrameTime(0x0018, 0x1063),
-	/**
-	 * An array that contains the real time increments (in msec) between frames for a Multi-frame image.
-	 * See Section C.7.6.5.1.2 for further explanation.
-	 * Required if Frame Increment Pointer (0028,0009) points to Frame Time Vector.
-	 */        TagFrameTimeVector(0x0018, 0x1065),
-	/**
-	 * Number of frames per second.
-	 */        TagCineRate(0x0018, 0x0040),
-	/**
-	 * Describes the preferred playback sequencing for a multi-frame image.
-	 * Enumerated Values:
-	 *   0:
-	 *     Looping (1,2…n,1,2,…n,1,2,….n,…)
-	 *   1:
-	 *     Sweeping (1,2,…n,n-1,…2,1,2,…n,…)
-	 */        TagPreferredPlaybackSequencing(0x0018, 0x1244); //TODO zaimplementować to
+    if (numberOfFrames == 1) {
+        *sceneSequence << new Step(dicomScenes[0], quint64(1000 / 12));
+        return sceneSequence;
+    }
 
-	if (!dataConverter.hasTagWithData(TagFrameIncrementPointer))
-		return sceneSequence;
+    static gdcm::Tag
+            TagFrameIncrementPointer(0x0028, 0x0009),
+    /**
+     * Nominal time (in msec) per individual frame. See Section C.7.6.5.1.1 for further explanation.
+     * Required if Frame Increment Pointer (0028,0009) points to Frame Time.
+     */        TagFrameTime(0x0018, 0x1063),
+    /**
+     * An array that contains the real time increments (in msec) between frames for a Multi-frame image.
+     * See Section C.7.6.5.1.2 for further explanation.
+     * Required if Frame Increment Pointer (0028,0009) points to Frame Time Vector.
+     */        TagFrameTimeVector(0x0018, 0x1065),
+    /**
+     * Number of frames per second.
+     */        TagCineRate(0x0018, 0x0040),
+    /**
+     * Describes the preferred playback sequencing for a multi-frame image.
+     * Enumerated Values:
+     *   0:
+     *     Looping (1,2…n,1,2,…n,1,2,….n,…)
+     *   1:
+     *     Sweeping (1,2,…n,n-1,…2,1,2,…n,…)
+     */        TagPreferredPlaybackSequencing(0x0018, 0x1244); //TODO zaimplementować to
 
-	auto frameIncPtr = dataConverter.toAttributeTag(TagFrameIncrementPointer);
+    if (!dataConverter.hasTagWithData(TagFrameIncrementPointer))
+        return sceneSequence;
 
-	auto playback = dataConverter.hasTagWithData(TagPreferredPlaybackSequencing) ?
-					dataConverter.toUShort(TagPreferredPlaybackSequencing) : 0;
+    auto frameIncPtr = dataConverter.toAttributeTag(TagFrameIncrementPointer);
 
-	if (TagFrameTime == frameIncPtr) {
-		auto frameTime = quint64(dataConverter.toDecimalString(TagFrameTime)[0]);
+    auto playback = dataConverter.hasTagWithData(TagPreferredPlaybackSequencing) ?
+                    dataConverter.toUShort(TagPreferredPlaybackSequencing) : 0;
 
-		for (int i = 0; i < numberOfFrames; i++)
-			*sceneSequence << new Step(dicomScenes[i], frameTime);
+    if (TagFrameTime == frameIncPtr) {
+        auto frameTime = quint64(dataConverter.toDecimalString(TagFrameTime)[0]);
 
-		if (playback == 1) sceneSequence->setSweeping(true);
+        for (int i = 0; i < numberOfFrames; i++)
+            *sceneSequence << new Step(dicomScenes[i], frameTime);
 
-		return sceneSequence;
-	}
+        if (playback == 1) sceneSequence->setSweeping(true);
 
-	if (TagFrameTimeVector == frameIncPtr) {
+        return sceneSequence;
+    }
 
-		auto vec = dataConverter.toDecimalString(TagFrameTimeVector);
-		quint64 i = 0;
+    if (TagFrameTimeVector == frameIncPtr) {
 
-		for (auto &time : vec)
-			*sceneSequence << new Step(dicomScenes[i++], quint64(time));
+        auto vec = dataConverter.toDecimalString(TagFrameTimeVector);
+        quint64 i = 0;
 
-		if (playback == 1) sceneSequence->setSweeping(true);
+        for (auto &time : vec)
+            *sceneSequence << new Step(dicomScenes[i++], quint64(time));
 
-		return sceneSequence;
-	}
+        if (playback == 1) sceneSequence->setSweeping(true);
 
-	if (TagCineRate == frameIncPtr) {
+        return sceneSequence;
+    }
 
-		auto frameTime = quint64(1 / dataConverter.toDecimalString(TagCineRate)[0]) * 1000;
+    if (TagCineRate == frameIncPtr) {
 
-		for (int i = 0; i < numberOfFrames; i++)
-			*sceneSequence << new Step(dicomScenes[i], frameTime);
+        auto frameTime = quint64(1 / dataConverter.toDecimalString(TagCineRate)[0]) * 1000;
 
-		if (playback == 1) sceneSequence->setSweeping(true);
+        for (int i = 0; i < numberOfFrames; i++)
+            *sceneSequence << new Step(dicomScenes[i], frameTime);
 
-		return sceneSequence;
-	}
+        if (playback == 1) sceneSequence->setSweeping(true);
 
-	qWarning("DicomSceneSet::getSceneSequence() unknown TagFrameIncrementPointer");
+        return sceneSequence;
+    }
 
-	return sceneSequence;
+    qWarning("DicomSceneSet::getSceneSequence() unknown TagFrameIncrementPointer");
+
+    return sceneSequence;
 }
 
 const QString &DicomFrameSet::getTitle() {
-	if (!title.isEmpty()) return title;
 
-	const static gdcm::Tag
-			TagModality(0x0008, 0x0060),
-			TagStudyDate(0x0008, 0x0020),
-			TagPatientName(0x0010, 0x0010);
+    if (!title.isEmpty()) return title;
+
+    const static gdcm::Tag
+            TagModality(0x0008, 0x0060),
+            TagStudyDate(0x0008, 0x0020),
+            TagPatientName(0x0010, 0x0010);
 
 
-	if (gdcmDataSet.FindDataElement(TagPatientName)) {
-		title += dataConverter.toPersonName(TagPatientName);
-	}
+    if (gdcmDataSet.FindDataElement(TagPatientName)) {
+        title += dataConverter.toPersonName(TagPatientName);
+    }
 
-	if (gdcmDataSet.FindDataElement(TagModality)) {
-		title += tr(" (%1)").arg(
-				dataConverter.toString(TagModality)
-		);
-	}
+    if (gdcmDataSet.FindDataElement(TagModality)) {
+        title += tr(" (%1)").arg(
+                dataConverter.toString(TagModality)
+        );
+    }
 
-	if (gdcmDataSet.FindDataElement(TagStudyDate)) {
-		title += tr(" - %1").arg(
-				dataConverter.toDate(TagStudyDate).toString(tr("yyyy-MM-dd"))
-		);
-	}
+    if (gdcmDataSet.FindDataElement(TagStudyDate)) {
+        title += tr(" - %1").arg(
+                dataConverter.toDate(TagStudyDate).toString(tr("yyyy-MM-dd"))
+        );
+    }
 
-	return title;
+    return title;
 }

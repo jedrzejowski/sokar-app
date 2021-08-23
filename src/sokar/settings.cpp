@@ -5,18 +5,20 @@ using namespace Sokar;
 #define SETTINGS_RECENTOPEN "recentOpen"
 
 QStringList Settings::recentOpen() {
-	return qSettings->value(SETTINGS_RECENTOPEN, QStringList()).value<QStringList>();
+
+    return qSettings->value(SETTINGS_RECENTOPEN, QStringList()).value<QStringList>();
 }
 
 
 void Settings::bumpRecentOpen(const QString &path) {
-	auto recentOpen = Settings::recentOpen();
 
-	recentOpen << path;
+    auto recentOpen = Settings::recentOpen();
 
-	recentOpen.removeDuplicates();
+    recentOpen << path;
 
-	if (recentOpen.size() > 10) recentOpen.pop_front();
-	
-	qSettings->setValue(SETTINGS_RECENTOPEN, recentOpen);
+    recentOpen.removeDuplicates();
+
+    if (recentOpen.size() > 10) recentOpen.pop_front();
+
+    qSettings->setValue(SETTINGS_RECENTOPEN, recentOpen);
 }

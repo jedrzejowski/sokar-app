@@ -9,61 +9,63 @@
 using namespace SokarUi;
 
 SegmentationResultWidget::SegmentationResultWidget(
-		const SokarAlg::SegmentationResultCPtr &result,
-		QWidget *parent
+        const SokarAlg::SegmentationResultCPtr &result,
+        QWidget *parent
 ) : QFrame(parent),
-	result(result),
-	ui(new Ui::SegmentationResultWidget) {
-	ui->setupUi(this);
+    result(result),
+    ui(new Ui::SegmentationResultWidget) {
 
-	QObject::connect(ui->deleteButton, &QPushButton::clicked, [this]() { emit deleteResult(); });
-	QObject::connect(ui->saveButton, &QPushButton::clicked, this, &SegmentationResultWidget::saveToWavefrontObjFile);
-	QObject::connect(ui->hideButton, &QPushButton::clicked, [this](bool checked) { emit toggleMesh(checked); });
+    ui->setupUi(this);
 
-	auto pal = QPalette();
-	pal.setColor(QPalette::Window, result->meshColor);
-	ui->colorPreview->setAutoFillBackground(true);
-	ui->colorPreview->setPalette(pal);
+    QObject::connect(ui->deleteButton, &QPushButton::clicked, [this]() { emit deleteResult(); });
+    QObject::connect(ui->saveButton, &QPushButton::clicked, this, &SegmentationResultWidget::saveToWavefrontObjFile);
+    QObject::connect(ui->hideButton, &QPushButton::clicked, [this](bool checked) { emit toggleMesh(checked); });
 
-	ui->colorName->setText(result->meshColor.name());
+    auto pal = QPalette();
+    pal.setColor(QPalette::Window, result->meshColor);
+    ui->colorPreview->setAutoFillBackground(true);
+    ui->colorPreview->setPalette(pal);
 
-	ui->segmentationResult->setText(result->segmentation.description);
-	ui->interpolationResult->setText(result->interpolation.description);
-	ui->cacheResult->setText(result->interpolationCache.description);
-	ui->regionGrowthResult->setText(result->regionGrowth.description);
-	ui->meshSimplificationLabel->setText(result->simplification.description);
-	ui->sumLabel->setText(result->description);
+    ui->colorName->setText(result->meshColor.name());
+
+    ui->segmentationResult->setText(result->segmentation.description);
+    ui->interpolationResult->setText(result->interpolation.description);
+    ui->cacheResult->setText(result->interpolationCache.description);
+    ui->regionGrowthResult->setText(result->regionGrowth.description);
+    ui->meshSimplificationLabel->setText(result->simplification.description);
+    ui->sumLabel->setText(result->description);
 }
 
 SokarUi::SegmentationResultWidget::~SegmentationResultWidget() {
-	delete ui;
+
+    delete ui;
 }
 
 void SegmentationResultWidget::saveToWavefrontObjFile() {
 
-	auto fileName = QFileDialog::getSaveFileName(
-			this,
-			tr("Save Wavefront OBJ"), "",
-			tr("Wavefront (*.obj);;All Files (*)"));
+    auto fileName = QFileDialog::getSaveFileName(
+            this,
+            tr("Save Wavefront OBJ"), "",
+            tr("Wavefront (*.obj);;All Files (*)"));
 
 
-	QtConcurrent::run(
-			[
-					this,
-					fileName,
-					mesh = result->originalMesh
-			]() {
-				QFile file(fileName);
+    QtConcurrent::run(
+            [
+                    this,
+                    fileName,
+                    mesh = result->originalMesh
+            ]() {
+                QFile file(fileName);
 
-				if (!file.open(QIODevice::WriteOnly)) {
-					QMessageBox::information(
-							this, tr("Unable to open file"),
-							file.errorString());
-					return;
-				}
+                if (!file.open(QIODevice::WriteOnly)) {
+                    QMessageBox::information(
+                            this, tr("Unable to open file"),
+                            file.errorString());
+                    return;
+                }
 
-				auto wavefront = SokarLib::WavefrontObjBuilder();
-				mesh->dump2wavefront(wavefront);
-				wavefront.save2file(file);
-			});
+                auto wavefront = SokarLib::WavefrontObjBuilder();
+                mesh->dump2wavefront(wavefront);
+                wavefront.save2file(file);
+            });
 }

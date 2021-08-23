@@ -12,50 +12,50 @@
 
 namespace SokarAlg {
 
-	class RawDicomVolume : public Volume {
+    class RawDicomVolume : public Volume {
 
-		const Sokar::DicomSceneSet *sceneSet = nullptr;
-		SokarDicom::DataConverter dataConverter;
+        const Sokar::DicomSceneSet *sceneSet = nullptr;
+        SokarDicom::DataConverter dataConverter;
 
-	public:
+    public:
 
-		[[nodiscard]]
-		const Sokar::DicomSceneSet *getSceneSet() const;
+        [[nodiscard]]
+        const Sokar::DicomSceneSet *getSceneSet() const;
 
-		void setSceneSet(const Sokar::DicomSceneSet *sceneSet);
+        void setSceneSet(const Sokar::DicomSceneSet *sceneSet);
 
-		[[nodiscard]]
-		glm::vec3 getWokselSize() const;
+        [[nodiscard]]
+        glm::vec3 getWokselSize() const;
 
-		[[nodiscard]]
-		glm::i32vec3 getSize() const override;
+        [[nodiscard]]
+        glm::i32vec3 getSize() const override;
 
-		[[nodiscard]]
-		float getValue(const glm::i32vec3 &position) const override;
-	};
+        [[nodiscard]]
+        float getValue(const glm::i32vec3 &position) const override;
+    };
 
-	class DicomVolume : public InterpolatedVolume {
-		QSharedPointer<const RawDicomVolume> rawDicomVolume;
+    class DicomVolume : public InterpolatedVolume {
+        QSharedPointer<const RawDicomVolume> rawDicomVolume;
 
-		float cubesPerMM = 1.f;
-		glm::vec3 wokselSize = glm::vec3(1.f);
+        float cubesPerMM = 1.f;
+        glm::vec3 wokselSize = glm::vec3(1.f);
 
-	public:
+    public:
 
-		[[nodiscard]]
-		const QSharedPointer<const RawDicomVolume> &getRawDicomVolume() const;
-		void setRawDicomVolume(const QSharedPointer<const RawDicomVolume> &rawDicomVolume);
+        [[nodiscard]]
+        const QSharedPointer<const RawDicomVolume> &getRawDicomVolume() const;
+        void setRawDicomVolume(const QSharedPointer<const RawDicomVolume> &rawDicomVolume);
 
-		[[nodiscard]]
-		glm::i32vec3 getSize() const override;
+        [[nodiscard]]
+        glm::i32vec3 getSize() const override;
 
-		[[nodiscard]]
-		float getCubesPerMM() const;
-		void setCubesPerMM(float cubesPerMm);
+        [[nodiscard]]
+        float getCubesPerMM() const;
+        void setCubesPerMM(float cubesPerMm);
 
-	private:
-		void update();
-	};
+    private:
+        void update();
+    };
 }
 
 

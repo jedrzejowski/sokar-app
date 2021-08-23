@@ -7,6 +7,7 @@
 using namespace SokarLib;
 
 void SaveableAsText::save2file(QFile &file) const {
-	QTextStream out(&file);
-	dump2stream(out);
+
+    QTextStream out(&file);
+    dump2stream(out);
 }

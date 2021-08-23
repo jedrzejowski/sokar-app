@@ -3,35 +3,35 @@
 #include "_sceneset.h"
 
 namespace Sokar {
-	class DicomFrameSet : public DicomSceneSet {
-	Q_OBJECT
-	protected:
+    class DicomFrameSet : public DicomSceneSet {
+    Q_OBJECT
+    protected:
 
-		const gdcm::ImageReader *imageReader;
-		const gdcm::File &gdcmFile;
-		const gdcm::DataSet &gdcmDataSet;
-		const gdcm::Image &gdcmImage;
-		SokarDicom::DataConverter dataConverter;
+        const gdcm::ImageReader *imageReader;
+        const gdcm::File &gdcmFile;
+        const gdcm::DataSet &gdcmDataSet;
+        const gdcm::Image &gdcmImage;
+        SokarDicom::DataConverter dataConverter;
 
-		std::vector<char> imageBuffer;
+        std::vector<char> imageBuffer;
 
-		QString title;
+        QString title;
 
-		int numberOfFrames = 1;
+        int numberOfFrames = 1;
 
-	public:
+    public:
 
-		explicit DicomFrameSet(const gdcm::ImageReader *reader, QObject *parent = nullptr);
-		~DicomFrameSet() override;
+        explicit DicomFrameSet(const gdcm::ImageReader *reader, QObject *parent = nullptr);
+        ~DicomFrameSet() override;
 
-		inline const gdcm::File &getGdcmFile() const { return imageReader->GetFile(); }
+        inline const gdcm::File &getGdcmFile() const { return imageReader->GetFile(); }
 
-		SceneSequence *getSceneSequence() override;
+        SceneSequence *getSceneSequence() override;
 
-		const QString &getTitle() override;
+        const QString &getTitle() override;
 
-	private:
+    private:
 
-		void initScenes();
-	};
+        void initScenes();
+    };
 }

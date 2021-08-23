@@ -9,19 +9,19 @@
 
 namespace SokarAlg {
 
-	class VolumeEnv : public Volume {
+    class VolumeEnv : public Volume {
 
-		QSharedPointer<const Volume> child;
-		glm::i32vec3 envSize;
-		float envValue;
+        QSharedPointer<const Volume> child;
+        glm::i32vec3 envSize;
+        float envValue;
 
-	public:
-		explicit VolumeEnv(const QSharedPointer<const Volume> &child, float envValue);
+    public:
+        explicit VolumeEnv(const QSharedPointer<const Volume> &child, float envValue);
 
-		[[nodiscard]]
-		glm::i32vec3 getSize() const override;
-		[[nodiscard]]
-		float getValue(const glm::i32vec3 &position) const override;
-	};
+        [[nodiscard]]
+        glm::i32vec3 getSize() const override;
+        [[nodiscard]]
+        float getValue(const glm::i32vec3 &position) const override;
+    };
 }
 

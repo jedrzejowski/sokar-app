@@ -8,34 +8,34 @@
 #include "SokarGlm.hpp"
 
 namespace Ui {
-	class Vec3Input;
+    class Vec3Input;
 }
 
 namespace SokarUi {
-	class Vec3Input : public QWidget {
-	Q_OBJECT
-		Ui::Vec3Input *ui;
-		bool haltEmtChange = false;
-	public:
-		explicit Vec3Input(QWidget *parent = nullptr);
-		~Vec3Input() override;
+    class Vec3Input : public QWidget {
+    Q_OBJECT
+        Ui::Vec3Input *ui;
+        bool haltEmtChange = false;
+    public:
+        explicit Vec3Input(QWidget *parent = nullptr);
+        ~Vec3Input() override;
 
-		[[nodiscard]]
-		glm::vec3 getValue() const;
+        [[nodiscard]]
+        glm::vec3 getValue() const;
 
-	signals:
-		void valueChanged(glm::vec3 vec3);
+    signals:
+        void valueChanged(glm::vec3 vec3);
 
-	public slots:
-		void setValue(const glm::vec3 &value);
-		void setMinimum(const glm::vec3& value);
-		void setMaximum(const glm::vec3& value);
-		void setMinimum(float value);
-		void setMaximum(float value);
+    public slots:
+        void setValue(const glm::vec3 &value);
+        void setMinimum(const glm::vec3 &value);
+        void setMaximum(const glm::vec3 &value);
+        void setMinimum(float value);
+        void setMaximum(float value);
 
-	private:
-		void emitChange();
-	};
+    private:
+        void emitChange();
+    };
 }
 
 

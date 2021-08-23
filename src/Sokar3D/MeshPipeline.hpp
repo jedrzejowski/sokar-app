@@ -67,7 +67,7 @@ namespace Sokar3D {
         const SolidMaterial &getMeshMaterial() const;
         void setMeshMaterial(const SolidMaterial &material);
 
-        const std::atomic<bool>& isVisible() const;
+        const std::atomic<bool> &isVisible() const;
         void setVisible(bool visible);
     };
 }

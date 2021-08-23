@@ -15,13 +15,15 @@ VulkanWidget::~VulkanWidget() {
 }
 
 QVulkanWindowRenderer *VulkanWidget::createRenderer() {
-	return renderer;
+
+    return renderer;
 }
 
 bool VulkanWidget::event(QEvent *event) {
-	if (renderer != nullptr && renderer->uiEvent(event)) {
-		return true;
-	}
 
-	return QVulkanWindow::event(event);
+    if (renderer != nullptr && renderer->uiEvent(event)) {
+        return true;
+    }
+
+    return QVulkanWindow::event(event);
 }

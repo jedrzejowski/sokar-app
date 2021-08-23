@@ -8,10 +8,10 @@
 
 namespace SokarLib {
 
-	class Displayable {
-	public:
-		virtual QString toDisplay() = 0;
-	};
+    class Displayable {
+    public:
+        virtual QString toDisplay() = 0;
+    };
 }
 
 

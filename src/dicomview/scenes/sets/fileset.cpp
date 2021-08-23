@@ -2,76 +2,79 @@
 
 using namespace Sokar;
 
-QVector<DicomFileSet *> DicomFileSet::create(DicomReaderVec &vec, QObject* parent) {
-	static gdcm::Tag TagSeriesInstanceUID(0x0020, 0x000E);
+QVector<DicomFileSet *> DicomFileSet::create(DicomReaderVec &vec, QObject *parent) {
 
-	QHash<QString, DicomReaderVec> hash;
-	SokarDicom::DataConverter converter;
+    static gdcm::Tag TagSeriesInstanceUID(0x0020, 0x000E);
 
-	for (auto &imgReader: vec) {
+    QHash<QString, DicomReaderVec> hash;
+    SokarDicom::DataConverter converter;
 
-		converter.setFile(imgReader->GetFile());
+    for (auto &imgReader: vec) {
 
-		auto seriesInstanceUID = converter.toString(TagSeriesInstanceUID);
+        converter.setFile(imgReader->GetFile());
 
-		if (!hash.contains(seriesInstanceUID))
-			hash[seriesInstanceUID] = DicomReaderVec();
+        auto seriesInstanceUID = converter.toString(TagSeriesInstanceUID);
 
-		hash[seriesInstanceUID] << imgReader;
-	}
+        if (!hash.contains(seriesInstanceUID))
+            hash[seriesInstanceUID] = DicomReaderVec();
 
-	QVector<DicomFileSet *> fileSets;
+        hash[seriesInstanceUID] << imgReader;
+    }
 
-	for (auto readers : hash)
-		fileSets << new DicomFileSet(readers, parent);
+    QVector<DicomFileSet *> fileSets;
 
-	return fileSets;
+    for (auto readers : hash)
+        fileSets << new DicomFileSet(readers, parent);
+
+    return fileSets;
 }
 
 
 DicomFileSet::DicomFileSet(DicomReaderVec &vec, QObject *parent) : DicomSceneSet(parent) {
 
-	SokarDicom::DataConverter converter;
+    SokarDicom::DataConverter converter;
 
-	std::sort(vec.begin(), vec.end(), [&](const gdcm::ImageReader *&a, const gdcm::ImageReader *&b) {
-		static gdcm::Tag TagInstanceNumber(0x0020, 0x0013);
-		int numA, numB;
+    std::sort(vec.begin(), vec.end(), [&](const gdcm::ImageReader *&a, const gdcm::ImageReader *&b) {
+        static gdcm::Tag TagInstanceNumber(0x0020, 0x0013);
+        int numA, numB;
 
-		converter.setFile(a->GetFile());
-		numA = converter.toIntegerString(TagInstanceNumber);
+        converter.setFile(a->GetFile());
+        numA = converter.toIntegerString(TagInstanceNumber);
 
-		converter.setFile(b->GetFile());
-		numB = converter.toIntegerString(TagInstanceNumber);
+        converter.setFile(b->GetFile());
+        numB = converter.toIntegerString(TagInstanceNumber);
 
-		return numA < numB;
-	});
+        return numA < numB;
+    });
 
-	for (auto &imgReader: vec) {
-		auto frameSet = new DicomFrameSet(imgReader, this);
-		frameSets << frameSet;
+    for (auto &imgReader: vec) {
+        auto frameSet = new DicomFrameSet(imgReader, this);
+        frameSets << frameSet;
 
-		for (auto &dicomScene : frameSet->getScenesVector())
-			dicomScenes << dicomScene;
-	}
+        for (auto &dicomScene : frameSet->getScenesVector())
+            dicomScenes << dicomScene;
+    }
 }
 
 DicomFileSet::~DicomFileSet() {
 }
 
 const QString &DicomFileSet::getTitle() {
-	return frameSets[0]->getTitle();
+
+    return frameSets[0]->getTitle();
 }
 
 SceneSequence *DicomFileSet::getSceneSequence() {
-	if (sceneSequence != nullptr)
-		return sceneSequence;
 
-	sceneSequence = new SceneSequence(this);
+    if (sceneSequence != nullptr)
+        return sceneSequence;
 
-	for (auto &frameSet : frameSets)
-		*sceneSequence << frameSet->getSceneSequence();
+    sceneSequence = new SceneSequence(this);
 
-	sceneSequence->setSweeping(true);
+    for (auto &frameSet : frameSets)
+        *sceneSequence << frameSet->getSceneSequence();
 
-	return sceneSequence;
+    sceneSequence->setSweeping(true);
+
+    return sceneSequence;
 }

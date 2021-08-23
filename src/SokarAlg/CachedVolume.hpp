@@ -10,23 +10,23 @@
 
 namespace SokarAlg {
 
-	class CachedVolume : public VolumeDecorator {
+    class CachedVolume : public VolumeDecorator {
 
-		glm::i32vec3 size = glm::i32vec3(0);
-		Array3<float> cache;
+        glm::i32vec3 size = glm::i32vec3(0);
+        Array3<float> cache;
 
-	protected:
+    protected:
 
-		void volumeChanged() override;
+        void volumeChanged() override;
 
-	public:
+    public:
 
-		[[nodiscard]]
-		glm::i32vec3 getSize() const override;
-		[[nodiscard]]
-		float getValue(const glm::i32vec3 &position) const override;
+        [[nodiscard]]
+        glm::i32vec3 getSize() const override;
+        [[nodiscard]]
+        float getValue(const glm::i32vec3 &position) const override;
 
-		void refreshCache();
-	};
+        void refreshCache();
+    };
 }
 

@@ -7,109 +7,112 @@ using namespace Sokar;
 
 
 DataSetViewer::DataSetViewer(SokarScene::DicomScene *dicomScene, QWidget *parent)
-		: QTreeView(parent),
-		  dicomScene(dicomScene) {
+        : QTreeView(parent),
+          dicomScene(dicomScene) {
 
-	setModel(&standardModel);
-
-
-	connect(dicomScene, &SokarScene::DicomScene::destroyed, this, &DataSetViewer::close);
+    setModel(&standardModel);
 
 
-	headerLabels << "Tag" << "VL" << "VR" << "Keyword" << "Value";
-	standardModel.setHorizontalHeaderLabels(headerLabels);
+    connect(dicomScene, &SokarScene::DicomScene::destroyed, this, &DataSetViewer::close);
 
-	initTree();
 
-	resizeColumnToContents(0);//Tag
-	resizeColumnToContents(1);//VL
-	resizeColumnToContents(2);//VR
-	resizeColumnToContents(3);//Keyword
+    headerLabels << "Tag" << "VL" << "VR" << "Keyword" << "Value";
+    standardModel.setHorizontalHeaderLabels(headerLabels);
+
+    initTree();
+
+    resizeColumnToContents(0);//Tag
+    resizeColumnToContents(1);//VL
+    resizeColumnToContents(2);//VR
+    resizeColumnToContents(3);//Keyword
 }
 
 QString tagIdToString(const gdcm::Tag &tag) {
-	auto grp = QString::number(tag.GetGroup(), 16).toUpper();
-	auto elem = QString::number(tag.GetElement(), 16).toUpper();
 
-	grp = QString(4 - grp.length(), '0') + grp;
-	elem = QString(4 - elem.length(), '0') + elem;
+    auto grp = QString::number(tag.GetGroup(), 16).toUpper();
+    auto elem = QString::number(tag.GetElement(), 16).toUpper();
 
-	return grp + "," + elem;
+    grp = QString(4 - grp.length(), '0') + grp;
+    elem = QString(4 - elem.length(), '0') + elem;
+
+    return grp + "," + elem;
 }
 
 void DataSetViewer::initTree() {
 
-	stringFilter.SetFile(dicomScene->getGdcmFile());
+    stringFilter.SetFile(dicomScene->getGdcmFile());
 
-	auto rootItem = standardModel.invisibleRootItem();
+    auto rootItem = standardModel.invisibleRootItem();
 
-	auto &dataset = dicomScene->getGdcmFile().GetDataSet();
+    auto &dataset = dicomScene->getGdcmFile().GetDataSet();
 
-	forEachDataSet(dataset, rootItem);
+    forEachDataSet(dataset, rootItem);
 }
 
 
 void DataSetViewer::forEachDataSet(const gdcm::DataSet &dataset, QStandardItem *parent) {
 
-	static auto &dicts = gdcm::Global::GetInstance().GetDicts();
-	static auto &pubdict = dicts.GetPublicDict();
+    static auto &dicts = gdcm::Global::GetInstance().GetDicts();
+    static auto &pubdict = dicts.GetPublicDict();
 
 
-	for (auto elem : dataset.GetDES()) {
+    for (auto elem : dataset.GetDES()) {
 
-		QList<QStandardItem *> row;
+        QList<QStandardItem *> row;
 
-		auto &tag = elem.GetTag();
-		auto tagItem = new QStandardItem(tagIdToString(tag));
+        auto &tag = elem.GetTag();
+        auto tagItem = new QStandardItem(tagIdToString(tag));
 
-		auto &vl = elem.GetVL();
-		auto vlItem = new QStandardItem(vl.IsUndefined() ? "" : QString::number(vl));
-		vlItem->setTextAlignment(Qt::AlignRight);
+        auto &vl = elem.GetVL();
+        auto vlItem = new QStandardItem(vl.IsUndefined() ? "" : QString::number(vl));
+        vlItem->setTextAlignment(Qt::AlignRight);
 
-		auto &vr = elem.GetVR();
-		auto vrItem = new QStandardItem(gdcm::VR::GetVRStringFromFile(vr));
+        auto &vr = elem.GetVR();
+        auto vrItem = new QStandardItem(gdcm::VR::GetVRStringFromFile(vr));
 
-		auto keyword = pubdict.GetKeywordFromTag(tag);
-		auto keywordItem = new QStandardItem(keyword == nullptr ? "" : QString::fromStdString(keyword));
+        auto keyword = pubdict.GetKeywordFromTag(tag);
+        auto keywordItem = new QStandardItem(keyword == nullptr ? "" : QString::fromStdString(keyword));
 
-		auto valueItem = new QStandardItem();
-		if (vr == gdcm::VR::SQ) {
-			auto sq = elem.GetValueAsSQ();
+        auto valueItem = new QStandardItem();
+        if (vr == gdcm::VR::SQ) {
+            auto sq = elem.GetValueAsSQ();
 
-			for (int i = 1; i <= sq->GetNumberOfItems(); i++) {
-				auto childItem = new QStandardItem(QString::number(i));
-				childItem->setFlags(childItem->flags() & ~Qt::ItemIsEditable);
+            for (int i = 1; i <= sq->GetNumberOfItems(); i++) {
+                auto childItem = new QStandardItem(QString::number(i));
+                childItem->setFlags(childItem->flags() & ~Qt::ItemIsEditable);
 
-				auto &nestedDS = sq->GetItem(i).GetNestedDataSet();
-				forEachDataSet(nestedDS, childItem);
-				tagItem->appendRow(childItem);
-			}
+                auto &nestedDS = sq->GetItem(i).GetNestedDataSet();
+                forEachDataSet(nestedDS, childItem);
+                tagItem->appendRow(childItem);
+            }
 
-		} else {
-			auto str = QString::fromStdString(stringFilter.ToString(elem));
-			valueItem->setText(str.left(128));
-		}
+        } else {
+            auto str = QString::fromStdString(stringFilter.ToString(elem));
+            valueItem->setText(str.left(128));
+        }
 
-		row << tagItem << vlItem << vrItem << keywordItem << valueItem;
+        row << tagItem << vlItem << vrItem << keywordItem << valueItem;
 
-		for (auto &item:row)
-			item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+        for (auto &item:row)
+            item->setFlags(item->flags() & ~Qt::ItemIsEditable);
 
-		parent->appendRow(row);
-	}
+        parent->appendRow(row);
+    }
 }
 
 DataSetViewer *DataSetViewer::openAsWindow(SokarScene::DicomScene *scene) {
-	auto widget = new DataSetViewer(scene);
 
-	widget->setAttribute(Qt::WA_DeleteOnClose);
-	widget->show();
+    auto widget = new DataSetViewer(scene);
 
-	return widget;
+    widget->setAttribute(Qt::WA_DeleteOnClose);
+    widget->show();
+
+    return widget;
 }
 
 DataSetViewer::~DataSetViewer() {
-	qDebug() << "~DataSetViewer()";
+
+    qDebug() << "~DataSetViewer()";
 }
 
 

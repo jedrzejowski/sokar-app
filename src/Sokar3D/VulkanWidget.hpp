@@ -11,40 +11,40 @@
 
 namespace Sokar3D {
 
-	template<class T>
-	struct VulkanWidgetReturn {
-		QWidget *widget;
-		VulkanWidget *vulkanWidget;
-		T *vulkanRenderer;
-	};
+    template<class T>
+    struct VulkanWidgetReturn {
+        QWidget *widget;
+        VulkanWidget *vulkanWidget;
+        T *vulkanRenderer;
+    };
 
-	class VulkanWidget : public QVulkanWindow {
-		VulkanRenderer *renderer = nullptr;
+    class VulkanWidget : public QVulkanWindow {
+        VulkanRenderer *renderer = nullptr;
 
-	protected:
-		bool event(QEvent *event) override;
+    protected:
+        bool event(QEvent *event) override;
 
-	public:
-		VulkanWidget();
-		~VulkanWidget() override;
-		QVulkanWindowRenderer *createRenderer() override;
+    public:
+        VulkanWidget();
+        ~VulkanWidget() override;
+        QVulkanWindowRenderer *createRenderer() override;
 
-		bool isDebugEnabled() const { return true; }
+        bool isDebugEnabled() const { return true; }
 
-		template<class T>
-		static VulkanWidgetReturn<T> New(QVulkanInstance *inst = getVulkanInstance()) {
+        template<class T>
+        static VulkanWidgetReturn<T> New(QVulkanInstance *inst = getVulkanInstance()) {
 
-			auto *widget = new VulkanWidget();
-			widget->setVulkanInstance(inst);
-			auto renderer = new T(widget);
-			widget->renderer = renderer;
+            auto *widget = new VulkanWidget();
+            widget->setVulkanInstance(inst);
+            auto renderer = new T(widget);
+            widget->renderer = renderer;
 
-			QWidget *wrapper = QWidget::createWindowContainer(widget);
-			wrapper->setFocusPolicy(Qt::StrongFocus);
+            QWidget *wrapper = QWidget::createWindowContainer(widget);
+            wrapper->setFocusPolicy(Qt::StrongFocus);
 
-			return {wrapper, widget, renderer};
-		}
-	};
+            return {wrapper, widget, renderer};
+        }
+    };
 }
 
 
