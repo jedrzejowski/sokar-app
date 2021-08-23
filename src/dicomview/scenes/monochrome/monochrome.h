@@ -49,7 +49,7 @@ namespace Sokar::Monochrome {
         glm::vec3 getWokselValue(quint32 x, quint32 y) const override;
 
     public:
-        void toolBarActionSlot(DicomToolBar::Action action, bool state) override;
+        void toolBarActionSlot(SokarUi::DicomToolBar::Action action, bool state) override;
         void toolBarAdjust() override;
     };
 }

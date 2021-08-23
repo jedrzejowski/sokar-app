@@ -10,14 +10,14 @@ using namespace SokarDicom;
 
 
 File::File(const QSharedPointer<gdcm::Reader> &gdcmReader)
-		: gdcmReader(gdcmReader),
-		  gdcmFile(gdcmReader->GetFile()) {
+        : gdcmReader(gdcmReader),
+          gdcmFile(gdcmReader->GetFile()) {
 }
 
 Image::Image(const QSharedPointer<gdcm::ImageReader> &gdcmReader)
-		: file(new File(gdcmReader)),
-		  gdcmReader(gdcmReader),
-		  gdcmImage(gdcmReader->GetImage()) {
+        : file(new File(gdcmReader)),
+          gdcmReader(gdcmReader),
+          gdcmImage(gdcmReader->GetImage()) {
 }
 
 
@@ -25,29 +25,30 @@ QMap<QString, ImageWPtr> imageCache;
 QMutex cacheMutex;
 
 QFuture<ImagePtr> Image::read(const QString &path) {
-	return QtConcurrent::run([path]() -> ImagePtr {
-		cacheMutex.lock();
-		auto wptr = imageCache[path];
-		if (auto ptr = wptr.lock()) {
-			cacheMutex.unlock();
-			return ptr;
-		}
-		cacheMutex.unlock();
 
-		auto reader = QSharedPointer<gdcm::ImageReader>::create();
+    return QtConcurrent::run([path]() -> ImagePtr {
+        cacheMutex.lock();
+        auto wptr = imageCache[path];
+        if (auto ptr = wptr.lock()) {
+            cacheMutex.unlock();
+            return ptr;
+        }
+        cacheMutex.unlock();
 
-		reader->SetFileName(path.toStdString().c_str());
+        auto reader = QSharedPointer<gdcm::ImageReader>::create();
 
-		if (!reader->Read()) {
-			throw sokarException("cannot open file:" + path);
-		}
+        reader->SetFileName(path.toStdString().c_str());
 
-		auto ptr = ImagePtr(new Image(reader));
+        if (!reader->Read()) {
+            throw sokarException("cannot open file:" + path);
+        }
 
-		cacheMutex.lock();
-		imageCache[path] = ptr;
-		cacheMutex.unlock();
+        auto ptr = ImagePtr(new Image(reader));
 
-		return ptr;
-	});
+        cacheMutex.lock();
+        imageCache[path] = ptr;
+        cacheMutex.unlock();
+
+        return ptr;
+    });
 }

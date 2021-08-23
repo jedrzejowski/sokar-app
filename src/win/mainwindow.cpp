@@ -12,124 +12,127 @@
 using namespace Sokar;
 
 MainWindow::MainWindow(QWidget *parent) :
-		QMainWindow(parent),
-		ui(new Ui::MainWindow) {
-	ui->setupUi(this);
-	ui->splitter->setStretchFactor(0, 0);
-	ui->splitter->setStretchFactor(1, 1);
+        QMainWindow(parent),
+        ui(new Ui::MainWindow) {
 
-	this->setMouseTracking(true);
+    ui->setupUi(this);
+    ui->splitter->setStretchFactor(0, 0);
+    ui->splitter->setStretchFactor(1, 1);
 
-	ui->statusBar->addWidget(new QLabel(tr("This software is the result of the work of a student of engineering studies, under no circumstances may it be used for medical analysis")));
+    this->setMouseTracking(true);
 
-	initMenuBar();
+    ui->statusBar->addWidget(new QLabel(
+            tr("This software is the result of the work of a student of engineering studies, under no circumstances may it be used for medical analysis")));
+
+    initMenuBar();
 }
 
 MainWindow::~MainWindow() {
-	delete ui;
+
+    delete ui;
 }
 
 void MainWindow::selectFile() {
 
-	QString fileName = QFileDialog::getOpenFileName(this,
-													tr("Load DCM file"), "",
-													tr("Dicom File (*.dcm);;All Files (*)"));
-	if (fileName.isEmpty())
-		return;
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                                    tr("Load DCM file"), "",
+                                                    tr("Dicom File (*.dcm);;All Files (*)"));
+    if (fileName.isEmpty())
+        return;
 
-	ui->dicomTabs->addDicomFile(fileName);
+    ui->dicomTabs->addDicomFile(fileName);
 }
 
 void MainWindow::initMenuBar() {
 
-	//region File
+    //region File
 
-	connect(ui->menuFile, &QMenu::aboutToShow, this, [&]() {
-		auto disable = false;
+    connect(ui->menuFile, &QMenu::aboutToShow, this, [&]() {
+        auto disable = false;
 
-		auto dicomView = ui->dicomTabs->currentDicomView();
+        auto dicomView = ui->dicomTabs->currentDicomView();
 
-		if (dicomView == nullptr) {
-			disable = true;
-		} else {
-			auto scene = dicomView->getDicomScene();
+        if (dicomView == nullptr) {
+            disable = true;
+        } else {
+            auto scene = dicomView->getDicomScene();
 
-			if (scene == nullptr)
-				disable = true;
-		}
+            if (scene == nullptr)
+                disable = true;
+        }
 
-		ui->menuExport->setDisabled(disable);
-	});
+        ui->menuExport->setDisabled(disable);
+    });
 
-	connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::selectFile);
+    connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::selectFile);
 
-	for (auto &path : Settings::recentOpen()) {
+    for (auto &path : Settings::recentOpen()) {
 
-		auto action = new QAction(path, this);
+        auto action = new QAction(path, this);
 
-		connect(action, &QAction::triggered, this, [path, this] {
-			ui->dicomTabs->addDicomFile(path);
-		});
+        connect(action, &QAction::triggered, this, [path, this] {
+            ui->dicomTabs->addDicomFile(path);
+        });
 
-		ui->menuOpenRecent->addAction(action);
-	}
+        ui->menuOpenRecent->addAction(action);
+    }
 
-	//region Export as
+    //region Export as
 
-	auto exportAs = [this](QString title, QString filter, QString ext) {
+    auto exportAs = [this](QString title, QString filter, QString ext) {
 
-		auto scene = ui->dicomTabs->currentDicomView()->getDicomScene();
+        auto scene = ui->dicomTabs->currentDicomView()->getDicomScene();
 
-		auto fileName = QFileDialog::getSaveFileName(this, title, "", filter);
+        auto fileName = QFileDialog::getSaveFileName(this, title, "", filter);
 
-		if (fileName.right(ext.length()) != ext) fileName += ext;
+        if (fileName.right(ext.length()) != ext) fileName += ext;
 
-		if (!scene->saveToFile(fileName)) {
+        if (!scene->saveToFile(fileName)) {
 
-			QMessageBox::critical(this, "Error", "An error has occurred while saving image.\nImage was not saved.");
-		}
-	};
+            QMessageBox::critical(this, "Error", "An error has occurred while saving image.\nImage was not saved.");
+        }
+    };
 
-	connect(ui->actionJPEG, &QAction::triggered, this, [this, exportAs]() {
-		exportAs(tr("Save as JPEG"), tr("JPEG File (*.jpg)"), ".jpg");
-	});
+    connect(ui->actionJPEG, &QAction::triggered, this, [this, exportAs]() {
+        exportAs(tr("Save as JPEG"), tr("JPEG File (*.jpg)"), ".jpg");
+    });
 
-	connect(ui->actionPNG, &QAction::triggered, this, [this, exportAs]() {
-		exportAs(tr("Save as PNG"), tr("PNG File (*.png)"), ".png");
-	});
+    connect(ui->actionPNG, &QAction::triggered, this, [this, exportAs]() {
+        exportAs(tr("Save as PNG"), tr("PNG File (*.png)"), ".png");
+    });
 
-	connect(ui->actionGIF, &QAction::triggered, this, [this, exportAs]() {
-		exportAs(tr("Save as GIF"), tr("GIF File (*.gif)"), ".gif");
-	});
+    connect(ui->actionGIF, &QAction::triggered, this, [this, exportAs]() {
+        exportAs(tr("Save as GIF"), tr("GIF File (*.gif)"), ".gif");
+    });
 
-	connect(ui->actionBMP, &QAction::triggered, this, [this, exportAs]() {
-		exportAs(tr("Save as BMP"), tr("BMP File (*.bmp)"), ".bmp");
-	});
+    connect(ui->actionBMP, &QAction::triggered, this, [this, exportAs]() {
+        exportAs(tr("Save as BMP"), tr("BMP File (*.bmp)"), ".bmp");
+    });
 
-	//endregion
+    //endregion
 
-	connect(ui->actionExit, &QAction::triggered, this, &QApplication::quit);
+    connect(ui->actionExit, &QAction::triggered, this, &QApplication::quit);
 
-	//endregion
+    //endregion
 
-	//region Help
+    //region Help
 
-	connect(ui->actionAboutQt, &QAction::triggered, this, [this](){
-		QMessageBox::aboutQt(this, tr("About Qt - Sokar"));
-	});
+    connect(ui->actionAboutQt, &QAction::triggered, this, [this]() {
+        QMessageBox::aboutQt(this, tr("About Qt - Sokar"));
+    });
 
-	connect(ui->actionAboutGDCM, &QAction::triggered, this, [this](){
-		About::GDCM(this);
-	});
+    connect(ui->actionAboutGDCM, &QAction::triggered, this, [this]() {
+        About::GDCM(this);
+    });
 
-	connect(ui->actionAboutSokar, &QAction::triggered, this, [this](){
-		About::Sokar(this);
-	});
+    connect(ui->actionAboutSokar, &QAction::triggered, this, [this]() {
+        About::Sokar(this);
+    });
 
-	connect(ui->actionAboutCMake, &QAction::triggered, this, [this](){
-		About::CMake(this);
-	});
+    connect(ui->actionAboutCMake, &QAction::triggered, this, [this]() {
+        About::CMake(this);
+    });
 
-	//endregion
+    //endregion
 
 }

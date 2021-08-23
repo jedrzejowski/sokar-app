@@ -1,6 +1,6 @@
 #include <gdcmDict.h>
 #include <gdcmGlobal.h>
-#include <src/dicomview/toolbar.h>
+#include <src/SokarUi/DicomToolBar.hpp>
 
 #include "sokar/gdcmSokar.h"
 
@@ -139,7 +139,7 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
 
         switch (getDicomView()->getToolBar()->getState()) {
 
-            case Sokar::DicomToolBar::Pan: {
+            case SokarUi::DicomToolBar::Pan: {
                 target->panTransform.translate(
                         event->screenPos().x() - event->lastScreenPos().x(),
                         event->screenPos().y() - event->lastScreenPos().y());
@@ -148,7 +148,7 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
             }
                 break;
 
-            case Sokar::DicomToolBar::Zoom: {
+            case SokarUi::DicomToolBar::Zoom: {
                 qreal scale = 1;
 
                 scale -= (event->screenPos().y() - event->lastScreenPos().y()) * 0.01;
@@ -159,7 +159,7 @@ void DicomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event) {
             }
                 break;
 
-            case Sokar::DicomToolBar::Rotate: {
+            case SokarUi::DicomToolBar::Rotate: {
 
                 qreal rotate = 0;
 
@@ -289,7 +289,7 @@ void DicomScene::toolBarAdjust() {
     modalityIndicator->setVisible(toolBar->getActionModality()->isChecked());
 }
 
-void DicomScene::toolBarActionSlot(Sokar::DicomToolBar::Action action, bool state) {
+void DicomScene::toolBarActionSlot(SokarUi::DicomToolBar::Action action, bool state) {
 
     bool updateTransform = false;
 
@@ -300,12 +300,12 @@ void DicomScene::toolBarActionSlot(Sokar::DicomToolBar::Action action, bool stat
 
     switch (action) {
 
-        case Sokar::DicomToolBar::ClearPan:
+        case SokarUi::DicomToolBar::ClearPan:
             target->panTransform = QTransform();
             updateTransform = true;
             break;
 
-        case Sokar::DicomToolBar::Fit2Screen:
+        case SokarUi::DicomToolBar::Fit2Screen:
             if (!pixmap.isNull()) {
                 updateTransform = true;
                 target->scaleTransform = QTransform();
@@ -334,45 +334,45 @@ void DicomScene::toolBarActionSlot(Sokar::DicomToolBar::Action action, bool stat
             }
             break;
 
-        case Sokar::DicomToolBar::OriginalResolution:
+        case SokarUi::DicomToolBar::OriginalResolution:
             updateTransform = true;
             target->scaleTransform = QTransform();
             break;
 
-        case Sokar::DicomToolBar::RotateRight90:
+        case SokarUi::DicomToolBar::RotateRight90:
             updateTransform = true;
             target->rotateTransform.rotate(90);
             break;
 
-        case Sokar::DicomToolBar::RotateLeft90:
+        case SokarUi::DicomToolBar::RotateLeft90:
             target->rotateTransform.rotate(-90);
             updateTransform = true;
             break;
 
-        case Sokar::DicomToolBar::FlipHorizontal:
+        case SokarUi::DicomToolBar::FlipHorizontal:
             target->rotateTransform.scale(1, -1);
             updateTransform = true;
             break;
 
-        case Sokar::DicomToolBar::FlipVertical:
+        case SokarUi::DicomToolBar::FlipVertical:
             target->rotateTransform.scale(-1, 1);
             updateTransform = true;
             break;
 
-        case Sokar::DicomToolBar::ClearRotate:
+        case SokarUi::DicomToolBar::ClearRotate:
             target->rotateTransform = QTransform();
             updateTransform = true;
             break;
 
-        case Sokar::DicomToolBar::PatientData:
+        case SokarUi::DicomToolBar::PatientData:
             patientDataIndicator->setVisible(state);
             break;
 
-        case Sokar::DicomToolBar::HospitalData:
+        case SokarUi::DicomToolBar::HospitalData:
             hospitalDataIndicator->setVisible(state);
             break;
 
-        case Sokar::DicomToolBar::ModalityData:
+        case SokarUi::DicomToolBar::ModalityData:
             modalityIndicator->setVisible(state);
             break;
     }

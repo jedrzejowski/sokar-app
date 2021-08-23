@@ -72,6 +72,7 @@ void MousePosition::sceneMouseMoveEvent(QGraphicsSceneMouseEvent *event, QGraphi
     auto realPos = QPointF(imagePosition.x() * positionScale.x(), imagePosition.y() * positionScale.y());
 
     QStringList lines = {
+//            QString("v: %1"),
             QString("x: %1 <unit>%2</unit>").arg(QString::number(realPos.x(), 'f', 1), positionUnit),
             QString("y: %1 <unit>%2</unit>").arg(QString::number(realPos.y(), 'f', 1), positionUnit),
     };

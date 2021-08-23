@@ -206,28 +206,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="10"/>
-        <location filename="../../src/win/about.h" line="64"/>
+        <location filename="../../src/win/about.h" line="11"/>
+        <location filename="../../src/win/about.h" line="66"/>
         <source>About Sokar - Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="12"/>
+        <location filename="../../src/win/about.h" line="13"/>
         <source>&lt;b&gt;Sokar&lt;/b&gt; jest efektem pracy inżynierskiej Adama Jędrzejowskiego&amp;lt;adam@jedrzejowski.pl&amp;gt;&lt;br&gt;&lt;br&gt;Linki:&lt;br&gt;Tekst pracy: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;&lt;br&gt;Kod aplikacji: &lt;a href=&quot;%2&quot;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="28"/>
+        <location filename="../../src/win/about.h" line="29"/>
         <source>About GDCM - Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="30"/>
+        <location filename="../../src/win/about.h" line="31"/>
         <source>&lt;b&gt;Grassroots DiCoM&lt;/b&gt; is a &lt;b&gt;C++&lt;/b&gt; library for DICOM medical files. It is accessible from Python, C#, Java and PHP. It supports RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated transfer syntax.&lt;br&gt;It comes with a super fast scanner implementation to quickly scan hundreds of DICOM files.&lt;br&gt;It supports SCU network operations (C-ECHO, C-FIND, C-STORE, C-MOVE). PS 3.3 &amp; 3.6 are distributed as XML files.&lt;br&gt;It also provides PS 3.15 certificates and password based mecanism to anonymize and de-identify DICOM datasets.&lt;br&gt;&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt;RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated&lt;/li&gt;&lt;li&gt;Quickly scan DICOM for attributes&lt;/li&gt;&lt;li&gt;SCU: C-ECHO, C-FIND, C-STORE, C-MOVE&lt;/li&gt;&lt;li&gt;PS 3.3 &amp; PS 3.6/3.7 as XML files&lt;/li&gt;&lt;li&gt;PS 3.15 de-identify / re-identify (certificates+password based)&lt;/li&gt;&lt;li&gt;Portable C++&lt;/li&gt;&lt;li&gt;Bindings: Python, C#, Java, PHP and Perl&lt;/li&gt;&lt;li&gt;VTK bridge (ImageData and RTSTRUCT)&lt;/li&gt;&lt;li&gt;Nightly test suite&lt;/li&gt;&lt;li&gt;Support well-known DICOM issues (PMSCT_RLE1, JAI JPEG-LS, Signed Short JPEG)&lt;/li&gt;&lt;/ul&gt;Official site: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;&lt;br&gt;SourceForge profile: &lt;a href=&quot;%2&quot;&gt;%2&lt;/a&gt;&lt;br&gt;License: &lt;a href=&quot;%3&quot;&gt;BSD licenses&lt;/a&gt;, &lt;a href=&quot;%4&quot;&gt;Apache License V2.0&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="66"/>
+        <location filename="../../src/win/about.h" line="68"/>
         <source>&lt;b&gt;CMake&lt;/b&gt; is an open-source, cross-platform family of tools designed to build, test and package software.CMake is used to control the software compilation process using simple platform and compiler independent configuration files, and generate native makefiles and workspaces that can be used in the compiler environment of your choice.&lt;br&gt;Links:&lt;br&gt;Official site: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;&lt;br&gt;License: &lt;a href=&quot;%2&quot;&gt;BSD licenses&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -441,170 +441,77 @@
 <context>
     <name>Sokar::DicomTabs</name>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="76"/>
-        <location filename="../../src/widget/dicomtabs.cpp" line="120"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="83"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="128"/>
         <source>I/O Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/widget/dicomtabs.cpp" line="77"/>
-        <location filename="../../src/widget/dicomtabs.cpp" line="121"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="84"/>
+        <location filename="../../src/widget/dicomtabs.cpp" line="129"/>
         <source>Error occured while reading file &apos;%1&apos;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>Sokar::DicomToolBar</name>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="23"/>
-        <source>Windowing</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="41"/>
-        <source>Pan</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="57"/>
-        <source>Move To Center</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="68"/>
-        <source>Zoom</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="84"/>
-        <source>Fit To Screen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="92"/>
-        <source>Original Resolution</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="103"/>
-        <source>Rotate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="119"/>
-        <source>Rotate Right</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="126"/>
-        <source>Rotate Left</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="134"/>
-        <source>Flip Horizontal</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="141"/>
-        <source>Flip Vertical</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="149"/>
-        <source>Clear Transformation</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="159"/>
-        <source>Indicators</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="182"/>
-        <source>Patient Data</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="191"/>
-        <source>Hospital Data</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="200"/>
-        <source>Image Acquisition</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="214"/>
-        <source>DICOM Tags</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/dicomview/toolbar.cpp" line="223"/>
-        <source>Segmentation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>Sokar::MainWindow</name>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="23"/>
+        <location filename="../../src/win/mainwindow.cpp" line="25"/>
         <source>This software is the result of the work of a student of engineering studies, under no circumstances may it be used for medical analysis</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="35"/>
+        <location filename="../../src/win/mainwindow.cpp" line="38"/>
         <source>Load DCM file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="36"/>
+        <location filename="../../src/win/mainwindow.cpp" line="39"/>
         <source>Dicom File (*.dcm);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="94"/>
+        <location filename="../../src/win/mainwindow.cpp" line="97"/>
         <source>Save as JPEG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="94"/>
+        <location filename="../../src/win/mainwindow.cpp" line="97"/>
         <source>JPEG File (*.jpg)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="98"/>
+        <location filename="../../src/win/mainwindow.cpp" line="101"/>
         <source>Save as PNG</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="98"/>
+        <location filename="../../src/win/mainwindow.cpp" line="101"/>
         <source>PNG File (*.png)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="102"/>
+        <location filename="../../src/win/mainwindow.cpp" line="105"/>
         <source>Save as GIF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="102"/>
+        <location filename="../../src/win/mainwindow.cpp" line="105"/>
         <source>GIF File (*.gif)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="106"/>
+        <location filename="../../src/win/mainwindow.cpp" line="109"/>
         <source>Save as BMP</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="106"/>
+        <location filename="../../src/win/mainwindow.cpp" line="109"/>
         <source>BMP File (*.bmp)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/mainwindow.cpp" line="118"/>
+        <location filename="../../src/win/mainwindow.cpp" line="121"/>
         <source>About Qt - Sokar</source>
         <translation type="unfinished"></translation>
     </message>
@@ -726,27 +633,27 @@
 <context>
     <name>SokarDicom::DataConverter</name>
     <message>
-        <location filename="../../src/SokarDicom/DataConventer.cpp" line="43"/>
+        <location filename="../../src/SokarDicom/DataConventer.cpp" line="47"/>
         <source>years</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarDicom/DataConventer.cpp" line="45"/>
+        <location filename="../../src/SokarDicom/DataConventer.cpp" line="49"/>
         <source>months</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarDicom/DataConventer.cpp" line="47"/>
+        <location filename="../../src/SokarDicom/DataConventer.cpp" line="51"/>
         <source>weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarDicom/DataConventer.cpp" line="49"/>
+        <location filename="../../src/SokarDicom/DataConventer.cpp" line="53"/>
         <source>days</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarDicom/DataConventer.cpp" line="56"/>
+        <location filename="../../src/SokarDicom/DataConventer.cpp" line="60"/>
         <source>%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
@@ -921,6 +828,99 @@
     <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="320"/>
         <source>Osadz w pustej przestrzeni</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SokarUi::DicomToolBar</name>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="22"/>
+        <source>Windowing</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="40"/>
+        <source>Pan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="56"/>
+        <source>Move To Center</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="67"/>
+        <source>Zoom</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="83"/>
+        <source>Fit To Screen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="91"/>
+        <source>Original Resolution</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="102"/>
+        <source>Rotate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="118"/>
+        <source>Rotate Right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="125"/>
+        <source>Rotate Left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="133"/>
+        <source>Flip Horizontal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="140"/>
+        <source>Flip Vertical</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="148"/>
+        <source>Clear Transformation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="158"/>
+        <source>Indicators</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="181"/>
+        <source>Patient Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="190"/>
+        <source>Hospital Data</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="199"/>
+        <source>Image Acquisition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="213"/>
+        <source>DICOM Tags</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/DicomToolBar.cpp" line="222"/>
+        <source>Segmentation</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

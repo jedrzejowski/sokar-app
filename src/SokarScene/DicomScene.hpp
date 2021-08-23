@@ -9,7 +9,7 @@
 #include "_classdef.h"
 
 #include "dicomview/graphics.h"
-#include "dicomview/toolbar.h"
+#include "SokarUi/DicomToolBar.hpp"
 
 #include "sokar/pixel.h"
 #include "SokarGlm.hpp"
@@ -126,7 +126,7 @@ namespace SokarScene {
 
     public slots:
         void reloadPixmap();
-        virtual void toolBarActionSlot(Sokar::DicomToolBar::Action action, bool state = false);
+        virtual void toolBarActionSlot(SokarUi::DicomToolBar::Action action, bool state = false);
         void reposItems() override;
         void updatePixmapTransformation();
         void prepare();

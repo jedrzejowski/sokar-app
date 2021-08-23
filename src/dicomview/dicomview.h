@@ -7,49 +7,49 @@
 #include "_classdef.h"
 
 #include "scenes/sets/_sceneset.h"
-#include "toolbar.h"
+#include "src/SokarUi/DicomToolBar.hpp"
 
 #include "SokarScene.hpp"
 
 namespace Ui {
-	class DicomView;
+    class DicomView;
 }
 
 namespace Sokar {
-	class DicomView : public QWidget {
-	Q_OBJECT
+    class DicomView : public QWidget {
+    Q_OBJECT
 
-	private:
-		Ui::DicomView *ui = nullptr;
-		QString title;
+    private:
+        Ui::DicomView *ui = nullptr;
+        QString title;
 
-		DicomSceneSet *dicomSceneSet;
+        DicomSceneSet *dicomSceneSet;
 
-	public:
-		explicit DicomView(DicomSceneSet *dicomSceneSet, QWidget *parent = nullptr);
+    public:
+        explicit DicomView(DicomSceneSet *dicomSceneSet, QWidget *parent = nullptr);
 
-		~DicomView() override;
+        ~DicomView() override;
 
-		//region Getters
+        //region Getters
 
-		SokarScene::DicomScene *getDicomScene();
-		DicomToolBar *getToolBar();
-		FrameChooser *getFrameChooser();
+        SokarScene::DicomScene *getDicomScene();
+        SokarUi::DicomToolBar *getToolBar();
+        FrameChooser *getFrameChooser();
 
-		inline DicomSceneSet *getDicomSceneSet() { return dicomSceneSet; }
+        inline DicomSceneSet *getDicomSceneSet() { return dicomSceneSet; }
 
-		inline const QString &getTitle() { return dicomSceneSet->getTitle(); }
+        inline const QString &getTitle() { return dicomSceneSet->getTitle(); }
 
-		//endregion
+        //endregion
 
-	private slots:
-		void toolbarActionTrigger(DicomToolBar::Action action, bool state = false);
-		void toolbarStateToggle(DicomToolBar::State state);
-	public slots:
-		void setStep(const Step *step);
-	signals:
-		void stepChanged(const Step *step);
-	};
+    private slots:
+        void toolbarActionTrigger(SokarUi::DicomToolBar::Action action, bool state = false);
+        void toolbarStateToggle(SokarUi::DicomToolBar::State state);
+    public slots:
+        void setStep(const Step *step);
+    signals:
+        void stepChanged(const Step *step);
+    };
 }
 
 

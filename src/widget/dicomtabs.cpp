@@ -6,142 +6,151 @@
 using namespace Sokar;
 
 DicomTabs::DicomTabs(QWidget *parent) : QTabWidget(parent) {
-	setTabsClosable(true);
-	setAcceptDrops(true);
 
-	connect(this, &DicomTabs::tabCloseRequested, this, &DicomTabs::removeDicomView);
+    setTabsClosable(true);
+    setAcceptDrops(true);
+
+    connect(this, &DicomTabs::tabCloseRequested, this, &DicomTabs::removeDicomView);
 }
 
 void DicomTabs::removeDicomView(int i) {
-	auto view = widget(i);
-	removeTab(i);
-	delete view;
+
+    auto view = widget(i);
+    removeTab(i);
+    delete view;
 }
 
 void DicomTabs::dropEvent(QDropEvent *event) {
-	const auto *mimeData = event->mimeData();
 
-	if (mimeData->hasUrls()) {
-		event->acceptProposedAction();
+    const auto *mimeData = event->mimeData();
 
-		auto urls = mimeData->urls();
+    if (mimeData->hasUrls()) {
+        event->acceptProposedAction();
 
-		if (urls.size() == 1) {
+        auto urls = mimeData->urls();
 
-			addDicomFile(urls[0].toLocalFile());
-		} else {
+        if (urls.size() == 1) {
 
-			QStringList paths;
+            addDicomFile(urls[0].toLocalFile());
+        } else {
 
-			for (auto &path : urls)
-				paths << path.toLocalFile();
-			addDicomFiles(paths);
-		}
-	}
+            QStringList paths;
+
+            for (auto &path : urls)
+                paths << path.toLocalFile();
+            addDicomFiles(paths);
+        }
+    }
 }
 
 void DicomTabs::dragEnterEvent(QDragEnterEvent *event) {
-	event->acceptProposedAction();
+
+    event->acceptProposedAction();
 }
 
 void DicomTabs::dragMoveEvent(QDragMoveEvent *event) {
-	event->acceptProposedAction();
+
+    event->acceptProposedAction();
 }
 
 void DicomTabs::dragLeaveEvent(QDragLeaveEvent *event) {
-	event->accept();
+
+    event->accept();
 }
 
 DicomView *DicomTabs::currentDicomView() {
-	return (DicomView *) currentWidget();
+
+    return (DicomView *) currentWidget();
 }
 
 void DicomTabs::addDicomFile(const QString &path) {
 
-	auto *reader = new gdcm::ImageReader;
+    auto *reader = new gdcm::ImageReader;
 
-	try {
+    try {
 
-		reader->SetFileName(path.toStdString().c_str());
+        reader->SetFileName(path.toStdString().c_str());
 
-		if (!reader->Read()) {
-			throw IOException(path);
-		}
+        if (!reader->Read()) {
+            throw IOException(path);
+        }
 
-		Settings::bumpRecentOpen(path);
+        Settings::bumpRecentOpen(path);
 
-		addDicomFile(reader);
-		return;
-	} catch (IOException &e) {
-		QMessageBox::critical(this, tr("I/O Error"),
-							  tr("Error occured while reading file '%1'").arg(e.file));
-		delete reader;
-	}
+        addDicomFile(reader);
+        return;
+    } catch (IOException &e) {
+        QMessageBox::critical(this, tr("I/O Error"),
+                              tr("Error occured while reading file '%1'").arg(e.file));
+        delete reader;
+    }
 }
 
 void DicomTabs::addDicomFile(const gdcm::ImageReader *reader) {
 
-	try {
-		auto sceneSet = new DicomFrameSet(reader, this);
-		auto dicomView = new DicomView(sceneSet, this);
-		addDicomView(dicomView);
+    try {
+        auto sceneSet = new DicomFrameSet(reader, this);
+        auto dicomView = new DicomView(sceneSet, this);
+        addDicomView(dicomView);
 
-		return;
-	} catch (DicomTagParseError &e) {
-	} catch (Exception &e) {
-	}
+        return;
+    } catch (DicomTagParseError &e) {
+    } catch (Exception &e) {
+    }
 
-	delete reader;
+    delete reader;
 }
 
 
 void DicomTabs::addDicomFiles(const QStringList &paths) {
-	DicomReaderVec readers;
 
-	try {
-		for (auto &path : paths) {
+    DicomReaderVec readers;
 
-			auto *reader = new gdcm::ImageReader;
+    try {
+        for (auto &path : paths) {
 
-			reader->SetFileName(path.toStdString().c_str());
+            auto *reader = new gdcm::ImageReader;
 
-			if (!reader->Read()) {
-				delete reader;
-				throw IOException(path);
-			}
+            reader->SetFileName(path.toStdString().c_str());
 
-			Settings::bumpRecentOpen(path);
+            if (!reader->Read()) {
+                delete reader;
+                throw IOException(path);
+            }
 
-			readers << reader;
-		}
+            Settings::bumpRecentOpen(path);
 
-		addDicomFiles(readers);
-	} catch (IOException &e) {
-		QMessageBox::critical(this, tr("I/O Error"),
-							  tr("Error occured while reading file '%1'").arg(e.file));
+            readers << reader;
+        }
 
-		for (auto &reader : readers)
-			delete reader;
-	}
+        addDicomFiles(readers);
+    } catch (IOException &e) {
+        QMessageBox::critical(this, tr("I/O Error"),
+                              tr("Error occured while reading file '%1'").arg(e.file));
+
+        for (auto &reader : readers)
+            delete reader;
+    }
 }
 
 void DicomTabs::addDicomFiles(DicomReaderVec &readers) {
 
-	try {
-		for (auto sceneSet : DicomFileSet::create(readers, this)) {
-			auto dicomView = new DicomView(sceneSet, this);
-			addDicomView(dicomView);
-		}
+    try {
+        for (auto sceneSet : DicomFileSet::create(readers, this)) {
+            auto dicomView = new DicomView(sceneSet, this);
+            addDicomView(dicomView);
+        }
 
-		return;
-	} catch (DicomTagParseError &e) {
-	} catch (Exception &e) {
-	}
+        return;
+    } catch (DicomTagParseError &e) {
+    } catch (Exception &e) {
+    }
 
-	for (auto &reader : readers)
-		delete reader;
+    for (auto &reader : readers)
+        delete reader;
 }
 
 void DicomTabs::addDicomView(DicomView *dicomView) {
-	setCurrentIndex(addTab(dicomView, dicomView->getTitle()));
+
+    setCurrentIndex(addTab(dicomView, dicomView->getTitle()));
 }

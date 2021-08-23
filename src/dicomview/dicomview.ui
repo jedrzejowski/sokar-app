@@ -27,7 +27,7 @@
                 <number>0</number>
             </property>
             <item>
-                <widget class="Sokar::DicomToolBar" name="toolbar"/>
+                <widget class="SokarUi::DicomToolBar" name="toolbar"/>
             </item>
             <item>
                 <widget class="QSplitter" name="splitter">
@@ -66,9 +66,9 @@
             <header>dicomview/graphics.h</header>
         </customwidget>
         <customwidget>
-            <class>Sokar::DicomToolBar</class>
+            <class>SokarUi::DicomToolBar</class>
             <extends>QToolBar</extends>
-            <header>dicomview/toolbar.h</header>
+            <header>SokarUi/DicomToolBar.hpp</header>
         </customwidget>
         <customwidget>
             <class>Sokar::FrameChooser</class>

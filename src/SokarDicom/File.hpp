@@ -11,28 +11,28 @@
 
 namespace SokarDicom {
 
-	class File : public QEnableSharedFromThis<File> {
-		friend Image;
+    class File : public QEnableSharedFromThis<File> {
+        friend Image;
 
-		QSharedPointer<gdcm::Reader> gdcmReader;
-		gdcm::File &gdcmFile;
+        QSharedPointer<gdcm::Reader> gdcmReader;
+        gdcm::File &gdcmFile;
 
-		explicit File(const QSharedPointer<gdcm::Reader> &gdcmReader);
+        explicit File(const QSharedPointer<gdcm::Reader> &gdcmReader);
 
-	public:
+    public:
 
-	};
+    };
 
-	class Image : public QEnableSharedFromThis<Image> {
-		FilePtr file;
-		QSharedPointer<gdcm::ImageReader> gdcmReader;
-		gdcm::Image &gdcmImage;
+    class Image : public QEnableSharedFromThis<Image> {
+        FilePtr file;
+        QSharedPointer<gdcm::ImageReader> gdcmReader;
+        gdcm::Image &gdcmImage;
 
-		explicit Image(const QSharedPointer<gdcm::ImageReader>& gdcmReader);
+        explicit Image(const QSharedPointer<gdcm::ImageReader> &gdcmReader);
 
-	public:
+    public:
 
-		static QFuture<ImagePtr> read(const QString &path);
-	};
+        static QFuture<ImagePtr> read(const QString &path);
+    };
 }
 

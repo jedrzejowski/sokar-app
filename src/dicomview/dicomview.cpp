@@ -6,86 +6,92 @@
 using namespace Sokar;
 
 DicomView::DicomView(DicomSceneSet *dicomSceneSet, QWidget *parent) :
-		QWidget(parent),
-		dicomSceneSet(dicomSceneSet),
-		ui(new Ui::DicomView) {
+        QWidget(parent),
+        dicomSceneSet(dicomSceneSet),
+        ui(new Ui::DicomView) {
 
-	ui->setupUi(this);
+    ui->setupUi(this);
 
-	dicomSceneSet->setParent(this);
+    dicomSceneSet->setParent(this);
 
-	connect(ui->toolbar, &DicomToolBar::stateToggleSignal, this, &DicomView::toolbarStateToggle);
-	connect(ui->toolbar, &DicomToolBar::actionTriggerSignal, this, &DicomView::toolbarActionTrigger);
-	connect(ui->frameChooser, &FrameChooser::setStep, this, &DicomView::setStep);
-	connect(ui->movieBar, &MovieBar::setStep, this, &DicomView::setStep);
-	connect(this, &DicomView::stepChanged, ui->frameChooser, &FrameChooser::stepChanged);
-	connect(this, &DicomView::stepChanged, ui->movieBar, &MovieBar::stepChanged);
+    connect(ui->toolbar, &SokarUi::DicomToolBar::stateToggleSignal, this, &DicomView::toolbarStateToggle);
+    connect(ui->toolbar, &SokarUi::DicomToolBar::actionTriggerSignal, this, &DicomView::toolbarActionTrigger);
+    connect(ui->frameChooser, &FrameChooser::setStep, this, &DicomView::setStep);
+    connect(ui->movieBar, &MovieBar::setStep, this, &DicomView::setStep);
+    connect(this, &DicomView::stepChanged, ui->frameChooser, &FrameChooser::stepChanged);
+    connect(this, &DicomView::stepChanged, ui->movieBar, &MovieBar::stepChanged);
 
-	ui->frameChooser->setSceneSet(dicomSceneSet);
-	ui->movieBar->setSceneSet(dicomSceneSet);
+    ui->frameChooser->setSceneSet(dicomSceneSet);
+    ui->movieBar->setSceneSet(dicomSceneSet);
 
-	// Aktywacja pierwszego kroku
-	{
-		auto sequence = dicomSceneSet->getSceneSequence();
-		if (sequence->size() == 1)
-			setStep(sequence->step());
-		else ui->movieBar->start();
-	}
+    // Aktywacja pierwszego kroku
+    {
+        auto sequence = dicomSceneSet->getSceneSequence();
+        if (sequence->size() == 1)
+            setStep(sequence->step());
+        else ui->movieBar->start();
+    }
 }
 
 DicomView::~DicomView() {
-	qDebug() << "~DicomView()";
 
-	// Po to aby timer nie wywołał jakieś funkcji w czasie usuwania
-	ui->movieBar->stop();
+    qDebug() << "~DicomView()";
 
-	delete ui;
-	delete dicomSceneSet;
+    // Po to aby timer nie wywołał jakieś funkcji w czasie usuwania
+    ui->movieBar->stop();
+
+    delete ui;
+    delete dicomSceneSet;
 }
 
 SokarScene::DicomScene *DicomView::getDicomScene() {
-	return (SokarScene::DicomScene *) ui->graphicsView->scene();
+
+    return (SokarScene::DicomScene *) ui->graphicsView->scene();
 }
 
 void DicomView::setStep(const Step *step) {
-	auto *scene = step->scene;
 
-	scene->setSceneRect(0, 0,
-						ui->graphicsView->width(),
-						ui->graphicsView->height());
+    auto *scene = step->scene;
 
-	ui->graphicsView->setScene(scene);
+    scene->setSceneRect(0, 0,
+                        ui->graphicsView->width(),
+                        ui->graphicsView->height());
 
-	scene->prepare();
-	scene->attached();
+    ui->graphicsView->setScene(scene);
 
-	emit stepChanged(step);
+    scene->prepare();
+    scene->attached();
+
+    emit stepChanged(step);
 }
 
-DicomToolBar *DicomView::getToolBar() {
-	return ui->toolbar;
+SokarUi::DicomToolBar *DicomView::getToolBar() {
+
+    return ui->toolbar;
 }
 
 FrameChooser *DicomView::getFrameChooser() {
-	return ui->frameChooser;
+
+    return ui->frameChooser;
 }
 
-void DicomView::toolbarActionTrigger(DicomToolBar::Action action, bool state) {
-	switch (action) {
-		case DicomToolBar::OpenDataSet:
+void DicomView::toolbarActionTrigger(SokarUi::DicomToolBar::Action action, bool state) {
 
-			if (getDicomScene() == nullptr) break;
+    switch (action) {
+        case SokarUi::DicomToolBar::OpenDataSet:
 
-			DataSetViewer::openAsWindow(getDicomScene());
+            if (getDicomScene() == nullptr) break;
 
-			return;
+            DataSetViewer::openAsWindow(getDicomScene());
 
-		default:
-			if (getDicomScene() == nullptr) break;
-			getDicomScene()->toolBarActionSlot(action, state);
-			break;
-	}
+            return;
+
+        default:
+            if (getDicomScene() == nullptr) break;
+            getDicomScene()->toolBarActionSlot(action, state);
+            break;
+    }
 }
 
-void DicomView::toolbarStateToggle(DicomToolBar::State state) {
+void DicomView::toolbarStateToggle(SokarUi::DicomToolBar::State state) {
 }

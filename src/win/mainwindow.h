@@ -4,26 +4,26 @@
 #include <gdcmImage.h>
 
 namespace Ui {
-	class MainWindow;
+    class MainWindow;
 }
 
 namespace Sokar {
-	class MainWindow : public QMainWindow {
-	Q_OBJECT
+    class MainWindow : public QMainWindow {
+    Q_OBJECT
 
-	public:
-		explicit MainWindow(QWidget *parent = nullptr);
+    public:
+        explicit MainWindow(QWidget *parent = nullptr);
 
-		~MainWindow();
+        ~MainWindow();
 
-	protected:
-		void initMenuBar();
+    protected:
+        void initMenuBar();
 
-	private:
-		Ui::MainWindow *ui = nullptr;
+    private:
+        Ui::MainWindow *ui = nullptr;
 
-	private slots:
-		void selectFile();
+    private slots:
+        void selectFile();
 
-	};
+    };
 }
