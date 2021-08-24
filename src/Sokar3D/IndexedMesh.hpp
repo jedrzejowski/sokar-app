@@ -12,7 +12,7 @@
 namespace Sokar3D {
 
 
-    class IndexedMesh : public Sokar3D::Mesh, public QEnableSharedFromThis<IndexedMesh> {
+    class IndexedMesh : public Mesh, public QEnableSharedFromThis<IndexedMesh> {
     public:
         using Vertex = glm::vec3;
         using Size = int;
@@ -47,7 +47,9 @@ namespace Sokar3D {
         static IndexedMeshPtr New();
 
         [[nodiscard]]
-        static QFuture<IndexedMeshPtr> from(const Sokar3D::TriangleListMeshPtr &mesh);
+        static IndexedMeshPtr from(const Sokar3D::MeshPtr &mesh);
+
+        void foreachFaces(const std::function<void(Mesh::Face)> &functor) override;
 
         [[nodiscard]]
         Size verticesSizeInBytes() const;
@@ -75,11 +77,8 @@ namespace Sokar3D {
 
         Size addVertex(const Vertex &v, bool checkDup = true);
         void addTriangle(const Vertex &v0, const Vertex &v1, const Vertex &v2) override;
-        void addTriangle(const Vertex &v0, const Vertex &v1, const Vertex &v2, bool checkDup = true);
+        void addTriangle(const Vertex &v0, const Vertex &v1, const Vertex &v2, bool checkDup);
         void addTriangle(Size i0, Size i1, Size i2, bool checkDuplicates = true);
-
-        [[nodiscard]]
-        Sokar3D::TriangleListMeshPtr toTriangleListMesh() const override;
 
     };
 }

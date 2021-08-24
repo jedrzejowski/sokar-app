@@ -7,7 +7,7 @@
 #include "SokarAlg.hpp"
 #include "Volume.hpp"
 #include "VolumeSegmentator.hpp"
-#include "Sokar3D/TriangleListMesh.hpp"
+#include "Sokar3D/Mesh.hpp"
 #include "Range.hpp"
 
 namespace SokarAlg {
@@ -23,7 +23,7 @@ namespace SokarAlg {
 
     protected:
 
-        Sokar3D::TriangleListMeshPtr exec() override;
+        Sokar3D::MeshPtr exec() override;
 
     public:
 

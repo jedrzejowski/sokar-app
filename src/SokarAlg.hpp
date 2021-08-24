@@ -55,6 +55,8 @@ namespace SokarAlg {
 
     declareSharedClass(RegionGrowthVolume)
 
+    declareSharedClass(VolumeSegmentator)
+
     // VolSegmAlgorithm
 
 

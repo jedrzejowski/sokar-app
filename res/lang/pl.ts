@@ -314,22 +314,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="54"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="55"/>
         <source>Kaszowanie interpolacji</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="74"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="75"/>
         <source>Rozrost obszarów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="100"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="101"/>
         <source>Maszerowanie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="119"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="122"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
@@ -786,11 +786,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="249"/>
-        <source>Maszerująca</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="263"/>
         <source>Uproszczenia siatki</source>
         <translation type="unfinished"></translation>
@@ -816,13 +811,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="360"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="359"/>
         <source>Kolor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="329"/>
         <source>PushButton</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="249"/>
+        <source>Indkesowana z podziałem obszarów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -927,17 +927,17 @@
 <context>
     <name>SokarUi::SegmentationResultWidget</name>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="48"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="50"/>
         <source>Save Wavefront OBJ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="49"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="51"/>
         <source>Wavefront (*.obj);;All Files (*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="62"/>
+        <location filename="../../src/SokarUi/SegmentationResultWidget.cpp" line="64"/>
         <source>Unable to open file</source>
         <translation type="unfinished"></translation>
     </message>

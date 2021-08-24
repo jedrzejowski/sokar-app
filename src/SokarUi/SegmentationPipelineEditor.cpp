@@ -8,6 +8,9 @@
 #include "ui_SegmentationPipelineEditor.h"
 #include "SokarAlg/SegmentationPipeline.hpp"
 #include "SokarAlg/MarchingCubes.hpp"
+#include "Sokar3D/TriangleListMesh.hpp"
+#include "Sokar3D/IndexedMesh.hpp"
+#include "Sokar3D/CubedIndexedMesh.hpp"
 
 using namespace SokarUi;
 
@@ -140,7 +143,21 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
     pipeline->setUseRegionGrowth(ui->regionGrowthCheck->isChecked());
     auto growStartPoint = ui->regionGrowthVec->getValue() / float(ui->interpolationWokselSize->value());
     pipeline->setGrowthStartPoint(growStartPoint);
-    qDebug() << "growStartPoint" << growStartPoint;
+
+    switch (ui->meshTypeCombo->currentIndex()) {
+        case 0: {
+            pipeline->setBaseMesh(Sokar3D::TriangleListMesh::New());
+            break;
+        }
+        case 1: {
+            pipeline->setBaseMesh(Sokar3D::IndexedMesh::New());
+            break;
+        }
+        case 2: {
+            pipeline->setBaseMesh(Sokar3D::CubedIndexedMesh::New());
+            break;
+        }
+    }
 
     //endergion
 

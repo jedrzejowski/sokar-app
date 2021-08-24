@@ -33,10 +33,11 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
     return QtConcurrent::run([self, this]() -> QSharedPointer<const SegmentationResult> {
         QMutexLocker lock(&stateMutex);
 
-        QSharedPointer<const Volume> volume;
+        Sokar3D::MeshPtr currentMesh = baseMesh;
+        QSharedPointer<Volume> volume;
         auto result = QSharedPointer<SegmentationResult>::create();
 
-        result->timeStart = makeTimePoint();
+        result->summary.timeStart = makeTimePoint();
 
         // volume
 
@@ -102,8 +103,10 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         volumeSegmentator->setVolume(volume);
 //		volumeSegmentator->setVolumeInterpolator(volumeInterpolator);
 
+        volumeSegmentator->setMesh(currentMesh);
+        result->segmentation.inputMesh = currentMesh;
         result->segmentation.timeStart = makeTimePoint();
-        result->finalMesh = result->originalMesh = volumeSegmentator->execSync();
+        result->segmentation.outputMesh = currentMesh = volumeSegmentator->execSync();
         result->segmentation.timeEnd = makeTimePoint();
 
         result->segmentation.description = QString("%1\nczas %2").arg(
@@ -118,24 +121,24 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
             emit updateProgress(QObject::tr("Upraszczanie siatki"), 0.f);
 
-            meshSimplificator->setMesh(Sokar3D::IndexedMesh::from(result->originalMesh));
+//            result->simplification.inputMesh = Sokar3D::IndexedMesh::from(currentMesh);
+            meshSimplificator->setMesh(result->simplification.inputMesh);
 
             result->simplification.timeStart = makeTimePoint();
-            result->simplifiedMesh = meshSimplificator->execSync();
+            result->simplification.outputMesh = currentMesh = meshSimplificator->execSync();
             result->simplification.timeEnd = makeTimePoint();
 
-            qDebug() << result->simplifiedMesh;
-            result->finalMesh = result->simplifiedMesh->toTriangleListMesh();
         } else {
             result->simplification.description = QString("nie");
         }
 
         //endregion
 
-        result->timeEnd = makeTimePoint();
+        result->summary.timeEnd = makeTimePoint();
+        result->summary.mesh = Sokar3D::TriangleListMesh::from(currentMesh);
 
-        result->description = QString("czas wykonania %1").arg(
-                timeRangeString(result->timeStart, result->timeEnd)
+        result->summary.description = QString("czas wykonania %1").arg(
+                timeRangeString(result->summary.timeStart, result->summary.timeEnd)
         );
 
         result->meshColor = meshColor;
@@ -176,32 +179,32 @@ void SegmentationPipeline::setDicomVolume(const QSharedPointer<DicomVolume> &new
     dicomVolume = newDicomVolume;
 }
 
-const QSharedPointer<VolumeInterpolator> &SegmentationPipeline::getVolumeInterpolator() const {
+const VolumeInterpolatorPtr &SegmentationPipeline::getVolumeInterpolator() const {
 
     return volumeInterpolator;
 }
 
-void SegmentationPipeline::setVolumeInterpolator(const QSharedPointer<VolumeInterpolator> &newVolumeInterpolator) {
+void SegmentationPipeline::setVolumeInterpolator(const VolumeInterpolatorPtr &newVolumeInterpolator) {
 
     volumeInterpolator = newVolumeInterpolator;
 }
 
-const QSharedPointer<VolumeSegmentator> &SegmentationPipeline::getVolumeSegmentator() const {
+const VolumeSegmentatorPtr &SegmentationPipeline::getVolumeSegmentator() const {
 
     return volumeSegmentator;
 }
 
-void SegmentationPipeline::setVolumeSegmentator(const QSharedPointer<VolumeSegmentator> &newVolumeSegmentator) {
+void SegmentationPipeline::setVolumeSegmentator(const VolumeSegmentatorPtr &newVolumeSegmentator) {
 
     volumeSegmentator = newVolumeSegmentator;
 }
 
-const QSharedPointer<MeshSimplificator> &SegmentationPipeline::getMeshSimplificator() const {
+const MeshSimplificatorPtr &SegmentationPipeline::getMeshSimplificator() const {
 
     return meshSimplificator;
 }
 
-void SegmentationPipeline::setMeshSimplificator(const QSharedPointer<MeshSimplificator> &newMeshSimplificator) {
+void SegmentationPipeline::setMeshSimplificator(const MeshSimplificatorPtr &newMeshSimplificator) {
 
     meshSimplificator = newMeshSimplificator;
 }
@@ -244,4 +247,14 @@ const glm::i32vec3 &SegmentationPipeline::getGrowthStartPoint() const {
 void SegmentationPipeline::setGrowthStartPoint(const glm::i32vec3 &growthStartPoint) {
 
     SegmentationPipeline::regionGrowthStartPoint = growthStartPoint;
+}
+
+const Sokar3D::MeshPtr &SegmentationPipeline::getBaseMesh() const {
+
+    return baseMesh;
+}
+
+void SegmentationPipeline::setBaseMesh(const Sokar3D::MeshPtr &baseMesh) {
+
+    SegmentationPipeline::baseMesh = baseMesh;
 }

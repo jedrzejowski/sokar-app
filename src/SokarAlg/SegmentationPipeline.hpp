@@ -13,9 +13,6 @@
 namespace SokarAlg {
 
     struct SegmentationResult {
-        Sokar3D::TriangleListMeshPtr originalMesh = nullptr;
-        Sokar3D::IndexedMeshPtr simplifiedMesh = nullptr;
-        Sokar3D::TriangleListMeshPtr finalMesh = nullptr;
         QColor meshColor;
 
         struct {
@@ -37,21 +34,28 @@ namespace SokarAlg {
         } regionGrowth;
 
         struct {
+            Sokar3D::MeshPtr inputMesh = nullptr;
             TimePoint timeStart;
             TimePoint timeEnd;
             QString description;
+            Sokar3D::MeshPtr outputMesh = nullptr;
         } segmentation;
 
         struct {
+            Sokar3D::IndexedMeshPtr inputMesh = nullptr;
+            Sokar3D::MeshPtr outputMesh = nullptr;
             bool was = false;
             TimePoint timeStart;
             TimePoint timeEnd;
             QString description;
         } simplification;
 
-        TimePoint timeStart;
-        TimePoint timeEnd;
-        QString description;
+        struct {
+            TimePoint timeStart;
+            TimePoint timeEnd;
+            QString description;
+            Sokar3D::TriangleListMeshPtr mesh = nullptr;
+        } summary;
 
         glm::vec3 proposeCameraCenter;
         float proposeCameraDistance;
@@ -72,8 +76,9 @@ namespace SokarAlg {
 
         QSharedPointer<const RawDicomVolume> rawDicomVolume = nullptr;
         QSharedPointer<DicomVolume> dicomVolume = nullptr;
-        QSharedPointer<VolumeInterpolator> volumeInterpolator = nullptr;
-        QSharedPointer<VolumeSegmentator> volumeSegmentator = nullptr;
+        Sokar3D::MeshPtr baseMesh = nullptr;
+        VolumeInterpolatorPtr volumeInterpolator = nullptr;
+        VolumeSegmentatorPtr volumeSegmentator = nullptr;
         MeshSimplificatorPtr meshSimplificator = nullptr;
 
         SegmentationPipeline();
@@ -90,12 +95,14 @@ namespace SokarAlg {
         void setRawDicomVolume(const QSharedPointer<const RawDicomVolume> &rawDicomVolume);
         const QSharedPointer<DicomVolume> &getDicomVolume() const;
         void setDicomVolume(const QSharedPointer<DicomVolume> &dicomVolume);
-        const QSharedPointer<VolumeInterpolator> &getVolumeInterpolator() const;
-        void setVolumeInterpolator(const QSharedPointer<VolumeInterpolator> &volumeInterpolator);
-        const QSharedPointer<VolumeSegmentator> &getVolumeSegmentator() const;
+        const VolumeInterpolatorPtr &getVolumeInterpolator() const;
+        void setVolumeInterpolator(const VolumeInterpolatorPtr &volumeInterpolator);
+        const VolumeSegmentatorPtr &getVolumeSegmentator() const;
         void setVolumeSegmentator(const QSharedPointer<VolumeSegmentator> &volumeSegmentator);
-        const QSharedPointer<MeshSimplificator> &getMeshSimplificator() const;
+        const MeshSimplificatorPtr &getMeshSimplificator() const;
         void setMeshSimplificator(const MeshSimplificatorPtr &meshSimplificator);
+        const Sokar3D::MeshPtr &getBaseMesh() const;
+        void setBaseMesh(const Sokar3D::MeshPtr &baseMesh);
         bool isUseEmptyEnv() const;
         void setUseEmptyEnv(bool useEmptyEnv);
         bool isUseRegionGrowth() const;

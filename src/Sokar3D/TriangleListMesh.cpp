@@ -69,9 +69,9 @@ void TriangleListMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) co
 
     for (const auto &face : faces) {
 
-        auto v1i = builder.addVertex(face.v1.pos);
-        auto v2i = builder.addVertex(face.v2.pos);
-        auto v3i = builder.addVertex(face.v3.pos);
+        auto v1i = builder.addVertex(face.v0.pos);
+        auto v2i = builder.addVertex(face.v1.pos);
+        auto v3i = builder.addVertex(face.v2.pos);
 
         builder.addFaceV(v1i, v2i, v3i);
     }
@@ -206,14 +206,20 @@ TriangleListMesh *TriangleListMesh::createCubeMesh() {
     return mesh;
 }
 
-TriangleListMeshPtr TriangleListMesh::toTriangleListMesh() const {
+void TriangleListMesh::foreachFaces(const std::function<void(Mesh::Face face)> &functor) {
+
+    for (const auto &face : faces) {
+        functor({face.v0.pos, face.v1.pos, face.v2.pos,});
+    }
+}
+
+TriangleListMeshPtr TriangleListMesh::from(const MeshPtr &mesh) {
 
     auto new_mesh = New();
 
-    new_mesh->faces = this->faces;
-
-    // https://forum.qt.io/topic/120489/qvector-one-line-deep-copy/2
-    new_mesh->faces.detach();
+    mesh->foreachFaces([&](auto face) {
+        new_mesh->addTriangle(face.v0, face.v1, face.v2);
+    });
 
     return new_mesh;
 }

@@ -78,18 +78,6 @@ void CubedIndexedMesh::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, con
     faces << newFace;
 }
 
-
-TriangleListMeshPtr CubedIndexedMesh::toTriangleListMesh() const {
-
-    auto tri_mesh = TriangleListMesh::New();
-
-//    for (auto &x : vertices) {
-//        x.
-//    }
-
-    return tri_mesh;
-}
-
 const glm::vec3 &CubedIndexedMesh::getCubeSize() const {
 
     return cubeSize;
@@ -98,4 +86,26 @@ const glm::vec3 &CubedIndexedMesh::getCubeSize() const {
 void CubedIndexedMesh::setCubeSize(const glm::vec3 &cubeSize) {
 
     CubedIndexedMesh::cubeSize = cubeSize;
+}
+
+void CubedIndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) {
+
+    for (const auto &face : faces) {
+        functor({
+                        vertices[face.i0.cube.x][face.i0.cube.y][face.i0.cube.z].vertices[face.i0.vert],
+                        vertices[face.i1.cube.x][face.i1.cube.y][face.i1.cube.z].vertices[face.i1.vert],
+                        vertices[face.i2.cube.x][face.i2.cube.y][face.i2.cube.z].vertices[face.i2.vert]
+                });
+    }
+}
+
+CubedIndexedMeshPtr CubedIndexedMesh::from(const MeshPtr &mesh) {
+
+    auto new_mesh = New();
+
+    mesh->foreachFaces([&](auto face) {
+        new_mesh->addTriangle(face.v0, face.v1, face.v2);
+    });
+
+    return new_mesh;
 }

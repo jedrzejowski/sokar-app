@@ -4,23 +4,21 @@
 
 #pragma once
 
-#include <SokarLib/Displayable.hpp>
+#include "SokarLib/Displayable.hpp"
 #include "./SokarAlg.hpp"
-#include "Volume.hpp"
-#include "Range.hpp"
-#include "Sokar3D/TriangleListMesh.hpp"
+#include "./Volume.hpp"
+#include "./Range.hpp"
+#include "Sokar3D/Mesh.hpp"
 #include "Algorithm.hpp"
 
 namespace SokarAlg {
 
-    class VolumeSegmentator : public Algorithm<Sokar3D::TriangleListMeshPtr> {
-//		using MeshType = IndexedMesh;
-        using MeshType = Sokar3D::TriangleListMesh;
+    class VolumeSegmentator : public Algorithm<Sokar3D::MeshPtr> {
     protected:
 
         VolumeInterpolatorPtr volumeInterpolator;
         VolumeCPtr volume;
-        Sokar3D::TriangleListMeshPtr mesh;
+        Sokar3D::MeshPtr mesh;
         Range<float> isoLevel = {0.5f, 1.f};
 
         void execBefore() override;
@@ -41,7 +39,8 @@ namespace SokarAlg {
         void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2);
 
         [[nodiscard]]
-        const QSharedPointer<MeshType> &getMesh() const;
+        const Sokar3D::MeshPtr &getMesh() const;
+        void setMesh(const Sokar3D::MeshPtr &mesh);
     };
 }
 

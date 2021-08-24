@@ -18,26 +18,25 @@
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/PipelineWrapper.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.frag" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/StaticMesh.vert" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.vert" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MeshSimplificator.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -622,14 +621,7 @@
       <workItem from="1629553334180" duration="3172000" />
       <workItem from="1629571394824" duration="309000" />
       <workItem from="1629738921924" duration="6145000" />
-      <workItem from="1629829356250" duration="1658000" />
-    </task>
-    <task id="LOCAL-00033" summary="Lepsze typy zmiennych w Monochrome">
-      <created>1556559150101</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1556559150102</updated>
+      <workItem from="1629829356250" duration="9350000" />
     </task>
     <task id="LOCAL-00034" summary="Commit z nieznanymi mi pracami">
       <created>1558824461632</created>
@@ -967,7 +959,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629754361375</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="reformat">
+      <created>1629835554018</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1629835554018</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

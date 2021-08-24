@@ -132,33 +132,22 @@ void IndexedMesh::addTriangle(
     addTriangle(v0, v1, v2, true);
 }
 
-
-QSharedPointer<Sokar3D::TriangleListMesh> IndexedMesh::toTriangleListMesh() const {
-
-    auto newMesh = Sokar3D::TriangleListMesh::New();
+void IndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) {
 
     for (const auto &face : faces) {
-        newMesh->addTriangle(
-                vertices[face.i1],
-                vertices[face.i2],
-                vertices[face.i3]
-        );
+        functor({vertices[face.i1], vertices[face.i2], vertices[face.i3]});
     }
-
-    return newMesh;
 }
 
-QFuture<IndexedMeshPtr> IndexedMesh::from(const Sokar3D::TriangleListMeshPtr &staticMesh) {
+IndexedMeshPtr IndexedMesh::from(const Sokar3D::MeshPtr &mesh) {
 
-    return QtConcurrent::run([staticMesh]() -> IndexedMeshPtr {
-        auto indexedMesh = IndexedMesh::New();
+    auto indexedMesh = IndexedMesh::New();
 
-        for (const auto &face : staticMesh->getFaces()) {
-            indexedMesh->addTriangle(face.v1.pos, face.v2.pos, face.v3.pos, false);
-        }
-
-        return indexedMesh;
+    mesh->foreachFaces([&](auto face) {
+        indexedMesh->addTriangle(face.v0, face.v1, face.v2);
     });
+
+    return indexedMesh;
 }
 
 //region Converters

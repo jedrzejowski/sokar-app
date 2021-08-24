@@ -11,11 +11,6 @@ using namespace SokarAlg;
 
 void VolumeSegmentator::execBefore() {
 
-    if (mesh != nullptr) {
-        mesh.clear();
-    }
-
-    mesh = MeshType::New();
 }
 
 const QSharedPointer<const Volume> &VolumeSegmentator::getVolume() const {
@@ -37,7 +32,7 @@ void VolumeSegmentator::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, co
     mesh->addTriangle(v0, v1, v2);
 }
 
-const QSharedPointer<VolumeSegmentator::MeshType> &VolumeSegmentator::getMesh() const {
+const Sokar3D::MeshPtr &VolumeSegmentator::getMesh() const {
 
     return mesh;
 }
@@ -65,5 +60,10 @@ void VolumeSegmentator::setVolumeInterpolator(const VolumeInterpolatorPtr &newVo
     if (!volumeInterpolator.isNull() && !volume.isNull()) {
         volumeInterpolator->setVolume(volume);
     }
+}
+
+void VolumeSegmentator::setMesh(const Sokar3D::MeshPtr &newMesh) {
+
+    this->mesh = newMesh;
 }
 

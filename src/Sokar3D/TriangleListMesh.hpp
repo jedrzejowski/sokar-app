@@ -19,7 +19,7 @@ namespace Sokar3D {
         using Size = int;
 
         struct Face {
-            Vertex v1, v2, v3;
+            Vertex v0, v1, v2;
         };
 
     protected:
@@ -34,6 +34,8 @@ namespace Sokar3D {
 
         void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2);
         void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2) override;
+
+        void foreachFaces(const std::function<void(Mesh::Face face)> &functor) override;
 
         static TriangleListMesh *createCubeMesh();
 
@@ -54,6 +56,6 @@ namespace Sokar3D {
 
         void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const;
 
-        TriangleListMeshPtr toTriangleListMesh() const override;
+        static TriangleListMeshPtr from(const MeshPtr &mesh);
     };
 }

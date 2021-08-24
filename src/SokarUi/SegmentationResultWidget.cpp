@@ -4,6 +4,8 @@
 
 #include <QtConcurrent/QtConcurrent>
 #include "SegmentationResultWidget.hpp"
+#include "SokarLib/WavefrontObjBuilder.hpp"
+#include "Sokar3D/TriangleListMesh.hpp"
 #include "ui_SegmentationResultWidget.h"
 
 using namespace SokarUi;
@@ -33,7 +35,7 @@ SegmentationResultWidget::SegmentationResultWidget(
     ui->cacheResult->setText(result->interpolationCache.description);
     ui->regionGrowthResult->setText(result->regionGrowth.description);
     ui->meshSimplificationLabel->setText(result->simplification.description);
-    ui->sumLabel->setText(result->description);
+    ui->sumLabel->setText(result->summary.description);
 }
 
 SokarUi::SegmentationResultWidget::~SegmentationResultWidget() {
@@ -53,7 +55,7 @@ void SegmentationResultWidget::saveToWavefrontObjFile() {
             [
                     this,
                     fileName,
-                    mesh = result->originalMesh
+                    mesh = result->summary.mesh
             ]() {
                 QFile file(fileName);
 
