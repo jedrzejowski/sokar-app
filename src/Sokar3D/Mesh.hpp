@@ -13,7 +13,7 @@ namespace Sokar3D {
 
         virtual ~Mesh() = default;
 
-        virtual StaticMeshPtr toStaticMesh() const = 0;
+        virtual TriangleListMeshPtr toTriangleListMesh() const = 0;
 
         virtual void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2) = 0;
     };

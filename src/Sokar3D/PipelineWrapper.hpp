@@ -5,7 +5,7 @@
 #pragma once
 
 #include "./Sokar3D.hpp"
-#include "./StaticMesh.hpp"
+#include "./TriangleListMesh.hpp"
 #include "./VulkanShader.hpp"
 
 namespace Sokar3D {

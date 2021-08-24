@@ -3,7 +3,7 @@
 //
 
 #include "./IndexedMesh.hpp"
-#include "Sokar3D/StaticMesh.hpp"
+#include "Sokar3D/TriangleListMesh.hpp"
 #include <QtConcurrent/QtConcurrentRun>
 #include <QFile>
 
@@ -133,9 +133,9 @@ void IndexedMesh::addTriangle(
 }
 
 
-QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMesh() const {
+QSharedPointer<Sokar3D::TriangleListMesh> IndexedMesh::toTriangleListMesh() const {
 
-    auto newMesh = Sokar3D::StaticMesh::New();
+    auto newMesh = Sokar3D::TriangleListMesh::New();
 
     for (const auto &face : faces) {
         newMesh->addTriangle(
@@ -148,7 +148,7 @@ QSharedPointer<Sokar3D::StaticMesh> IndexedMesh::toStaticMesh() const {
     return newMesh;
 }
 
-QFuture<IndexedMeshPtr> IndexedMesh::fromStaticMash(const Sokar3D::StaticMeshPtr &staticMesh) {
+QFuture<IndexedMeshPtr> IndexedMesh::from(const Sokar3D::TriangleListMeshPtr &staticMesh) {
 
     return QtConcurrent::run([staticMesh]() -> IndexedMeshPtr {
         auto indexedMesh = IndexedMesh::New();

@@ -7,7 +7,7 @@
 #include "./Sokar3D.hpp"
 #include "./VulkanWidget.hpp"
 #include "./VulkanShader.hpp"
-#include "./StaticMesh.hpp"
+#include "./TriangleListMesh.hpp"
 #include "./Camera.hpp"
 #include "./PipelineWrapper.hpp"
 

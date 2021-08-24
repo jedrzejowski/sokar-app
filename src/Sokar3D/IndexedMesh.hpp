@@ -43,7 +43,11 @@ namespace Sokar3D {
 
     public:
 
+        [[nodiscard]]
         static IndexedMeshPtr New();
+
+        [[nodiscard]]
+        static QFuture<IndexedMeshPtr> from(const Sokar3D::TriangleListMeshPtr &mesh);
 
         [[nodiscard]]
         Size verticesSizeInBytes() const;
@@ -75,9 +79,7 @@ namespace Sokar3D {
         void addTriangle(Size i0, Size i1, Size i2, bool checkDuplicates = true);
 
         [[nodiscard]]
-        Sokar3D::StaticMeshPtr toStaticMesh() const override;
+        Sokar3D::TriangleListMeshPtr toTriangleListMesh() const override;
 
-        [[nodiscard]]
-        static QFuture<IndexedMeshPtr> fromStaticMash(const Sokar3D::StaticMeshPtr &mesh);
     };
 }

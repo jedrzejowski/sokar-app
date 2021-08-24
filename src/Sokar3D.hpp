@@ -29,7 +29,7 @@ namespace Sokar3D {
 
     declareSharedClass(Mesh)
 
-    declareSharedClass(StaticMesh)
+    declareSharedClass(TriangleListMesh)
 
     declareSharedClass(IndexedMesh)
 

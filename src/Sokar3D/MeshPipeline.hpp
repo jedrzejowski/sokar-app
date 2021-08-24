@@ -34,7 +34,7 @@ namespace Sokar3D {
     };
 
     class MeshPipeline : public PipelineWrapper {
-        QSharedPointer<const StaticMesh> staticMesh;
+        QSharedPointer<const TriangleListMesh> staticMesh;
         VulkanShader vertexShader;
         VulkanShader fragmentShader;
         VkBuffer vertexBuf = VK_NULL_HANDLE;
@@ -55,7 +55,7 @@ namespace Sokar3D {
         std::atomic<bool> visible = true;
 
     public:
-        explicit MeshPipeline(const QSharedPointer<const StaticMesh> &mesh);
+        explicit MeshPipeline(const QSharedPointer<const TriangleListMesh> &mesh);
 
         void initResources(const VkPipelineMetaArgs &args) override;
         void ensureBuffers(const VkPipelineMetaArgs &args) override;

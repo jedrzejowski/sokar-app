@@ -10,7 +10,7 @@
 using namespace Sokar3D;
 
 MeshPipeline::MeshPipeline(
-        const QSharedPointer<const StaticMesh> &mesh
+        const QSharedPointer<const TriangleListMesh> &mesh
 ) : staticMesh(mesh) {
 }
 
@@ -83,10 +83,10 @@ void MeshPipeline::initResources(const VkPipelineMetaArgs &args) {
     const VkDeviceSize uniAlign = pdevLimits->minUniformBufferOffsetAlignment;
 
     if (!vertexShader.isValid()) {
-        vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/Sokar3D/StaticMesh.vert"));
+        vertexShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/Sokar3D/TriangleListMesh.vert"));
     }
     if (!fragmentShader.isValid()) {
-        fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/Sokar3D/StaticMesh.frag"));
+        fragmentShader.load(args.vkInstance, args.vkDevice, QStringLiteral(":/Sokar3D/TriangleListMesh.frag"));
     }
 
     std::vector<VkVertexInputBindingDescription> vertexBindingDesc = {

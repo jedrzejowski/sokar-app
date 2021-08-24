@@ -13,7 +13,7 @@
 
 namespace Sokar3D {
 
-    class StaticMesh : public Mesh, public QEnableSharedFromThis<StaticMesh> {
+    class TriangleListMesh : public Mesh, public QEnableSharedFromThis<TriangleListMesh> {
     public:
         using Vertex = MeshVertex;
         using Size = int;
@@ -25,17 +25,17 @@ namespace Sokar3D {
     protected:
         QVector<Face> faces;
 
-        StaticMesh();
-        StaticMesh(const StaticMesh &mesh) = delete;
+        TriangleListMesh();
+        TriangleListMesh(const TriangleListMesh &mesh) = delete;
 
     public:
 
-        static StaticMeshPtr New();
+        static TriangleListMeshPtr New();
 
         void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2);
         void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2) override;
 
-        static StaticMesh *createCubeMesh();
+        static TriangleListMesh *createCubeMesh();
 
         [[nodiscard]]
         Size verticesSizeInBytes() const;
@@ -54,6 +54,6 @@ namespace Sokar3D {
 
         void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const;
 
-        StaticMeshPtr toStaticMesh() const override;
+        TriangleListMeshPtr toTriangleListMesh() const override;
     };
 }

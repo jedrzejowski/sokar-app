@@ -118,14 +118,14 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
             emit updateProgress(QObject::tr("Upraszczanie siatki"), 0.f);
 
-            meshSimplificator->setMesh(Sokar3D::IndexedMesh::fromStaticMash(result->originalMesh));
+            meshSimplificator->setMesh(Sokar3D::IndexedMesh::from(result->originalMesh));
 
             result->simplification.timeStart = makeTimePoint();
             result->simplifiedMesh = meshSimplificator->execSync();
             result->simplification.timeEnd = makeTimePoint();
 
             qDebug() << result->simplifiedMesh;
-            result->finalMesh = result->simplifiedMesh->toStaticMesh();
+            result->finalMesh = result->simplifiedMesh->toTriangleListMesh();
         } else {
             result->simplification.description = QString("nie");
         }

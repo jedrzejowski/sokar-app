@@ -5,7 +5,7 @@
 #pragma once
 
 #include <QFuture>
-#include "Sokar3D/StaticMesh.hpp"
+#include "Sokar3D/TriangleListMesh.hpp"
 #include "SokarAlg.hpp"
 #include "src/Sokar3D/IndexedMesh.hpp"
 #include "Algorithm.hpp"

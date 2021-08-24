@@ -68,7 +68,7 @@ namespace Sokar3D {
 
         glm::i32vec3 position2cubeIndex(const glm::vec3 &v) const;
 
-        StaticMeshPtr toStaticMesh() const override;
+        TriangleListMeshPtr toTriangleListMesh() const override;
     };
 
 }

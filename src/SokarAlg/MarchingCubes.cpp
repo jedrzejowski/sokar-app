@@ -305,7 +305,7 @@ const qint32 triTable[256][16] = {
 
 //endregion
 
-Sokar3D::StaticMeshPtr MarchingCubes::exec() {
+Sokar3D::TriangleListMeshPtr MarchingCubes::exec() {
 
     auto size = volume->getSize() - cubeSize;
     qDebug() << "size" << size;

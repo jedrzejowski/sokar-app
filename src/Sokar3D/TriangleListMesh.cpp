@@ -2,30 +2,30 @@
 // Created by adam on 29.03.2021.
 //
 
-#include "StaticMesh.hpp"
+#include "TriangleListMesh.hpp"
 #include "./MeshVertex.hpp"
 #include <QtConcurrent/QtConcurrentRun>
 #include <QFile>
 
 using namespace Sokar3D;
-using Size = StaticMesh::Size;
-using Face = StaticMesh::Face;
+using Size = TriangleListMesh::Size;
+using Face = TriangleListMesh::Face;
 
-StaticMesh::StaticMesh() {
+TriangleListMesh::TriangleListMesh() {
 }
 
-StaticMeshPtr StaticMesh::New() {
+TriangleListMeshPtr TriangleListMesh::New() {
 
-    return StaticMeshPtr(new StaticMesh);
+    return TriangleListMeshPtr(new TriangleListMesh);
 }
 
-const quint8 *StaticMesh::verticesData() const {
+const quint8 *TriangleListMesh::verticesData() const {
 
     return reinterpret_cast<const quint8 *>(faces.data());
 }
 
 
-void StaticMesh::addTriangle(
+void TriangleListMesh::addTriangle(
         const MeshVertex &v1,
         const MeshVertex &v2,
         const MeshVertex &v3
@@ -35,7 +35,7 @@ void StaticMesh::addTriangle(
 }
 
 
-void StaticMesh::addTriangle(
+void TriangleListMesh::addTriangle(
         const glm::vec3 &v0,
         const glm::vec3 &v1,
         const glm::vec3 &v2
@@ -50,22 +50,22 @@ void StaticMesh::addTriangle(
     );
 }
 
-Size StaticMesh::verticesSizeInBytes() const {
+Size TriangleListMesh::verticesSizeInBytes() const {
 
     return facesCount() * sizeof(Face);
 }
 
-Size StaticMesh::verticesCount() const {
+Size TriangleListMesh::verticesCount() const {
 
     return facesCount() * 3;
 }
 
-const QVector<Face> &StaticMesh::getFaces() const {
+const QVector<Face> &TriangleListMesh::getFaces() const {
 
     return faces;
 }
 
-void StaticMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
+void TriangleListMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
 
     for (const auto &face : faces) {
 
@@ -77,15 +77,15 @@ void StaticMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
     }
 }
 
-Size StaticMesh::facesCount() const {
+Size TriangleListMesh::facesCount() const {
 
     return faces.size();
 }
 
 
-StaticMesh *StaticMesh::createCubeMesh() {
+TriangleListMesh *TriangleListMesh::createCubeMesh() {
 
-    auto mesh = new Sokar3D::StaticMesh();
+    auto mesh = new Sokar3D::TriangleListMesh();
 
     // http://ilkinulas.github.io/development/unity/2016/04/30/cube-mesh-in-unity3d.html
 
@@ -206,7 +206,7 @@ StaticMesh *StaticMesh::createCubeMesh() {
     return mesh;
 }
 
-StaticMeshPtr StaticMesh::toStaticMesh() const {
+TriangleListMeshPtr TriangleListMesh::toTriangleListMesh() const {
 
     auto new_mesh = New();
 

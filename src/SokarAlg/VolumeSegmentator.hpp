@@ -8,19 +8,19 @@
 #include "./SokarAlg.hpp"
 #include "Volume.hpp"
 #include "Range.hpp"
-#include "Sokar3D/StaticMesh.hpp"
+#include "Sokar3D/TriangleListMesh.hpp"
 #include "Algorithm.hpp"
 
 namespace SokarAlg {
 
-    class VolumeSegmentator : public Algorithm<Sokar3D::StaticMeshPtr> {
+    class VolumeSegmentator : public Algorithm<Sokar3D::TriangleListMeshPtr> {
 //		using MeshType = IndexedMesh;
-        using MeshType = Sokar3D::StaticMesh;
+        using MeshType = Sokar3D::TriangleListMesh;
     protected:
 
         VolumeInterpolatorPtr volumeInterpolator;
         VolumeCPtr volume;
-        Sokar3D::StaticMeshPtr mesh;
+        Sokar3D::TriangleListMeshPtr mesh;
         Range<float> isoLevel = {0.5f, 1.f};
 
         void execBefore() override;

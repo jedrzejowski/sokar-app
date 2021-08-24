@@ -3,6 +3,7 @@
 //
 
 #include "CubedIndexedMesh.hpp"
+#include "TriangleListMesh.hpp"
 
 using namespace Sokar3D;
 using Index = CubedIndexedMesh::Index;
@@ -78,9 +79,15 @@ void CubedIndexedMesh::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, con
 }
 
 
-StaticMeshPtr CubedIndexedMesh::toStaticMesh() const {
+TriangleListMeshPtr CubedIndexedMesh::toTriangleListMesh() const {
 
-    return Sokar3D::StaticMeshPtr();
+    auto tri_mesh = TriangleListMesh::New();
+
+//    for (auto &x : vertices) {
+//        x.
+//    }
+
+    return tri_mesh;
 }
 
 const glm::vec3 &CubedIndexedMesh::getCubeSize() const {
