@@ -16,3 +16,10 @@ class classname; \
 using classname##Ptr = QSharedPointer<classname>; \
 using classname##CPtr = QSharedPointer<const classname>; \
 using classname##WPtr = QWeakPointer<classname>;
+
+#define declareSharedClassT1(classname) \
+template<typename T>                    \
+class classname; \
+using classname##Ptr<T> = QSharedPointer<classname<T>>; \
+using classname##CPtr<T> = QSharedPointer<const classname<T>>; \
+using classname##WPtr<T> = QWeakPointer<classname<T>>;

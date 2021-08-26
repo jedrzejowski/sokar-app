@@ -329,7 +329,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="122"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="123"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
@@ -801,22 +801,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="298"/>
-        <source>Wielkość klastra [mm]</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="314"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="313"/>
         <source>Wygląd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="359"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="358"/>
         <source>Kolor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="329"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="328"/>
         <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
@@ -826,7 +821,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="320"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="319"/>
         <source>Osadz w pustej przestrzeni</source>
         <translation type="unfinished"></translation>
     </message>

@@ -165,9 +165,14 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
     //region simplification
 
     switch (ui->simplificationAlgorithm->currentIndex()) {
+        case 0: {
+            pipeline->setMeshSimplificator(nullptr);
+            break;
+        }
         case 1: {
             auto vertexClustering = SokarAlg::VertexClustering::New();
             vertexClustering->setClusterSize(ui->vertexClusteringSize->getValue());
+            vertexClustering->setClusterSize(ui->vertexClusteringOffset->getValue());
             pipeline->setMeshSimplificator(vertexClustering);
             break;
         }

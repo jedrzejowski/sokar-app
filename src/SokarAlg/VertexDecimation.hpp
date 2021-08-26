@@ -3,10 +3,24 @@
 //
 
 #pragma once
+#include "SokarAlg.hpp"
+#include "./MeshSimplificator.hpp"
 
 
-class VertexDecimation {
-};
+namespace SokarAlg {
 
+    class VertexDecimation : public MeshSimplificator {
+    private:
+
+        Sokar3D::IndexedMeshPtr exec() override;
+
+        VertexDecimation();
+    public:
+        static VertexDecimationPtr New();
+
+
+        QString toDisplay() override;
+    };
+}
 
 

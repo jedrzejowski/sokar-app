@@ -117,11 +117,12 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         //region mesh simplification
 
+
         if (meshSimplificator != nullptr) {
 
             emit updateProgress(QObject::tr("Upraszczanie siatki"), 0.f);
 
-//            result->simplification.inputMesh = Sokar3D::IndexedMesh::from(currentMesh);
+            result->simplification.inputMesh = Sokar3D::IndexedMesh::from(currentMesh, false);
             meshSimplificator->setMesh(result->simplification.inputMesh);
 
             result->simplification.timeStart = makeTimePoint();

@@ -18,20 +18,20 @@ namespace Sokar3D {
         using Size = int;
 
         struct Face {
-            Size i1, i2, i3;
+            Size i0, i1, i2;
 
             inline bool isDummy() const {
 
-                return i1 == i2 or i2 == i3 or i1 == i3;
+                return i0 == i1 or i1 == i2 or i0 == i2;
             }
 
             inline bool operator==(const Face &other) const {
 
-                return (i1 == other.i1 and i2 == other.i2 and i3 == other.i3)
+                return (i0 == other.i0 and i1 == other.i1 and i2 == other.i2)
                        or
-                       (i1 == other.i2 and i2 == other.i3 and i3 == other.i1)
+                       (i0 == other.i1 and i1 == other.i2 and i2 == other.i0)
                        or
-                       (i1 == other.i3 and i2 == other.i1 and i3 == other.i2);
+                       (i0 == other.i2 and i1 == other.i0 and i2 == other.i1);
             }
         };
 
@@ -47,7 +47,7 @@ namespace Sokar3D {
         static IndexedMeshPtr New();
 
         [[nodiscard]]
-        static IndexedMeshPtr from(const Sokar3D::MeshPtr &mesh);
+        static IndexedMeshPtr from(const Sokar3D::MeshPtr &mesh, bool checkDuplicates = true);
 
         void foreachFaces(const std::function<void(Mesh::Face)> &functor) override;
 

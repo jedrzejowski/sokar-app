@@ -134,17 +134,17 @@ void IndexedMesh::addTriangle(
 
 void IndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) {
 
-    for (const auto &face : faces) {
-        functor({vertices[face.i1], vertices[face.i2], vertices[face.i3]});
+    for (const auto &face: faces) {
+        functor({vertices[face.i0], vertices[face.i1], vertices[face.i2]});
     }
 }
 
-IndexedMeshPtr IndexedMesh::from(const Sokar3D::MeshPtr &mesh) {
+IndexedMeshPtr IndexedMesh::from(const Sokar3D::MeshPtr &mesh, bool checkDuplicates) {
 
     auto indexedMesh = IndexedMesh::New();
 
     mesh->foreachFaces([&](auto face) {
-        indexedMesh->addTriangle(face.v0, face.v1, face.v2);
+        indexedMesh->addTriangle(face.v0, face.v1, face.v2, checkDuplicates);
     });
 
     return indexedMesh;

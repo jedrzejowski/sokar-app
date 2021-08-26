@@ -292,18 +292,17 @@
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item row="0" column="0">
-          <widget class="QLabel" name="label_11">
-           <property name="text">
-            <string>Wielkość klastra [mm]</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
+         <item row="0" column="0" colspan="2">
           <widget class="SokarUi::Vec3Input" name="vertexClusteringSize" native="true"/>
+         </item>
+         <item row="0" column="0" colspan="2">
+          <widget class="SokarUi::Vec3Input" name="vertexClusteringOffset" native="true"/>
          </item>
         </layout>
        </widget>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="edgeConcatenation"/>
       </item>
      </layout>
     </widget>
@@ -386,6 +385,24 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>interpolationWokselSize</tabstop>
+  <tabstop>interpolationCombo</tabstop>
+  <tabstop>interpolationSizeX</tabstop>
+  <tabstop>interpolationSizeY</tabstop>
+  <tabstop>interpolationSizeZ</tabstop>
+  <tabstop>cacheInterpolation</tabstop>
+  <tabstop>segmentationAlgorithm</tabstop>
+  <tabstop>segmentationTresholdUp</tabstop>
+  <tabstop>segmentationTresholdDown</tabstop>
+  <tabstop>useCache</tabstop>
+  <tabstop>regionGrowthCheck</tabstop>
+  <tabstop>meshTypeCombo</tabstop>
+  <tabstop>simplificationAlgorithm</tabstop>
+  <tabstop>pickColorButton</tabstop>
+  <tabstop>randomColorButton</tabstop>
+  <tabstop>emptyEnv</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

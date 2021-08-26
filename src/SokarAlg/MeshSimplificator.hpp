@@ -25,8 +25,10 @@ namespace SokarAlg {
         [[nodiscard]]
         Extrema findExtrema();
 
+        [[nodiscard]]
         const Sokar3D::IndexedMeshPtr &getMesh() const;
         void setMesh(const Sokar3D::IndexedMeshPtr &mesh);
+
     };
 }
 
