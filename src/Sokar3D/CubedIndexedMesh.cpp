@@ -26,7 +26,8 @@ CubedIndexedMesh::Index CubedIndexedMesh::addVertex(const glm::vec3 &newVertex, 
     Index index{};
     index.cube = position2cubeIndex(newVertex);
 
-    auto cube = vertices[index.cube.x][index.cube.y][index.cube.z];
+    // ilośc zmarnowanych godzin na tej linii = 5
+    auto& cube = vertices[index.cube.x][index.cube.y][index.cube.z];
 
     if (checkDup) {
 
@@ -63,17 +64,17 @@ void CubedIndexedMesh::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, con
         return;
     }
 
-    if (checkDups) {
-
-        auto iter = faces.begin();
-        while (iter != faces.end()) {
-
-            if (iter->operator==(newFace)) {
-
-                return;
-            }
-        }
-    }
+//    if (checkDups) {
+//
+//        auto iter = faces.begin();
+//        while (iter != faces.end()) {
+//
+//            if (iter->operator==(newFace)) {
+//
+//                return;
+//            }
+//        }
+//    }
 
     faces << newFace;
 }
@@ -90,7 +91,7 @@ void CubedIndexedMesh::setCubeSize(const glm::vec3 &cubeSize) {
 
 void CubedIndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) {
 
-    for (const auto &face : faces) {
+    for (const auto &face: faces) {
         functor({
                         vertices[face.i0.cube.x][face.i0.cube.y][face.i0.cube.z].vertices[face.i0.vert],
                         vertices[face.i1.cube.x][face.i1.cube.y][face.i1.cube.z].vertices[face.i1.vert],
