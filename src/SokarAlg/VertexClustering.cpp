@@ -19,7 +19,6 @@ VertexClusteringPtr VertexClustering::New() {
 }
 
 Sokar3D::IndexedMeshPtr VertexClustering::exec() {
-    qDebug() << "KLASTERYZUJEMY" << clusterOffset << clusterSize;
 
     struct ClusterVertex {
         int oldIndex;
@@ -41,18 +40,18 @@ Sokar3D::IndexedMeshPtr VertexClustering::exec() {
 
     auto iter_end = old_vertices.end();
     auto iter_begin = old_vertices.begin();
-    qDebug() << "1";
+
     for (auto iter = iter_begin; iter != iter_end; ++iter) {
         int old_index = iter - old_vertices.begin();
         auto &vertex = *iter;
 
         auto cluster_index = position2clusterIndex(vertex);
 
-        auto piece = cluster[cluster_index];
+        auto& piece = cluster[cluster_index];
 
         piece.vertices << ClusterVertex{old_index, vertex};
     }
-    qDebug() << "2";
+
     cluster.forEach([&](const glm::i32vec3 &index, const ClusterPiece &piece) {
 
         auto final_vertex = glm::vec3(0.f, 0.f, 0.f);
@@ -97,7 +96,9 @@ void VertexClustering::setClusterOffset(const glm::vec3 &newClusterOffset) {
 
 glm::i32vec3 VertexClustering::position2clusterIndex(const glm::vec3 &v) const {
 
-    return (v + clusterOffset) / clusterSize;
+    auto pos = (v + clusterOffset) / clusterSize;
+
+    return {qFloor(pos.x), qFloor(pos.y), qFloor(pos.z)};
 }
 
 

@@ -806,7 +806,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="358"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="359"/>
         <source>Kolor</source>
         <translation type="unfinished"></translation>
     </message>

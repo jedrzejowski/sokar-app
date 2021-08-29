@@ -172,7 +172,7 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
         case 1: {
             auto vertexClustering = SokarAlg::VertexClustering::New();
             vertexClustering->setClusterSize(ui->vertexClusteringSize->getValue());
-            vertexClustering->setClusterSize(ui->vertexClusteringOffset->getValue());
+            vertexClustering->setClusterOffset(ui->vertexClusteringOffset->getValue());
             pipeline->setMeshSimplificator(vertexClustering);
             break;
         }

@@ -295,7 +295,7 @@
          <item row="0" column="0" colspan="2">
           <widget class="SokarUi::Vec3Input" name="vertexClusteringSize" native="true"/>
          </item>
-         <item row="0" column="0" colspan="2">
+         <item row="1" column="0" colspan="2">
           <widget class="SokarUi::Vec3Input" name="vertexClusteringOffset" native="true"/>
          </item>
         </layout>

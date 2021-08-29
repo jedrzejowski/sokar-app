@@ -10,6 +10,7 @@
 // https://en.cppreference.com/w/cpp/utility/source_location
 
 #define sokarTrace() qDebug() << this << __PRETTY_FUNCTION__
+#define sokarTraceLvl(lvl) sokarTrace()
 
 #define declareSharedClass(classname) \
 class classname; \
