@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>840</height>
+    <height>900</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -302,7 +302,67 @@
        </widget>
       </item>
       <item>
-       <layout class="QGridLayout" name="edgeConcatenation"/>
+       <widget class="QWidget" name="edgeCollapse" native="true">
+        <layout class="QGridLayout">
+         <item row="1" column="1">
+          <widget class="QComboBox" name="edgeCollapseDirection">
+           <item>
+            <property name="text">
+             <string>Brak</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Do wewnątrz</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Na zewnątrz</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_14">
+           <property name="text">
+            <string>Błąd</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="label_11">
+           <property name="text">
+            <string>Kierunek</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QDoubleSpinBox" name="edgeCollapseError">
+           <property name="value">
+            <double>10.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_15">
+           <property name="text">
+            <string>Procent redukcji</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QDoubleSpinBox" name="edgeCollapseVertReduction">
+           <property name="value">
+            <double>50.000000000000000</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="gridLayout_3"/>
       </item>
      </layout>
     </widget>

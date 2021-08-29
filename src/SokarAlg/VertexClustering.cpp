@@ -29,7 +29,7 @@ Sokar3D::IndexedMeshPtr VertexClustering::exec() {
         QVector<ClusterVertex> vertices;
     };
 
-    auto newMesh = Sokar3D::IndexedMesh::New();
+    auto new_mesh = Sokar3D::IndexedMesh::New();
 
     auto extrema = findExtrema();
     auto old_vertices = mesh->getVertices();
@@ -60,7 +60,7 @@ Sokar3D::IndexedMeshPtr VertexClustering::exec() {
         }
         final_vertex /= piece.vertices.size();
 
-        auto newIndex = newMesh->addVertex(final_vertex, false);
+        auto newIndex = new_mesh->addVertex(final_vertex, false);
 
         for (const auto &vertex: piece.vertices) {
             vertex2vertex[vertex.oldIndex] = newIndex;
@@ -68,10 +68,10 @@ Sokar3D::IndexedMeshPtr VertexClustering::exec() {
     });
 
     for (const auto &face: mesh->getFaces()) {
-        newMesh->addTriangle(vertex2vertex[face.i0], vertex2vertex[face.i1], vertex2vertex[face.i2], false);
+        new_mesh->addTriangle(vertex2vertex[face.i0], vertex2vertex[face.i1], vertex2vertex[face.i2], false);
     }
 
-    return newMesh;
+    return new_mesh;
 }
 
 const glm::vec3 &VertexClustering::getClusterSize() const {

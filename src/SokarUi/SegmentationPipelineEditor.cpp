@@ -8,6 +8,7 @@
 #include "ui_SegmentationPipelineEditor.h"
 #include "SokarAlg/SegmentationPipeline.hpp"
 #include "SokarAlg/MarchingCubes.hpp"
+#include "SokarAlg/EdgeCollapse.hpp"
 #include "Sokar3D/TriangleListMesh.hpp"
 #include "Sokar3D/IndexedMesh.hpp"
 #include "Sokar3D/CubedIndexedMesh.hpp"
@@ -73,6 +74,10 @@ void SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged(int
         case 1:
             ui->vertexClustering->setHidden(false);
             break;
+        case 2:
+            ui->edgeCollapse->setHidden(false);
+            break;
+
     }
 }
 
@@ -174,6 +179,29 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
             vertexClustering->setClusterSize(ui->vertexClusteringSize->getValue());
             vertexClustering->setClusterOffset(ui->vertexClusteringOffset->getValue());
             pipeline->setMeshSimplificator(vertexClustering);
+            break;
+        }
+        case 2: {
+            auto edgeCollapse = SokarAlg::EdgeCollapse::New();
+
+            switch (ui->edgeCollapseDirection->currentIndex()) {
+                case 0: {
+                    edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Any);
+                    break;
+                }
+                case 1: {
+                    edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Inward);
+                    break;
+                }
+                case 2: {
+                    edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Outward);
+                    break;
+                }
+            }
+
+            edgeCollapse->setMaximumError(ui->edgeCollapseError->value() / 100);
+            edgeCollapse->setVertexReduction(ui->edgeCollapseVertReduction->value() / 100);
+            pipeline->setMeshSimplificator(edgeCollapse);
             break;
         }
     }

@@ -792,6 +792,7 @@
     </message>
     <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="270"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="311"/>
         <source>Brak</source>
         <translation type="unfinished"></translation>
     </message>
@@ -801,17 +802,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="313"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="316"/>
+        <source>Do wewnątrz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="321"/>
+        <source>Na zewnątrz</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="329"/>
+        <source>Błąd</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="336"/>
+        <source>Kierunek</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="346"/>
+        <source>Procent redukcji</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="365"/>
         <source>Wygląd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="359"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="410"/>
         <source>Kolor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="328"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="380"/>
         <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
@@ -821,7 +847,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="319"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="371"/>
         <source>Osadz w pustej przestrzeni</source>
         <translation type="unfinished"></translation>
     </message>

@@ -150,6 +150,23 @@ IndexedMeshPtr IndexedMesh::from(const Sokar3D::MeshPtr &mesh, bool checkDuplica
     return indexedMesh;
 }
 
+boundingmesh::MeshPtr IndexedMesh::toBoundingMesh() {
+
+    auto new_mesh = std::make_shared<boundingmesh::Mesh>();
+
+    // UWAGA: tu stosuje trik, ponieważ indeksy w boundingmesh::Mesh powinny wyjść takie same to można wyników nie zapisywać
+
+    for (const auto &vert: vertices) {
+        new_mesh->addVertex(boundingmesh::Vector3{vert.x, vert.y, vert.z});
+    }
+
+    for (const auto &face: faces) {
+        new_mesh->addTriangle(face.i0, face.i1, face.i2);
+    }
+
+    return new_mesh;
+}
+
 //region Converters
 
 //IndexedMesh *IndexedMesh::toStaticMash() const {

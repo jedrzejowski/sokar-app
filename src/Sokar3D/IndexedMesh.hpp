@@ -8,6 +8,7 @@
 #include <QFuture>
 #include "Sokar3D.hpp"
 #include "Sokar3D/Mesh.hpp"
+#include <boundingmesh/Mesh.h>
 
 namespace Sokar3D {
 
@@ -20,6 +21,7 @@ namespace Sokar3D {
         struct Face {
             Size i0, i1, i2;
 
+            [[nodiscard]]
             inline bool isDummy() const {
 
                 return i0 == i1 or i1 == i2 or i0 == i2;
@@ -80,5 +82,6 @@ namespace Sokar3D {
         void addTriangle(const Vertex &v0, const Vertex &v1, const Vertex &v2, bool checkDup);
         void addTriangle(Size i0, Size i1, Size i2, bool checkDuplicates = true);
 
+        boundingmesh::MeshPtr toBoundingMesh();
     };
 }

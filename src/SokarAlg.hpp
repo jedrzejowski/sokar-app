@@ -70,7 +70,7 @@ namespace SokarAlg {
 
     declareSharedClass(VertexClustering)
 
-    declareSharedClass(EdgeContraction)
+    declareSharedClass(EdgeCollapse)
 
     declareSharedClass(VertexDecimation)
 

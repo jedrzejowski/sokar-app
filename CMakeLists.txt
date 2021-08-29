@@ -24,10 +24,25 @@ find_package(glfw3 REQUIRED)
 include_directories(${GLFW_INCLUDE_DIRS})
 link_libraries(${GLFW_LIBRARY_DIRS})
 
+#list(APPEND CONAN_PKGS gdcm/3.0.9)
+list(APPEND CONAN_PKGS eigen/3.3.9)
+list(APPEND CONAN_PKGS cgal/5.2.1)
+
+include(cmake/conan.cmake)
 include(cmake/gdcm.cmake)
 include(cmake/qt.cmake)
 include(cmake/package.cmake)
 include(cmake/shaders.cmake)
+
+
+run_conan()
+
+find_package(Eigen3 REQUIRED)
+find_package(CGAL REQUIRED)
+add_compile_definitions(CGAL_AVAILABLE=1)
+
+
+include(src/3d-party/CMakeLists.txt)
 
 
 #Tłumaczenia
@@ -67,6 +82,8 @@ target_link_libraries(
         ${OpenCV_LIBS}
         glfw
         ${Vulkan_LIBRARY}
+        Eigen3::Eigen
+        CGAL::CGAL
 )
 
 install(TARGETS ${APP_TARGET} RUNTIME DESTINATION ${INSTALL_DIR})
