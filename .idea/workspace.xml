@@ -18,33 +18,15 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="edge collpase działa">
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/BoundingConvexDecomposition.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/BoundingConvexDecomposition.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bin/bounding-convex-decomposition-cli.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bin/bounding-convex-decomposition-cli.cpp" afterDir="false" />
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/About.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/About.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarLib/HashCubeSpace.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarLib/HashCubeSpace.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarLib/WavefrontObjBuilder.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarLib/WavefrontObjBuilder.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarLib/WavefrontObjBuilder.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarLib/WavefrontObjBuilder.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bin/boundingmesh.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/boundingmesh-cli.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bin/boundingmesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/boundingmesh-cli.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bin/sokar.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/sokar.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/win/about.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/win/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/win/mainwindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +309,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/SokarUi" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
@@ -336,18 +318,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/SokarUi" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/SokarDicom" />
       <recent name="$PROJECT_DIR$/src/3d-party" />
       <recent name="$PROJECT_DIR$/src/bin" />
-      <recent name="$PROJECT_DIR$/cmake" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/SokarUi" />
       <recent name="$PROJECT_DIR$/src/bin" />
       <recent name="$PROJECT_DIR$/src/3d-party/optionparser" />
       <recent name="$PROJECT_DIR$/src/3d-party" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/src/SokarUi" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.sokar">
@@ -644,14 +626,7 @@
       <workItem from="1629829356250" duration="10533000" />
       <workItem from="1629990532322" duration="13196000" />
       <workItem from="1630256353407" duration="14697000" />
-      <workItem from="1630314322414" duration="28765000" />
-    </task>
-    <task id="LOCAL-00040" summary="commit kontrolny">
-      <created>1619483080792</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1619483080792</updated>
+      <workItem from="1630314322414" duration="29289000" />
     </task>
     <task id="LOCAL-00041" summary="commit kontrolny">
       <created>1619738518261</created>
@@ -989,7 +964,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630337434129</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="commit kontorlny">
+      <created>1630361329641</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1630361329641</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1096,7 +1078,6 @@
     <MESSAGE value="duzo zmian, lubie placki" />
     <MESSAGE value="kommit kontorlny" />
     <MESSAGE value="przerobienie static mesha" />
-    <MESSAGE value="commit kontorlny" />
     <MESSAGE value="dodanie toggla" />
     <MESSAGE value="poprawne akceptowanie zasięgu" />
     <MESSAGE value="refactor kodu" />
@@ -1110,7 +1091,8 @@
     <MESSAGE value="klasteryzacja wierzchołków działa" />
     <MESSAGE value="wstępna implemntacja edge collpasa" />
     <MESSAGE value="prace wre" />
-    <option name="LAST_COMMIT_MESSAGE" value="prace wre" />
+    <MESSAGE value="commit kontorlny" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit kontorlny" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

@@ -7,7 +7,7 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "about.h"
+#include "SokarUi/About.hpp"
 
 using namespace Sokar;
 
@@ -122,15 +122,15 @@ void MainWindow::initMenuBar() {
     });
 
     connect(ui->actionAboutGDCM, &QAction::triggered, this, [this]() {
-        About::GDCM(this);
+        SokarUi::aboutGDCM(this);
     });
 
     connect(ui->actionAboutSokar, &QAction::triggered, this, [this]() {
-        About::Sokar(this);
+        SokarUi::aboutSokar(this);
     });
 
     connect(ui->actionAboutCMake, &QAction::triggered, this, [this]() {
-        About::CMake(this);
+        SokarUi::aboutCMake(this);
     });
 
     //endregion

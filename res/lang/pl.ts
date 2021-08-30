@@ -206,28 +206,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="11"/>
-        <location filename="../../src/win/about.h" line="66"/>
+        <location filename="../../src/SokarUi/About.cpp" line="5"/>
+        <location filename="../../src/SokarUi/About.cpp" line="60"/>
         <source>About Sokar - Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="13"/>
+        <location filename="../../src/SokarUi/About.cpp" line="7"/>
         <source>&lt;b&gt;Sokar&lt;/b&gt; jest efektem pracy inżynierskiej Adama Jędrzejowskiego&amp;lt;adam@jedrzejowski.pl&amp;gt;&lt;br&gt;&lt;br&gt;Linki:&lt;br&gt;Tekst pracy: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;&lt;br&gt;Kod aplikacji: &lt;a href=&quot;%2&quot;&gt;%2&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="29"/>
+        <location filename="../../src/SokarUi/About.cpp" line="23"/>
         <source>About GDCM - Sokar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="31"/>
+        <location filename="../../src/SokarUi/About.cpp" line="25"/>
         <source>&lt;b&gt;Grassroots DiCoM&lt;/b&gt; is a &lt;b&gt;C++&lt;/b&gt; library for DICOM medical files. It is accessible from Python, C#, Java and PHP. It supports RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated transfer syntax.&lt;br&gt;It comes with a super fast scanner implementation to quickly scan hundreds of DICOM files.&lt;br&gt;It supports SCU network operations (C-ECHO, C-FIND, C-STORE, C-MOVE). PS 3.3 &amp; 3.6 are distributed as XML files.&lt;br&gt;It also provides PS 3.15 certificates and password based mecanism to anonymize and de-identify DICOM datasets.&lt;br&gt;&lt;br&gt;Features:&lt;ul&gt;&lt;li&gt;RAW, JPEG, JPEG 2000, JPEG-LS, RLE and deflated&lt;/li&gt;&lt;li&gt;Quickly scan DICOM for attributes&lt;/li&gt;&lt;li&gt;SCU: C-ECHO, C-FIND, C-STORE, C-MOVE&lt;/li&gt;&lt;li&gt;PS 3.3 &amp; PS 3.6/3.7 as XML files&lt;/li&gt;&lt;li&gt;PS 3.15 de-identify / re-identify (certificates+password based)&lt;/li&gt;&lt;li&gt;Portable C++&lt;/li&gt;&lt;li&gt;Bindings: Python, C#, Java, PHP and Perl&lt;/li&gt;&lt;li&gt;VTK bridge (ImageData and RTSTRUCT)&lt;/li&gt;&lt;li&gt;Nightly test suite&lt;/li&gt;&lt;li&gt;Support well-known DICOM issues (PMSCT_RLE1, JAI JPEG-LS, Signed Short JPEG)&lt;/li&gt;&lt;/ul&gt;Official site: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;&lt;br&gt;SourceForge profile: &lt;a href=&quot;%2&quot;&gt;%2&lt;/a&gt;&lt;br&gt;License: &lt;a href=&quot;%3&quot;&gt;BSD licenses&lt;/a&gt;, &lt;a href=&quot;%4&quot;&gt;Apache License V2.0&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/win/about.h" line="68"/>
+        <location filename="../../src/SokarUi/About.cpp" line="62"/>
         <source>&lt;b&gt;CMake&lt;/b&gt; is an open-source, cross-platform family of tools designed to build, test and package software.CMake is used to control the software compilation process using simple platform and compiler independent configuration files, and generate native makefiles and workspaces that can be used in the compiler environment of your choice.&lt;br&gt;Links:&lt;br&gt;Official site: &lt;a href=&quot;%1&quot;&gt;%1&lt;/a&gt;&lt;br&gt;License: &lt;a href=&quot;%2&quot;&gt;BSD licenses&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>

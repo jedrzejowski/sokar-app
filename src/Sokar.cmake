@@ -76,7 +76,6 @@ set(SRC_SOKAR_LEGACY
         sokar/settings.h
         sokar/qt.cpp
         sokar/palette.cpp
-        win/about.h
         win/mainwindow.cpp
         win/mainwindow.h
         widget/dicomtabs.h
