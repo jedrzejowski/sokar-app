@@ -14,7 +14,7 @@ namespace SokarLib {
         using Index = glm::int32;
         using Index3 = glm::i32vec3;
     private:
-        QHash<Index, QHash<Index, QHash<Index, T>>> cluster;
+        mutable QHash<Index, QHash<Index, QHash<Index, T>>> cluster;
 
     public:
 
@@ -43,23 +43,20 @@ namespace SokarLib {
             Index3 index;
 
             auto &xspace = cluster;
-            index.x = 0;
             for (auto itX = xspace.begin(); itX != xspace.end(); ++itX) {
                 auto &yspace = itX.value();
-                index.y = 0;
+                index.x = itX.key();
 
                 for (auto itY = yspace.begin(); itY != yspace.end(); ++itY) {
                     auto &zspace = itY.value();
-                    index.z = 0;
+                    index.y = itY.key();
 
                     for (auto itZ = zspace.begin(); itZ != zspace.end(); ++itZ) {
+                        index.z = itZ.key();
 
                         functor(index, itZ.value());
-                        ++index.z;
                     }
-                    ++index.y;
                 }
-                ++index.x;
             }
         }
     };

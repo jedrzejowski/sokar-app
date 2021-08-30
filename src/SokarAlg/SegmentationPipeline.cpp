@@ -136,7 +136,8 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         //endregion
 
         result->summary.timeEnd = makeTimePoint();
-        result->summary.mesh = Sokar3D::TriangleListMesh::from(currentMesh);
+        result->summary.mesh = currentMesh;
+        result->summary.displayMesh = Sokar3D::TriangleListMesh::from(currentMesh);
 
         result->summary.description = QString("czas wykonania %1").arg(
                 timeRangeString(result->summary.timeStart, result->summary.timeEnd)

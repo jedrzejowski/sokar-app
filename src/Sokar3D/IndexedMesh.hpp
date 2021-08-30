@@ -51,7 +51,7 @@ namespace Sokar3D {
         [[nodiscard]]
         static IndexedMeshPtr from(const Sokar3D::MeshPtr &mesh, bool checkDuplicates = true);
 
-        void foreachFaces(const std::function<void(Mesh::Face)> &functor) override;
+        void foreachFaces(const std::function<void(Mesh::Face)> &functor) const override;
 
         [[nodiscard]]
         Size verticesSizeInBytes() const;
@@ -83,5 +83,7 @@ namespace Sokar3D {
         void addTriangle(Size i0, Size i1, Size i2, bool checkDuplicates = true);
 
         boundingmesh::MeshPtr toBoundingMesh();
+
+        void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const override;
     };
 }

@@ -132,7 +132,7 @@ void IndexedMesh::addTriangle(
     addTriangle(v0, v1, v2, true);
 }
 
-void IndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) {
+void IndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) const {
 
     for (const auto &face: faces) {
         functor({vertices[face.i0], vertices[face.i1], vertices[face.i2]});
@@ -165,6 +165,31 @@ boundingmesh::MeshPtr IndexedMesh::toBoundingMesh() {
     }
 
     return new_mesh;
+}
+
+void IndexedMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
+
+    auto vert_count = verticesCount();
+
+    QVector<SokarLib::WavefrontObjBuilder::size_type> my_vertex_2_obj_vertex;
+    my_vertex_2_obj_vertex.resize(vert_count);
+
+    int i = -1;
+
+    for (const auto &vert: vertices) {
+        auto vi = builder.addVertex(vert);
+
+        my_vertex_2_obj_vertex[i] = vi;
+    }
+
+    for (const auto &face: faces) {
+
+        builder.addFaceV(
+                my_vertex_2_obj_vertex[face.i0],
+                my_vertex_2_obj_vertex[face.i1],
+                my_vertex_2_obj_vertex[face.i2]
+        );
+    }
 }
 
 //region Converters

@@ -54,7 +54,8 @@ namespace SokarAlg {
             TimePoint timeStart;
             TimePoint timeEnd;
             QString description;
-            Sokar3D::TriangleListMeshPtr mesh = nullptr;
+            Sokar3D::MeshPtr mesh = nullptr;
+            Sokar3D::TriangleListMeshPtr displayMesh = nullptr;
         } summary;
 
         glm::vec3 proposeCameraCenter;

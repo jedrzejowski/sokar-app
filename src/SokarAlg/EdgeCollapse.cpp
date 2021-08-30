@@ -18,15 +18,13 @@ EdgeCollapsePtr EdgeCollapse::New() {
 Sokar3D::IndexedMeshPtr EdgeCollapse::exec() {
 
     auto bound_mesh = mesh->toBoundingMesh();
-    bound_mesh->writeObj("/tmp/sokar/mesh1.obj");
 
     boundingmesh::Decimator decimator(direction);
-    decimator.setMaximumError(0.1);
-    decimator.setTargetVertices(1000);
+    decimator.setMaximumError(maximum_error);
+    decimator.setTargetVertices(qFloor(float(bound_mesh->nVertices()) * vertex_reduction));
     decimator.setMesh(*bound_mesh);
 
     auto decimated_mesh = decimator.compute();
-    decimated_mesh->writeObj("/tmp/sokar/mesh2.obj");
     auto output_mesh = Sokar3D::IndexedMesh::New();
 
     std::vector<uint> decimeted2outputVertexMap;
@@ -43,7 +41,6 @@ Sokar3D::IndexedMeshPtr EdgeCollapse::exec() {
     }
 
     auto triangle_num = decimated_mesh->nTriangles();
-    qDebug() << "triangle_num" << triangle_num;
 
     for (uint i = 0; i < triangle_num; ++i) {
         auto &triangle = decimated_mesh->triangle(i);

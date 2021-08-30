@@ -88,7 +88,7 @@ void SegmentationWindow::endSegmentation(QSharedPointer<const SokarAlg::Segmenta
     );
     vulkanRenderer->setCamera(camera);
 
-    auto graphicPipeline = new Sokar3D::MeshPipeline(result->summary.mesh);
+    auto graphicPipeline = new Sokar3D::MeshPipeline(result->summary.displayMesh);
 
     Sokar3D::SolidMaterial material{};
     material.shininess = 64.0f;

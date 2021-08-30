@@ -6,7 +6,6 @@
 
 #include <QString>
 #include <QFuture>
-#include <SokarLib/WavefrontObjBuilder.hpp>
 #include "./Sokar3D.hpp"
 #include "./Mesh.hpp"
 #include "./MeshVertex.hpp"
@@ -35,7 +34,7 @@ namespace Sokar3D {
         void addTriangle(const MeshVertex &v0, const MeshVertex &v1, const MeshVertex &v2);
         void addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2) override;
 
-        void foreachFaces(const std::function<void(Mesh::Face face)> &functor) override;
+        void foreachFaces(const std::function<void(Mesh::Face face)> &functor) const override;
 
         static TriangleListMesh *createCubeMesh();
 
@@ -54,7 +53,7 @@ namespace Sokar3D {
         [[nodiscard]]
         const QVector<Face> &getFaces() const;
 
-        void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const;
+        void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const override;
 
         static TriangleListMeshPtr from(const MeshPtr &mesh);
     };

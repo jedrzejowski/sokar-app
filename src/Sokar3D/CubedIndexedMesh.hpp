@@ -6,6 +6,7 @@
 
 #include "Sokar3D.hpp"
 #include "Sokar3D/Mesh.hpp"
+#include "SokarLib/HashCubeSpace.hpp"
 
 namespace Sokar3D {
 
@@ -16,37 +17,25 @@ namespace Sokar3D {
             glm::i32vec3 cube;
             glm::i32 vert;
 
-            inline bool operator==(const Index &other) const {
-
-                return cube == other.cube and vert == other.vert;
-            }
+            bool operator==(const Index &other) const;
         };
 
         struct Cube {
-            glm::i32vec3 index;
+            // glm::i32vec3 index;
             QVector<glm::vec3> vertices;
         };
 
         struct Face {
             Index i0, i1, i2;
 
-            inline bool isDummy() const {
+            [[nodiscard]]
+            inline bool isDummy() const;
 
-                return i0 == i1 or i1 == i2 or i0 == i2;
-            }
-
-            inline bool operator==(const Face &other) const {
-
-                return (i0 == other.i0 and i1 == other.i1 and i2 == other.i2)
-                       or
-                       (i0 == other.i1 and i1 == other.i2 and i2 == other.i0)
-                       or
-                       (i0 == other.i2 and i1 == other.i0 and i2 == other.i1);
-            }
+            bool operator==(const Face &other) const;
         };
 
     private:
-        QHash<qint32, QHash<qint32, QHash<qint32, Cube>>> vertices;
+        SokarLib::HashCubeSpace<Cube> vertices;
         QVector<Face> faces;
         glm::vec3 cubeSize = glm::vec3(1.f);
 
@@ -56,9 +45,9 @@ namespace Sokar3D {
 
         static CubedIndexedMeshPtr New();
 
-        static CubedIndexedMeshPtr from(const MeshPtr& mesh);
+        static CubedIndexedMeshPtr from(const MeshPtr &mesh);
 
-        void foreachFaces(const std::function<void(Mesh::Face)> &functor) override;
+        void foreachFaces(const std::function<void(Mesh::Face)> &functor) const override;
 
         const glm::vec3 &getCubeSize() const;
 
@@ -72,6 +61,7 @@ namespace Sokar3D {
 
         glm::i32vec3 position2cubeIndex(const glm::vec3 &v) const;
 
+        void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const override;
     };
 
 }

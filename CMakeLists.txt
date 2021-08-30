@@ -54,7 +54,8 @@ include_directories(${PROJECT_SOURCE_DIR}/src)
 file(GLOB_RECURSE UI_FILES "${PROJECT_SOURCE_DIR}/src/*.ui")
 qt5_wrap_ui(UI_HEADERS ${UI_FILES})
 
-include(src/bin/boundingmesh.cmake)
+include(src/bin/boundingmesh-cli.cmake)
+include(src/bin/bounding-convex-decomposition-cli.cmake)
 include(src/bin/sokar.cmake)
 
 

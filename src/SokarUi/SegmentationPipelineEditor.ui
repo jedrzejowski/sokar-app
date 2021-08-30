@@ -280,6 +280,11 @@
           <string>Usuwanie krawędzi</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Bounding convex decomposition</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>

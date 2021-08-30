@@ -1,7 +1,7 @@
 
 
 add_executable(boundingmesh
-        ${CMAKE_CURRENT_LIST_DIR}/boundingmesh.cpp
+        ${CMAKE_CURRENT_LIST_DIR}/boundingmesh-cli.cpp
         ${SRC_3DPRATY_BOUNDINGMESH}
         ${SRC_3DPRATY_BOUNDINGMESH}
         )

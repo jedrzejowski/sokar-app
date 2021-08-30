@@ -5,7 +5,7 @@
 #include "WavefrontObjBuilder.hpp"
 
 using namespace SokarLib;
-using Size = WavefrontObjBuilder::Size;
+using Size = WavefrontObjBuilder::size_type;
 
 Size WavefrontObjBuilder::addVertex(const glm::vec3 &v) {
 
@@ -26,9 +26,9 @@ Size WavefrontObjBuilder::addNormal(const glm::vec3 &vn) {
 }
 
 Size WavefrontObjBuilder::addFaceV(
-        const Size &v1,
-        const Size &v2,
-        const Size &v3
+        const size_type &v1,
+        const size_type &v2,
+        const size_type &v3
 ) {
 
     faces << "f" << space << v1 << space << v2 << space << v3 << endl;
@@ -36,9 +36,9 @@ Size WavefrontObjBuilder::addFaceV(
 }
 
 Size WavefrontObjBuilder::addFaceVT(
-        const Size &v1, const Size &t1,
-        const Size &v2, const Size &t2,
-        const Size &v3, const Size &t3
+        const size_type &v1, const size_type &t1,
+        const size_type &v2, const size_type &t2,
+        const size_type &v3, const size_type &t3
 ) {
 
     faces << "f" << space
@@ -49,9 +49,9 @@ Size WavefrontObjBuilder::addFaceVT(
 }
 
 Size WavefrontObjBuilder::addFaceVTN(
-        const Size &v1, const Size &t1, const Size &n1,
-        const Size &v2, const Size &t2, const Size &n2,
-        const Size &v3, const Size &t3, const Size &n3
+        const size_type &v1, const size_type &t1, const size_type &n1,
+        const size_type &v2, const size_type &t2, const size_type &n2,
+        const size_type &v3, const size_type &t3, const size_type &n3
 ) {
 
     faces << "f" << space
@@ -62,9 +62,9 @@ Size WavefrontObjBuilder::addFaceVTN(
 }
 
 Size WavefrontObjBuilder::addFaceVN(
-        const Size &v1, const Size &n1,
-        const Size &v2, const Size &n2,
-        const Size &v3, const Size &n3
+        const size_type &v1, const size_type &n1,
+        const size_type &v2, const size_type &n2,
+        const size_type &v3, const size_type &n3
 ) {
 
     faces << "f" << space

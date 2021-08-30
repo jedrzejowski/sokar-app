@@ -67,7 +67,7 @@ const QVector<Face> &TriangleListMesh::getFaces() const {
 
 void TriangleListMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
 
-    for (const auto &face : faces) {
+    for (const auto &face: faces) {
 
         auto v1i = builder.addVertex(face.v0.pos);
         auto v2i = builder.addVertex(face.v1.pos);
@@ -206,9 +206,9 @@ TriangleListMesh *TriangleListMesh::createCubeMesh() {
     return mesh;
 }
 
-void TriangleListMesh::foreachFaces(const std::function<void(Mesh::Face face)> &functor) {
+void TriangleListMesh::foreachFaces(const std::function<void(Mesh::Face face)> &functor) const {
 
-    for (const auto &face : faces) {
+    for (const auto &face: faces) {
         functor({face.v0.pos, face.v1.pos, face.v2.pos,});
     }
 }

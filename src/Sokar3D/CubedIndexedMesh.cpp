@@ -27,7 +27,7 @@ CubedIndexedMesh::Index CubedIndexedMesh::addVertex(const glm::vec3 &newVertex, 
     index.cube = position2cubeIndex(newVertex);
 
     // ilośc zmarnowanych godzin na tej linii = 5
-    auto& cube = vertices[index.cube.x][index.cube.y][index.cube.z];
+    auto &cube = vertices[index.cube];
 
     if (checkDup) {
 
@@ -89,13 +89,13 @@ void CubedIndexedMesh::setCubeSize(const glm::vec3 &cubeSize) {
     CubedIndexedMesh::cubeSize = cubeSize;
 }
 
-void CubedIndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) {
+void CubedIndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) const {
 
     for (const auto &face: faces) {
         functor({
-                        vertices[face.i0.cube.x][face.i0.cube.y][face.i0.cube.z].vertices[face.i0.vert],
-                        vertices[face.i1.cube.x][face.i1.cube.y][face.i1.cube.z].vertices[face.i1.vert],
-                        vertices[face.i2.cube.x][face.i2.cube.y][face.i2.cube.z].vertices[face.i2.vert]
+                        vertices[face.i0.cube].vertices[face.i0.vert],
+                        vertices[face.i1.cube].vertices[face.i1.vert],
+                        vertices[face.i2.cube].vertices[face.i2.vert]
                 });
     }
 }
@@ -109,4 +109,46 @@ CubedIndexedMeshPtr CubedIndexedMesh::from(const MeshPtr &mesh) {
     });
 
     return new_mesh;
+}
+
+void CubedIndexedMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
+
+    SokarLib::HashCubeSpace<QVector<SokarLib::WavefrontObjBuilder::size_type>> my_vertex_2obj_vertex;
+
+    vertices.forEach([&](auto &index, auto &cube) {
+        auto &verts = my_vertex_2obj_vertex[index];
+
+        for (const auto &vert: cube.vertices) {
+            verts << builder.addVertex(vert);
+        }
+    });
+
+
+    for (const auto &face: faces) {
+
+        builder.addFaceV(
+                my_vertex_2obj_vertex[face.i0.cube][face.i0.vert],
+                my_vertex_2obj_vertex[face.i1.cube][face.i1.vert],
+                my_vertex_2obj_vertex[face.i2.cube][face.i2.vert]
+        );
+    }
+}
+
+bool CubedIndexedMesh::Face::operator==(const CubedIndexedMesh::Face &other) const {
+
+    return (i0 == other.i0 and i1 == other.i1 and i2 == other.i2)
+           or
+           (i0 == other.i1 and i1 == other.i2 and i2 == other.i0)
+           or
+           (i0 == other.i2 and i1 == other.i0 and i2 == other.i1);
+}
+
+bool CubedIndexedMesh::Face::isDummy() const {
+
+    return i0 == i1 or i1 == i2 or i0 == i2;
+}
+
+bool CubedIndexedMesh::Index::operator==(const Index &other) const {
+
+    return cube == other.cube and vert == other.vert;
 }

@@ -39,6 +39,8 @@ set(SRC_SOKAR_ALG
         Volume.hpp
         EdgeCollapse.hpp
         EdgeCollapse.cpp
+        BoundingConvexDecomposition.hpp
+        BoundingConvexDecomposition.cpp
         )
 
 list(TRANSFORM SRC_SOKAR_ALG PREPEND ${CMAKE_CURRENT_LIST_DIR}/)

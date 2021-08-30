@@ -72,6 +72,8 @@ namespace SokarAlg {
 
     declareSharedClass(EdgeCollapse)
 
+    declareSharedClass(BoundingConvexDecomposition)
+
     declareSharedClass(VertexDecimation)
 
     // VolumeInterpolator
