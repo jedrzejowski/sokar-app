@@ -1,0 +1,44 @@
+
+set(SRC_SOKAR_ALG
+        ../SokarAlg.hpp
+        ../SokarAlg.cpp
+        MarchingCubes.cpp
+        Array3.cpp
+        gte/Array3.h
+        gte/IntpAkimaUniform3.h
+        SegmentationPipeline.cpp
+        SegmentationPipeline.hpp
+        VolumeSegmentator.cpp
+        VolumeSegmentator.hpp
+        Volume.cpp
+        ExampleVolume.hpp
+        ExampleVolume.cpp
+        VolumeEnv.hpp
+        VolumeEnv.cpp
+        DicomVolume.cpp
+        MarchingCubes.hpp
+        MeshSimplificator.hpp
+        VertexClustering.hpp
+        VertexDecimation.hpp
+        MeshSimplificator.cpp
+        VertexDecimation.cpp
+        Array3.hpp
+        InterpolatedVolume.cpp
+        InterpolatedVolume.hpp
+        VolumeInterpolator.hpp
+        VolumeInterpolator.cpp
+        CachedVolume.cpp
+        CachedVolume.hpp
+        Range.hpp
+        RegionGrowthVolume.hpp
+        RegionGrowthVolume.cpp
+        Algorithm.cpp
+        Algorithm.hpp
+        VertexClustering.cpp
+        DicomVolume.hpp
+        Volume.hpp
+        EdgeCollapse.hpp
+        EdgeCollapse.cpp
+        )
+
+list(TRANSFORM SRC_SOKAR_ALG PREPEND ${CMAKE_CURRENT_LIST_DIR}/)

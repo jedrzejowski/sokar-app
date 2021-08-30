@@ -69,6 +69,7 @@ void SegmentationPipelineEditor::setupUi() {
 void SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged(int i) {
 
     ui->vertexClustering->setHidden(true);
+    ui->edgeCollapse->setHidden(true);
 
     switch (i) {
         case 1:

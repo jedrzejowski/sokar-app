@@ -275,6 +275,11 @@
           <string>Klasteryzacja wierzchołków</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Usuwanie krawędzi</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item>

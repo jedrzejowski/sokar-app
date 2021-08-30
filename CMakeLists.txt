@@ -41,9 +41,8 @@ find_package(Eigen3 REQUIRED)
 find_package(CGAL REQUIRED)
 add_compile_definitions(CGAL_AVAILABLE=1)
 
-
 include(src/3d-party/CMakeLists.txt)
-
+include(src/Sokar.cmake)
 
 #Tłumaczenia
 file(GLOB TS_FILES "${PROJECT_SOURCE_DIR}/res/lang/*.ts")
@@ -51,40 +50,12 @@ qt5_create_translation(QM_FILES ${PROJECT_SOURCE_DIR}/src ${TS_FILES} OPTIONS -s
 
 #Pliki projetku
 include_directories(${PROJECT_SOURCE_DIR}/src)
-file(GLOB_RECURSE CPP_FILES "${PROJECT_SOURCE_DIR}/src/*.cpp")
-file(GLOB_RECURSE HEADER_FILES "${PROJECT_SOURCE_DIR}/src/*.h")
-file(GLOB_RECURSE UI_FILES "${PROJECT_SOURCE_DIR}/src/*.ui")
-file(GLOB_RECURSE QRC_FILES "${PROJECT_SOURCE_DIR}/src/*.qrc")
 
+file(GLOB_RECURSE UI_FILES "${PROJECT_SOURCE_DIR}/src/*.ui")
 qt5_wrap_ui(UI_HEADERS ${UI_FILES})
 
+include(src/bin/boundingmesh.cmake)
+include(src/bin/sokar.cmake)
 
-file(GLOB_RECURSE SHADER_FILES
-        "${PROJECT_SOURCE_DIR}/src/*.vert"
-        "${PROJECT_SOURCE_DIR}/src/*.frag"
-        )
 
-add_executable(${APP_TARGET}
-        ${HEADER_FILES} ${CPP_FILES}
-        ${UI_HEADERS} ${QM_FILES}
-        res/resources.qrc
-        ${QRC_FILES})
-
-add_all_shaders(${APP_TARGET})
-
-target_link_libraries(
-        ${APP_TARGET}
-        LINK_PUBLIC
-        ${EXTRA_LIBS}
-        ${GDCM_LIBRARIES}
-        ${CMAKE_THREAD_LIBS_INIT}
-        ${QT_LIBRARIES}
-        ${OpenCV_LIBS}
-        glfw
-        ${Vulkan_LIBRARY}
-        Eigen3::Eigen
-        CGAL::CGAL
-)
-
-install(TARGETS ${APP_TARGET} RUNTIME DESTINATION ${INSTALL_DIR})
 

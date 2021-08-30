@@ -18,17 +18,43 @@ EdgeCollapsePtr EdgeCollapse::New() {
 Sokar3D::IndexedMeshPtr EdgeCollapse::exec() {
 
     auto bound_mesh = mesh->toBoundingMesh();
+    bound_mesh->writeObj("/tmp/sokar/mesh1.obj");
 
     boundingmesh::Decimator decimator(direction);
-    decimator.setMaximumError(maximum_error);
-    decimator.setTargetVertices(qFloor(vertex_reduction * float(bound_mesh->nVertices())));
+    decimator.setMaximumError(0.1);
+    decimator.setTargetVertices(1000);
     decimator.setMesh(*bound_mesh);
 
     auto decimated_mesh = decimator.compute();
+    decimated_mesh->writeObj("/tmp/sokar/mesh2.obj");
     auto output_mesh = Sokar3D::IndexedMesh::New();
 
-    auto vert_num = decimated_mesh->nVertices();
+    std::vector<uint> decimeted2outputVertexMap;
 
+    auto vert_num = decimated_mesh->nVertices();
+    decimeted2outputVertexMap.resize(vert_num);
+
+    for (uint i = 0; i < vert_num; ++i) {
+        auto vert = decimated_mesh->vertex(i).position();
+
+        auto new_i = output_mesh->addVertex({vert.x(), vert.y(), vert.z()}, false);
+
+        decimeted2outputVertexMap[i] = new_i;
+    }
+
+    auto triangle_num = decimated_mesh->nTriangles();
+    qDebug() << "triangle_num" << triangle_num;
+
+    for (uint i = 0; i < triangle_num; ++i) {
+        auto &triangle = decimated_mesh->triangle(i);
+
+        output_mesh->addTriangle(
+                decimeted2outputVertexMap[triangle.vertex(0)],
+                decimeted2outputVertexMap[triangle.vertex(1)],
+                decimeted2outputVertexMap[triangle.vertex(2)],
+                false
+        );
+    }
 
     return output_mesh;
 }

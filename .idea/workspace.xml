@@ -8,6 +8,8 @@
       <config projectName="Sokar" targetName="DiBrowser_autogen" />
       <config projectName="Sokar" targetName="sokar_autogen" />
       <config projectName="Sokar" targetName="sokar" />
+      <config projectName="Sokar" targetName="boundingmesh" />
+      <config projectName="Sokar" targetName="boundingmesh_autogen" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -17,47 +19,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/cmake/conan.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/CMakeLists.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/ContractionUtils.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/ContractionUtils.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/Decimator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/Decimator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/FileUtils.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/FileUtils.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/Mesh.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/Mesh.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/MetricGenerator.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/MetricGenerator.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/OptimizerInterface.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/Primitives.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/Primitives.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/Segmenter.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/SegmenterDownsampling.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/SegmenterDownsampling.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/SegmenterSimple.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/SegmenterSimple.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/SimpleOptimizer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/SimpleOptimizer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/Split.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/Split.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/VoxelSet.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/VoxelSet.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/VoxelSubset.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/3d-party/boundingmesh/VoxelSubset.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/3d-party/optionparser/optionparser.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sokar.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Sokar3D/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarDicom/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarLib/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarScene/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarUi/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bin/boundingmesh.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bin/boundingmesh.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bin/sokar.cmake" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeContraction.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeContraction.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d-party/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d-party/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/sokar.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -340,7 +320,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/cmake" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C/C++" />
@@ -349,18 +329,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/cmake" />
-      <recent name="$PROJECT_DIR$/src/SokarAlg/boundingmesh" />
-      <recent name="$PROJECT_DIR$/lib/obj_loader" />
-      <recent name="$PROJECT_DIR$/src/SokarUi" />
       <recent name="$PROJECT_DIR$/src" />
+      <recent name="$PROJECT_DIR$/src/SokarDicom" />
+      <recent name="$PROJECT_DIR$/src/3d-party" />
+      <recent name="$PROJECT_DIR$/src/bin" />
+      <recent name="$PROJECT_DIR$/cmake" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/bin" />
+      <recent name="$PROJECT_DIR$/src/3d-party/optionparser" />
       <recent name="$PROJECT_DIR$/src/3d-party" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/SokarUi" />
-      <recent name="$PROJECT_DIR$/src/Sokar3D" />
-      <recent name="$PROJECT_DIR$/src/SokarScene" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.sokar">
@@ -412,7 +392,17 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="boundingmesh_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh_autogen" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -463,6 +453,8 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="CMake Application.boundingmesh" />
+      <item itemvalue="CMake Application.boundingmesh_autogen" />
       <item itemvalue="CMake Application.sokar" />
       <item itemvalue="CMake Application.sokar_autogen" />
       <item itemvalue="Shell Script.vk:color_phong" />
@@ -644,14 +636,8 @@
       <workItem from="1629738921924" duration="6145000" />
       <workItem from="1629829356250" duration="10533000" />
       <workItem from="1629990532322" duration="13196000" />
-      <workItem from="1630256353407" duration="14456000" />
-    </task>
-    <task id="LOCAL-00038" summary="kommit kontrolny">
-      <created>1618851913093</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1618851913093</updated>
+      <workItem from="1630256353407" duration="14697000" />
+      <workItem from="1630314322414" duration="13032000" />
     </task>
     <task id="LOCAL-00039" summary="commit kontrolny">
       <created>1619452998720</created>
@@ -989,7 +975,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630263682674</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="wstępna implemntacja edge collpasa">
+      <created>1630280053885</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1630280053885</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1085,7 +1078,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="kommit kontrolny" />
     <MESSAGE value="commit kontrolny" />
     <MESSAGE value="ulepszenia pamięci" />
     <MESSAGE value="dodanie nowego mesha" />
@@ -1110,7 +1102,8 @@
     <MESSAGE value="xD" />
     <MESSAGE value="prace nad upraszczaniem siatki" />
     <MESSAGE value="klasteryzacja wierzchołków działa" />
-    <option name="LAST_COMMIT_MESSAGE" value="klasteryzacja wierzchołków działa" />
+    <MESSAGE value="wstępna implemntacja edge collpasa" />
+    <option name="LAST_COMMIT_MESSAGE" value="wstępna implemntacja edge collpasa" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/dicomview/moviebar.h">
