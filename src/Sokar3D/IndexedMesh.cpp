@@ -98,15 +98,19 @@ void IndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) c
 boundingmesh::MeshPtr IndexedMesh::toBoundingMesh() const {
 
     auto new_mesh = std::make_shared<boundingmesh::Mesh>();
+    auto my_vertex_2_bounding_vertex = QHash<size_type, boundingmesh::Index>();
 
-    // UWAGA: tu stosuje trik, ponieważ indeksy w boundingmesh::Mesh powinny wyjść takie same to można wyników nie zapisywać
-
-    for (const auto &vert: vertices) {
-        new_mesh->addVertex(boundingmesh::Vector3{vert.x, vert.y, vert.z});
+    for (auto iter = vertices.constKeyValueBegin(); iter != vertices.constKeyValueEnd(); ++iter) {
+        auto i = new_mesh->addVertex(boundingmesh::Vector3{iter->second.x, iter->second.y, iter->second.z});
+        my_vertex_2_bounding_vertex[iter->first] = i;
     }
 
     for (const auto &face: faces) {
-        new_mesh->addTriangle(face.i0, face.i1, face.i2);
+        new_mesh->addTriangle(
+                my_vertex_2_bounding_vertex[face.i0],
+                my_vertex_2_bounding_vertex[face.i1],
+                my_vertex_2_bounding_vertex[face.i2]
+        );
     }
 
     return new_mesh;

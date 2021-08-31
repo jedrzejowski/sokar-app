@@ -91,7 +91,6 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             result->regionGrowth.description = QString("nie");
         }
 
-
         if (useEmptyEnv) {
             volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
         }
