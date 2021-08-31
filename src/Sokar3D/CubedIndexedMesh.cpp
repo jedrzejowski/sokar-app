@@ -109,7 +109,7 @@ void CubedIndexedMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) co
 
     SokarLib::HashCubeSpace<QHash<size_type, SokarLib::WavefrontObjBuilder::size_type>> my_vertex_2_obj_vertex;
 
-    vert_space.forEach([&](const auto &cube_index, const auto &cube) {
+    vert_space.constForEach([&](const auto &cube_index, const auto &cube) {
 
         for (auto iter = cube.vertices.constBegin(); iter != cube.vertices.constEnd(); ++iter) {
 
@@ -133,7 +133,7 @@ void CubedIndexedMesh::injectTo(const IndexedMeshPtr &other, const glm::mat4 &tr
 
     SokarLib::HashCubeSpace<QHash<size_type, SokarLib::WavefrontObjBuilder::size_type>> my_vertex_2_other_vertex;
 
-    vert_space.forEach([&](const auto &cube_index, const auto &cube) {
+    vert_space.constForEach([&](const auto &cube_index, const auto &cube) {
         for (auto iter = cube.vertices.constKeyValueBegin(); iter != cube.vertices.constKeyValueEnd(); ++iter) {
             auto vertex_index = other->addVertex(iter->second, false);
             my_vertex_2_other_vertex[cube_index][iter->first] = vertex_index;
@@ -163,6 +163,15 @@ void CubedIndexedMesh::injectTo(const TriangleListMeshPtr &other, const glm::mat
                 vert_space[face.i2.cube].vertices[face.i2.vert]
         );
     }
+}
+
+void CubedIndexedMesh::applyTransform(const glm::mat4 &transform) {
+
+    vert_space.forEach([&](const auto &cube_index, auto &cube) {
+        for (auto &vert: cube.vertices) {
+            vert = transform * glm::vec4(vert, 1.0f);
+        }
+    });
 }
 
 bool CubedIndexedMesh::Face::operator==(const CubedIndexedMesh::Face &other) const {

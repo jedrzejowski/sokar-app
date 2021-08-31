@@ -329,7 +329,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="123"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="127"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>

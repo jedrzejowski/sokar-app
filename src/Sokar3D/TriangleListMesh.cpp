@@ -237,3 +237,14 @@ void TriangleListMesh::injectTo(const TriangleListMeshPtr &other, const glm::mat
         );
     }
 }
+
+void TriangleListMesh::applyTransform(const glm::mat4 &transform) {
+
+    for (auto &face: faces) {
+
+        face.v0.pos = glm::vec4(face.v0.pos, 1.0f) * transform;
+        face.v1.pos = glm::vec4(face.v1.pos, 1.0f) * transform;
+        face.v2.pos = glm::vec4(face.v2.pos, 1.0f) * transform;
+
+    }
+}

@@ -75,8 +75,8 @@ namespace SokarAlg {
         bool useRegionGrowth = false;
         glm::i32vec3 regionGrowthStartPoint;
 
-        QSharedPointer<const RawDicomVolume> rawDicomVolume = nullptr;
-        QSharedPointer<DicomVolume> dicomVolume = nullptr;
+        RawDicomVolumeCPtr rawDicomVolume = nullptr;
+        DicomVolumePtr dicomVolume = nullptr;
         Sokar3D::MeshPtr baseMesh = nullptr;
         VolumeInterpolatorPtr volumeInterpolator = nullptr;
         VolumeSegmentatorPtr volumeSegmentator = nullptr;

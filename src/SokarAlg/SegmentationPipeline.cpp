@@ -16,7 +16,7 @@ using namespace SokarAlg;
 
 SegmentationPipeline::SegmentationPipeline()
         : QObject(nullptr),
-          dicomVolume(QSharedPointer<DicomVolume>::create()),
+          dicomVolume(DicomVolumePtr::create()),
           volumeInterpolator(QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create()),
           volumeSegmentator(QSharedPointer<SokarAlg::MarchingCubes>::create()) {
 }
@@ -101,12 +101,17 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         emit updateProgress(QObject::tr("Maszerowanie"), 0.f);
 
         volumeSegmentator->setVolume(volume);
-
         volumeSegmentator->setMesh(currentMesh);
+
         result->segmentation.inputMesh = currentMesh;
         result->segmentation.timeStart = makeTimePoint();
         result->segmentation.outputMesh = currentMesh = volumeSegmentator->execSync();
         result->segmentation.timeEnd = makeTimePoint();
+
+        // transformata do skalowania mesha
+        auto transform = glm::mat4(1.f);
+        transform = glm::scale(transform, glm::vec3(dicomVolume->getCubesPerMM()));
+        currentMesh->applyTransform(transform);
 
         result->segmentation.description = QString("%1\nczas %2").arg(
                 volumeSegmentator->toDisplay(),
@@ -146,7 +151,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         );
 
         result->meshColor = meshColor;
-        result->proposeCameraCenter = glm::vec3(volume->getSize()) / 2.f;
+        result->proposeCameraCenter = glm::vec3(volume->getSize()) / 2.f * dicomVolume->getCubesPerMM();
         result->proposeCameraDistance = glm::length(result->proposeCameraCenter) * 2;
 
         return result;

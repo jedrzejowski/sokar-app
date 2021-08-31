@@ -48,7 +48,7 @@ Sokar3D::IndexedMeshPtr VertexClustering::exec() {
         piece.vertices << ClusterVertex{iter->first, iter->second};
     }
 
-    cluster.forEach([&](const glm::i32vec3 &index, const ClusterPiece &piece) {
+    cluster.constForEach([&](const glm::i32vec3 &index, const ClusterPiece &piece) {
 
         auto final_vertex = glm::vec3(0.f, 0.f, 0.f);
         for (const auto &vertex: piece.vertices) {

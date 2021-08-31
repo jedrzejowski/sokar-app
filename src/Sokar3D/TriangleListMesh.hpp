@@ -57,5 +57,7 @@ namespace Sokar3D {
 
         void injectTo(const IndexedMeshPtr &other, const glm::mat4 &transform) const override;
         void injectTo(const TriangleListMeshPtr &other, const glm::mat4 &transform) const override;
+
+        void applyTransform(const glm::mat4 &transform) override;
     };
 }

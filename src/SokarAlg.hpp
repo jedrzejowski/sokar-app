@@ -45,6 +45,8 @@ namespace SokarAlg {
 
     declareSharedClass(VolumeEnv)
 
+    declareSharedClass(RawDicomVolume)
+
     declareSharedClass(DicomVolume)
 
     declareSharedClass(InterpolatedVolume)

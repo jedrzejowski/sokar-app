@@ -20,6 +20,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" afterDir="false" />
@@ -27,10 +28,11 @@
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarMacro.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarMacro.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarLib/HashCubeSpace.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarLib/HashCubeSpace.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -627,14 +629,7 @@
       <workItem from="1630256353407" duration="14697000" />
       <workItem from="1630314322414" duration="32009000" />
       <workItem from="1630404119490" duration="651000" />
-      <workItem from="1630416764457" duration="10649000" />
-    </task>
-    <task id="LOCAL-00042" summary="commit kontrolny">
-      <created>1620253489445</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1620253489445</updated>
+      <workItem from="1630416764457" duration="13513000" />
     </task>
     <task id="LOCAL-00043" summary="commit kontrolny">
       <created>1620586470477</created>
@@ -972,7 +967,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630361748439</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="wstępnie działa">
+      <created>1630440402379</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1630440402379</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1068,7 +1070,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="ulepszenia pamięci" />
     <MESSAGE value="dodanie nowego mesha" />
     <MESSAGE value="dodanie shaderów" />
     <MESSAGE value="wstępne dodanie interpolacji wielomianowej" />
@@ -1093,7 +1094,8 @@
     <MESSAGE value="prace wre" />
     <MESSAGE value="commit kontorlny" />
     <MESSAGE value="refactor about" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor about" />
+    <MESSAGE value="wstępnie działa" />
+    <option name="LAST_COMMIT_MESSAGE" value="wstępnie działa" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

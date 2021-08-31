@@ -38,7 +38,29 @@ namespace SokarLib {
             return cluster[index.x][index.y][index.z];
         }
 
-        inline void forEach(std::function<void(const Index3 &index, const T &value)> functor) const {
+        inline void forEach(std::function<void(const Index3 &index, T &value)> functor) {
+
+            Index3 index;
+
+            auto &xspace = cluster;
+            for (auto itX = xspace.begin(); itX != xspace.end(); ++itX) {
+                auto &yspace = itX.value();
+                index.x = itX.key();
+
+                for (auto itY = yspace.begin(); itY != yspace.end(); ++itY) {
+                    auto &zspace = itY.value();
+                    index.y = itY.key();
+
+                    for (auto itZ = zspace.begin(); itZ != zspace.end(); ++itZ) {
+                        index.z = itZ.key();
+
+                        functor(index, itZ.value());
+                    }
+                }
+            }
+        }
+
+        inline void constForEach(std::function<void(const Index3 &index, const T &value)> functor) const {
 
             Index3 index;
 
