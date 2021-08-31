@@ -55,6 +55,7 @@ namespace Sokar3D {
 
         void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const override;
 
-        static TriangleListMeshPtr from(const MeshPtr &mesh);
+        void injectTo(const IndexedMeshPtr &other, const glm::mat4 &transform) const override;
+        void injectTo(const TriangleListMeshPtr &other, const glm::mat4 &transform) const override;
     };
 }

@@ -3,7 +3,8 @@
 //
 
 #include "TriangleListMesh.hpp"
-#include "./MeshVertex.hpp"
+#include "MeshVertex.hpp"
+#include "IndexedMesh.hpp"
 #include <QtConcurrent/QtConcurrentRun>
 #include <QFile>
 
@@ -213,14 +214,26 @@ void TriangleListMesh::foreachFaces(const std::function<void(Mesh::Face face)> &
     }
 }
 
-TriangleListMeshPtr TriangleListMesh::from(const MeshPtr &mesh) {
+void TriangleListMesh::injectTo(const IndexedMeshPtr &other, const glm::mat4 &transform) const {
 
-    auto new_mesh = New();
+    for (const auto &face: faces) {
 
-    mesh->foreachFaces([&](auto face) {
-        new_mesh->addTriangle(face.v0, face.v1, face.v2);
-    });
-
-    return new_mesh;
+        other->addTriangle(
+                face.v0.pos,
+                face.v1.pos,
+                face.v2.pos
+        );
+    }
 }
 
+void TriangleListMesh::injectTo(const TriangleListMeshPtr &other, const glm::mat4 &transform) const {
+
+    for (const auto &face: faces) {
+
+        other->addTriangle(
+                face.v0.pos,
+                face.v1.pos,
+                face.v2.pos
+        );
+    }
+}

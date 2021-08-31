@@ -10,19 +10,20 @@
 
 namespace Sokar3D {
 
-    class CubedIndexedMesh : public Sokar3D::Mesh, public QEnableSharedFromThis<CubedIndexedMesh> {
+    class CubedIndexedMesh : public Mesh, public QEnableSharedFromThis<CubedIndexedMesh> {
     public:
+        using size_type = qint32;
 
         struct Index {
             glm::i32vec3 cube;
-            glm::i32 vert;
+            size_type vert;
 
             bool operator==(const Index &other) const;
         };
 
         struct Cube {
             // glm::i32vec3 index;
-            QVector<glm::vec3> vertices;
+            QHash<size_type, glm::vec3> vertices;
         };
 
         struct Face {
@@ -35,7 +36,8 @@ namespace Sokar3D {
         };
 
     private:
-        SokarLib::HashCubeSpace<Cube> vertices;
+        size_type next_index = 0;
+        SokarLib::HashCubeSpace<Cube> vert_space;
         QVector<Face> faces;
         glm::vec3 cubeSize = glm::vec3(1.f);
 
@@ -44,8 +46,6 @@ namespace Sokar3D {
     public:
 
         static CubedIndexedMeshPtr New();
-
-        static CubedIndexedMeshPtr from(const MeshPtr &mesh);
 
         void foreachFaces(const std::function<void(Mesh::Face)> &functor) const override;
 
@@ -62,6 +62,9 @@ namespace Sokar3D {
         glm::i32vec3 position2cubeIndex(const glm::vec3 &v) const;
 
         void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const override;
+
+        void injectTo(const IndexedMeshPtr &other, const glm::mat4 &transform) const override;
+        void injectTo(const TriangleListMeshPtr &other, const glm::mat4 &transform) const override;
     };
 
 }

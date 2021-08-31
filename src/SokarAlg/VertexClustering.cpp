@@ -20,8 +20,9 @@ VertexClusteringPtr VertexClustering::New() {
 
 Sokar3D::IndexedMeshPtr VertexClustering::exec() {
 
+    qDebug() << "HERE";
     struct ClusterVertex {
-        int oldIndex;
+        Sokar3D::IndexedMesh::size_type old_index;
         glm::vec3 position;
     };
 
@@ -36,20 +37,15 @@ Sokar3D::IndexedMeshPtr VertexClustering::exec() {
 
 
     SokarLib::HashCubeSpace<ClusterPiece> cluster;
-    auto vertex2vertex = QVector<Sokar3D::IndexedMesh::Size>(mesh->getVertices().size(), -1);
+    auto vertex2vertex = QHash<Sokar3D::IndexedMesh::size_type, Sokar3D::IndexedMesh::size_type>();
 
-    auto iter_end = old_vertices.end();
-    auto iter_begin = old_vertices.begin();
+    for (auto iter = old_vertices.keyValueBegin(); iter != old_vertices.keyValueEnd(); ++iter) {
 
-    for (auto iter = iter_begin; iter != iter_end; ++iter) {
-        int old_index = iter - old_vertices.begin();
-        auto &vertex = *iter;
+        auto cluster_index = position2clusterIndex(iter->second);
 
-        auto cluster_index = position2clusterIndex(vertex);
+        auto &piece = cluster[cluster_index];
 
-        auto& piece = cluster[cluster_index];
-
-        piece.vertices << ClusterVertex{old_index, vertex};
+        piece.vertices << ClusterVertex{iter->first, iter->second};
     }
 
     cluster.forEach([&](const glm::i32vec3 &index, const ClusterPiece &piece) {
@@ -60,10 +56,10 @@ Sokar3D::IndexedMeshPtr VertexClustering::exec() {
         }
         final_vertex /= piece.vertices.size();
 
-        auto newIndex = new_mesh->addVertex(final_vertex, false);
+        auto new_index = new_mesh->addVertex(final_vertex, false);
 
         for (const auto &vertex: piece.vertices) {
-            vertex2vertex[vertex.oldIndex] = newIndex;
+            vertex2vertex[vertex.old_index] = new_index;
         }
     });
 

@@ -3,12 +3,16 @@
 //
 
 #include "CubedIndexedMesh.hpp"
+#include "IndexedMesh.hpp"
 #include "TriangleListMesh.hpp"
 
 using namespace Sokar3D;
 using Index = CubedIndexedMesh::Index;
 
-CubedIndexedMesh::CubedIndexedMesh() {}
+CubedIndexedMesh::CubedIndexedMesh() {
+
+    sokarTrace();
+}
 
 CubedIndexedMeshPtr CubedIndexedMesh::New() {
 
@@ -27,7 +31,7 @@ CubedIndexedMesh::Index CubedIndexedMesh::addVertex(const glm::vec3 &newVertex, 
     index.cube = position2cubeIndex(newVertex);
 
     // ilośc zmarnowanych godzin na tej linii = 5
-    auto &cube = vertices[index.cube];
+    auto &cube = vert_space[index.cube];
 
     if (checkDup) {
 
@@ -36,13 +40,14 @@ CubedIndexedMesh::Index CubedIndexedMesh::addVertex(const glm::vec3 &newVertex, 
         });
 
         if (itr != cube.vertices.end()) {
-            index.vert = itr - cube.vertices.begin();
+            index.vert = itr.key();
             return index;
         }
     }
 
-    cube.vertices << newVertex;
-    index.vert = cube.vertices.size() - 1;
+    ++next_index;
+    cube.vertices[next_index] = newVertex;
+    index.vert = next_index;
 
     return index;
 }
@@ -54,9 +59,9 @@ void CubedIndexedMesh::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, con
 
 void CubedIndexedMesh::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2, bool checkDups) {
 
-    auto i0 = addVertex(v0);
-    auto i1 = addVertex(v1);
-    auto i2 = addVertex(v2);
+    auto i0 = addVertex(v0, checkDups);
+    auto i1 = addVertex(v1, checkDups);
+    auto i2 = addVertex(v2, checkDups);
 
     auto newFace = Face{i0, i1, i2};
 
@@ -93,33 +98,23 @@ void CubedIndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &funct
 
     for (const auto &face: faces) {
         functor({
-                        vertices[face.i0.cube].vertices[face.i0.vert],
-                        vertices[face.i1.cube].vertices[face.i1.vert],
-                        vertices[face.i2.cube].vertices[face.i2.vert]
+                        vert_space[face.i0.cube].vertices[face.i0.vert],
+                        vert_space[face.i1.cube].vertices[face.i1.vert],
+                        vert_space[face.i2.cube].vertices[face.i2.vert]
                 });
     }
 }
 
-CubedIndexedMeshPtr CubedIndexedMesh::from(const MeshPtr &mesh) {
-
-    auto new_mesh = New();
-
-    mesh->foreachFaces([&](auto face) {
-        new_mesh->addTriangle(face.v0, face.v1, face.v2);
-    });
-
-    return new_mesh;
-}
-
 void CubedIndexedMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
 
-    SokarLib::HashCubeSpace<QVector<SokarLib::WavefrontObjBuilder::size_type>> my_vertex_2obj_vertex;
+    SokarLib::HashCubeSpace<QHash<size_type, SokarLib::WavefrontObjBuilder::size_type>> my_vertex_2_obj_vertex;
 
-    vertices.forEach([&](auto &index, auto &cube) {
-        auto &verts = my_vertex_2obj_vertex[index];
+    vert_space.forEach([&](const auto &cube_index, const auto &cube) {
 
-        for (const auto &vert: cube.vertices) {
-            verts << builder.addVertex(vert);
+        for (auto iter = cube.vertices.constBegin(); iter != cube.vertices.constEnd(); ++iter) {
+
+            auto i = builder.addVertex(iter.value());
+            my_vertex_2_obj_vertex[cube_index][iter.key()] = i;
         }
     });
 
@@ -127,9 +122,45 @@ void CubedIndexedMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) co
     for (const auto &face: faces) {
 
         builder.addFaceV(
-                my_vertex_2obj_vertex[face.i0.cube][face.i0.vert],
-                my_vertex_2obj_vertex[face.i1.cube][face.i1.vert],
-                my_vertex_2obj_vertex[face.i2.cube][face.i2.vert]
+                my_vertex_2_obj_vertex[face.i0.cube][face.i0.vert],
+                my_vertex_2_obj_vertex[face.i1.cube][face.i1.vert],
+                my_vertex_2_obj_vertex[face.i2.cube][face.i2.vert]
+        );
+    }
+}
+
+void CubedIndexedMesh::injectTo(const IndexedMeshPtr &other, const glm::mat4 &transform) const {
+
+    SokarLib::HashCubeSpace<QHash<size_type, SokarLib::WavefrontObjBuilder::size_type>> my_vertex_2_other_vertex;
+
+    vert_space.forEach([&](const auto &cube_index, const auto &cube) {
+        for (auto iter = cube.vertices.constKeyValueBegin(); iter != cube.vertices.constKeyValueEnd(); ++iter) {
+            auto vertex_index = other->addVertex(iter->second, false);
+            my_vertex_2_other_vertex[cube_index][iter->first] = vertex_index;
+        }
+    });
+
+    for (const auto &face: faces) {
+        qDebug() << my_vertex_2_other_vertex[face.i0.cube][face.i0.vert]
+                 << my_vertex_2_other_vertex[face.i1.cube][face.i1.vert]
+                 << my_vertex_2_other_vertex[face.i2.cube][face.i2.vert];
+
+        other->addTriangle(
+                my_vertex_2_other_vertex[face.i0.cube][face.i0.vert],
+                my_vertex_2_other_vertex[face.i1.cube][face.i1.vert],
+                my_vertex_2_other_vertex[face.i2.cube][face.i2.vert],
+                false
+        );
+    }
+}
+
+void CubedIndexedMesh::injectTo(const TriangleListMeshPtr &other, const glm::mat4 &transform) const {
+
+    for (const auto &face: faces) {
+        other->addTriangle(
+                vert_space[face.i0.cube].vertices[face.i0.vert],
+                vert_space[face.i1.cube].vertices[face.i1.vert],
+                vert_space[face.i2.cube].vertices[face.i2.vert]
         );
     }
 }

@@ -19,14 +19,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/About.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarUi/About.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/win/about.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/win/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/win/mainwindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CubedIndexedMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/Mesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VertexClustering.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarMacro.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarMacro.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -381,11 +385,6 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -626,14 +625,9 @@
       <workItem from="1629829356250" duration="10533000" />
       <workItem from="1629990532322" duration="13196000" />
       <workItem from="1630256353407" duration="14697000" />
-      <workItem from="1630314322414" duration="29289000" />
-    </task>
-    <task id="LOCAL-00041" summary="commit kontrolny">
-      <created>1619738518261</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1619738518261</updated>
+      <workItem from="1630314322414" duration="32009000" />
+      <workItem from="1630404119490" duration="651000" />
+      <workItem from="1630416764457" duration="10649000" />
     </task>
     <task id="LOCAL-00042" summary="commit kontrolny">
       <created>1620253489445</created>
@@ -971,7 +965,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630361329641</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="refactor about">
+      <created>1630361748439</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1630361748439</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1067,7 +1068,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="commit kontrolny" />
     <MESSAGE value="ulepszenia pamięci" />
     <MESSAGE value="dodanie nowego mesha" />
     <MESSAGE value="dodanie shaderów" />
@@ -1092,7 +1092,8 @@
     <MESSAGE value="wstępna implemntacja edge collpasa" />
     <MESSAGE value="prace wre" />
     <MESSAGE value="commit kontorlny" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit kontorlny" />
+    <MESSAGE value="refactor about" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor about" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

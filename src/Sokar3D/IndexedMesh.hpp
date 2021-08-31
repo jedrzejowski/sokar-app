@@ -16,10 +16,10 @@ namespace Sokar3D {
     class IndexedMesh : public Mesh, public QEnableSharedFromThis<IndexedMesh> {
     public:
         using Vertex = glm::vec3;
-        using Size = int;
+        using size_type = int;
 
         struct Face {
-            Size i0, i1, i2;
+            size_type i0, i1, i2;
 
             [[nodiscard]]
             inline bool isDummy() const {
@@ -37,8 +37,9 @@ namespace Sokar3D {
             }
         };
 
-    protected:
-        QVector<Vertex> vertices;
+    private:
+        size_type next_vert_index = 0;
+        QHash<size_type, Vertex> vertices;
         QVector<Face> faces;
 
         IndexedMesh();
@@ -46,44 +47,26 @@ namespace Sokar3D {
     public:
 
         [[nodiscard]]
-        static IndexedMeshPtr New();
-
-        [[nodiscard]]
-        static IndexedMeshPtr from(const Sokar3D::MeshPtr &mesh, bool checkDuplicates = true);
-
-        void foreachFaces(const std::function<void(Mesh::Face)> &functor) const override;
-
-        [[nodiscard]]
-        Size verticesSizeInBytes() const;
-
-        [[nodiscard]]
-        Size verticesCount() const;
-
-        [[nodiscard]]
-        const quint8 *verticesData() const;
-
-        [[nodiscard]]
-        const QVector<Vertex> &getVertices() const;
-
-        [[nodiscard]]
-        int facesSizeInBytes() const;
-
-        [[nodiscard]]
-        const quint8 *indexData() const;
-
-        [[nodiscard]]
-        Size faceCount() const;
+        const QHash<size_type, Vertex> &getVertices() const;
 
         [[nodiscard]]
         const QVector<Face> &getFaces() const;
 
-        Size addVertex(const Vertex &v, bool checkDup = true);
+        [[nodiscard]]
+        static IndexedMeshPtr New();
+
+        void foreachFaces(const std::function<void(Mesh::Face)> &functor) const override;
+
+        size_type addVertex(const Vertex &v, bool checkDup = true);
         void addTriangle(const Vertex &v0, const Vertex &v1, const Vertex &v2) override;
         void addTriangle(const Vertex &v0, const Vertex &v1, const Vertex &v2, bool checkDup);
-        void addTriangle(Size i0, Size i1, Size i2, bool checkDuplicates = true);
+        void addTriangle(size_type i0, size_type i1, size_type i2, bool checkDuplicates = true);
 
-        boundingmesh::MeshPtr toBoundingMesh();
+        boundingmesh::MeshPtr toBoundingMesh() const;
 
         void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const override;
+
+        void injectTo(const IndexedMeshPtr &other, const glm::mat4 &transform) const override;
+        void injectTo(const TriangleListMeshPtr &other, const glm::mat4 &transform) const override;
     };
 }

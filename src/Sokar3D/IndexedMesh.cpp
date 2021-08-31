@@ -9,7 +9,7 @@
 
 using namespace Sokar3D;
 using Face = IndexedMesh::Face;
-using Size = IndexedMesh::Size;
+using size_type = IndexedMesh::size_type;
 
 IndexedMesh::IndexedMesh() = default;
 
@@ -18,72 +18,28 @@ IndexedMeshPtr IndexedMesh::New() {
     return IndexedMeshPtr(new IndexedMesh);
 }
 
-//region getter & setters&
 
-Size IndexedMesh::verticesSizeInBytes() const {
-
-    return vertices.size() * static_cast<Size>(sizeof(Vertex));
-}
-
-Size IndexedMesh::verticesCount() const {
-
-    return vertices.size();
-}
-
-const quint8 *IndexedMesh::verticesData() const {
-
-    return reinterpret_cast<const quint8 *>(vertices.data());
-}
-
-const QVector<IndexedMesh::Vertex> &IndexedMesh::getVertices() const {
-
-    return vertices;
-}
-
-int IndexedMesh::faceCount() const {
-
-    return faces.size();
-}
-
-const QVector<Face> &IndexedMesh::getFaces() const {
-
-    return faces;
-}
-
-const quint8 *IndexedMesh::indexData() const {
-
-    return reinterpret_cast<const quint8 *>(faces.data());
-}
-
-Size IndexedMesh::facesSizeInBytes() const {
-
-    return faces.size() * static_cast<Size>(sizeof(Face));
-}
-
-//endregion
-
-
-Size IndexedMesh::addVertex(const Vertex &newVertex, bool checkDup) {
+size_type IndexedMesh::addVertex(const glm::vec3 &new_vertex, bool checkDup) {
 
     if (checkDup) {
 
         auto itr = std::find_if(vertices.begin(), vertices.end(), [&](const auto &vertex) {
-            return SokarGlm::fastInDistance(vertex, newVertex);
+            return SokarGlm::fastInDistance(vertex, new_vertex);
         });
 
         if (itr != vertices.end()) {
-            return itr - vertices.begin();
+            return itr.key();
         }
     }
-
-    vertices << newVertex;
-    return vertices.size() - 1;
+    ++next_vert_index;
+    vertices[next_vert_index] = new_vertex;
+    return next_vert_index;
 }
 
 void IndexedMesh::addTriangle(
-        Size i0,
-        Size i1,
-        Size i2,
+        size_type i0,
+        size_type i1,
+        size_type i2,
         bool checkDup
 ) {
 
@@ -139,18 +95,7 @@ void IndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) c
     }
 }
 
-IndexedMeshPtr IndexedMesh::from(const Sokar3D::MeshPtr &mesh, bool checkDuplicates) {
-
-    auto indexedMesh = IndexedMesh::New();
-
-    mesh->foreachFaces([&](auto face) {
-        indexedMesh->addTriangle(face.v0, face.v1, face.v2, checkDuplicates);
-    });
-
-    return indexedMesh;
-}
-
-boundingmesh::MeshPtr IndexedMesh::toBoundingMesh() {
+boundingmesh::MeshPtr IndexedMesh::toBoundingMesh() const {
 
     auto new_mesh = std::make_shared<boundingmesh::Mesh>();
 
@@ -169,7 +114,7 @@ boundingmesh::MeshPtr IndexedMesh::toBoundingMesh() {
 
 void IndexedMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
 
-    auto vert_count = verticesCount();
+    auto vert_count = vertices.size();
 
     QVector<SokarLib::WavefrontObjBuilder::size_type> my_vertex_2_obj_vertex;
     my_vertex_2_obj_vertex.resize(vert_count);
@@ -191,6 +136,46 @@ void IndexedMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
         );
     }
 }
+
+void IndexedMesh::injectTo(const IndexedMeshPtr &other, const glm::mat4 &transform) const {
+
+    QHash<size_type, size_type> my_index_to_other_index;
+
+    for (auto itr = vertices.keyValueBegin(); itr != vertices.keyValueEnd(); ++itr) {
+
+        my_index_to_other_index[itr->first] = other->addVertex(itr->second, false);
+    }
+
+    for (const auto &face: faces) {
+        other->addTriangle(
+                my_index_to_other_index[face.i0],
+                my_index_to_other_index[face.i1],
+                my_index_to_other_index[face.i2]
+        );
+    }
+}
+
+void IndexedMesh::injectTo(const TriangleListMeshPtr &other, const glm::mat4 &transform) const {
+
+    for (const auto &face: faces) {
+        other->addTriangle(
+                vertices[face.i0],
+                vertices[face.i1],
+                vertices[face.i2]
+        );
+    }
+}
+
+const QHash<size_type, glm::vec3> &IndexedMesh::getVertices() const {
+
+    return vertices;
+}
+
+const QVector<Face> &IndexedMesh::getFaces() const {
+
+    return faces;
+}
+
 
 //region Converters
 

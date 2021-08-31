@@ -5,6 +5,7 @@
 #pragma once
 
 #include <iostream>
+#include <stdexcept>
 #include <QDebug>
 
 // https://en.cppreference.com/w/cpp/utility/source_location
@@ -24,3 +25,6 @@ class classname; \
 using classname##Ptr<T> = QSharedPointer<classname<T>>; \
 using classname##CPtr<T> = QSharedPointer<const classname<T>>; \
 using classname##WPtr<T> = QWeakPointer<classname<T>>;
+
+
+#define sokarNotImplemented() throw std::runtime_error("not implemented");

@@ -101,7 +101,6 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         emit updateProgress(QObject::tr("Maszerowanie"), 0.f);
 
         volumeSegmentator->setVolume(volume);
-//		volumeSegmentator->setVolumeInterpolator(volumeInterpolator);
 
         volumeSegmentator->setMesh(currentMesh);
         result->segmentation.inputMesh = currentMesh;
@@ -122,7 +121,9 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
             emit updateProgress(QObject::tr("Upraszczanie siatki"), 0.f);
 
-            result->simplification.inputMesh = Sokar3D::IndexedMesh::from(currentMesh, false);
+            result->simplification.inputMesh = Sokar3D::IndexedMesh::New();
+            currentMesh->injectTo(result->simplification.inputMesh);
+
             meshSimplificator->setMesh(result->simplification.inputMesh);
 
             result->simplification.timeStart = makeTimePoint();
@@ -137,7 +138,8 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         result->summary.timeEnd = makeTimePoint();
         result->summary.mesh = currentMesh;
-        result->summary.displayMesh = Sokar3D::TriangleListMesh::from(currentMesh);
+        result->summary.displayMesh = Sokar3D::TriangleListMesh::New();
+        currentMesh->injectTo(result->summary.displayMesh);
 
         result->summary.description = QString("czas wykonania %1").arg(
                 timeRangeString(result->summary.timeStart, result->summary.timeEnd)
