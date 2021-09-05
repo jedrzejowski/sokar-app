@@ -324,12 +324,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="101"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="100"/>
         <source>Maszerowanie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="127"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="138"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>

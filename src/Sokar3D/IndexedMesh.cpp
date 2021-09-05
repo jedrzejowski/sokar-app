@@ -183,7 +183,7 @@ const QVector<Face> &IndexedMesh::getFaces() const {
 void IndexedMesh::applyTransform(const glm::mat4 &transform) {
 
     for (auto &vert: vertices) {
-        vert = glm::vec4(vert, 1.0f) * transform;
+        vert = transform * glm::vec4(vert, 1.0f);
     }
 }
 

@@ -141,9 +141,6 @@ void CubedIndexedMesh::injectTo(const IndexedMeshPtr &other, const glm::mat4 &tr
     });
 
     for (const auto &face: faces) {
-        qDebug() << my_vertex_2_other_vertex[face.i0.cube][face.i0.vert]
-                 << my_vertex_2_other_vertex[face.i1.cube][face.i1.vert]
-                 << my_vertex_2_other_vertex[face.i2.cube][face.i2.vert];
 
         other->addTriangle(
                 my_vertex_2_other_vertex[face.i0.cube][face.i0.vert],

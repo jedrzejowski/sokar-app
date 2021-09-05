@@ -107,15 +107,27 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         result->segmentation.outputMesh = currentMesh = volumeSegmentator->execSync();
         result->segmentation.timeEnd = makeTimePoint();
 
-        // transformata do skalowania mesha
+        //region
+
+        // transformata to przeniesienia
         auto transform = glm::mat4(1.f);
+
+        // przesunięcie mesha, aby osadzenie w pustej przestrzeni nie miało wpływu, na pozycje
+        if (not useEmptyEnv) {
+            transform = glm::translate(transform, glm::vec3(dicomVolume->getCubesPerMM()));
+        }
+
+        // transformata do skalowania mesha, aby zawsze był taki sam
         transform = glm::scale(transform, glm::vec3(dicomVolume->getCubesPerMM()));
+
+        qDebug() << transform;
         currentMesh->applyTransform(transform);
 
         result->segmentation.description = QString("%1\nczas %2").arg(
                 volumeSegmentator->toDisplay(),
                 timeRangeString(result->segmentation.timeStart, result->segmentation.timeEnd)
         );
+
         //endregion
 
         //region mesh simplification

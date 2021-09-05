@@ -242,9 +242,9 @@ void TriangleListMesh::applyTransform(const glm::mat4 &transform) {
 
     for (auto &face: faces) {
 
-        face.v0.pos = glm::vec4(face.v0.pos, 1.0f) * transform;
-        face.v1.pos = glm::vec4(face.v1.pos, 1.0f) * transform;
-        face.v2.pos = glm::vec4(face.v2.pos, 1.0f) * transform;
+        face.v0.pos = transform * glm::vec4(face.v0.pos, 1.0f);
+        face.v1.pos = transform * glm::vec4(face.v1.pos, 1.0f);
+        face.v2.pos = transform * glm::vec4(face.v2.pos, 1.0f);
 
     }
 }
