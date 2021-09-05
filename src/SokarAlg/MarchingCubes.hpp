@@ -19,7 +19,7 @@ namespace SokarAlg {
             float value[8];
         };
 
-        glm::i32vec3 cubeSize = glm::i32vec3(1.f);
+        glm::i32vec3 cubeSize = glm::i32vec3(1);
 
     protected:
 

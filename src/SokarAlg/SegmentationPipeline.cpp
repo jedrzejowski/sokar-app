@@ -120,7 +120,6 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         // transformata do skalowania mesha, aby zawsze był taki sam
         transform = glm::scale(transform, glm::vec3(dicomVolume->getCubesPerMM()));
 
-        qDebug() << transform;
         currentMesh->applyTransform(transform);
 
         result->segmentation.description = QString("%1\nczas %2").arg(
