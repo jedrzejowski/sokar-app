@@ -29,6 +29,10 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
     // aby obiekt sam się nie rozwalił
     auto self = sharedFromThis();
 
+    Q_ASSERT(dicomVolume not_eq nullptr);
+    Q_ASSERT(volumeSegmentator not_eq nullptr);
+    Q_ASSERT(volumeSegmentator not_eq nullptr);
+
     return QtConcurrent::run([self, this]() -> QSharedPointer<const SegmentationResult> {
         QMutexLocker lock(&stateMutex);
 

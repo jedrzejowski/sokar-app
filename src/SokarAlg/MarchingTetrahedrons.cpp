@@ -60,7 +60,7 @@ Sokar3D::MeshPtr MarchingTetrahedrons::exec() {
              5, 6, 1, 4
          */
 
-        const Point p[8] = {
+        const Volume::Point p[8] = {
                 getPoint({pos.x, pos.y, pos.z}),
                 getPoint({pos.x + 1, pos.y, pos.z}),
                 getPoint({pos.x + 1, pos.y + 1, pos.z}),
@@ -85,8 +85,8 @@ Sokar3D::MeshPtr MarchingTetrahedrons::exec() {
 
 glm::vec3 vertexInterp(
         float isoLevel,
-        const VolumeSegmentator::Point &p1,
-        const VolumeSegmentator::Point &p2
+        const Volume::Point &p1,
+        const Volume::Point &p2
 ) {
 
     float mu;
@@ -106,7 +106,6 @@ glm::vec3 vertexInterp(
     p.x = float(p1.position.x) + mu * (float(p2.position.x) - float(p1.position.x));
     p.y = float(p1.position.y) + mu * (float(p2.position.y) - float(p1.position.y));
     p.z = float(p1.position.z) + mu * (float(p2.position.z) - float(p1.position.z));
-
 
     return p;
 }
@@ -144,120 +143,120 @@ void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron te
 
             // only vert 1 is inside
         case 0x02:
-            addTriangle(
-                    vertexInterp(0.0f, tetra[1], tetra[0]),
-                    vertexInterp(0.0f, tetra[1], tetra[2]),
-                    vertexInterp(0.0f, tetra[1], tetra[3])
-            );
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[1], tetra[0]),
+//                    vertexInterp(0.0f, tetra[1], tetra[2]),
+//                    vertexInterp(0.0f, tetra[1], tetra[3])
+//            );
             break;
 
             // only vert 2 is inside
         case 0x04:
-            addTriangle(
-                    vertexInterp(0.0f, tetra[2], tetra[0]),
-                    vertexInterp(0.0f, tetra[2], tetra[3]),
-                    vertexInterp(0.0f, tetra[2], tetra[1])
-            );
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[2], tetra[0]),
+//                    vertexInterp(0.0f, tetra[2], tetra[3]),
+//                    vertexInterp(0.0f, tetra[2], tetra[1])
+//            );
             break;
 
             // only vert 3 is inside
         case 0x08:
-            addTriangle(
-                    vertexInterp(0.0f, tetra[3], tetra[1]),
-                    vertexInterp(0.0f, tetra[3], tetra[2]),
-                    vertexInterp(0.0f, tetra[3], tetra[0])
-            );
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[3], tetra[1]),
+//                    vertexInterp(0.0f, tetra[3], tetra[2]),
+//                    vertexInterp(0.0f, tetra[3], tetra[0])
+//            );
             break;
 
             // verts 0, 1 are inside
         case 0x03: {
 
-            auto p13 = vertexInterp(0.0f, tetra[1], tetra[3]);
-            auto p20 = vertexInterp(0.0f, tetra[3], tetra[2]);
-
-            addTriangle(
-                    vertexInterp(0.0f, tetra[3], tetra[0]),
-                    p20,
-                    p13
-            );
-
-            addTriangle(
-                    p20,
-                    vertexInterp(0.0f, tetra[2], tetra[1]),
-                    p13
-            );
+//            auto p13 = vertexInterp(0.0f, tetra[1], tetra[3]);
+//            auto p20 = vertexInterp(0.0f, tetra[3], tetra[2]);
+//
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[3], tetra[0]),
+//                    p20,
+//                    p13
+//            );
+//
+//            addTriangle(
+//                    p20,
+//                    vertexInterp(0.0f, tetra[2], tetra[1]),
+//                    p13
+//            );
         }
             break;
 
             // verts 0, 2 are inside
         case 0x05: {
-            auto p30 = vertexInterp(0.0f, tetra[3], tetra[0]);
-            auto p12 = vertexInterp(0.0f, tetra[1], tetra[2]);
-
-            addTriangle(
-                    p30,
-                    p12,
-                    vertexInterp(0.0f, tetra[1], tetra[0])
-            );
-            addTriangle(
-                    p12,
-                    p30,
-                    vertexInterp(0.0f, tetra[2], tetra[3])
-            );
+//            auto p30 = vertexInterp(0.0f, tetra[3], tetra[0]);
+//            auto p12 = vertexInterp(0.0f, tetra[1], tetra[2]);
+//
+//            addTriangle(
+//                    p30,
+//                    p12,
+//                    vertexInterp(0.0f, tetra[1], tetra[0])
+//            );
+//            addTriangle(
+//                    p12,
+//                    p30,
+//                    vertexInterp(0.0f, tetra[2], tetra[3])
+//            );
         }
             break;
 
             // verts 0, 3 are inside
         case 0x09: {
-            auto p02 = vertexInterp(0.0f, tetra[0], tetra[2]);
-            auto p13 = vertexInterp(0.0f, tetra[1], tetra[3]);
-
-            addTriangle(
-                    vertexInterp(0.0f, tetra[0], tetra[1]),
-                    p13,
-                    p02
-            );
-            addTriangle(
-                    p13,
-                    vertexInterp(0.0f, tetra[3], tetra[2]),
-                    p02
-            );
+//            auto p02 = vertexInterp(0.0f, tetra[0], tetra[2]);
+//            auto p13 = vertexInterp(0.0f, tetra[1], tetra[3]);
+//
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[0], tetra[1]),
+//                    p13,
+//                    p02
+//            );
+//            addTriangle(
+//                    p13,
+//                    vertexInterp(0.0f, tetra[3], tetra[2]),
+//                    p02
+//            );
         }
             break;
 
             // verts 1, 2 are inside
         case 0x06: {
-            auto p13 = vertexInterp(0.0f, tetra[1], tetra[3]);
-            auto p02 = vertexInterp(0.0f, tetra[0], tetra[2]);
-
-            addTriangle(
-                    vertexInterp(0.0f, tetra[0], tetra[1]),
-                    p02,
-                    p13
-            );
-            addTriangle(
-                    p13,
-                    p02,
-                    vertexInterp(0.0f, tetra[1], tetra[3])
-            );
+//            auto p13 = vertexInterp(0.0f, tetra[1], tetra[3]);
+//            auto p02 = vertexInterp(0.0f, tetra[0], tetra[2]);
+//
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[0], tetra[1]),
+//                    p02,
+//                    p13
+//            );
+//            addTriangle(
+//                    p13,
+//                    p02,
+//                    vertexInterp(0.0f, tetra[1], tetra[3])
+//            );
         }
             break;
 
             // verts 2, 3 are inside
         case 0x0C: {
-            auto p13 = vertexInterp(0.0f, tetra[1], tetra[3]);
-            auto p20 = vertexInterp(0.0f, tetra[2], tetra[0]);
-
-            addTriangle(
-                    p13,
-                    p20,
-                    vertexInterp(0.0f, tetra[3], tetra[0])
-            );
-            addTriangle(
-                    p20,
-                    p13,
-                    vertexInterp(0.0f, tetra[2], tetra[1])
-            );
+//            auto p13 = vertexInterp(0.0f, tetra[1], tetra[3]);
+//            auto p20 = vertexInterp(0.0f, tetra[2], tetra[0]);
+//
+//            addTriangle(
+//                    p13,
+//                    p20,
+//                    vertexInterp(0.0f, tetra[3], tetra[0])
+//            );
+//            addTriangle(
+//                    p20,
+//                    p13,
+//                    vertexInterp(0.0f, tetra[2], tetra[1])
+//            );
 
         }
             break;
@@ -265,56 +264,56 @@ void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron te
             // verts 1, 3 are inside
         case 0x0A: {
 
-            auto p30 = vertexInterp(0.0f, tetra[3], tetra[0]);
-            auto p12 = vertexInterp(0.0f, tetra[1], tetra[2]);
-
-            addTriangle(
-                    p30,
-                    vertexInterp(0.0f, tetra[1], tetra[0]),
-                    p12
-            );
-            addTriangle(
-                    p12,
-                    vertexInterp(0.0f, tetra[2], tetra[3]),
-                    p30
-            );
+//            auto p30 = vertexInterp(0.0f, tetra[3], tetra[0]);
+//            auto p12 = vertexInterp(0.0f, tetra[1], tetra[2]);
+//
+//            addTriangle(
+//                    p30,
+//                    vertexInterp(0.0f, tetra[1], tetra[0]),
+//                    p12
+//            );
+//            addTriangle(
+//                    p12,
+//                    vertexInterp(0.0f, tetra[2], tetra[3]),
+//                    p30
+//            );
         }
             break;
 
             // verts 0, 1, 2 are inside
         case 0x07:
-            addTriangle(
-                    vertexInterp(0.0f, tetra[3], tetra[0]),
-                    vertexInterp(0.0f, tetra[3], tetra[2]),
-                    vertexInterp(0.0f, tetra[3], tetra[1])
-            );
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[3], tetra[0]),
+//                    vertexInterp(0.0f, tetra[3], tetra[2]),
+//                    vertexInterp(0.0f, tetra[3], tetra[1])
+//            );
             break;
 
             // verts 0, 1, 3 are inside
         case 0x0B:
-            addTriangle(
-                    vertexInterp(0.0f, tetra[2], tetra[1]),
-                    vertexInterp(0.0f, tetra[2], tetra[3]),
-                    vertexInterp(0.0f, tetra[2], tetra[0])
-            );
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[2], tetra[1]),
+//                    vertexInterp(0.0f, tetra[2], tetra[3]),
+//                    vertexInterp(0.0f, tetra[2], tetra[0])
+//            );
             break;
 
             // verts 0, 2, 3 are inside
         case 0x0D:
-            addTriangle(
-                    vertexInterp(0.0f, tetra[1], tetra[2]),
-                    vertexInterp(0.0f, tetra[1], tetra[3]),
-                    vertexInterp(0.0f, tetra[1], tetra[0])
-            );
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[1], tetra[2]),
+//                    vertexInterp(0.0f, tetra[1], tetra[3]),
+//                    vertexInterp(0.0f, tetra[1], tetra[0])
+//            );
             break;
 
             // verts 1, 2, 3 are inside
         case 0x0E:
-            addTriangle(
-                    vertexInterp(0.0f, tetra[0], tetra[1]),
-                    vertexInterp(0.0f, tetra[0], tetra[2]),
-                    vertexInterp(0.0f, tetra[0], tetra[3])
-            );
+//            addTriangle(
+//                    vertexInterp(0.0f, tetra[0], tetra[1]),
+//                    vertexInterp(0.0f, tetra[0], tetra[2]),
+//                    vertexInterp(0.0f, tetra[0], tetra[3])
+//            );
             break;
 
             // what is this I don't even

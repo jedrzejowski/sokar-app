@@ -14,11 +14,6 @@
 namespace SokarAlg {
 
     class VolumeSegmentator : public Algorithm<Sokar3D::MeshPtr> {
-    public:
-        struct Point {
-            glm::i32vec3 position;
-            float value;
-        };
     protected:
 
         VolumeInterpolatorPtr volumeInterpolator;
@@ -48,7 +43,10 @@ namespace SokarAlg {
         void setMesh(const Sokar3D::MeshPtr &mesh);
 
         [[nodiscard]]
-        Point getPoint(const glm::i32vec3 &pos) const;
+        Volume::Point getPoint(const glm::i32vec3 &pos) const;
+
+        [[nodiscard]]
+        glm::vec3 interpolatePoint(float value, const Volume::Point &p1, const Volume::Point &p2);
     };
 }
 

@@ -22,17 +22,27 @@ glm::i32vec3 Volume::clamp(const glm::i32vec3 &index) const {
     return glm::clamp(index, {0, 0, 0}, getSize() - 1);
 }
 
+Volume::Point Volume::getPoint(const glm::i32vec3 &position) const {
+
+    return {position, getValue(position)};
+}
+
 float Volume::getValueSafe(const glm::i32vec3 &position) const {
 
     return getValue(clamp(position));
 }
 
+Volume::Point Volume::getPointSafe(const glm::i32vec3 &position) const {
+
+    return {position, getValueSafe(position)};
+}
+
 bool Volume::isInVolume(const glm::i32vec3 &position) const {
 
     auto size = getSize();
-    return 0 <= position.x && position.x < size.x &&
-           0 <= position.y && position.y < size.x &&
-           0 <= position.z && position.z < size.z;
+    return 0 <= position.x and position.x < size.x and
+           0 <= position.y and position.y < size.x and
+           0 <= position.z and position.z < size.z;
 }
 
 VolumeDecorator::VolumeDecorator() {

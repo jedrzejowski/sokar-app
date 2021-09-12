@@ -14,7 +14,7 @@ namespace SokarAlg {
 
     class MarchingTetrahedrons : public VolumeSegmentator {
 
-        using Tetrahedron = std::array<Point, 4>;
+        using Tetrahedron = std::array<Volume::Point, 4>;
 
     protected:
 

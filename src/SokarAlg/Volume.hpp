@@ -9,9 +9,13 @@
 
 namespace SokarAlg {
 
-
     class Volume {
     public:
+
+        struct Point {
+            glm::i32vec3 position;
+            float value;
+        };
 
         Volume();
         ~Volume();
@@ -23,7 +27,13 @@ namespace SokarAlg {
         virtual float getValue(const glm::i32vec3 &position) const = 0;
 
         [[nodiscard]]
+        Point getPoint(const glm::i32vec3 &position) const;
+
+        [[nodiscard]]
         float getValueSafe(const glm::i32vec3 &position) const;
+
+        [[nodiscard]]
+        Point getPointSafe(const glm::i32vec3 &position) const;
 
         [[nodiscard]]
         glm::i32vec3 clamp(const glm::i32vec3 &size) const;
