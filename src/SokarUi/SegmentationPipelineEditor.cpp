@@ -8,6 +8,7 @@
 #include "ui_SegmentationPipelineEditor.h"
 #include "SokarAlg/SegmentationPipeline.hpp"
 #include "SokarAlg/MarchingCubes.hpp"
+#include "SokarAlg/MarchingTetrahedrons.hpp"
 #include "SokarAlg/EdgeCollapse.hpp"
 #include "Sokar3D/TriangleListMesh.hpp"
 #include "Sokar3D/IndexedMesh.hpp"
@@ -132,11 +133,11 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
     switch (ui->segmentationAlgorithm->currentIndex()) {
 
         case Methods::MarchingCubes:
-            volumeSegmentator = QSharedPointer<SokarAlg::MarchingCubes>::create();
+            volumeSegmentator = SokarAlg::MarchingCubes::New();
             break;
 
         case Methods::MarchingTetra:
-            volumeSegmentator = QSharedPointer<SokarAlg::MarchingCubes>::create();
+            volumeSegmentator = SokarAlg::MarchingTetrahedrons::New();
             break;
     }
 

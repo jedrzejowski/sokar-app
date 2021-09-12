@@ -17,8 +17,7 @@ using namespace SokarAlg;
 SegmentationPipeline::SegmentationPipeline()
         : QObject(nullptr),
           dicomVolume(DicomVolumePtr::create()),
-          volumeInterpolator(QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create()),
-          volumeSegmentator(QSharedPointer<SokarAlg::MarchingCubes>::create()) {
+          volumeInterpolator(QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create()) {
 }
 
 SegmentationPipelinePtr SegmentationPipeline::New() {

@@ -67,3 +67,8 @@ void VolumeSegmentator::setMesh(const Sokar3D::MeshPtr &newMesh) {
     this->mesh = newMesh;
 }
 
+VolumeSegmentator::Point VolumeSegmentator::getPoint(const glm::i32vec3 &pos) const {
+
+    return {pos, volume->getValue(pos)};
+}
+

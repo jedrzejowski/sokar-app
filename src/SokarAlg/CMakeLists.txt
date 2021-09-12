@@ -2,45 +2,48 @@
 set(SRC_SOKAR_ALG
         ../SokarAlg.hpp
         ../SokarAlg.cpp
-        MarchingCubes.cpp
-        Array3.cpp
         gte/Array3.h
         gte/IntpAkimaUniform3.h
-        SegmentationPipeline.cpp
-        SegmentationPipeline.hpp
-        VolumeSegmentator.cpp
-        VolumeSegmentator.hpp
-        Volume.cpp
-        ExampleVolume.hpp
-        ExampleVolume.cpp
-        VolumeEnv.hpp
-        VolumeEnv.cpp
-        DicomVolume.cpp
-        MarchingCubes.hpp
-        MeshSimplificator.hpp
-        VertexClustering.hpp
-        VertexDecimation.hpp
-        MeshSimplificator.cpp
-        VertexDecimation.cpp
-        Array3.hpp
-        InterpolatedVolume.cpp
-        InterpolatedVolume.hpp
-        VolumeInterpolator.hpp
-        VolumeInterpolator.cpp
-        CachedVolume.cpp
-        CachedVolume.hpp
-        Range.hpp
-        RegionGrowthVolume.hpp
-        RegionGrowthVolume.cpp
         Algorithm.cpp
         Algorithm.hpp
-        VertexClustering.cpp
-        DicomVolume.hpp
-        Volume.hpp
-        EdgeCollapse.hpp
-        EdgeCollapse.cpp
-        BoundingConvexDecomposition.hpp
+        Array3.cpp
+        Array3.hpp
         BoundingConvexDecomposition.cpp
+        BoundingConvexDecomposition.hpp
+        CachedVolume.cpp
+        CachedVolume.hpp
+        DicomVolume.cpp
+        DicomVolume.hpp
+        EdgeCollapse.cpp
+        EdgeCollapse.hpp
+        ExampleVolume.cpp
+        ExampleVolume.hpp
+        InterpolatedVolume.cpp
+        InterpolatedVolume.hpp
+        MarchingCubes.cpp
+        MarchingCubes.hpp
+        MarchingTetrahedrons.cpp
+        MarchingTetrahedrons.hpp
+        MeshSimplificator.cpp
+        MeshSimplificator.hpp
+        Range.hpp
+        RegionGrowthVolume.cpp
+        RegionGrowthVolume.hpp
+        SegmentationPipeline.cpp
+        SegmentationPipeline.hpp
+        VertexClustering.cpp
+        VertexClustering.hpp
+        VertexDecimation.cpp
+        VertexDecimation.hpp
+        Volume.cpp
+        VolumeEnv.cpp
+        VolumeEnv.hpp
+        Volume.hpp
+        VolumeInterpolator.cpp
+        VolumeInterpolator.hpp
+        VolumeSegmentator.cpp
+        VolumeSegmentator.hpp
+
         )
 
 list(TRANSFORM SRC_SOKAR_ALG PREPEND ${CMAKE_CURRENT_LIST_DIR}/)

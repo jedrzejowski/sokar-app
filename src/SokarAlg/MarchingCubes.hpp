@@ -25,7 +25,11 @@ namespace SokarAlg {
 
         Sokar3D::MeshPtr exec() override;
 
+        MarchingCubes() = default;
+
     public:
+
+        static MarchingCubesPtr New();
 
         QString toDisplay() override;
 

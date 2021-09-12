@@ -66,6 +66,8 @@ namespace SokarAlg {
 
     declareSharedClass(MarchingCubes)
 
+    declareSharedClass(MarchingTetrahedrons)
+
     // MeshSimplificator
 
     declareSharedClass(MeshSimplificator)

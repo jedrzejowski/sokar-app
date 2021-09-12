@@ -14,23 +14,29 @@ namespace SokarAlg {
 
     class MarchingTetrahedrons : public VolumeSegmentator {
 
-        struct Tetrahedron {
-            glm::i32vec3 position[4];
-            float value[4];
-        };
+        using Tetrahedron = std::array<Point, 4>;
 
     protected:
 
+        glm::i32vec3 cubeSize = glm::i32vec3(1);
+
         Sokar3D::MeshPtr exec() override;
+
+        MarchingTetrahedrons() = default;
 
     public:
 
+        [[nodiscard]]
+        static MarchingTetrahedronsPtr New();
+
         QString toDisplay() override;
+
+        [[nodiscard]]
+        const glm::i32vec3 &getCubeSize() const;
+        void setCubeSize(const glm::i32vec3 &cubeSize);
 
     private:
 
-        [[nodiscard]]
-        Cube getTetrahedron(const glm::i32vec3 &position, ushort tet_num) const;
         void marchTetrahedron(Tetrahedron cube);
     };
 }
