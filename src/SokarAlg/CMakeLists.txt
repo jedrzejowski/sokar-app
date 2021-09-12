@@ -20,6 +20,8 @@ set(SRC_SOKAR_ALG
         ExampleVolume.hpp
         InterpolatedVolume.cpp
         InterpolatedVolume.hpp
+        IsoRangeDistanceVolumeTransform.hpp
+        IsoRangeDistanceVolumeTransform.cpp
         MarchingCubes.cpp
         MarchingCubes.hpp
         MarchingTetrahedrons.cpp

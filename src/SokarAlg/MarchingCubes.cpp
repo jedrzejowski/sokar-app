@@ -358,51 +358,42 @@ quint32 MarchingCubes::marchCube(Cube cube) {
     quint32 cubeindex = 0;
     std::vector<glm::vec3> vertlist(12);
 
-    auto cv0 = isoLevel.distance(cube.value[0]);
-    auto cv1 = isoLevel.distance(cube.value[1]);
-    auto cv2 = isoLevel.distance(cube.value[2]);
-    auto cv3 = isoLevel.distance(cube.value[3]);
-    auto cv4 = isoLevel.distance(cube.value[4]);
-    auto cv5 = isoLevel.distance(cube.value[5]);
-    auto cv6 = isoLevel.distance(cube.value[6]);
-    auto cv7 = isoLevel.distance(cube.value[7]);
-
-    if (cv0 < 0) cubeindex |= 1;
-    if (cv1 < 0) cubeindex |= 2;
-    if (cv2 < 0) cubeindex |= 4;
-    if (cv3 < 0) cubeindex |= 8;
-    if (cv4 < 0) cubeindex |= 16;
-    if (cv5 < 0) cubeindex |= 32;
-    if (cv6 < 0) cubeindex |= 64;
-    if (cv7 < 0) cubeindex |= 128;
+    if (cube[0].value < iso_level) cubeindex |= 1;
+    if (cube[1].value < iso_level) cubeindex |= 2;
+    if (cube[2].value < iso_level) cubeindex |= 4;
+    if (cube[3].value < iso_level) cubeindex |= 8;
+    if (cube[4].value < iso_level) cubeindex |= 16;
+    if (cube[5].value < iso_level) cubeindex |= 32;
+    if (cube[6].value < iso_level) cubeindex |= 64;
+    if (cube[7].value < iso_level) cubeindex |= 128;
 
     if (edgeTable[cubeindex] == 0)
         return 0;
 
     if (edgeTable[cubeindex] & 1)
-        vertlist[0] = vertexInterp(0.0f, cube.position[0], cube.position[1], cv0, cv1);
+        vertlist[0] = interpolatePoint(cube[0], cube[1]);
     if (edgeTable[cubeindex] & 2)
-        vertlist[1] = vertexInterp(0.0f, cube.position[1], cube.position[2], cv1, cv2);
+        vertlist[1] = interpolatePoint(cube[1], cube[2]);
     if (edgeTable[cubeindex] & 4)
-        vertlist[2] = vertexInterp(0.0f, cube.position[2], cube.position[3], cv2, cv3);
+        vertlist[2] = interpolatePoint(cube[2], cube[3]);
     if (edgeTable[cubeindex] & 8)
-        vertlist[3] = vertexInterp(0.0f, cube.position[3], cube.position[0], cv3, cv0);
+        vertlist[3] = interpolatePoint(cube[3], cube[0]);
     if (edgeTable[cubeindex] & 16)
-        vertlist[4] = vertexInterp(0.0f, cube.position[4], cube.position[5], cv4, cv5);
+        vertlist[4] = interpolatePoint(cube[4], cube[5]);
     if (edgeTable[cubeindex] & 32)
-        vertlist[5] = vertexInterp(0.0f, cube.position[5], cube.position[6], cv5, cv6);
+        vertlist[5] = interpolatePoint(cube[5], cube[6]);
     if (edgeTable[cubeindex] & 64)
-        vertlist[6] = vertexInterp(0.0f, cube.position[6], cube.position[7], cv6, cv7);
+        vertlist[6] = interpolatePoint(cube[6], cube[7]);
     if (edgeTable[cubeindex] & 128)
-        vertlist[7] = vertexInterp(0.0f, cube.position[7], cube.position[4], cv7, cv4);
+        vertlist[7] = interpolatePoint(cube[7], cube[4]);
     if (edgeTable[cubeindex] & 256)
-        vertlist[8] = vertexInterp(0.0f, cube.position[0], cube.position[4], cv0, cv4);
+        vertlist[8] = interpolatePoint(cube[0], cube[4]);
     if (edgeTable[cubeindex] & 512)
-        vertlist[9] = vertexInterp(0.0f, cube.position[1], cube.position[5], cv1, cv5);
+        vertlist[9] = interpolatePoint(cube[1], cube[5]);
     if (edgeTable[cubeindex] & 1024)
-        vertlist[10] = vertexInterp(0.0f, cube.position[2], cube.position[6], cv2, cv6);
+        vertlist[10] = interpolatePoint(cube[2], cube[6]);
     if (edgeTable[cubeindex] & 2048)
-        vertlist[11] = vertexInterp(0.0f, cube.position[3], cube.position[7], cv3, cv7);
+        vertlist[11] = interpolatePoint(cube[3], cube[7]);
 
     quint32 triangleCount = 0;
 
@@ -431,42 +422,22 @@ void MarchingCubes::setCubeSize(const glm::i32vec3 &newCubeSize) {
 
 MarchingCubes::Cube MarchingCubes::getCube(const glm::i32vec3 &position, const glm::i32vec3 &size) const {
 
-    auto cube = Cube();
-
-    // TODO dodać if'a
-
-    cube.position[0] = position + glm::i32vec3(0, 0, 0);
-    cube.value[0] = volume->getValue(cube.position[0]);
-
-    cube.position[1] = position + glm::i32vec3(0, size.y, 0);
-    cube.value[1] = volume->getValue(cube.position[1]);
-
-    cube.position[2] = position + glm::i32vec3(size.x, size.y, 0);
-    cube.value[2] = volume->getValue(cube.position[2]);
-
-    cube.position[3] = position + glm::i32vec3(size.x, 0, 0);
-    cube.value[3] = volume->getValue(cube.position[3]);
-
-    cube.position[4] = position + glm::i32vec3(0, 0, size.z);
-    cube.value[4] = volume->getValue(cube.position[4]);
-
-    cube.position[5] = position + glm::i32vec3(0, size.y, size.z);
-    cube.value[5] = volume->getValue(cube.position[5]);
-
-    cube.position[6] = position + glm::i32vec3(size.x, size.y, size.z);
-    cube.value[6] = volume->getValue(cube.position[6]);
-
-    cube.position[7] = position + glm::i32vec3(size.x, 0, size.z);
-    cube.value[7] = volume->getValue(cube.position[7]);
-
-    return cube;
+    return {
+            volume->getPoint(position + glm::i32vec3(0, 0, 0)),
+            volume->getPoint(position + glm::i32vec3(0, size.y, 0)),
+            volume->getPoint(position + glm::i32vec3(size.x, size.y, 0)),
+            volume->getPoint(position + glm::i32vec3(size.x, 0, 0)),
+            volume->getPoint(position + glm::i32vec3(0, 0, size.z)),
+            volume->getPoint(position + glm::i32vec3(0, size.y, size.z)),
+            volume->getPoint(position + glm::i32vec3(size.x, size.y, size.z)),
+            volume->getPoint(position + glm::i32vec3(size.x, 0, size.z)),
+    };
 }
 
 QString MarchingCubes::toDisplay() {
 
-    return QString("%1\npróg = [%2, %3]").arg(
+    return QString("%1\npróg = %2").arg(
             "maszerujące sześciany",
-            QString::number(isoLevel.from, 'f', 2),
-            QString::number(isoLevel.to, 'f', 2)
+            QString::number(iso_level, 'f', 2)
     );
 }

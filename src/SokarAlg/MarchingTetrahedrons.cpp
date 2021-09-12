@@ -115,15 +115,10 @@ void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron te
 
     quint8 tetraIndex = 0;
 
-    auto cv0 = isoLevel.distance(tetra[0].value);
-    auto cv1 = isoLevel.distance(tetra[1].value);
-    auto cv2 = isoLevel.distance(tetra[2].value);
-    auto cv3 = isoLevel.distance(tetra[3].value);
-
-    if (cv0 < 0) tetraIndex |= 1;
-    if (cv1 < 0) tetraIndex |= 2;
-    if (cv2 < 0) tetraIndex |= 4;
-    if (cv3 < 0) tetraIndex |= 8;
+    if (tetra[0].value < iso_level) tetraIndex |= 1;
+    if (tetra[1].value < iso_level) tetraIndex |= 2;
+    if (tetra[2].value < iso_level) tetraIndex |= 4;
+    if (tetra[3].value < iso_level) tetraIndex |= 8;
 
     switch (tetraIndex) {
 

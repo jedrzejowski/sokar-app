@@ -14,10 +14,7 @@ namespace SokarAlg {
 
     class MarchingCubes : public VolumeSegmentator {
 
-        struct Cube {
-            glm::i32vec3 position[8];
-            float value[8];
-        };
+        using Cube = std::array<Volume::Point, 8>;
 
         glm::i32vec3 cubeSize = glm::i32vec3(1);
 

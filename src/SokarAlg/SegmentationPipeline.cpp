@@ -10,6 +10,7 @@
 #include "VolumeEnv.hpp"
 #include "RegionGrowthVolume.hpp"
 #include "MeshSimplificator.hpp"
+#include "IsoRangeDistanceVolumeTransform.hpp"
 
 using namespace SokarAlg;
 
@@ -52,6 +53,39 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         //endregion
 
+        if (useRegionGrowth) {
+            result->regionGrowth.was = true;
+
+            emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
+
+            auto regionGrowth = RegionGrowthVolume::New();
+            regionGrowth->setVolume(volume);
+            regionGrowth->setIsoLevel(iso_range);
+            regionGrowth->setStartPoint(regionGrowthStartPoint);
+            volume = regionGrowth;
+
+            result->regionGrowth.timeStart = makeTimePoint();
+            regionGrowth->regrowth();
+            result->regionGrowth.timeEnd = makeTimePoint();
+
+            result->regionGrowth.description = QString("z punktu %1").arg(
+                    glm::to_string(regionGrowthStartPoint).c_str()
+            );
+        } else {
+            result->regionGrowth.description = QString("nie");
+        }
+
+        if (useEmptyEnv) {
+            volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
+        }
+
+        {
+            auto iso_range_volume = IsoRangeDistanceVolumeTransform::New();
+            iso_range_volume->setVolume(volume);
+            iso_range_volume->setIsoRange(iso_range);
+            volume = iso_range_volume;
+        }
+
         if (useInterpolationCache) {
             result->interpolationCache.was = true;
 
@@ -70,32 +104,6 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             );
         } else {
             result->interpolationCache.description = QString("nie");
-        }
-
-        if (useRegionGrowth) {
-            result->regionGrowth.was = true;
-
-            emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
-
-            auto regionGrowth = RegionGrowthVolume::New();
-            regionGrowth->setVolume(volume);
-            regionGrowth->setIsoLevel(volumeSegmentator->getIsoLevel());
-            regionGrowth->setStartPoint(regionGrowthStartPoint);
-            volume = regionGrowth;
-
-            result->regionGrowth.timeStart = makeTimePoint();
-            regionGrowth->regrowth();
-            result->regionGrowth.timeEnd = makeTimePoint();
-
-            result->regionGrowth.description = QString("z punktu %1").arg(
-                    glm::to_string(regionGrowthStartPoint).c_str()
-            );
-        } else {
-            result->regionGrowth.description = QString("nie");
-        }
-
-        if (useEmptyEnv) {
-            volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
         }
 
         //region segmentation
@@ -170,6 +178,8 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         return result;
     });
 }
+
+//region getters and setters
 
 const QColor &SegmentationPipeline::getColor() const {
 
@@ -280,3 +290,15 @@ void SegmentationPipeline::setBaseMesh(const Sokar3D::MeshPtr &baseMesh) {
 
     SegmentationPipeline::baseMesh = baseMesh;
 }
+
+const Range<float> &SegmentationPipeline::getIsoRange() const {
+
+    return iso_range;
+}
+
+void SegmentationPipeline::setIsoRange(const Range<float> &isoRange) {
+
+    iso_range = isoRange;
+}
+
+//endregion

@@ -75,6 +75,8 @@ namespace SokarAlg {
         bool useRegionGrowth = false;
         glm::i32vec3 regionGrowthStartPoint;
 
+        Range<float> iso_range;
+
         RawDicomVolumeCPtr rawDicomVolume = nullptr;
         DicomVolumePtr dicomVolume = nullptr;
         Sokar3D::MeshPtr baseMesh = nullptr;
@@ -110,6 +112,8 @@ namespace SokarAlg {
         void setUseRegionGrowth(bool useRegionGrowth);
         const glm::i32vec3 &getGrowthStartPoint() const;
         void setGrowthStartPoint(const glm::i32vec3 &growthStartPoint);
+        const Range<float> &getIsoRange() const;
+        void setIsoRange(const Range<float> &isoRange);
 
         QFuture<SegmentationResultCPtr> executePipeline();
 

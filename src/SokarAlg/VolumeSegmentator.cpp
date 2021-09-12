@@ -37,14 +37,14 @@ const Sokar3D::MeshPtr &VolumeSegmentator::getMesh() const {
     return mesh;
 }
 
-Range<float> VolumeSegmentator::getIsoLevel() const {
+float VolumeSegmentator::getIsoLevel() const {
 
-    return isoLevel;
+    return iso_level;
 }
 
-void VolumeSegmentator::setIsoLevel(Range<float> newIsoLevel) {
+void VolumeSegmentator::setIsoLevel(float newIsoLevel) {
 
-    isoLevel = newIsoLevel;
+    iso_level = newIsoLevel;
 }
 
 
@@ -72,22 +72,22 @@ Volume::Point VolumeSegmentator::getPoint(const glm::i32vec3 &pos) const {
     return volume->getPoint(pos);
 }
 
-glm::vec3 VolumeSegmentator::interpolatePoint(float value, const Volume::Point &p1, const Volume::Point &p2) {
+glm::vec3 VolumeSegmentator::interpolatePoint(const Volume::Point &p1, const Volume::Point &p2) {
 
     float mu;
     glm::vec3 p;
 
-    if (areSame(value, p1.value)) {
+    if (areSame(iso_level, p1.value)) {
         return p1.position;
     }
-    if (areSame(value, p2.value)) {
+    if (areSame(iso_level, p2.value)) {
         return p2.position;
     }
     if (areSame(p1.value, p2.value)) {
         return p1.position;
     }
 
-    mu = (value - p1.value) / (p2.value - p1.value);
+    mu = (iso_level - p1.value) / (p2.value - p1.value);
     p.x = float(p1.position.x) + mu * (float(p2.position.x) - float(p1.position.x));
     p.y = float(p1.position.y) + mu * (float(p2.position.y) - float(p1.position.y));
     p.z = float(p1.position.z) + mu * (float(p2.position.z) - float(p1.position.z));

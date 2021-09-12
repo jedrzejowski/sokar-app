@@ -141,10 +141,10 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
             break;
     }
 
-    volumeSegmentator->setIsoLevel({
-                                           static_cast<float>(ui->segmentationTresholdUp->value()),
-                                           static_cast<float>(ui->segmentationTresholdDown->value()),
-                                   });
+    pipeline->setIsoRange({
+                                  static_cast<float>(ui->segmentationTresholdUp->value()),
+                                  static_cast<float>(ui->segmentationTresholdDown->value()),
+                          });
     pipeline->setVolumeSegmentator(volumeSegmentator);
 
     pipeline->setUseRegionGrowth(ui->regionGrowthCheck->isChecked());

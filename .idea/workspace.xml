@@ -19,15 +19,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/IsoRangeDistanceVolumeTransform.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/IsoRangeDistanceVolumeTransform.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Volume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -633,14 +639,7 @@
       <workItem from="1630858214515" duration="9804000" />
       <workItem from="1630959629616" duration="634000" />
       <workItem from="1631003894435" duration="6126000" />
-      <workItem from="1631461329705" duration="10663000" />
-    </task>
-    <task id="LOCAL-00048" summary="dodanie shaderów">
-      <created>1620945436680</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1620945436680</updated>
+      <workItem from="1631461329705" duration="14142000" />
     </task>
     <task id="LOCAL-00049" summary="wstępne dodanie interpolacji wielomianowej">
       <created>1620951494639</created>
@@ -978,7 +977,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631481632098</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="kommit kontorlny">
+      <created>1631487481974</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1631487481974</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1076,7 +1082,6 @@
     </ignored-roots>
     <MESSAGE value="usunięcie pustych plików" />
     <MESSAGE value="duzo zmian, lubie placki" />
-    <MESSAGE value="kommit kontorlny" />
     <MESSAGE value="przerobienie static mesha" />
     <MESSAGE value="dodanie toggla" />
     <MESSAGE value="poprawne akceptowanie zasięgu" />
@@ -1099,7 +1104,8 @@
     <MESSAGE value="poprawki generowania mesha" />
     <MESSAGE value="wstępna implementacja marchin tetra" />
     <MESSAGE value="maszerujące czworościany się kompilują" />
-    <option name="LAST_COMMIT_MESSAGE" value="maszerujące czworościany się kompilują" />
+    <MESSAGE value="kommit kontorlny" />
+    <option name="LAST_COMMIT_MESSAGE" value="kommit kontorlny" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

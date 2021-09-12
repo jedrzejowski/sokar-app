@@ -59,6 +59,8 @@ namespace SokarAlg {
 
     declareSharedClass(VolumeSegmentator)
 
+    declareSharedClass(IsoRangeDistanceVolumeTransform)
+
     // VolSegmAlgorithm
 
 

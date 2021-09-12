@@ -19,14 +19,14 @@ namespace SokarAlg {
         VolumeInterpolatorPtr volumeInterpolator;
         VolumeCPtr volume;
         Sokar3D::MeshPtr mesh;
-        Range<float> isoLevel = {0.5f, 1.f};
+        float iso_level = 0.f;
 
         void execBefore() override;
 
     public:
         [[nodiscard]]
-        Range<float> getIsoLevel() const;
-        void setIsoLevel(Range<float> isoLevel);
+        float getIsoLevel() const;
+        void setIsoLevel(float isoLevel);
 
         [[nodiscard]]
         const VolumeInterpolatorPtr &getVolumeInterpolator() const;
@@ -46,7 +46,7 @@ namespace SokarAlg {
         Volume::Point getPoint(const glm::i32vec3 &pos) const;
 
         [[nodiscard]]
-        glm::vec3 interpolatePoint(float value, const Volume::Point &p1, const Volume::Point &p2);
+        glm::vec3 interpolatePoint(const Volume::Point &p1, const Volume::Point &p2);
     };
 }
 
