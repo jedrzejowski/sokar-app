@@ -74,9 +74,6 @@ Volume::Point VolumeSegmentator::getPoint(const glm::i32vec3 &pos) const {
 
 glm::vec3 VolumeSegmentator::interpolatePoint(const Volume::Point &p1, const Volume::Point &p2) {
 
-    float mu;
-    glm::vec3 p;
-
     if (areSame(iso_level, p1.value)) {
         return p1.position;
     }
@@ -87,11 +84,8 @@ glm::vec3 VolumeSegmentator::interpolatePoint(const Volume::Point &p1, const Vol
         return p1.position;
     }
 
-    mu = (iso_level - p1.value) / (p2.value - p1.value);
-    p.x = float(p1.position.x) + mu * (float(p2.position.x) - float(p1.position.x));
-    p.y = float(p1.position.y) + mu * (float(p2.position.y) - float(p1.position.y));
-    p.z = float(p1.position.z) + mu * (float(p2.position.z) - float(p1.position.z));
+    auto mu = (iso_level - p1.value) / (p2.value - p1.value);
 
-    return p;
+    return glm::vec3(p1.position) + mu * glm::vec3(p2.position - p1.position);
 }
 
