@@ -16,7 +16,5 @@ namespace SokarUi {
 
     class SegmentationPipelineEditor;
 
-    class Vec3Input;
-
     class DicomToolBar;
 }

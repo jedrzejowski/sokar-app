@@ -6,8 +6,6 @@ SET(SRC_SOKAR_UI
         SegmentationWindow.hpp
         SegmentationResultWidget.hpp
         SegmentationResultWidget.cpp
-        Vec3Input.hpp
-        Vec3Input.cpp
         DicomToolBar.hpp
         DicomToolBar.cpp
         About.hpp

@@ -48,20 +48,20 @@
        </widget>
       </item>
       <item row="2" column="1">
-       <widget class="QSpinBox" name="interpolationSizeX"/>
+       <widget class="QtUi::SpinBox" name="interpolationSizeX"/>
       </item>
       <item row="3" column="1">
-       <widget class="QSpinBox" name="interpolationSizeY"/>
+       <widget class="QtUi::SpinBox" name="interpolationSizeY"/>
       </item>
       <item row="0" column="1">
-       <widget class="QDoubleSpinBox" name="interpolationWokselSize">
+       <widget class="QtUi::DoubleSpinBox" name="interpolationWokselSize">
         <property name="value">
          <double>3.000000000000000</double>
         </property>
        </widget>
       </item>
       <item row="1" column="0" colspan="2">
-       <widget class="QComboBox" name="interpolationCombo">
+       <widget class="QtUi::ComboBox" name="interpolationCombo">
         <property name="currentIndex">
          <number>0</number>
         </property>
@@ -98,7 +98,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QSpinBox" name="interpolationSizeZ"/>
+       <widget class="QtUi::SpinBox" name="interpolationSizeZ"/>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_6">
@@ -141,7 +141,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QDoubleSpinBox" name="segmentationTresholdUp">
+       <widget class="QtUi::DoubleSpinBox" name="segmentationTresholdUp">
         <property name="minimum">
          <double>-65536.000000000000000</double>
         </property>
@@ -154,7 +154,7 @@
        </widget>
       </item>
       <item row="0" column="0" colspan="2">
-       <widget class="QComboBox" name="segmentationAlgorithm">
+       <widget class="QtUi::ComboBox" name="segmentationAlgorithm">
         <property name="currentIndex">
          <number>0</number>
         </property>
@@ -185,7 +185,7 @@
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QDoubleSpinBox" name="segmentationTresholdDown">
+       <widget class="QtUi::DoubleSpinBox" name="segmentationTresholdDown">
         <property name="minimum">
          <double>-65536.000000000000000</double>
         </property>
@@ -219,7 +219,7 @@
        </widget>
       </item>
       <item row="4" column="1">
-       <widget class="QComboBox" name="useCache">
+       <widget class="QtUi::ComboBox" name="useCache">
         <item>
          <property name="text">
           <string>Tak</string>
@@ -233,7 +233,7 @@
        </widget>
       </item>
       <item row="7" column="1">
-       <widget class="QComboBox" name="meshTypeCombo">
+       <widget class="QtUi::ComboBox" name="meshTypeCombo">
         <item>
          <property name="text">
           <string>Lista trójkątów</string>
@@ -252,7 +252,7 @@
        </widget>
       </item>
       <item row="6" column="0" colspan="2">
-       <widget class="SokarUi::Vec3Input" name="regionGrowthVec" native="true"/>
+       <widget class="QtUi::Vec3Input" name="regionGrowthVec" native="true"/>
       </item>
      </layout>
     </widget>
@@ -264,7 +264,7 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
-       <widget class="QComboBox" name="simplificationAlgorithm">
+       <widget class="QtUi::ComboBox" name="simplificationAlgorithm">
         <item>
          <property name="text">
           <string>Brak</string>
@@ -303,10 +303,10 @@
           <number>0</number>
          </property>
          <item row="0" column="0" colspan="2">
-          <widget class="SokarUi::Vec3Input" name="vertexClusteringSize" native="true"/>
+          <widget class="QtUi::Vec3Input" name="vertexClusteringSize" native="true"/>
          </item>
          <item row="1" column="0" colspan="2">
-          <widget class="SokarUi::Vec3Input" name="vertexClusteringOffset" native="true"/>
+          <widget class="QtUi::Vec3Input" name="vertexClusteringOffset" native="true"/>
          </item>
         </layout>
        </widget>
@@ -315,7 +315,7 @@
        <widget class="QWidget" name="edgeCollapse" native="true">
         <layout class="QGridLayout">
          <item row="1" column="1">
-          <widget class="QComboBox" name="edgeCollapseDirection">
+          <widget class="QtUi::ComboBox" name="edgeCollapseDirection">
            <item>
             <property name="text">
              <string>Brak</string>
@@ -348,7 +348,7 @@
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QDoubleSpinBox" name="edgeCollapseError">
+          <widget class="QtUi::DoubleSpinBox" name="edgeCollapseError">
            <property name="value">
             <double>10.000000000000000</double>
            </property>
@@ -362,7 +362,7 @@
           </widget>
          </item>
          <item row="3" column="1">
-          <widget class="QDoubleSpinBox" name="edgeCollapseVertReduction">
+          <widget class="QtUi::DoubleSpinBox" name="edgeCollapseVertReduction">
            <property name="value">
             <double>50.000000000000000</double>
            </property>
@@ -449,9 +449,27 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>SokarUi::Vec3Input</class>
+   <class>QtUi::Vec3Input</class>
    <extends>QWidget</extends>
-   <header>SokarUi/Vec3Input.hpp</header>
+   <header>QtUi/Vec3Input.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QtUi::DoubleSpinBox</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>QtUi/DoubleSpinBox.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QtUi::SpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>QtUi/SpinBox.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QtUi::ComboBox</class>
+   <extends>QComboBox</extends>
+   <header>QtUi/ComboBox.hpp</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

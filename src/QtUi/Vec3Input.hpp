@@ -11,7 +11,7 @@ namespace Ui {
     class Vec3Input;
 }
 
-namespace SokarUi {
+namespace QtUi {
     class Vec3Input : public QWidget {
     Q_OBJECT
         Ui::Vec3Input *ui;

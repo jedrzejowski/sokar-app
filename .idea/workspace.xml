@@ -19,8 +19,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/QtUi.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QtUi/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QtUi/ComboBox.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QtUi/ComboBox.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QtUi/DoubleSpinBox.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QtUi/DoubleSpinBox.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QtUi/SpinBox.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/QtUi/SpinBox.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/Vec3Input.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/QtUi/Vec3Input.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/Vec3Input.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/QtUi/Vec3Input.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/Vec3Input.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/QtUi/Vec3Input.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -303,7 +318,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/SokarAlg" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/QtUi" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="terminal" />
@@ -312,18 +327,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/QtUi" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/SokarAlg" />
       <recent name="$PROJECT_DIR$/src/SokarUi" />
-      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/SokarDicom" />
-      <recent name="$PROJECT_DIR$/src/3d-party" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/QtUi" />
       <recent name="$PROJECT_DIR$/src/SokarUi" />
       <recent name="$PROJECT_DIR$/src/bin" />
       <recent name="$PROJECT_DIR$/src/3d-party/optionparser" />
       <recent name="$PROJECT_DIR$/src/3d-party" />
-      <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.sokar">
@@ -628,14 +643,7 @@
       <workItem from="1631003894435" duration="6126000" />
       <workItem from="1631461329705" duration="14836000" />
       <workItem from="1631730127868" duration="600000" />
-      <workItem from="1631970059016" duration="2885000" />
-    </task>
-    <task id="LOCAL-00051" summary="dodanie nowych interpolacji">
-      <created>1621267580228</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1621267580228</updated>
+      <workItem from="1631970059016" duration="6963000" />
     </task>
     <task id="LOCAL-00052" summary="kommit kotnrolny">
       <created>1621286580189</created>
@@ -973,7 +981,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631491572695</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="naprawienie marchin tetra">
+      <created>1631982103766</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1631982103766</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1069,7 +1084,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="przerobienie static mesha" />
     <MESSAGE value="dodanie toggla" />
     <MESSAGE value="poprawne akceptowanie zasięgu" />
     <MESSAGE value="refactor kodu" />
@@ -1094,7 +1108,8 @@
     <MESSAGE value="kommit kontorlny" />
     <MESSAGE value="nowy sposób na iso zasięg działa" />
     <MESSAGE value="drobne poprawki" />
-    <option name="LAST_COMMIT_MESSAGE" value="drobne poprawki" />
+    <MESSAGE value="naprawienie marchin tetra" />
+    <option name="LAST_COMMIT_MESSAGE" value="naprawienie marchin tetra" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

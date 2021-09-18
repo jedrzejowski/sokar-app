@@ -984,12 +984,12 @@
 <context>
     <name>Vec3Input</name>
     <message>
-        <location filename="../../src/SokarUi/Vec3Input.ui" line="14"/>
+        <location filename="../../src/QtUi/Vec3Input.ui" line="14"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/Vec3Input.ui" line="53"/>
+        <location filename="../../src/QtUi/Vec3Input.ui" line="53"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>

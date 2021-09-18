@@ -5,12 +5,15 @@
 #include "Vec3Input.hpp"
 #include "ui_Vec3Input.h"
 
-using namespace SokarUi;
+using namespace QtUi;
 
 Vec3Input::Vec3Input(QWidget *parent)
         : QWidget(parent),
           ui(new Ui::Vec3Input()) {
 
+    ui->xBox->scrollAreaFix();
+    ui->yBox->scrollAreaFix();
+    ui->zBox->scrollAreaFix();
     ui->setupUi(this);
 
     QObject::connect(ui->xBox, qOverload<qreal>(&QDoubleSpinBox::valueChanged), [this]() { emitChange(); });
@@ -25,11 +28,11 @@ Vec3Input::~Vec3Input() {
 
 glm::vec3 Vec3Input::getValue() const {
 
-    return glm::vec3(
+    return {
             ui->xBox->value(),
             ui->yBox->value(),
             ui->zBox->value()
-    );
+    };
 }
 
 void Vec3Input::setValue(const glm::vec3 &vector) {
