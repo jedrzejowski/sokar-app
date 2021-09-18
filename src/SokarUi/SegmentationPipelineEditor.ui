@@ -114,7 +114,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="regionGrowthBox">
+    <widget class="QGroupBox" name="region_growth_box">
      <property name="title">
       <string>Rozrost obszaru</string>
      </property>
@@ -126,13 +126,13 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_6">
       <item row="0" column="0" colspan="2">
-       <widget class="QtUi::Vec3Input" name="regionGrowthVec" native="true"/>
+       <widget class="QtUi::Vec3Input" name="region_growth_vec" native="true"/>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="gradientBox">
+    <widget class="QGroupBox" name="gradient_box">
      <property name="title">
       <string>Gradient</string>
      </property>
@@ -144,7 +144,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_7">
       <item row="2" column="0" colspan="4">
-       <widget class="QtUi::ComboBox" name="gradientMergeCombo">
+       <widget class="QtUi::ComboBox" name="gradient_merge_combo">
         <item>
          <property name="text">
           <string>Suma</string>
@@ -173,49 +173,49 @@
        </widget>
       </item>
       <item row="0" column="0">
-       <widget class="QCheckBox" name="gradientCheckX">
+       <widget class="QCheckBox" name="gradient_check_x">
         <property name="text">
          <string>X</string>
         </property>
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QCheckBox" name="gradientCheckY">
+       <widget class="QCheckBox" name="gradient_check_y">
         <property name="text">
          <string>Y</string>
         </property>
        </widget>
       </item>
       <item row="0" column="2">
-       <widget class="QCheckBox" name="gradientCheckZ">
+       <widget class="QCheckBox" name="gradient_check_z">
         <property name="text">
          <string>Z</string>
         </property>
        </widget>
       </item>
       <item row="0" column="3">
-       <widget class="QCheckBox" name="gradientCheckXYZ">
+       <widget class="QCheckBox" name="gradient_check_xyz">
         <property name="text">
          <string>XYZ</string>
         </property>
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QCheckBox" name="gradientCheckXY">
+       <widget class="QCheckBox" name="gradient_check_xy">
         <property name="text">
          <string>XY</string>
         </property>
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QCheckBox" name="gradientCheckXZ">
+       <widget class="QCheckBox" name="gradient_check_xz">
         <property name="text">
          <string>XZ</string>
         </property>
        </widget>
       </item>
       <item row="1" column="2">
-       <widget class="QCheckBox" name="gradientCheckYZ">
+       <widget class="QCheckBox" name="gradient_check_yz">
         <property name="text">
          <string>YZ</string>
         </property>
@@ -231,7 +231,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout">
       <item row="3" column="1">
-       <widget class="QtUi::DoubleSpinBox" name="segmentationTresholdDown">
+       <widget class="QtUi::DoubleSpinBox" name="segmentation_treshold_down">
         <property name="minimum">
          <double>-65536.000000000000000</double>
         </property>
@@ -263,7 +263,7 @@
        </widget>
       </item>
       <item row="1" column="1">
-       <widget class="QtUi::DoubleSpinBox" name="segmentationTresholdUp">
+       <widget class="QtUi::DoubleSpinBox" name="segmentation_treshold_up">
         <property name="minimum">
          <double>-65536.000000000000000</double>
         </property>
@@ -295,14 +295,14 @@
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
-         <string>Wartość górna</string>
+         <string>Wartość dolna</string>
         </property>
        </widget>
       </item>
       <item row="3" column="0">
        <widget class="QLabel" name="label_3">
         <property name="text">
-         <string>Wartość dolna</string>
+         <string>Wartość górna</string>
         </property>
        </widget>
       </item>
@@ -578,8 +578,8 @@
   <tabstop>interpolationSizeY</tabstop>
   <tabstop>interpolationSizeZ</tabstop>
   <tabstop>segmentationAlgorithm</tabstop>
-  <tabstop>segmentationTresholdUp</tabstop>
-  <tabstop>segmentationTresholdDown</tabstop>
+  <tabstop>segmentation_treshold_up</tabstop>
+  <tabstop>segmentation_treshold_down</tabstop>
   <tabstop>meshTypeCombo</tabstop>
   <tabstop>simplificationAlgorithm</tabstop>
   <tabstop>pickColorButton</tabstop>

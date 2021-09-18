@@ -29,8 +29,8 @@ namespace SokarAlg {
         };
 
     private:
-        MergeStrategy merge_strategy;
-        int directions;
+        MergeStrategy merge_strategy = Sum;
+        int directions = 0;
 
         explicit GradientVolume();
 
@@ -39,7 +39,11 @@ namespace SokarAlg {
         [[nodiscard]]
         static GradientVolumePtr New();
 
-        void addDirections(Direction direction);
+        void addDirection(Direction direction);
+
+        [[nodiscard]]
+        MergeStrategy getMergeStrategy() const;
+        void setMergeStrategy(MergeStrategy mergeStrategy);
 
         [[nodiscard]]
         glm::i32vec3 getSize() const override;

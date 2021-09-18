@@ -77,12 +77,13 @@ namespace SokarAlg {
 
         Range<float> iso_range;
 
+        float cubes_per_mm = 1;
         RawDicomVolumePtr rawDicomVolume = nullptr;
-        DicomVolumePtr dicomVolume = nullptr;
-        Sokar3D::MeshPtr baseMesh = nullptr;
+        Sokar3D::MeshPtr base_mesh = nullptr;
         VolumeInterpolatorPtr volumeInterpolator = nullptr;
         VolumeSegmentatorPtr volumeSegmentator = nullptr;
         MeshSimplificatorPtr meshSimplificator = nullptr;
+        GradientVolumePtr gradient_volume = nullptr;
 
         SegmentationPipeline();
 
@@ -90,30 +91,19 @@ namespace SokarAlg {
 
         static SegmentationPipelinePtr New();
 
-        bool isUseInterpolationCache() const;
         void setUseInterpolationCache(bool useCache);
-        const QColor &getColor() const;
         void setColor(const QColor &color);
-        const RawDicomVolumePtr &getRawDicomVolume() const;
         void setRawDicomVolume(const RawDicomVolumePtr &rawDicomVolume);
-        const QSharedPointer<DicomVolume> &getDicomVolume() const;
-        void setDicomVolume(const QSharedPointer<DicomVolume> &dicomVolume);
-        const VolumeInterpolatorPtr &getVolumeInterpolator() const;
         void setVolumeInterpolator(const VolumeInterpolatorPtr &volumeInterpolator);
-        const VolumeSegmentatorPtr &getVolumeSegmentator() const;
         void setVolumeSegmentator(const QSharedPointer<VolumeSegmentator> &volumeSegmentator);
-        const MeshSimplificatorPtr &getMeshSimplificator() const;
         void setMeshSimplificator(const MeshSimplificatorPtr &meshSimplificator);
-        const Sokar3D::MeshPtr &getBaseMesh() const;
         void setBaseMesh(const Sokar3D::MeshPtr &baseMesh);
-        bool isUseEmptyEnv() const;
         void setUseEmptyEnv(bool useEmptyEnv);
-        bool isUseRegionGrowth() const;
         void setUseRegionGrowth(bool useRegionGrowth);
-        const glm::i32vec3 &getGrowthStartPoint() const;
         void setGrowthStartPoint(const glm::i32vec3 &growthStartPoint);
-        const Range<float> &getIsoRange() const;
         void setIsoRange(const Range<float> &isoRange);
+        void setCubesPerMM(float cubes_per_mm);
+        void setGradientVolume(const GradientVolumePtr &gradientVolume);
 
         QFuture<SegmentationResultCPtr> executePipeline();
 

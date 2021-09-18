@@ -10,6 +10,7 @@
 #include "SokarAlg/MarchingCubes.hpp"
 #include "SokarAlg/MarchingTetrahedrons.hpp"
 #include "SokarAlg/EdgeCollapse.hpp"
+#include "SokarAlg/GradientVolume.hpp"
 #include "Sokar3D/TriangleListMesh.hpp"
 #include "Sokar3D/IndexedMesh.hpp"
 #include "Sokar3D/CubedIndexedMesh.hpp"
@@ -122,15 +123,70 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
 
         pipeline->setVolumeInterpolator(volumeInterpolator);
 
-        pipeline->getDicomVolume()->setCubesPerMM(float(ui->interpolationWokselSize->value()));
+        pipeline->setCubesPerMM(float(ui->interpolationWokselSize->value()));
         pipeline->setUseInterpolationCache(ui->cacheInterpolation->isChecked());
+    }
+
+    //endregion
+
+    //region region_growth
+
+    if (ui->region_growth_box->isChecked()) {
+
+        pipeline->setUseRegionGrowth(true);
+        pipeline->setGrowthStartPoint(
+                ui->region_growth_vec->getValue() / float(ui->interpolationWokselSize->value())
+        );
+    }
+
+    //endregion
+
+    //region gradient
+
+    if (ui->gradient_box->isChecked()) {
+        auto gradient_volume = SokarAlg::GradientVolume::New();
+
+        if (ui->gradient_check_x->isChecked())
+            gradient_volume->addDirection(SokarAlg::GradientVolume::X);
+        if (ui->gradient_check_y->isChecked())
+            gradient_volume->addDirection(SokarAlg::GradientVolume::Y);
+        if (ui->gradient_check_z->isChecked())
+            gradient_volume->addDirection(SokarAlg::GradientVolume::Z);
+        if (ui->gradient_check_xy->isChecked())
+            gradient_volume->addDirection(SokarAlg::GradientVolume::XY);
+        if (ui->gradient_check_xz->isChecked())
+            gradient_volume->addDirection(SokarAlg::GradientVolume::XZ);
+        if (ui->gradient_check_yz->isChecked())
+            gradient_volume->addDirection(SokarAlg::GradientVolume::YZ);
+        if (ui->gradient_check_xyz->isChecked())
+            gradient_volume->addDirection(SokarAlg::GradientVolume::XYZ);
+
+        switch (ui->gradient_merge_combo->currentIndex()) {
+            case 0:
+                gradient_volume->setMergeStrategy(SokarAlg::GradientVolume::Sum);
+                break;
+            case 1:
+                gradient_volume->setMergeStrategy(SokarAlg::GradientVolume::Highest);
+                break;
+            case 2:
+                gradient_volume->setMergeStrategy(SokarAlg::GradientVolume::Average);
+                break;
+            case 3:
+                gradient_volume->setMergeStrategy(SokarAlg::GradientVolume::RootMeanSquare);
+                break;
+            case 4:
+                gradient_volume->setMergeStrategy(SokarAlg::GradientVolume::Median);
+                break;
+        }
+
+        pipeline->setGradientVolume(gradient_volume);
     }
 
     //endregion
 
     //region segmentation
 
-    QSharedPointer<SokarAlg::VolumeSegmentator> volumeSegmentator = nullptr;
+    SokarAlg::VolumeSegmentatorPtr volumeSegmentator = nullptr;
 
     switch (ui->segmentationAlgorithm->currentIndex()) {
 
@@ -144,14 +200,10 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
     }
 
     pipeline->setIsoRange({
-                                  static_cast<float>(ui->segmentationTresholdUp->value()),
-                                  static_cast<float>(ui->segmentationTresholdDown->value()),
+                                  static_cast<float>(ui->segmentation_treshold_down->value()),
+                                  static_cast<float>(ui->segmentation_treshold_up->value()),
                           });
     pipeline->setVolumeSegmentator(volumeSegmentator);
-
-    pipeline->setUseRegionGrowth(ui->regionGrowthBox->isChecked());
-    auto growStartPoint = ui->regionGrowthVec->getValue() / float(ui->interpolationWokselSize->value());
-    pipeline->setGrowthStartPoint(growStartPoint);
 
     switch (ui->meshTypeCombo->currentIndex()) {
         case 0: {

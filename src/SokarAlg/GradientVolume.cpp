@@ -27,13 +27,13 @@ float GradientVolume::getValue(const glm::i32vec3 &position) const {
 
     auto val = volume->getValue(position);
 
-    if (directions bitand X) values.push_back(volume->getValue(position - glm::i32vec3(1, 0, 0)) - val);
-    if (directions bitand Y) values.push_back(volume->getValue(position - glm::i32vec3(0, 1, 0)) - val);
-    if (directions bitand Z) values.push_back(volume->getValue(position - glm::i32vec3(0, 0, 1)) - val);
-    if (directions bitand XY) values.push_back(volume->getValue(position - glm::i32vec3(1, 1, 0)) - val);
-    if (directions bitand XZ) values.push_back(volume->getValue(position - glm::i32vec3(1, 0, 1)) - val);
-    if (directions bitand YZ) values.push_back(volume->getValue(position - glm::i32vec3(0, 1, 1)) - val);
-    if (directions bitand XYZ) values.push_back(volume->getValue(position - glm::i32vec3(1, 1, 1)) - val);
+    if (directions bitand X) values.push_back(std::abs(volume->getValue(position - glm::i32vec3(1, 0, 0)) - val));
+    if (directions bitand Y) values.push_back(std::abs(volume->getValue(position - glm::i32vec3(0, 1, 0)) - val));
+    if (directions bitand Z) values.push_back(std::abs(volume->getValue(position - glm::i32vec3(0, 0, 1)) - val));
+    if (directions bitand XY) values.push_back(std::abs(volume->getValue(position - glm::i32vec3(1, 1, 0)) - val));
+    if (directions bitand XZ) values.push_back(std::abs(volume->getValue(position - glm::i32vec3(1, 0, 1)) - val));
+    if (directions bitand YZ) values.push_back(std::abs(volume->getValue(position - glm::i32vec3(0, 1, 1)) - val));
+    if (directions bitand XYZ) values.push_back(std::abs(volume->getValue(position - glm::i32vec3(1, 1, 1)) - val));
 
     switch (merge_strategy) {
 
@@ -62,8 +62,18 @@ float GradientVolume::getValue(const glm::i32vec3 &position) const {
     }
 }
 
-void GradientVolume::addDirections(GradientVolume::Direction new_direction) {
+void GradientVolume::addDirection(GradientVolume::Direction new_direction) {
 
     directions = directions bitor new_direction;
+}
+
+GradientVolume::MergeStrategy GradientVolume::getMergeStrategy() const {
+
+    return merge_strategy;
+}
+
+void GradientVolume::setMergeStrategy(GradientVolume::MergeStrategy mergeStrategy) {
+
+    merge_strategy = mergeStrategy;
 }
 

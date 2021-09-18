@@ -11,13 +11,13 @@
 #include "RegionGrowthVolume.hpp"
 #include "MeshSimplificator.hpp"
 #include "IsoRangeDistanceVolumeTransform.hpp"
+#include "GradientVolume.hpp"
 
 using namespace SokarAlg;
 
 
 SegmentationPipeline::SegmentationPipeline()
         : QObject(nullptr),
-          dicomVolume(DicomVolumePtr::create()),
           volumeInterpolator(QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create()) {
 }
 
@@ -30,14 +30,13 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
     // aby obiekt sam się nie rozwalił
     auto self = sharedFromThis();
 
-    Q_ASSERT(dicomVolume not_eq nullptr);
     Q_ASSERT(volumeSegmentator not_eq nullptr);
     Q_ASSERT(volumeSegmentator not_eq nullptr);
 
     return QtConcurrent::run([self, this]() -> QSharedPointer<const SegmentationResult> {
         QMutexLocker lock(&stateMutex);
 
-        Sokar3D::MeshPtr currentMesh = baseMesh;
+        Sokar3D::MeshPtr current_mesh = base_mesh;
         QSharedPointer<Volume> volume = rawDicomVolume;
         auto result = QSharedPointer<SegmentationResult>::create();
 
@@ -45,29 +44,36 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         // volume
 
-        dicomVolume->setRawDicomVolume(rawDicomVolume);
+        if (not volumeInterpolator.isNull()) {
 
+            auto dicomVolume = DicomVolumePtr::create();
+            dicomVolume->setRawDicomVolume(rawDicomVolume);
+            dicomVolume->setInterpolator(volumeInterpolator);
+            dicomVolume->setCubesPerMM(cubes_per_mm);
 
-        dicomVolume->setInterpolator(volumeInterpolator);
-
-//		volume = ExampleVolume::Sphere(100,40);
-        volume = dicomVolume;
+            volume = dicomVolume;
+        }
 
         //endregion
+
+        if (not gradient_volume.isNull()) {
+            gradient_volume->setVolume(volume);
+            volume = gradient_volume;
+        }
 
         if (useRegionGrowth) {
             result->regionGrowth.was = true;
 
             emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
 
-            auto regionGrowth = RegionGrowthVolume::New();
-            regionGrowth->setVolume(volume);
-            regionGrowth->setIsoLevel(iso_range);
-            regionGrowth->setStartPoint(regionGrowthStartPoint);
-            volume = regionGrowth;
+            auto region_growth = RegionGrowthVolume::New();
+            region_growth->setVolume(volume);
+            region_growth->setIsoLevel(iso_range);
+            region_growth->setStartPoint(regionGrowthStartPoint);
+            volume = region_growth;
 
             result->regionGrowth.timeStart = makeTimePoint();
-            regionGrowth->regrowth();
+            region_growth->regrowth();
             result->regionGrowth.timeEnd = makeTimePoint();
 
             result->regionGrowth.description = QString("z punktu %1").arg(
@@ -97,12 +103,12 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
             emit updateProgress(QObject::tr("Kaszowanie interpolacji"), 0.f);
 
-            auto cachedVolume = QSharedPointer<CachedVolume>::create();
-            cachedVolume->setVolume(volume);
-            volume = cachedVolume;
+            auto cached_volume = QSharedPointer<CachedVolume>::create();
+            cached_volume->setVolume(volume);
+            volume = cached_volume;
 
             result->interpolationCache.timeStart = makeTimePoint();
-            cachedVolume->refreshCache();
+            cached_volume->refreshCache();
             result->interpolationCache.timeEnd = makeTimePoint();
 
             result->interpolationCache.description = QString("czas kaszowania %1").arg(
@@ -117,27 +123,26 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         emit updateProgress(QObject::tr("Maszerowanie"), 0.f);
 
         volumeSegmentator->setVolume(volume);
-        volumeSegmentator->setMesh(currentMesh);
+        volumeSegmentator->setMesh(current_mesh);
 
-        result->segmentation.inputMesh = currentMesh;
+        result->segmentation.inputMesh = current_mesh;
         result->segmentation.timeStart = makeTimePoint();
-        result->segmentation.outputMesh = currentMesh = volumeSegmentator->execSync();
+        result->segmentation.outputMesh = current_mesh = volumeSegmentator->execSync();
         result->segmentation.timeEnd = makeTimePoint();
 
         //region
 
-        // transformata to przeniesienia
         auto transform = glm::mat4(1.f);
 
         // przesunięcie mesha, aby osadzenie w pustej przestrzeni nie miało wpływu, na pozycje
         if (not useEmptyEnv) {
-            transform = glm::translate(transform, glm::vec3(dicomVolume->getCubesPerMM()));
+            transform = glm::translate(transform, glm::vec3(cubes_per_mm, cubes_per_mm, cubes_per_mm));
         }
 
         // transformata do skalowania mesha, aby zawsze był taki sam
-        transform = glm::scale(transform, glm::vec3(dicomVolume->getCubesPerMM()));
+        transform = glm::scale(transform, glm::vec3(cubes_per_mm, cubes_per_mm, cubes_per_mm));
 
-        currentMesh->applyTransform(transform);
+        current_mesh->applyTransform(transform);
 
         result->segmentation.description = QString("%1\nczas %2").arg(
                 volumeSegmentator->toDisplay(),
@@ -154,12 +159,12 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             emit updateProgress(QObject::tr("Upraszczanie siatki"), 0.f);
 
             result->simplification.inputMesh = Sokar3D::IndexedMesh::New();
-            currentMesh->injectTo(result->simplification.inputMesh);
+            current_mesh->injectTo(result->simplification.inputMesh);
 
             meshSimplificator->setMesh(result->simplification.inputMesh);
 
             result->simplification.timeStart = makeTimePoint();
-            result->simplification.outputMesh = currentMesh = meshSimplificator->execSync();
+            result->simplification.outputMesh = current_mesh = meshSimplificator->execSync();
             result->simplification.timeEnd = makeTimePoint();
 
         } else {
@@ -169,16 +174,16 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         //endregion
 
         result->summary.timeEnd = makeTimePoint();
-        result->summary.mesh = currentMesh;
+        result->summary.mesh = current_mesh;
         result->summary.displayMesh = Sokar3D::TriangleListMesh::New();
-        currentMesh->injectTo(result->summary.displayMesh);
+        current_mesh->injectTo(result->summary.displayMesh);
 
         result->summary.description = QString("czas wykonania %1").arg(
                 timeRangeString(result->summary.timeStart, result->summary.timeEnd)
         );
 
         result->meshColor = meshColor;
-        result->proposeCameraCenter = glm::vec3(volume->getSize()) / 2.f * dicomVolume->getCubesPerMM();
+        result->proposeCameraCenter = glm::vec3(volume->getSize()) / 2.f * cubes_per_mm;
         result->proposeCameraDistance = glm::length(result->proposeCameraCenter) * 2;
 
         return result;
@@ -187,19 +192,9 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
 //region getters and setters
 
-const QColor &SegmentationPipeline::getColor() const {
-
-    return meshColor;
-}
-
 void SegmentationPipeline::setColor(const QColor &newColor) {
 
     meshColor = newColor;
-}
-
-const RawDicomVolumePtr &SegmentationPipeline::getRawDicomVolume() const {
-
-    return rawDicomVolume;
 }
 
 void SegmentationPipeline::setRawDicomVolume(const RawDicomVolumePtr &newRawDicomVolume) {
@@ -207,29 +202,9 @@ void SegmentationPipeline::setRawDicomVolume(const RawDicomVolumePtr &newRawDico
     rawDicomVolume = newRawDicomVolume;
 }
 
-const QSharedPointer<DicomVolume> &SegmentationPipeline::getDicomVolume() const {
-
-    return dicomVolume;
-}
-
-void SegmentationPipeline::setDicomVolume(const QSharedPointer<DicomVolume> &newDicomVolume) {
-
-    dicomVolume = newDicomVolume;
-}
-
-const VolumeInterpolatorPtr &SegmentationPipeline::getVolumeInterpolator() const {
-
-    return volumeInterpolator;
-}
-
 void SegmentationPipeline::setVolumeInterpolator(const VolumeInterpolatorPtr &newVolumeInterpolator) {
 
     volumeInterpolator = newVolumeInterpolator;
-}
-
-const VolumeSegmentatorPtr &SegmentationPipeline::getVolumeSegmentator() const {
-
-    return volumeSegmentator;
 }
 
 void SegmentationPipeline::setVolumeSegmentator(const VolumeSegmentatorPtr &newVolumeSegmentator) {
@@ -237,19 +212,9 @@ void SegmentationPipeline::setVolumeSegmentator(const VolumeSegmentatorPtr &newV
     volumeSegmentator = newVolumeSegmentator;
 }
 
-const MeshSimplificatorPtr &SegmentationPipeline::getMeshSimplificator() const {
-
-    return meshSimplificator;
-}
-
 void SegmentationPipeline::setMeshSimplificator(const MeshSimplificatorPtr &newMeshSimplificator) {
 
     meshSimplificator = newMeshSimplificator;
-}
-
-bool SegmentationPipeline::isUseInterpolationCache() const {
-
-    return useInterpolationCache;
 }
 
 void SegmentationPipeline::setUseInterpolationCache(bool newUsingCache) {
@@ -257,19 +222,9 @@ void SegmentationPipeline::setUseInterpolationCache(bool newUsingCache) {
     useInterpolationCache = newUsingCache;
 }
 
-bool SegmentationPipeline::isUseEmptyEnv() const {
-
-    return useEmptyEnv;
-}
-
 void SegmentationPipeline::setUseEmptyEnv(bool useEmptyEnv) {
 
     SegmentationPipeline::useEmptyEnv = useEmptyEnv;
-}
-
-bool SegmentationPipeline::isUseRegionGrowth() const {
-
-    return useRegionGrowth;
 }
 
 void SegmentationPipeline::setUseRegionGrowth(bool useRegionGrowth) {
@@ -277,34 +232,29 @@ void SegmentationPipeline::setUseRegionGrowth(bool useRegionGrowth) {
     SegmentationPipeline::useRegionGrowth = useRegionGrowth;
 }
 
-const glm::i32vec3 &SegmentationPipeline::getGrowthStartPoint() const {
-
-    return regionGrowthStartPoint;
-}
-
 void SegmentationPipeline::setGrowthStartPoint(const glm::i32vec3 &growthStartPoint) {
 
     SegmentationPipeline::regionGrowthStartPoint = growthStartPoint;
 }
 
-const Sokar3D::MeshPtr &SegmentationPipeline::getBaseMesh() const {
-
-    return baseMesh;
-}
-
 void SegmentationPipeline::setBaseMesh(const Sokar3D::MeshPtr &baseMesh) {
 
-    SegmentationPipeline::baseMesh = baseMesh;
-}
-
-const Range<float> &SegmentationPipeline::getIsoRange() const {
-
-    return iso_range;
+    SegmentationPipeline::base_mesh = baseMesh;
 }
 
 void SegmentationPipeline::setIsoRange(const Range<float> &isoRange) {
 
     iso_range = isoRange;
+}
+
+void SegmentationPipeline::setCubesPerMM(float new_cubes_per_mm) {
+
+    cubes_per_mm = new_cubes_per_mm;
+}
+
+void SegmentationPipeline::setGradientVolume(const GradientVolumePtr &gradientVolume) {
+
+    gradient_volume = gradientVolume;
 }
 
 //endregion
