@@ -85,12 +85,43 @@ Sokar3D::MeshPtr MarchingTetrahedrons::exec() {
 
 void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron tetra) {
 
+    /*
+     Tetrahedron layout:
+           0
+           *
+          /|\
+         / | \
+      3 *-----* 1
+         \ | /
+          \|/
+           *
+           2
+     */
+
     quint8 tetraIndex = 0;
 
-    if (tetra[0].value < iso_level) tetraIndex |= 1;
-    if (tetra[1].value < iso_level) tetraIndex |= 2;
-    if (tetra[2].value < iso_level) tetraIndex |= 4;
-    if (tetra[3].value < iso_level) tetraIndex |= 8;
+    if (tetra[0].value < iso_level) tetraIndex |= 1 << 0;
+    if (tetra[1].value < iso_level) tetraIndex |= 1 << 1;
+    if (tetra[2].value < iso_level) tetraIndex |= 1 << 2;
+    if (tetra[3].value < iso_level) tetraIndex |= 1 << 3;
+
+    // DEBUG: narysowanie całego czwroroścanu
+    if (false) {
+        switch (tetraIndex) {
+
+            // we don't do anything if everyone is inside or outside
+            case 0x00:
+            case 0x0F:
+                break;
+
+            default:
+                addTriangle(tetra[0].position, tetra[1].position, tetra[3].position);
+                addTriangle(tetra[0].position, tetra[3].position, tetra[2].position);
+                addTriangle(tetra[1].position, tetra[3].position, tetra[2].position);
+                addTriangle(tetra[0].position, tetra[1].position, tetra[2].position);
+                return;
+        }
+    }
 
     switch (tetraIndex) {
 
@@ -139,7 +170,7 @@ void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron te
         case 0x03: {
 
             auto p13 = interpolatePoint(tetra[1], tetra[3]);
-            auto p20 = interpolatePoint(tetra[3], tetra[2]);
+            auto p20 = interpolatePoint(tetra[2], tetra[0]);
 
             addTriangle(
                     interpolatePoint(tetra[3], tetra[0]),
@@ -204,7 +235,7 @@ void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron te
             addTriangle(
                     p13,
                     p02,
-                    interpolatePoint(tetra[1], tetra[3])
+                    interpolatePoint(tetra[3], tetra[2])
             );
         }
             break;
@@ -268,9 +299,9 @@ void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron te
             // verts 0, 2, 3 are inside
         case 0x0D:
             addTriangle(
-                    interpolatePoint(tetra[1], tetra[2]),
+                    interpolatePoint(tetra[1], tetra[0]),
                     interpolatePoint(tetra[1], tetra[3]),
-                    interpolatePoint(tetra[1], tetra[0])
+                    interpolatePoint(tetra[1], tetra[2])
             );
             break;
 
@@ -284,8 +315,8 @@ void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron te
             break;
 
             // what is this I don't even
-        default:
-            assert(false);
+//        default:
+//            assert(false);
     }
 }
 

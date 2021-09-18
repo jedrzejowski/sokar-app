@@ -21,7 +21,6 @@
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeSegmentator.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -376,9 +375,9 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
@@ -627,14 +626,9 @@
       <workItem from="1630858214515" duration="9804000" />
       <workItem from="1630959629616" duration="634000" />
       <workItem from="1631003894435" duration="6126000" />
-      <workItem from="1631461329705" duration="14755000" />
-    </task>
-    <task id="LOCAL-00050" summary="prace wre">
-      <created>1621207250904</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1621207250905</updated>
+      <workItem from="1631461329705" duration="14836000" />
+      <workItem from="1631730127868" duration="600000" />
+      <workItem from="1631970059016" duration="2885000" />
     </task>
     <task id="LOCAL-00051" summary="dodanie nowych interpolacji">
       <created>1621267580228</created>
@@ -972,7 +966,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631490990541</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="drobne poprawki">
+      <created>1631491572695</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1631491572695</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1068,7 +1069,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="duzo zmian, lubie placki" />
     <MESSAGE value="przerobienie static mesha" />
     <MESSAGE value="dodanie toggla" />
     <MESSAGE value="poprawne akceptowanie zasięgu" />
@@ -1093,7 +1093,8 @@
     <MESSAGE value="maszerujące czworościany się kompilują" />
     <MESSAGE value="kommit kontorlny" />
     <MESSAGE value="nowy sposób na iso zasięg działa" />
-    <option name="LAST_COMMIT_MESSAGE" value="nowy sposób na iso zasięg działa" />
+    <MESSAGE value="drobne poprawki" />
+    <option name="LAST_COMMIT_MESSAGE" value="drobne poprawki" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
