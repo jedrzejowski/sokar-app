@@ -18,6 +18,8 @@ set(SRC_SOKAR_ALG
         EdgeCollapse.hpp
         ExampleVolume.cpp
         ExampleVolume.hpp
+        GradientVolume.hpp
+        GradientVolume.cpp
         InterpolatedVolume.cpp
         InterpolatedVolume.hpp
         IsoRangeDistanceVolumeTransform.hpp

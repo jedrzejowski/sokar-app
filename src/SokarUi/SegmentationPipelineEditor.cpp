@@ -65,6 +65,7 @@ void SegmentationPipelineEditor::setupUi() {
     ui->vertexClusteringSize->setValue({10.f, 10.f, 10.f});
     ui->vertexClusteringSize->setMinimum(0.01f);
     ui->vertexClusteringSize->setMaximum(65536.f);
+
 }
 
 void SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged(int i) {
@@ -89,40 +90,41 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
 
     //region interpolation
 
+    if (ui->interpolationBox->isChecked()) {
+        SokarAlg::VolumeInterpolatorPtr volumeInterpolator = nullptr;
 
-    QSharedPointer<SokarAlg::VolumeInterpolator> volumeInterpolator = nullptr;
+        switch (ui->interpolationCombo->currentIndex()) {
 
-    switch (ui->interpolationCombo->currentIndex()) {
+            case Methods::Nearest:
+                volumeInterpolator = QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create();
+                break;
 
-        case Methods::Nearest:
-            volumeInterpolator = QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create();
-            break;
+            case Methods::Linear:
+                volumeInterpolator = QSharedPointer<SokarAlg::LinearVolumeInterpolator>::create();
+                break;
 
-        case Methods::Linear:
-            volumeInterpolator = QSharedPointer<SokarAlg::LinearVolumeInterpolator>::create();
-            break;
+            case Methods::Poly1:
+                volumeInterpolator = QSharedPointer<SokarAlg::PolynomialVolumeInterpolator1>::create();
+                break;
 
-        case Methods::Poly1:
-            volumeInterpolator = QSharedPointer<SokarAlg::PolynomialVolumeInterpolator1>::create();
-            break;
+            case Methods::Poly2:
+                volumeInterpolator = QSharedPointer<SokarAlg::PolynomialVolumeInterpolator2>::create();
+                break;
 
-        case Methods::Poly2:
-            volumeInterpolator = QSharedPointer<SokarAlg::PolynomialVolumeInterpolator2>::create();
-            break;
+            case Methods::Cubic:
+                volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create();
+                break;
 
-        case Methods::Cubic:
-            volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create();
-            break;
+            case Methods::CalumRom:
+                volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create(true);
+                break;
+        }
 
-        case Methods::CalumRom:
-            volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create(true);
-            break;
+        pipeline->setVolumeInterpolator(volumeInterpolator);
+
+        pipeline->getDicomVolume()->setCubesPerMM(float(ui->interpolationWokselSize->value()));
+        pipeline->setUseInterpolationCache(ui->cacheInterpolation->isChecked());
     }
-
-    pipeline->setVolumeInterpolator(volumeInterpolator);
-
-    pipeline->getDicomVolume()->setCubesPerMM(float(ui->interpolationWokselSize->value()));
-    pipeline->setUseInterpolationCache(ui->cacheInterpolation->isChecked());
 
     //endregion
 
@@ -147,7 +149,7 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
                           });
     pipeline->setVolumeSegmentator(volumeSegmentator);
 
-    pipeline->setUseRegionGrowth(ui->regionGrowthCheck->isChecked());
+    pipeline->setUseRegionGrowth(ui->regionGrowthBox->isChecked());
     auto growStartPoint = ui->regionGrowthVec->getValue() / float(ui->interpolationWokselSize->value());
     pipeline->setGrowthStartPoint(growStartPoint);
 
@@ -166,45 +168,42 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
         }
     }
 
-    //endergion
-
+    //endregion
 
     //region simplification
 
-    switch (ui->simplificationAlgorithm->currentIndex()) {
-        case 0: {
-            pipeline->setMeshSimplificator(nullptr);
-            break;
-        }
-        case 1: {
-            auto vertexClustering = SokarAlg::VertexClustering::New();
-            vertexClustering->setClusterSize(ui->vertexClusteringSize->getValue());
-            vertexClustering->setClusterOffset(ui->vertexClusteringOffset->getValue());
-            pipeline->setMeshSimplificator(vertexClustering);
-            break;
-        }
-        case 2: {
-            auto edgeCollapse = SokarAlg::EdgeCollapse::New();
-
-            switch (ui->edgeCollapseDirection->currentIndex()) {
-                case 0: {
-                    edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Any);
-                    break;
-                }
-                case 1: {
-                    edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Inward);
-                    break;
-                }
-                case 2: {
-                    edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Outward);
-                    break;
-                }
+    if (ui->simplificationBox->isChecked()) {
+        switch (ui->simplificationAlgorithm->currentIndex()) {
+            case 0: {
+                auto vertexClustering = SokarAlg::VertexClustering::New();
+                vertexClustering->setClusterSize(ui->vertexClusteringSize->getValue());
+                vertexClustering->setClusterOffset(ui->vertexClusteringOffset->getValue());
+                pipeline->setMeshSimplificator(vertexClustering);
+                break;
             }
+            case 1: {
+                auto edgeCollapse = SokarAlg::EdgeCollapse::New();
 
-            edgeCollapse->setMaximumError(ui->edgeCollapseError->value() / 100);
-            edgeCollapse->setVertexReduction(ui->edgeCollapseVertReduction->value() / 100);
-            pipeline->setMeshSimplificator(edgeCollapse);
-            break;
+                switch (ui->edgeCollapseDirection->currentIndex()) {
+                    case 0: {
+                        edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Any);
+                        break;
+                    }
+                    case 1: {
+                        edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Inward);
+                        break;
+                    }
+                    case 2: {
+                        edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Outward);
+                        break;
+                    }
+                }
+
+                edgeCollapse->setMaximumError(ui->edgeCollapseError->value() / 100);
+                edgeCollapse->setVertexReduction(ui->edgeCollapseVertReduction->value() / 100);
+                pipeline->setMeshSimplificator(edgeCollapse);
+                break;
+            }
         }
     }
 

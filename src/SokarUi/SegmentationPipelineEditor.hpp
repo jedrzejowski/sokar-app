@@ -34,7 +34,7 @@ namespace SokarUi {
     public slots:
         void randomizeMeshColor();
 
-    private    slots:
+    private slots:
         void simplificationAlgorithmComboBoxIndexChanged(int i);
     };
 }

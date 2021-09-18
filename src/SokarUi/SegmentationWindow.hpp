@@ -19,7 +19,7 @@ namespace SokarUi {
     class SegmentationWindow : public QMainWindow {
     Q_OBJECT
         QProgressDialog *progressDialog;
-        QSharedPointer<const SokarAlg::RawDicomVolume> rawDicomVolume;
+        SokarAlg::RawDicomVolumePtr rawDicomVolume;
         Ui::SegmentationWindow *ui;
         Sokar3D::VulkanWidget *vulkanWidget;
         Sokar3D::VulkanRenderer *vulkanRenderer;
@@ -30,7 +30,7 @@ namespace SokarUi {
 
         ~SegmentationWindow() override;
 
-        void setRawDicomVolume(const QSharedPointer<const SokarAlg::RawDicomVolume> &rawDicomVolume);
+        void setRawDicomVolume(const SokarAlg::RawDicomVolumePtr &rawDicomVolume);
 
     private slots:
         void startSegmentation(bool append = false);

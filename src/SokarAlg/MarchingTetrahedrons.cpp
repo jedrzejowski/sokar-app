@@ -315,8 +315,8 @@ void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron te
             break;
 
             // what is this I don't even
-//        default:
-//            assert(false);
+        default:
+            Q_ASSERT(false);
     }
 }
 

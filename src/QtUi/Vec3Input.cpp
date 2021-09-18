@@ -11,10 +11,11 @@ Vec3Input::Vec3Input(QWidget *parent)
         : QWidget(parent),
           ui(new Ui::Vec3Input()) {
 
+    ui->setupUi(this);
     ui->xBox->scrollAreaFix();
     ui->yBox->scrollAreaFix();
     ui->zBox->scrollAreaFix();
-    ui->setupUi(this);
+    ui->label->setVisible(false);
 
     QObject::connect(ui->xBox, qOverload<qreal>(&QDoubleSpinBox::valueChanged), [this]() { emitChange(); });
     QObject::connect(ui->yBox, qOverload<qreal>(&QDoubleSpinBox::valueChanged), [this]() { emitChange(); });

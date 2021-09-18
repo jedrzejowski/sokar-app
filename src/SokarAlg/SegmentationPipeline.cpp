@@ -38,7 +38,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         QMutexLocker lock(&stateMutex);
 
         Sokar3D::MeshPtr currentMesh = baseMesh;
-        QSharedPointer<Volume> volume;
+        QSharedPointer<Volume> volume = rawDicomVolume;
         auto result = QSharedPointer<SegmentationResult>::create();
 
         result->summary.timeStart = makeTimePoint();
@@ -46,6 +46,8 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         // volume
 
         dicomVolume->setRawDicomVolume(rawDicomVolume);
+
+
         dicomVolume->setInterpolator(volumeInterpolator);
 
 //		volume = ExampleVolume::Sphere(100,40);
@@ -76,7 +78,11 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         }
 
         if (useEmptyEnv) {
-            volume = QSharedPointer<VolumeEnv>::create(volume, 0.f);
+            auto volume_env = VolumeEnv::New();
+            volume_env->setEnvValue(0.f);
+            volume_env->setEnvSize(1.f);
+            volume_env->setVolume(volume);
+            volume = volume_env;
         }
 
         {
@@ -191,12 +197,12 @@ void SegmentationPipeline::setColor(const QColor &newColor) {
     meshColor = newColor;
 }
 
-const QSharedPointer<const RawDicomVolume> &SegmentationPipeline::getRawDicomVolume() const {
+const RawDicomVolumePtr &SegmentationPipeline::getRawDicomVolume() const {
 
     return rawDicomVolume;
 }
 
-void SegmentationPipeline::setRawDicomVolume(const QSharedPointer<const RawDicomVolume> &newRawDicomVolume) {
+void SegmentationPipeline::setRawDicomVolume(const RawDicomVolumePtr &newRawDicomVolume) {
 
     rawDicomVolume = newRawDicomVolume;
 }

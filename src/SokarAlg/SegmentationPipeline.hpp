@@ -77,7 +77,7 @@ namespace SokarAlg {
 
         Range<float> iso_range;
 
-        RawDicomVolumeCPtr rawDicomVolume = nullptr;
+        RawDicomVolumePtr rawDicomVolume = nullptr;
         DicomVolumePtr dicomVolume = nullptr;
         Sokar3D::MeshPtr baseMesh = nullptr;
         VolumeInterpolatorPtr volumeInterpolator = nullptr;
@@ -94,8 +94,8 @@ namespace SokarAlg {
         void setUseInterpolationCache(bool useCache);
         const QColor &getColor() const;
         void setColor(const QColor &color);
-        const QSharedPointer<const RawDicomVolume> &getRawDicomVolume() const;
-        void setRawDicomVolume(const QSharedPointer<const RawDicomVolume> &rawDicomVolume);
+        const RawDicomVolumePtr &getRawDicomVolume() const;
+        void setRawDicomVolume(const RawDicomVolumePtr &rawDicomVolume);
         const QSharedPointer<DicomVolume> &getDicomVolume() const;
         void setDicomVolume(const QSharedPointer<DicomVolume> &dicomVolume);
         const VolumeInterpolatorPtr &getVolumeInterpolator() const;

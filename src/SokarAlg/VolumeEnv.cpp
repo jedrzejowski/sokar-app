@@ -6,25 +6,52 @@
 
 using namespace SokarAlg;
 
-VolumeEnv::VolumeEnv(const QSharedPointer<const Volume> &child, float envValue)
-        : envSize(1, 1, 1), child(child), envValue(envValue) {
+VolumeEnv::VolumeEnv()
+        : env_size(1, 1, 1), env_value(0.0f) {
+}
+
+VolumeEnvPtr VolumeEnv::New() {
+
+    return VolumeEnvPtr(new VolumeEnv);
 }
 
 glm::i32vec3 VolumeEnv::getSize() const {
 
-    return child->getSize() + envSize * 2;
+    return volume->getSize() + env_size * 2;
 }
 
 float VolumeEnv::getValue(const glm::i32vec3 &position) const {
 
-    auto pos = position - envSize;
-    auto size = child->getSize();
+    auto pos = position - env_size;
 
-    if (0 <= pos.x && pos.x < size.x &&
-        0 <= pos.y && pos.y < size.x &&
-        0 <= pos.z && pos.z < size.z) {
-        return child->getValue(pos);
+    if (volume->isInVolume(pos)) {
+        return volume->getValue(pos);
     }
 
-    return envValue;
+    return env_value;
+}
+
+const glm::i32vec3 &VolumeEnv::getEnvSize() const {
+
+    return env_size;
+}
+
+void VolumeEnv::setEnvSize(const glm::i32vec3 &new_env_size) {
+
+    env_size = new_env_size;
+}
+
+void VolumeEnv::setEnvSize(float new_env_size) {
+
+    env_size = {new_env_size, new_env_size, new_env_size};
+}
+
+float VolumeEnv::getEnvValue() const {
+
+    return env_value;
+}
+
+void VolumeEnv::setEnvValue(float new_env_value) {
+
+    env_value = new_env_value;
 }

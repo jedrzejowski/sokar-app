@@ -39,7 +39,7 @@ SegmentationWindow::~SegmentationWindow() {
     delete ui;
 }
 
-void SegmentationWindow::setRawDicomVolume(const QSharedPointer<const SokarAlg::RawDicomVolume> &newRawDicomVolume) {
+void SegmentationWindow::setRawDicomVolume(const SokarAlg::RawDicomVolumePtr &newRawDicomVolume) {
 
     rawDicomVolume = newRawDicomVolume;
 }

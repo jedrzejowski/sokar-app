@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>900</height>
+    <height>1306</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -21,45 +21,14 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
+    <widget class="QGroupBox" name="interpolationBox">
      <property name="title">
       <string>Interpolacja</string>
      </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
      <layout class="QGridLayout" name="gridLayout_4">
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_10">
-        <property name="text">
-         <string>Bok woksela [mm]</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Wielkość Y</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Wielkość X</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QtUi::SpinBox" name="interpolationSizeX"/>
-      </item>
-      <item row="3" column="1">
-       <widget class="QtUi::SpinBox" name="interpolationSizeY"/>
-      </item>
-      <item row="0" column="1">
-       <widget class="QtUi::DoubleSpinBox" name="interpolationWokselSize">
-        <property name="value">
-         <double>3.000000000000000</double>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0" colspan="2">
        <widget class="QtUi::ComboBox" name="interpolationCombo">
         <property name="currentIndex">
@@ -97,8 +66,35 @@
         </item>
        </widget>
       </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_5">
+        <property name="text">
+         <string>Wielkość Y</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label_4">
+        <property name="text">
+         <string>Wielkość X</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QtUi::SpinBox" name="interpolationSizeX"/>
+      </item>
       <item row="4" column="1">
        <widget class="QtUi::SpinBox" name="interpolationSizeZ"/>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>Bok woksela [mm]</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QtUi::SpinBox" name="interpolationSizeY"/>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="label_6">
@@ -107,20 +103,121 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1">
-       <widget class="QCheckBox" name="cacheInterpolation">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
+      <item row="0" column="1">
+       <widget class="QtUi::DoubleSpinBox" name="interpolationWokselSize">
+        <property name="value">
+         <double>3.000000000000000</double>
         </property>
        </widget>
       </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_8">
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="regionGrowthBox">
+     <property name="title">
+      <string>Rozrost obszaru</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0" colspan="2">
+       <widget class="QtUi::Vec3Input" name="regionGrowthVec" native="true"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="gradientBox">
+     <property name="title">
+      <string>Gradient</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_7">
+      <item row="2" column="0" colspan="4">
+       <widget class="QtUi::ComboBox" name="gradientMergeCombo">
+        <item>
+         <property name="text">
+          <string>Suma</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Najwyższa</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Średnia</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Średnia kwadratowa</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Mediana</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QCheckBox" name="gradientCheckX">
         <property name="text">
-         <string>Cache</string>
+         <string>X</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="gradientCheckY">
+        <property name="text">
+         <string>Y</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QCheckBox" name="gradientCheckZ">
+        <property name="text">
+         <string>Z</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="3">
+       <widget class="QCheckBox" name="gradientCheckXYZ">
+        <property name="text">
+         <string>XYZ</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QCheckBox" name="gradientCheckXY">
+        <property name="text">
+         <string>XY</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QCheckBox" name="gradientCheckXZ">
+        <property name="text">
+         <string>XZ</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QCheckBox" name="gradientCheckYZ">
+        <property name="text">
+         <string>YZ</string>
         </property>
        </widget>
       </item>
@@ -133,11 +230,36 @@
       <string>Segmentacja</string>
      </property>
      <layout class="QGridLayout" name="gridLayout">
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_3">
-        <property name="text">
-         <string>Wartość dolna</string>
+      <item row="3" column="1">
+       <widget class="QtUi::DoubleSpinBox" name="segmentationTresholdDown">
+        <property name="minimum">
+         <double>-65536.000000000000000</double>
         </property>
+        <property name="maximum">
+         <double>65536.000000000000000</double>
+        </property>
+        <property name="value">
+         <double>20000.000000000000000</double>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QtUi::ComboBox" name="meshTypeCombo">
+        <item>
+         <property name="text">
+          <string>Lista trójkątów</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Indeksowana</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Indkesowana z podziałem obszarów</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="1" column="1">
@@ -170,47 +292,6 @@
         </item>
        </widget>
       </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Pamięć podręczna</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0">
-       <widget class="QLabel" name="label_12">
-        <property name="text">
-         <string>Rozrost obszaru</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QtUi::DoubleSpinBox" name="segmentationTresholdDown">
-        <property name="minimum">
-         <double>-65536.000000000000000</double>
-        </property>
-        <property name="maximum">
-         <double>65536.000000000000000</double>
-        </property>
-        <property name="value">
-         <double>20000.000000000000000</double>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0">
-       <widget class="QLabel" name="label_13">
-        <property name="text">
-         <string>Śiatka trójkątów</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QCheckBox" name="regionGrowthCheck">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QLabel" name="label_2">
         <property name="text">
@@ -218,58 +299,37 @@
         </property>
        </widget>
       </item>
-      <item row="4" column="1">
-       <widget class="QtUi::ComboBox" name="useCache">
-        <item>
-         <property name="text">
-          <string>Tak</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Nie</string>
-         </property>
-        </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Wartość dolna</string>
+        </property>
        </widget>
       </item>
-      <item row="7" column="1">
-       <widget class="QtUi::ComboBox" name="meshTypeCombo">
-        <item>
-         <property name="text">
-          <string>Lista trójkątów</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Indeksowana</string>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string>Indkesowana z podziałem obszarów</string>
-         </property>
-        </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_13">
+        <property name="text">
+         <string>Śiatka trójkątów</string>
+        </property>
        </widget>
-      </item>
-      <item row="6" column="0" colspan="2">
-       <widget class="QtUi::Vec3Input" name="regionGrowthVec" native="true"/>
       </item>
      </layout>
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_4">
+    <widget class="QGroupBox" name="simplificationBox">
      <property name="title">
-      <string>Uproszczenia siatki</string>
+      <string>Upraszczanie siatki</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_5">
       <item>
        <widget class="QtUi::ComboBox" name="simplificationAlgorithm">
-        <item>
-         <property name="text">
-          <string>Brak</string>
-         </property>
-        </item>
         <item>
          <property name="text">
           <string>Klasteryzacja wierzchołków</string>
@@ -314,6 +374,18 @@
       <item>
        <widget class="QWidget" name="edgeCollapse" native="true">
         <layout class="QGridLayout">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
          <item row="1" column="1">
           <widget class="QtUi::ComboBox" name="edgeCollapseDirection">
            <item>
@@ -433,6 +505,32 @@
     </widget>
    </item>
    <item>
+    <widget class="QGroupBox" name="groupBox_5">
+     <property name="title">
+      <string>Inne</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_5">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_8">
+        <property name="text">
+         <string>Pamięc podręczna</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QCheckBox" name="cacheInterpolation">
+        <property name="text">
+         <string notr="true"/>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -449,15 +547,15 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>QtUi::Vec3Input</class>
-   <extends>QWidget</extends>
-   <header>QtUi/Vec3Input.hpp</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
    <class>QtUi::DoubleSpinBox</class>
    <extends>QDoubleSpinBox</extends>
    <header>QtUi/DoubleSpinBox.hpp</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QtUi::Vec3Input</class>
+   <extends>QWidget</extends>
+   <header>QtUi/Vec3Input.hpp</header>
    <container>1</container>
   </customwidget>
   <customwidget>
@@ -479,12 +577,9 @@
   <tabstop>interpolationSizeX</tabstop>
   <tabstop>interpolationSizeY</tabstop>
   <tabstop>interpolationSizeZ</tabstop>
-  <tabstop>cacheInterpolation</tabstop>
   <tabstop>segmentationAlgorithm</tabstop>
   <tabstop>segmentationTresholdUp</tabstop>
   <tabstop>segmentationTresholdDown</tabstop>
-  <tabstop>useCache</tabstop>
-  <tabstop>regionGrowthCheck</tabstop>
   <tabstop>meshTypeCombo</tabstop>
   <tabstop>simplificationAlgorithm</tabstop>
   <tabstop>pickColorButton</tabstop>

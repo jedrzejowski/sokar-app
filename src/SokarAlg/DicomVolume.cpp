@@ -58,11 +58,11 @@ glm::i32vec3 RawDicomVolume::getSize() const {
 
     const auto &sceneVec = sceneSet->getScenesVector();
 
-    return glm::i32vec3(
+    return {
             sceneVec[0]->getImgDimX(),
             sceneVec[0]->getImgDimY(),
             sceneVec.size()
-    );
+    };
 }
 
 float RawDicomVolume::getValue(const glm::i32vec3 &position) const {

@@ -41,7 +41,7 @@ bool Volume::isInVolume(const glm::i32vec3 &position) const {
 
     auto size = getSize();
     return 0 <= position.x and position.x < size.x and
-           0 <= position.y and position.y < size.x and
+           0 <= position.y and position.y < size.y and
            0 <= position.z and position.z < size.z;
 }
 

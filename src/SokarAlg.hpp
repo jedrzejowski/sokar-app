@@ -55,6 +55,8 @@ namespace SokarAlg {
 
     declareSharedClass(ExampleVolume)
 
+    declareSharedClass(GradientVolume)
+
     declareSharedClass(RegionGrowthVolume)
 
     declareSharedClass(VolumeSegmentator)
