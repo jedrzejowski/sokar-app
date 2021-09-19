@@ -47,3 +47,10 @@ namespace SokarAlg {
         }
     };
 }
+
+template<typename Unit>
+inline QDebug operator<<(QDebug dbg, const SokarAlg::Range<Unit> &range) {
+
+    return dbg << "Range{" << range.from << range.to << "}";
+}
+

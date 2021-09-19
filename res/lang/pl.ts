@@ -319,7 +319,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="67"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="66"/>
         <source>Rozrost obszarów</source>
         <translation type="unfinished"></translation>
     </message>
@@ -329,7 +329,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="159"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="165"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
@@ -816,12 +816,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="298"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="305"/>
         <source>Wartość górna</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="305"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="298"/>
         <source>Wartość dolna</source>
         <translation type="unfinished"></translation>
     </message>

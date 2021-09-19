@@ -316,42 +316,16 @@ Sokar3D::MeshPtr MarchingCubes::exec() {
 
     auto size = volume->getSize() - cubeSize;
 
+    qDebug() << "size" << size;
+
     forI32space({0, 0, 0}, size, [this](const auto &pos) {
-        marchCube(getCube(pos, cubeSize));
+        auto cube = getCube(pos, cubeSize);
+        marchCube(cube);
     });
 
     return getMesh();
 }
 
-
-glm::vec3 vertexInterp(
-        float isoLevel,
-        const glm::u32vec3 &p1,
-        const glm::u32vec3 &p2,
-        float valp1, float valp2
-) {
-
-    float mu;
-    glm::vec3 p;
-
-    if (areSame(isoLevel, valp1)) {
-        return p1;
-    }
-    if (areSame(isoLevel, valp2)) {
-        return p2;
-    }
-    if (areSame(valp1, valp2)) {
-        return p1;
-    }
-
-    mu = (isoLevel - valp1) / (valp2 - valp1);
-    p.x = float(p1.x) + mu * (float(p2.x) - float(p1.x));
-    p.y = float(p1.y) + mu * (float(p2.y) - float(p1.y));
-    p.z = float(p1.z) + mu * (float(p2.z) - float(p1.z));
-
-
-    return p;
-}
 
 quint32 MarchingCubes::marchCube(Cube cube) {
 
@@ -396,6 +370,7 @@ quint32 MarchingCubes::marchCube(Cube cube) {
         vertlist[11] = interpolatePoint(cube[3], cube[7]);
 
     quint32 triangleCount = 0;
+
 
     for (quint32 i = 0; triTable[cubeindex][i] != -1; i += 3) {
         ++triangleCount;

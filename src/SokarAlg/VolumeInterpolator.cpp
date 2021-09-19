@@ -28,34 +28,6 @@ void VolumeInterpolator::setVolume(const QSharedPointer<const Volume> &newVV) {
 void VolumeInterpolator::dicomVolumeChanged() {
 }
 
-glm::vec3 VolumeInterpolator::inverseInterpolate(
-        float desireValue, const glm::i32vec3 &A, const glm::i32vec3 &B, int samples) const {
-//	throw sokarException("not implemented");
-    // TODO usunąć
-    float mu, a = vv->getValue(A), b = vv->getValue(B);
-    glm::vec3 p;
-
-    if (areSame(desireValue, a)) {
-        return A;
-    }
-
-    if (areSame(desireValue, b)) {
-        return B;
-    }
-
-    if (areSame(a, b)) {
-        return A;
-    }
-
-    mu = (desireValue - a) / (b - a);
-    p.x = float(A.x) + mu * (float(B.x) - float(A.x));
-    p.y = float(A.y) + mu * (float(B.y) - float(A.y));
-    p.z = float(A.z) + mu * (float(B.z) - float(A.z));
-
-    return p;
-}
-
-
 float NearestVolumeInterpolator::interpolate(const glm::vec3 &position) const {
 
     return vv->getValueSafe({
@@ -100,33 +72,6 @@ float LinearVolumeInterpolator::interpolate(const glm::vec3 &position) const {
 
     return c0 * (1 - zd) + c1 * zd;
 }
-
-glm::vec3 LinearVolumeInterpolator::inverseInterpolate(
-        float desireValue, const glm::i32vec3 &A, const glm::i32vec3 &B, int samples) const {
-
-    float mu, a = vv->getValue(A), b = vv->getValue(B);
-    glm::vec3 p;
-
-    if (areSame(desireValue, a)) {
-        return A;
-    }
-
-    if (areSame(desireValue, b)) {
-        return B;
-    }
-
-    if (areSame(a, b)) {
-        return A;
-    }
-
-    mu = (desireValue - a) / (b - a);
-    p.x = float(A.x) + mu * (float(B.x) - float(A.x));
-    p.y = float(A.y) + mu * (float(B.y) - float(A.y));
-    p.z = float(A.z) + mu * (float(B.z) - float(A.z));
-
-    return p;
-}
-
 
 float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
     // rozwiązanie analityczne

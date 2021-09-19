@@ -17,8 +17,7 @@ using namespace SokarAlg;
 
 
 SegmentationPipeline::SegmentationPipeline()
-        : QObject(nullptr),
-          volumeInterpolator(QSharedPointer<SokarAlg::NearestVolumeInterpolator>::create()) {
+        : QObject(nullptr) {
 }
 
 SegmentationPipelinePtr SegmentationPipeline::New() {
@@ -94,6 +93,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         {
             auto iso_range_volume = IsoRangeDistanceVolumeTransform::New();
             iso_range_volume->setVolume(volume);
+            qDebug() << iso_range;
             iso_range_volume->setIsoRange(iso_range);
             volume = iso_range_volume;
         }
@@ -135,12 +135,18 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         auto transform = glm::mat4(1.f);
 
         // przesunięcie mesha, aby osadzenie w pustej przestrzeni nie miało wpływu, na pozycje
-        if (not useEmptyEnv) {
-            transform = glm::translate(transform, glm::vec3(cubes_per_mm, cubes_per_mm, cubes_per_mm));
+        if (useEmptyEnv) {
+            transform = glm::translate(transform, glm::vec3(-1.f, -1.f, -1.f));
         }
 
-        // transformata do skalowania mesha, aby zawsze był taki sam
-        transform = glm::scale(transform, glm::vec3(cubes_per_mm, cubes_per_mm, cubes_per_mm));
+        if (not volumeInterpolator.isNull()) {
+            // transformata do skalowania mesha, aby zawsze był taki sam
+            transform = glm::scale(transform, glm::vec3(cubes_per_mm, cubes_per_mm, cubes_per_mm));
+        } else {
+            // w przypadku braku interpolacji wyskaluj do wartości woksela
+            transform = glm::scale(transform, rawDicomVolume->getWokselSize());
+        }
+
 
         current_mesh->applyTransform(transform);
 
@@ -184,6 +190,9 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         result->meshColor = meshColor;
         result->proposeCameraCenter = glm::vec3(volume->getSize()) / 2.f * cubes_per_mm;
+        if (volumeInterpolator.isNull()) {
+            result->proposeCameraCenter = glm::vec3(volume->getSize()) * rawDicomVolume->getWokselSize() / 2.f;
+        }
         result->proposeCameraDistance = glm::length(result->proposeCameraCenter) * 2;
 
         return result;
