@@ -100,17 +100,13 @@ namespace SokarAlg {
 
     // VertexInterpolator
 
-    class VertexInterpolator;
+    declareSharedClass(LineInterpolator)
 
-    class NearestVertexInterpolator;
+    declareSharedClass(NearestInterpolator)
 
-    class LinearVertexInterpolator;
+    declareSharedClass(LinearInterpolator)
 
-    class CubicVertexInterpolator;
-
-    class MakimaVertexInterpolator;
-
-    class SplineVertexInterpolator;
+    declareSharedClass(SplineInterpolator)
 
     // others
 
