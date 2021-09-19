@@ -11,6 +11,7 @@
 #include "SokarAlg/MarchingTetrahedrons.hpp"
 #include "SokarAlg/EdgeCollapse.hpp"
 #include "SokarAlg/GradientVolume.hpp"
+#include "SokarAlg/LineInterpolator.hpp"
 #include "Sokar3D/TriangleListMesh.hpp"
 #include "Sokar3D/IndexedMesh.hpp"
 #include "Sokar3D/CubedIndexedMesh.hpp"
@@ -124,7 +125,7 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
         pipeline->setVolumeInterpolator(volumeInterpolator);
 
         pipeline->setCubesPerMM(float(ui->interpolationWokselSize->value()));
-        pipeline->setUseInterpolationCache(ui->cacheInterpolation->isChecked());
+        pipeline->setUseCache(ui->cacheInterpolation->isChecked());
     }
 
     //endregion
@@ -219,6 +220,28 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
             break;
         }
     }
+
+    //endregion
+
+
+    //region line interpolation
+    SokarAlg::LineInterpolatorPtr line_interpolator = nullptr;
+
+    switch (ui->line_interpolation_combo->currentIndex()) {
+        case 0: {
+            line_interpolator = SokarAlg::LinearLineInterpolator::New();
+            break;
+        }
+        case 1: {
+            line_interpolator = SokarAlg::HalfLineInterpolator::New();
+            break;
+        }
+        case 2: {
+            line_interpolator = SokarAlg::SplineLineInterpolator::New();
+            break;
+        }
+    }
+    pipeline->setLineInterpolator(line_interpolator);
 
     //endregion
 

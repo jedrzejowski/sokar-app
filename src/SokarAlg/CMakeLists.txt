@@ -24,6 +24,8 @@ set(SRC_SOKAR_ALG
         InterpolatedVolume.hpp
         IsoRangeDistanceVolumeTransform.hpp
         IsoRangeDistanceVolumeTransform.cpp
+        LineInterpolator.hpp
+        LineInterpolator.cpp
         MarchingCubes.cpp
         MarchingCubes.hpp
         MarchingTetrahedrons.cpp

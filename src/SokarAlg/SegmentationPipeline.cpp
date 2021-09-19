@@ -36,7 +36,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         QMutexLocker lock(&stateMutex);
 
         Sokar3D::MeshPtr current_mesh = base_mesh;
-        QSharedPointer<Volume> volume = rawDicomVolume;
+        QSharedPointer<Volume> volume = raw_dicom_volume;
         auto result = QSharedPointer<SegmentationResult>::create();
 
         result->summary.timeStart = makeTimePoint();
@@ -46,7 +46,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         if (not volumeInterpolator.isNull()) {
 
             auto dicomVolume = DicomVolumePtr::create();
-            dicomVolume->setRawDicomVolume(rawDicomVolume);
+            dicomVolume->setRawDicomVolume(raw_dicom_volume);
             dicomVolume->setInterpolator(volumeInterpolator);
             dicomVolume->setCubesPerMM(cubes_per_mm);
 
@@ -60,7 +60,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             volume = gradient_volume;
         }
 
-        if (useRegionGrowth) {
+        if (use_region_growth) {
             result->regionGrowth.was = true;
 
             emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
@@ -98,7 +98,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             volume = iso_range_volume;
         }
 
-        if (useInterpolationCache) {
+        if (use_cache) {
             result->interpolationCache.was = true;
 
             emit updateProgress(QObject::tr("Kaszowanie interpolacji"), 0.f);
@@ -144,7 +144,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             transform = glm::scale(transform, glm::vec3(cubes_per_mm, cubes_per_mm, cubes_per_mm));
         } else {
             // w przypadku braku interpolacji wyskaluj do wartości woksela
-            transform = glm::scale(transform, rawDicomVolume->getWokselSize());
+            transform = glm::scale(transform, raw_dicom_volume->getWokselSize());
         }
 
 
@@ -191,7 +191,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         result->meshColor = meshColor;
         result->proposeCameraCenter = glm::vec3(volume->getSize()) / 2.f * cubes_per_mm;
         if (volumeInterpolator.isNull()) {
-            result->proposeCameraCenter = glm::vec3(volume->getSize()) * rawDicomVolume->getWokselSize() / 2.f;
+            result->proposeCameraCenter = glm::vec3(volume->getSize()) * raw_dicom_volume->getWokselSize() / 2.f;
         }
         result->proposeCameraDistance = glm::length(result->proposeCameraCenter) * 2;
 
@@ -208,7 +208,7 @@ void SegmentationPipeline::setColor(const QColor &newColor) {
 
 void SegmentationPipeline::setRawDicomVolume(const RawDicomVolumePtr &newRawDicomVolume) {
 
-    rawDicomVolume = newRawDicomVolume;
+    raw_dicom_volume = newRawDicomVolume;
 }
 
 void SegmentationPipeline::setVolumeInterpolator(const VolumeInterpolatorPtr &newVolumeInterpolator) {
@@ -226,9 +226,9 @@ void SegmentationPipeline::setMeshSimplificator(const MeshSimplificatorPtr &newM
     meshSimplificator = newMeshSimplificator;
 }
 
-void SegmentationPipeline::setUseInterpolationCache(bool newUsingCache) {
+void SegmentationPipeline::setUseCache(bool newUsingCache) {
 
-    useInterpolationCache = newUsingCache;
+    use_cache = newUsingCache;
 }
 
 void SegmentationPipeline::setUseEmptyEnv(bool useEmptyEnv) {
@@ -238,7 +238,7 @@ void SegmentationPipeline::setUseEmptyEnv(bool useEmptyEnv) {
 
 void SegmentationPipeline::setUseRegionGrowth(bool useRegionGrowth) {
 
-    SegmentationPipeline::useRegionGrowth = useRegionGrowth;
+    SegmentationPipeline::use_region_growth = useRegionGrowth;
 }
 
 void SegmentationPipeline::setGrowthStartPoint(const glm::i32vec3 &growthStartPoint) {
@@ -261,9 +261,13 @@ void SegmentationPipeline::setCubesPerMM(float new_cubes_per_mm) {
     cubes_per_mm = new_cubes_per_mm;
 }
 
-void SegmentationPipeline::setGradientVolume(const GradientVolumePtr &gradientVolume) {
+void SegmentationPipeline::setGradientVolume(const GradientVolumePtr &new_gradient_volume) {
 
-    gradient_volume = gradientVolume;
+    gradient_volume = new_gradient_volume;
+}
+void SegmentationPipeline::setLineInterpolator(const LineInterpolatorPtr &new_line_interpolator) {
+
+    line_interpolator = new_line_interpolator;
 }
 
 //endregion

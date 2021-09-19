@@ -16,7 +16,7 @@ namespace SokarAlg {
     class VolumeSegmentator : public Algorithm<Sokar3D::MeshPtr> {
     protected:
 
-        VolumeInterpolatorPtr volumeInterpolator;
+        LineInterpolatorPtr line_interpolator;
         VolumeCPtr volume;
         Sokar3D::MeshPtr mesh;
         float iso_level = 0.f;
@@ -28,9 +28,8 @@ namespace SokarAlg {
         float getIsoLevel() const;
         void setIsoLevel(float isoLevel);
 
-        [[nodiscard]]
-        const VolumeInterpolatorPtr &getVolumeInterpolator() const;
-        void setVolumeInterpolator(const VolumeInterpolatorPtr &volumeInterpolator);
+        const LineInterpolatorPtr &getLineInterpolator() const;
+        void setLineInterpolator(const LineInterpolatorPtr &lineInterpolator);
 
         [[nodiscard]]
         const QSharedPointer<const Volume> &getVolume() const;

@@ -68,22 +68,23 @@ namespace SokarAlg {
     private:
         QMutex stateMutex;
 
-        bool useInterpolationCache = true;
+        bool use_cache = true;
         bool useEmptyEnv = true;
         QColor meshColor = QColor("#BF4024");
 
-        bool useRegionGrowth = false;
+        bool use_region_growth = false;
         glm::i32vec3 regionGrowthStartPoint;
 
         Range<float> iso_range;
 
         float cubes_per_mm = 1;
-        RawDicomVolumePtr rawDicomVolume = nullptr;
+        RawDicomVolumePtr raw_dicom_volume = nullptr;
         Sokar3D::MeshPtr base_mesh = nullptr;
         VolumeInterpolatorPtr volumeInterpolator = nullptr;
         VolumeSegmentatorPtr volumeSegmentator = nullptr;
         MeshSimplificatorPtr meshSimplificator = nullptr;
         GradientVolumePtr gradient_volume = nullptr;
+        LineInterpolatorPtr line_interpolator = nullptr;
 
         SegmentationPipeline();
 
@@ -91,7 +92,7 @@ namespace SokarAlg {
 
         static SegmentationPipelinePtr New();
 
-        void setUseInterpolationCache(bool useCache);
+        void setUseCache(bool useCache);
         void setColor(const QColor &color);
         void setRawDicomVolume(const RawDicomVolumePtr &rawDicomVolume);
         void setVolumeInterpolator(const VolumeInterpolatorPtr &volumeInterpolator);
@@ -104,6 +105,7 @@ namespace SokarAlg {
         void setIsoRange(const Range<float> &isoRange);
         void setCubesPerMM(float cubes_per_mm);
         void setGradientVolume(const GradientVolumePtr &gradientVolume);
+        void setLineInterpolator(const LineInterpolatorPtr &new_line_interpolator);
 
         QFuture<SegmentationResultCPtr> executePipeline();
 

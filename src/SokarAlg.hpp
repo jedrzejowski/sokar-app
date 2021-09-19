@@ -102,11 +102,11 @@ namespace SokarAlg {
 
     declareSharedClass(LineInterpolator)
 
-    declareSharedClass(NearestInterpolator)
+    declareSharedClass(HalfLineInterpolator)
 
-    declareSharedClass(LinearInterpolator)
+    declareSharedClass(LinearLineInterpolator)
 
-    declareSharedClass(SplineInterpolator)
+    declareSharedClass(SplineLineInterpolator)
 
     // others
 

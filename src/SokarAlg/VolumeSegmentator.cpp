@@ -21,10 +21,6 @@ const QSharedPointer<const Volume> &VolumeSegmentator::getVolume() const {
 void VolumeSegmentator::setVolume(const VolumeCPtr &vv) {
 
     volume = vv;
-
-    if (!volumeInterpolator.isNull() && !volume.isNull()) {
-        volumeInterpolator->setVolume(volume);
-    }
 }
 
 void VolumeSegmentator::addTriangle(const glm::vec3 &v0, const glm::vec3 &v1, const glm::vec3 &v2) {
@@ -45,21 +41,6 @@ float VolumeSegmentator::getIsoLevel() const {
 void VolumeSegmentator::setIsoLevel(float newIsoLevel) {
 
     iso_level = newIsoLevel;
-}
-
-
-const VolumeInterpolatorPtr &VolumeSegmentator::getVolumeInterpolator() const {
-
-    return volumeInterpolator;
-}
-
-void VolumeSegmentator::setVolumeInterpolator(const VolumeInterpolatorPtr &newVolumeInterpolator) {
-
-    volumeInterpolator = newVolumeInterpolator;
-
-    if (!volumeInterpolator.isNull() && !volume.isNull()) {
-        volumeInterpolator->setVolume(volume);
-    }
 }
 
 void VolumeSegmentator::setMesh(const Sokar3D::MeshPtr &newMesh) {
@@ -87,5 +68,15 @@ glm::vec3 VolumeSegmentator::interpolatePoint(const Volume::Point &p1, const Vol
     auto mu = (iso_level - p1.value) / (p2.value - p1.value);
 
     return glm::vec3(p1.position) + mu * glm::vec3(p2.position - p1.position);
+}
+
+const LineInterpolatorPtr &VolumeSegmentator::getLineInterpolator() const {
+
+    return line_interpolator;
+}
+
+void VolumeSegmentator::setLineInterpolator(const LineInterpolatorPtr &lineInterpolator) {
+
+    line_interpolator = lineInterpolator;
 }
 

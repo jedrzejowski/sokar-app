@@ -23,7 +23,7 @@
    <item>
     <widget class="QGroupBox" name="interpolationBox">
      <property name="title">
-      <string>Interpolacja</string>
+      <string>Interpolacja wolumenu</string>
      </property>
      <property name="checkable">
       <bool>true</bool>
@@ -177,6 +177,9 @@
         <property name="text">
          <string>X</string>
         </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item row="0" column="1">
@@ -184,12 +187,18 @@
         <property name="text">
          <string>Y</string>
         </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item row="0" column="2">
        <widget class="QCheckBox" name="gradient_check_z">
         <property name="text">
          <string>Z</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
         </property>
        </widget>
       </item>
@@ -311,6 +320,37 @@
         <property name="text">
          <string>Śiatka trójkątów</string>
         </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="line_interpolation_box">
+     <property name="title">
+      <string>Interpolacja prostych</string>
+     </property>
+     <property name="checkable">
+      <bool>false</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_8">
+      <item row="0" column="0">
+       <widget class="QtUi::ComboBox" name="line_interpolation_combo">
+        <item>
+         <property name="text">
+          <string>Liniowa</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Połowiczna</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Wielomianowa</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>

@@ -13,14 +13,14 @@ VolumeInterpolator::~VolumeInterpolator() {
     qDebug() << "~VolumeInterpolator()";
 }
 
-const QSharedPointer<const Volume> &VolumeInterpolator::getVolume() const {
+const VolumeCPtr &VolumeInterpolator::getVolume() const {
 
     return vv;
 }
 
-void VolumeInterpolator::setVolume(const QSharedPointer<const Volume> &newVV) {
+void VolumeInterpolator::setVolume(const VolumeCPtr &new_volume) {
 
-    vv = newVV;
+    vv = new_volume;
 
     dicomVolumeChanged();
 }
