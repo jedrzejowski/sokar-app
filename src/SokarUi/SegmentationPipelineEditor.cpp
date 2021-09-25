@@ -178,6 +178,9 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
             case 4:
                 gradient_volume->setMergeStrategy(SokarAlg::GradientVolume::Median);
                 break;
+
+            default:
+                Q_ASSERT(false);
         }
 
         pipeline->setGradientVolume(gradient_volume);
@@ -198,6 +201,9 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
         case Methods::MarchingTetra:
             volumeSegmentator = SokarAlg::MarchingTetrahedrons::New();
             break;
+
+        default:
+            Q_ASSERT(false);
     }
 
     pipeline->setIsoRange({
@@ -219,12 +225,15 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
             pipeline->setBaseMesh(Sokar3D::CubedIndexedMesh::New());
             break;
         }
+        default:
+            Q_ASSERT(false);
     }
 
     //endregion
 
 
     //region line interpolation
+
     SokarAlg::LineInterpolatorPtr line_interpolator = nullptr;
 
     switch (ui->line_interpolation_combo->currentIndex()) {
@@ -240,6 +249,8 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
             line_interpolator = SokarAlg::SplineLineInterpolator::New();
             break;
         }
+        default:
+            Q_ASSERT(false);
     }
     pipeline->setLineInterpolator(line_interpolator);
 
@@ -279,6 +290,8 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
                 pipeline->setMeshSimplificator(edgeCollapse);
                 break;
             }
+            default:
+                Q_ASSERT(false);
         }
     }
 

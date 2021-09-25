@@ -16,9 +16,9 @@ namespace SokarAlg {
     class VolumeSegmentator : public Algorithm<Sokar3D::MeshPtr> {
     protected:
 
-        LineInterpolatorPtr line_interpolator;
-        VolumeCPtr volume;
-        Sokar3D::MeshPtr mesh;
+        LineInterpolatorPtr line_interpolator = nullptr;
+        VolumeCPtr volume = nullptr;
+        Sokar3D::MeshPtr mesh = nullptr;
         float iso_level = 0.f;
 
         void execBefore() override;

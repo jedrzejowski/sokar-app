@@ -106,6 +106,8 @@ namespace SokarAlg {
 
     declareSharedClass(LinearLineInterpolator)
 
+    declareSharedClass(PolynomialLineInterpolator)
+
     declareSharedClass(SplineLineInterpolator)
 
     // others

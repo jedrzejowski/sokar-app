@@ -4,13 +4,18 @@
 
 #include <QtConcurrent/QtConcurrentRun>
 #include "VolumeSegmentator.hpp"
-#include "VolumeInterpolator.hpp"
-#include "src/Sokar3D/IndexedMesh.hpp"
+#include "LineInterpolator.hpp"
+#include "Sokar3D/IndexedMesh.hpp"
 
 using namespace SokarAlg;
 
 void VolumeSegmentator::execBefore() {
 
+    Q_ASSERT(not volume.isNull());
+    Q_ASSERT(not line_interpolator.isNull());
+    Q_ASSERT(not mesh.isNull());
+
+    line_interpolator->setVolume(volume);
 }
 
 const QSharedPointer<const Volume> &VolumeSegmentator::getVolume() const {
@@ -55,19 +60,7 @@ Volume::Point VolumeSegmentator::getPoint(const glm::i32vec3 &pos) const {
 
 glm::vec3 VolumeSegmentator::interpolatePoint(const Volume::Point &p1, const Volume::Point &p2) {
 
-    if (areSame(iso_level, p1.value)) {
-        return p1.position;
-    }
-    if (areSame(iso_level, p2.value)) {
-        return p2.position;
-    }
-    if (areSame(p1.value, p2.value)) {
-        return p1.position;
-    }
-
-    auto mu = (iso_level - p1.value) / (p2.value - p1.value);
-
-    return glm::vec3(p1.position) + mu * glm::vec3(p2.position - p1.position);
+    return line_interpolator->interpolate(p1, p2);
 }
 
 const LineInterpolatorPtr &VolumeSegmentator::getLineInterpolator() const {

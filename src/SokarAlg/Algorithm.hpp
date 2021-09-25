@@ -14,6 +14,8 @@ namespace SokarAlg {
 
     template<typename Output>
     class Algorithm : public QEnableSharedFromThis<Algorithm<Output>>, public SokarLib::Displayable {
+    private:
+        QMutex state_mutex;
     protected:
 
         virtual void execBefore() {};
@@ -46,6 +48,7 @@ namespace SokarAlg {
             return self->execSync();
         });
     }
+
 }
 
 

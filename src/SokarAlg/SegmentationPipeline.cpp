@@ -122,6 +122,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         emit updateProgress(QObject::tr("Maszerowanie"), 0.f);
 
+        volumeSegmentator->setLineInterpolator(line_interpolator);
         volumeSegmentator->setVolume(volume);
         volumeSegmentator->setMesh(current_mesh);
 

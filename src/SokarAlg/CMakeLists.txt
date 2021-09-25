@@ -41,10 +41,10 @@ set(SRC_SOKAR_ALG
         VertexClustering.hpp
         VertexDecimation.cpp
         VertexDecimation.hpp
+        Volume.hpp
         Volume.cpp
         VolumeEnv.cpp
         VolumeEnv.hpp
-        Volume.hpp
         VolumeInterpolator.cpp
         VolumeInterpolator.hpp
         VolumeSegmentator.cpp
