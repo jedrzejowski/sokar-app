@@ -30,11 +30,14 @@ SegmentationResultWidget::SegmentationResultWidget(
 
     ui->colorName->setText(result->meshColor.name());
 
-    ui->segmentationResult->setText(result->segmentation.description);
-    ui->interpolationResult->setText(result->interpolation.description);
-    ui->cacheResult->setText(result->interpolationCache.description);
-    ui->regionGrowthResult->setText(result->regionGrowth.description);
-    ui->meshSimplificationLabel->setText(result->simplification.description);
+    ui->volume_interpolation_label->setText(result->volume_interpolation.description);
+    ui->volume_interpolation_cache_label->setText(result->volume_interpolation_cache.description);
+    ui->region_growth_label->setText(result->region_growth.description);
+    ui->gradient_label->setText(result->gradient.description);
+    ui->segmentation_label->setText(result->segmentation.description);
+    ui->line_interpolation_label->setText(result->line_interpolation.description);
+    ui->mesh_simplification_label->setText(result->mesh_simplification.description);
+    ui->volume_env_label->setText(result->volume_env.description);
     ui->sumLabel->setText(result->summary.description);
 }
 

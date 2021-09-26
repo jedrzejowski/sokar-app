@@ -12,6 +12,7 @@
 #include "MeshSimplificator.hpp"
 #include "IsoRangeDistanceVolumeTransform.hpp"
 #include "GradientVolume.hpp"
+#include "LineInterpolator.hpp"
 
 using namespace SokarAlg;
 
@@ -57,11 +58,14 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         if (not gradient_volume.isNull()) {
             gradient_volume->setVolume(volume);
+            result->gradient.description = "tak";
             volume = gradient_volume;
+        } else {
+            result->gradient.description = "nie";
         }
 
         if (use_region_growth) {
-            result->regionGrowth.was = true;
+            result->region_growth.was = true;
 
             emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
 
@@ -71,35 +75,37 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             region_growth->setStartPoint(regionGrowthStartPoint);
             volume = region_growth;
 
-            result->regionGrowth.timeStart = makeTimePoint();
+            result->region_growth.timeStart = makeTimePoint();
             region_growth->regrowth();
-            result->regionGrowth.timeEnd = makeTimePoint();
+            result->region_growth.timeEnd = makeTimePoint();
 
-            result->regionGrowth.description = QString("z punktu %1").arg(
+            result->region_growth.description = QString("z punktu %1").arg(
                     glm::to_string(regionGrowthStartPoint).c_str()
             );
         } else {
-            result->regionGrowth.description = QString("nie");
+            result->region_growth.description = "nie";
         }
 
-        if (useEmptyEnv) {
+        if (use_empty_env) {
             auto volume_env = VolumeEnv::New();
             volume_env->setEnvValue(0.f);
             volume_env->setEnvSize(1.f);
             volume_env->setVolume(volume);
+            result->volume_env.description = "tak";
             volume = volume_env;
+        } else {
+            result->volume_env.description = "nie";
         }
 
         {
             auto iso_range_volume = IsoRangeDistanceVolumeTransform::New();
             iso_range_volume->setVolume(volume);
-            qDebug() << iso_range;
             iso_range_volume->setIsoRange(iso_range);
             volume = iso_range_volume;
         }
 
         if (use_cache) {
-            result->interpolationCache.was = true;
+            result->volume_interpolation_cache.was = true;
 
             emit updateProgress(QObject::tr("Kaszowanie interpolacji"), 0.f);
 
@@ -107,15 +113,16 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             cached_volume->setVolume(volume);
             volume = cached_volume;
 
-            result->interpolationCache.timeStart = makeTimePoint();
+            result->volume_interpolation_cache.timeStart = makeTimePoint();
             cached_volume->refreshCache();
-            result->interpolationCache.timeEnd = makeTimePoint();
+            result->volume_interpolation_cache.timeEnd = makeTimePoint();
 
-            result->interpolationCache.description = QString("czas kaszowania %1").arg(
-                    timeRangeString(result->interpolationCache.timeStart, result->interpolationCache.timeEnd)
+            result->volume_interpolation_cache.description = QString("czas kaszowania %1").arg(
+                    timeRangeString(result->volume_interpolation_cache.timeStart,
+                                    result->volume_interpolation_cache.timeEnd)
             );
         } else {
-            result->interpolationCache.description = QString("nie");
+            result->volume_interpolation_cache.description = QString("nie");
         }
 
         //region segmentation
@@ -136,7 +143,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         auto transform = glm::mat4(1.f);
 
         // przesunięcie mesha, aby osadzenie w pustej przestrzeni nie miało wpływu, na pozycje
-        if (useEmptyEnv) {
+        if (use_empty_env) {
             transform = glm::translate(transform, glm::vec3(-1.f, -1.f, -1.f));
         }
 
@@ -165,20 +172,22 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
             emit updateProgress(QObject::tr("Upraszczanie siatki"), 0.f);
 
-            result->simplification.inputMesh = Sokar3D::IndexedMesh::New();
-            current_mesh->injectTo(result->simplification.inputMesh);
+            result->mesh_simplification.inputMesh = Sokar3D::IndexedMesh::New();
+            current_mesh->injectTo(result->mesh_simplification.inputMesh);
 
-            meshSimplificator->setMesh(result->simplification.inputMesh);
+            meshSimplificator->setMesh(result->mesh_simplification.inputMesh);
 
-            result->simplification.timeStart = makeTimePoint();
-            result->simplification.outputMesh = current_mesh = meshSimplificator->execSync();
-            result->simplification.timeEnd = makeTimePoint();
+            result->mesh_simplification.timeStart = makeTimePoint();
+            result->mesh_simplification.outputMesh = current_mesh = meshSimplificator->execSync();
+            result->mesh_simplification.timeEnd = makeTimePoint();
 
         } else {
-            result->simplification.description = QString("nie");
+            result->mesh_simplification.description = QString("nie");
         }
 
         //endregion
+
+        result->line_interpolation.description = line_interpolator->toDisplay();
 
         result->summary.timeEnd = makeTimePoint();
         result->summary.mesh = current_mesh;
@@ -234,7 +243,7 @@ void SegmentationPipeline::setUseCache(bool newUsingCache) {
 
 void SegmentationPipeline::setUseEmptyEnv(bool useEmptyEnv) {
 
-    SegmentationPipeline::useEmptyEnv = useEmptyEnv;
+    SegmentationPipeline::use_empty_env = useEmptyEnv;
 }
 
 void SegmentationPipeline::setUseRegionGrowth(bool useRegionGrowth) {

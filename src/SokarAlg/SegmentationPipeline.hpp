@@ -17,21 +17,25 @@ namespace SokarAlg {
 
         struct {
             QString description;
-        } interpolation;
+        } volume_interpolation;
 
         struct {
             bool was = false;
             TimePoint timeStart;
             TimePoint timeEnd;
             QString description;
-        } interpolationCache;
+        } volume_interpolation_cache;
 
         struct {
             bool was = false;
             TimePoint timeStart;
             TimePoint timeEnd;
             QString description;
-        } regionGrowth;
+        } region_growth;
+
+        struct {
+            QString description;
+        } gradient;
 
         struct {
             Sokar3D::MeshPtr inputMesh = nullptr;
@@ -42,13 +46,21 @@ namespace SokarAlg {
         } segmentation;
 
         struct {
+            QString description;
+        } line_interpolation;
+
+        struct {
             Sokar3D::IndexedMeshPtr inputMesh = nullptr;
             Sokar3D::MeshPtr outputMesh = nullptr;
             bool was = false;
             TimePoint timeStart;
             TimePoint timeEnd;
             QString description;
-        } simplification;
+        } mesh_simplification;
+
+        struct {
+            QString description;
+        } volume_env;
 
         struct {
             TimePoint timeStart;
@@ -69,7 +81,7 @@ namespace SokarAlg {
         QMutex stateMutex;
 
         bool use_cache = true;
-        bool useEmptyEnv = true;
+        bool use_empty_env = true;
         QColor meshColor = QColor("#BF4024");
 
         bool use_region_growth = false;

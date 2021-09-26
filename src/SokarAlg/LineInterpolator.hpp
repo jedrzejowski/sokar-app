@@ -4,12 +4,13 @@
 
 #pragma once
 
+#include "SokarLib/Displayable.hpp"
 #include "SokarAlg.hpp"
 #include "Volume.hpp"
 
 namespace SokarAlg {
 
-    class LineInterpolator {
+    class LineInterpolator : public SokarLib::Displayable {
     protected:
         int extend_point = 0;
         bool use_cache = false;

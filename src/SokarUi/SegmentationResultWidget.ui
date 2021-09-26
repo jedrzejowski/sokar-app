@@ -1,231 +1,272 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>SegmentationResultWidget</class>
-    <widget class="QFrame" name="SegmentationResultWidget">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>439</width>
-                <height>235</height>
-            </rect>
-        </property>
-        <property name="windowTitle">
-            <string>Form</string>
-        </property>
-        <property name="frameShape">
-            <enum>QFrame::StyledPanel</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>QFrame::Plain</enum>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1,1">
-            <item row="1" column="1">
-                <widget class="QLabel" name="label_4">
-                    <property name="text">
-                        <string>Interplacja</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="5" column="2">
-                <widget class="QLabel" name="meshSimplificationLabel">
-                    <property name="text">
-                        <string>###</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="0" column="1">
-                <widget class="QLabel" name="label">
-                    <property name="text">
-                        <string>Wynik #</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="4" column="2">
-                <widget class="QLabel" name="regionGrowthResult">
-                    <property name="text">
-                        <string>###</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="2" column="1">
-                <widget class="QLabel" name="label_2">
-                    <property name="text">
-                        <string>Segmentacja</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="6" column="2">
-                <widget class="QLabel" name="sumLabel">
-                    <property name="text">
-                        <string>TextLabel</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="1" column="2">
-                <widget class="QLabel" name="interpolationResult">
-                    <property name="text">
-                        <string>###</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="4" column="1">
-                <widget class="QLabel" name="label_3">
-                    <property name="text">
-                        <string>Rozrost</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="3" column="1">
-                <widget class="QLabel" name="label_5">
-                    <property name="text">
-                        <string>Cache</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="0" column="2">
-                <layout class="QHBoxLayout" name="horizontalLayout_2">
-                    <item>
-                        <widget class="QLabel" name="colorName">
-                            <property name="text">
-                                <string>###</string>
-                            </property>
-                            <property name="alignment">
-                                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                            </property>
-                        </widget>
-                    </item>
-                    <item>
-                        <spacer name="horizontalSpacer">
-                            <property name="orientation">
-                                <enum>Qt::Horizontal</enum>
-                            </property>
-                            <property name="sizeHint" stdset="0">
-                                <size>
-                                    <width>40</width>
-                                    <height>20</height>
-                                </size>
-                            </property>
-                        </spacer>
-                    </item>
-                    <item>
-                        <widget class="QPushButton" name="hideButton">
-                            <property name="text">
-                                <string notr="true"/>
-                            </property>
-                            <property name="icon">
-                                <iconset theme="image-red-eye-symbolic"/>
-                            </property>
-                            <property name="checkable">
-                                <bool>true</bool>
-                            </property>
-                        </widget>
-                    </item>
-                    <item>
-                        <widget class="QPushButton" name="saveButton">
-                            <property name="text">
-                                <string notr="true"/>
-                            </property>
-                            <property name="icon">
-                                <iconset theme="document-save">
-                                    <normaloff>.</normaloff>.
-                                </iconset>
-                            </property>
-                        </widget>
-                    </item>
-                    <item>
-                        <widget class="QPushButton" name="deleteButton">
-                            <property name="text">
-                                <string notr="true"/>
-                            </property>
-                            <property name="icon">
-                                <iconset theme="edit-delete">
-                                    <normaloff>.</normaloff>.
-                                </iconset>
-                            </property>
-                        </widget>
-                    </item>
-                </layout>
-            </item>
-            <item row="2" column="2">
-                <widget class="QLabel" name="segmentationResult">
-                    <property name="text">
-                        <string>###</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="3" column="2">
-                <widget class="QLabel" name="cacheResult">
-                    <property name="text">
-                        <string>###</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="5" column="1">
-                <widget class="QLabel" name="label_8">
-                    <property name="text">
-                        <string>Upraszcanie siatki</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="6" column="1">
-                <widget class="QLabel" name="label_10">
-                    <property name="text">
-                        <string>Podsumowanie</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-                    </property>
-                </widget>
-            </item>
-            <item row="0" column="0" rowspan="7">
-                <widget class="QWidget" name="colorPreview" native="true">
-                    <property name="minimumSize">
-                        <size>
-                            <width>10</width>
-                            <height>0</height>
-                        </size>
-                    </property>
-                </widget>
-            </item>
-        </layout>
+ <class>SegmentationResultWidget</class>
+ <widget class="QFrame" name="SegmentationResultWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>439</width>
+    <height>289</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="frameShape">
+   <enum>QFrame::StyledPanel</enum>
+  </property>
+  <property name="frameShadow">
+   <enum>QFrame::Plain</enum>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1,1">
+   <item row="13" column="2">
+    <widget class="QLabel" name="sumLabel">
+     <property name="text">
+      <string>// TODO</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
     </widget>
-    <resources/>
-    <connections/>
+   </item>
+   <item row="13" column="1">
+    <widget class="QLabel" name="label_10">
+     <property name="text">
+      <string>Podsumowanie</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="colorName">
+       <property name="text">
+        <string>###</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="hideButton">
+       <property name="text">
+        <string notr="true"/>
+       </property>
+       <property name="icon">
+        <iconset theme="image-red-eye-symbolic">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="saveButton">
+       <property name="text">
+        <string notr="true"/>
+       </property>
+       <property name="icon">
+        <iconset theme="document-save">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deleteButton">
+       <property name="text">
+        <string notr="true"/>
+       </property>
+       <property name="icon">
+        <iconset theme="edit-delete">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0" rowspan="14">
+    <widget class="QWidget" name="colorPreview" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>10</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QLabel" name="region_growth_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QLabel" name="segmentation_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="volume_interpolation_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Segmentacja</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QLabel" name="label_8">
+     <property name="text">
+      <string>Upraszcanie siatki</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <widget class="QLabel" name="label_6">
+     <property name="text">
+      <string>Gradient</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="2">
+    <widget class="QLabel" name="volume_env_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Wynik #</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Rozrost</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLabel" name="label_9">
+     <property name="text">
+      <string>Interpolacja prostych</string>
+     </property>
+    </widget>
+   </item>
+   <item row="11" column="1">
+    <widget class="QLabel" name="label_7">
+     <property name="text">
+      <string>Osadzenie w pustej przestrzeni</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="2">
+    <widget class="QLabel" name="mesh_simplification_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="2">
+    <widget class="QLabel" name="gradient_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
+    <widget class="QLabel" name="line_interpolation_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Interplacja</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Cache interpolacji</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QLabel" name="volume_interpolation_cache_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
 </ui>
