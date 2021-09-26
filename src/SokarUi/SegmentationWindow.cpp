@@ -54,6 +54,10 @@ void SegmentationWindow::startSegmentation(bool append) {
     progressDialog->show();
 
     auto segmentationPipeline = pipelineEditor->makePipeline();
+    if (segmentationPipeline.isNull()) {
+        progressDialog->hide();
+        return;
+    }
     segmentationPipeline->setRawDicomVolume(rawDicomVolume);
 
     auto dialogUpdateConnection = QObject::connect(

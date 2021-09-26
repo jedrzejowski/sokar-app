@@ -333,8 +333,8 @@
      <property name="checkable">
       <bool>false</bool>
      </property>
-     <layout class="QGridLayout" name="gridLayout_8">
-      <item row="0" column="0">
+     <layout class="QVBoxLayout" name="verticalLayout_2">
+      <item>
        <widget class="QtUi::ComboBox" name="line_interpolation_combo">
         <item>
          <property name="text">
@@ -351,7 +351,40 @@
           <string>Wielomianowa</string>
          </property>
         </item>
+        <item>
+         <property name="text">
+          <string>Funkcje sklejane</string>
+         </property>
+        </item>
        </widget>
+      </item>
+      <item>
+       <layout class="QGridLayout" name="common_line_interpolation_bix">
+        <item row="1" column="1">
+         <widget class="QtUi::SpinBox" name="line_interpolation_extend_point"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Ilość dodatkowych punktów</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="text">
+           <string>Pamięć podręczna</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QCheckBox" name="line_interpolation_cache_check">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
      </layout>
     </widget>

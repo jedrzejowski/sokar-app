@@ -11,7 +11,8 @@ namespace SokarAlg {
 
     class LineInterpolator {
     protected:
-        int point_count;
+        int extend_point = 0;
+        bool use_cache = false;
         VolumeCPtr volume = nullptr;
         float iso_level = 0;
 
@@ -26,6 +27,7 @@ namespace SokarAlg {
         const VolumeCPtr &getVolume() const;
         void setVolume(const VolumeCPtr &vv);
 
+        [[nodiscard]]
         float getIsoLevel() const;
         void setIsoLevel(float isoLevel);
 
@@ -36,8 +38,11 @@ namespace SokarAlg {
         std::vector<Volume::Point> getPoints(const Volume::Point &p1, const Volume::Point &p2) const;
 
         [[nodiscard]]
-        int getPointCount() const;
-        void setPointCount(int pointCount);
+        int getExtendPointCount() const;
+        void setExtendPointCount(int pointCount);
+
+        bool isUseCache() const;
+        void setUseCache(bool useCache);
     };
 
     class HalfLineInterpolator : public LineInterpolator {
@@ -68,10 +73,6 @@ namespace SokarAlg {
 
         [[nodiscard]]
         glm::vec3 interpolate(const Volume::Point &p1, const Volume::Point &p2) const override;
-
-        [[nodiscard]]
-        int getPointCount() const;
-        void setPointCount(int pointCount);
     };
 
     class SplineLineInterpolator : public LineInterpolator {

@@ -86,7 +86,7 @@ void SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged(int
     }
 }
 
-SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() const {
+SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() {
 
     auto pipeline = SokarAlg::SegmentationPipeline::New();
 
@@ -234,25 +234,49 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() con
 
     //region line interpolation
 
-    SokarAlg::LineInterpolatorPtr line_interpolator = nullptr;
-
     switch (ui->line_interpolation_combo->currentIndex()) {
         case 0: {
-            line_interpolator = SokarAlg::LinearLineInterpolator::New();
+            auto interpolator = SokarAlg::LinearLineInterpolator::New();
+
+            pipeline->setLineInterpolator(interpolator);
             break;
         }
         case 1: {
-            line_interpolator = SokarAlg::HalfLineInterpolator::New();
+            auto interpolator = SokarAlg::HalfLineInterpolator::New();
+
+            pipeline->setLineInterpolator(interpolator);
             break;
         }
         case 2: {
-            line_interpolator = SokarAlg::SplineLineInterpolator::New();
+            auto interpolator = SokarAlg::PolynomialLineInterpolator::New();
+
+            auto extend_point = ui->line_interpolation_extend_point->value();
+
+            interpolator->setUseCache(ui->line_interpolation_cache_check->isChecked());
+            interpolator->setExtendPointCount(ui->line_interpolation_extend_point->value());
+
+            pipeline->setLineInterpolator(interpolator);
+            break;
+        }
+        case 3: {
+            auto interpolator = SokarAlg::SplineLineInterpolator::New();
+
+            auto extend_point = ui->line_interpolation_extend_point->value();
+
+            interpolator->setUseCache(ui->line_interpolation_cache_check->isChecked());
+            interpolator->setExtendPointCount(ui->line_interpolation_extend_point->value());
+
+            if (extend_point < 1) {
+                QMessageBox::warning(this, "Błąd", "Ilośc dodatkowych punktów musi być większa niż zero");
+                return nullptr;
+            }
+
+            pipeline->setLineInterpolator(interpolator);
             break;
         }
         default:
             Q_ASSERT(false);
     }
-    pipeline->setLineInterpolator(line_interpolator);
 
     //endregion
 

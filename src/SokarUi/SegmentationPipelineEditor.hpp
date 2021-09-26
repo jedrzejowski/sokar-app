@@ -26,8 +26,9 @@ namespace SokarUi {
         explicit SegmentationPipelineEditor(QWidget *parent = nullptr);
         ~SegmentationPipelineEditor() override;
 
+        //nie może być const, bo dialogi by nie działały
         [[nodiscard]]
-        SokarAlg::SegmentationPipelinePtr makePipeline() const;
+        SokarAlg::SegmentationPipelinePtr makePipeline();
 
         void setMeshColor(const QColor &color);
 

@@ -39,7 +39,7 @@ std::vector<Volume::Point> LineInterpolator::getPoints(
     auto delta = p2.position - p1.position;
     std::vector<Volume::Point> points;
 
-    for (int i = -point_count; i < point_count + 2; i++) {
+    for (int i = -extend_point; i < extend_point + 2; i++) {
         auto pos = p1.position + i * delta;
         if (volume->isInVolume(pos)) {
             points.push_back(volume->getPoint(pos));
@@ -49,14 +49,23 @@ std::vector<Volume::Point> LineInterpolator::getPoints(
     return std::move(points);
 }
 
-int LineInterpolator::getPointCount() const {
+int LineInterpolator::getExtendPointCount() const {
 
-    return point_count;
+    return extend_point;
 }
 
-void LineInterpolator::setPointCount(int new_point_count) {
+void LineInterpolator::setExtendPointCount(int new_point_count) {
 
-    point_count = new_point_count;
+    extend_point = new_point_count;
+}
+
+bool LineInterpolator::isUseCache() const {
+
+    return use_cache;
+}
+void LineInterpolator::setUseCache(bool useCache) {
+
+    use_cache = useCache;
 }
 
 // ----
@@ -164,7 +173,7 @@ glm::vec3 PolynomialLineInterpolator::interpolate(const Volume::Point &p1, const
         return sum;
 
     } catch (const std::exception &e) {
-
+        qDebug() << "HERE2";
         ++failed_interpolations;
 
         auto mu = (iso_level - p1.value) / (p2.value - p1.value);
