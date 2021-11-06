@@ -53,6 +53,8 @@ namespace SokarAlg {
 
         [[nodiscard]]
         glm::vec3 interpolate(const Volume::Point &p1, const Volume::Point &p2) const override;
+
+        QString toDisplay() override;
     };
 
     class LinearLineInterpolator : public LineInterpolator {
@@ -62,6 +64,8 @@ namespace SokarAlg {
 
         [[nodiscard]]
         glm::vec3 interpolate(const Volume::Point &p1, const Volume::Point &p2) const override;
+
+        QString toDisplay() override;
     };
 
     class PolynomialLineInterpolator : public LineInterpolator {
@@ -74,6 +78,8 @@ namespace SokarAlg {
 
         [[nodiscard]]
         glm::vec3 interpolate(const Volume::Point &p1, const Volume::Point &p2) const override;
+
+        QString toDisplay() override;
     };
 
     class SplineLineInterpolator : public LineInterpolator {
@@ -85,6 +91,7 @@ namespace SokarAlg {
         [[nodiscard]]
         glm::vec3 interpolate(const Volume::Point &p1, const Volume::Point &p2) const override;
 
+        QString toDisplay() override;
     };
 
 }

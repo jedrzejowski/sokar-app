@@ -98,7 +98,6 @@ void RegionGrowthVolume::regrowth() {
         }
 
         mask(current) = VISITED;
-        qDebug() << "iter" << current << "=" << mask(current) << "queueSize" << queue.size();
 
         if (isoLevel.distance(getUnMaskedValue(current)) < 0) {
             mask(current) = PASSED;

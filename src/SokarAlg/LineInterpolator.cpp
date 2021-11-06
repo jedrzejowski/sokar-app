@@ -80,6 +80,11 @@ glm::vec3 HalfLineInterpolator::interpolate(const Volume::Point &p1, const Volum
     return glm::vec3(p2.position + p1.position) / 2.f;
 }
 
+QString HalfLineInterpolator::toDisplay() {
+
+    return "HalfLineInterpolator";
+}
+
 // ----
 
 LinearLineInterpolatorPtr LinearLineInterpolator::New() {
@@ -102,6 +107,11 @@ glm::vec3 LinearLineInterpolator::interpolate(const Volume::Point &p1, const Vol
     auto mu = (iso_level - p1.value) / (p2.value - p1.value);
 
     return glm::vec3(p1.position) + mu * glm::vec3(p2.position - p1.position);
+}
+
+QString LinearLineInterpolator::toDisplay() {
+
+    return "LinearLineInterpolator";
 }
 
 // ----
@@ -182,6 +192,12 @@ glm::vec3 PolynomialLineInterpolator::interpolate(const Volume::Point &p1, const
 
 }
 
+QString PolynomialLineInterpolator::toDisplay() {
+
+    return "PolynomialLineInterpolator";
+}
+
+
 
 // ----
 
@@ -256,4 +272,9 @@ glm::vec3 SplineLineInterpolator::interpolate(const Volume::Point &p1, const Vol
 //    printf("spline at %f is %f with derivative %f\n", x, y, deriv);
 
     return output;
+}
+
+QString SplineLineInterpolator::toDisplay() {
+
+    return "SplineLineInterpolator";
 }

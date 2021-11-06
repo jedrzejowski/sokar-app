@@ -314,22 +314,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="104"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="110"/>
         <source>Kaszowanie interpolacji</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="66"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="70"/>
         <source>Rozrost obszarów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="123"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="130"/>
         <source>Maszerowanie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="166"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="173"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
