@@ -25,14 +25,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/cmake/eigen.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/res/img/ico/segmentation3d.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake/gdcm.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/gdcm.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/res/resources.qrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/DicomToolBar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/DicomToolBar.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,6 +383,16 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -405,11 +411,6 @@
     <configuration name="sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="sokar_autogen" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="vk:color_phong" type="ShConfigurationType">
@@ -649,6 +650,7 @@
       <workItem from="1635974640033" duration="3030000" />
       <workItem from="1636066284097" duration="1682000" />
       <workItem from="1636222427243" duration="1670000" />
+      <workItem from="1636313168546" duration="1276000" />
     </task>
     <task id="LOCAL-00060" summary="kommit kotnrolny">
       <created>1623276886853</created>
