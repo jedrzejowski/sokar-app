@@ -282,7 +282,7 @@ void MeshPipeline::ensureBuffers(const VkPipelineMetaArgs &args) {
     // index buffer
 //	bufInfo.size = indexedStaticMesh != nullptr ? indexedStaticMesh->indexesSizeInBytes() : 0;
     bufInfo.size = 0;
-    bufInfo.usage = VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT;
+    bufInfo.usage = VK_BUFFER_USAGE_INDEX_BUFFER_BIT;
     err = args.vkDeviceFunctions->vkCreateBuffer(args.vkDevice, &bufInfo, nullptr, &indexBuf);
     if (err != VK_SUCCESS)
         qFatal("Failed to create index buffer: %d", err);

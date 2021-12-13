@@ -22,6 +22,7 @@ target_link_libraries(
         ${Vulkan_LIBRARY}
         Eigen3::Eigen
         CGAL::CGAL
+        igl::igl
 )
 
 install(TARGETS sokar RUNTIME DESTINATION ${INSTALL_DIR})

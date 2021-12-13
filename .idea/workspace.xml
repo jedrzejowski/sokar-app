@@ -6,10 +6,8 @@
   <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
     <generated>
       <config projectName="Sokar" targetName="DiBrowser_autogen" />
-      <config projectName="Sokar" targetName="sokar_autogen" />
       <config projectName="Sokar" targetName="sokar" />
       <config projectName="Sokar" targetName="boundingmesh" />
-      <config projectName="Sokar" targetName="boundingmesh_autogen" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -25,10 +23,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/res/img/ico/segmentation3d.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapseSimplification.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapseSimplification.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/libigl_mesh.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bin/igl703.cmake" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/bin/igl703.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/resources.qrc" beforeDir="false" afterPath="$PROJECT_DIR$/res/resources.qrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/DicomToolBar.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/DicomToolBar.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/eigen.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/other.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/3d-party/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d-party/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.frag" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.frag" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/BoundingMeshSimplification.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/BoundingMeshSimplification.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/sokar.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/sokar.cmake" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,6 +206,9 @@
       </list>
     </option>
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="247" />
@@ -311,7 +325,7 @@
     <property name="cidr.known.project.marker" value="true" />
     <property name="cmake.loaded.for.project" value="true" />
     <property name="jsx.switch.disabled" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/QtUi" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/bin" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
@@ -320,11 +334,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/bin" />
       <recent name="$PROJECT_DIR$/src/QtUi" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/SokarAlg" />
       <recent name="$PROJECT_DIR$/src/SokarUi" />
-      <recent name="$PROJECT_DIR$/src/SokarDicom" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/QtUi" />
@@ -388,27 +402,12 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="boundingmesh_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh_autogen" CONFIG_NAME="Debug">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="sokar" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="sokar" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="sokar">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="sokar_autogen" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="sokar_autogen" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -445,9 +444,7 @@
     </configuration>
     <list>
       <item itemvalue="CMake Application.boundingmesh" />
-      <item itemvalue="CMake Application.boundingmesh_autogen" />
       <item itemvalue="CMake Application.sokar" />
-      <item itemvalue="CMake Application.sokar_autogen" />
       <item itemvalue="Shell Script.vk:color_phong" />
       <item itemvalue="Shell Script.vk:mesh" />
     </list>
@@ -651,6 +648,19 @@
       <workItem from="1636066284097" duration="1682000" />
       <workItem from="1636222427243" duration="1670000" />
       <workItem from="1636313168546" duration="1276000" />
+      <workItem from="1636408436143" duration="2332000" />
+      <workItem from="1636464328111" duration="601000" />
+      <workItem from="1636754494192" duration="3000" />
+      <workItem from="1638058236842" duration="628000" />
+      <workItem from="1638127316490" duration="3468000" />
+      <workItem from="1638224839739" duration="3841000" />
+      <workItem from="1638277290068" duration="599000" />
+      <workItem from="1638383493287" duration="7000" />
+      <workItem from="1638632537146" duration="2669000" />
+      <workItem from="1638717862470" duration="2408000" />
+      <workItem from="1638884464846" duration="1198000" />
+      <workItem from="1639266933600" duration="1000" />
+      <workItem from="1639326095357" duration="7233000" />
     </task>
     <task id="LOCAL-00060" summary="kommit kotnrolny">
       <created>1623276886853</created>
@@ -1085,7 +1095,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <ignored-roots>

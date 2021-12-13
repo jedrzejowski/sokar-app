@@ -14,10 +14,12 @@ set(SRC_SOKAR_ALG
         CachedVolume.hpp
         DicomVolume.cpp
         DicomVolume.hpp
-        EdgeCollapse.cpp
-        EdgeCollapse.hpp
+        BoundingMeshSimplification.cpp
+        BoundingMeshSimplification.hpp
         ExampleVolume.cpp
         ExampleVolume.hpp
+        EdgeCollapseSimplification.cpp
+        EdgeCollapseSimplification.hpp
         GradientVolume.hpp
         GradientVolume.cpp
         InterpolatedVolume.cpp

@@ -39,6 +39,3 @@ list(TRANSFORM SRC_3DPRATY_OPTIONPARSER PREPEND ${CMAKE_CURRENT_LIST_DIR}/option
 
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
-
-
-include_directories(${CMAKE_CURRENT_LIST_DIR})

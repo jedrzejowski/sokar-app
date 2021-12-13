@@ -1,17 +1,8 @@
 #version 440
+#extension GL_GOOGLE_include_directive : require
 
-struct SolidMaterial {
-    vec3 color;
-    vec3 specular;
-    float shininess;
-};
-
-struct SimpleLight {
-    vec3 position;
-    vec3 ambient;
-    vec3 diffuse;
-    vec3 specular;
-};
+#include "SolidMaterial.glsl"
+#include "SimpleLight.glsl"
 
 layout(location = 0) in vec3 vertNormal;
 layout(location = 1) in vec3 vertPos;

@@ -10,7 +10,7 @@
 
 namespace SokarAlg {
 
-    class EdgeCollapse : public MeshSimplificator {
+    class BoundingMeshSimplification : public MeshSimplificator {
     public:
         using DecimationDirection = boundingmesh::DecimationDirection;
 
@@ -22,11 +22,11 @@ namespace SokarAlg {
 
         Sokar3D::IndexedMeshPtr exec() override;
 
-        EdgeCollapse();
+        BoundingMeshSimplification();
 
     public:
 
-        static EdgeCollapsePtr New();
+        static BoundingMeshSimplificationPtr New();
 
         [[nodiscard]]
         DecimationDirection getDirection() const;

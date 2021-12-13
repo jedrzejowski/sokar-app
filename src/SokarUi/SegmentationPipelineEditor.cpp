@@ -9,7 +9,7 @@
 #include "SokarAlg/SegmentationPipeline.hpp"
 #include "SokarAlg/MarchingCubes.hpp"
 #include "SokarAlg/MarchingTetrahedrons.hpp"
-#include "SokarAlg/EdgeCollapse.hpp"
+#include "SokarAlg/BoundingMeshSimplification.hpp"
 #include "SokarAlg/GradientVolume.hpp"
 #include "SokarAlg/LineInterpolator.hpp"
 #include "Sokar3D/TriangleListMesh.hpp"
@@ -292,19 +292,19 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() {
                 break;
             }
             case 1: {
-                auto edgeCollapse = SokarAlg::EdgeCollapse::New();
+                auto edgeCollapse = SokarAlg::BoundingMeshSimplification::New();
 
                 switch (ui->edgeCollapseDirection->currentIndex()) {
                     case 0: {
-                        edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Any);
+                        edgeCollapse->setDirection(SokarAlg::BoundingMeshSimplification::DecimationDirection::Any);
                         break;
                     }
                     case 1: {
-                        edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Inward);
+                        edgeCollapse->setDirection(SokarAlg::BoundingMeshSimplification::DecimationDirection::Inward);
                         break;
                     }
                     case 2: {
-                        edgeCollapse->setDirection(SokarAlg::EdgeCollapse::DecimationDirection::Outward);
+                        edgeCollapse->setDirection(SokarAlg::BoundingMeshSimplification::DecimationDirection::Outward);
                         break;
                     }
                 }

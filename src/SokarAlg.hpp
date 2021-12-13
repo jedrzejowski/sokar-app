@@ -78,7 +78,9 @@ namespace SokarAlg {
 
     declareSharedClass(VertexClustering)
 
-    declareSharedClass(EdgeCollapse)
+    declareSharedClass(EdgeCollapseSimplification)
+
+    declareSharedClass(BoundingMeshSimplification)
 
     declareSharedClass(BoundingConvexDecomposition)
 

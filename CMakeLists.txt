@@ -27,6 +27,7 @@ link_libraries(${GLFW_LIBRARY_DIRS})
 list(APPEND CONAN_PKGS gdcm/3.0.9)
 list(APPEND CONAN_PKGS eigen/3.3.9)
 list(APPEND CONAN_PKGS cgal/5.2.1)
+list(APPEND CONAN_PKGS libigl/2.3.0)
 
 include(cmake/conan.cmake)
 run_conan()
@@ -35,7 +36,7 @@ include(cmake/gdcm.cmake)
 include(cmake/qt.cmake)
 include(cmake/package.cmake)
 include(cmake/shaders.cmake)
-include(cmake/eigen.cmake)
+include(cmake/other.cmake)
 
 include(src/3d-party/CMakeLists.txt)
 include(src/Sokar.cmake)
@@ -53,6 +54,7 @@ qt5_wrap_ui(UI_HEADERS ${UI_FILES})
 include(src/bin/boundingmesh-cli.cmake)
 include(src/bin/bounding-convex-decomposition-cli.cmake)
 include(src/bin/sokar.cmake)
+#include(src/bin/igl703.cmake)
 
 
 

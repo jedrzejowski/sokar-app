@@ -2,20 +2,20 @@
 // Created by adam on 13.05.2021.
 //
 
-#include "EdgeCollapse.hpp"
+#include "BoundingMeshSimplification.hpp"
 
 using namespace SokarAlg;
 
-EdgeCollapse::EdgeCollapse() {
+BoundingMeshSimplification::BoundingMeshSimplification() {
 
 }
 
-EdgeCollapsePtr EdgeCollapse::New() {
+BoundingMeshSimplificationPtr BoundingMeshSimplification::New() {
 
-    return SokarAlg::EdgeCollapsePtr(new EdgeCollapse);
+    return SokarAlg::BoundingMeshSimplificationPtr(new BoundingMeshSimplification);
 }
 
-Sokar3D::IndexedMeshPtr EdgeCollapse::exec() {
+Sokar3D::IndexedMeshPtr BoundingMeshSimplification::exec() {
 
     auto bound_mesh = mesh->toBoundingMesh();
     bound_mesh->writeObj("/tmp/sokar/qq.obj");
@@ -61,42 +61,42 @@ Sokar3D::IndexedMeshPtr EdgeCollapse::exec() {
 }
 
 
-QString EdgeCollapse::toDisplay() {
+QString BoundingMeshSimplification::toDisplay() {
 
     return QString();
 }
 
-EdgeCollapse::DecimationDirection EdgeCollapse::getDirection() const {
+BoundingMeshSimplification::DecimationDirection BoundingMeshSimplification::getDirection() const {
 
     return direction;
 }
 
-void EdgeCollapse::setDirection(EdgeCollapse::DecimationDirection direction) {
+void BoundingMeshSimplification::setDirection(BoundingMeshSimplification::DecimationDirection direction) {
 
-    EdgeCollapse::direction = direction;
+    BoundingMeshSimplification::direction = direction;
 }
 
-float EdgeCollapse::getMaximumError() const {
+float BoundingMeshSimplification::getMaximumError() const {
 
     return maximum_error;
 }
 
-void EdgeCollapse::setMaximumError(float new_maximum_error) {
+void BoundingMeshSimplification::setMaximumError(float new_maximum_error) {
 
     Q_ASSERT(new_maximum_error > 0);
 
     maximum_error = new_maximum_error;
 }
 
-float EdgeCollapse::getVertexReduction() const {
+float BoundingMeshSimplification::getVertexReduction() const {
 
     return vertex_reduction;
 }
 
-void EdgeCollapse::setVertexReduction(float new_vertex_reduction) {
+void BoundingMeshSimplification::setVertexReduction(float new_vertex_reduction) {
 
     Q_ASSERT(new_vertex_reduction > 0);
     Q_ASSERT(new_vertex_reduction < 1);
 
-    EdgeCollapse::vertex_reduction = new_vertex_reduction;
+    BoundingMeshSimplification::vertex_reduction = new_vertex_reduction;
 }
