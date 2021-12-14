@@ -17,8 +17,27 @@ BoundingMeshSimplificationPtr BoundingMeshSimplification::New() {
 
 Sokar3D::IndexedMeshPtr BoundingMeshSimplification::exec() {
 
-    auto bound_mesh = mesh->toBoundingMesh();
-    bound_mesh->writeObj("/tmp/sokar/qq.obj");
+    auto bound_mesh = std::make_shared<boundingmesh::Mesh>();
+
+    // region initialization of mesh
+
+    auto my_vertex_2_bounding_vertex = QHash<Sokar3D::IndexedMesh::size_type, boundingmesh::Index>();
+
+    for (auto iter = mesh->getVertices().constKeyValueBegin();
+         iter != mesh->getVertices().constKeyValueEnd(); ++iter) {
+        auto i = bound_mesh->addVertex(boundingmesh::Vector3{iter->second.x, iter->second.y, iter->second.z});
+        my_vertex_2_bounding_vertex[iter->first] = i;
+    }
+
+    for (const auto &face: mesh->getFaces()) {
+        bound_mesh->addTriangle(
+                my_vertex_2_bounding_vertex[face.i0],
+                my_vertex_2_bounding_vertex[face.i1],
+                my_vertex_2_bounding_vertex[face.i2]
+        );
+    }
+
+    //endregion
 
     boundingmesh::Decimator decimator(direction);
     decimator.setMaximumError(maximum_error);
@@ -44,7 +63,7 @@ Sokar3D::IndexedMeshPtr BoundingMeshSimplification::exec() {
 
     auto triangle_num = decimated_mesh->nTriangles();
 
-    qDebug()<<"triangle_num"<<triangle_num;
+    qDebug() << "triangle_num" << triangle_num;
 
     for (uint i = 0; i < triangle_num; ++i) {
         auto &triangle = decimated_mesh->triangle(i);

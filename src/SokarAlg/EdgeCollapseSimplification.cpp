@@ -3,7 +3,6 @@
 //
 
 #include "EdgeCollapseSimplification.hpp"
-#include "libigl_mesh.hpp"
 
 #include <igl/circulation.h>
 #include <igl/collapse_edge.h>
@@ -34,52 +33,77 @@ QString EdgeCollapseSimplification::toDisplay() {
 
 Sokar3D::IndexedMeshPtr EdgeCollapseSimplification::exec() {
 
-    libigl_mesh qq;
+    qDebug() << "0";
 
-    Eigen::MatrixXd &V = qq.verts;
-    Eigen::MatrixXi &F = qq.faces;
+    auto my_vertex_2_igl_mesh = QHash<Sokar3D::IndexedMesh::size_type, boundingmesh::Index>();
 
-    Eigen::VectorXi EMAP;
-    Eigen::MatrixXi E, EF, EI;
-    igl::min_heap<std::tuple<double, int, int> > Q;
-    Eigen::VectorXi EQ;
-    // If an edge were collapsed, we'd collapse it to these points:
-    Eigen::MatrixXd C;
-    int num_collapsed;
+    auto &verts = mesh->getVertices();
+    auto &faces = mesh->getFaces();
 
-    igl::edge_flaps(F, E, EMAP, EF, EI);
-    C.resize(E.rows(), V.cols());
-    Eigen::VectorXd costs(E.rows());
-    // https://stackoverflow.com/questions/2852140/priority-queue-clear-method
-    // Q.clear();
-    Q = {};
-    EQ = Eigen::VectorXi::Zero(E.rows());
-    {
-        Eigen::VectorXd costs(E.rows());
-        igl::parallel_for(E.rows(), [&](const int e) {
-            double cost = e;
-            Eigen::RowVectorXd p(1, 3);
-            igl::shortest_edge_and_midpoint(e, V, F, E, EMAP, EF, EI, cost, p);
-            C.row(e) = p;
-            costs(e) = cost;
-        }, 10000);
-        for (int e = 0; e < E.rows(); e++) {
-            Q.emplace(costs(e), e, 0);
-        }
+    Eigen::MatrixXd V(verts.size(), 3);
+    Eigen::MatrixXi F(faces.size(), 3);
+
+    int i = -1;
+    for (auto iter = mesh->getVertices().constKeyValueBegin();
+         iter != mesh->getVertices().constKeyValueEnd(); ++iter) {
+
+        ++i;
+
+        V(i, 0) = verts[i].x;
+        V(i, 1) = verts[i].y;
+        V(i, 2) = verts[i].z;
+
+        my_vertex_2_igl_mesh[iter->first] = i;
     }
 
-    num_collapsed = 0;
+    for (const auto &face: mesh->getFaces()) {
 
-    bool something_collapsed = false;
-    // collapse edge
-    const int max_iter = std::ceil(0.01 * Q.size());
-    for (int j = 0; j < max_iter; j++) {
-        if (!igl::collapse_edge(igl::shortest_edge_and_midpoint, V, F, E, EMAP, EF, EI, Q, EQ, C)) {
-            break;
-        }
-        something_collapsed = true;
-        num_collapsed++;
+        V(i, 0) = my_vertex_2_igl_mesh[face.i0];
+        V(i, 1) = my_vertex_2_igl_mesh[face.i1];
+        V(i, 2) = my_vertex_2_igl_mesh[face.i2];
+
     }
 
-    return Sokar3D::IndexedMeshPtr();
+//    Eigen::MatrixXd U;
+//    Eigen::MatrixXi G;
+//    Eigen::VectorXi J;
+//    Eigen::VectorXi I;
+//
+//    igl::decimate(V, F, 10000, U, G, J, I);
+
+    auto output_mesh = Sokar3D::IndexedMesh::New();
+
+    qDebug() << "V.cols()" << V.cols();
+    qDebug() << "F.cols()" << F.cols();
+    qDebug() << "V.rows()" << V.rows();
+    qDebug() << "F.rows()" << F.rows();
+
+    for (int i = 0; i < V.rows(); ++i) {
+        auto col = V.row(i);
+
+        qDebug() << glm::vec3(col(0), col(1), col(2));
+        output_mesh->addVertex(glm::vec3(col(0), col(1), col(2)), false);
+    }
+
+    for (int i = 0; i < F.rows(); ++i) {
+        auto col = F.row(i);
+
+        output_mesh->addTriangle(
+                col(0),
+                col(1),
+                col(2)
+        );
+    }
+
+    return output_mesh;
+}
+
+float EdgeCollapseSimplification::getVertexReduction() const {
+
+    return vertex_reduction;
+}
+
+void EdgeCollapseSimplification::setVertexReduction(float vertexReduction) {
+
+    vertex_reduction = vertexReduction;
 }

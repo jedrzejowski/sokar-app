@@ -811,6 +811,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="418"/>
+        <source>Bounding mesh</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="583"/>
         <source>Inne</source>
         <translation type="unfinished"></translation>
@@ -903,11 +908,6 @@
     <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="413"/>
         <source>Usuwanie krawędzi</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="418"/>
-        <source>Bounding convex decomposition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

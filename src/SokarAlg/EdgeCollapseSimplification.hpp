@@ -12,11 +12,17 @@ namespace SokarAlg {
     class EdgeCollapseSimplification : public MeshSimplificator {
 
         explicit EdgeCollapseSimplification();
+        float vertex_reduction;
+
+    protected:
+        Sokar3D::IndexedMeshPtr exec() override;
+
     public:
         static EdgeCollapseSimplificationPtr New();
         QString toDisplay() override;
-    protected:
-        Sokar3D::IndexedMeshPtr exec() override;
+
+        float getVertexReduction() const;
+        void setVertexReduction(float vertexReduction);
     };
 }
 

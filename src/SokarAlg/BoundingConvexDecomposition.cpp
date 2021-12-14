@@ -28,7 +28,7 @@ QString BoundingConvexDecomposition::toDisplay() {
 
 Sokar3D::IndexedMeshPtr BoundingConvexDecomposition::exec() {
 
-    auto bound_mesh = mesh->toBoundingMesh();
+//    auto bound_mesh = mesh->toBoundingMesh();
 
 //    boundingmesh::Real bounding_box_diagonal = bound_mesh->getBoundingBoxDiagonal();
 //    std::cout << "Filling holes in geometry..." << std::endl;

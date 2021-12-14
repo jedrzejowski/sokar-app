@@ -10,6 +10,7 @@
 #include "SokarAlg/MarchingCubes.hpp"
 #include "SokarAlg/MarchingTetrahedrons.hpp"
 #include "SokarAlg/BoundingMeshSimplification.hpp"
+#include "SokarAlg/EdgeCollapseSimplification.hpp"
 #include "SokarAlg/GradientVolume.hpp"
 #include "SokarAlg/LineInterpolator.hpp"
 #include "Sokar3D/TriangleListMesh.hpp"
@@ -292,26 +293,32 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() {
                 break;
             }
             case 1: {
-                auto edgeCollapse = SokarAlg::BoundingMeshSimplification::New();
+                auto edge_collapse = SokarAlg::EdgeCollapseSimplification::New();
+                edge_collapse->setVertexReduction(0.01);
+                pipeline->setMeshSimplificator(edge_collapse);
+                break;
+            }
+            case 2: {
+                auto bouding_mesh = SokarAlg::BoundingMeshSimplification::New();
 
                 switch (ui->edgeCollapseDirection->currentIndex()) {
                     case 0: {
-                        edgeCollapse->setDirection(SokarAlg::BoundingMeshSimplification::DecimationDirection::Any);
+                        bouding_mesh->setDirection(SokarAlg::BoundingMeshSimplification::DecimationDirection::Any);
                         break;
                     }
                     case 1: {
-                        edgeCollapse->setDirection(SokarAlg::BoundingMeshSimplification::DecimationDirection::Inward);
+                        bouding_mesh->setDirection(SokarAlg::BoundingMeshSimplification::DecimationDirection::Inward);
                         break;
                     }
                     case 2: {
-                        edgeCollapse->setDirection(SokarAlg::BoundingMeshSimplification::DecimationDirection::Outward);
+                        bouding_mesh->setDirection(SokarAlg::BoundingMeshSimplification::DecimationDirection::Outward);
                         break;
                     }
                 }
 
-                edgeCollapse->setMaximumError(ui->edgeCollapseError->value() / 100);
-                edgeCollapse->setVertexReduction(ui->edgeCollapseVertReduction->value() / 100);
-                pipeline->setMeshSimplificator(edgeCollapse);
+                bouding_mesh->setMaximumError(ui->edgeCollapseError->value() / 100);
+                bouding_mesh->setVertexReduction(ui->edgeCollapseVertReduction->value() / 100);
+                pipeline->setMeshSimplificator(bouding_mesh);
                 break;
             }
             default:

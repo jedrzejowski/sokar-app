@@ -95,27 +95,6 @@ void IndexedMesh::foreachFaces(const std::function<void(Mesh::Face)> &functor) c
     }
 }
 
-boundingmesh::MeshPtr IndexedMesh::toBoundingMesh() const {
-
-    auto new_mesh = std::make_shared<boundingmesh::Mesh>();
-    auto my_vertex_2_bounding_vertex = QHash<size_type, boundingmesh::Index>();
-
-    for (auto iter = vertices.constKeyValueBegin(); iter != vertices.constKeyValueEnd(); ++iter) {
-        auto i = new_mesh->addVertex(boundingmesh::Vector3{iter->second.x, iter->second.y, iter->second.z});
-        my_vertex_2_bounding_vertex[iter->first] = i;
-    }
-
-    for (const auto &face: faces) {
-        new_mesh->addTriangle(
-                my_vertex_2_bounding_vertex[face.i0],
-                my_vertex_2_bounding_vertex[face.i1],
-                my_vertex_2_bounding_vertex[face.i2]
-        );
-    }
-
-    return new_mesh;
-}
-
 void IndexedMesh::dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const {
 
     auto vert_count = vertices.size();

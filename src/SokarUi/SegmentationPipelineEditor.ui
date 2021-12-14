@@ -415,7 +415,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Bounding convex decomposition</string>
+          <string>Bounding mesh</string>
          </property>
         </item>
        </widget>

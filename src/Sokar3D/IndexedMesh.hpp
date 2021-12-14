@@ -62,8 +62,6 @@ namespace Sokar3D {
         void addTriangle(const Vertex &v0, const Vertex &v1, const Vertex &v2, bool checkDup);
         void addTriangle(size_type i0, size_type i1, size_type i2, bool checkDuplicates = true);
 
-        boundingmesh::MeshPtr toBoundingMesh() const;
-
         void dump2wavefront(SokarLib::WavefrontObjBuilder &builder) const override;
 
         void injectTo(const IndexedMeshPtr &other, const glm::mat4 &transform) const override;

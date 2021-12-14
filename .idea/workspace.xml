@@ -23,23 +23,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapseSimplification.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapseSimplification.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/libigl_mesh.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bin/igl703.cmake" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bin/igl703.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake/eigen.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/other.cmake" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/3d-party/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/3d-party/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/MeshPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.frag" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/TriangleListMesh.frag" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/BoundingMeshSimplification.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapse.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/BoundingMeshSimplification.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/IndexedMesh.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/BoundingConvexDecomposition.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/BoundingConvexDecomposition.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/BoundingMeshSimplification.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/BoundingMeshSimplification.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapseSimplification.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapseSimplification.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapseSimplification.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/EdgeCollapseSimplification.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/libigl_mesh.hpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/bin/sokar.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/sokar.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -341,11 +335,11 @@
       <recent name="$PROJECT_DIR$/src/SokarUi" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Sokar3D" />
       <recent name="$PROJECT_DIR$/src/QtUi" />
       <recent name="$PROJECT_DIR$/src/SokarUi" />
       <recent name="$PROJECT_DIR$/src/bin" />
       <recent name="$PROJECT_DIR$/src/3d-party/optionparser" />
-      <recent name="$PROJECT_DIR$/src/3d-party" />
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.sokar">
@@ -397,9 +391,9 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
@@ -660,14 +654,8 @@
       <workItem from="1638717862470" duration="2408000" />
       <workItem from="1638884464846" duration="1198000" />
       <workItem from="1639266933600" duration="1000" />
-      <workItem from="1639326095357" duration="7233000" />
-    </task>
-    <task id="LOCAL-00060" summary="kommit kotnrolny">
-      <created>1623276886853</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1623276886853</updated>
+      <workItem from="1639326095357" duration="7379000" />
+      <workItem from="1639430197720" duration="7723000" />
     </task>
     <task id="LOCAL-00061" summary="kommit kotnrolny">
       <created>1623367641256</created>
@@ -1005,7 +993,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632695660828</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="prace wree">
+      <created>1639357113578</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1639357113578</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1100,7 +1095,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="naprawienie region growtha" />
     <MESSAGE value="reformat" />
     <MESSAGE value="wstępna implementacja zmiennego mesza" />
     <MESSAGE value="xD" />
@@ -1125,15 +1119,8 @@
     <MESSAGE value="poprawienie wielu malutkich błędów" />
     <MESSAGE value="implemntacja nowych interpolacji" />
     <MESSAGE value="prace nad UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="prace nad UI" />
-  </component>
-  <component name="XDebuggerManager">
-    <watches-manager>
-      <configuration name="CMakeRunConfiguration">
-        <watch expression="my_vertex_2obj_vertex.cluster.d-&gt;ref.atomic" />
-        <watch expression="my_vertex_2obj_vertex.cluster.e-&gt;value" />
-      </configuration>
-    </watches-manager>
+    <MESSAGE value="prace wree" />
+    <option name="LAST_COMMIT_MESSAGE" value="prace wree" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
