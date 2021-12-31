@@ -42,6 +42,7 @@ namespace SokarAlg {
         int getExtendPointCount() const;
         void setExtendPointCount(int pointCount);
 
+        [[nodiscard]]
         bool isUseCache() const;
         void setUseCache(bool useCache);
     };

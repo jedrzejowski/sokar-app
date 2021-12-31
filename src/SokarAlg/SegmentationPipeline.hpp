@@ -85,16 +85,16 @@ namespace SokarAlg {
         QColor meshColor = QColor("#BF4024");
 
         bool use_region_growth = false;
-        glm::i32vec3 regionGrowthStartPoint;
+        glm::i32vec3 region_growth_start_point;
 
         Range<float> iso_range;
 
         float cubes_per_mm = 1;
         RawDicomVolumePtr raw_dicom_volume = nullptr;
         Sokar3D::MeshPtr base_mesh = nullptr;
-        VolumeInterpolatorPtr volumeInterpolator = nullptr;
-        VolumeSegmentatorPtr volumeSegmentator = nullptr;
-        MeshSimplificatorPtr meshSimplificator = nullptr;
+        VolumeInterpolatorPtr volume_interpolator = nullptr;
+        VolumeSegmentatorPtr volume_segmentator = nullptr;
+        MeshSimplificatorPtr mesh_simplificator = nullptr;
         GradientVolumePtr gradient_volume = nullptr;
         LineInterpolatorPtr line_interpolator = nullptr;
 

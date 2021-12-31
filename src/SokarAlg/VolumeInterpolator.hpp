@@ -77,6 +77,7 @@ namespace SokarAlg {
     protected:
         void dicomVolumeChanged() override;
     public:
+        [[nodiscard]]
         float interpolate(const glm::vec3 &position) const override;
     };
 
@@ -86,6 +87,7 @@ namespace SokarAlg {
         std::array<std::array<float, 4>, 4> blend;
     public:
         explicit CubicVolumeInterpolator(bool catmullRom = false);
+        [[nodiscard]]
         float interpolate(const glm::vec3 &position) const override;
         QString toDisplay() override;
     };
