@@ -24,17 +24,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarLib/Displayable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarLib/Displayable.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarLib/Displayable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarLib/Displayable.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -389,11 +379,6 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -680,6 +665,7 @@
       <workItem from="1643476564654" duration="599000" />
       <workItem from="1643577615458" duration="2771000" />
       <workItem from="1643653166869" duration="5369000" />
+      <workItem from="1643750728729" duration="1687000" />
     </task>
     <task id="LOCAL-00063" summary="usunięcie pustych plików">
       <created>1623522908412</created>

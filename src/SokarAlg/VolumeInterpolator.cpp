@@ -243,26 +243,26 @@ float CubicVolumeInterpolator::interpolate(const glm::vec3 &pos) const {
             std::floor(pos.z)
     );
 
-    std::array<float, 4> U;
+    std::array<float, 4> U{};
     U[0] = 1.f;
     U[1] = float(centerIndex.x) - pos.x;
     U[2] = U[1] * U[1];
     U[3] = U[1] * U[2];
 
-    std::array<float, 4> V;
+    std::array<float, 4> V{};
     V[0] = 1.f;
     V[1] = float(centerIndex.y) - pos.y;
     V[2] = V[1] * V[1];
     V[3] = V[1] * V[2];
 
-    std::array<float, 4> W;
+    std::array<float, 4> W{};
     W[0] = 1.f;
     W[1] = float(centerIndex.z) - pos.z;
     W[2] = W[1] * W[1];
     W[3] = W[1] * W[2];
 
     // Compute P = M*U, Q = M*V, R = M*W.
-    std::array<float, 4> P, Q, R;
+    std::array<float, 4> P{}, Q{}, R{};
     for (int row = 0; row < 4; ++row) {
         P[row] = 0.f;
         Q[row] = 0.f;
@@ -277,7 +277,7 @@ float CubicVolumeInterpolator::interpolate(const glm::vec3 &pos) const {
     // Compute the tensor product (M*U)(M*V)(M*W)*D where D is the 4x4x4
     // subimage containing (x,y,z).
 
-    centerIndex -= 1;
+    centerIndex = centerIndex - 1;
     float result = 0.f;
 
     for (int slice = 0; slice < 4; ++slice) {
@@ -287,7 +287,7 @@ float CubicVolumeInterpolator::interpolate(const glm::vec3 &pos) const {
             for (int col = 0; col < 4; ++col) {
 
                 result += P[col] * Q[row] * R[slice] *
-                          vv->getValueSafe(centerIndex + glm::i32vec3({slice, row, col}));
+                          vv->getValueSafe(centerIndex + glm::i32vec3({col, row, slice}));
             }
         }
     }
