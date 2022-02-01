@@ -163,9 +163,7 @@ float PolynomialVolumeInterpolator2::interpolate(const glm::vec3 &pos) const {
 
 QString PolynomialVolumeInterpolator2::toDisplay() {
 
-    return QString("%1").arg(
-            "interpolacja wielomianowa (C++11)"
-    );
+    return "interpolacja wielomianowa (C++11)";
 }
 
 void AkimaVolumeInterpolator::dicomVolumeChanged() {
@@ -320,16 +318,12 @@ QString LinearVolumeInterpolator::toDisplay() {
 
 QString PolynomialVolumeInterpolator1::toDisplay() {
 
-    return QString("%1").arg(
-            "interpolacja wielomianowa"
-    );
+    return "interpolacja wielomianowa";
 }
 
 
 QString CubicVolumeInterpolator::toDisplay() {
 
-    return QString("%1").arg(
-            "interpolacja sześcienna"
-    ) + (catmullRom ? "z Catmull Rom" : "");
+    return QString("interpolacja sześcienna") + (catmullRom ? "z Catmull Rom" : "");
 }
 

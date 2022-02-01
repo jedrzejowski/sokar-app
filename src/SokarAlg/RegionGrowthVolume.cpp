@@ -120,3 +120,8 @@ bool RegionGrowthVolume::isVisited(const glm::i32vec3 &position) const {
 
     return mask(position) not_eq NOT_VISITED;
 }
+
+QString RegionGrowthVolume::toDisplay() {
+
+    return QString("rozrost obszaru z %1").arg(glmToString(startPoint));
+}

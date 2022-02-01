@@ -24,10 +24,17 @@
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarLib/Displayable.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarLib/Displayable.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarLib/Displayable.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarLib/Displayable.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,9 +59,6 @@
     <select />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
-  <component name="FavoritesManager">
-    <favorites_list name="src/Sokar" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -385,6 +389,11 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -652,14 +661,25 @@
       <workItem from="1640517519759" duration="599000" />
       <workItem from="1640718870305" duration="1909000" />
       <workItem from="1640816451728" duration="3431000" />
-      <workItem from="1640908166134" duration="2236000" />
-    </task>
-    <task id="LOCAL-00062" summary="kommit kotnrolny">
-      <created>1623522876326</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1623522876327</updated>
+      <workItem from="1640908166134" duration="2506000" />
+      <workItem from="1641070862152" duration="1000" />
+      <workItem from="1641128672360" duration="3241000" />
+      <workItem from="1641646337265" duration="1236000" />
+      <workItem from="1641682638360" duration="931000" />
+      <workItem from="1641760626315" duration="1942000" />
+      <workItem from="1641838989268" duration="599000" />
+      <workItem from="1642115091763" duration="1000" />
+      <workItem from="1642258696585" duration="2430000" />
+      <workItem from="1642324977314" duration="1200000" />
+      <workItem from="1642457800280" duration="599000" />
+      <workItem from="1642856962615" duration="1000" />
+      <workItem from="1642871366890" duration="754000" />
+      <workItem from="1643052912216" duration="1198000" />
+      <workItem from="1643118559355" duration="1000" />
+      <workItem from="1643303056007" duration="1000" />
+      <workItem from="1643476564654" duration="599000" />
+      <workItem from="1643577615458" duration="2771000" />
+      <workItem from="1643653166869" duration="5369000" />
     </task>
     <task id="LOCAL-00063" summary="usunięcie pustych plików">
       <created>1623522908412</created>
@@ -997,7 +1017,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639440640661</updated>
     </task>
-    <option name="localTasksCounter" value="111" />
+    <task id="LOCAL-00111" summary="qq">
+      <created>1640912963030</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1640912963030</updated>
+    </task>
+    <option name="localTasksCounter" value="112" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1092,7 +1119,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="reformat" />
     <MESSAGE value="wstępna implementacja zmiennego mesza" />
     <MESSAGE value="xD" />
     <MESSAGE value="prace nad upraszczaniem siatki" />
@@ -1117,7 +1143,8 @@
     <MESSAGE value="implemntacja nowych interpolacji" />
     <MESSAGE value="prace nad UI" />
     <MESSAGE value="prace wree" />
-    <option name="LAST_COMMIT_MESSAGE" value="prace wree" />
+    <MESSAGE value="qq" />
+    <option name="LAST_COMMIT_MESSAGE" value="qq" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

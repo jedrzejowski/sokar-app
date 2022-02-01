@@ -37,7 +37,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         QMutexLocker lock(&stateMutex);
 
         Sokar3D::MeshPtr current_mesh = base_mesh;
-        VolumePtr volume = raw_dicom_volume;
+        VolumePtr current_volume = raw_dicom_volume;
         auto result = QSharedPointer<SegmentationResult>::create();
 
         result->summary.timeStart = makeTimePoint();
@@ -51,15 +51,17 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             dicom_volume->setInterpolator(volume_interpolator);
             dicom_volume->setCubesPerMM(cubes_per_mm);
 
-            volume = dicom_volume;
+            result->volume_interpolation.description = volume_interpolator->toDisplay();
+
+            current_volume = dicom_volume;
         }
 
         //endregion
 
         if (not gradient_volume.isNull()) {
-            gradient_volume->setVolume(volume);
+            gradient_volume->setVolume(current_volume);
             result->gradient.description = "tak";
-            volume = gradient_volume;
+            current_volume = gradient_volume;
         } else {
             result->gradient.description = "nie";
         }
@@ -70,38 +72,46 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
 
             auto region_growth = RegionGrowthVolume::New();
-            region_growth->setVolume(volume);
+            region_growth->setVolume(current_volume);
             region_growth->setIsoLevel(iso_range);
             region_growth->setStartPoint(region_growth_start_point);
-            volume = region_growth;
+            current_volume = region_growth;
 
             result->region_growth.timeStart = makeTimePoint();
             region_growth->regrowth();
             result->region_growth.timeEnd = makeTimePoint();
+            result->region_growth.description = region_growth->toDisplay();
 
-            result->region_growth.description = QString("z punktu %1").arg(
-                    glm::to_string(region_growth_start_point).c_str()
-            );
         } else {
             result->region_growth.description = "nie";
         }
 
         if (use_empty_env) {
             auto volume_env = VolumeEnv::New();
-            volume_env->setEnvValue(0.f);
+
+            float min = raw_dicom_volume->getValue(glm::i32vec3(0));
+            float max = min;
+
+            forI32space(glm::i32vec3(0), raw_dicom_volume->getSize(), [&](auto &pos) {
+                auto value = raw_dicom_volume->getValue(pos);
+                min = value < min ? value : min;
+                max = value > max ? value : max;
+            });
+
+            volume_env->setEnvValue(min - (std::abs(max - min) * 1000));
             volume_env->setEnvSize(1.f);
-            volume_env->setVolume(volume);
+            volume_env->setVolume(current_volume);
             result->volume_env.description = "tak";
-            volume = volume_env;
+            current_volume = volume_env;
         } else {
             result->volume_env.description = "nie";
         }
 
         {
             auto iso_range_volume = IsoRangeDistanceVolumeTransform::New();
-            iso_range_volume->setVolume(volume);
+            iso_range_volume->setVolume(current_volume);
             iso_range_volume->setIsoRange(iso_range);
-            volume = iso_range_volume;
+            current_volume = iso_range_volume;
         }
 
         if (use_cache) {
@@ -110,19 +120,16 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             emit updateProgress(QObject::tr("Kaszowanie interpolacji"), 0.f);
 
             auto cached_volume = QSharedPointer<CachedVolume>::create();
-            cached_volume->setVolume(volume);
-            volume = cached_volume;
+            cached_volume->setVolume(current_volume);
+            current_volume = cached_volume;
 
             result->volume_interpolation_cache.timeStart = makeTimePoint();
             cached_volume->refreshCache();
             result->volume_interpolation_cache.timeEnd = makeTimePoint();
 
-            result->volume_interpolation_cache.description = QString("czas kaszowania %1").arg(
-                    timeRangeString(result->volume_interpolation_cache.timeStart,
-                                    result->volume_interpolation_cache.timeEnd)
-            );
+            result->volume_interpolation_cache.description = "tak";
         } else {
-            result->volume_interpolation_cache.description = QString("nie");
+            result->volume_interpolation_cache.description = "nie";
         }
 
         //region segmentation
@@ -130,13 +137,14 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         emit updateProgress(QObject::tr("Maszerowanie"), 0.f);
 
         volume_segmentator->setLineInterpolator(line_interpolator);
-        volume_segmentator->setVolume(volume);
+        volume_segmentator->setVolume(current_volume);
         volume_segmentator->setMesh(current_mesh);
 
         result->segmentation.inputMesh = current_mesh;
         result->segmentation.timeStart = makeTimePoint();
         result->segmentation.outputMesh = current_mesh = volume_segmentator->execSync();
         result->segmentation.timeEnd = makeTimePoint();
+        result->segmentation.description = volume_segmentator->toDisplay();
 
         //region
 
@@ -144,7 +152,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         // przesunięcie mesha, aby osadzenie w pustej przestrzeni nie miało wpływu, na pozycje
         if (use_empty_env) {
-            transform = glm::translate(transform, glm::vec3(-1.f, -1.f, -1.f));
+            transform = glm::translate(transform, glm::vec3(-cubes_per_mm));
         }
 
         if (not volume_interpolator.isNull()) {
@@ -158,10 +166,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         current_mesh->applyTransform(transform);
 
-        result->segmentation.description = QString("%1\nczas %2").arg(
-                volume_segmentator->toDisplay(),
-                timeRangeString(result->segmentation.timeStart, result->segmentation.timeEnd)
-        );
+        result->segmentation.description = volume_segmentator->toDisplay();
 
         //endregion
 
@@ -180,6 +185,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             result->mesh_simplification.timeStart = makeTimePoint();
             result->mesh_simplification.outputMesh = current_mesh = mesh_simplificator->execSync();
             result->mesh_simplification.timeEnd = makeTimePoint();
+            result->mesh_simplification.description = mesh_simplificator->toDisplay();
 
         } else {
             result->mesh_simplification.description = QString("nie");
@@ -199,9 +205,10 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         );
 
         result->meshColor = meshColor;
-        result->proposeCameraCenter = glm::vec3(volume->getSize()) / 2.f * cubes_per_mm;
+        result->proposeCameraCenter = glm::vec3(current_volume->getSize()) / 2.f * cubes_per_mm;
         if (volume_interpolator.isNull()) {
-            result->proposeCameraCenter = glm::vec3(volume->getSize()) * raw_dicom_volume->getWokselSize() / 2.f;
+            result->proposeCameraCenter =
+                    glm::vec3(current_volume->getSize()) * raw_dicom_volume->getWokselSize() / 2.f;
         }
         result->proposeCameraDistance = glm::length(result->proposeCameraCenter) * 2;
 

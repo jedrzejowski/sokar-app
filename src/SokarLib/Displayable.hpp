@@ -5,12 +5,15 @@
 #pragma once
 
 #include <QString>
+#include "SokarGlm.hpp"
 
 namespace SokarLib {
 
     class Displayable {
     public:
         virtual QString toDisplay() = 0;
+
+        QString glmToString(const glm::vec3 &vec) const;
     };
 }
 

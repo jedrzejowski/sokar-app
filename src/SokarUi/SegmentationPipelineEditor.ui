@@ -29,6 +29,20 @@
       <bool>true</bool>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_10">
+        <property name="text">
+         <string>Bok woksela [mm]</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1">
+       <widget class="QtUi::DoubleSpinBox" name="interpolationWokselSize">
+        <property name="value">
+         <double>3.000000000000000</double>
+        </property>
+       </widget>
+      </item>
       <item row="1" column="0" colspan="2">
        <widget class="QtUi::ComboBox" name="interpolationCombo">
         <property name="currentIndex">
@@ -64,50 +78,6 @@
           <string>Calum Rom</string>
          </property>
         </item>
-       </widget>
-      </item>
-      <item row="3" column="0">
-       <widget class="QLabel" name="label_5">
-        <property name="text">
-         <string>Wielkość Y</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QLabel" name="label_4">
-        <property name="text">
-         <string>Wielkość X</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QtUi::SpinBox" name="interpolationSizeX"/>
-      </item>
-      <item row="4" column="1">
-       <widget class="QtUi::SpinBox" name="interpolationSizeZ"/>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_10">
-        <property name="text">
-         <string>Bok woksela [mm]</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1">
-       <widget class="QtUi::SpinBox" name="interpolationSizeY"/>
-      </item>
-      <item row="4" column="0">
-       <widget class="QLabel" name="label_6">
-        <property name="text">
-         <string>Wielkość Z</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1">
-       <widget class="QtUi::DoubleSpinBox" name="interpolationWokselSize">
-        <property name="value">
-         <double>3.000000000000000</double>
-        </property>
        </widget>
       </item>
      </layout>
@@ -647,9 +617,6 @@
  <tabstops>
   <tabstop>interpolationWokselSize</tabstop>
   <tabstop>interpolationCombo</tabstop>
-  <tabstop>interpolationSizeX</tabstop>
-  <tabstop>interpolationSizeY</tabstop>
-  <tabstop>interpolationSizeZ</tabstop>
   <tabstop>segmentationAlgorithm</tabstop>
   <tabstop>segmentation_treshold_down</tabstop>
   <tabstop>segmentation_treshold_up</tabstop>

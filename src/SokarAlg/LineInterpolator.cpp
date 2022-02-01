@@ -111,7 +111,7 @@ glm::vec3 LinearLineInterpolator::interpolate(const Volume::Point &p1, const Vol
 
 QString LinearLineInterpolator::toDisplay() {
 
-    return "LinearLineInterpolator";
+    return "interpolacja liniowa";
 }
 
 // ----
@@ -194,7 +194,7 @@ glm::vec3 PolynomialLineInterpolator::interpolate(const Volume::Point &p1, const
 
 QString PolynomialLineInterpolator::toDisplay() {
 
-    return "PolynomialLineInterpolator";
+    return "interpolacja wielomianowa";
 }
 
 
@@ -276,5 +276,5 @@ glm::vec3 SplineLineInterpolator::interpolate(const Volume::Point &p1, const Vol
 
 QString SplineLineInterpolator::toDisplay() {
 
-    return "SplineLineInterpolator";
+    return "interpolacja funkcjami sklejanymi";
 }

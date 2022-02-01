@@ -39,6 +39,21 @@ SegmentationResultWidget::SegmentationResultWidget(
     ui->mesh_simplification_label->setText(result->mesh_simplification.description);
     ui->volume_env_label->setText(result->volume_env.description);
     ui->sumLabel->setText(result->summary.description);
+
+//    ui->volume_interpolation_time->setText(result->volume_interpolation.description);
+    ui->volume_interpolation_cache_time->setText(SokarAlg::timeRangeString(
+            result->volume_interpolation_cache.timeStart, result->volume_interpolation_cache.timeEnd));
+    ui->region_growth_time->setText(SokarAlg::timeRangeString(
+            result->region_growth.timeStart, result->region_growth.timeEnd));
+//    ui->gradient_time->setText(result->gradient.description);
+    ui->segmentation_time->setText(SokarAlg::timeRangeString(
+            result->segmentation.timeStart, result->segmentation.timeEnd));
+//    ui->line_interpolation_time->setText(result->line_interpolation.description);
+    ui->mesh_simplification_time->setText(SokarAlg::timeRangeString(
+            result->mesh_simplification.timeStart, result->mesh_simplification.timeEnd));
+//    ui->volume_env_time->setText(result->volume_env.description);
+
+//    timeRangeString
 }
 
 SokarUi::SegmentationResultWidget::~SegmentationResultWidget() {

@@ -8,9 +8,10 @@
 #include "Volume.hpp"
 #include "Array3.hpp"
 #include "Range.hpp"
+#include "SokarLib/Displayable.hpp"
 
 namespace SokarAlg {
-    class RegionGrowthVolume : public VolumeDecorator {
+    class RegionGrowthVolume : public VolumeDecorator, public SokarLib::Displayable {
 
         glm::i32vec3 startPoint = glm::i32vec3(0);
         float maskValue = 0.0f;
@@ -47,8 +48,9 @@ namespace SokarAlg {
         const Range<float> &getIsoLevel() const;
         void setIsoLevel(const Range<float> &isoLevel);
 
-
         void regrowth();
+
+        QString toDisplay() override;
     };
 }
 
