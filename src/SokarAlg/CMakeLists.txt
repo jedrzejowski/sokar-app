@@ -12,6 +12,8 @@ set(SRC_SOKAR_ALG
         BoundingConvexDecomposition.hpp
         CachedVolume.cpp
         CachedVolume.hpp
+        DebugVolume.cpp
+        DebugVolume.hpp
         DicomVolume.cpp
         DicomVolume.hpp
         BoundingMeshSimplification.cpp

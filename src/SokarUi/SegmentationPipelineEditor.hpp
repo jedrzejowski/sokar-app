@@ -28,7 +28,7 @@ namespace SokarUi {
 
         //nie może być const, bo dialogi by nie działały
         [[nodiscard]]
-        SokarAlg::SegmentationPipelinePtr makePipeline();
+        SokarAlg::SegmentationPipelinePtr makePipeline(const SokarAlg::RawDicomVolumePtr &raw_dicom_volume);
 
         void setMeshColor(const QColor &color);
 

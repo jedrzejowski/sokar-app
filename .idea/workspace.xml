@@ -23,8 +23,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/DebugVolume.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/DebugVolume.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -379,6 +391,11 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -665,14 +682,10 @@
       <workItem from="1643476564654" duration="599000" />
       <workItem from="1643577615458" duration="2771000" />
       <workItem from="1643653166869" duration="5369000" />
-      <workItem from="1643750728729" duration="1687000" />
-    </task>
-    <task id="LOCAL-00063" summary="usunięcie pustych plików">
-      <created>1623522908412</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1623522908412</updated>
+      <workItem from="1643750728729" duration="3405000" />
+      <workItem from="1643839484765" duration="1851000" />
+      <workItem from="1643924302767" duration="599000" />
+      <workItem from="1644089385240" duration="9175000" />
     </task>
     <task id="LOCAL-00064" summary="duzo zmian, lubie placki">
       <created>1623536250004</created>
@@ -1010,7 +1023,14 @@
       <option name="project" value="LOCAL" />
       <updated>1640912963030</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="poprawki interpolacji sześciennej">
+      <created>1643755292277</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1643755292277</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1105,7 +1125,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="wstępna implementacja zmiennego mesza" />
     <MESSAGE value="xD" />
     <MESSAGE value="prace nad upraszczaniem siatki" />
     <MESSAGE value="klasteryzacja wierzchołków działa" />
@@ -1130,7 +1149,19 @@
     <MESSAGE value="prace nad UI" />
     <MESSAGE value="prace wree" />
     <MESSAGE value="qq" />
-    <option name="LAST_COMMIT_MESSAGE" value="qq" />
+    <MESSAGE value="poprawki interpolacji sześciennej" />
+    <option name="LAST_COMMIT_MESSAGE" value="poprawki interpolacji sześciennej" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/SokarAlg/DebugVolume.cpp</url>
+          <line>27</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

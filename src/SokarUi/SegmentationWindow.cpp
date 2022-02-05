@@ -53,12 +53,11 @@ void SegmentationWindow::startSegmentation(bool append) {
     progressDialog->setCancelButton(nullptr);
     progressDialog->show();
 
-    auto segmentationPipeline = pipelineEditor->makePipeline();
+    auto segmentationPipeline = pipelineEditor->makePipeline(rawDicomVolume);
     if (segmentationPipeline.isNull()) {
         progressDialog->hide();
         return;
     }
-    segmentationPipeline->setRawDicomVolume(rawDicomVolume);
 
     auto dialogUpdateConnection = QObject::connect(
             segmentationPipeline.get(), &SokarAlg::SegmentationPipeline::updateProgress,

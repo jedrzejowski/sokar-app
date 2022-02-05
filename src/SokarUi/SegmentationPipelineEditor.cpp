@@ -12,6 +12,7 @@
 #include "SokarAlg/BoundingMeshSimplification.hpp"
 #include "SokarAlg/EdgeCollapseSimplification.hpp"
 #include "SokarAlg/GradientVolume.hpp"
+#include "SokarAlg/DebugVolume.hpp"
 #include "SokarAlg/LineInterpolator.hpp"
 #include "Sokar3D/TriangleListMesh.hpp"
 #include "Sokar3D/IndexedMesh.hpp"
@@ -87,9 +88,26 @@ void SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged(int
     }
 }
 
-SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline() {
+SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
+        const SokarAlg::RawDicomVolumePtr &raw_dicom_volume
+) {
 
     auto pipeline = SokarAlg::SegmentationPipeline::New();
+    pipeline->setRawDicomVolume(raw_dicom_volume);
+
+    //region
+    switch (ui->debug_replace_volume->currentIndex()) {
+
+        case 1:
+            pipeline->setRawDicomVolume(SokarAlg::DebugSphereVolume::create(raw_dicom_volume));
+            break;
+
+        case 2:
+            pipeline->setRawDicomVolume(SokarAlg::DebugCubeVolume::create(raw_dicom_volume));
+            break;
+
+    }
+    //endregion
 
     //region interpolation
 

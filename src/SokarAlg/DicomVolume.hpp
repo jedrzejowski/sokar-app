@@ -25,7 +25,7 @@ namespace SokarAlg {
         void setSceneSet(const Sokar::DicomSceneSet *sceneSet);
 
         [[nodiscard]]
-        glm::vec3 getWokselSize() const;
+        virtual glm::vec3 getWokselSize() const;
 
         [[nodiscard]]
         glm::i32vec3 getSize() const override;

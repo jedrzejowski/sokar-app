@@ -49,6 +49,10 @@ namespace SokarAlg {
 
     declareSharedClass(DicomVolume)
 
+    declareSharedClass(DebugCubeVolume)
+
+    declareSharedClass(DebugSphereVolume)
+
     declareSharedClass(InterpolatedVolume)
 
     declareSharedClass(CachedVolume)

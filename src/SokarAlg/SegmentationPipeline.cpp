@@ -282,6 +282,7 @@ void SegmentationPipeline::setGradientVolume(const GradientVolumePtr &new_gradie
 
     gradient_volume = new_gradient_volume;
 }
+
 void SegmentationPipeline::setLineInterpolator(const LineInterpolatorPtr &new_line_interpolator) {
 
     line_interpolator = new_line_interpolator;

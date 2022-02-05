@@ -692,264 +692,274 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="53"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="72"/>
         <source>Najbliższa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="58"/>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="311"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="77"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="330"/>
         <source>Liniowa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="63"/>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="321"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="82"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="340"/>
         <source>Wielomianowa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="68"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="87"/>
         <source>Wielomioanowa (C++11)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="73"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="92"/>
         <source>Sześciennna</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="78"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="97"/>
         <source>Calum Rom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="35"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="54"/>
         <source>Bok woksela [mm]</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="120"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="139"/>
         <source>Suma</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="125"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="144"/>
         <source>Najwyższa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="130"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="149"/>
         <source>Średnia</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="135"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="154"/>
         <source>Średnia kwadratowa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="140"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="159"/>
         <source>Mediana</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="107"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="126"/>
         <source>Gradient</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="158"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="177"/>
         <source>Y</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="168"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="187"/>
         <source>Z</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="148"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="167"/>
         <source>X</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="178"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="197"/>
         <source>XYZ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="185"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="204"/>
         <source>XY</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="192"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="211"/>
         <source>XZ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="264"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="283"/>
         <source>Maszerujące sześciany</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="269"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="288"/>
         <source>Maszerujące czworościany</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="365"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="384"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="388"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="407"/>
         <source>Bounding mesh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="553"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="572"/>
         <source>Inne</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="559"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="578"/>
         <source>Pamięc podręczna</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="89"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="108"/>
         <source>Rozrost obszaru</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="291"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="310"/>
         <source>Śiatka trójkątów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="284"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="303"/>
         <source>Wartość górna</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="277"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="296"/>
         <source>Wartość dolna</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="229"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="248"/>
         <source>Lista trójkątów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="199"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="218"/>
         <source>YZ</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="209"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="228"/>
         <source>Segmentacja</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="234"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="253"/>
         <source>Indeksowana</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="436"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="455"/>
         <source>Brak</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="378"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="397"/>
         <source>Klasteryzacja wierzchołków</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="26"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="32"/>
+        <source>Kula</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="37"/>
+        <source>Prostopadłościan</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="45"/>
         <source>Interpolacja wolumenu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="301"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="320"/>
         <source>Interpolacja prostych</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="316"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="335"/>
         <source>Połowiczna</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="326"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="345"/>
         <source>Funkcje sklejane</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="339"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="358"/>
         <source>Ilość dodatkowych punktów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="346"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="365"/>
         <source>Pamięć podręczna</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="383"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="402"/>
         <source>Usuwanie krawędzi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="441"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="460"/>
         <source>Do wewnątrz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="446"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="465"/>
         <source>Na zewnątrz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="454"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="473"/>
         <source>Błąd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="461"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="480"/>
         <source>Kierunek</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="475"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="494"/>
         <source>Procent redukcji</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="498"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="517"/>
         <source>Wygląd</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="543"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="562"/>
         <source>Kolor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="513"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="532"/>
         <source>PushButton</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="239"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="258"/>
         <source>Indkesowana z podziałem obszarów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="504"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="523"/>
         <source>Osadz w pustej przestrzeni</source>
         <translation type="unfinished"></translation>
     </message>

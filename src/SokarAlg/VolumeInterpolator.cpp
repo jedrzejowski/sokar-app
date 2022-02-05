@@ -88,13 +88,25 @@ float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
     auto startIndex = vv->clamp(centerIndex - size);
     auto endIndex = vv->clamp(centerIndex + size);
 
+    float xAngle = M_PI / 2 - std::acos(1 / std::sqrt(size.z * size.z + 2 * size.z + 2));
+    float yAngle = M_PI / 2 - std::acos(1 / std::sqrt(size.x * size.x + 2 * size.x + 2));
+    float zAngle = M_PI / 2 - std::acos(1 / std::sqrt(size.y * size.y + 2 * size.y + 2));
+
+    auto transform = glm::mat4(1);
+    transform = glm::translate(transform, pos);
+//    transform = glm::rotate(transform, float(M_PI / 100), glm::vec3(1, 0, 0));
+//    transform = glm::rotate(transform, float(M_PI / 100), glm::vec3(0, 1, 0));
+//    transform = glm::rotate(transform, float(M_PI / 100), glm::vec3(0, 0, 1));
+    transform = glm::translate(transform, -pos);
+
+
     forI32space(startIndex, endIndex, [&](const auto &i32pos_i) {
         float ui = vv->getValue(i32pos_i);
         float Li = 1;
-        glm::vec3 pos_i = i32pos_i;
+        glm::vec3 pos_i = transform * glm::vec4(i32pos_i, 1.f);
 
         forI32space(startIndex, endIndex, [&](const auto &i32pos_k) {
-            glm::vec3 pos_k = i32pos_k;
+            glm::vec3 pos_k = transform * glm::vec4(i32pos_k, 1.f);
 
             if (
                     areSame(pos_i.x, pos_k.x) ||
@@ -235,6 +247,74 @@ CubicVolumeInterpolator::CubicVolumeInterpolator(bool catmullRom) {
     }
 }
 
+
+const int _C[64][64] = {
+        { 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {-3, 3, 0, 0, 0, 0, 0, 0,-2,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 2,-2, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {-3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0,-3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 9,-9,-9, 9, 0, 0, 0, 0, 6, 3,-6,-3, 0, 0, 0, 0, 6,-6, 3,-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {-6, 6, 6,-6, 0, 0, 0, 0,-3,-3, 3, 3, 0, 0, 0, 0,-4, 4,-2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2,-2,-1,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 2, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {-6, 6, 6,-6, 0, 0, 0, 0,-4,-2, 4, 2, 0, 0, 0, 0,-3, 3,-3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2,-1,-2,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 4,-4,-4, 4, 0, 0, 0, 0, 2, 2,-2,-2, 0, 0, 0, 0, 2,-2, 2,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 3, 0, 0, 0, 0, 0, 0,-2,-1, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,-2, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0,-1, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,-9,-9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 3,-6,-3, 0, 0, 0, 0, 6,-6, 3,-3, 0, 0, 0, 0, 4, 2, 2, 1, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-6, 6, 6,-6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3,-3, 3, 3, 0, 0, 0, 0,-4, 4,-2, 2, 0, 0, 0, 0,-2,-2,-1,-1, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-6, 6, 6,-6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-4,-2, 4, 2, 0, 0, 0, 0,-3, 3,-3, 3, 0, 0, 0, 0,-2,-1,-2,-1, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,-4,-4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2,-2,-2, 0, 0, 0, 0, 2,-2, 2,-2, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0},
+        {-3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0, 0, 0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0,-3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0, 0, 0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 9,-9, 0, 0,-9, 9, 0, 0, 6, 3, 0, 0,-6,-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,-6, 0, 0, 3,-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 2, 0, 0, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {-6, 6, 0, 0, 6,-6, 0, 0,-3,-3, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-4, 4, 0, 0,-2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2,-2, 0, 0,-1,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0, 0, 0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0, 0, 0,-1, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9,-9, 0, 0,-9, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 3, 0, 0,-6,-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6,-6, 0, 0, 3,-3, 0, 0, 4, 2, 0, 0, 2, 1, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-6, 6, 0, 0, 6,-6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3,-3, 0, 0, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-4, 4, 0, 0,-2, 2, 0, 0,-2,-2, 0, 0,-1,-1, 0, 0},
+        { 9, 0,-9, 0,-9, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 3, 0,-6, 0,-3, 0, 6, 0,-6, 0, 3, 0,-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 2, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 9, 0,-9, 0,-9, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 3, 0,-6, 0,-3, 0, 6, 0,-6, 0, 3, 0,-3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 2, 0, 2, 0, 1, 0},
+        {-27,27,27,-27,27,-27,-27,27,-18,-9,18, 9,18, 9,-18,-9,-18,18,-9, 9,18,-18, 9,-9,-18,18,18,-18,-9, 9, 9,-9,-12,-6,-6,-3,12, 6, 6, 3,-12,-6,12, 6,-6,-3, 6, 3,-12,12,-6, 6,-6, 6,-3, 3,-8,-4,-4,-2,-4,-2,-2,-1},
+        {18,-18,-18,18,-18,18,18,-18, 9, 9,-9,-9,-9,-9, 9, 9,12,-12, 6,-6,-12,12,-6, 6,12,-12,-12,12, 6,-6,-6, 6, 6, 6, 3, 3,-6,-6,-3,-3, 6, 6,-6,-6, 3, 3,-3,-3, 8,-8, 4,-4, 4,-4, 2,-2, 4, 4, 2, 2, 2, 2, 1, 1},
+        {-6, 0, 6, 0, 6, 0,-6, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 0,-3, 0, 3, 0, 3, 0,-4, 0, 4, 0,-2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0,-2, 0,-1, 0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0,-6, 0, 6, 0, 6, 0,-6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 0,-3, 0, 3, 0, 3, 0,-4, 0, 4, 0,-2, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0,-2, 0,-1, 0,-1, 0},
+        {18,-18,-18,18,-18,18,18,-18,12, 6,-12,-6,-12,-6,12, 6, 9,-9, 9,-9,-9, 9,-9, 9,12,-12,-12,12, 6,-6,-6, 6, 6, 3, 6, 3,-6,-3,-6,-3, 8, 4,-8,-4, 4, 2,-4,-2, 6,-6, 6,-6, 3,-3, 3,-3, 4, 2, 4, 2, 2, 1, 2, 1},
+        {-12,12,12,-12,12,-12,-12,12,-6,-6, 6, 6, 6, 6,-6,-6,-6, 6,-6, 6, 6,-6, 6,-6,-8, 8, 8,-8,-4, 4, 4,-4,-3,-3,-3,-3, 3, 3, 3, 3,-4,-4, 4, 4,-2,-2, 2, 2,-4, 4,-4, 4,-2, 2,-2, 2,-2,-2,-2,-2,-1,-1,-1,-1},
+        { 2, 0, 0, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {-6, 6, 0, 0, 6,-6, 0, 0,-4,-2, 0, 0, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 3, 0, 0,-3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2,-1, 0, 0,-2,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 4,-4, 0, 0,-4, 4, 0, 0, 2, 2, 0, 0,-2,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,-2, 0, 0, 2,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-6, 6, 0, 0, 6,-6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-4,-2, 0, 0, 4, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-3, 3, 0, 0,-3, 3, 0, 0,-2,-1, 0, 0,-2,-1, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4,-4, 0, 0,-4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 0, 0,-2,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2,-2, 0, 0, 2,-2, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0},
+        {-6, 0, 6, 0, 6, 0,-6, 0, 0, 0, 0, 0, 0, 0, 0, 0,-4, 0,-2, 0, 4, 0, 2, 0,-3, 0, 3, 0,-3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0,-1, 0,-2, 0,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0,-6, 0, 6, 0, 6, 0,-6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-4, 0,-2, 0, 4, 0, 2, 0,-3, 0, 3, 0,-3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0,-2, 0,-1, 0,-2, 0,-1, 0},
+        {18,-18,-18,18,-18,18,18,-18,12, 6,-12,-6,-12,-6,12, 6,12,-12, 6,-6,-12,12,-6, 6, 9,-9,-9, 9, 9,-9,-9, 9, 8, 4, 4, 2,-8,-4,-4,-2, 6, 3,-6,-3, 6, 3,-6,-3, 6,-6, 3,-3, 6,-6, 3,-3, 4, 2, 2, 1, 4, 2, 2, 1},
+        {-12,12,12,-12,12,-12,-12,12,-6,-6, 6, 6, 6, 6,-6,-6,-8, 8,-4, 4, 8,-8, 4,-4,-6, 6, 6,-6,-6, 6, 6,-6,-4,-4,-2,-2, 4, 4, 2, 2,-3,-3, 3, 3,-3,-3, 3, 3,-4, 4,-2, 2,-4, 4,-2, 2,-2,-2,-1,-1,-2,-2,-1,-1},
+        { 4, 0,-4, 0,-4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0,-2, 0,-2, 0, 2, 0,-2, 0, 2, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        { 0, 0, 0, 0, 0, 0, 0, 0, 4, 0,-4, 0,-4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 2, 0,-2, 0,-2, 0, 2, 0,-2, 0, 2, 0,-2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0},
+        {-12,12,12,-12,12,-12,-12,12,-8,-4, 8, 4, 8, 4,-8,-4,-6, 6,-6, 6, 6,-6, 6,-6,-6, 6, 6,-6,-6, 6, 6,-6,-4,-2,-4,-2, 4, 2, 4, 2,-4,-2, 4, 2,-4,-2, 4, 2,-3, 3,-3, 3,-3, 3,-3, 3,-2,-1,-2,-1,-2,-1,-2,-1},
+        { 8,-8,-8, 8,-8, 8, 8,-8, 4, 4,-4,-4,-4,-4, 4, 4, 4,-4, 4,-4,-4, 4,-4, 4, 4,-4,-4, 4, 4,-4,-4, 4, 2, 2, 2, 2,-2,-2,-2,-2, 2, 2,-2,-2, 2, 2,-2,-2, 2,-2, 2,-2, 2,-2, 2,-2, 1, 1, 1, 1, 1, 1, 1, 1}
+};
+
 float CubicVolumeInterpolator::interpolate(const glm::vec3 &pos) const {
 
     auto centerIndex = glm::i32vec3(
@@ -292,8 +372,168 @@ float CubicVolumeInterpolator::interpolate(const glm::vec3 &pos) const {
         }
     }
 
+    // Calculate the corresponding lower-bound grid indices.
+//    int xi = (int) std::floor(pos.x);
+//    int yi = (int) std::floor(pos.y);
+//    int zi = (int) std::floor(pos.z);
+//    double _coefs[64];
+//
+//    // Extract the local vocal values and calculate partial derivatives.
+//    double x[64] = {
+//            // values of f(x,y,z) at each corner.
+//            vv->getValueSafe(xi, yi, zi), vv->getValueSafe(xi + 1, yi, zi), vv->getValueSafe(xi, yi + 1, zi),
+//            vv->getValueSafe(xi + 1, yi + 1, zi), vv->getValueSafe(xi, yi, zi + 1), vv->getValueSafe(xi + 1, yi, zi + 1),
+//            vv->getValueSafe(xi, yi + 1, zi + 1), vv->getValueSafe(xi + 1, yi + 1, zi + 1),
+//            // values of df/dx at each corner.
+//            0.5 * (vv->getValueSafe(xi + 1, yi, zi) - vv->getValueSafe(xi - 1, yi, zi)),
+//            0.5 * (vv->getValueSafe(xi + 2, yi, zi) - vv->getValueSafe(xi, yi, zi)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi + 1, zi) - vv->getValueSafe(xi - 1, yi + 1, zi)),
+//            0.5 * (vv->getValueSafe(xi + 2, yi + 1, zi) - vv->getValueSafe(xi, yi + 1, zi)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi, zi + 1) - vv->getValueSafe(xi - 1, yi, zi + 1)),
+//            0.5 * (vv->getValueSafe(xi + 2, yi, zi + 1) - vv->getValueSafe(xi, yi, zi + 1)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi + 1, zi + 1) - vv->getValueSafe(xi - 1, yi + 1, zi + 1)),
+//            0.5 * (vv->getValueSafe(xi + 2, yi + 1, zi + 1) - vv->getValueSafe(xi, yi + 1, zi + 1)),
+//            // values of df/dy at each corner.
+//            0.5 * (vv->getValueSafe(xi, yi + 1, zi) - vv->getValueSafe(xi, yi - 1, zi)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi + 1, zi) - vv->getValueSafe(xi + 1, yi - 1, zi)),
+//            0.5 * (vv->getValueSafe(xi, yi + 2, zi) - vv->getValueSafe(xi, yi, zi)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi + 2, zi) - vv->getValueSafe(xi + 1, yi, zi)),
+//            0.5 * (vv->getValueSafe(xi, yi + 1, zi + 1) - vv->getValueSafe(xi, yi - 1, zi + 1)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi + 1, zi + 1) - vv->getValueSafe(xi + 1, yi - 1, zi + 1)),
+//            0.5 * (vv->getValueSafe(xi, yi + 2, zi + 1) - vv->getValueSafe(xi, yi, zi + 1)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi + 2, zi + 1) - vv->getValueSafe(xi + 1, yi, zi + 1)),
+//            // values of df/dz at each corner.
+//            0.5 * (vv->getValueSafe(xi, yi, zi + 1) - vv->getValueSafe(xi, yi, zi - 1)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi, zi + 1) - vv->getValueSafe(xi + 1, yi, zi - 1)),
+//            0.5 * (vv->getValueSafe(xi, yi + 1, zi + 1) - vv->getValueSafe(xi, yi + 1, zi - 1)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi + 1, zi + 1) - vv->getValueSafe(xi + 1, yi + 1, zi - 1)),
+//            0.5 * (vv->getValueSafe(xi, yi, zi + 2) - vv->getValueSafe(xi, yi, zi)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi, zi + 2) - vv->getValueSafe(xi + 1, yi, zi)),
+//            0.5 * (vv->getValueSafe(xi, yi + 1, zi + 2) - vv->getValueSafe(xi, yi + 1, zi)),
+//            0.5 * (vv->getValueSafe(xi + 1, yi + 1, zi + 2) - vv->getValueSafe(xi + 1, yi + 1, zi)),
+//            // values of d2f/dxdy at each corner.
+//            0.25 *
+//            (vv->getValueSafe(xi + 1, yi + 1, zi) - vv->getValueSafe(xi - 1, yi + 1, zi) - vv->getValueSafe(xi + 1, yi - 1, zi) +
+//             vv->getValueSafe(xi - 1, yi - 1, zi)),
+//            0.25 *
+//            (vv->getValueSafe(xi + 2, yi + 1, zi) - vv->getValueSafe(xi, yi + 1, zi) - vv->getValueSafe(xi + 2, yi - 1, zi) +
+//             vv->getValueSafe(xi, yi - 1, zi)),
+//            0.25 *
+//            (vv->getValueSafe(xi + 1, yi + 2, zi) - vv->getValueSafe(xi - 1, yi + 2, zi) - vv->getValueSafe(xi + 1, yi, zi) +
+//             vv->getValueSafe(xi - 1, yi, zi)),
+//            0.25 * (vv->getValueSafe(xi + 2, yi + 2, zi) - vv->getValueSafe(xi, yi + 2, zi) - vv->getValueSafe(xi + 2, yi, zi) +
+//                    vv->getValueSafe(xi, yi, zi)),
+//            0.25 * (vv->getValueSafe(xi + 1, yi + 1, zi + 1) - vv->getValueSafe(xi - 1, yi + 1, zi + 1) -
+//                    vv->getValueSafe(xi + 1, yi - 1, zi + 1) + vv->getValueSafe(xi - 1, yi - 1, zi + 1)),
+//            0.25 * (vv->getValueSafe(xi + 2, yi + 1, zi + 1) - vv->getValueSafe(xi, yi + 1, zi + 1) -
+//                    vv->getValueSafe(xi + 2, yi - 1, zi + 1) + vv->getValueSafe(xi, yi - 1, zi + 1)),
+//            0.25 * (vv->getValueSafe(xi + 1, yi + 2, zi + 1) - vv->getValueSafe(xi - 1, yi + 2, zi + 1) -
+//                    vv->getValueSafe(xi + 1, yi, zi + 1) + vv->getValueSafe(xi - 1, yi, zi + 1)),
+//            0.25 * (vv->getValueSafe(xi + 2, yi + 2, zi + 1) - vv->getValueSafe(xi, yi + 2, zi + 1) -
+//                    vv->getValueSafe(xi + 2, yi, zi + 1) + vv->getValueSafe(xi, yi, zi + 1)),
+//            // values of d2f/dxdz at each corner.
+//            0.25 *
+//            (vv->getValueSafe(xi + 1, yi, zi + 1) - vv->getValueSafe(xi - 1, yi, zi + 1) - vv->getValueSafe(xi + 1, yi, zi - 1) +
+//             vv->getValueSafe(xi - 1, yi, zi - 1)),
+//            0.25 *
+//            (vv->getValueSafe(xi + 2, yi, zi + 1) - vv->getValueSafe(xi, yi, zi + 1) - vv->getValueSafe(xi + 2, yi, zi - 1) +
+//             vv->getValueSafe(xi, yi, zi - 1)),
+//            0.25 * (vv->getValueSafe(xi + 1, yi + 1, zi + 1) - vv->getValueSafe(xi - 1, yi + 1, zi + 1) -
+//                    vv->getValueSafe(xi + 1, yi + 1, zi - 1) + vv->getValueSafe(xi - 1, yi + 1, zi - 1)),
+//            0.25 * (vv->getValueSafe(xi + 2, yi + 1, zi + 1) - vv->getValueSafe(xi, yi + 1, zi + 1) -
+//                    vv->getValueSafe(xi + 2, yi + 1, zi - 1) + vv->getValueSafe(xi, yi + 1, zi - 1)),
+//            0.25 *
+//            (vv->getValueSafe(xi + 1, yi, zi + 2) - vv->getValueSafe(xi - 1, yi, zi + 2) - vv->getValueSafe(xi + 1, yi, zi) +
+//             vv->getValueSafe(xi - 1, yi, zi)),
+//            0.25 * (vv->getValueSafe(xi + 2, yi, zi + 2) - vv->getValueSafe(xi, yi, zi + 2) - vv->getValueSafe(xi + 2, yi, zi) +
+//                    vv->getValueSafe(xi, yi, zi)),
+//            0.25 * (vv->getValueSafe(xi + 1, yi + 1, zi + 2) - vv->getValueSafe(xi - 1, yi + 1, zi + 2) -
+//                    vv->getValueSafe(xi + 1, yi + 1, zi) + vv->getValueSafe(xi - 1, yi + 1, zi)),
+//            0.25 * (vv->getValueSafe(xi + 2, yi + 1, zi + 2) - vv->getValueSafe(xi, yi + 1, zi + 2) -
+//                    vv->getValueSafe(xi + 2, yi + 1, zi) + vv->getValueSafe(xi, yi + 1, zi)),
+//            // values of d2f/dydz at each corner.
+//            0.25 *
+//            (vv->getValueSafe(xi, yi + 1, zi + 1) - vv->getValueSafe(xi, yi - 1, zi + 1) - vv->getValueSafe(xi, yi + 1, zi - 1) +
+//             vv->getValueSafe(xi, yi - 1, zi - 1)),
+//            0.25 * (vv->getValueSafe(xi + 1, yi + 1, zi + 1) - vv->getValueSafe(xi + 1, yi - 1, zi + 1) -
+//                    vv->getValueSafe(xi + 1, yi + 1, zi - 1) + vv->getValueSafe(xi + 1, yi - 1, zi - 1)),
+//            0.25 *
+//            (vv->getValueSafe(xi, yi + 2, zi + 1) - vv->getValueSafe(xi, yi, zi + 1) - vv->getValueSafe(xi, yi + 2, zi - 1) +
+//             vv->getValueSafe(xi, yi, zi - 1)),
+//            0.25 * (vv->getValueSafe(xi + 1, yi + 2, zi + 1) - vv->getValueSafe(xi + 1, yi, zi + 1) -
+//                    vv->getValueSafe(xi + 1, yi + 2, zi - 1) + vv->getValueSafe(xi + 1, yi, zi - 1)),
+//            0.25 *
+//            (vv->getValueSafe(xi, yi + 1, zi + 2) - vv->getValueSafe(xi, yi - 1, zi + 2) - vv->getValueSafe(xi, yi + 1, zi) +
+//             vv->getValueSafe(xi, yi - 1, zi)),
+//            0.25 * (vv->getValueSafe(xi + 1, yi + 1, zi + 2) - vv->getValueSafe(xi + 1, yi - 1, zi + 2) -
+//                    vv->getValueSafe(xi + 1, yi + 1, zi) + vv->getValueSafe(xi + 1, yi - 1, zi)),
+//            0.25 * (vv->getValueSafe(xi, yi + 2, zi + 2) - vv->getValueSafe(xi, yi, zi + 2) - vv->getValueSafe(xi, yi + 2, zi) +
+//                    vv->getValueSafe(xi, yi, zi)),
+//            0.25 * (vv->getValueSafe(xi + 1, yi + 2, zi + 2) - vv->getValueSafe(xi + 1, yi, zi + 2) -
+//                    vv->getValueSafe(xi + 1, yi + 2, zi) + vv->getValueSafe(xi + 1, yi, zi)),
+//            // values of d3f/dxdydz at each corner.
+//            0.125 * (vv->getValueSafe(xi + 1, yi + 1, zi + 1) - vv->getValueSafe(xi - 1, yi + 1, zi + 1) -
+//                     vv->getValueSafe(xi + 1, yi - 1, zi + 1) + vv->getValueSafe(xi - 1, yi - 1, zi + 1) -
+//                     vv->getValueSafe(xi + 1, yi + 1, zi - 1) + vv->getValueSafe(xi - 1, yi + 1, zi - 1) +
+//                     vv->getValueSafe(xi + 1, yi - 1, zi - 1) - vv->getValueSafe(xi - 1, yi - 1, zi - 1)),
+//            0.125 * (vv->getValueSafe(xi + 2, yi + 1, zi + 1) - vv->getValueSafe(xi, yi + 1, zi + 1) -
+//                     vv->getValueSafe(xi + 2, yi - 1, zi + 1) + vv->getValueSafe(xi, yi - 1, zi + 1) -
+//                     vv->getValueSafe(xi + 2, yi + 1, zi - 1) + vv->getValueSafe(xi, yi + 1, zi - 1) +
+//                     vv->getValueSafe(xi + 2, yi - 1, zi - 1) - vv->getValueSafe(xi, yi - 1, zi - 1)),
+//            0.125 * (vv->getValueSafe(xi + 1, yi + 2, zi + 1) - vv->getValueSafe(xi - 1, yi + 2, zi + 1) -
+//                     vv->getValueSafe(xi + 1, yi, zi + 1) + vv->getValueSafe(xi - 1, yi, zi + 1) -
+//                     vv->getValueSafe(xi + 1, yi + 2, zi - 1) + vv->getValueSafe(xi - 1, yi + 2, zi - 1) +
+//                     vv->getValueSafe(xi + 1, yi, zi - 1) - vv->getValueSafe(xi - 1, yi, zi - 1)),
+//            0.125 * (vv->getValueSafe(xi + 2, yi + 2, zi + 1) - vv->getValueSafe(xi, yi + 2, zi + 1) -
+//                     vv->getValueSafe(xi + 2, yi, zi + 1) + vv->getValueSafe(xi, yi, zi + 1) -
+//                     vv->getValueSafe(xi + 2, yi + 2, zi - 1) + vv->getValueSafe(xi, yi + 2, zi - 1) +
+//                     vv->getValueSafe(xi + 2, yi, zi - 1) - vv->getValueSafe(xi, yi, zi - 1)),
+//            0.125 * (vv->getValueSafe(xi + 1, yi + 1, zi + 2) - vv->getValueSafe(xi - 1, yi + 1, zi + 2) -
+//                     vv->getValueSafe(xi + 1, yi - 1, zi + 2) + vv->getValueSafe(xi - 1, yi - 1, zi + 2) -
+//                     vv->getValueSafe(xi + 1, yi + 1, zi) + vv->getValueSafe(xi - 1, yi + 1, zi) +
+//                     vv->getValueSafe(xi + 1, yi - 1, zi) - vv->getValueSafe(xi - 1, yi - 1, zi)),
+//            0.125 * (vv->getValueSafe(xi + 2, yi + 1, zi + 2) - vv->getValueSafe(xi, yi + 1, zi + 2) -
+//                     vv->getValueSafe(xi + 2, yi - 1, zi + 2) + vv->getValueSafe(xi, yi - 1, zi + 2) -
+//                     vv->getValueSafe(xi + 2, yi + 1, zi) + vv->getValueSafe(xi, yi + 1, zi) +
+//                     vv->getValueSafe(xi + 2, yi - 1, zi) - vv->getValueSafe(xi, yi - 1, zi)),
+//            0.125 * (vv->getValueSafe(xi + 1, yi + 2, zi + 2) - vv->getValueSafe(xi - 1, yi + 2, zi + 2) -
+//                     vv->getValueSafe(xi + 1, yi, zi + 2) + vv->getValueSafe(xi - 1, yi, zi + 2) -
+//                     vv->getValueSafe(xi + 1, yi + 2, zi) + vv->getValueSafe(xi - 1, yi + 2, zi) +
+//                     vv->getValueSafe(xi + 1, yi, zi) - vv->getValueSafe(xi - 1, yi, zi)),
+//            0.125 * (vv->getValueSafe(xi + 2, yi + 2, zi + 2) - vv->getValueSafe(xi, yi + 2, zi + 2) -
+//                     vv->getValueSafe(xi + 2, yi, zi + 2) + vv->getValueSafe(xi, yi, zi + 2) -
+//                     vv->getValueSafe(xi + 2, yi + 2, zi) + vv->getValueSafe(xi, yi + 2, zi) + vv->getValueSafe(xi + 2, yi, zi) -
+//                     vv->getValueSafe(xi, yi, zi))
+//    };
+//    // Convert voxel values and partial derivatives to interpolation coefficients.
+//    for (int i = 0; i < 64; ++i) {
+//        _coefs[i] = 0.0;
+//        for (int j = 0; j < 64; ++j) {
+//            _coefs[i] += _C[i][j] * x[j];
+//        }
+//    }
+//    // Evaluate the interpolation within this grid voxel.
+//    float dx = pos.x - xi;
+//    float dy = pos.x - yi;
+//    float dz = pos.x - zi;
+//    int ijkn(0);
+//    double dzpow(1);
+//    double result(0);
+//    for (int k = 0; k < 4; ++k) {
+//        double dypow(1);
+//        for (int j = 0; j < 4; ++j) {
+//            result += dypow * dzpow *
+//                      (_coefs[ijkn] + dx * (_coefs[ijkn + 1] + dx * (_coefs[ijkn + 2] + dx * _coefs[ijkn + 3])));
+//            ijkn += 4;
+//            dypow *= dy;
+//        }
+//        dzpow *= dz;
+//    }
+
     return result;
 }
+
+
 
 // region getter & setters
 

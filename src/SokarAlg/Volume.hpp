@@ -33,6 +33,12 @@ namespace SokarAlg {
         float getValueSafe(const glm::i32vec3 &position) const;
 
         [[nodiscard]]
+        inline float getValueSafe(const int &x, const int &y, const int &z) const {
+
+            return getValueSafe(glm::i32vec3(z, y, z));
+        }
+
+        [[nodiscard]]
         Point getPointSafe(const glm::i32vec3 &position) const;
 
         [[nodiscard]]
