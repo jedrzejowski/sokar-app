@@ -54,6 +54,7 @@ set(SRC_SOKAR_ALG
         VolumeSegmentator.cpp
         VolumeSegmentator.hpp
 
+        bigCubicArray.cpp
         )
 
 list(TRANSFORM SRC_SOKAR_ALG PREPEND ${CMAKE_CURRENT_LIST_DIR}/)

@@ -81,16 +81,27 @@ namespace SokarAlg {
         float interpolate(const glm::vec3 &position) const override;
     };
 
-    class CubicVolumeInterpolator : public VolumeInterpolator {
+    class CubicVolumeInterpolator1 : public VolumeInterpolator {
     private:
         bool catmullRom;
         std::array<std::array<float, 4>, 4> blend;
     public:
-        explicit CubicVolumeInterpolator(bool catmullRom = false);
+        explicit CubicVolumeInterpolator1(bool catmullRom = false);
         [[nodiscard]]
         float interpolate(const glm::vec3 &position) const override;
         QString toDisplay() override;
     };
+
+    class CubicVolumeInterpolator2 : public VolumeInterpolator {
+        static const int bigCubicArray[64][64];
+    public:
+        explicit CubicVolumeInterpolator2();
+        [[nodiscard]]
+        float interpolate(const glm::vec3 &position) const override;
+        QString toDisplay() override;
+
+    };
+
 
     //https://www.mathworks.com/help/matlab/ref/interp3.html
 }

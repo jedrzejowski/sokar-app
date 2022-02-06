@@ -23,20 +23,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/DebugVolume.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/SokarAlg/DebugVolume.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SokarAlg/bigCubicArray.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Volume.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationWindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -685,14 +680,10 @@
       <workItem from="1643750728729" duration="3405000" />
       <workItem from="1643839484765" duration="1851000" />
       <workItem from="1643924302767" duration="599000" />
-      <workItem from="1644089385240" duration="9175000" />
-    </task>
-    <task id="LOCAL-00064" summary="duzo zmian, lubie placki">
-      <created>1623536250004</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1623536250004</updated>
+      <workItem from="1644089385240" duration="9804000" />
+      <workItem from="1644173216608" duration="1155000" />
+      <workItem from="1644176184814" duration="549000" />
+      <workItem from="1644176836936" duration="2174000" />
     </task>
     <task id="LOCAL-00065" summary="kommit kontorlny">
       <created>1623593039888</created>
@@ -1030,7 +1021,14 @@
       <option name="project" value="LOCAL" />
       <updated>1643755292277</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="chyba się powiesze">
+      <created>1644105490189</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1644105490190</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1125,7 +1123,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="xD" />
     <MESSAGE value="prace nad upraszczaniem siatki" />
     <MESSAGE value="klasteryzacja wierzchołków działa" />
     <MESSAGE value="wstępna implemntacja edge collpasa" />
@@ -1150,18 +1147,8 @@
     <MESSAGE value="prace wree" />
     <MESSAGE value="qq" />
     <MESSAGE value="poprawki interpolacji sześciennej" />
-    <option name="LAST_COMMIT_MESSAGE" value="poprawki interpolacji sześciennej" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/SokarAlg/DebugVolume.cpp</url>
-          <line>27</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="chyba się powiesze" />
+    <option name="LAST_COMMIT_MESSAGE" value="chyba się powiesze" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

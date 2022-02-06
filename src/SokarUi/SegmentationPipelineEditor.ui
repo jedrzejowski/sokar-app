@@ -100,12 +100,17 @@
         </item>
         <item>
          <property name="text">
-          <string>Sześciennna</string>
+          <string>Sześciennna 1</string>
          </property>
         </item>
         <item>
          <property name="text">
-          <string>Calum Rom</string>
+          <string>Sześciennna 1 - Calum Rom</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Sześciennna 2</string>
          </property>
         </item>
        </widget>

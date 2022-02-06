@@ -98,7 +98,9 @@ namespace SokarAlg {
 
     declareSharedClass(LinearVolumeInterpolator)
 
-    declareSharedClass(CubicVolumeInterpolator)
+    declareSharedClass(CubicVolumeInterpolator1)
+
+    declareSharedClass(CubicVolumeInterpolator2)
 
     declareSharedClass(MakimaValueInterpolator)
 

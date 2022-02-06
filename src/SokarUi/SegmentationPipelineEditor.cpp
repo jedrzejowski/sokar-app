@@ -25,8 +25,9 @@ enum Methods {
     Linear = 1,
     Poly1 = 2,
     Poly2 = 3,
-    Cubic = 4,
-    CalumRom = 5,
+    Cubic1 = 4,
+    Cubic1CalumRom = 5,
+    Cubic2 = 6,
 
     MarchingCubes = 0,
     MarchingTetra = 1,
@@ -132,12 +133,16 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
                 volumeInterpolator = QSharedPointer<SokarAlg::PolynomialVolumeInterpolator2>::create();
                 break;
 
-            case Methods::Cubic:
-                volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create();
+            case Methods::Cubic1:
+                volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator1>::create();
                 break;
 
-            case Methods::CalumRom:
-                volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator>::create(true);
+            case Methods::Cubic1CalumRom:
+                volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator1>::create(true);
+                break;
+
+            case Methods::Cubic2:
+                volumeInterpolator = QSharedPointer<SokarAlg::CubicVolumeInterpolator2>::create();
                 break;
         }
 
