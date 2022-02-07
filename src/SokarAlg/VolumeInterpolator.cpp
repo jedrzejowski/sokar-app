@@ -77,7 +77,7 @@ float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
     // rozwiązanie analityczne
     // https://math.stackexchange.com/a/2099510
 
-    float u = 0;
+    double u = 0;
 
     auto centerIndex = glm::i32vec3(
             std::round(pos.x),
@@ -88,25 +88,139 @@ float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
     auto startIndex = vv->clamp(centerIndex - size);
     auto endIndex = vv->clamp(centerIndex + size);
 
-    float xAngle = M_PI / 2 - std::acos(1 / std::sqrt(size.z * size.z + 2 * size.z + 2));
-    float yAngle = M_PI / 2 - std::acos(1 / std::sqrt(size.x * size.x + 2 * size.x + 2));
-    float zAngle = M_PI / 2 - std::acos(1 / std::sqrt(size.y * size.y + 2 * size.y + 2));
+    double xAngle = M_PI / 2 - std::acos(1 / std::sqrt(4 * size.z * size.z + 4 * size.z + 2));
+    double yAngle = M_PI / 2 - std::acos(1 / std::sqrt(4 * size.x * size.x + 4 * size.x + 2));
+    double zAngle = M_PI / 2 - std::acos(1 / std::sqrt(4 * size.y * size.y + 4 * size.y + 2));
 
-    auto transform = glm::mat4(1);
-    transform = glm::translate(transform, pos);
-//    transform = glm::rotate(transform, float(M_PI / 100), glm::vec3(1, 0, 0));
-//    transform = glm::rotate(transform, float(M_PI / 100), glm::vec3(0, 1, 0));
+    auto transform = glm::f64mat4(1);
+    transform = glm::rotate(transform, zAngle, glm::f64vec3(0.0, 0.0, 1.0));
+    transform = glm::rotate(transform, yAngle, glm::f64vec3(0.0, 1.0, 0.0));
+    transform = glm::rotate(transform, xAngle, glm::f64vec3(1.0, 0.0, 0.0));
+    transform = glm::translate(transform, -glm::f64vec3(pos));
+
+
+    // tylko do debugowania, aseracja jest sbyt mocna
+    // assert(SokarGlm::fastInDistance(glm::vec3(transform * glm::vec4(pos, 1.0f)), glm::vec3(0.f), SokarGlm::EPS * 10));
+
+    forI32space(startIndex, endIndex, [&](const auto &i32pos_i) {
+        double ui = vv->getValue(i32pos_i);
+        double Li = 1;
+        glm::f64vec3 pos_i = transform * glm::f64vec4(i32pos_i, 1.);
+
+        forI32space(startIndex, endIndex, [&](const auto &i32pos_k) {
+            glm::f64vec3 pos_k = transform * glm::f64vec4(i32pos_k, 1.);
+
+            if (i32pos_i == i32pos_k) {
+                return;
+            }
+
+            double part = (
+                    (
+                            (0.f - pos_k.x) * (0.f - pos_k.y) * (0.f - pos_k.z)
+                    ) / (
+                            (pos_i.x - pos_k.x) * (pos_i.y - pos_k.y) * (pos_i.z - pos_k.z)
+                    )
+            );
+
+            assert(not std::isnan(part));
+
+            if (std::abs(part) < SokarGlm::EPS_64) {
+                auto znak = (0.f - pos_k.x) * (0.f - pos_k.y) * (0.f - pos_k.z);
+                part = znak < 0 ? -SokarGlm::EPS_64 : SokarGlm::EPS_64;
+            }
+
+            Li = Li * part;
+
+        });
+
+        u += ui * Li;
+    });
+
+    return u;
+}
+
+
+//float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
+//    // rozwiązanie analityczne
+//    // https://math.stackexchange.com/a/2099510
+//
+//    float u = 0;
+//
+//    auto centerIndex = glm::i32vec3(
+//            std::round(pos.x),
+//            std::round(pos.y),
+//            std::round(pos.z)
+//    );
+//
+//    auto startIndex = vv->clamp(centerIndex - size);
+//    auto endIndex = vv->clamp(centerIndex + size);
+//
+//    float xAngle = M_PI / 2 - std::acos(1 / std::sqrt(size.z * size.z + 2 * size.z + 2));
+//    float yAngle = M_PI / 2 - std::acos(1 / std::sqrt(size.x * size.x + 2 * size.x + 2));
+//    float zAngle = M_PI / 2 - std::acos(1 / std::sqrt(size.y * size.y + 2 * size.y + 2));
+//
+//    auto transform = glm::mat4(1);
+////    transform = glm::translate(transform, -pos);
+////    transform = glm::rotate(transform, float(M_PI / 100), glm::vec3(1, 0, 0));
+////    transform = glm::rotate(transform, float(M_PI / 100), glm::vec3(0, 1, 0));
 //    transform = glm::rotate(transform, float(M_PI / 100), glm::vec3(0, 0, 1));
-    transform = glm::translate(transform, -pos);
+////    transform = glm::translate(transform, pos);
+//
+//
+//    forI32space(startIndex, endIndex, [&](const auto &i32pos_i) {
+//        float ui = vv->getValue(i32pos_i);
+//        float Li = 1;
+//        glm::vec3 pos_i = transform * glm::vec4(i32pos_i, 1.f);
+//
+//        forI32space(startIndex, endIndex, [&](const auto &i32pos_k) {
+//            glm::vec3 pos_k = transform * glm::vec4(i32pos_k, 1.f);
+//
+//            if (
+//                    areSame(pos_i.x, pos_k.x) ||
+//                    areSame(pos_i.y, pos_k.y) ||
+//                    areSame(pos_i.z, pos_k.z)
+//                    ) {
+//                return;
+//            }
+//
+//            Li = Li * (
+//                    (
+//                            (pos.x - pos_k.x) * (pos.y - pos_k.y) * (pos.z - pos_k.z)
+//                    ) / (
+//                            (pos_i.x - pos_k.x) * (pos_i.y - pos_k.y) * (pos_i.z - pos_k.z)
+//                    )
+//            );
+//        });
+//
+//        u += ui * Li;
+//    });
+//
+//    return u;
+//}
+
+float PolynomialVolumeInterpolator2::interpolate(const glm::vec3 &pos) const {
+    // rozwiązanie analityczne
+    // https://math.stackexchange.com/a/2099510
+
+    auto centerIndex = glm::i32vec3(
+            std::round(pos.x),
+            std::round(pos.y),
+            std::round(pos.z)
+    );
+
+    auto startIndex = vv->clamp(centerIndex - size);
+    auto endIndex = vv->clamp(centerIndex + size);
+
+    float u = 0;
 
 
     forI32space(startIndex, endIndex, [&](const auto &i32pos_i) {
         float ui = vv->getValue(i32pos_i);
         float Li = 1;
-        glm::vec3 pos_i = transform * glm::vec4(i32pos_i, 1.f);
+        glm::vec3 pos_i = i32pos_i;
 
         forI32space(startIndex, endIndex, [&](const auto &i32pos_k) {
-            glm::vec3 pos_k = transform * glm::vec4(i32pos_k, 1.f);
+            glm::vec3 pos_k = i32pos_k;
 
             if (
                     areSame(pos_i.x, pos_k.x) ||
@@ -131,47 +245,48 @@ float PolynomialVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
     return u;
 }
 
-float PolynomialVolumeInterpolator2::interpolate(const glm::vec3 &pos) const {
-    // rozwiązanie analityczne
-    // https://math.stackexchange.com/a/2099510
 
-    auto centerIndex = glm::i32vec3(
-            std::round(pos.x),
-            std::round(pos.y),
-            std::round(pos.z)
-    );
-
-    auto space = makeI32space(
-            vv->clamp(centerIndex - size),
-            vv->clamp(centerIndex + size)
-    );
-
-    return std::accumulate(space->begin(), space->end(), 0.f, [&](float value, const auto &i32pos_i) {
-        glm::vec3 pos_i = i32pos_i;
-
-        return value + (
-                vv->getValue(i32pos_i)
-                *
-                std::accumulate(space->begin(), space->end(), 1.f, [&](float value, const auto &i32pos_k) {
-                    glm::vec3 pos_k = i32pos_k;
-
-                    if (areSame(pos_i.x, pos_k.x) ||
-                        areSame(pos_i.y, pos_k.y) ||
-                        areSame(pos_i.z, pos_k.z)) {
-                        return 1.f;
-                    }
-
-                    return value * (
-                            (
-                                    (pos.x - pos_k.x) * (pos.y - pos_k.y) * (pos.z - pos_k.z)
-                            ) / (
-                                    (pos_i.x - pos_k.x) * (pos_i.y - pos_k.y) * (pos_i.z - pos_k.z)
-                            )
-                    );
-                })
-        );
-    });
-}
+//float PolynomialVolumeInterpolator2::interpolate(const glm::vec3 &pos) const {
+//    // rozwiązanie analityczne
+//    // https://math.stackexchange.com/a/2099510
+//
+//    auto centerIndex = glm::i32vec3(
+//            std::round(pos.x),
+//            std::round(pos.y),
+//            std::round(pos.z)
+//    );
+//
+//    auto space = makeI32space(
+//            vv->clamp(centerIndex - size),
+//            vv->clamp(centerIndex + size)
+//    );
+//
+//    return std::accumulate(space->begin(), space->end(), 0.f, [&](float value, const auto &i32pos_i) {
+//        glm::vec3 pos_i = i32pos_i;
+//
+//        return value + (
+//                vv->getValue(i32pos_i)
+//                *
+//                std::accumulate(space->begin(), space->end(), 1.f, [&](float value, const auto &i32pos_k) {
+//                    glm::vec3 pos_k = i32pos_k;
+//
+//                    if (areSame(pos_i.x, pos_k.x) ||
+//                        areSame(pos_i.y, pos_k.y) ||
+//                        areSame(pos_i.z, pos_k.z)) {
+//                        return 1.f;
+//                    }
+//
+//                    return value * (
+//                            (
+//                                    (pos.x - pos_k.x) * (pos.y - pos_k.y) * (pos.z - pos_k.z)
+//                            ) / (
+//                                    (pos_i.x - pos_k.x) * (pos_i.y - pos_k.y) * (pos_i.z - pos_k.z)
+//                            )
+//                    );
+//                })
+//        );
+//    });
+//}
 
 QString PolynomialVolumeInterpolator2::toDisplay() {
 

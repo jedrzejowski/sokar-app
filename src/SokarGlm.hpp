@@ -16,6 +16,8 @@
 namespace SokarGlm {
 
     static const float EPS = 0.00001f;
+    static const float EPS_64 = 0.00001;
+    static const float EPS_32 = 0.00001f;
 
     [[nodiscard]]
     bool fastInDistance(const glm::vec3 &v1, const glm::vec3 &v2, float distance = EPS);
