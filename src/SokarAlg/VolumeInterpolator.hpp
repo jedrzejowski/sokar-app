@@ -46,7 +46,7 @@ namespace SokarAlg {
 
     class PolynomialVolumeInterpolator1 : public VolumeInterpolator {
     protected:
-        glm::i32vec3 size = glm::i32vec3(2, 2, 2);
+        glm::i32vec3 size = glm::i32vec3(2, 2, 1);
     public:
 
         [[nodiscard]]
