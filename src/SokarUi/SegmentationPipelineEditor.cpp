@@ -149,7 +149,8 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
         pipeline->setVolumeInterpolator(volumeInterpolator);
 
         pipeline->setCubesPerMM(float(ui->interpolationWokselSize->value()));
-        pipeline->setUseCache(ui->cacheInterpolation->isChecked());
+        pipeline->setUseCache(ui->cache_box->isChecked());
+        pipeline->setCacheThreads(ui->cahce_thread_count->value());
     }
 
     //endregion
@@ -306,7 +307,7 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
 
     //region simplification
 
-    if (ui->simplificationBox->isChecked()) {
+    if (ui->simplification_box->isChecked()) {
         switch (ui->simplificationAlgorithm->currentIndex()) {
             case 0: {
                 auto vertexClustering = SokarAlg::VertexClustering::New();

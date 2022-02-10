@@ -416,7 +416,8 @@ float CubicVolumeInterpolator1::interpolate(const glm::vec3 &pos) const {
             for (int col = 0; col < 4; ++col) {
 
                 result += P[col] * Q[row] * R[slice] *
-                          vv->getValueSafe(centerIndex + glm::i32vec3({col, row, 4 - slice}));
+                          // oś Z obracamy, bo algorytm był do takiej przystowsowany
+                          vv->getValueSafe(centerIndex + glm::i32vec3({col, row, 2 - slice}));
             }
         }
     }

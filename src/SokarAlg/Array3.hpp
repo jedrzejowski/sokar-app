@@ -22,6 +22,10 @@ namespace SokarAlg {
 
         inline size_t position2index(const glm::i32vec3 &position) const {
 
+            assert(position.x < _size.x);
+            assert(position.y < _size.y);
+            assert(position.z < _size.z);
+
             return (position.x * _size.y + position.y) * _size.z + position.z;
         }
 
@@ -67,12 +71,12 @@ namespace SokarAlg {
             return data.size() * sizeof(T);
         }
 
-        T &operator()(const glm::i32vec3 &position) {
+        T &operator[](const glm::i32vec3 &position) {
 
             return data[position2index(position)];
         }
 
-        const T &operator()(const glm::i32vec3 &position) const {
+        const T &operator[](const glm::i32vec3 &position) const {
 
             return data[position2index(position)];
         }

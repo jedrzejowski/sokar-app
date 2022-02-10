@@ -395,7 +395,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="simplificationBox">
+    <widget class="QGroupBox" name="simplification_box">
      <property name="title">
       <string>Upraszczanie siatki</string>
      </property>
@@ -583,9 +583,12 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="groupBox_5">
+    <widget class="QGroupBox" name="cache_box">
      <property name="title">
-      <string>Inne</string>
+      <string>Pamięć podręczna</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
      </property>
      <layout class="QGridLayout" name="gridLayout_5">
       <item row="0" column="0">
@@ -596,12 +599,9 @@
        </widget>
       </item>
       <item row="0" column="1">
-       <widget class="QCheckBox" name="cacheInterpolation">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
+       <widget class="QSpinBox" name="cahce_thread_count">
+        <property name="value">
+         <number>1</number>
         </property>
        </widget>
       </item>

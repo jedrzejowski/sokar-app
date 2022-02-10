@@ -121,6 +121,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
             auto cached_volume = QSharedPointer<CachedVolume>::create();
             cached_volume->setVolume(current_volume);
+            cached_volume->setThreadsCount(cache_threads);
             current_volume = cached_volume;
 
             result->volume_interpolation_cache.timeStart = makeTimePoint();
@@ -286,6 +287,11 @@ void SegmentationPipeline::setGradientVolume(const GradientVolumePtr &new_gradie
 void SegmentationPipeline::setLineInterpolator(const LineInterpolatorPtr &new_line_interpolator) {
 
     line_interpolator = new_line_interpolator;
+}
+
+void SegmentationPipeline::setCacheThreads(int cacheThreads) {
+
+    cache_threads = cacheThreads;
 }
 
 //endregion

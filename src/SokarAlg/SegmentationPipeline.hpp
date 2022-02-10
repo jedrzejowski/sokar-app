@@ -81,6 +81,7 @@ namespace SokarAlg {
         QMutex stateMutex;
 
         bool use_cache = true;
+        int cache_threads = 1;
         bool use_empty_env = true;
         QColor meshColor = QColor("#BF4024");
 
@@ -118,6 +119,7 @@ namespace SokarAlg {
         void setCubesPerMM(float cubes_per_mm);
         void setGradientVolume(const GradientVolumePtr &gradientVolume);
         void setLineInterpolator(const LineInterpolatorPtr &new_line_interpolator);
+        void setCacheThreads(int cacheThreads);
 
         QFuture<SegmentationResultCPtr> executePipeline();
 

@@ -97,10 +97,10 @@ void RegionGrowthVolume::regrowth() {
             continue;
         }
 
-        mask(current) = VISITED;
+        mask[current] = VISITED;
 
         if (isoLevel.distance(getUnMaskedValue(current)) < 0) {
-            mask(current) = PASSED;
+            mask[current] = PASSED;
         } else {
             qDebug() << "continue";
             continue;
@@ -118,7 +118,7 @@ void RegionGrowthVolume::regrowth() {
 
 bool RegionGrowthVolume::isVisited(const glm::i32vec3 &position) const {
 
-    return mask(position) not_eq NOT_VISITED;
+    return mask[position] not_eq NOT_VISITED;
 }
 
 QString RegionGrowthVolume::toDisplay() {

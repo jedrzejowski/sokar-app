@@ -324,12 +324,12 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="137"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="138"/>
         <source>Maszerowanie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="178"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="179"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
@@ -799,12 +799,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="588"/>
-        <source>Inne</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="594"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="597"/>
         <source>Pamięc podręczna</source>
         <translation type="unfinished"></translation>
     </message>
@@ -915,6 +910,7 @@
     </message>
     <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="381"/>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="588"/>
         <source>Pamięć podręczna</source>
         <translation type="unfinished"></translation>
     </message>
