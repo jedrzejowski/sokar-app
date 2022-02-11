@@ -49,9 +49,10 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             auto dicom_volume = DicomVolumePtr::create();
             dicom_volume->setRawDicomVolume(raw_dicom_volume);
             dicom_volume->setInterpolator(volume_interpolator);
-            dicom_volume->setCubesPerMM(cubes_per_mm);
+            dicom_volume->setTargetWokselSize(target_woksel_size);
 
             result->volume_interpolation.description = volume_interpolator->toDisplay();
+            result->volume_interpolation.woksel_size = target_woksel_size;
 
             current_volume = dicom_volume;
         }
@@ -153,12 +154,12 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
 
         // przesunięcie mesha, aby osadzenie w pustej przestrzeni nie miało wpływu, na pozycje
         if (use_empty_env) {
-            transform = glm::translate(transform, glm::vec3(-cubes_per_mm));
+            transform = glm::translate(transform, glm::vec3(-target_woksel_size));
         }
 
         if (not volume_interpolator.isNull()) {
             // transformata do skalowania mesha, aby zawsze był taki sam
-            transform = glm::scale(transform, glm::vec3(cubes_per_mm, cubes_per_mm, cubes_per_mm));
+            transform = glm::scale(transform, glm::vec3(target_woksel_size, target_woksel_size, target_woksel_size));
         } else {
             // w przypadku braku interpolacji wyskaluj do wartości woksela
             transform = glm::scale(transform, raw_dicom_volume->getWokselSize());
@@ -206,7 +207,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         );
 
         result->meshColor = meshColor;
-        result->proposeCameraCenter = glm::vec3(current_volume->getSize()) / 2.f * cubes_per_mm;
+        result->proposeCameraCenter = glm::vec3(current_volume->getSize()) / 2.f * target_woksel_size;
         if (volume_interpolator.isNull()) {
             result->proposeCameraCenter =
                     glm::vec3(current_volume->getSize()) * raw_dicom_volume->getWokselSize() / 2.f;
@@ -274,9 +275,9 @@ void SegmentationPipeline::setIsoRange(const Range<float> &isoRange) {
     iso_range = isoRange;
 }
 
-void SegmentationPipeline::setCubesPerMM(float new_cubes_per_mm) {
+void SegmentationPipeline::setTargetWokselSize(float new_woskel_size) {
 
-    cubes_per_mm = new_cubes_per_mm;
+    target_woksel_size = new_woskel_size;
 }
 
 void SegmentationPipeline::setGradientVolume(const GradientVolumePtr &new_gradient_volume) {

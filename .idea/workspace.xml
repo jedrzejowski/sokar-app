@@ -25,15 +25,15 @@
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/Array3.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/Array3.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/CachedVolume.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeInterpolator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -684,6 +684,9 @@
       <workItem from="1644263392435" duration="2578000" />
       <workItem from="1644327508395" duration="1667000" />
       <workItem from="1644446761530" duration="4297000" />
+      <workItem from="1644528010738" duration="2505000" />
+      <workItem from="1644610711138" duration="3271000" />
+      <workItem from="1644620579758" duration="204000" />
     </task>
     <task id="LOCAL-00067" summary="commit kontorlny">
       <created>1623605479308</created>

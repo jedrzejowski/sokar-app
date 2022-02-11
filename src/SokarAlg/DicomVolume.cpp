@@ -74,14 +74,14 @@ float RawDicomVolume::getValue(const glm::i32vec3 &position) const {
 
 //region DicomVolume: getters & setters
 
-float DicomVolume::getCubesPerMM() const {
+float DicomVolume::getTargetWokselSize() const {
 
-    return cubesPerMM;
+    return targetWokselSize;
 }
 
-void DicomVolume::setCubesPerMM(float cubesPerMm) {
+void DicomVolume::setTargetWokselSize(float cubesPerMm) {
 
-    cubesPerMM = cubesPerMm;
+    targetWokselSize = cubesPerMm;
     update();
 }
 
@@ -102,20 +102,20 @@ void DicomVolume::setRawDicomVolume(const QSharedPointer<const RawDicomVolume> &
 
 void DicomVolume::update() {
 
-    wokselSize = glm::vec3(1.f);
+    auto wokselSize = glm::vec3(1.f);
     if (rawDicomVolume != nullptr) {
         wokselSize = rawDicomVolume->getWokselSize();
     }
 
-    wokselSize = wokselSize / cubesPerMM;
+    wokselRatio = wokselSize / targetWokselSize;
 
     setSpaceTranslator([this](auto &position) {
-        return position / this->wokselSize;
+        return position / this->wokselRatio;
     });
 }
 
 glm::i32vec3 DicomVolume::getSize() const {
 
-    return glm::vec3(rawDicomVolume->getSize()) * wokselSize;
+    return glm::vec3(rawDicomVolume->getSize()) * wokselRatio;
 }
 

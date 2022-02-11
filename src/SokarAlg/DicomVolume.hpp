@@ -37,8 +37,8 @@ namespace SokarAlg {
     class DicomVolume : public InterpolatedVolume {
         QSharedPointer<const RawDicomVolume> rawDicomVolume;
 
-        float cubesPerMM = 1.f;
-        glm::vec3 wokselSize = glm::vec3(1.f);
+        float targetWokselSize = 1.f;
+        glm::vec3 wokselRatio = glm::vec3(1.f);
 
     public:
 
@@ -50,8 +50,8 @@ namespace SokarAlg {
         glm::i32vec3 getSize() const override;
 
         [[nodiscard]]
-        float getCubesPerMM() const;
-        void setCubesPerMM(float cubesPerMm);
+        float getTargetWokselSize() const;
+        void setTargetWokselSize(float cubesPerMm);
 
     private:
         void update();

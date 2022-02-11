@@ -59,15 +59,6 @@ void LineInterpolator::setExtendPointCount(int new_point_count) {
     extend_point = new_point_count;
 }
 
-bool LineInterpolator::isUseCache() const {
-
-    return use_cache;
-}
-void LineInterpolator::setUseCache(bool useCache) {
-
-    use_cache = useCache;
-}
-
 // ----
 
 HalfLineInterpolatorPtr HalfLineInterpolator::New() {

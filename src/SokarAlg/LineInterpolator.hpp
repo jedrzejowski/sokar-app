@@ -13,7 +13,6 @@ namespace SokarAlg {
     class LineInterpolator : public SokarLib::Displayable {
     protected:
         int extend_point = 0;
-        bool use_cache = false;
         VolumeCPtr volume = nullptr;
         float iso_level = 0;
 
@@ -42,9 +41,6 @@ namespace SokarAlg {
         int getExtendPointCount() const;
         void setExtendPointCount(int pointCount);
 
-        [[nodiscard]]
-        bool isUseCache() const;
-        void setUseCache(bool useCache);
     };
 
     class HalfLineInterpolator : public LineInterpolator {

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>439</width>
-    <height>289</height>
+    <height>316</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,198 +20,52 @@
    <enum>QFrame::Plain</enum>
   </property>
   <layout class="QGridLayout" name="gridLayout_2" columnstretch="0,1,1,0">
-   <item row="11" column="1">
-    <widget class="QLabel" name="label_7">
-     <property name="text">
-      <string>Osadzenie w przestrzeni</string>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="2">
-    <widget class="QLabel" name="segmentation_label">
-     <property name="text">
-      <string>###</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="2">
-    <widget class="QLabel" name="region_growth_label">
-     <property name="text">
-      <string>###</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0" rowspan="14">
-    <widget class="QWidget" name="colorPreview" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>10</width>
-       <height>0</height>
-      </size>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="3">
-    <widget class="QLabel" name="volume_interpolation_time">
-     <property name="text">
-      <string>###</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="11" column="2">
-    <widget class="QLabel" name="volume_env_label">
-     <property name="text">
-      <string>###</string>
-     </property>
-    </widget>
-   </item>
-   <item row="13" column="2">
-    <widget class="QLabel" name="sumLabel">
-     <property name="text">
-      <string>// TODO</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="3">
-    <widget class="QLabel" name="region_growth_time">
-     <property name="text">
-      <string>###</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="3">
+   <item row="6" column="3">
     <widget class="QLabel" name="segmentation_time">
      <property name="text">
       <string>###</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="8" column="2">
-    <widget class="QLabel" name="line_interpolation_label">
-     <property name="text">
-      <string>###</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="3">
-    <widget class="QLabel" name="volume_interpolation_cache_time">
-     <property name="text">
-      <string>###</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1">
-    <widget class="QLabel" name="label_5">
-     <property name="text">
-      <string>Cache interpolacji</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Segmentacja</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="3">
-    <widget class="QLabel" name="gradient_time">
-     <property name="text">
-      <string>###</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1">
-    <widget class="QLabel" name="label_4">
-     <property name="text">
-      <string>Interplacja wolumenu</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
     </widget>
    </item>
    <item row="4" column="2">
-    <widget class="QLabel" name="gradient_label">
+    <widget class="QLabel" name="region_growth_label">
      <property name="text">
       <string>###</string>
      </property>
     </widget>
    </item>
-   <item row="1" column="2">
-    <widget class="QLabel" name="volume_interpolation_label">
-     <property name="text">
-      <string>###</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1">
+   <item row="4" column="1">
     <widget class="QLabel" name="label_3">
      <property name="text">
       <string>Rozrost</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <widget class="QLabel" name="label_5">
+     <property name="text">
+      <string>Cache interpolacji</string>
      </property>
     </widget>
    </item>
-   <item row="8" column="3">
-    <widget class="QLabel" name="line_interpolation_time">
+   <item row="3" column="3">
+    <widget class="QLabel" name="volume_interpolation_cache_time">
      <property name="text">
       <string>###</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
     </widget>
    </item>
-   <item row="9" column="3">
-    <widget class="QLabel" name="mesh_simplification_time">
+   <item row="4" column="3">
+    <widget class="QLabel" name="region_growth_time">
      <property name="text">
       <string>###</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-     </property>
     </widget>
    </item>
-   <item row="8" column="1">
-    <widget class="QLabel" name="label_9">
+   <item row="3" column="2">
+    <widget class="QLabel" name="volume_interpolation_cache_label">
      <property name="text">
-      <string>Interpolacja prostych</string>
+      <string>###</string>
      </property>
     </widget>
    </item>
@@ -225,13 +79,17 @@
      </property>
     </widget>
    </item>
-   <item row="9" column="1">
-    <widget class="QLabel" name="label_8">
+   <item row="5" column="1">
+    <widget class="QLabel" name="label_6">
      <property name="text">
-      <string>Upraszcanie siatki</string>
+      <string>Gradient</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <widget class="QLabel" name="segmentation_label">
+     <property name="text">
+      <string>###</string>
      </property>
     </widget>
    </item>
@@ -298,50 +156,146 @@
      </item>
     </layout>
    </item>
-   <item row="9" column="2">
+   <item row="2" column="2">
+    <widget class="QLabel" name="volume_interpolation_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="3">
+    <widget class="QLabel" name="volume_interpolation_time">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="3">
+    <widget class="QLabel" name="gradient_time">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Interplacja wolumenu</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="1">
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Segmentacja</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
+    <widget class="QLabel" name="gradient_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0" rowspan="15">
+    <widget class="QWidget" name="colorPreview" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>10</width>
+       <height>0</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="label_11">
+     <property name="text">
+      <string>Wielkość woksela</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="1">
+    <widget class="QLabel" name="label_9">
+     <property name="text">
+      <string>Interpolacja prostych</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="2">
+    <widget class="QLabel" name="line_interpolation_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="7" column="3">
+    <widget class="QLabel" name="line_interpolation_time">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="1">
+    <widget class="QLabel" name="label_8">
+     <property name="text">
+      <string>Upraszcanie siatki</string>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="2">
     <widget class="QLabel" name="mesh_simplification_label">
      <property name="text">
       <string>###</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
     </widget>
    </item>
-   <item row="13" column="1">
-    <widget class="QLabel" name="label_10">
-     <property name="text">
-      <string>Podsumowanie</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QLabel" name="label_6">
-     <property name="text">
-      <string>Gradient</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QLabel" name="volume_interpolation_cache_label">
+   <item row="8" column="3">
+    <widget class="QLabel" name="mesh_simplification_time">
      <property name="text">
       <string>###</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+    </widget>
+   </item>
+   <item row="9" column="1">
+    <widget class="QLabel" name="label_7">
+     <property name="text">
+      <string>Osadzenie w przestrzeni</string>
      </property>
     </widget>
    </item>
-   <item row="11" column="3">
+   <item row="9" column="2">
+    <widget class="QLabel" name="volume_env_label">
+     <property name="text">
+      <string>###</string>
+     </property>
+    </widget>
+   </item>
+   <item row="9" column="3">
     <widget class="QLabel" name="volume_env_time">
      <property name="text">
       <string>###</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+    </widget>
+   </item>
+   <item row="10" column="1">
+    <widget class="QLabel" name="label_10">
+     <property name="text">
+      <string>Podsumowanie</string>
+     </property>
+    </widget>
+   </item>
+   <item row="10" column="2">
+    <widget class="QLabel" name="sumLabel">
+     <property name="text">
+      <string>// TODO</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QLabel" name="woksel_size_label">
+     <property name="text">
+      <string>TextLabel</string>
      </property>
     </widget>
    </item>

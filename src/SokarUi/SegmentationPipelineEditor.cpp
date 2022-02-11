@@ -148,7 +148,7 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
 
         pipeline->setVolumeInterpolator(volumeInterpolator);
 
-        pipeline->setCubesPerMM(float(ui->interpolationWokselSize->value()));
+        pipeline->setTargetWokselSize(float(ui->interpolationWokselSize->value()));
         pipeline->setUseCache(ui->cache_box->isChecked());
         pipeline->setCacheThreads(ui->cahce_thread_count->value());
     }
@@ -275,9 +275,6 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
         case 2: {
             auto interpolator = SokarAlg::PolynomialLineInterpolator::New();
 
-            auto extend_point = ui->line_interpolation_extend_point->value();
-
-            interpolator->setUseCache(ui->line_interpolation_cache_check->isChecked());
             interpolator->setExtendPointCount(ui->line_interpolation_extend_point->value());
 
             pipeline->setLineInterpolator(interpolator);
@@ -288,8 +285,7 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
 
             auto extend_point = ui->line_interpolation_extend_point->value();
 
-            interpolator->setUseCache(ui->line_interpolation_cache_check->isChecked());
-            interpolator->setExtendPointCount(ui->line_interpolation_extend_point->value());
+            interpolator->setExtendPointCount(extend_point);
 
             if (extend_point < 1) {
                 QMessageBox::warning(this, "Błąd", "Ilośc dodatkowych punktów musi być większa niż zero");

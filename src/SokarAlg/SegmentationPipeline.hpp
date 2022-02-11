@@ -17,6 +17,7 @@ namespace SokarAlg {
 
         struct {
             QString description;
+            float woksel_size;
         } volume_interpolation;
 
         struct {
@@ -90,7 +91,7 @@ namespace SokarAlg {
 
         Range<float> iso_range;
 
-        float cubes_per_mm = 1;
+        float target_woksel_size = 1;
         RawDicomVolumePtr raw_dicom_volume = nullptr;
         Sokar3D::MeshPtr base_mesh = nullptr;
         VolumeInterpolatorPtr volume_interpolator = nullptr;
@@ -116,7 +117,7 @@ namespace SokarAlg {
         void setUseRegionGrowth(bool useRegionGrowth);
         void setGrowthStartPoint(const glm::i32vec3 &growthStartPoint);
         void setIsoRange(const Range<float> &isoRange);
-        void setCubesPerMM(float cubes_per_mm);
+        void setTargetWokselSize(float woskel_size);
         void setGradientVolume(const GradientVolumePtr &gradientVolume);
         void setLineInterpolator(const LineInterpolatorPtr &new_line_interpolator);
         void setCacheThreads(int cacheThreads);
