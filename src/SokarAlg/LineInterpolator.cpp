@@ -67,15 +67,14 @@ float LineInterpolator::findRoot(
     auto a = float(a_);
     auto b = float(b_);
 
-    int max_iter = 5;
-
     switch (method) {
         case Bisection: {
             //https://www.geeksforgeeks.org/program-for-bisection-method/
             auto c = a;
 
-            while (max_iter > 0 & (b - a) >= SokarGlm::EPS) {
-                --max_iter;
+            auto iter = 0;
+            while (iter < max_iter && (b - a) >= SokarGlm::EPS) {
+                ++iter;
 
                 c = (a + b) / 2;
 
@@ -96,7 +95,7 @@ float LineInterpolator::findRoot(
             //https://www.geeksforgeeks.org/program-for-method-of-false-position/
             auto c = a;
 
-            for (int i = 0; i < max_iter; i++) {
+            for (int i = 0; i < max_iter; ++i) {
                 c = (a * func(b) - b * func(a)) / (func(b) - func(a));
 
                 if (func(c) == 0) {
@@ -135,6 +134,26 @@ glm::vec3 LineInterpolator::myClamp(const glm::vec3 &output, const glm::i32vec3 
                     float(std::max(a.z, b.z))
             )
     };
+}
+
+LineIterationMethod LineInterpolator::getMethod() const {
+
+    return method;
+}
+
+void LineInterpolator::setMethod(LineIterationMethod method) {
+
+    this->method = method;
+}
+
+int LineInterpolator::getMaxIter() const {
+
+    return max_iter;
+}
+
+void LineInterpolator::setMaxIter(int maxIter) {
+
+    max_iter = maxIter;
 }
 
 // ----

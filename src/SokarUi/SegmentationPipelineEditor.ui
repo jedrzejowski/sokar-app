@@ -365,13 +365,48 @@
       </item>
       <item>
        <layout class="QGridLayout" name="common_line_interpolation_bix">
-        <item row="0" column="1">
-         <widget class="QtUi::SpinBox" name="line_interpolation_extend_point"/>
-        </item>
-        <item row="0" column="0">
+        <item row="2" column="0">
          <widget class="QLabel" name="label">
           <property name="text">
            <string>Ilość dodatkowych punktów</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="label_5">
+          <property name="text">
+           <string>Rozwiązywanie równania</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QComboBox" name="line_interpolation_iter_method">
+          <item>
+           <property name="text">
+            <string>Besekcji</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Regula falsi</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QtUi::SpinBox" name="line_interpolation_extend_point"/>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_6">
+          <property name="text">
+           <string>Iteracje</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QtUi::SpinBox" name="line_interpolation_max_iter">
+          <property name="value">
+           <number>5</number>
           </property>
          </widget>
         </item>

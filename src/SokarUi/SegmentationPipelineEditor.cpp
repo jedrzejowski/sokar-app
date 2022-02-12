@@ -259,23 +259,23 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
 
     //region line interpolation
 
+    SokarAlg::LineInterpolatorPtr interpolator;
+
     switch (ui->line_interpolation_combo->currentIndex()) {
         case 0: {
-            auto interpolator = SokarAlg::LinearLineInterpolator::New();
+            interpolator = SokarAlg::LinearLineInterpolator::New();
 
             pipeline->setLineInterpolator(interpolator);
             break;
         }
         case 1: {
-            auto interpolator = SokarAlg::HalfLineInterpolator::New();
+            interpolator = SokarAlg::HalfLineInterpolator::New();
 
             pipeline->setLineInterpolator(interpolator);
             break;
         }
         case 2: {
-            auto interpolator = SokarAlg::PolynomialLineInterpolator::New();
-
-            interpolator->setExtendPointCount(ui->line_interpolation_extend_point->value());
+            interpolator = SokarAlg::PolynomialLineInterpolator::New();
 
             pipeline->setLineInterpolator(interpolator);
             break;
@@ -284,8 +284,6 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
             auto interpolator = SokarAlg::SplineLineInterpolator::New();
 
             auto extend_point = ui->line_interpolation_extend_point->value();
-
-            interpolator->setExtendPointCount(extend_point);
 
             if (extend_point < 1) {
                 QMessageBox::warning(this, "Błąd", "Ilośc dodatkowych punktów musi być większa niż zero");
@@ -298,6 +296,18 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
         default:
             Q_ASSERT(false);
     }
+
+    interpolator->setExtendPointCount(ui->line_interpolation_extend_point->value());
+    interpolator->setMaxIter(ui->line_interpolation_max_iter->value());
+    switch (ui->line_interpolation_iter_method->currentIndex()) {
+        case 0:
+            interpolator->setMethod(SokarAlg::Bisection);
+            break;
+        case 1:
+            interpolator->setMethod(SokarAlg::FalsePosition);
+            break;
+    }
+
 
     //endregion
 

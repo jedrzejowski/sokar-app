@@ -21,6 +21,7 @@ namespace SokarAlg {
         VolumeCPtr volume = nullptr;
         float iso_level = 0;
         LineIterationMethod method = FalsePosition;
+        int max_iter = 5;
 
         virtual void dicomVolumeChanged();
 
@@ -46,6 +47,11 @@ namespace SokarAlg {
         [[nodiscard]]
         int getExtendPointCount() const;
         void setExtendPointCount(int pointCount);
+
+        LineIterationMethod getMethod() const;
+        void setMethod(LineIterationMethod method);
+        int getMaxIter() const;
+        void setMaxIter(int maxIter);
 
     protected:
         float findRoot(int a, int b, std::function<float(float w)> &&f) const;
