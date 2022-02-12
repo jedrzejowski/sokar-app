@@ -59,6 +59,84 @@ void LineInterpolator::setExtendPointCount(int new_point_count) {
     extend_point = new_point_count;
 }
 
+float LineInterpolator::findRoot(
+        int a_, int b_,
+        std::function<float(float w)> &&func
+) const {
+
+    auto a = float(a_);
+    auto b = float(b_);
+
+    int max_iter = 5;
+
+    switch (method) {
+        case Bisection: {
+            //https://www.geeksforgeeks.org/program-for-bisection-method/
+            auto c = a;
+
+            while (max_iter > 0 & (b - a) >= SokarGlm::EPS) {
+                --max_iter;
+
+                c = (a + b) / 2;
+
+                if (func(c) == 0.0) {
+                    break;
+
+                } else if (func(c) * func(a) < 0) {
+                    b = c;
+                } else {
+                    a = c;
+                }
+            }
+
+            return c;
+        }
+
+        case FalsePosition: {
+            //https://www.geeksforgeeks.org/program-for-method-of-false-position/
+            auto c = a;
+
+            for (int i = 0; i < max_iter; i++) {
+                c = (a * func(b) - b * func(a)) / (func(b) - func(a));
+
+                if (func(c) == 0) {
+                    break;
+                } else if (func(c) * func(a) < 0) {
+                    b = c;
+                } else {
+                    a = c;
+                }
+            }
+
+            return c;
+        }
+
+        default:
+            assert(false);
+    }
+}
+
+glm::vec3 LineInterpolator::myClamp(const glm::vec3 &output, const glm::i32vec3 &a, const glm::i32vec3 &b) const {
+
+    return {
+            std::clamp(
+                    output.x,
+                    float(std::min(a.x, b.x)),
+                    float(std::max(a.x, b.x))
+            ),
+            std::clamp(
+                    output.y,
+                    float(std::min(a.y, b.y)),
+                    float(std::max(a.y, b.y))
+            ),
+            std::clamp(
+                    output.z,
+                    float(std::min(a.z, b.z)),
+                    float(std::max(a.z, b.z))
+            )
+    };
+}
+
 // ----
 
 HalfLineInterpolatorPtr HalfLineInterpolator::New() {
@@ -114,73 +192,99 @@ PolynomialLineInterpolatorPtr PolynomialLineInterpolator::New() {
 
 glm::vec3 PolynomialLineInterpolator::interpolate(const Volume::Point &p1, const Volume::Point &p2) const {
 
-    try {
-        auto delta = p2.position - p1.position;
-        auto points = getPoints(p1, p2);
-        auto sum = glm::vec3(0.f);
+    auto delta = p2.position - p1.position;
+    auto points = getPoints(p1, p2);
+    auto output = glm::vec3(0.f);
 
-        // https://en.wikipedia.org/wiki/Polynomial_interpolation
-        // x - wartość
-        // y - pozycja
 
-        if (delta.x == 0) {
-            sum.x = float(p1.position.x);
-        } else {
-            sum.x = std::accumulate(points.begin(), points.end(), 0.f, [&](float sum, const Volume::Point &point_j) {
-                return float(point_j.position.x) *
-                       std::accumulate(points.begin(), points.end(), 1.f, [&](float sum, const Volume::Point &point_k) {
-                           if (point_j.value == point_k.value) {
-                               throw std::runtime_error("divide by zero");
-                           }
+    // https://en.wikipedia.org/wiki/Polynomial_interpolation
+    // x - wartość
+    // y - pozycja
 
-                           return sum * (iso_level - point_k.value) / (point_j.value - point_k.value);
-                       });
+    if (delta.x == 0) {
+        output.x = float(p1.position.x);
+    } else {
+
+        auto funcX = [&](float x) -> float {
+            return std::accumulate(points.begin(), points.end(), 0.f, [&](float sum, const Volume::Point &point_j) {
+                auto pi = std::accumulate(
+                        points.begin(), points.end(), 1.f,
+                        [&](float product, const Volume::Point &point_k) {
+                            // hackowe sprawdzenie czy punkty są te same
+                            if (&point_j == &point_k) {
+                                return product;
+                            }
+
+                            return product * (x - float(point_k.position.x)) /
+                                   float(point_j.position.x - point_k.position.x);
+                        });
+
+                return sum + float(point_j.value - iso_level) * pi;
+
             });
-        }
+        };
 
-        if (delta.y == 0) {
-            sum.y = float(p1.position.y);
-        } else {
-            sum.y = std::accumulate(points.begin(), points.end(), 0.f, [&](float sum, const Volume::Point &point_j) {
-                return float(point_j.position.y) *
-                       std::accumulate(points.begin(), points.end(), 1.f, [&](float sum, const Volume::Point &point_k) {
-                           if (point_j.value == point_k.value) {
-                               throw std::runtime_error("divide by zero");
-                           }
+//        auto test1 = funcX(p1.position.x);
+//        auto test2 = funcX(p2.position.x);
+//        auto test3 = funcX((p2.position.x + p1.position.x) / 2);
 
-                           return sum * (iso_level - point_k.value) / (point_j.value - point_k.value);
-                       });
-            });
-        }
-
-        if (delta.z == 0) {
-            sum.z = float(p1.position.z);
-        } else {
-            sum.z = std::accumulate(points.begin(), points.end(), 0.f, [&](float sum, const Volume::Point &point_j) {
-                return float(point_j.position.z) *
-                       std::accumulate(points.begin(), points.end(), 1.f, [&](float sum, const Volume::Point &point_k) {
-                           if (point_j.value == point_k.value) {
-                               throw std::runtime_error("divide by zero");
-                           }
-
-                           return sum * (iso_level - point_k.value) / (point_j.value - point_k.value);
-                       });
-            });
-
-        }
-
-        ++passed_interpolations;
-
-        return sum;
-
-    } catch (const std::exception &e) {
-        qDebug() << "HERE2";
-        ++failed_interpolations;
-
-        auto mu = (iso_level - p1.value) / (p2.value - p1.value);
-        return glm::vec3(p1.position) + mu * glm::vec3(p2.position - p1.position);
+        output.x = findRoot(p1.position.x, p2.position.x, funcX);
     }
 
+    if (delta.y == 0) {
+        output.y = float(p1.position.y);
+    } else {
+
+        auto funcY = [&](float y) -> float {
+            return std::accumulate(points.begin(), points.end(), 0.f, [&](float sum, const Volume::Point &point_j) {
+                auto pi = std::accumulate(
+                        points.begin(), points.end(), 1.f,
+                        [&](float product, const Volume::Point &point_k) {
+                            // hackowe sprawdzenie czy punkty są te same
+                            if (&point_j == &point_k) {
+                                return product;
+                            }
+
+                            return product * (y - float(point_k.position.y)) /
+                                   float(point_j.position.y - point_k.position.y);
+                        });
+                return sum + float(point_j.value - iso_level) * pi;
+
+            });
+        };
+
+        output.y = findRoot(p1.position.y, p2.position.y, funcY);
+    }
+
+    if (delta.z == 0) {
+        output.z = float(p1.position.z);
+    } else {
+
+        auto funcZ = [&](float z) -> float {
+            return std::accumulate(points.begin(), points.end(), 0.f, [&](float sum, const Volume::Point &point_j) {
+                auto pi = std::accumulate(
+                        points.begin(), points.end(), 1.f,
+                        [&](float product, const Volume::Point &point_k) {
+                            // hackowe sprawdzenie czy punkty są te same
+                            if (&point_j == &point_k) {
+                                return product;
+                            }
+
+                            return product * (z - float(point_k.position.z)) /
+                                   float(point_j.position.z - point_k.position.z);
+                        });
+                return sum + float(point_j.value - iso_level) * pi;
+            });
+        };
+
+        output.z = findRoot(p1.position.z, p2.position.z, funcZ);
+    }
+
+
+    ++passed_interpolations;
+
+    return output;
+//    return myClamp(sum, p1.position, p2.position);
 }
 
 QString PolynomialLineInterpolator::toDisplay() {
@@ -203,66 +307,75 @@ glm::vec3 SplineLineInterpolator::interpolate(const Volume::Point &p1, const Vol
     auto points = getPoints(p1, p2);
     auto output = glm::vec3(0.f);
 
-    std::sort(points.begin(), points.end(), [](const auto &p1, const auto &p2) -> bool {
-        return p1.value > p2.value;
-    });
-
-    std::vector<double> V;
-    for (const auto &point: points) {
-        V.emplace_back(point.value);
-    }
 
     if (delta.x == 0) {
         output.x = float(p1.position.x);
     } else {
 
-        std::vector<double> X;
+        std::vector<double> X, V;
+
+        std::sort(points.begin(), points.end(), [](const auto &p1, const auto &p2) -> bool {
+            return p1.position.x < p2.position.x;
+        });
+
         for (const auto &point: points) {
+            V.emplace_back(point.value);
             X.emplace_back(point.position.x);
         }
 
-        tk::spline s(V, X);
+        tk::spline s(X, V);
 
-        output.z = s(iso_level);
+        output.x = findRoot(p1.position.x, p2.position.x, [&](auto x) { return s(x); });
+//        output.x = (p1.position.x + p2.position.x) / 2.f;
     }
 
     if (delta.y == 0) {
         output.y = float(p1.position.y);
     } else {
 
-        std::vector<double> Y;
+        std::vector<double> Y, V;
+
+        std::sort(points.begin(), points.end(), [](const auto &p1, const auto &p2) -> bool {
+            return p1.position.y < p2.position.y;
+        });
+
         for (const auto &point: points) {
+            V.emplace_back(point.value);
             Y.emplace_back(point.position.y);
         }
 
-        tk::spline s(V, Y);
+        tk::spline s(Y, V);
 
         output.y = s(iso_level);
+
+        output.y = findRoot(p1.position.y, p2.position.y, [&](auto y) { return s(y); });
+//        output.y = (p1.position.y + p2.position.y) / 2.f;
     }
 
     if (delta.z == 0) {
         output.z = float(p1.position.z);
     } else {
 
-        std::vector<double> Z;
+        std::vector<double> Z, V;
+
+        std::sort(points.begin(), points.end(), [](const auto &p1, const auto &p2) -> bool {
+            return p1.position.z < p2.position.z;
+        });
+
         for (const auto &point: points) {
-            Z.emplace_back(point.position.y);
+            V.emplace_back(point.value);
+            Z.emplace_back(point.position.z);
         }
 
-        tk::spline s(V, Z);
+        tk::spline s(Z, V);
 
-        output.z = s(iso_level);
+        output.z = findRoot(p1.position.z, p2.position.z, [&](auto z) { return s(z); });
+//        output.z = (p1.position.z + p2.position.z) / 2.f;
     }
-//
-//    std::vector<double> X = {0.1, 0.4, 1.2, 1.8, 2.0}; // must be increasing
-//    std::vector<double> Y = {0.1, 0.7, 0.6, 1.1, 0.9};
-//
-//    tk::spline s(X, Y);
-//    double x = 1.5, y = s(x), deriv = s.deriv(1, x);
-//
-//    printf("spline at %f is %f with derivative %f\n", x, y, deriv);
+
 
     return output;
+//    return myClamp(output, p1.position, p2.position);
 }
 
 QString SplineLineInterpolator::toDisplay() {

@@ -10,11 +10,17 @@
 
 namespace SokarAlg {
 
+    enum LineIterationMethod {
+        Bisection,
+        FalsePosition
+    };
+
     class LineInterpolator : public SokarLib::Displayable {
     protected:
         int extend_point = 0;
         VolumeCPtr volume = nullptr;
         float iso_level = 0;
+        LineIterationMethod method = FalsePosition;
 
         virtual void dicomVolumeChanged();
 
@@ -40,6 +46,11 @@ namespace SokarAlg {
         [[nodiscard]]
         int getExtendPointCount() const;
         void setExtendPointCount(int pointCount);
+
+    protected:
+        float findRoot(int a, int b, std::function<float(float w)> &&f) const;
+
+        glm::vec3 myClamp(const glm::vec3 &output, const glm::i32vec3 &a, const glm::i32vec3 &b) const;
 
     };
 

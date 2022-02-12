@@ -25,15 +25,8 @@
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/DicomVolume.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -686,14 +679,7 @@
       <workItem from="1644446761530" duration="4297000" />
       <workItem from="1644528010738" duration="2505000" />
       <workItem from="1644610711138" duration="3271000" />
-      <workItem from="1644620579758" duration="204000" />
-    </task>
-    <task id="LOCAL-00067" summary="commit kontorlny">
-      <created>1623605479308</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1623605479308</updated>
+      <workItem from="1644620579758" duration="7322000" />
     </task>
     <task id="LOCAL-00068" summary="commit kontorlny">
       <created>1623608037328</created>
@@ -1031,7 +1017,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644449008319</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="ostatnia prosta">
+      <created>1644620832715</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1644620832716</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1126,7 +1119,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/gdcm" />
     </ignored-roots>
-    <MESSAGE value="klasteryzacja wierzchołków działa" />
     <MESSAGE value="wstępna implemntacja edge collpasa" />
     <MESSAGE value="prace wre" />
     <MESSAGE value="commit kontorlny" />
@@ -1151,7 +1143,8 @@
     <MESSAGE value="chyba się powiesze" />
     <MESSAGE value="qq" />
     <MESSAGE value="poprawki cubic interpolation" />
-    <option name="LAST_COMMIT_MESSAGE" value="poprawki cubic interpolation" />
+    <MESSAGE value="ostatnia prosta" />
+    <option name="LAST_COMMIT_MESSAGE" value="ostatnia prosta" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
