@@ -1,72 +1,81 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
-    <class>Vec3Input</class>
-    <widget class="QWidget" name="Vec3Input">
-        <property name="geometry">
-            <rect>
-                <x>0</x>
-                <y>0</y>
-                <width>410</width>
-                <height>78</height>
-            </rect>
-        </property>
-        <property name="windowTitle">
-            <string>Form</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout">
-            <property name="leftMargin">
-                <number>0</number>
-            </property>
-            <property name="topMargin">
-                <number>0</number>
-            </property>
-            <property name="rightMargin">
-                <number>0</number>
-            </property>
-            <property name="bottomMargin">
-                <number>0</number>
-            </property>
-            <item row="1" column="0">
-                <widget class="QtUi::DoubleSpinBox" name="xBox">
-                    <property name="prefix">
-                        <string notr="true">X =</string>
-                    </property>
-                </widget>
-            </item>
-            <item row="1" column="1">
-                <widget class="QtUi::DoubleSpinBox" name="yBox">
-                    <property name="prefix">
-                        <string notr="true">Y =</string>
-                    </property>
-                </widget>
-            </item>
-            <item row="1" column="2">
-                <widget class="QtUi::DoubleSpinBox" name="zBox">
-                    <property name="prefix">
-                        <string notr="true">Z =</string>
-                    </property>
-                </widget>
-            </item>
-            <item row="2" column="0" colspan="3">
-                <widget class="QLabel" name="label">
-                    <property name="text">
-                        <string>TextLabel</string>
-                    </property>
-                    <property name="alignment">
-                        <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
-                    </property>
-                </widget>
-            </item>
-        </layout>
+ <class>Vec3Input</class>
+ <widget class="QWidget" name="Vec3Input">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>410</width>
+    <height>78</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item row="1" column="0">
+    <widget class="QtUi::DoubleSpinBox" name="xBox">
+     <property name="prefix">
+      <string notr="true">X =</string>
+     </property>
+     <property name="maximum">
+      <double>99999.990000000005239</double>
+     </property>
     </widget>
-    <customwidgets>
-        <customwidget>
-            <class>QtUi::DoubleSpinBox</class>
-            <extends>QDoubleSpinBox</extends>
-            <header>QtUi/DoubleSpinBox.hpp</header>
-            <container>1</container>
-        </customwidget>
-    </customwidgets>
-    <resources/>
-    <connections/>
+   </item>
+   <item row="1" column="1">
+    <widget class="QtUi::DoubleSpinBox" name="yBox">
+     <property name="prefix">
+      <string notr="true">Y =</string>
+     </property>
+     <property name="maximum">
+      <double>99999.990000000005239</double>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QtUi::DoubleSpinBox" name="zBox">
+     <property name="prefix">
+      <string notr="true">Z =</string>
+     </property>
+     <property name="maximum">
+      <double>99999.990000000005239</double>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3">
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>TextLabel</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QtUi::DoubleSpinBox</class>
+   <extends>QDoubleSpinBox</extends>
+   <header>QtUi/DoubleSpinBox.hpp</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
 </ui>

@@ -160,9 +160,7 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
     if (ui->region_growth_box->isChecked()) {
 
         pipeline->setUseRegionGrowth(true);
-        pipeline->setGrowthStartPoint(
-                ui->region_growth_vec->getValue() / float(ui->interpolationWokselSize->value())
-        );
+        pipeline->setGrowthStartPoint(ui->region_growth_vec->getValue());
     }
 
     //endregion
@@ -281,7 +279,7 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
             break;
         }
         case 3: {
-            auto interpolator = SokarAlg::SplineLineInterpolator::New();
+            interpolator = SokarAlg::SplineLineInterpolator::New();
 
             auto extend_point = ui->line_interpolation_extend_point->value();
 

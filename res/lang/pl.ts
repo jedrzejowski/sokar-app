@@ -314,22 +314,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="121"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="95"/>
         <source>Kaszowanie interpolacji</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="73"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="114"/>
         <source>Rozrost obszarów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="139"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="145"/>
         <source>Maszerowanie</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="180"/>
+        <location filename="../../src/SokarAlg/SegmentationPipeline.cpp" line="186"/>
         <source>Upraszczanie siatki</source>
         <translation type="unfinished"></translation>
     </message>
@@ -904,6 +904,11 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="274"/>
+        <source>Indeksowana z podziałem obszarów</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="336"/>
         <source>Interpolacja prostych</source>
         <translation type="unfinished"></translation>
@@ -986,11 +991,6 @@
     <message>
         <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="569"/>
         <source>PushButton</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/SokarUi/SegmentationPipelineEditor.ui" line="274"/>
-        <source>Indkesowana z podziałem obszarów</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1126,7 +1126,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/QtUi/Vec3Input.ui" line="53"/>
+        <location filename="../../src/QtUi/Vec3Input.ui" line="62"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>

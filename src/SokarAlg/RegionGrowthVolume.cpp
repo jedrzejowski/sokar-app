@@ -84,7 +84,11 @@ void RegionGrowthVolume::regrowth() {
     auto stepNext = [&](const glm::i32vec3 &direction) {
         next = current + direction;
 
-        if (not isVisited(next) and isInVolume(next)) {
+        if (not isInVolume(next)) {
+            return;
+        }
+
+        if (not isVisited(next)) {
             queue << next;
         }
     };
@@ -102,7 +106,6 @@ void RegionGrowthVolume::regrowth() {
         if (isoLevel.distance(getUnMaskedValue(current)) < 0) {
             mask[current] = PASSED;
         } else {
-            qDebug() << "continue";
             continue;
         }
 

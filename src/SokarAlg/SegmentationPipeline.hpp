@@ -87,7 +87,7 @@ namespace SokarAlg {
         QColor meshColor = QColor("#BF4024");
 
         bool use_region_growth = false;
-        glm::i32vec3 region_growth_start_point;
+        glm::vec3 region_growth_start_point;
 
         Range<float> iso_range;
 
@@ -115,7 +115,7 @@ namespace SokarAlg {
         void setBaseMesh(const Sokar3D::MeshPtr &baseMesh);
         void setUseEmptyEnv(bool useEmptyEnv);
         void setUseRegionGrowth(bool useRegionGrowth);
-        void setGrowthStartPoint(const glm::i32vec3 &growthStartPoint);
+        void setGrowthStartPoint(const glm::vec3 &growthStartPoint);
         void setIsoRange(const Range<float> &isoRange);
         void setTargetWokselSize(float woskel_size);
         void setGradientVolume(const GradientVolumePtr &gradientVolume);

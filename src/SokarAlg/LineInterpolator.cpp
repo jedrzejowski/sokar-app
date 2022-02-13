@@ -64,17 +64,17 @@ float LineInterpolator::findRoot(
         std::function<float(float w)> &&func
 ) const {
 
-    auto a = float(a_);
-    auto b = float(b_);
+    auto a = float(std::min(a_, b_));
+    auto b = float(std::max(a_, b_));
 
     switch (method) {
         case Bisection: {
             //https://www.geeksforgeeks.org/program-for-bisection-method/
+
+//            return (a + b) / 2;
             auto c = a;
 
-            auto iter = 0;
-            while (iter < max_iter && (b - a) >= SokarGlm::EPS) {
-                ++iter;
+            for (int i = 0; i < max_iter && std::abs(b - a) >= SokarGlm::EPS; ++i) {
 
                 c = (a + b) / 2;
 
@@ -156,6 +156,18 @@ void LineInterpolator::setMaxIter(int maxIter) {
     max_iter = maxIter;
 }
 
+QString LineInterpolator::methodToString() const {
+
+    switch (method) {
+        case FalsePosition:
+            return "regula falsi";
+        case Bisection:
+            return "bisekcja";
+        default:
+            return "unknown";
+    }
+}
+
 // ----
 
 HalfLineInterpolatorPtr HalfLineInterpolator::New() {
@@ -170,7 +182,7 @@ glm::vec3 HalfLineInterpolator::interpolate(const Volume::Point &p1, const Volum
 
 QString HalfLineInterpolator::toDisplay() {
 
-    return "HalfLineInterpolator";
+    return "połowiczna";
 }
 
 // ----
@@ -243,10 +255,6 @@ glm::vec3 PolynomialLineInterpolator::interpolate(const Volume::Point &p1, const
             });
         };
 
-//        auto test1 = funcX(p1.position.x);
-//        auto test2 = funcX(p2.position.x);
-//        auto test3 = funcX((p2.position.x + p1.position.x) / 2);
-
         output.x = findRoot(p1.position.x, p2.position.x, funcX);
     }
 
@@ -302,13 +310,16 @@ glm::vec3 PolynomialLineInterpolator::interpolate(const Volume::Point &p1, const
 
     ++passed_interpolations;
 
-    return output;
-//    return myClamp(sum, p1.position, p2.position);
+//    return output;
+    return myClamp(output, p1.position, p2.position);
 }
 
 QString PolynomialLineInterpolator::toDisplay() {
 
-    return "interpolacja wielomianowa";
+    return QString("wielomianowa\niteracja: %1\nilość punktów: %2\niteracje: %3")
+            .arg(methodToString())
+            .arg(2 + extend_point * 2)
+            .arg(max_iter);
 }
 
 
@@ -393,11 +404,14 @@ glm::vec3 SplineLineInterpolator::interpolate(const Volume::Point &p1, const Vol
     }
 
 
-    return output;
-//    return myClamp(output, p1.position, p2.position);
+//    return output;
+    return myClamp(output, p1.position, p2.position);
 }
 
 QString SplineLineInterpolator::toDisplay() {
 
-    return "interpolacja funkcjami sklejanymi";
+    return QString("funkcje sklejane\niteracja: %1\n ilość punktów: %2\niteracje: %3")
+            .arg(methodToString())
+            .arg(2 + extend_point * 2)
+            .arg(max_iter);
 }

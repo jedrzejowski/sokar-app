@@ -48,16 +48,22 @@ namespace SokarAlg {
         int getExtendPointCount() const;
         void setExtendPointCount(int pointCount);
 
+        [[nodiscard]]
         LineIterationMethod getMethod() const;
         void setMethod(LineIterationMethod method);
+
+        [[nodiscard]]
         int getMaxIter() const;
         void setMaxIter(int maxIter);
 
     protected:
         float findRoot(int a, int b, std::function<float(float w)> &&f) const;
 
+        [[nodiscard]]
         glm::vec3 myClamp(const glm::vec3 &output, const glm::i32vec3 &a, const glm::i32vec3 &b) const;
 
+        [[nodiscard]]
+        QString methodToString() const;
     };
 
     class HalfLineInterpolator : public LineInterpolator {

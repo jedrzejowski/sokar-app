@@ -67,26 +67,6 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             result->gradient.description = "nie";
         }
 
-        if (use_region_growth) {
-            result->region_growth.was = true;
-
-            emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
-
-            auto region_growth = RegionGrowthVolume::New();
-            region_growth->setVolume(current_volume);
-            region_growth->setIsoLevel(iso_range);
-            region_growth->setStartPoint(region_growth_start_point);
-            current_volume = region_growth;
-
-            result->region_growth.timeStart = makeTimePoint();
-            region_growth->regrowth();
-            result->region_growth.timeEnd = makeTimePoint();
-            result->region_growth.description = region_growth->toDisplay();
-
-        } else {
-            result->region_growth.description = "nie";
-        }
-
         if (use_empty_env) {
             auto volume_env = VolumeEnv::New();
 
@@ -100,19 +80,13 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             });
 
             volume_env->setEnvValue(min - (std::abs(max - min) * 1000));
+//            volume_env->setEnvValue(0.f);
             volume_env->setEnvSize(1.f);
             volume_env->setVolume(current_volume);
             result->volume_env.description = "tak";
             current_volume = volume_env;
         } else {
             result->volume_env.description = "nie";
-        }
-
-        {
-            auto iso_range_volume = IsoRangeDistanceVolumeTransform::New();
-            iso_range_volume->setVolume(current_volume);
-            iso_range_volume->setIsoRange(iso_range);
-            current_volume = iso_range_volume;
         }
 
         if (use_cache) {
@@ -132,6 +106,38 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             result->volume_interpolation_cache.description = "tak";
         } else {
             result->volume_interpolation_cache.description = "nie";
+        }
+
+        if (use_region_growth) {
+            result->region_growth.was = true;
+
+            emit updateProgress(QObject::tr("Rozrost obszarów"), 0.f);
+
+            auto region_growth = RegionGrowthVolume::New();
+            region_growth->setVolume(current_volume);
+            region_growth->setIsoLevel(iso_range);
+
+            auto dicom_size_in_mm = raw_dicom_volume->getWokselSize() * glm::vec3(raw_dicom_volume->getSize());
+            glm::vec3 start_point = glm::vec3(current_volume->getSize()) *
+                                    (region_growth_start_point / dicom_size_in_mm);
+
+            region_growth->setStartPoint(start_point);
+            current_volume = region_growth;
+
+            result->region_growth.timeStart = makeTimePoint();
+            region_growth->regrowth();
+            result->region_growth.timeEnd = makeTimePoint();
+            result->region_growth.description = region_growth->toDisplay();
+
+        } else {
+            result->region_growth.description = "nie";
+        }
+
+        {
+            auto iso_range_volume = IsoRangeDistanceVolumeTransform::New();
+            iso_range_volume->setVolume(current_volume);
+            iso_range_volume->setIsoRange(iso_range);
+            current_volume = iso_range_volume;
         }
 
         //region segmentation
@@ -260,7 +266,7 @@ void SegmentationPipeline::setUseRegionGrowth(bool useRegionGrowth) {
     SegmentationPipeline::use_region_growth = useRegionGrowth;
 }
 
-void SegmentationPipeline::setGrowthStartPoint(const glm::i32vec3 &growthStartPoint) {
+void SegmentationPipeline::setGrowthStartPoint(const glm::vec3 &growthStartPoint) {
 
     SegmentationPipeline::region_growth_start_point = growthStartPoint;
 }
