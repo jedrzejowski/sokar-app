@@ -24,11 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/VulkanRenderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/CenterCamera.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CenterCamera.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Sokar3D/CenterCamera.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Sokar3D/CenterCamera.hpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -690,14 +687,7 @@
       <workItem from="1644663446783" duration="9095000" />
       <workItem from="1644748414111" duration="7072000" />
       <workItem from="1645564488761" duration="1799000" />
-      <workItem from="1645971943888" duration="8534000" />
-    </task>
-    <task id="LOCAL-00072" summary="dodanie toggla">
-      <created>1629129962377</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1629129962378</updated>
+      <workItem from="1645971943888" duration="10963000" />
     </task>
     <task id="LOCAL-00073" summary="poprawne akceptowanie zasięgu">
       <created>1629136927554</created>
@@ -1035,7 +1025,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646000839570</updated>
     </task>
-    <option name="localTasksCounter" value="121" />
+    <task id="LOCAL-00121" summary="prace poprawkowe">
+      <created>1646002671444</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1646002671444</updated>
+    </task>
+    <option name="localTasksCounter" value="122" />
     <servers />
   </component>
   <component name="TimeTrackingManager">

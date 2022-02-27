@@ -15,6 +15,7 @@ namespace Sokar3D {
         float distance;
         float yawAngle = 0.0f;
         float pitchAngle = 0.0f;
+        float rollAngle = 0.0f;
         float speedRatio = 4.0f;
         QPoint lastMousePos;
 

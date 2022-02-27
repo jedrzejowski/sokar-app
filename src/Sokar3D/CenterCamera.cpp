@@ -4,6 +4,7 @@
 
 #include "./CenterCamera.hpp"
 #include <QMouseEvent>
+#include <QApplication>
 
 using namespace Sokar3D;
 
@@ -14,10 +15,24 @@ CenterCamera::CenterCamera(
     distance(distance) {
 }
 
+float normalizeAngle(float angle) {
+
+    angle = std::fmod(angle, 360);
+
+    if (angle > 180) {
+        angle -= 360;
+    }
+
+    return glm::radians(angle);
+}
 
 glm::mat4 CenterCamera::viewMatrix() const {
 
-    return glm::lookAt(position(), lookAtPos, cameraUp);
+    auto pos = position();
+
+    auto rolledUp = glm::rotate(cameraUp, normalizeAngle(rollAngle), pos);
+
+    return glm::lookAt(pos, lookAtPos, rolledUp);
 }
 
 bool CenterCamera::uiEvent(QEvent *event) {
@@ -31,18 +46,37 @@ bool CenterCamera::uiEvent(QEvent *event) {
 
 
     if (event->type() == QEvent::MouseMove) {
+
+        auto keyboard = QApplication::keyboardModifiers();
         auto mouseEvent = (QMouseEvent *) event;
 
-        if (mouseEvent->buttons() & Qt::LeftButton) {
-            event->accept();
+        if (mouseEvent->buttons().testFlag(Qt::LeftButton)) {
 
-            auto delta = mouseEvent->pos() - lastMousePos;
-            yaw(float(delta.x()) / speedRatio * -1);
-            pitch(float(delta.y()) / speedRatio);
+            auto qDelta = mouseEvent->pos() - lastMousePos;
+            auto delta = glm::vec2(qDelta.x(), qDelta.y()) / speedRatio;
 
-            lastMousePos = mouseEvent->pos();
+            if (keyboard.testFlag(Qt::ShiftModifier)) {
+                event->accept();
 
-            return true;
+            } else if (keyboard.testFlag(Qt::AltModifier)) {
+                event->accept();
+
+                rollAngle += delta.x * -1;
+
+            } else {
+                event->accept();
+
+                auto nRoll = normalizeAngle(rollAngle) * -1;
+                auto sin = glm::sin(nRoll);
+                auto cos = glm::cos(nRoll);
+
+                yaw(delta.x * cos - delta.y * sin);
+                pitch(delta.x * sin + delta.y * cos);
+
+                lastMousePos = mouseEvent->pos();
+
+                return true;
+            }
         }
     }
 
@@ -76,14 +110,11 @@ glm::vec3 CenterCamera::position() const {
 
     glm::vec3 cameraFront = glm::vec3(1.0f, 0.0f, 0.0f);
 
-//	qDebug() << "pitchAngle=" << pitchAngle << " yawAngle=" << yawAngle << " distance=" << distance;
-
-    cameraFront = glm::rotate(cameraFront, glm::radians(pitchAngle), glm::vec3(0, 0, 1));
-    cameraFront = glm::rotate(cameraFront, glm::radians(yawAngle), glm::vec3(0, 1, 0));
+    cameraFront.x = cos(normalizeAngle(yawAngle)) * cos(normalizeAngle(pitchAngle));
+    cameraFront.y = sin(normalizeAngle(pitchAngle));
+    cameraFront.z = sin(normalizeAngle(yawAngle)) * cos(normalizeAngle(pitchAngle));
 
     cameraFront = glm::normalize(cameraFront) * distance;
-
-//	qDebug() << "cameraFront = " << glm::to_string(cameraFront).c_str();
 
     return lookAtPos + cameraFront;
 }
