@@ -53,9 +53,11 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             dicom_volume->setTargetWokselSize(target_woksel_size);
 
             result->volume_interpolation.description = volume_interpolator->toDisplay();
-            result->volume_interpolation.woksel_size = target_woksel_size;
+            result->volume_interpolation.woksel_size = glm::vec3(target_woksel_size);
 
             current_volume = dicom_volume;
+        } else {
+            result->volume_interpolation.woksel_size = raw_dicom_volume->getWokselSize();
         }
 
         //endregion

@@ -188,7 +188,7 @@ void VulkanRenderer::buildFrame(Pipelines *pipelines) {
     VkCommandBuffer cb = vkWidget->currentCommandBuffer();
     const QSize sz = vkWidget->swapChainImageSize();
 
-    VkClearColorValue clearColor = {{0.67f, 0.84f, 0.9f, 1.0f}};
+    VkClearColorValue clearColor = {{1.0f, 1.0f, 1.0f, 1.0f}};
     VkClearDepthStencilValue clearDS = {1, 0};
     VkClearValue clearValues[3];
     memset(clearValues, 0, sizeof(clearValues));

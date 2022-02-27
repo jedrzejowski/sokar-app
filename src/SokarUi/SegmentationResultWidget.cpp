@@ -31,7 +31,12 @@ SegmentationResultWidget::SegmentationResultWidget(
     ui->colorName->setText(result->meshColor.name());
 
     ui->iso_range_label->setText(QString("[%1; %2]").arg(result->iso_range.from).arg(result->iso_range.to));
-    ui->woksel_size_label->setText(QString("%1[mm] x %1[mm] x %1[mm]").arg(result->volume_interpolation.woksel_size));
+    ui->woksel_size_label->setText(
+            QString("%1[mm] x %2[mm] x %3[mm]")
+                    .arg(result->volume_interpolation.woksel_size.x)
+                    .arg(result->volume_interpolation.woksel_size.y)
+                    .arg(result->volume_interpolation.woksel_size.z)
+    );
     ui->volume_interpolation_label->setText(result->volume_interpolation.description);
     ui->volume_interpolation_cache_label->setText(result->volume_interpolation_cache.description);
     ui->region_growth_label->setText(result->region_growth.description);

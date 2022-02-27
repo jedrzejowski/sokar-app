@@ -18,7 +18,7 @@ namespace SokarAlg {
 
         struct {
             QString description;
-            float woksel_size;
+            glm::vec3 woksel_size;
         } volume_interpolation;
 
         struct {
