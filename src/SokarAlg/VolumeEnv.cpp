@@ -6,13 +6,13 @@
 
 using namespace SokarAlg;
 
-VolumeEnv::VolumeEnv()
-        : env_size(1, 1, 1), env_value(0.0f) {
+VolumeEnv::VolumeEnv(Type type)
+        : type(type), env_size(1, 1, 1), env_value(0.0f) {
 }
 
-VolumeEnvPtr VolumeEnv::New() {
+VolumeEnvPtr VolumeEnv::New(Type type) {
 
-    return VolumeEnvPtr(new VolumeEnv);
+    return VolumeEnvPtr(new VolumeEnv(type));
 }
 
 glm::i32vec3 VolumeEnv::getSize() const {
@@ -25,7 +25,24 @@ float VolumeEnv::getValue(const glm::i32vec3 &position) const {
     auto pos = position - env_size;
 
     if (volume->isInVolume(pos)) {
-        return volume->getValue(pos);
+
+        if (type == Yes) {
+            return volume->getValue(pos);
+        }
+
+        auto norm_pos = glm::vec3(pos) / glm::vec3(volume->getSize());
+
+        if (type == CircleX and glm::distance(glm::vec2(norm_pos.y, norm_pos.z), glm::vec2(0.5)) < 0.5) {
+            return volume->getValue(pos);
+        }
+        if (type == CircleY and glm::distance(glm::vec2(norm_pos.x, norm_pos.z), glm::vec2(0.5)) < 0.5) {
+            return volume->getValue(pos);
+        }
+        if (type == CircleZ and glm::distance(glm::vec2(norm_pos.x, norm_pos.y), glm::vec2(0.5)) < 0.5) {
+            return volume->getValue(pos);
+        }
+
+        return env_value;
     }
 
     return env_value;

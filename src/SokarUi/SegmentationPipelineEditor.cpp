@@ -254,7 +254,6 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
 
     //endregion
 
-
     //region line interpolation
 
     SokarAlg::LineInterpolatorPtr interpolator;
@@ -357,12 +356,29 @@ SokarAlg::SegmentationPipelinePtr SegmentationPipelineEditor::makePipeline(
     //endregion
 
 
-    //region design
+    //region empty_env_type
 
-    pipeline->setColor(meshColor);
-    pipeline->setUseEmptyEnv(ui->emptyEnv->isChecked());
+    switch (ui->emptyEnvCombo->currentIndex()) {
+        case 0:
+            pipeline->setEmptyEnvType(SokarAlg::VolumeEnv::No);
+            break;
+        case 1:
+            pipeline->setEmptyEnvType(SokarAlg::VolumeEnv::Yes);
+            break;
+        case 2:
+            pipeline->setEmptyEnvType(SokarAlg::VolumeEnv::CircleX);
+            break;
+        case 3:
+            pipeline->setEmptyEnvType(SokarAlg::VolumeEnv::CircleY);
+            break;
+        case 4:
+            pipeline->setEmptyEnvType(SokarAlg::VolumeEnv::CircleZ);
+            break;
+    }
 
     //endregion
+
+    pipeline->setColor(meshColor);
 
     return pipeline;
 }

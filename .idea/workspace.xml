@@ -22,17 +22,19 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="">
+    <list default="true" id="0c0c27e3-ee7b-41fc-ba7f-08b907034ddf" name="Default" comment="dodanie kółek do enva">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/res/lang/pl.ts" beforeDir="false" afterPath="$PROJECT_DIR$/res/lang/pl.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/QtUi/Vec3Input.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/QtUi/Vec3Input.ui" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/LineInterpolator.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/RegionGrowthVolume.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingCubes.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/MarchingTetrahedrons.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/SegmentationPipeline.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeEnv.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeEnv.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarAlg/VolumeEnv.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarAlg/VolumeEnv.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationPipelineEditor.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" beforeDir="false" afterPath="$PROJECT_DIR$/src/SokarUi/SegmentationResultWidget.ui" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -387,6 +389,11 @@
       </texify-makeindex>
       <method v="2" />
     </configuration>
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="boundingmesh" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Sokar" TARGET_NAME="boundingmesh" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="Sokar" RUN_TARGET_NAME="boundingmesh">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -687,14 +694,9 @@
       <workItem from="1644610711138" duration="3271000" />
       <workItem from="1644620579758" duration="9125000" />
       <workItem from="1644663446783" duration="9095000" />
-      <workItem from="1644748414111" duration="5804000" />
-    </task>
-    <task id="LOCAL-00070" summary="commit kontorlny">
-      <created>1623702970311</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1623702970311</updated>
+      <workItem from="1644748414111" duration="7072000" />
+      <workItem from="1645564488761" duration="1799000" />
+      <workItem from="1645971943888" duration="7122000" />
     </task>
     <task id="LOCAL-00071" summary="commit kontorlny">
       <created>1623712900874</created>
@@ -1032,7 +1034,14 @@
       <option name="project" value="LOCAL" />
       <updated>1644629266615</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="qq">
+      <created>1644792016044</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1644792016044</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -1148,11 +1157,11 @@
     <MESSAGE value="prace wree" />
     <MESSAGE value="poprawki interpolacji sześciennej" />
     <MESSAGE value="chyba się powiesze" />
-    <MESSAGE value="qq" />
     <MESSAGE value="poprawki cubic interpolation" />
     <MESSAGE value="ostatnia prosta" />
     <MESSAGE value="prawie mamy to" />
-    <option name="LAST_COMMIT_MESSAGE" value="prawie mamy to" />
+    <MESSAGE value="qq" />
+    <option name="LAST_COMMIT_MESSAGE" value="qq" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

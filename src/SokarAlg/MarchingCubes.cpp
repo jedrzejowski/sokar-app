@@ -411,8 +411,5 @@ MarchingCubes::Cube MarchingCubes::getCube(const glm::i32vec3 &position, const g
 
 QString MarchingCubes::toDisplay() {
 
-    return QString("%1\npróg = %2").arg(
-            "maszerujące sześciany",
-            QString::number(iso_level, 'f', 2)
-    );
+    return "maszerujące sześciany";
 }

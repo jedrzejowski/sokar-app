@@ -323,7 +323,7 @@ void MarchingTetrahedrons::marchTetrahedron(MarchingTetrahedrons::Tetrahedron te
 
 QString MarchingTetrahedrons::toDisplay() {
 
-    return QString();
+    return "maszerujące czworościany";
 }
 
 const glm::i32vec3 &MarchingTetrahedrons::getCubeSize() const {

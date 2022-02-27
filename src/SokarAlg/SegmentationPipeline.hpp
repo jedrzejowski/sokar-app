@@ -7,13 +7,14 @@
 #include "SokarAlg.hpp"
 #include "VolumeSegmentator.hpp"
 #include "DicomVolume.hpp"
-#include "DicomVolume.hpp"
+#include "VolumeEnv.hpp"
 #include "SokarUi/SegmentationPipelineEditor.hpp"
 
 namespace SokarAlg {
 
     struct SegmentationResult {
         QColor meshColor;
+        Range<float> iso_range;
 
         struct {
             QString description;
@@ -83,7 +84,7 @@ namespace SokarAlg {
 
         bool use_cache = true;
         int cache_threads = 1;
-        bool use_empty_env = true;
+        VolumeEnv::Type empty_env_type = VolumeEnv::Type::No;
         QColor meshColor = QColor("#BF4024");
 
         bool use_region_growth = false;
@@ -113,7 +114,7 @@ namespace SokarAlg {
         void setVolumeSegmentator(const QSharedPointer<VolumeSegmentator> &volumeSegmentator);
         void setMeshSimplificator(const MeshSimplificatorPtr &meshSimplificator);
         void setBaseMesh(const Sokar3D::MeshPtr &baseMesh);
-        void setUseEmptyEnv(bool useEmptyEnv);
+        void setEmptyEnvType(VolumeEnv::Type env_type);
         void setUseRegionGrowth(bool useRegionGrowth);
         void setGrowthStartPoint(const glm::vec3 &growthStartPoint);
         void setIsoRange(const Range<float> &isoRange);

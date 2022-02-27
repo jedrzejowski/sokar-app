@@ -40,6 +40,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         VolumePtr current_volume = raw_dicom_volume;
         auto result = QSharedPointer<SegmentationResult>::create();
 
+        result->iso_range = iso_range;
         result->summary.timeStart = makeTimePoint();
 
         // volume
@@ -67,8 +68,8 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
             result->gradient.description = "nie";
         }
 
-        if (use_empty_env) {
-            auto volume_env = VolumeEnv::New();
+        if (empty_env_type != VolumeEnv::No) {
+            auto volume_env = VolumeEnv::New(empty_env_type);
 
             float min = raw_dicom_volume->getValue(glm::i32vec3(0));
             float max = min;
@@ -159,7 +160,7 @@ QFuture<SegmentationResultCPtr> SegmentationPipeline::executePipeline() {
         auto transform = glm::mat4(1.f);
 
         // przesunięcie mesha, aby osadzenie w pustej przestrzeni nie miało wpływu, na pozycje
-        if (use_empty_env) {
+        if (empty_env_type != VolumeEnv::No) {
             transform = glm::translate(transform, glm::vec3(-target_woksel_size));
         }
 
@@ -256,9 +257,9 @@ void SegmentationPipeline::setUseCache(bool newUsingCache) {
     use_cache = newUsingCache;
 }
 
-void SegmentationPipeline::setUseEmptyEnv(bool useEmptyEnv) {
+void SegmentationPipeline::setEmptyEnvType(VolumeEnv::Type env_type) {
 
-    SegmentationPipeline::use_empty_env = useEmptyEnv;
+    SegmentationPipeline::empty_env_type = env_type;
 }
 
 void SegmentationPipeline::setUseRegionGrowth(bool useRegionGrowth) {

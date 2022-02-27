@@ -561,6 +561,13 @@
         </property>
        </widget>
       </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="label_7">
+        <property name="text">
+         <string>Kolor</string>
+        </property>
+       </widget>
+      </item>
       <item row="0" column="1">
        <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,0">
         <item>
@@ -584,20 +591,32 @@
        </layout>
       </item>
       <item row="1" column="1">
-       <widget class="QCheckBox" name="emptyEnv">
-        <property name="text">
-         <string notr="true"/>
-        </property>
-        <property name="checked">
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label_7">
-        <property name="text">
-         <string>Kolor</string>
-        </property>
+       <widget class="QComboBox" name="emptyEnvCombo">
+        <item>
+         <property name="text">
+          <string>Nie</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Tak</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Tak (koło X)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Tak (koło Y)</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Tak (koło Z)</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
@@ -680,7 +699,6 @@
   <tabstop>simplificationAlgorithm</tabstop>
   <tabstop>pickColorButton</tabstop>
   <tabstop>randomColorButton</tabstop>
-  <tabstop>emptyEnv</tabstop>
  </tabstops>
  <resources/>
  <connections/>

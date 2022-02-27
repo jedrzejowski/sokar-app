@@ -11,16 +11,26 @@ namespace SokarAlg {
 
     class VolumeEnv : public VolumeDecorator {
 
+    public:
+        enum Type {
+            No,
+            Yes,
+            CircleX,
+            CircleY,
+            CircleZ,
+        };
+
+    private:
+        Type type;
         glm::i32vec3 env_size;
         float env_value;
 
-        explicit VolumeEnv();
+        explicit VolumeEnv(Type type);
 
     public:
 
         [[nodiscard]]
-        static VolumeEnvPtr New();
-
+        static VolumeEnvPtr New(Type type);
 
         [[nodiscard]]
         const glm::i32vec3 &getEnvSize() const;
