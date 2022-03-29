@@ -71,6 +71,8 @@ void SegmentationPipelineEditor::setupUi() {
     ui->vertexClusteringSize->setMinimum(0.01f);
     ui->vertexClusteringSize->setMaximum(65536.f);
 
+    ui->gradient_box->setVisible(false);
+
 }
 
 void SegmentationPipelineEditor::simplificationAlgorithmComboBoxIndexChanged(int i) {

@@ -138,6 +138,9 @@
    </item>
    <item>
     <widget class="QGroupBox" name="gradient_box">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
      <property name="title">
       <string>Gradient</string>
      </property>

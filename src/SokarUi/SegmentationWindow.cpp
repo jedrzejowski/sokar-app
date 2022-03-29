@@ -29,7 +29,7 @@ SegmentationWindow::SegmentationWindow(QWidget *parent)
     ui->vulkanPlacehodler->hide();
 
     QObject::connect(ui->execSegementation, &QPushButton::clicked, [this]() { startSegmentation(); });
-    QObject::connect(ui->execSegementation2, &QPushButton::clicked, [this]() { startSegmentation(true); });
+//    QObject::connect(ui->execSegementation2, &QPushButton::clicked, [this]() { startSegmentation(true); });
 
     pipelineEditor = ui->pipelineEditor;
 }
