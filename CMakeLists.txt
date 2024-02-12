@@ -24,7 +24,7 @@ find_package(glfw3 REQUIRED)
 include_directories(${GLFW_INCLUDE_DIRS})
 link_libraries(${GLFW_LIBRARY_DIRS})
 
-list(APPEND CONAN_PKGS gdcm/3.0.9)
+list(APPEND CONAN_PKGS gdcm/3.0.23)
 list(APPEND CONAN_PKGS eigen/3.3.9)
 list(APPEND CONAN_PKGS cgal/5.2.1)
 list(APPEND CONAN_PKGS libigl/2.3.0)

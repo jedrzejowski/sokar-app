@@ -11,7 +11,7 @@ set(GDCM_LIBRARIES
         gdcmIOD
 #        gdcmexpat
 #        gdcmzlib
-        gdcmcharls
+#        gdcmcharls
 #        gdcmopenjp2
         gdcmjpeg12
         gdcmjpeg16
